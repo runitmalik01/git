@@ -16,22 +16,18 @@
 
 package com.mootly.wcm.beans.compound;
 
-import java.util.Calendar;
-
-import javax.jcr.RepositoryException;
-import static com.mootly.wcm.utils.Constants.CODECOUNTRY;
-
-import static com.mootly.wcm.utils.Constants.TAXID;
-
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import static com.mootly.wcm.utils.Constants.ARTICLEDTAA;
-import static com.mootly.wcm.utils.Constants.TOTALTAXFSI;
+import static com.mootly.wcm.utils.Constants.CODECOUNTRY;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
+import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import static com.mootly.wcm.utils.Constants.RELIEF9091;
 import static com.mootly.wcm.utils.Constants.RELIEF91;
-import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
+import static com.mootly.wcm.utils.Constants.TAXID;
+import static com.mootly.wcm.utils.Constants.TOTALTAXFSI;
+
+import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;

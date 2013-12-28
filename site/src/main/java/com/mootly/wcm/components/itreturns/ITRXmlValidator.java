@@ -43,9 +43,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.meterware.httpunit.javascript.JavaScript.Form;
 import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;

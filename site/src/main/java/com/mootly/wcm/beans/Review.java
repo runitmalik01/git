@@ -16,7 +16,6 @@
 
 package com.mootly.wcm.beans;
 
-import static com.mootly.wcm.utils.Constants.NT_PRODUCTLINK;
 import static com.mootly.wcm.utils.Constants.PROP_COMMENT;
 import static com.mootly.wcm.utils.Constants.PROP_DATE;
 import static com.mootly.wcm.utils.Constants.PROP_EMAIL;
@@ -30,7 +29,6 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

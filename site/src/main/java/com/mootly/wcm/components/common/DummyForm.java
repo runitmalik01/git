@@ -35,8 +35,6 @@ import com.mootly.wcm.beans.ContactUs;
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberSignupDocument;
-import com.mootly.wcm.member.Member;
-import com.mootly.wcm.member.MemberService;
 import com.mootly.wcm.member.StartApplication.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;

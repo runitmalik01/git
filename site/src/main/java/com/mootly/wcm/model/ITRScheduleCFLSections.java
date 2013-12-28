@@ -1,14 +1,9 @@
 package com.mootly.wcm.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-
-import com.mootly.wcm.beans.MemberPersonalInformation;
 
 public enum ITRScheduleCFLSections {
 

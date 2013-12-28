@@ -16,17 +16,12 @@
 
 package com.mootly.wcm.beans;
 
-import java.util.Calendar;
+import static com.mootly.wcm.utils.Constants.amount;
+import static com.mootly.wcm.utils.Constants.name_deductor;
+import static com.mootly.wcm.utils.Constants.tan_deductor;
+import static com.mootly.wcm.utils.Constants.total_taxdeducted;
 
 import javax.jcr.RepositoryException;
-import static com.mootly.wcm.utils.Constants.amount;
-
-import static com.mootly.wcm.utils.Constants.deducted_year;
-
-import static com.mootly.wcm.utils.Constants.tan_deductor;
-import static com.mootly.wcm.utils.Constants.name_deductor;
-import static com.mootly.wcm.utils.Constants.tds_certificate;
-import static com.mootly.wcm.utils.Constants.total_taxdeducted;
 
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;

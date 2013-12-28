@@ -1,6 +1,5 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
-import in.gov.incometaxindiaefiling.y2012_2013.FormITR2;
 import in.gov.incometaxindiaefiling.y2012_2013.FormITR4S;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 

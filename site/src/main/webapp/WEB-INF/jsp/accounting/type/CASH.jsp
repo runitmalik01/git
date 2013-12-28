@@ -4,7 +4,6 @@
 	<c:if test="${uuid == paymentdetail.canonicalUUID}"><c:set value="${paymentdetail}" var="tarPaymentDetail"></c:set></c:if>
 </c:forEach>
  --%>
- <c:out value="${pageAction}"/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">

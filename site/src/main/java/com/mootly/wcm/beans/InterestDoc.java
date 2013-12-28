@@ -5,13 +5,7 @@
  */
 
 package com.mootly.wcm.beans;
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;

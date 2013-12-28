@@ -1,11 +1,11 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleSTTR;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleSTTR.IncChrgSTT;
+
 import java.math.BigInteger;
 
 import com.mootly.wcm.services.IndianCurrencyHelper;
-
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleSTTR;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleSTTR.IncChrgSTT;
 
 public class Schedule_STTR {
 	

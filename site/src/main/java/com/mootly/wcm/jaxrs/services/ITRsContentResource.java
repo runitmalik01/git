@@ -45,13 +45,11 @@ import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.rewriter.ContentRewriter;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.jaxrs.services.AbstractResource;
-import org.hippoecm.hst.jaxrs.services.content.AbstractContentResource;
 import org.hippoecm.hst.util.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.jaxrs.model.itr.ITRRepresentation;
 import com.mootly.wcm.model.SORT_DIRECTION;
 

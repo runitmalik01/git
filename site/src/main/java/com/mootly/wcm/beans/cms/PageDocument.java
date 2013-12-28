@@ -33,31 +33,17 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoFacetSelect;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.cms.compound.PageRowDetail;
-import com.mootly.wcm.beans.compound.ImageSet;
-import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
-import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
-import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
-import com.mootly.wcm.model.InvoicePaymentStatus;
-import com.mootly.wcm.model.PaymentVerificationStatus;
-import com.mootly.wcm.services.SequenceGenerator;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:pbpagedocument")

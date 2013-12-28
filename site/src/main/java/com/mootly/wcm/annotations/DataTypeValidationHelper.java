@@ -3,11 +3,7 @@ package com.mootly.wcm.annotations;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import javax.xml.bind.Validator;
-
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.validator.routines.FloatValidator;
-import org.apache.commons.validator.routines.LongValidator;
 
 public  final class DataTypeValidationHelper {
 

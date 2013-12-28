@@ -1,28 +1,15 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
-import java.math.BigInteger;
-import java.util.List;
-
-import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
-import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
-import in.gov.incometaxindiaefiling.y2012_2013.CoOwners;
 import in.gov.incometaxindiaefiling.y2012_2013.Deductions;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.PropertyDetails;
-import in.gov.incometaxindiaefiling.y2012_2013.Rentdetails;
-import in.gov.incometaxindiaefiling.y2012_2013.Salaries;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleHP;
-import in.gov.incometaxindiaefiling.y2012_2013.Salaries.Salarys;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleOS;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleOS.IncFromOwnHorse;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleOS.IncOthThanOwnRaceHorse;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleOS.IncOthThanOwnRaceHorse.OthersGrossDtls;
 
-import com.mootly.wcm.beans.FormSixteenDocument;
-import com.mootly.wcm.beans.HouseProperty;
+import java.math.BigInteger;
+
 import com.mootly.wcm.beans.OtherSourcesDocument;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
-import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class OtherIncomeDocumentSchedules {

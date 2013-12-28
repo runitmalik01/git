@@ -2,23 +2,17 @@ package com.mootly.wcm.utils;
 
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBPA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
-import in.gov.incometaxindiaefiling.y2012_2013.TaxPayment;
 
 import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
-import java.util.TreeMap;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -53,13 +47,9 @@ import com.mootly.wcm.beans.compound.CapitalAssetDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
-import com.mootly.wcm.beans.compound.ScheduleDPMDetails;
-import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsFromSalaryDetail;
-import com.mootly.wcm.member.MonthCalculate;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.schedules.y2012_2013.CapitalGainScheduleFor4;
-import com.mootly.wcm.model.schedules.y2012_2013.ITR3_ScheduleBPA;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR4_ScheduleBP;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.IndianCurrencyHelper;

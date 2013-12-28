@@ -9,22 +9,16 @@
 
 package com.mootly.wcm.beans.compound;
 
-import static com.mootly.wcm.utils.Constants.DATE;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
-import static com.mootly.wcm.utils.Constants.PROP_PI_ORIGINAL_ACK_DATE;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -32,8 +26,8 @@ import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 
+import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.FormMapFiller;
 
 @SuppressWarnings("unused")

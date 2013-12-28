@@ -10,8 +10,6 @@ package com.mootly.wcm.member;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBPForITR4S;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +38,6 @@ import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.security.access.vote.UnanimousBased;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
@@ -77,7 +74,6 @@ import com.mootly.wcm.beans.ScheduleDOADocument;
 import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
-import com.mootly.wcm.beans.UnabsorbedDepreciationDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
@@ -87,11 +83,8 @@ import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ResidentStatus;
 import com.mootly.wcm.model.deduction.DeductionHead;
 import com.mootly.wcm.model.deduction.DeductionSection;
-import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
-import com.mootly.wcm.model.schedules.y2012_2013.ITRScheduleBPForITR4S;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
 import com.mootly.wcm.services.DeductionListService;
-import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;

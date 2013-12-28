@@ -1,7 +1,5 @@
 package com.mootly.wcm.model;
 
-import javax.jcr.Value;
-
 import org.hippoecm.hst.component.support.forms.FormMap;
 
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;

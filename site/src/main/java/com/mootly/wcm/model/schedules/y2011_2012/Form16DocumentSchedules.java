@@ -3,8 +3,8 @@ package com.mootly.wcm.model.schedules.y2011_2012;
 import in.gov.incometaxindiaefiling.y2011_2012.AddressDetail;
 import in.gov.incometaxindiaefiling.y2011_2012.ITR;
 import in.gov.incometaxindiaefiling.y2011_2012.Salaries;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleS;
 import in.gov.incometaxindiaefiling.y2011_2012.Salaries.Salarys;
+import in.gov.incometaxindiaefiling.y2011_2012.ScheduleS;
 
 import java.util.List;
 

@@ -231,7 +231,7 @@
 					<c:forEach items="${parentBean.invoicePaymentDetailList}"
 						var="invoicepaymentdetail">
 						<c:set var="paymentStatus" value="UNVERIFIED" />
-						<c:if test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED'}"> --%>							
+						<c:if test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED'}"> 							
 							<c:choose>
 								<c:when
 									test="${invoicepaymentdetail.requiresGateway && not empty invoicepaymentdetail.respCode &&  invoicepaymentdetail.respCode == 'SUCCESS'}">
@@ -366,33 +366,36 @@
 		<hst:attribute name="content">5</hst:attribute>
 	</hst:element>
 	<hst:headContribution element="${metaCustom4}" category="meta" />
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">&times;</button>
-			<h3>
-				<c:out value="Please wait.." />
-			</h3>
-		</div>
-		<div class="modal-body">
-			<c:if test="${not empty listOfPaymentUpdateResponse}">
-				<ul>
-					<c:forEach items="${listOfPaymentUpdateResponse}"
-						var="paymentUpdateResponse">
-						<c:if test="${paymentUpdateResponse.success}">
-							<li>Successful payment Type: <c:out
-									value="${paymentUpdateResponse.paymentType}" /> Amount:<c:out
-									value="${paymentUpdateResponse.txnAmount}" /></li>
-						</c:if>
-					</c:forEach>
-				</ul>
-			</c:if>
-			Please wait for the page to refresh ..
-		</div>
-		<div class="modal-footer">
-			<a href="${scriptName}" class="btn btn-default btn-inverse" id="addNewBtn"
-				style="display: none">Refresh</a>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h3>
+						<c:out value="Please wait.." />
+					</h3>
+				</div>
+				<div class="modal-body">
+					<c:if test="${not empty listOfPaymentUpdateResponse}">
+						<ul>
+							<c:forEach items="${listOfPaymentUpdateResponse}"
+								var="paymentUpdateResponse">
+								<c:if test="${paymentUpdateResponse.success}">
+									<li>Successful payment Type: <c:out
+											value="${paymentUpdateResponse.paymentType}" /> Amount:<c:out
+											value="${paymentUpdateResponse.txnAmount}" /></li>
+								</c:if>
+							</c:forEach>
+						</ul>
+					</c:if>
+					Please wait for the page to refresh ..
+				</div>
+				<div class="modal-footer">
+					<a href="${scriptName}" class="btn btn-default btn-inverse" id="addNewBtn"
+						style="display: none">Refresh</a>
+				</div>
+			</div>
 		</div>
 	</div>
 

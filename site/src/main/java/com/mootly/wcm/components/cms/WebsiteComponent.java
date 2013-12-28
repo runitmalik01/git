@@ -1,6 +1,5 @@
 package com.mootly.wcm.components.cms;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;

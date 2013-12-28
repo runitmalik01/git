@@ -318,7 +318,7 @@
 		<artifactId>xmlworker</artifactId>
 		<version>5.4.1</version>
 	</dependency>
-    
+    <!-- 
 	<dependency>
 		<groupId>httpunit</groupId>
 		<artifactId>httpunit</artifactId>
@@ -329,7 +329,7 @@
 		<artifactId>rhino</artifactId>
 		<version>1.7R4</version>
 	</dependency>
-	
+	-->
 	<!--  use of validator routines instead of our own validations -->
 	<dependency>
 		<groupId>commons-validator</groupId>

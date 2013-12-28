@@ -16,23 +16,15 @@
 
 package com.mootly.wcm.beans.compound;
 
+import static com.mootly.wcm.utils.Constants.AMOUNT1;
+import static com.mootly.wcm.utils.Constants.BSR1;
+import static com.mootly.wcm.utils.Constants.DATE1;
+import static com.mootly.wcm.utils.Constants.SERIAL1;
+
 import java.util.Calendar;
 
 import javax.jcr.RepositoryException;
 
-
-import static com.mootly.wcm.utils.Constants.AMOUNT1;
-import static com.mootly.wcm.utils.Constants.BSR1;
-import static com.mootly.wcm.utils.Constants.DATE1;
-import static com.mootly.wcm.utils.Constants.amount;
-import static com.mootly.wcm.utils.Constants.name_deductor;
-import static com.mootly.wcm.utils.Constants.tan_deductor;
-import static com.mootly.wcm.utils.Constants.total_taxdeducted;
-
-import static com.mootly.wcm.utils.Constants.SERIAL1;
-
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
-import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.slf4j.Logger;

@@ -16,9 +16,9 @@
 
 package com.mootly.wcm.beans;
 
-import static com.mootly.wcm.utils.Constants.PROP_TDS_SALARY;
-import static com.mootly.wcm.utils.Constants.SELFASSESMENT;
 import static com.mootly.wcm.utils.Constants.ADVANCETAX;
+import static com.mootly.wcm.utils.Constants.SELFASSESMENT;
+
 import java.util.List;
 
 import javax.jcr.NodeIterator;

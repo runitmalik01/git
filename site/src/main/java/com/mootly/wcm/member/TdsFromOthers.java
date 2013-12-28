@@ -1,8 +1,6 @@
 package com.mootly.wcm.member;
 
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;

@@ -3,7 +3,6 @@ package com.mootly.wcm.model.schedules.y2013_2014;
 import in.gov.incometaxindiaefiling.y2013_2014.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleTDS1;
-import in.gov.incometaxindiaefiling.y2013_2014.TDSonOthThanSal;
 import in.gov.incometaxindiaefiling.y2013_2014.TDSonSalaries;
 import in.gov.incometaxindiaefiling.y2013_2014.TDSonSalary;
 

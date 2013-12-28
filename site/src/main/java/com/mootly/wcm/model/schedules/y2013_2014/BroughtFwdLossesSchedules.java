@@ -9,14 +9,11 @@ import java.math.BigInteger;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.y2013_2014.XmlCalculation;
 
 public class BroughtFwdLossesSchedules extends XmlCalculation{

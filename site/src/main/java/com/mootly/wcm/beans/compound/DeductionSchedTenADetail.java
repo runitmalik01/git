@@ -22,41 +22,25 @@
  */
 
 package com.mootly.wcm.beans.compound;
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.jcr.Property;
-import javax.jcr.PropertyIterator;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
-import javax.jcr.ValueFactory;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoItem;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
-import org.hippoecm.hst.jaxrs.model.content.PropertyValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
-import com.mootly.wcm.model.ITRScheduleSISections;
 import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.utils.Constants;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:deductionschedtenadetail")

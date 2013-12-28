@@ -17,7 +17,6 @@
 package com.mootly.wcm.beans;
 
 import static com.mootly.wcm.utils.Constants.COMPTDS_OTHERS;
-import static com.mootly.wcm.utils.Constants.TEST_TDSOTHERS;
 
 import java.util.List;
 
@@ -27,8 +26,7 @@ import javax.jcr.RepositoryException;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 
-import com.mootly.wcm.beans.compound.TdsSalary;
-import com.mootly.wcm.beans.compound.CompTdsothers;;
+import com.mootly.wcm.beans.compound.CompTdsothers;
 
 
 @Node(jcrType = "mootlywcm:ListTdsFromOthers")

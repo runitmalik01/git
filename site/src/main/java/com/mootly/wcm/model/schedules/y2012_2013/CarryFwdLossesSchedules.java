@@ -6,13 +6,9 @@ import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.AdjTotBFLossInBFLA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.CurrentAYloss;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrev2NdYearFromAY;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrev3RdYearFromAY;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.LossCFFromPrevYrToAY;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.TotalLossCFSummary;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.TotalOfBFLossesEarlierYrs;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
@@ -22,16 +18,12 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlType;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.ctc.wstx.util.StringUtil;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;

@@ -16,24 +16,16 @@
 
 package com.mootly.wcm.beans;
 
-import java.util.Calendar;
+import static com.mootly.wcm.utils.Constants.AMOUNT;
+import static com.mootly.wcm.utils.Constants.AMOUNT1;
+import static com.mootly.wcm.utils.Constants.BSR;
+import static com.mootly.wcm.utils.Constants.BSR1;
+import static com.mootly.wcm.utils.Constants.DATE;
+import static com.mootly.wcm.utils.Constants.DATE1;
+import static com.mootly.wcm.utils.Constants.SERIAL;
+import static com.mootly.wcm.utils.Constants.SERIAL1;
 
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-
-import static com.mootly.wcm.utils.Constants.AMOUNT;
-
-import static com.mootly.wcm.utils.Constants.DATE;
-
-import static com.mootly.wcm.utils.Constants.BSR;
-import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
-import static com.mootly.wcm.utils.Constants.SERIAL;
-import static com.mootly.wcm.utils.Constants.AMOUNT1;
-
-import static com.mootly.wcm.utils.Constants.DATE1;
-
-import static com.mootly.wcm.utils.Constants.BSR1;
-import static com.mootly.wcm.utils.Constants.SERIAL1;
 
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;

@@ -38,10 +38,8 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
@@ -51,8 +49,6 @@ import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.beans.compound.InvoiceRefundDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.InvoicePaymentStatus;
-import com.mootly.wcm.model.PaymentVerificationStatus;
-import com.mootly.wcm.services.SequenceGenerator;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:invoicedocument")

@@ -22,7 +22,7 @@
 			</div>
 			<div class="rowlabel">
 				<input type="text" id="rtgsDate" name="rtgsDate"
-					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.rtgsDateStr}</c:if>" <c:out value="${allReadOnly}"/> />
+					value="<c:if test="${pageAction=='EDIT_CHILD'}">${tarPaymentDetail.rtgsDate}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -44,6 +44,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="vendor_verification.jsp"/>
 	<div class="control-group" align="right">
 				<div class="controls">
 					<button class="btn btn-default btn-success" type="submit" id="payment_submit">Pay Now</button>

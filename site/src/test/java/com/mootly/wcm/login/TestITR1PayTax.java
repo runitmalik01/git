@@ -11,19 +11,19 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.IntrstPay;
 import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund;
+import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxesPaid;
-import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
 
-import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.services.ScreenCalculatorService;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.jcr.ValueFactory;
+
 import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.Before;
@@ -49,8 +49,8 @@ import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.IndianGregorianCalendar;
-import com.mootly.wcm.model.deduction.DeductionHead;
-import com.mootly.wcm.model.deduction.DeductionSection;
+import com.mootly.wcm.services.IndianCurrencyHelper;
+import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITR1XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;

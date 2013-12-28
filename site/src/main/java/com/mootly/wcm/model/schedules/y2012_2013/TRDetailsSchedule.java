@@ -1,12 +1,11 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
-import java.util.List;
-
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFSI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR.TotTaxreliefClaimed;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleTR1;
+
+import java.util.List;
 
 import com.mootly.wcm.beans.TaxReliefDocument;
 import com.mootly.wcm.beans.compound.TaxReliefDetail;

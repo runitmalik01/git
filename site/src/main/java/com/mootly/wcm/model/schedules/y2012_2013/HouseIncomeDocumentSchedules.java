@@ -1,20 +1,16 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
-import java.math.BigInteger;
-import java.util.List;
-
 import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.CoOwners;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PropertyDetails;
 import in.gov.incometaxindiaefiling.y2012_2013.Rentdetails;
-import in.gov.incometaxindiaefiling.y2012_2013.Salaries;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleHP;
-import in.gov.incometaxindiaefiling.y2012_2013.Salaries.Salarys;
 
-import com.mootly.wcm.beans.FormSixteenDocument;
+import java.math.BigInteger;
+import java.util.List;
+
 import com.mootly.wcm.beans.HouseProperty;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 

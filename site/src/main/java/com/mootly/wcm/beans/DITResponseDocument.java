@@ -21,10 +21,6 @@ import java.util.List;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
-import javax.jcr.lock.LockException;
-import javax.jcr.nodetype.ConstraintViolationException;
-import javax.jcr.version.VersionException;
 
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
@@ -33,7 +29,6 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail.DITSOAPOperation;
-import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 /**

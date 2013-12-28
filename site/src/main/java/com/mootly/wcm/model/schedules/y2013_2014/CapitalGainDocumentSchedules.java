@@ -15,7 +15,6 @@ import in.gov.incometaxindiaefiling.y2013_2014.OtherAsset111AApplicable.DeductSe
 import in.gov.incometaxindiaefiling.y2013_2014.OtherAssetNoProviso112;
 import in.gov.incometaxindiaefiling.y2013_2014.OtherAssetProviso112;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleCGFor23;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleCGFor4;
 import in.gov.incometaxindiaefiling.y2013_2014.ShortTermCapGainFor23;
 
 import java.util.List;
@@ -27,7 +26,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.compound.CapitalAssetDetail;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.y2013_2014.XmlCalculation;

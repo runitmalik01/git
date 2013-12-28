@@ -17,9 +17,9 @@
 package com.mootly.wcm.beans.compound;
 
 import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
 import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
+import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FILING_STATUS;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FIRST_NAME;
 import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;

@@ -1,30 +1,25 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
-import java.util.List;
-
-
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsFinancialInterest;
-import in.gov.incometaxindiaefiling.y2012_2013.DetailsImmovableProperty;
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsForiegnBank;
+import in.gov.incometaxindiaefiling.y2012_2013.DetailsImmovableProperty;
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsOfAccntsHvngSigningAuth;
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsOfTrustOutIndiaTrustee;
 import in.gov.incometaxindiaefiling.y2012_2013.DetailsOthAssets;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.ITRScheduleFSI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFA;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFSI;
+
+import java.util.List;
 
 import com.mootly.wcm.beans.DetailOfTrustDocument;
 import com.mootly.wcm.beans.FinancialInterestDocument;
 import com.mootly.wcm.beans.ForeignBankAccountDocument;
-import com.mootly.wcm.beans.ForeignIncomeDocument;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
 import com.mootly.wcm.beans.NatureInvestmentDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.compound.DetailOfTrustDetail;
 import com.mootly.wcm.beans.compound.FinancialInterestDetail;
 import com.mootly.wcm.beans.compound.ForeignBankAccountDetail;
-import com.mootly.wcm.beans.compound.ForeignIncomeDetail;
 import com.mootly.wcm.beans.compound.ImmovablePropertyDetail;
 import com.mootly.wcm.beans.compound.NatureInvestmentDetail;
 import com.mootly.wcm.beans.compound.SigningAuthorityAccountsDetail;

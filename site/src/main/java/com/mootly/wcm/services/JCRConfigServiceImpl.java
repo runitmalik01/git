@@ -8,7 +8,6 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.hippoecm.hst.site.HstServices;
-import org.onehippo.forge.security.support.springsecurity.authentication.HippoUserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,18 +1,13 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleEI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleSPI;
 import in.gov.incometaxindiaefiling.y2012_2013.SpecifiedPerson;
 
-import java.math.BigInteger;
 import java.util.List;
 
-import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.ClubIncomeDocument;
-import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.compound.ClubIncomeDetail;
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 
 public class ClubbingOfIncome {

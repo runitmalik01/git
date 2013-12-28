@@ -9,39 +9,13 @@
 
 
 package com.mootly.wcm.beans;
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-
-import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMPLOYER_CATEGORY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FATHER_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FILING_STATUS;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FIRST_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;
-import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PAN;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PERSONALINFO_LINK;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PHONE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_RESIDENT_CATEGORY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
-import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
-import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
-
-import com.mootly.wcm.components.ITReturnComponent;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:OtherSourceIncome")

@@ -22,9 +22,7 @@ import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.ScheduleDOADocument;
-import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.beans.compound.ScheduleDOADetails;
-import com.mootly.wcm.beans.compound.ScheduleDPMDetails;
 import com.mootly.wcm.components.ITReturnComponent;
 @PrimaryBean(primaryBeanClass=ScheduleDOADocument.class)
 @ChildBean(childBeanClass=ScheduleDOADetails.class)

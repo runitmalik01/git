@@ -18,6 +18,7 @@
 package com.mootly.wcm.beans;
 
 import org.hippoecm.hst.content.beans.Node;
+
 import com.mootly.wcm.beans.compound.PricingPlanAdditionalServices;
 import com.mootly.wcm.beans.compound.PricingPlanDeductions;
 import com.mootly.wcm.beans.compound.PricingPlanIncome;

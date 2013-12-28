@@ -1,6 +1,7 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
 import in.gov.incometaxindiaefiling.y2012_2013.Address;
+import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
 import in.gov.incometaxindiaefiling.y2012_2013.AssesseeName;
 import in.gov.incometaxindiaefiling.y2012_2013.AssesseeRep;
 import in.gov.incometaxindiaefiling.y2012_2013.FilingStatus;
@@ -8,10 +9,8 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PartAGEN1;
 import in.gov.incometaxindiaefiling.y2012_2013.PartBTTI;
 import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
-import in.gov.incometaxindiaefiling.y2012_2013.Address.Phone;
 
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;

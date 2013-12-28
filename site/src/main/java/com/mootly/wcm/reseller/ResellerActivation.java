@@ -19,9 +19,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
-import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
@@ -34,23 +32,18 @@ import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.tag.HstCmsEditLinkTag;
 import org.hippoecm.hst.util.NodeUtils;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.MemberPayment;
-import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.ResellerSignupDocument;
-import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.member.SignupDetail.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.SecureHashGeneration;
-import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 

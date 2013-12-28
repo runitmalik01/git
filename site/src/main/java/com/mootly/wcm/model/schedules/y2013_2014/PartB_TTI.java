@@ -1,7 +1,24 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
+import in.gov.incometaxindiaefiling.y2013_2014.ComputationOfTaxLiability;
+import in.gov.incometaxindiaefiling.y2013_2014.ComputationOfTaxLiability.TaxPayableOnDeemedTI;
+import in.gov.incometaxindiaefiling.y2013_2014.ITR;
+import in.gov.incometaxindiaefiling.y2013_2014.ITRScheduleAMT;
+import in.gov.incometaxindiaefiling.y2013_2014.ITRScheduleAMTC;
+import in.gov.incometaxindiaefiling.y2013_2014.IntrstPay;
+import in.gov.incometaxindiaefiling.y2013_2014.PartBTI;
+import in.gov.incometaxindiaefiling.y2013_2014.PartBTTI;
+import in.gov.incometaxindiaefiling.y2013_2014.Refund;
+import in.gov.incometaxindiaefiling.y2013_2014.Refund.DepositToBankAccount;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleFA;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleSI;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleVIA;
+import in.gov.incometaxindiaefiling.y2013_2014.TaxPaid;
+import in.gov.incometaxindiaefiling.y2013_2014.TaxPayableOnTI;
+import in.gov.incometaxindiaefiling.y2013_2014.TaxRelief;
+import in.gov.incometaxindiaefiling.y2013_2014.TaxesPaid;
+
 import java.math.BigInteger;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,32 +55,9 @@ import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
-import com.mootly.wcm.beans.compound.TaxReliefDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.y2013_2014.XmlCalculation;
-
-import in.gov.incometaxindiaefiling.y2013_2014.ComputationOfTaxLiability;
-import in.gov.incometaxindiaefiling.y2013_2014.ComputationOfTaxLiability.TaxPayableOnDeemedTI;
-import in.gov.incometaxindiaefiling.y2013_2014.IntrstPay;
-import in.gov.incometaxindiaefiling.y2013_2014.Refund;
-import in.gov.incometaxindiaefiling.y2013_2014.Refund.DepositToBankAccount;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleTR.TotTaxreliefClaimed;
-import in.gov.incometaxindiaefiling.y2013_2014.ITR;
-import in.gov.incometaxindiaefiling.y2013_2014.ITR4STaxComputation;
-import in.gov.incometaxindiaefiling.y2013_2014.ITRScheduleAMT;
-import in.gov.incometaxindiaefiling.y2013_2014.ITRScheduleAMTC;
-import in.gov.incometaxindiaefiling.y2013_2014.PartBTI;
-import in.gov.incometaxindiaefiling.y2013_2014.PartBTTI;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleFA;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleSI;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleTR;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleVIA;
-import in.gov.incometaxindiaefiling.y2013_2014.TaxPaid;
-import in.gov.incometaxindiaefiling.y2013_2014.TaxPayableOnTI;
-import in.gov.incometaxindiaefiling.y2013_2014.TaxRelief;
-import in.gov.incometaxindiaefiling.y2013_2014.TaxesPaid;
 
 public class PartB_TTI {
 

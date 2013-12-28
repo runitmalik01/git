@@ -1,7 +1,19 @@
 package com.mootly.wcm.model.schedules.y2011_2012;
 
+import in.gov.incometaxindiaefiling.y2011_2012.CapGain;
+import in.gov.incometaxindiaefiling.y2011_2012.DeductUndChapVIA;
+import in.gov.incometaxindiaefiling.y2011_2012.ITR;
+import in.gov.incometaxindiaefiling.y2011_2012.IncFromOS;
+import in.gov.incometaxindiaefiling.y2011_2012.LongTerm;
+import in.gov.incometaxindiaefiling.y2011_2012.PartBTI;
+import in.gov.incometaxindiaefiling.y2011_2012.PartBTI.ProfBusGain;
+import in.gov.incometaxindiaefiling.y2011_2012.ScheduleBFLA.TotalBFLossSetOff;
+import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCYLA.TotalLossSetOff;
+import in.gov.incometaxindiaefiling.y2011_2012.ScheduleHP;
+import in.gov.incometaxindiaefiling.y2011_2012.ScheduleS;
+import in.gov.incometaxindiaefiling.y2011_2012.ShortTerm;
+
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -10,21 +22,6 @@ import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
-
-import in.gov.incometaxindiaefiling.y2011_2012.CapGain;
-import in.gov.incometaxindiaefiling.y2011_2012.DeductUndChapVIA;
-import in.gov.incometaxindiaefiling.y2011_2012.ITR;
-import in.gov.incometaxindiaefiling.y2011_2012.IncFromOS;
-import in.gov.incometaxindiaefiling.y2011_2012.LongTerm;
-import in.gov.incometaxindiaefiling.y2011_2012.LossSummaryDetail;
-import in.gov.incometaxindiaefiling.y2011_2012.PartBTI;
-import in.gov.incometaxindiaefiling.y2011_2012.PartBTI.ProfBusGain;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleBFLA.TotalBFLossSetOff;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL.CurrentAYloss;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCYLA.TotalLossSetOff;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleHP;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleS;
-import in.gov.incometaxindiaefiling.y2011_2012.ShortTerm;
 
 public class PartB_TI {
 

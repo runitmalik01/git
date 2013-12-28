@@ -3,7 +3,6 @@ package com.mootly.wcm.pdf;
 import java.io.PrintWriter;
 
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;
-import com.itextpdf.text.pdf.parser.LineSegment;
 import com.itextpdf.text.pdf.parser.LocationTextExtractionStrategy;
 import com.itextpdf.text.pdf.parser.RenderListener;
 import com.itextpdf.text.pdf.parser.TextRenderInfo;

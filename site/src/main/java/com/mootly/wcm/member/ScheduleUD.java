@@ -13,11 +13,9 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -25,7 +23,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.itextpdf.text.List;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;

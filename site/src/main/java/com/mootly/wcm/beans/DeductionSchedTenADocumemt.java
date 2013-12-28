@@ -28,9 +28,7 @@ package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -48,7 +46,6 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.DeductionSchedTenADetail;
 import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.services.ScreenCalculatorService;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:deductionschedtenadocument")

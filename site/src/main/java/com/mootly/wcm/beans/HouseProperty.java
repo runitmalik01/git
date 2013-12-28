@@ -44,8 +44,8 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
+import com.mootly.wcm.beans.compound.PersonalInformation;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:houseproperty")

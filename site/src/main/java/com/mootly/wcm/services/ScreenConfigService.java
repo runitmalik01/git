@@ -4,17 +4,10 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.jcr.LoginException;
-import javax.jcr.RepositoryException;
-
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.site.HstServices;
-import org.hippoecm.repository.api.HippoSession;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -23,13 +16,10 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.DataTypeValidationFields;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
-import com.mootly.wcm.annotations.RegExValidationFields;
 import com.mootly.wcm.annotations.RequiredFields;
-import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.compound.ScreenFieldConfig;
 import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.components.ITReturnComponent;
 
 public class ScreenConfigService {
 	private static final Logger log = LoggerFactory.getLogger(ScreenConfigService.class); 

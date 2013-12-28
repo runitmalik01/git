@@ -18,7 +18,6 @@ import com.mootly.wcm.annotations.BeanClone;
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.NodeBinder;
 import com.mootly.wcm.beans.compound.HelpDeskTicketNote;
-import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.utils.CalculatedFieldHelper;

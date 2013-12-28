@@ -1,10 +1,10 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import java.util.List;
-
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleIF;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleIF.PartnerFirmDetails;
+
+import java.util.List;
 
 import com.mootly.wcm.beans.FirmsPartnerDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;

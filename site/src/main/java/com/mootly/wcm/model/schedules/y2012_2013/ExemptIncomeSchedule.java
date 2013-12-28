@@ -1,12 +1,10 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
-import java.math.BigInteger;
-import java.util.List;
-
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleEI;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
+import java.math.BigInteger;
+import java.util.List;
 
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;

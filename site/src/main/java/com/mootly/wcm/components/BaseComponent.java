@@ -30,7 +30,6 @@ import javax.servlet.ServletContext;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
-import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.configuration.hosting.Mount;

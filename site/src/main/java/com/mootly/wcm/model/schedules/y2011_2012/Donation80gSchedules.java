@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;

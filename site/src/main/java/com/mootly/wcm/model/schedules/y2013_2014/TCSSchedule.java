@@ -1,15 +1,13 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import java.util.List;
-
 import in.gov.incometaxindiaefiling.y2013_2014.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleTCS;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleTCS.TCS;
-import in.gov.incometaxindiaefiling.y2013_2014.TaxPayment;
+
+import java.util.List;
 
 import com.mootly.wcm.beans.TcsDocument;
-import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.beans.compound.TcsDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 

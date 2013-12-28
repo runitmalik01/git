@@ -1,21 +1,13 @@
 package com.mootly.wcm.member;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.utils.GoGreenUtil;
 
 public class MemberLogin extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(MemberLogin.class);

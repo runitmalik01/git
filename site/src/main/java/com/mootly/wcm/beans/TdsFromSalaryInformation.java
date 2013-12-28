@@ -16,15 +16,12 @@
 
 package com.mootly.wcm.beans;
 
-import java.util.Calendar;
-
-import javax.jcr.RepositoryException;
+import static com.mootly.wcm.utils.Constants.income_Chargeable;
+import static com.mootly.wcm.utils.Constants.name_Employer;
+import static com.mootly.wcm.utils.Constants.tan_Employer;
 import static com.mootly.wcm.utils.Constants.total_Taxdeducted;
 
-import static com.mootly.wcm.utils.Constants.name_Employer;
-
-import static com.mootly.wcm.utils.Constants.tan_Employer;
-import static com.mootly.wcm.utils.Constants.income_Chargeable;
+import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;

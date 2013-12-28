@@ -3,7 +3,6 @@ package com.mootly.wcm.model.schedules.y2012_2013;
 import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
-import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.UsrDeductUndChapVIA;
 
@@ -16,28 +15,21 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.BusinessProfessionDocument;
-import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
-import com.mootly.wcm.beans.FormSixteenDocument;
-import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.IncBusinessProfessionDoc;
-import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherInformationDocument;
 import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.ProfitAndLossDocument;
-import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SchFourtyFourAEDocument;
 import com.mootly.wcm.beans.ScheduleDOADocument;
 import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.beans.ScheduleESRDocument;
-import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;

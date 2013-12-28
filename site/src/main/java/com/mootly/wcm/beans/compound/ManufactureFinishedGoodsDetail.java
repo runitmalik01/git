@@ -16,18 +16,11 @@
 
 package com.mootly.wcm.beans.compound;
 
-import java.util.Calendar;
+import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import javax.jcr.RepositoryException;
-import static com.mootly.wcm.utils.Constants.CODECOUNTRY;
-import static com.mootly.wcm.utils.Constants.ADDRESS_PROPERTY;
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-import static com.mootly.wcm.utils.Constants.TOTAL_INVESTMENT;
-import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
-
 
 import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;

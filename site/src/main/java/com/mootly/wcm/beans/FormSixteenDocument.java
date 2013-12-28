@@ -10,12 +10,6 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
-import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.Salaries;
-import in.gov.incometaxindiaefiling.y2012_2013.Salaries.Salarys;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleS;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +29,6 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
-import com.mootly.wcm.services.IndianCurrencyHelper;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:formsixteendocument")

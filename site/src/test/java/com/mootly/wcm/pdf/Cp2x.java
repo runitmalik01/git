@@ -1,14 +1,18 @@
 package com.mootly.wcm.pdf;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Iterator;
 
-import javax.xml.parsers.*;
-import javax.xml.transform.*;
-import javax.xml.transform.sax.*;
-import javax.xml.transform.stream.*;
-import org.xml.sax.*;
-import org.xml.sax.helpers.*;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.sax.TransformerHandler;
+import javax.xml.transform.stream.StreamResult;
+
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.AttributesImpl;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;

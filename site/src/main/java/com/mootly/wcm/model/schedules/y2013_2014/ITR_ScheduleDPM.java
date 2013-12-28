@@ -1,13 +1,5 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import java.lang.reflect.Field;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.DirectFieldAccessor;
-
-import in.gov.incometaxindiaefiling.y2013_2014.CarryFwdLossDetail;
 import in.gov.incometaxindiaefiling.y2013_2014.DepreciationDetail;
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.Rate100;
@@ -20,10 +12,12 @@ import in.gov.incometaxindiaefiling.y2013_2014.Rate80;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleDPM;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleDPM.PlantMachinery;
 
-import com.mootly.wcm.beans.ProfitAndLossDocument;
-import com.mootly.wcm.beans.ProfitAndLossVariables;
+import java.lang.reflect.Field;
+import java.util.List;
+
+import org.springframework.beans.DirectFieldAccessor;
+
 import com.mootly.wcm.beans.ScheduleDPMDocument;
-import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.ScheduleDPMDetails;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 

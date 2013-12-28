@@ -22,43 +22,22 @@
  */
 
 package com.mootly.wcm.beans.compound;
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-
-import java.math.BigInteger;
-import java.util.Calendar;
-
-import javax.jcr.RepositoryException;
-import javax.jcr.ValueFormatException;
-import javax.jcr.lock.LockException;
-import javax.jcr.nodetype.ConstraintViolationException;
-import javax.jcr.version.VersionException;
-
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoItem;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.BeanClone;
-import com.mootly.wcm.annotations.CalculatedField;
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.NodeBinder;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.annotations.prop.FormMapKey;
-import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
-import com.mootly.wcm.model.PaymentType;
-import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.model.UserType;
 import com.mootly.wcm.services.FormMapHelper;
-import com.mootly.wcm.services.citruspay.Transaction;
-import com.mootly.wcm.services.citruspay.Transaction.ENQUIRY_RESP_CODE;
 import com.mootly.wcm.utils.BeanCloneHelper;
 import com.mootly.wcm.utils.CalculatedFieldHelper;
 import com.mootly.wcm.utils.NodeBinderHelper;

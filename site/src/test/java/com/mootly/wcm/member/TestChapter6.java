@@ -1,11 +1,8 @@
 package com.mootly.wcm.member;
 
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.mootly.wcm.model.IndianGregorianCalendar;
-import com.mootly.wcm.services.ScreenCalculatorService;
 
 public class TestChapter6 {
 	

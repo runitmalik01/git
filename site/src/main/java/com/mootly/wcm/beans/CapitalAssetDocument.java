@@ -27,14 +27,10 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.TreeMap;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -50,15 +46,12 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
-import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.CapitalAssetDetail;
+import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.member.ITRScheduleSI;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRScheduleSISections;
 import com.mootly.wcm.services.ITRAdditionalScheduleService;
-import com.mootly.wcm.utils.ValueListService;
-import com.mootly.wcm.utils.ValueListServiceImpl;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:capitalassetdocument")

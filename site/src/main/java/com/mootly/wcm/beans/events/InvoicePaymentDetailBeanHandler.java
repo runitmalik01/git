@@ -4,7 +4,6 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 
 import com.mootly.wcm.beans.InvoiceDocument;
-import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentType;
@@ -13,11 +12,13 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 	final PaymentType paymentType;
 	final String strPaymentTransactionId;
 	final HstRequest hstRequest;
+	final boolean isSavedByVendor;
 
-	public InvoicePaymentDetailBeanHandler(PaymentType paymentType,HstRequest hstRequest,String strPaymentTransactionId) {
+	public InvoicePaymentDetailBeanHandler(PaymentType paymentType,HstRequest hstRequest,String strPaymentTransactionId,boolean isSavedByVendor) {
 		this.paymentType = paymentType;
 		this.hstRequest = hstRequest;
 		this.strPaymentTransactionId = strPaymentTransactionId;
+		this.isSavedByVendor = isSavedByVendor;
 	}
 
 	public final String getStrPaymentTransactionId() {
@@ -64,7 +65,15 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getRtgsAmount());
 					//	System.out.println("RTGS:::"+invoicePaymentDetail.getPaymentAmount());
 				}
-				invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());				
+				if (isSavedByVendor) {
+					if (invoicePaymentDetail.getVendor_txnAmount() != null) {
+						invoicePaymentDetail.setTxnAmount(invoicePaymentDetail.getVendor_txnAmount());
+					}
+					if (invoicePaymentDetail.getPaymentVerificationStatusStr()!= null) {
+						invoicePaymentDetail.setPaymentVerificationStatusStr(invoicePaymentDetail.getPaymentVerificationStatusStr());
+					}
+				}
+				//invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());				
 			}
 		}
 	}

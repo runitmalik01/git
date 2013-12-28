@@ -1,14 +1,10 @@
 package com.mootly.wcm.components.accounting;
 
-import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.configuration.sitemap.HstSiteMapItem;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -31,19 +27,16 @@ import com.mootly.wcm.beans.events.InvoicePaymentDetailBeanHandler;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.components.InvalidPANException;
-import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.citruspay.PaymentService.BANK_ISSUER;
 import com.mootly.wcm.services.citruspay.Transaction;
-import com.mootly.wcm.services.citruspay.Transaction.CARD_TYPE;
-import com.sun.syndication.feed.rss.Guid;
 
 @PrimaryBean(primaryBeanClass=InvoiceDocument.class)
 @ChildBean(childBeanClass=InvoicePaymentDetail.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class,InvoiceDocument.class})
-@FormFields(fieldNames={"paymentMemo","paymentAmount","authCode","preAuthCode","checkNo","checkDate","checkBank","checkBranch","checkLocation","cashAddress","cashContactNumber","cashBestTime","rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime","issuerCode","lastName","firstName","email","bilingAddress","pi_townCity","pi_state","pi_pinCode","pi_mobile"},
-fieldNamesVendorOnly={"paymentVerificationStatus"})
+@FormFields(fieldNames={"paymentMemo","paymentAmount","authCode","preAuthCode","checkAmount","checkNo","checkDate","checkBank","checkBranch","checkLocation","cashAddress","cashContactNumber","cashBestTime","cashAmount","rtgsTransNumber","rtgsDate","rtgsAmount","rtgsTime","issuerCode","lastName","firstName","email","bilingAddress","pi_townCity","pi_state","pi_pinCode","pi_mobile"},
+fieldNamesVendorOnly={"paymentVerificationStatusStr","vendor_txnAmount"})
 //@RequiredFields(fieldNames={"paymentType"})
 @DataTypeValidationFields(fieldNames={"rtgsDate"},dataTypes={DataTypeValidationType.INDIANDATE})
 public class InvoicePayment extends ITReturnComponent {
@@ -121,8 +114,11 @@ public class InvoicePayment extends ITReturnComponent {
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);
 		//this is where we create the handler first
-		
-		invoicePaymentDetailBeanHandler = new InvoicePaymentDetailBeanHandler(paymentType,request, theTransactionId );		
+		boolean isSavedByVendor = false;
+		if (isVendor(request) && isOnVendorPortal()) {
+			isSavedByVendor = true;
+		}
+		invoicePaymentDetailBeanHandler = new InvoicePaymentDetailBeanHandler(paymentType,request, theTransactionId,isSavedByVendor);		
 		super.doAction(request, response);		
 	}
 

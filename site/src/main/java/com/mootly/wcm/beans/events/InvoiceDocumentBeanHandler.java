@@ -8,8 +8,10 @@ import com.mootly.wcm.services.SequenceGenerator;
 public class InvoiceDocumentBeanHandler extends GenericLifeCycleHandler implements BeanLifecycle<HippoBean> {
 
 	final SequenceGenerator sequenceGenerator;
-	public InvoiceDocumentBeanHandler(SequenceGenerator sequenceGenerator) {
+	final String resellerId;
+	public InvoiceDocumentBeanHandler(SequenceGenerator sequenceGenerator,String resellerId) {
 		this.sequenceGenerator = sequenceGenerator;
+		this.resellerId = resellerId;
 	}
 	@Override
 	public void afterCreate(HippoBean hippoBean) {
@@ -19,7 +21,14 @@ public class InvoiceDocumentBeanHandler extends GenericLifeCycleHandler implemen
 		Long invoiceNumber = sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_INVOICE);
 		if (hippoBean != null && hippoBean instanceof InvoiceDocument) {
 			InvoiceDocument invoiceDocument = (InvoiceDocument) hippoBean;
-			invoiceDocument.setInvoiceNumber(String.valueOf(invoiceNumber));
+			String finalInvoiceNumber = null;
+			if (resellerId != null && !"".equals(resellerId.trim())) {
+				finalInvoiceNumber = resellerId + "-" + String.valueOf(invoiceNumber);
+			}
+			else {
+				finalInvoiceNumber = String.valueOf(invoiceNumber);
+			}
+			invoiceDocument.setInvoiceNumber(finalInvoiceNumber);
 		}
 	}
 }

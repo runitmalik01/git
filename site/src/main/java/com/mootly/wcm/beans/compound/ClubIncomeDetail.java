@@ -16,16 +16,16 @@
 
 package com.mootly.wcm.beans.compound;
 
-import java.util.Calendar;
 import static com.mootly.wcm.utils.Constants.AMOUNTCLUB;
 import static com.mootly.wcm.utils.Constants.NAMEPERSON;
-import static com.mootly.wcm.utils.Constants.RELATIONSHIP;
 import static com.mootly.wcm.utils.Constants.NATUREINCOME;
-import static com.mootly.wcm.utils.Constants.PANPERSON;
-import javax.jcr.RepositoryException;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
+import static com.mootly.wcm.utils.Constants.PANPERSON;
+import static com.mootly.wcm.utils.Constants.RELATIONSHIP;
+
+import javax.jcr.RepositoryException;
+
 import org.hippoecm.hst.component.support.forms.FormMap;
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;

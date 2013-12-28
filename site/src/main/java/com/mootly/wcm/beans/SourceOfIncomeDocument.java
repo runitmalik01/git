@@ -15,16 +15,11 @@
  */
 
 package com.mootly.wcm.beans;
-import java.util.List;
-
 import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 
 /**
  * Used for Source Of Income module to save their values in SourceOfIncomeDocument.

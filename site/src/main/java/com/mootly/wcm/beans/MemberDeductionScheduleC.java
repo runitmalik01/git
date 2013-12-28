@@ -15,12 +15,9 @@
  */
 
 package com.mootly.wcm.beans;
-import java.util.Calendar;
-import java.util.Date;
-import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-import static com.mootly.wcm.utils.Constants.NT_PRODUCTLINK;
 import static com.mootly.wcm.utils.Constants.PROP_PI_PERSONALINFO_LINK;
+
+import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
@@ -28,8 +25,6 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
-
-import com.mootly.wcm.utils.GoGreenUtil;
 
 /**
  * User: 

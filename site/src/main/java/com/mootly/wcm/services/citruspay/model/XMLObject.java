@@ -1,8 +1,5 @@
 package com.mootly.wcm.services.citruspay.model;
 
-import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 

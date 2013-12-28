@@ -16,16 +16,16 @@
 
 package com.mootly.wcm.beans.compound;
 
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 import static com.mootly.wcm.utils.Constants.COUNTRYCODE;
-import static com.mootly.wcm.utils.Constants.TAXPAYERID;
-import static com.mootly.wcm.utils.Constants.INCOMESALARY;
-import static com.mootly.wcm.utils.Constants.INCOMEHOUSE;
+import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
 import static com.mootly.wcm.utils.Constants.INCOMEBUSINESS;
 import static com.mootly.wcm.utils.Constants.INCOMECAPITALGAIN;
+import static com.mootly.wcm.utils.Constants.INCOMEHOUSE;
+import static com.mootly.wcm.utils.Constants.INCOMESALARY;
 import static com.mootly.wcm.utils.Constants.INCOMESOURCES;
 import static com.mootly.wcm.utils.Constants.INCOMETOTAL;
-import static com.mootly.wcm.utils.Constants.COUNTRYNAME;
+import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
+import static com.mootly.wcm.utils.Constants.TAXPAYERID;
 
 import javax.jcr.RepositoryException;
 

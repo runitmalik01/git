@@ -1,7 +1,5 @@
 package com.mootly.wcm.model;
 
-import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.member.StartApplication;
 
 public class ITReturnHomePageView {
 	

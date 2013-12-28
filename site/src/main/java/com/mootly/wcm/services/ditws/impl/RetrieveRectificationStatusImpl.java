@@ -18,7 +18,6 @@ import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.helper.SpringExpressionParser;
 import com.mootly.wcm.services.ditws.model.RetrieveRectificationResponse;
-import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapper;
 import com.mootly.wcm.services.ditws.soap.SOAPCallWrapperHelper;
 import com.mootly.wcm.services.ditws.soap.SOAPService;

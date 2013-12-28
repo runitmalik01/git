@@ -2,7 +2,6 @@ package com.mootly.wcm.model.schedules.y2013_2014;
 
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.ITRScheduleAMTC;
-import in.gov.incometaxindiaefiling.y2013_2014.PartBTTI;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleAMTC;
 
 import java.lang.reflect.Field;
@@ -14,33 +13,7 @@ import java.util.Map;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.springframework.beans.DirectFieldAccessor;
 
-import com.mootly.wcm.beans.AdvanceTaxDocument;
-import com.mootly.wcm.beans.CapitalAssetDocument;
-import com.mootly.wcm.beans.DeductionDocument;
-import com.mootly.wcm.beans.DeductionSchedTenADocumemt;
-import com.mootly.wcm.beans.DetailOfTrustDocument;
-import com.mootly.wcm.beans.FinancialInterestDocument;
-import com.mootly.wcm.beans.ForeignBankAccountDocument;
-import com.mootly.wcm.beans.FormSixteenDocument;
-import com.mootly.wcm.beans.HouseProperty;
-import com.mootly.wcm.beans.ImmovablePropertyDocument;
-import com.mootly.wcm.beans.IncBusinessProfessionDoc;
-import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.NatureInvestmentDocument;
-import com.mootly.wcm.beans.OtherInformationDocument;
-import com.mootly.wcm.beans.OtherSourcesDocument;
-import com.mootly.wcm.beans.ProfitAndLossDocument;
-import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.ScheduleAMTCDocument;
-import com.mootly.wcm.beans.ScheduleDOADocument;
-import com.mootly.wcm.beans.ScheduleDPMDocument;
-import com.mootly.wcm.beans.ScheduleESRDocument;
-import com.mootly.wcm.beans.ScheduleSIDocument;
-import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
-import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
-import com.mootly.wcm.beans.TaxReliefDocument;
-import com.mootly.wcm.beans.TcsDocument;
-import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 

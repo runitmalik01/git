@@ -22,9 +22,6 @@
  */
 
 package com.mootly.wcm.beans.compound;
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-
-import java.math.BigInteger;
 import java.util.Calendar;
 
 import javax.jcr.RepositoryException;
@@ -37,21 +34,15 @@ import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoItem;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.BeanClone;
-import com.mootly.wcm.annotations.CalculatedField;
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.NodeBinder;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.annotations.prop.FormMapKey;
-import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
@@ -110,7 +101,8 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	private Double rtgsAmount;
 	private String rtgsTime;
 	private String rtgsTransNumber;
-		
+	
+	Double vendor_txnAmount;		
 	
 	PaymentVerificationStatus paymentVerificationStatus; 
 	String paymentVerificationStatusStr;
@@ -197,7 +189,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	}
 
 
-	@FormField(name="paymentAmount",propertyName="paymentAmount",dataTypeValidationTypes={})
+	//@FormField(name="paymentAmount",propertyName="paymentAmount",dataTypeValidationTypes={})
 	@NodeBinder(nodePropertyName="mootlywcm:paymentAmount",propertyName="paymentAmount")
 	public Double getPaymentAmount() {
 		if (paymentAmount == null) paymentAmount = getProperty("mootlywcm:paymentAmount");
@@ -365,6 +357,7 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	}
 	
 	@NodeBinder(nodePropertyName=PROP_PAYMENT_VERIFICATION_STATUS)
+	@FormField(name="paymentVerificationStatusStr",propertyName="paymentVerificationStatusStr")
 	public final String getPaymentVerificationStatusStr() {
 		if ( paymentVerificationStatusStr == null ) {
 			paymentVerificationStatusStr = getProperty(PROP_PAYMENT_VERIFICATION_STATUS);
@@ -445,6 +438,12 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	@NodeBinder(nodePropertyName=PROP_NET_BANKING_CODE)
 	public final String getNetBankingCode() {
 		return netBankingCode;
+	}
+	
+	@FormField(name="vendor_txnAmount",propertyName="vendor_txnAmount")
+	public Double getVendor_txnAmount() {
+		if (vendor_txnAmount == null) vendor_txnAmount = 0.0D;
+		return vendor_txnAmount;
 	}
 
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
@@ -563,6 +562,11 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	public final void setPaymentVerificationStatusStr(
 			String paymentVerificationStatusStr) {
 		this.paymentVerificationStatusStr = paymentVerificationStatusStr;
+		try {
+			this.paymentVerificationStatus = PaymentVerificationStatus.valueOf(paymentVerificationStatusStr);
+		}catch (IllegalArgumentException e) {
+			
+		}
 	}
 	
 	public final void setRespCode(Transaction.ENQUIRY_RESP_CODE respCode) {
@@ -612,6 +616,10 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	@BeanClone
 	public final void setNetBankingCode(String netBankingCode) {
 		this.netBankingCode = netBankingCode;
+	}
+
+	public final void setVendor_txnAmount(Double vendor_txnAmount) {
+		this.vendor_txnAmount = vendor_txnAmount;
 	}
 
 	public boolean bindToNode(javax.jcr.Node node) throws ContentNodeBindingException {

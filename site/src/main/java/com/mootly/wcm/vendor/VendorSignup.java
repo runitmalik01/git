@@ -28,8 +28,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.EmailMessage;
 import com.mootly.wcm.beans.EmailTemplate;
-import com.mootly.wcm.beans.MemberSignupDocument;
-import com.mootly.wcm.beans.Review;
 import com.mootly.wcm.beans.VendorSignupDocument;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.utils.ContentStructure;

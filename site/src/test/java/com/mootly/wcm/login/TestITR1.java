@@ -3,23 +3,12 @@ package com.mootly.wcm.login;
 
 
 import static org.junit.Assert.assertEquals;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-/*import in.gov.incometaxindiaefiling.y2011_2012.EmployerOrDeductorOrCollectDetl;
-import in.gov.incometaxindiaefiling.y2011_2012.ITR1;
-import in.gov.incometaxindiaefiling.y2011_2012.ITR1TaxComputation;
-import in.gov.incometaxindiaefiling.y2011_2012.ObjectFactory;
-import in.gov.incometaxindiaefiling.y2011_2012.Refund;
-import in.gov.incometaxindiaefiling.y2011_2012.TDSonOthThanSal;
-import in.gov.incometaxindiaefiling.y2011_2012.TDSonOthThanSals;
-import in.gov.incometaxindiaefiling.y2011_2012.TaxPaid;
-import in.gov.incometaxindiaefiling.y2011_2012.TaxesPaid;*/
-
 import in.gov.incometaxindiaefiling.y2011_2012.corp.TDSonOthThanSal;
 import in.gov.incometaxindiaefiling.y2012_2013.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
@@ -28,20 +17,20 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR1TaxComputation;
 import in.gov.incometaxindiaefiling.y2012_2013.IntrstPay;
 import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
 import in.gov.incometaxindiaefiling.y2012_2013.Refund;
+import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
 import in.gov.incometaxindiaefiling.y2012_2013.TDSonOthThanSals;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxPaid;
 import in.gov.incometaxindiaefiling.y2012_2013.TaxesPaid;
-import in.gov.incometaxindiaefiling.y2012_2013.Refund.DepositToBankAccount;
 
-import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.services.ScreenCalculatorService;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.jcr.ValueFactory;
+
 import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.Before;
@@ -67,9 +56,9 @@ import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.IndianGregorianCalendar;
-
+import com.mootly.wcm.services.IndianCurrencyHelper;
+import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.XmlGeneratorService;
-
 import com.mootly.wcm.services.y2012_2013.ITR1XmlGeneratorService;
 import com.mootly.wcm.services.y2012_2013.ITRXmlGeneratorService;
 

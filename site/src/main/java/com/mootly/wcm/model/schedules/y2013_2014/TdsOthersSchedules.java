@@ -1,24 +1,15 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import in.gov.incometaxindiaefiling.y2013_2014.AddressDetail;
-import in.gov.incometaxindiaefiling.y2013_2014.CoOwners;
 import in.gov.incometaxindiaefiling.y2013_2014.EmployerOrDeductorOrCollectDetl;
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
-import in.gov.incometaxindiaefiling.y2013_2014.PropertyDetails;
-import in.gov.incometaxindiaefiling.y2013_2014.Rentdetails;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleHP;
 import in.gov.incometaxindiaefiling.y2013_2014.ScheduleTDS2;
 import in.gov.incometaxindiaefiling.y2013_2014.TDSonOthThanSal;
 import in.gov.incometaxindiaefiling.y2013_2014.TDSonOthThanSals;
-import in.gov.incometaxindiaefiling.y2013_2014.TDSonSalary;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mootly.wcm.beans.HouseProperty;
 import com.mootly.wcm.beans.TdsFromothersDocument;
-import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 

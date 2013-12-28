@@ -2,8 +2,6 @@ package com.mootly.wcm.services.citruspay.model.enquiry;
 
 
 
-import in.gov.incometaxindiaefiling.y2012_2013.ITR1;
-
 import java.util.ArrayList;
 import java.util.List;
 

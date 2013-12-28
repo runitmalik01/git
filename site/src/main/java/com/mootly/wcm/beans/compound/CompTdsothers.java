@@ -16,24 +16,13 @@
 
 package com.mootly.wcm.beans.compound;
 
-import java.util.Calendar;
-
-import javax.jcr.RepositoryException;
 import static com.mootly.wcm.utils.Constants.amount;
-
-import static com.mootly.wcm.utils.Constants.deducted_year;
-
-import static com.mootly.wcm.utils.Constants.PROP_EMPLOYER_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_EMPLOYER_SALARIES;
-import static com.mootly.wcm.utils.Constants.PROP_EMPLOYER_TAN;
-import static com.mootly.wcm.utils.Constants.PROP_TOTAL_TAX_DEDUCTED;
-import static com.mootly.wcm.utils.Constants.tan_deductor;
 import static com.mootly.wcm.utils.Constants.name_deductor;
-
+import static com.mootly.wcm.utils.Constants.tan_deductor;
 import static com.mootly.wcm.utils.Constants.total_taxdeducted;
 
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
-import org.hippoecm.hst.content.beans.ContentNodeBindingException;
+import javax.jcr.RepositoryException;
+
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.slf4j.Logger;

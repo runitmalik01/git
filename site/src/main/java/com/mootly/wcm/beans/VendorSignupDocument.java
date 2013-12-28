@@ -5,8 +5,8 @@
  */
 
 package com.mootly.wcm.beans;
-import java.util.Calendar;
 import javax.jcr.RepositoryException;
+
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;

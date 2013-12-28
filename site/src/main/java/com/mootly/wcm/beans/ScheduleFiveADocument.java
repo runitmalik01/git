@@ -16,33 +16,20 @@
 
 package com.mootly.wcm.beans;
 
-import java.math.BigInteger;
-import java.text.DecimalFormat;
-import java.util.Calendar;
-
-import javax.jcr.RepositoryException;
-
-import static com.mootly.wcm.utils.Constants.NAME_SPOUSE;
-import static com.mootly.wcm.utils.Constants.PAN_SPOUSE;
 import static com.mootly.wcm.utils.Constants.CAPITAL_GAINS;
 import static com.mootly.wcm.utils.Constants.HOUSE_PROPERTY;
-import static com.mootly.wcm.utils.Constants.OTHER_SOURCES;
 import static com.mootly.wcm.utils.Constants.INCOMETOTAL;
+import static com.mootly.wcm.utils.Constants.NAME_SPOUSE;
+import static com.mootly.wcm.utils.Constants.OTHER_SOURCES;
+import static com.mootly.wcm.utils.Constants.PAN_SPOUSE;
+
+import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoItem;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.mootly.wcm.annotations.TagAsTaxDataProvider;
-import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.compound.PersonalInformation;
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:schedulefiveadocument")
 public class ScheduleFiveADocument extends BaseDocument implements ContentNodeBinder, FormMapFiller {

@@ -6,13 +6,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.LoginException;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.servlet.http.HttpSession;
-
 import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.member.Member;
 
 
 public class WealthBody extends BaseComponent {

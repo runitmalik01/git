@@ -27,9 +27,6 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,12 +42,10 @@ import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
 import com.mootly.wcm.beans.compound.TaxReliefDetail;
-import com.mootly.wcm.beans.compound.TdsOthersDetail;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:taxreliefdocument")

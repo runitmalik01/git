@@ -16,21 +16,15 @@
 
 package com.mootly.wcm.beans.compound;
 
-import java.math.BigInteger;
-import java.text.DecimalFormat;
-import java.util.Calendar;
-
-import javax.jcr.RepositoryException;
+import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
+import static com.mootly.wcm.utils.Constants.income_Chargeable;
+import static com.mootly.wcm.utils.Constants.name_Employer;
+import static com.mootly.wcm.utils.Constants.tan_Employer;
 import static com.mootly.wcm.utils.Constants.total_Taxdeducted;
 
-import static com.mootly.wcm.utils.Constants.name_Employer;
-
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-import static com.mootly.wcm.utils.Constants.tan_Employer;
-import static com.mootly.wcm.utils.Constants.income_Chargeable;
+import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
-
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;

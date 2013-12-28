@@ -4,11 +4,11 @@ import in.gov.incometaxindiaefiling.y2012_2013.AddressDetail;
 import in.gov.incometaxindiaefiling.y2012_2013.DoneeWithPan;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100Percent;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don100PercentApprReqd;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentApprReqd;
 import in.gov.incometaxindiaefiling.y2012_2013.Schedule80G.Don50PercentNoApprReqd;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -25,7 +23,6 @@ import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.utils.XmlCalculation;
 
 public class Donation80gSchedules extends XmlCalculation{

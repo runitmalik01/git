@@ -15,31 +15,8 @@
  */
 
 package com.mootly.wcm.beans;
-import java.util.Calendar;
 import javax.jcr.RepositoryException;
-import static com.mootly.wcm.utils.Constants.PROP_PI_AREA_LOCALITY;
-import static com.mootly.wcm.utils.Constants.PROP_PI_DOB;
-import static com.mootly.wcm.utils.Constants.PROP_PI_EMAIL;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FATHER_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FILING_STATUS;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FIRST_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_FLAT_FLOOR_BUILDING;
-import static com.mootly.wcm.utils.Constants.PROP_PI_LAST_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_PI_MIDDLE_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_NEW_PASSWORD;
 
-import static com.mootly.wcm.utils.Constants.PROP_OLD_PASSWORD;
-
-import static com.mootly.wcm.utils.Constants.PROP_PI_MOBILE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PAN;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PHONE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_ROAD_STREET;
-import static com.mootly.wcm.utils.Constants.PROP_PI_SEX;
-import static com.mootly.wcm.utils.Constants.PROP_PI_STATE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_STD_CODE;
-import static com.mootly.wcm.utils.Constants.PROP_PI_TOWN_CITY_DISTRICT;
-import static com.mootly.wcm.utils.Constants.PROP_PI_RESIDENT_CATEGORY;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;

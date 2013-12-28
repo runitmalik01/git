@@ -1,9 +1,6 @@
 package com.mootly.wcm.dit;
 
 
-import java.io.File;
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

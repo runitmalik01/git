@@ -27,9 +27,6 @@
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,8 +46,6 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.NatureBusinessDetail;
 import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.beans.compound.ImmovablePropertyDetail;
-import com.mootly.wcm.beans.compound.TdsOthersDetail;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:naturebusinessdocument")

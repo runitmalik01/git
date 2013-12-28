@@ -3,7 +3,6 @@ package com.mootly.wcm.model.schedules.y2011_2012;
 import in.gov.incometaxindiaefiling.y2011_2012.DeductUndChapVIA;
 import in.gov.incometaxindiaefiling.y2011_2012.ITR;
 import in.gov.incometaxindiaefiling.y2011_2012.ScheduleVIA;
-import in.gov.incometaxindiaefiling.y2011_2012.DeductUndChapVIA;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

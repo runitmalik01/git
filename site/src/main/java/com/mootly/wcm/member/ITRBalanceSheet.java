@@ -36,7 +36,6 @@ import com.mootly.wcm.beans.compound.ScreenFieldConfig;
 import com.mootly.wcm.beans.compound.ScreenFieldSetDetail;
 import com.mootly.wcm.beans.compound.ValueListDocumentDetail;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.components.InvalidNavigationException;
 
 /**
  * @author BEN-10

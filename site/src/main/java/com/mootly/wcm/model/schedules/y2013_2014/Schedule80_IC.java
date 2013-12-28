@@ -1,11 +1,11 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import java.math.BigInteger;
-import java.util.List;
-
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.Schedule80IC;
 import in.gov.incometaxindiaefiling.y2013_2014.Schedule80IC.DeductInNorthEast;
+
+import java.math.BigInteger;
+import java.util.List;
 
 import com.mootly.wcm.beans.DeductionDocument;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;

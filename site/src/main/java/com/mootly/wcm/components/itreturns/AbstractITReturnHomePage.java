@@ -37,7 +37,6 @@ import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.content.beans.standard.HippoResultSetBean;
 import org.hippoecm.hst.content.beans.standard.facetnavigation.HippoFacetNavigation;
-import org.hippoecm.hst.content.beans.standard.facetnavigation.HippoFacetsAvailableNavigation;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;

@@ -33,7 +33,6 @@ import java.util.regex.PatternSyntaxException;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.SimpleCredentials;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.lang.ArrayUtils;
@@ -72,13 +71,11 @@ import com.mootly.wcm.annotations.RegExValidationFields;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.ValueListBeans;
-import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.CompoundChildUpdate;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.ScreenConfigDocument;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
-import com.mootly.wcm.components.ITReturnComponent.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITReturnPackage;

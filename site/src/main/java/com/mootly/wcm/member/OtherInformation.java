@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.OtherInformationDocument;
-import com.mootly.wcm.beans.ProfitAndLossDocument;
 import com.mootly.wcm.components.ITReturnComponent;
 
 /*

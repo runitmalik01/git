@@ -44,7 +44,6 @@ import com.mootly.wcm.model.SORT_DIRECTION;
 public class MemberInvoice extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberInvoice.class);
-
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -108,7 +107,7 @@ public class MemberInvoice extends ITReturnComponent {
 	@Override
 	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
 		// TODO Auto-generated method stub
-		return new InvoiceDocumentBeanHandler(getSequenceGenerator());
+		return new InvoiceDocumentBeanHandler(getSequenceGenerator(),getResellerId());
 	}
 }
 

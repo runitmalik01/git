@@ -16,38 +16,19 @@
 
 package com.mootly.wcm.beans.compound;
 
+import static com.mootly.wcm.utils.Constants.AMOUNT;
+import static com.mootly.wcm.utils.Constants.BSR;
+import static com.mootly.wcm.utils.Constants.DATE;
+import static com.mootly.wcm.utils.Constants.SERIAL;
+
 import java.util.Calendar;
 
 import javax.jcr.RepositoryException;
-import static com.mootly.wcm.utils.Constants.amount;
 
-import static com.mootly.wcm.utils.Constants.deducted_year;
-
-import static com.mootly.wcm.utils.Constants.AMOUNT;
-import static com.mootly.wcm.utils.Constants.AMOUNT1;
-import static com.mootly.wcm.utils.Constants.BSR;
-import static com.mootly.wcm.utils.Constants.BSR1;
-import static com.mootly.wcm.utils.Constants.DATE;
-import static com.mootly.wcm.utils.Constants.DATE1;
-import static com.mootly.wcm.utils.Constants.PROP_EMPLOYER_NAME;
-import static com.mootly.wcm.utils.Constants.PROP_EMPLOYER_SALARIES;
-import static com.mootly.wcm.utils.Constants.PROP_EMPLOYER_TAN;
-import static com.mootly.wcm.utils.Constants.PROP_TOTAL_TAX_DEDUCTED;
-import static com.mootly.wcm.utils.Constants.SERIAL;
-import static com.mootly.wcm.utils.Constants.SERIAL1;
-import static com.mootly.wcm.utils.Constants.tan_deductor;
-import static com.mootly.wcm.utils.Constants.name_deductor;
-
-import static com.mootly.wcm.utils.Constants.total_taxdeducted;
-
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
-import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.mootly.wcm.beans.AdvanceTaxInformation;
 
 /**
  * author: Pankaj Singh

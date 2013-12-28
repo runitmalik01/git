@@ -22,10 +22,6 @@
  */
 
 package com.mootly.wcm.beans.compound;
-import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-
-import java.math.BigInteger;
-
 import javax.jcr.RepositoryException;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
@@ -33,17 +29,8 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoItem;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.annotations.TagAsTaxDataProvider;
-import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.BaseDocument;
-import com.mootly.wcm.beans.ContactUs;
-import com.mootly.wcm.beans.FormMapFiller;
-import com.mootly.wcm.beans.HouseProperty;
 
 
 @SuppressWarnings("unused")

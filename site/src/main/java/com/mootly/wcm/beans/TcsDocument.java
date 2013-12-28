@@ -10,16 +10,9 @@
 
 package com.mootly.wcm.beans;
 import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
-import static com.mootly.wcm.utils.Constants.PROP_PI_PINCODE;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
@@ -36,9 +29,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.TcsDetail;
-import com.mootly.wcm.services.ScreenCalculatorService;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:tcsdocument")

@@ -9,10 +9,7 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
-import com.ctc.wstx.util.StringUtil;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
-import com.mootly.wcm.model.FilingSection;
-import com.mootly.wcm.model.FinancialYear;
 
 /**
  * 

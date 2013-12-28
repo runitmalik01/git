@@ -15,9 +15,7 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.ResellerSignupDocument;
-import com.mootly.wcm.beans.VendorSignupDocument;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.utils.GoGreenUtil;
 

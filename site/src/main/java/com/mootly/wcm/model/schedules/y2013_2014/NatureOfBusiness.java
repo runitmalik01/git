@@ -1,15 +1,14 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import java.util.List;
-
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.NatOfBus;
 import in.gov.incometaxindiaefiling.y2013_2014.NatOfBus.Business;
 import in.gov.incometaxindiaefiling.y2013_2014.NatOfBus.Business.Trade;
 
+import java.util.List;
+
 import com.mootly.wcm.beans.NatureBusinessDocument;
 import com.mootly.wcm.beans.compound.NatureBusinessDetail;
-import com.mootly.wcm.beans.compound.TdsOthersDetail;
 
 public class NatureOfBusiness {
 

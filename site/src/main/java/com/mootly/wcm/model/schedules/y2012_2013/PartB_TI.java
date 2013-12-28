@@ -1,7 +1,20 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
+import in.gov.incometaxindiaefiling.y2012_2013.CapGain;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR;
+import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
+import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
+import in.gov.incometaxindiaefiling.y2012_2013.LongTerm;
+import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
+import in.gov.incometaxindiaefiling.y2012_2013.PartBTI.ProfBusGain;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBPA;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor23;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
+import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
+import in.gov.incometaxindiaefiling.y2012_2013.ShortTerm;
+
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,33 +38,9 @@ import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.beans.ScheduleESRDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
-import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
-import com.mootly.wcm.beans.compound.ScheduleSIDocumentDetail;
 import com.mootly.wcm.model.FinancialYear;
-import com.mootly.wcm.model.ITRScheduleSISections;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;
-
-import in.gov.incometaxindiaefiling.y2012_2013.CapGain;
-import in.gov.incometaxindiaefiling.y2012_2013.DeductUndChapVIA;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR4ScheduleBP;
-import in.gov.incometaxindiaefiling.y2012_2013.IncFromOS;
-import in.gov.incometaxindiaefiling.y2012_2013.LongTerm;
-import in.gov.incometaxindiaefiling.y2012_2013.LossSummaryDetail;
-import in.gov.incometaxindiaefiling.y2012_2013.PartBTI;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBPA;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor23;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCGFor4;
-import in.gov.incometaxindiaefiling.y2012_2013.PartBTI.ProfBusGain;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleBFLA.TotalBFLossSetOff;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCFL.CurrentAYloss;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleCYLA.TotalLossSetOff;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleHP;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleS;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
-import in.gov.incometaxindiaefiling.y2012_2013.ShortTerm;
 
 public class PartB_TI {
 

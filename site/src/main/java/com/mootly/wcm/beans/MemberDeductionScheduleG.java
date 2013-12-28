@@ -15,21 +15,14 @@
  */
 
 package com.mootly.wcm.beans;
-import java.util.Calendar;
-import java.util.Date;
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-import org.hippoecm.hst.content.beans.ContentNodeBinder;
+
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
 import com.mootly.wcm.beans.compound.DeductionScheduleGTableA;
 import com.mootly.wcm.beans.compound.DeductionScheduleGTableB;
 import com.mootly.wcm.beans.compound.DeductionScheduleGTableC;
-import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.utils.GoGreenUtil;
 
 /**
  * User: vivek

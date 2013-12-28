@@ -1,15 +1,12 @@
 package com.mootly.wcm.model.schedules.y2011_2012;
 
 import in.gov.incometaxindiaefiling.y2011_2012.Address;
+import in.gov.incometaxindiaefiling.y2011_2012.Address.Phone;
 import in.gov.incometaxindiaefiling.y2011_2012.AssesseeName;
 import in.gov.incometaxindiaefiling.y2011_2012.FilingStatus;
 import in.gov.incometaxindiaefiling.y2011_2012.ITR;
 import in.gov.incometaxindiaefiling.y2011_2012.PartAGEN1;
 import in.gov.incometaxindiaefiling.y2011_2012.PersonalInfo;
-import in.gov.incometaxindiaefiling.y2011_2012.Address.Phone;
-
-import java.math.BigInteger;
-import java.util.List;
 
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.services.IndianCurrencyHelper;

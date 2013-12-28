@@ -3,8 +3,8 @@ package com.mootly.wcm.model.schedules.y2013_2014;
 import in.gov.incometaxindiaefiling.y2013_2014.AddressDetail;
 import in.gov.incometaxindiaefiling.y2013_2014.ITR;
 import in.gov.incometaxindiaefiling.y2013_2014.Salaries;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleS;
 import in.gov.incometaxindiaefiling.y2013_2014.Salaries.Salarys;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleS;
 
 import java.math.BigInteger;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.mootly.wcm.services.y2013_2014;
 
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.ITR2;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR3;
 import in.gov.incometaxindiaefiling.y2012_2013.ObjectFactory;
 
@@ -73,7 +72,6 @@ import com.mootly.wcm.model.schedules.y2012_2013.ExemptIncomeSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.FADetailsSchedule;
 import com.mootly.wcm.model.schedules.y2012_2013.ForeignIncomeScheduleFSI;
 import com.mootly.wcm.model.schedules.y2012_2013.Form16DocumentSchedules;
-import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR2;
 import com.mootly.wcm.model.schedules.y2012_2013.Form_ITR3;
 import com.mootly.wcm.model.schedules.y2012_2013.HouseIncomeDocumentSchedules;
 import com.mootly.wcm.model.schedules.y2012_2013.ITR3_ScheduleBPA;

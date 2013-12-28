@@ -1,15 +1,15 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
+import in.gov.incometaxindiaefiling.y2013_2014.ITR;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPA;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPA.PartnerFirmIncomes;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPA.Total;
+
 import java.util.List;
 
 import com.mootly.wcm.beans.IncomeFromFirmsDocument;
 import com.mootly.wcm.beans.compound.IncomeFromFirmsDetail;
 import com.mootly.wcm.services.IndianCurrencyHelper;
-
-import in.gov.incometaxindiaefiling.y2013_2014.ITR;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPA;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPA.PartnerFirmIncomes;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPA.Total;
 
 public class ITR3_ScheduleBPA {
 

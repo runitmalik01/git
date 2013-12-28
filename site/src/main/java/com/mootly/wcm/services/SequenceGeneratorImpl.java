@@ -2,14 +2,10 @@ package com.mootly.wcm.services;
 
 import javax.jcr.Credentials;
 import javax.jcr.Node;
-import javax.jcr.NodeIterator;
 import javax.jcr.Property;
 import javax.jcr.Repository;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.Value;
-import javax.jcr.query.Query;
-import javax.jcr.query.QueryResult;
 
 import org.hippoecm.hst.site.HstServices;
 import org.onehippo.forge.security.support.springsecurity.authentication.HippoUserDetailsServiceImpl;

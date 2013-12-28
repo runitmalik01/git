@@ -1,5 +1,9 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
+import in.gov.incometaxindiaefiling.y2013_2014.ITR;
+import in.gov.incometaxindiaefiling.y2013_2014.Verification;
+import in.gov.incometaxindiaefiling.y2013_2014.Verification.Declaration;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -8,9 +12,6 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import in.gov.incometaxindiaefiling.y2013_2014.ITR;
-import in.gov.incometaxindiaefiling.y2013_2014.Verification.Declaration;
-import in.gov.incometaxindiaefiling.y2013_2014.Verification;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 

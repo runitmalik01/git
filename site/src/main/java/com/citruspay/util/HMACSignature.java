@@ -1,8 +1,8 @@
 package com.citruspay.util;
 
-import java.io.PrintStream;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
 import org.apache.commons.codec.binary.Hex;
 
 public class HMACSignature

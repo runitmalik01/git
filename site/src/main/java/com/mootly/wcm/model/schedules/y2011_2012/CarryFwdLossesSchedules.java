@@ -1,28 +1,21 @@
 package com.mootly.wcm.model.schedules.y2011_2012;
 
-import in.gov.incometaxindiaefiling.y2011_2012.CarryFwdLossDetail;
 import in.gov.incometaxindiaefiling.y2011_2012.ITR;
 import in.gov.incometaxindiaefiling.y2011_2012.LossSummaryDetail;
 import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL;
 import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL.AdjTotBFLossInBFLA;
 import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL.CurrentAYloss;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL.LossCFFromPrev2NdYearFromAY;
-import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL.LossCFFromPrevYrToAY;
 import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL.TotalLossCFSummary;
 import in.gov.incometaxindiaefiling.y2011_2012.ScheduleCFL.TotalOfBFLossesEarlierYrs;
 
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
-import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.utils.XmlCalculation;

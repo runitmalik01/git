@@ -1,10 +1,5 @@
 package com.mootly.wcm.services;
 
-import java.util.List;
-
-import com.mootly.wcm.member.ResidentialStatus;
-import com.mootly.wcm.model.FilingStatus;
-import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 
 public class ITRFormChooseService {

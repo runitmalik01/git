@@ -1,7 +1,12 @@
 package com.mootly.wcm.model.schedules.y2013_2014;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import in.gov.incometaxindiaefiling.y2013_2014.DeductUndChapVIA;
+import in.gov.incometaxindiaefiling.y2013_2014.ITR;
+import in.gov.incometaxindiaefiling.y2013_2014.ITR4SIncomeDeductions;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPForITR4S;
+import in.gov.incometaxindiaefiling.y2013_2014.ScheduleVIA;
+import in.gov.incometaxindiaefiling.y2013_2014.UsrDeductUndChapVIA;
+
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +14,6 @@ import java.util.Map;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import in.gov.incometaxindiaefiling.y2013_2014.DeductUndChapVIA;
-import in.gov.incometaxindiaefiling.y2013_2014.ITR;
-import in.gov.incometaxindiaefiling.y2013_2014.ITR4SIncomeDeductions;
-import in.gov.incometaxindiaefiling.y2013_2014.IncomeDeductions;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleBPForITR4S;
-import in.gov.incometaxindiaefiling.y2013_2014.ScheduleVIA;
-import in.gov.incometaxindiaefiling.y2013_2014.UsrDeductUndChapVIA;
 
 import com.mootly.wcm.beans.BusinessProfessionDocument;
 import com.mootly.wcm.beans.DeductionDocument;
@@ -26,10 +23,6 @@ import com.mootly.wcm.beans.OtherSourcesDocument;
 import com.mootly.wcm.beans.SchFourtyFourAEDocument;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.model.FinancialYear;
-import com.mootly.wcm.model.deduction.DeductionSection;
-import com.mootly.wcm.services.DeductionListService;
-import com.mootly.wcm.services.IndianCurrencyHelper;
-import com.mootly.wcm.services.y2013_2014.ITRXmlGeneratorService;
 import com.mootly.wcm.services.y2013_2014.XmlCalculation;
 
 public class ITR4S_IncomeDeductions extends XmlCalculation{

@@ -37,7 +37,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
-import com.mootly.wcm.beans.BaseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 

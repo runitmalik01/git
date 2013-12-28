@@ -21,10 +21,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.hippoecm.hst.content.beans.Node;
-import org.hippoecm.hst.content.beans.standard.HippoAsset;
 import org.hippoecm.hst.content.beans.standard.HippoAssetBean;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.hippoecm.hst.content.beans.standard.HippoMirrorBean;
 
 import com.mootly.wcm.beans.compound.ImageSet;

@@ -21,18 +21,10 @@ import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.EmailMessage;
-import com.mootly.wcm.beans.EmailTemplate;
-import com.mootly.wcm.beans.MemberSignupDocument;
 import com.mootly.wcm.beans.ResellerSignupDocument;
-import com.mootly.wcm.beans.Review;
-import com.mootly.wcm.beans.VendorSignupDocument;
 import com.mootly.wcm.components.BaseComponent;
-import com.mootly.wcm.member.SignupDetail.FullReviewedWorkflowCallbackHandler;
-import com.mootly.wcm.services.SecureHashGeneration;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
-import com.mootly.wcm.utils.VelocityUtils;
 
 public class ResellerSignup extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(ResellerSignup.class);

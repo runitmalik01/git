@@ -26,13 +26,13 @@ import org.hippoecm.hst.core.sitemenu.EditableMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.Document;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.member.Member;
 import com.mootly.wcm.utils.GoGreenUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class SiteMenu extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(SiteMenu.class);

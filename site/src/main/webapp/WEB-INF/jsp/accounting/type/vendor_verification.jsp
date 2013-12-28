@@ -10,7 +10,7 @@
 			<div class="col-md-4">
 					<fieldset>
 						<legend>Vendor - Payment Verification</legend>
-				   		<select name="paymentVerificationStatus">
+				   		<select name="paymentVerificationStatusStr">
 				   			<option value="">Select Payment Verification</option>
 				   			<%for (PaymentVerificationStatus aPaymentStatus : PaymentVerificationStatus.values()) {%>
 				   				<%
@@ -24,7 +24,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<fieldset>
 						<legend>Vendor - Transaction Amount</legend>
-				   		<input id="txnAmount" name="txnAmount" value="${childBean.txnAmount}"/>				   			
+				   		<input id="txnAmount" name="vendor_txnAmount" value="${childBean.txnAmount}"/>				   			
 				   	</fieldset>
 			   	</div>
 		</div>

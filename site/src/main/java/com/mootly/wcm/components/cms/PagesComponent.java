@@ -14,7 +14,6 @@ import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.cms.PageDocument;
 import com.mootly.wcm.beans.cms.compound.PageRowDetail;
-import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.WebSiteBuilderComponent;
 
 /**

@@ -46,7 +46,6 @@ import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
 import com.mootly.wcm.beans.compound.FirmsPartnerDetail;
 import com.mootly.wcm.beans.compound.PersonalInformation;
-import com.mootly.wcm.beans.compound.QuantitativeUnitDetail;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:firmspartnerdocument")

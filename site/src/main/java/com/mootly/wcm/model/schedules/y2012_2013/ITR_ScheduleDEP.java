@@ -1,8 +1,5 @@
 package com.mootly.wcm.model.schedules.y2012_2013;
 
-import com.mootly.wcm.beans.ScheduleDOADocument;
-import com.mootly.wcm.beans.ScheduleDPMDocument;
-
 import in.gov.incometaxindiaefiling.y2012_2013.BuildingSummary;
 import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.PlantMachinerySummary;
@@ -10,6 +7,9 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleDEP;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleDOA;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleDPM;
 import in.gov.incometaxindiaefiling.y2012_2013.SummaryFromDeprSch;
+
+import com.mootly.wcm.beans.ScheduleDOADocument;
+import com.mootly.wcm.beans.ScheduleDPMDocument;
 
 public class ITR_ScheduleDEP {
 

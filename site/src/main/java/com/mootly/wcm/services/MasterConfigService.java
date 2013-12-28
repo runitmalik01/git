@@ -5,8 +5,6 @@ package com.mootly.wcm.services;
 
 import java.util.ResourceBundle;
 
-import org.apache.commons.lang.StringUtils;
-
 /**
  * @author BEN-10
  *
