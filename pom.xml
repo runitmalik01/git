@@ -260,6 +260,12 @@
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
+        <exclusions>
+        	<exclusion>
+        		<artifactId>xml-apis</artifactId>
+        		<groupId>xml-apis</groupId>
+        	</exclusion>
+        </exclusions>
       </dependency>
 
     </dependencies>
@@ -319,7 +325,7 @@
       <modules>
         <module>content</module>
 		<!-- <module>hippo-addon-indiantax-workflowevents</module> -->
-	<module>hippo-addon-indiantax-workflows</module>
+		<module>hippo-addon-indiantax-workflows</module>
         <module>rating-plugin</module>
 		<module>hippo-addon-indiantax-itr-schemas</module>
         <module>cms</module>
