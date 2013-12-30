@@ -12,7 +12,7 @@ $('a[data-confirm]').click(function(ev) {
             					'</div>'+
             					'<div class="modal-body"></div>'+
             					'<div class="modal-footer">'+
-            						'<a href="#" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i>Cancle</a>'+
+            						'<a href="#" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i>Cancel</a>'+
             						'<a href="#" class="btn btn-success" id="dataConfirmOK"><i class="glyphicon glyphicon-ok-sign"></i>OK</a>'+
             					'</div>'+
             				'</div>'+

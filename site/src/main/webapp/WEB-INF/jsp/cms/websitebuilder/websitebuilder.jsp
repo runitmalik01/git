@@ -109,7 +109,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-default" data-dismiss="modal"><i class="glyphicon glyphglyphicon glyphicon-remove-sign"></i>Cancle</button>
+				<button type="button" class="btn btn-default btn-default" data-dismiss="modal"><i class="glyphicon glyphglyphicon glyphicon-remove-sign"></i>Cancel</button>
 				<a href="#" class="btn btn-default btn-primary" id="dataConfirmOK"><i class="glyphicon glyphglyphicon glyphicon-ok-sign"></i>Go</a>
 			</div>
 		</div>

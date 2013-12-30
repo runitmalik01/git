@@ -47,7 +47,7 @@
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
     <hst:link var="w4indiacss" path="/css/bootstrap_v2/wealth4india.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script type='text/javascript' src='<hst:link path="/js/bootstrap_v2/bootstrap.min.js"></hst:link>'></script>
 	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
 	

@@ -13,8 +13,7 @@ For Mootly ITR Pricing Plans
 </h2>
 
 <form>
-	<table class="table table-bordered table-hover table-striped"
-		width="100%">
+	<table class="table table-bordered table-hover table-striped">
 		<thead class='header'>
 			<tr>
 				<th width="15%" class=success><fmt:message
@@ -31,22 +30,17 @@ For Mootly ITR Pricing Plans
 					<c:out value="${document.title}" />
 				</c:forEach>
 			</tr>
+		</thead>
 			<tr>
 				<th width="15%"><fmt:message key="service.price.efilepricing" />
 				</th>
 				<c:forEach items="${documents}" var="document">
 					<td width="15%">
-						<!-- To put images of different colour w.r.t. packages --> <%-- <c:choose>
-							<c:when test="${document.title eq 'DELUXE'}">
-								<img src="images/rupeeGreen.gif" />
-							</c:when>
-							<c:otherwise>
-								 <img src="images/rupeeBlue.gif" />
-							</c:otherwise>
-						</c:choose>  --%> &#8377; <c:out value="${document.efilePricing}" />
+						&#8377; <c:out value="${document.efilePricing}" />
 					</td>
 				</c:forEach>
 			</tr>
+			<%--
 			<tr>
 				<th width="15%"><fmt:message key="service.price.ezfilepricing" />
 				</th>
@@ -54,45 +48,31 @@ For Mootly ITR Pricing Plans
 					<td width="15%">&#8377;<c:out value="${document.ezfilePricing}" /></td>
 				</c:forEach>
 			</tr>
-		</thead>
-		<tr>
-			<th width="15%"><fmt:message key="service.price.description" />
-			</th>
-			<c:forEach items="${documents}" var="document">
-				<td width="5%"><c:out value="${document.description}" /></td>
-			</c:forEach>
-		</tr>
-		<tr>
-			<th width="15%"><fmt:message key="service.price.can" /></th>
-			<c:forEach items="${documents}" var="document">
-				<td width="5%">
-					<h5>
-						<small> Recommended if you:</small>
-					</h5> <fmt:message key="${whoCan[document.title]}" />
-				</td>
-			</c:forEach>
-
-			<%-- 	<th width="15%"><fmt:message key="service.price.features" /></th>
-			<c:forEach items="${documents}" var="document">
-				<td width="5%">
-					<h5>
-						<small> Recommended if you:</small>
-					</h5> <c:forEach items="${document.features}" var="features">
-						<c:out value="${features}" />
-						<br>
-					</c:forEach> <%-- <br /> <a href='<hst:link path="/memberLogin"/>' class="btn btn-default orange">Start</a> --%>
-			<%-- <a	id="hrefSubmit<c:out value="${fn:toLowerCase(document.title)}"/>"
-					class="btn btn-default orange">Start</a> 
+			 --%>
+			<tr>
+				<th width="15%"><fmt:message key="service.price.description" />
+				</th>
+				<c:forEach items="${documents}" var="document">
+					<td width="5%"><c:out value="${document.description}" /></td>
+				</c:forEach>
+			</tr>
+			<tr>
+				<th width="15%"><fmt:message key="service.price.can" /></th>
+				<c:forEach items="${documents}" var="document">
+					<td width="5%">
+						<h5>
+							<small> Recommended if you:</small>
+						</h5> <fmt:message key="${whoCan[document.title]}" />
 					</td>
-			</c:forEach> --%>
-		</tr>
-		<tr>
-			<th width="15%"><fmt:message key="service.price.cannot" /></th>
-			<c:forEach items="${documents}" var="document">
-				<td width="5%"><fmt:message key="${whoCannot[document.title]}" />
-				</td>
-			</c:forEach>
-		</tr>
+				</c:forEach>
+			</tr>
+			<tr>
+				<th width="15%"><fmt:message key="service.price.cannot" /></th>
+				<c:forEach items="${documents}" var="document">
+					<td width="5%"><fmt:message key="${whoCannot[document.title]}" />
+					</td>
+				</c:forEach>
+			</tr>
 	</table>
 	<div id="income" align="center">
 		<h4>

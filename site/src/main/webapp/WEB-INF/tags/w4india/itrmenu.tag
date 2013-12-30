@@ -441,7 +441,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
 			<div class="alert alert-danger">
 				<small> Unverified Information. You will not be able to file
-					your income tax until the information is verified Review your
+					your income tax until the information is verified. Review your
 					information (Name,DOB and PAN) and Click on the Save button. <c:if
 						test="${isVendor == 'true' && not empty memberpersonalinformation}">
 						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
@@ -451,7 +451,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 		<c:otherwise>
 			<div class="alert alert-danger">
 				<small> Unverified Information. You will not be able to file
-					your income tax until the information is verified <a
+					your income tax until the information is verified <a class="alert-link"
 					href="${scriptName}../../servicerequest-itr.html">Click here to
 						review your information (Name,DOB and PAN)</a> <c:if
 						test="${isVendor == 'true' && not empty memberpersonalinformation}">

@@ -90,7 +90,6 @@
 			title="Mootly. Get IT Done Get IT Right"> Mootly Software Pvt
 			Ltd.</a>
 	</div>
-	</footer>
 </div>
 
 

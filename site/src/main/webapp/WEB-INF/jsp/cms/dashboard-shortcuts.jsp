@@ -41,7 +41,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Cancle</button>
+				<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i>&nbsp;Cancel</button>
 				<a href="#" class="btn btn-success btn-sm" id="dataConfirmOK"><i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Create</a>
 			</div>
 		</div>
