@@ -18,6 +18,7 @@
 <%@tag import="org.hippoecm.hst.core.sitemenu.HstSiteMenusImpl"%>
 <%@tag import="org.hippoecm.hst.core.request.ResolvedSiteMapItem"%>
 <%@tag import="org.hippoecm.hst.core.component.HstRequest"%>
+<%@tag import="org.apache.commons.lang.StringUtils"%>
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -144,16 +145,15 @@ if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null) {
 						<c:set var="itrSiteMenuItem" value="${itrSiteMenuItem}" scope="request" />
 						<c:choose>
 							<c:when test="${childCount gt 0}">
+							    <% HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
+							       EvaluateMenusList evaluateMenusList = new EvaluateMenusList(propertyToCheck);
+							       request.setAttribute("listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));
+							    %>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon ${iconClass}"></i>
 								       &nbsp;${itrSiteMenuItem.name}<b class="caret"></b>
 								</a>
 									<ul class="dropdown-menu">
 										<%-- bad luck the child menus r not SORTED it sucks so lets sort it for now based on weight  --%>
-										<%
-											HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
-											EvaluateMenusList evaluateMenusList = new EvaluateMenusList( propertyToCheck );
-											request.setAttribute( "listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));
-										%>
 										<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
 											<c:set var="childMenuItemReq" scope="request" value="${childMenuItem}" />
 											<% HstSiteMenuItem anItem = (HstSiteMenuItem) request.getAttribute("childMenuItemReq");
@@ -201,7 +201,7 @@ if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null) {
 													String theURL = parentItem.getParameter("theURL");
 													String iconClass = parentItem.getParameter("iconClass");
 													String currentScriptHTMLName = null;
-													//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
+													//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);													
 													if (theURL != null) {
 														request.setAttribute("theURLParent", theURL);
 														//if (theURL .contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu = true;
@@ -211,8 +211,9 @@ if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null) {
 													} else {
 														request.setAttribute("theURLParent", "#");
 													}
+													currentScriptHTMLName = request.getPathInfo();
 													String theScript = (String) request.getAttribute("baseVendorURL");
-													if (theScript != null && currentScriptHTMLName != null && theScript.contains(currentScriptHTMLName)) {
+													if (StringUtils.isNotBlank(theURL) && StringUtils.isNotBlank(currentScriptHTMLName) && currentScriptHTMLName.contains(theURL)) {
 														request.setAttribute("isActive", "true");
 													} else {
 														request.removeAttribute("isActive");
@@ -226,23 +227,6 @@ if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null) {
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-			<!-- <li class="active"><a href="#"><i class="glyphicon glyphicon-home"></i>&nbsp;Dashboard</a></li>
-			<li><a href="#"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;WebSite Builder</a></li>
-			<li><a href="#"><i class="glyphicon glyphicon-leaf"></i>&nbsp;IT-Returns</a></li>
-			<li><a href="#"><i class="glyphicon glyphicon-stats"></i>&nbsp;Analysis</a></li>
-			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i>&nbsp;Manage<b
-					class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="#"><i class="glyphicon glyphicon-globe"></i>&nbsp;Services</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Knowledge Articles</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-question-sign"></i>&nbsp;FAQ</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Tickets</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Others</a></li>
-				</ul></li>
-			<li><a href="#"><i class="glyphicon glyphicon-hdd"></i>&nbsp;Assets</a></li>
-			<li><a href="#"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Active Requests</a></li> -->
 		</ul>
 		<!-- <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
@@ -251,8 +235,8 @@ if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null) {
       <button type="submit" class="btn btn-default">Submit</button>
     </form> -->
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;Account Info</a></li>
-			<li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Action<b class="caret"></b></a>
+			<li><a href="<hst:link siteMapItemRefId="accountinfo"/>"><i class="glyphicon glyphicon-info-sign"></i>&nbsp;Account Info</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Action<b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="#">Download Bulk Xml</a></li>
 					<li><a href="#">Send Bulk Xml</a></li>

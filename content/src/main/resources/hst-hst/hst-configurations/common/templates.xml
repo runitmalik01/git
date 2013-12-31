@@ -3973,4 +3973,26 @@
     <sv:value>jsp/cms/dashboard.jsp</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="reseller-account-info" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>0d36bd71-cf42-4fe5-b2b4-2dd56567fd9a</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/accountinfo.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="itreurn-analysis" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7d859c4a-9218-4d33-ada5-e9cb275fd170</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/itreurn-analysis.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>

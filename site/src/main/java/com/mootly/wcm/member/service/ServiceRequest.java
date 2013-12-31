@@ -39,6 +39,7 @@ import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.ServiceRequestDocument;
+import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.ServiceRequestStatus;
@@ -203,7 +204,23 @@ public class ServiceRequest extends EasyFormComponent {
 				//SIMPLE WORKFLOW
 				Map<String,Object> contextMap = new HashMap<String, Object>();
 				contextMap.put("serviceDoc", publishedSignUpDocument);
-				contextMap.put("serviceName", publishedSignUpDocument.getServiceCode());
+				contextMap.put("serviceName", publishedSignUpDocument.getServiceName());
+				WebsiteInfo websiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
+	    		if (websiteInfo.getEmailFrom() != null) {
+	    			contextMap.put("resellerName", websiteInfo.getPageTitlePrefix() );
+	    		}
+	    		if (websiteInfo.getEmailFrom() != null) {
+	    			contextMap.put("emailFrom", websiteInfo.getEmailFrom() );
+	    		}
+	    		if (websiteInfo.getEmailFromName() != null) {
+	    			contextMap.put("emailFromName", websiteInfo.getEmailFromName() );
+	    		}
+	    		if (websiteInfo.getEmailSignature() != null) {
+	    			contextMap.put("emailSignature", websiteInfo.getEmailSignature() );
+	    		}
+	    		if (websiteInfo.getEmailCustomerService() != null) {
+	    			contextMap.put("emailCustomerService", websiteInfo.getEmailCustomerService() );
+	    		}
 				String pathToNewNode = wpm.createAndReturn(serviceRequsetpath +"emails", EmailMessage.NAMESPACE, "service_request", true);
 				EmailMessage emailMessage = (EmailMessage) wpm.getObject(pathToNewNode);
 				// here we are creating template for email.			

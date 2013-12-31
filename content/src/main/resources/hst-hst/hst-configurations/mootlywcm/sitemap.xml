@@ -12950,6 +12950,37 @@
     <sv:value>dashboard</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="itreturn-analysis">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>42b97ef1-cd50-477a-9ebe-def3cff5f174</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/itreurn-analysis</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>itreurn-analysis</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>resellers</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="accountinfo">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>a5548a66-7776-4c55-9240-856f920a78f9</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/reseller-account-info</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>accountinfo</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>
 	<!--  knowledgearticles -->
 	<sv:node sv:name="knowledgearticles" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
