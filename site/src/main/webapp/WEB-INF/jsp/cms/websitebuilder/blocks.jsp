@@ -6,14 +6,11 @@
 <%@include file="../../includes/tags.jspf"%>
 <c:set value="Block Component" var="blocktitle" />
 <hippo-gogreen:title title="${blocktitle}"></hippo-gogreen:title>
-
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
 <hst:link var="pageslink" siteMapItemRefId="pages"/>
 <hst:link var="blockslink" siteMapItemRefId="blocks"/>
-<div class="alert alert-info">
-	<h4>Welcome To WebsiteBuilder Panel</h4>
-</div>
+<w4india:dashboard-menu></w4india:dashboard-menu>
 <ol class="breadcrumb">
   <li><a href="#">Home</a></li>
   <li><a href="${websitebuilderlink}">WebSite Builder</a></li>

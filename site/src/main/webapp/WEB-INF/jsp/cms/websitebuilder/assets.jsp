@@ -8,9 +8,7 @@
 <hippo-gogreen:title title="${pagestitle}"></hippo-gogreen:title>
 <hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
 <hst:link var="assetslink" siteMapItemRefId="assets" />
-<div class="alert alert-info">
-	<h4>Welcome To WebsiteBuilder Panel</h4>
-</div>
+<w4india:dashboard-menu></w4india:dashboard-menu>
 <ol class="breadcrumb">
 	<li><a href="${vendorhomelink}">Home</a></li>
 	<li><a href="${websitebuilderlink}">WebSite Builder</a></li>

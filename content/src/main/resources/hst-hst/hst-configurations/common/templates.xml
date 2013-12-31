@@ -3940,4 +3940,37 @@
     <sv:value>jsp/service/request/servicerequestdocupload.jsp</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="dashboard-shortcuts" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>298ae606-208f-4e2f-9e84-8a3afc8c6533</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/dashboard-shortcuts.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="document-editor" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d57606a1-dad1-4134-9990-ac37b850144c</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/document-editor.jsp</sv:value>
+  </sv:property>
+</sv:node>
+<sv:node sv:name="dashboard" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>936d2ebe-dfd7-4405-bc58-a2f086cf8965</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/dashboard.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>

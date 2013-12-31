@@ -1,10 +1,8 @@
 <%@include file="../../includes/tags.jspf"%>
 <link rel="stylesheet" href="css/metro-bootstrap.css">
 <hippo-gogreen:title title="Website Builder"></hippo-gogreen:title>
-<hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" /><br/>
-<div class="alert alert-info">
-	<h4>Welcome To WebsiteBuilder Panel</h4>
-</div>
+<hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
+<w4india:dashboard-menu></w4india:dashboard-menu>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
@@ -48,42 +46,36 @@
 	</div>
 </div>
 <div class="row">
-  <div class="col-sm-6 col-md-4">
+  <div class="col-md-4">
     <div class="thumbnail">
       <!-- <img data-src="http://placehold.it/380x500" alt="fu"> -->
       <div class="caption">
         <h4><strong>Page Components</strong></h4>
         <p>Capability to create WebPages for your WebSite.</p>
-        <p><a href="${websitebuilderlink}/pages.html" class="btn btn-default btn-info" role="button"><span class="btn btn-default-label"><i
-			class="glyphicon glyphglyphicon glyphicon-eye-open"></i></span>View Pages</a> 
-		    <a href="${websitebuilderlink}/pages.html/newpage" class="btn btn-default btn-success" role="button" data-prompt=""><span class="btn btn-default-label"><i
-			class="glyphicon glyphglyphicon glyphicon-plus"></i></span>Add Page</a></p>
+        <p><a href="${websitebuilderlink}/pages.html" class="btn btn-info"><i class="glyphicon glyphicon-eye-open"></i>View Pages</a> 
+		    <a href="${websitebuilderlink}/pages.html/newpage" class="btn btn-success" data-prompt=""><i class="glyphicon glyphicon-plus"></i>Add Page</a></p>
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
+  <div class="col-md-4">
     <div class="thumbnail">
 <!--       <img data-src="http://placehold.it/380x500" alt="..."> -->
       <div class="caption">
         <h4><strong>Blocks Components</strong></h4>
         <p>Capability to create Block component for WebPages.</p>
-        <p><a href="${websitebuilderlink}/blocks.html" class="btn btn-default btn-info" role="button"><span class="btn btn-default-label"><i
-			class="glyphicon glyphglyphicon glyphicon-eye-open"></i></span>View Blocks</a>
-	      <a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-default btn-success" role="button" data-prompt=""><span class="btn btn-default-label"><i
-			class="glyphicon glyphglyphicon glyphicon-plus"></i></span>Add Block</a></p>
+        <p><a href="${websitebuilderlink}/blocks.html" class="btn btn-info"><i class="glyphicon glyphicon-eye-open"></i>View Blocks</a>
+	      <a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-success" data-prompt=""><i class="glyphicon glyphicon-plus"></i>Add Block</a></p>
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
+  <div class="col-md-4">
     <div class="thumbnail">
 <!--      <img src="http://placehold.it/300x200" alt=""/> -->
       <div class="caption">
         <h4><strong>Assets Components</strong></h4>
         <p>Capability to add Assets for Block components.</p>
-        <p><a href="${websitebuilderlink}/assests.html" class="btn btn-default btn-info" role="button"><span class="btn btn-default-label"><i
-			class="glyphicon glyphglyphicon glyphicon-eye-open"></i></span>View Assets</a>
-	       <a href="${websitebuilderlink}/assests.html" class="btn btn-default btn-success" role="button"><span class="btn btn-default-label"><i
-			class="glyphicon glyphglyphicon glyphicon-plus"></i></span>Add Asset</a></p>
+        <p><a href="${websitebuilderlink}/assests.html" class="btn btn-info"><i class="glyphicon glyphicon-eye-open"></i>View Assets</a>
+	       <a href="${websitebuilderlink}/assests.html" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>Add Asset</a></p>
       </div>
     </div>
   </div>
@@ -102,15 +94,14 @@
 						<div class="form-group">
 							<label for="componentName">Component Name</label> 
 							<input type="hidden" name="compName" id="compName">
-							<input type="text" class="form-control" name="componentDocName" id="componentDocName" 
-							placeholder="Name of Component Document" title="Name of Component" />
+							<input type="text" class="form-control" name="componentDocName" id="componentDocName" placeholder="Name of Component Document" title="Name of Component" />
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-default" data-dismiss="modal"><i class="glyphicon glyphglyphicon glyphicon-remove-sign"></i>Cancel</button>
-				<a href="#" class="btn btn-default btn-primary" id="dataConfirmOK"><i class="glyphicon glyphglyphicon glyphicon-ok-sign"></i>Go</a>
+				<button type="button" class="btn btn-default btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove-sign"></i>Cancel</button>
+				<a href="#" class="btn btn-default btn-primary" id="dataConfirmOK"><i class="glyphicon glyphicon-ok-sign"></i>Go</a>
 			</div>
 		</div>
 	</div>

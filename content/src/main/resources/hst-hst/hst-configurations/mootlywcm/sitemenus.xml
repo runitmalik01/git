@@ -1648,4 +1648,297 @@
       </sv:property>
     </sv:node>
   </sv:node>
+  <sv:node sv:name="dashboardmenu">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemenu</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>33e5b938-1eea-4cd6-a274-77c01d5dcedf</sv:value>
+    </sv:property>
+    <sv:node sv:name="Dashboard">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>6612a610-1635-403b-adfb-411e25dc9e94</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>theURL</sv:value>
+        <sv:value>weight</sv:value>
+        <sv:value>iconClass</sv:value>
+        <sv:value>active</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>/dashboard</sv:value>
+        <sv:value>0</sv:value>
+        <sv:value>glyphicon-home</sv:value>
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="WebSite Builder">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>c1798f56-e1bd-4e60-97e6-7a089170f6b9</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>theURL</sv:value>
+        <sv:value>weight</sv:value>
+        <sv:value>iconClass</sv:value>
+        <sv:value>active</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>/websitebuilder</sv:value>
+        <sv:value>1</sv:value>
+        <sv:value>glyphicon-dashboard</sv:value>
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value>news</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="IT-Returns">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>19f77f97-0264-433f-b5d0-6bb02b4f3ee5</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>theURL</sv:value>
+        <sv:value>weight</sv:value>
+        <sv:value>iconClass</sv:value>
+        <sv:value>active</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>/itreturn</sv:value>
+        <sv:value>2</sv:value>
+        <sv:value>glyphicon-leaf</sv:value>
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="Analysis">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>8133af96-b912-4fe8-8f19-278e4ed53f26</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>theURL</sv:value>
+        <sv:value>weight</sv:value>
+        <sv:value>iconClass</sv:value>
+        <sv:value>active</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value/>
+        <sv:value>3</sv:value>
+        <sv:value>glyphicon-stats</sv:value>
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="Manage">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>0c2e1fca-c960-45dc-8796-1ba270111ba7</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>weight</sv:value>
+        <sv:value>iconClass</sv:value>
+        <sv:value>active</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>4</sv:value>
+        <sv:value>glyphicon-cog</sv:value>
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value>mobile</sv:value>
+      </sv:property>
+      <sv:node sv:name="Services">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>4655af7a-c941-433b-aab9-e50d35f846a4</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>active</sv:value>
+          <sv:value>iconClass</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../formsixteen.html</sv:value>
+          <sv:value>1</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>glyphicon-globe</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+          <sv:value>itr-form-sixteen</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Knowledge Articles">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>31469606-902d-4300-a95d-c56d26763030</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>active</sv:value>
+          <sv:value>iconClass</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../formsixteenschedule.html</sv:value>
+          <sv:value>2</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>glyphicon-list-alt</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="FAQ">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>8f9b9da1-b0f3-4cc4-a431-38ad3260bddd</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>iconClass</sv:value>
+          <sv:value>active</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../salaryincome.html</sv:value>
+          <sv:value>3</sv:value>
+          <sv:value>glyphicon-question-sign</sv:value>
+          <sv:value>true</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Tickets">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>56fbbc93-9074-4e09-8dd0-d8c340fb2fc0</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>iconClass</sv:value>
+          <sv:value>active</sv:value>
+          <sv:value>isDivider</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../singlehouseincome.html</sv:value>
+          <sv:value>4</sv:value>
+          <sv:value>glyphicon-tasks</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>true</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="Others">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemenuitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>29d835f3-7acb-4bba-83c6-c65232ade725</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>theURL</sv:value>
+          <sv:value>weight</sv:value>
+          <sv:value>iconClass</sv:value>
+          <sv:value>active</sv:value>
+          <sv:value>isDivider</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>/../singlehouseincome.html</sv:value>
+          <sv:value>5</sv:value>
+          <sv:value>glyphicon-tasks</sv:value>
+          <sv:value>true</sv:value>
+          <sv:value>true</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+    <sv:node sv:name="Assets">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>6c19be5d-bd99-4734-84f4-aedad967d88d</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>theURL</sv:value>
+        <sv:value>weight</sv:value>
+        <sv:value>iconClass</sv:value>
+        <sv:value>active</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>/websitebuilder/assests.html</sv:value>
+        <sv:value>5</sv:value>
+        <sv:value>glyphicon-hdd</sv:value>
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value>about</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="Active Requests">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>9f7e320e-bd67-4d6c-91db-6b9a17a54255</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>theURL</sv:value>
+        <sv:value>weight</sv:value>
+        <sv:value>active</sv:value>
+        <sv:value>iconClass</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value/>
+        <sv:value>6</sv:value>
+        <sv:value>false</sv:value>
+        <sv:value>glyphicon-bullhorn</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value>mobile</sv:value>
+      </sv:property>
+    </sv:node>
+    <sv:node sv:name="Account Info">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemenuitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>7ce37a2d-05e3-484a-8468-9d45cd3e3802</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+        <sv:value>weight</sv:value>
+        <sv:value>active</sv:value>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+        <sv:value>3</sv:value>
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:referencesitemapitem" sv:type="String">
+        <sv:value>products</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
 </sv:node>

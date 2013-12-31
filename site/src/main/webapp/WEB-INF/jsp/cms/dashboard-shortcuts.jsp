@@ -2,9 +2,8 @@
 <hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
 <hst:actionURL var="actionURL"/>
 <hippo-gogreen:title title="Dashboard Shortcut"></hippo-gogreen:title>
-<div class="alert alert-info">DashBoard Shortcut</div>
 <div class="row">
-	<div class="col-md-3 col-md-offset-4">
+	<div class="col-md-3">
 		<c:if test="${not empty documents}">
 			<c:forEach items="${documents}" var="document">
 				<c:forEach items="${document.dashboardShortcutDetail}"

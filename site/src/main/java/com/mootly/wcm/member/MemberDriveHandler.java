@@ -75,7 +75,7 @@ public class MemberDriveHandler {
 		}
 		this.financialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		this.pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan");
-		this.userName = request.getUserPrincipal().getName();
+		this.userName = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : null;
 		this.normalisedUserName = baseComponent.getNormalizedUserName(request);
 		this.isReseller = helper.isReSeller(request);
 		this.resellerID = helper.getResellerId(request);

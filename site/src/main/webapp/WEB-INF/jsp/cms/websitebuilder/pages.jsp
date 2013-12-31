@@ -7,9 +7,7 @@
 <hst:link var="websitebuilderlink" siteMapItemRefId="websitebuilder" />
 <hst:link var="vendorhomelink" siteMapItemRefId="vendoritreturnhome" />
 <hst:link var="pageslink" siteMapItemRefId="pages" />
-<div class="alert alert-info">
-	<h4>Welcome To WebsiteBuilder Panel</h4>
-</div>
+<w4india:dashboard-menu></w4india:dashboard-menu>
 <ol class="breadcrumb">
 	<li><a href="${vendorhomelink}">Home</a></li>
 	<li><a href="${websitebuilderlink}">WebSite Builder</a></li>
