@@ -1055,7 +1055,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			if(node.hasNode("mootlywcm:pathToDigitalSignature")){
 				digitalSignatureNode = node.getNode("mootlywcm:pathToDigitalSignature");
 			}else{
-				node.addNode("mootlywcm:pathToDigitalSignature", Constants.NT_HIPPO_MIRROR);
+				digitalSignatureNode = node.addNode("mootlywcm:pathToDigitalSignature", Constants.NT_HIPPO_MIRROR);
+				if (digitalSignatureNode!= null) {
+					digitalSignatureNode.setProperty("hippo:docbase", "cafebabe-cafe-babe-cafe-babecafebabe");
+				}				
 			}
 			/*if(digitalSignatureNode != null){
 				digitalSignatureNode.setProperty(Constants.PROP_HIPPO_DOCBASE, getDigitalSignatureHandleUUID());
