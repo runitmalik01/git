@@ -252,7 +252,6 @@
 			  return;
 			}
 	  for (var i=0;i< allForms.length; i++ ) {
-	      alert('hpi');
             var theData = $(allForms[i]).serialize();
 				$.ajax('<hst:actionURL></hst:actionURL>',
 						{
