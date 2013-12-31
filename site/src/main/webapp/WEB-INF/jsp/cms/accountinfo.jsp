@@ -11,34 +11,34 @@
  %>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-md-6">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-3">
 			<div class="well well-sm">
 				<div class="row">
 					<div class="col-sm-6 col-md-4">					    
 						<a class="w4i-logo" href="${home}"><img src="${imgLogo}" class="img-rounded img-responsive" ></a>
 					</div>
 					<div class="col-sm-6 col-md-8">
-						<h4>${resellerInfo.resellerName}</h4>
+						<h4><b>${resellerInfo.resellerName}</b></h4>
 						<small><cite title="San Francisco, USA"><i class="glyphicon glyphglyphicon glyphicon-map-marker"> </i>
 						</cite></small>
 						<p>
-							<i class="glyphicon glyphglyphicon glyphicon-envelope"></i>&nbsp;${resellerInfo.emailCustomerService } <br />
-							<i class="glyphicon glyphglyphicon glyphicon-globe"></i><a
-								href="http://www.jquery2dotnet.com">www.<w4india:resellername/>.com</a> <br />
-							<i class="glyphicon glyphglyphicon glyphicon-gift"></i>${resellerInfo.startDate}
+							<i class="glyphicon glyphicon-envelope"></i>&nbsp;${resellerInfo.emailCustomerService } <br />
+							<i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.<w4india:resellername/>.com</a> <br />
+							<i class="glyphicon glyphicon-gift"></i>${resellerInfo.startDate}-${resellerInfo.endDate }<br/>
+							&#8377;${resellerInfo.paymentAvailableTypes}<br/>
+							<i class="glyphicon glyphicon-phone"></i>${resellerInfo.phoneCustomerService}<br/>
 						</p>
 						<!-- Split button -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-default btn-primary">Social</button>
-							<button type="button" class="btn btn-default btn-primary dropdown-toggle"
-								data-toggle="dropdown">
+							<button type="button" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-share"></i>&nbsp;Social</button>
+							<button type="button" class="btn btn-default btn-primary dropdown-toggle"data-toggle="dropdown">
 								<span class="caret"></span><span class="sr-only">Social</span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Twitter</a></li>
-								<li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google
-										+</a></li>
-								<li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+								<li><a href="https://www.twitter.com/<w4india:resellername/>">Twitter</a></li>
+								<li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google+</a></li>
+								<li><a href="https://www.facebook.com/<w4india:resellername/>">Facebook</a></li>
+								<li><a href="https://in.linkedin.com/in/<w4india:resellername/>">LinkedIn</a></li>
 								<li class="divider"></li>
 								<li><a href="#">Github</a></li>
 							</ul>
