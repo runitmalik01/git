@@ -76,7 +76,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>e78730c6-e81c-4146-ab5d-f524d133b8e0</sv:value>
+          <sv:value>d6049fbe-5ec4-4534-9620-1e2923d62aec</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -101,13 +101,13 @@
           <sv:value>2013-07-11T23:13:26.547+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:27:42.866+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:34.568+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:27:46.238+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:37.732+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>153d4682-5e59-4196-aeb7-0e971cdfb24a</sv:value>
@@ -117,6 +117,9 @@
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Tax planning for 2012-13</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Additional Services</sv:value>
@@ -131,8 +134,14 @@
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>01</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -153,7 +162,7 @@
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>4649376f-8cdb-4ae5-ab29-df765b313d8e</sv:value>
+            <sv:value>ae1c5c7f-a256-4cd4-a303-d18c47ec85e5</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -217,7 +226,7 @@
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>62c669d0-f8cb-41c2-9cda-e2f29707aa1b</sv:value>
+          <sv:value>3788f370-fbe9-4b44-a745-8314523379f0</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -242,13 +251,13 @@
           <sv:value>2013-07-11T23:02:59.829+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:31:51.678+05:30</sv:value>
+          <sv:value>2013-12-30T13:15:27.495+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:31:54.468+05:30</sv:value>
+          <sv:value>2013-12-30T13:15:29.720+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>3c09d157-0073-4b8c-9b7e-b7294bce8645</sv:value>
@@ -258,6 +267,9 @@
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Get your IT Return Reviewed by an Expert</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Additional Services</sv:value>
@@ -274,8 +286,14 @@ Tax Expert may ask for more information or documents to ensure your return is co
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>02</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -296,7 +314,7 @@ Tax Expert may ask for more information or documents to ensure your return is co
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>908dc446-58c8-4cf1-bf63-2ad199d611ce</sv:value>
+            <sv:value>610c7b9e-4cfe-4da6-ba90-4257b5d6c5f4</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -360,7 +378,7 @@ Tax Expert may ask for more information or documents to ensure your return is co
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>eee59a2c-0439-4cce-806f-56601464bd59</sv:value>
+          <sv:value>84169380-57af-4a4f-9bda-7fe1fef6926e</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -385,13 +403,13 @@ Tax Expert may ask for more information or documents to ensure your return is co
           <sv:value>2013-07-11T23:08:11.589+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-12T01:08:55.516+05:30</sv:value>
+          <sv:value>2013-12-30T13:15:37.498+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-12T01:08:59.104+05:30</sv:value>
+          <sv:value>2013-12-30T13:15:39.899+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>f142aed3-25a2-4a37-8bde-81c7d783b9a7</sv:value>
@@ -401,6 +419,9 @@ Tax Expert may ask for more information or documents to ensure your return is co
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Get yourself Assessment Protection</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Additional Services</sv:value>
@@ -415,8 +436,14 @@ Tax Expert may ask for more information or documents to ensure your return is co
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>03</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -437,7 +464,7 @@ Tax Expert may ask for more information or documents to ensure your return is co
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>5ff571f9-e8b7-462c-8934-8944dd60ae4e</sv:value>
+            <sv:value>9b49877f-4a3a-4b39-8000-e9b08fbe1630</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -501,7 +528,7 @@ Tax Expert may ask for more information or documents to ensure your return is co
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>527c353d-a0f6-4eb9-a0cd-df0b31bdf866</sv:value>
+          <sv:value>ac7367b0-66fe-4371-939e-b2bcb47de2a2</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -526,13 +553,13 @@ Tax Expert may ask for more information or documents to ensure your return is co
           <sv:value>2013-07-11T23:08:55.350+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:43:48.152+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:09.604+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:43:52.444+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:12.721+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>4bcecfa7-cebc-4234-af23-aa6d6e52c04e</sv:value>
@@ -542,6 +569,9 @@ Tax Expert may ask for more information or documents to ensure your return is co
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>ITR-V Submission Service</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Additional Services</sv:value>
@@ -560,8 +590,14 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>04</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -582,7 +618,7 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>3b71ba59-8129-423e-a6a3-2df2a927391d</sv:value>
+            <sv:value>662917b4-b6a0-4706-bdad-6540fced3052</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -646,7 +682,7 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>ea62b08d-81c9-4a3a-a0a0-15470d3d27b1</sv:value>
+          <sv:value>84f583b9-97cb-4ba8-9935-a99ac77843d3</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -671,13 +707,13 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
           <sv:value>2013-07-11T23:09:26.563+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:52:28.900+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:47.263+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-12T00:52:34.821+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:50.177+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>842772a9-8166-4216-8b95-6c9b726b581a</sv:value>
@@ -687,6 +723,9 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Track your Refund Status</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Additional Services</sv:value>
@@ -701,8 +740,14 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>05</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -723,7 +768,7 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>27edea8d-a10b-48a6-95b2-30ea0f03e35d</sv:value>
+            <sv:value>efdae3a6-7392-46eb-a23f-ca0bf38446ad</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -787,7 +832,7 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>a9b08719-877a-4de3-b8d4-d89b28fd0fee</sv:value>
+          <sv:value>61022ddf-927e-4426-b438-1f2d138616fd</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -812,13 +857,13 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
           <sv:value>2013-07-11T23:12:05.875+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-12T01:05:00.307+05:30</sv:value>
+          <sv:value>2013-12-30T13:15:50.984+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-12T01:05:03.588+05:30</sv:value>
+          <sv:value>2013-12-30T13:15:54.071+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>c6ace475-d8d0-4736-bbf4-fe55e8c52479</sv:value>
@@ -828,6 +873,9 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>ITR-V Receipt Status</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Additional Services</sv:value>
@@ -842,8 +890,14 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>06</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -864,7 +918,7 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>18d44ff8-2176-4657-a90f-625e393c26cf</sv:value>
+            <sv:value>cd3e1499-6545-4e23-b752-13c42bbdb243</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -928,7 +982,7 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>ffc321c9-ef1b-44d0-9987-b2247865add8</sv:value>
+          <sv:value>d586a49c-0d24-4bd4-98f0-6e534d482254</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -953,13 +1007,13 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
           <sv:value>2013-07-11T23:12:48.564+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-12T01:02:05.882+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:20.747+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-12T01:02:09.893+05:30</sv:value>
+          <sv:value>2013-12-30T13:16:23.780+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>698deb36-4799-4886-92c6-bd06c375694c</sv:value>
@@ -969,6 +1023,9 @@ Wealth4India can help submit your ITR-V to Income Tax Department's postal addres
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Know your Return Processing Status</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Additional Services</sv:value>
@@ -984,8 +1041,14 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>07</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -1006,7 +1069,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>d55aeafa-c070-4b32-bb61-c924cf24b968</sv:value>
+            <sv:value>bd23b3fe-8183-4720-aa2d-cb3096acf72d</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1126,7 +1189,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>be57d83f-6f15-4b70-b1a6-f73dfe0e11bc</sv:value>
+          <sv:value>fa8cbf18-8cd0-4f42-8e16-b9975e28f7e0</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -1148,16 +1211,16 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
-          <sv:value>2013-07-07T01:33:00.415-07:00</sv:value>
+          <sv:value>2013-07-07T14:03:00.415+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-11-09T16:45:59.452-08:00</sv:value>
+          <sv:value>2013-12-30T13:17:08.495+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-11-09T16:46:06.645-08:00</sv:value>
+          <sv:value>2013-12-30T13:17:11.127+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>0c8eaced-9343-4014-a73e-d522b723adeb</sv:value>
@@ -1167,6 +1230,9 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>ITR1</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>taxreturn</sv:value>
@@ -1187,8 +1253,14 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>09</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value>98364bc0-bbec-4fff-b223-fc22d6411de0</sv:value>
@@ -1209,7 +1281,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>8ab515b9-9419-453a-a94c-06cf14e38c69</sv:value>
+            <sv:value>e68065ed-99b3-4cb9-a068-82c4a87c8384</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1248,7 +1320,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>caeb3086-afa5-49e2-8dfe-8da402d5aa9a</sv:value>
+            <sv:value>ed0e15d1-f019-4e4c-880b-f22f0aa55f07</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1312,7 +1384,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>f913ffa9-91d8-49dd-a24b-0090e664eada</sv:value>
+          <sv:value>ae444cc7-2224-4c80-b1d3-9c07539b4cbc</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -1337,13 +1409,13 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>2013-07-07T18:18:40.775+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:04.368+05:30</sv:value>
+          <sv:value>2013-12-30T13:17:19.132+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:07.868+05:30</sv:value>
+          <sv:value>2013-12-30T13:17:22.184+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>66ce8ab9-9a8e-4078-8db9-837ffd405fd8</sv:value>
@@ -1353,6 +1425,9 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>ITR2</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>taxreturn</sv:value>
@@ -1374,8 +1449,14 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>10</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -1396,7 +1477,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>3595e0a2-8197-4d67-8d2a-e5c3be1fc9f5</sv:value>
+            <sv:value>47bc301d-9b01-468a-856b-e6ab5af4c316</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1435,7 +1516,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>ccb7eed1-207b-4d2f-9e22-767f72a447a8</sv:value>
+            <sv:value>f8c7bcd8-939c-4362-98d5-2c5c7ca0df93</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1499,7 +1580,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>4f812db7-9b4f-4a97-825f-0c03fff7d780</sv:value>
+          <sv:value>4938fe1d-4275-4d19-ab17-cfb426ba86ea</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -1524,13 +1605,13 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>2013-07-07T18:22:13.372+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:17.745+05:30</sv:value>
+          <sv:value>2013-12-30T13:17:32.684+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:21.373+05:30</sv:value>
+          <sv:value>2013-12-30T13:17:35.498+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>7430d0e9-3956-462e-90f5-716ed9d8dcac</sv:value>
@@ -1540,6 +1621,9 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>ITR3</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>taxreturn</sv:value>
@@ -1559,8 +1643,14 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         <sv:property sv:name="mootlywcm:id" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>11</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -1581,7 +1671,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>ea18d15f-a73a-4c03-b80e-07b79a897003</sv:value>
+            <sv:value>412776ed-debf-4978-bf16-12679c23e4b3</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1620,7 +1710,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>6e076c0a-5370-4978-88c0-4651035e9c0c</sv:value>
+            <sv:value>223e52c9-fe0a-4368-96da-43eaba4b3574</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1724,7 +1814,7 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>fbbad854-76f9-4434-aa15-084c3784c3ff</sv:value>
+          <sv:value>1da90e40-b452-4952-bbfa-d027f2c1539a</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -1749,13 +1839,13 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
           <sv:value>2013-06-26T13:11:01.587+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:32.696+05:30</sv:value>
+          <sv:value>2013-12-30T13:17:56.014+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:36.052+05:30</sv:value>
+          <sv:value>2013-12-30T13:17:58.818+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>2f9f6b8c-6f29-4323-8f7f-24f3b19d078d</sv:value>
@@ -1765,6 +1855,9 @@ Wealth4India has provided the facility to the Assessee / tax Payer to  check sta
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Audit Service</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Audit Services</sv:value>
@@ -1792,8 +1885,14 @@ We help companies investigate the causes hindering smooth functioning of their b
           <sv:value>efile</sv:value>
           <sv:value>ezfile</sv:value>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>12</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -1811,7 +1910,7 @@ We help companies investigate the causes hindering smooth functioning of their b
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>1496a704-8935-462c-b2a2-44843592eacd</sv:value>
+            <sv:value>d6aa6f08-2581-4e70-9fba-9614f21063f0</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1850,7 +1949,7 @@ We help companies investigate the causes hindering smooth functioning of their b
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>5edd3f15-4562-49e1-b985-c21d6b687981</sv:value>
+            <sv:value>a6b94375-144f-47fa-8452-245bca358254</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -1954,7 +2053,7 @@ We help companies investigate the causes hindering smooth functioning of their b
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>72689bbe-f6f4-4d6d-bdb5-a128b5091454</sv:value>
+          <sv:value>27a0b1bc-6604-40ae-86f2-bcff1bbba441</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -1979,13 +2078,13 @@ We help companies investigate the causes hindering smooth functioning of their b
           <sv:value>2013-06-26T13:20:41.551+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:49.195+05:30</sv:value>
+          <sv:value>2013-12-30T13:18:11.536+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:36:53.452+05:30</sv:value>
+          <sv:value>2013-12-30T13:18:14.667+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>01a35048-f692-45f0-b806-a9dc670368a7</sv:value>
@@ -1995,6 +2094,9 @@ We help companies investigate the causes hindering smooth functioning of their b
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Corporate Taxation Matters</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Corporate Taxation Matters</sv:value>
@@ -2023,8 +2125,14 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>efile</sv:value>
           <sv:value>ezfile</sv:value>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>13</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -2042,7 +2150,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>40030c01-320a-43e8-bead-f827ae84910c</sv:value>
+            <sv:value>fca27e84-d8e2-4f47-a7f2-2ddb7752a18d</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2081,7 +2189,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>da6f801c-2545-473f-9e06-8e14c9443cb9</sv:value>
+            <sv:value>f5689a6f-e07b-42dd-b3ac-a080ca2da6d4</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2185,7 +2293,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>393db93e-21fe-4497-9506-8eeefb8896ba</sv:value>
+          <sv:value>4719ee92-d88f-48da-ba73-be22db10f695</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -2210,13 +2318,13 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>2013-06-26T13:23:10.872+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:37:09.293+05:30</sv:value>
+          <sv:value>2013-12-30T13:18:26.526+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:37:12.967+05:30</sv:value>
+          <sv:value>2013-12-30T13:18:29.278+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>97cb891d-a579-4ad7-9fb1-40c7b871945d</sv:value>
@@ -2226,6 +2334,9 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>International Taxation</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>International Taxation</sv:value>
@@ -2248,8 +2359,14 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
         <sv:property sv:multiple="true" sv:name="mootlywcm:offeringMode" sv:type="String">
           <sv:value/>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>14</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -2267,7 +2384,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>10a89d1a-6e8e-4213-8cd7-0931692bfe98</sv:value>
+            <sv:value>7218eb21-b59f-4e64-945b-857312cc6ded</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2306,7 +2423,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>3b04de93-4201-4577-b172-b133a0e436fb</sv:value>
+            <sv:value>bc3de749-fc0c-4e11-bf65-1035a214d60a</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2409,7 +2526,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippotranslation:translated</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>d96d85c5-86a4-496a-a2a2-b09c5804e210</sv:value>
+            <sv:value>2e92a569-df87-4f63-9016-b6f25dec0287</sv:value>
           </sv:property>
           <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
             <sv:value>live</sv:value>
@@ -2434,13 +2551,13 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>2013-06-26T13:25:02.643+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:37:23.985+05:30</sv:value>
+            <sv:value>2013-12-30T13:18:42.096+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
             <sv:value>admin</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:37:27.405+05:30</sv:value>
+            <sv:value>2013-12-30T13:18:44.841+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippotranslation:id" sv:type="String">
             <sv:value>98f47dcb-d10f-4771-b8aa-bd4a5b505812</sv:value>
@@ -2450,6 +2567,9 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           </sv:property>
           <sv:property sv:name="mootlywcm:Name" sv:type="String">
             <sv:value>Transfer Pricing</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+            <sv:value>true</sv:value>
           </sv:property>
           <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
             <sv:value>International Taxation</sv:value>
@@ -2475,8 +2595,14 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>efile</sv:value>
             <sv:value>ezfile</sv:value>
           </sv:property>
+          <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+            <sv:value>false</sv:value>
+          </sv:property>
           <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
             <sv:value>15</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+            <sv:value>0</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:srForm" sv:type="String">
             <sv:value/>
@@ -2497,7 +2623,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>hippo:harddocument</sv:value>
             </sv:property>
             <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>f4e8cd5b-b9d7-4651-82df-dcb072566d30</sv:value>
+              <sv:value>0d2ae475-87f0-4bf9-9ea6-136f68d3e3d1</sv:value>
             </sv:property>
             <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
             <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2536,7 +2662,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>hippo:harddocument</sv:value>
             </sv:property>
             <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>df1c1db6-8a2d-47a9-8976-7f11a4853b07</sv:value>
+              <sv:value>6feb182d-2114-4a63-a199-6cedef9e6fdd</sv:value>
             </sv:property>
             <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
             <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2640,7 +2766,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippotranslation:translated</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>b456fad7-60bd-4458-ab29-d6b18c7655c2</sv:value>
+            <sv:value>81887b76-51e2-4dc1-a64e-47fc4b96f981</sv:value>
           </sv:property>
           <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
             <sv:value>live</sv:value>
@@ -2665,13 +2791,13 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>2013-06-26T13:39:24.178+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:37:37.178+05:30</sv:value>
+            <sv:value>2013-12-30T13:20:13.569+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
             <sv:value>admin</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:37:40.353+05:30</sv:value>
+            <sv:value>2013-12-30T13:20:25.470+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippotranslation:id" sv:type="String">
             <sv:value>d6e49e99-ad05-4466-81ff-348abf435ed7</sv:value>
@@ -2681,6 +2807,9 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           </sv:property>
           <sv:property sv:name="mootlywcm:Name" sv:type="String">
             <sv:value>Foreign Tax Relief</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+            <sv:value>true</sv:value>
           </sv:property>
           <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
             <sv:value>International Taxation</sv:value>
@@ -2700,8 +2829,14 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>efile</sv:value>
             <sv:value>ezfile</sv:value>
           </sv:property>
+          <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+            <sv:value>false</sv:value>
+          </sv:property>
           <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
             <sv:value>16</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+            <sv:value>0</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:srForm" sv:type="String">
             <sv:value/>
@@ -2722,7 +2857,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>hippo:harddocument</sv:value>
             </sv:property>
             <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>52bfecd7-f280-43fb-9496-a86eed28678b</sv:value>
+              <sv:value>0f3dd239-3814-4f9a-ba16-0d28140c6af5</sv:value>
             </sv:property>
             <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
             <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2761,7 +2896,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>hippo:harddocument</sv:value>
             </sv:property>
             <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>dcafcbf8-a60d-486a-9202-0442dca64576</sv:value>
+              <sv:value>d70a29d5-3fc4-4a58-9195-91265520b2b7</sv:value>
             </sv:property>
             <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
             <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2865,7 +3000,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippotranslation:translated</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>833f40d2-12f4-4141-8c12-3561fe72271f</sv:value>
+            <sv:value>76871273-d0d7-4221-b898-2b586c76a0fe</sv:value>
           </sv:property>
           <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
             <sv:value>live</sv:value>
@@ -2890,13 +3025,13 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>2013-06-26T13:42:06.456+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:37:52.127+05:30</sv:value>
+            <sv:value>2013-12-30T13:19:06.913+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
             <sv:value>admin</sv:value>
           </sv:property>
           <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-            <sv:value>2013-07-11T23:37:55.437+05:30</sv:value>
+            <sv:value>2013-12-30T13:19:09.677+05:30</sv:value>
           </sv:property>
           <sv:property sv:name="hippotranslation:id" sv:type="String">
             <sv:value>7b3baa53-52e1-47e7-aef7-78cc5306a00b</sv:value>
@@ -2906,6 +3041,9 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           </sv:property>
           <sv:property sv:name="mootlywcm:Name" sv:type="String">
             <sv:value>Advance Ruling</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+            <sv:value>true</sv:value>
           </sv:property>
           <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
             <sv:value>International Taxation</sv:value>
@@ -2929,8 +3067,14 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>efile</sv:value>
             <sv:value>ezfile</sv:value>
           </sv:property>
+          <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+            <sv:value>false</sv:value>
+          </sv:property>
           <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
             <sv:value>17</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+            <sv:value>0</sv:value>
           </sv:property>
           <sv:property sv:name="mootlywcm:srForm" sv:type="String">
             <sv:value/>
@@ -2951,7 +3095,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>hippo:harddocument</sv:value>
             </sv:property>
             <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>4ac4ae68-9e0d-4443-80e7-20651a481893</sv:value>
+              <sv:value>3f893c54-b931-4938-8d93-96fc4bb9041f</sv:value>
             </sv:property>
             <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
             <sv:property sv:name="hippostd:state" sv:type="String">
@@ -2990,7 +3134,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
               <sv:value>hippo:harddocument</sv:value>
             </sv:property>
             <sv:property sv:name="jcr:uuid" sv:type="String">
-              <sv:value>ce366c88-ae99-4692-9aff-00124ff3587d</sv:value>
+              <sv:value>2e4726d6-ef62-4946-9c78-73816fd36eea</sv:value>
             </sv:property>
             <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
             <sv:property sv:name="hippostd:state" sv:type="String">
@@ -3095,7 +3239,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>c5a7c6e8-85e6-4113-b477-00fb429ee1ec</sv:value>
+          <sv:value>3d6150db-44a7-4b58-93a9-e5f468a8c213</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -3120,13 +3264,13 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>2013-06-26T13:27:04.963+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:38:05.948+05:30</sv:value>
+          <sv:value>2013-12-30T13:19:19.898+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:38:09.550+05:30</sv:value>
+          <sv:value>2013-12-30T13:19:22.552+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>0fc0ce4e-7e55-4cdf-89ad-f5bf3d8790b5</sv:value>
@@ -3136,6 +3280,9 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Expatriate Tax (Individual Taxation)</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Expatriate Tax (Individual Taxation)</sv:value>
@@ -3161,8 +3308,14 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>efile</sv:value>
           <sv:value>ezfile</sv:value>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>18</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -3180,7 +3333,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>3a7ca174-36ff-4aae-b4aa-504ba37709cd</sv:value>
+            <sv:value>e3582661-5710-4290-a25f-946bfb63cedc</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -3219,7 +3372,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>e371d533-931a-4df4-8bbc-4c22f65a7310</sv:value>
+            <sv:value>81ede7cc-dba1-4f23-8773-a0f1bbb8ca06</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -3323,7 +3476,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>cf961171-d5d0-4b4b-b188-909d4c942835</sv:value>
+          <sv:value>47278f91-0dcf-42ee-9ce0-be0f2b351104</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -3348,13 +3501,13 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>2013-06-26T13:30:46.771+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:41:39.543+05:30</sv:value>
+          <sv:value>2013-12-30T13:20:46.986+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:41:44.053+05:30</sv:value>
+          <sv:value>2013-12-30T13:20:49.543+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>daa8918c-3035-4281-9e4e-f358aa794306</sv:value>
@@ -3364,6 +3517,9 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Compliances to TDS Requirements (Withholding Taxation)</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Compliances to TDS Requirements (Withholding Taxation)</sv:value>
@@ -3390,8 +3546,14 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
           <sv:value>efile</sv:value>
           <sv:value>ezfile</sv:value>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>19</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -3409,7 +3571,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>a3e5d74b-d311-4dbc-bbbd-c4b088d60c75</sv:value>
+            <sv:value>c63a2496-752c-497d-9ddd-9412ee2f7d88</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -3448,7 +3610,7 @@ We offer comprehensive deals to our clients to minimize tax costs and tone down 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>1c08f4b1-76c8-45a5-9b4d-ccb563c3e182</sv:value>
+            <sv:value>842d6649-5068-408e-8219-477752f7da83</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -3782,7 +3944,7 @@ To help our clients grow with confidence across the national boundaries, our tea
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>eff5e68f-6d0b-4fa0-b6db-a340805c3ff5</sv:value>
+          <sv:value>af47dcd8-8c25-40c0-845a-60c80f572376</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -3807,13 +3969,13 @@ To help our clients grow with confidence across the national boundaries, our tea
           <sv:value>2013-06-26T13:34:11.586+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:42:10.625+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:08.694+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:42:14.070+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:11.537+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>e4c20b4e-1250-4056-a142-3742985a586f</sv:value>
@@ -3823,6 +3985,9 @@ To help our clients grow with confidence across the national boundaries, our tea
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Maintenance of Books of Accounts &amp; MIS Reports</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Maintenance of Books of Accounts &amp; MIS Reports</sv:value>
@@ -3870,8 +4035,14 @@ To help our clients grow with confidence across the national boundaries, our tea
           <sv:value>efile</sv:value>
           <sv:value>ezfile</sv:value>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>21</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -3889,7 +4060,7 @@ To help our clients grow with confidence across the national boundaries, our tea
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>6f5c4682-25c7-47bb-ad6e-ccc944f7e7d4</sv:value>
+            <sv:value>a3027aef-192a-4389-92fc-a0d3645bfab4</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -3928,7 +4099,7 @@ To help our clients grow with confidence across the national boundaries, our tea
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>46404fd3-3a70-4a70-aec7-ddf060641bb2</sv:value>
+            <sv:value>560da258-d677-4ba8-ac4c-1516be062525</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -4032,7 +4203,7 @@ To help our clients grow with confidence across the national boundaries, our tea
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>e6c20118-6cfa-43a3-b458-01f81f2cfd6e</sv:value>
+          <sv:value>8fbaff83-db75-4a3c-b22f-a02d5361ba88</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -4057,13 +4228,13 @@ To help our clients grow with confidence across the national boundaries, our tea
           <sv:value>2013-06-26T13:36:04.615+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:42:24.524+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:30.624+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:42:27.783+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:33.636+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>deebdee4-ffd6-4c41-9a38-17e9d020c84c</sv:value>
@@ -4073,6 +4244,9 @@ To help our clients grow with confidence across the national boundaries, our tea
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Secretarial &amp; Company Law Matters</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Secretarial &amp; Company Law Matters</sv:value>
@@ -4105,8 +4279,14 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>efile</sv:value>
           <sv:value>ezfile</sv:value>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>22</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -4124,7 +4304,7 @@ Our highly specialized team of professionals, with their profound understanding 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>8bb2cc8b-48dc-4790-b84f-78989af664fc</sv:value>
+            <sv:value>3bac0162-d8f2-486a-af00-7a40c57a1df7</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -4163,7 +4343,7 @@ Our highly specialized team of professionals, with their profound understanding 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>2e76af6c-ba83-42bf-9c67-770115ea7c3a</sv:value>
+            <sv:value>77721078-e599-46ed-9b90-542d2dc4dd44</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -4267,7 +4447,7 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>1ccc170a-a654-4664-ae12-b6dff7071574</sv:value>
+          <sv:value>384e6120-d06f-4719-a1a2-dc26a0f6a845</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -4292,13 +4472,13 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>2013-06-26T13:37:42.368+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:42:40.316+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:56.542+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-07-11T23:42:44.550+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:59.459+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>367d5a62-671f-490b-97b7-0f0fc554f9c1</sv:value>
@@ -4308,6 +4488,9 @@ Our highly specialized team of professionals, with their profound understanding 
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Other Services</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Other Services</sv:value>
@@ -4354,8 +4537,14 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>efile</sv:value>
           <sv:value>ezfile</sv:value>
         </sv:property>
+        <sv:property sv:name="mootlywcm:requireDocument" sv:type="Boolean">
+          <sv:value>false</sv:value>
+        </sv:property>
         <sv:property sv:name="mootlywcm:serviceCode" sv:type="String">
           <sv:value>23</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:serviceLeadTime" sv:type="Long">
+          <sv:value>0</sv:value>
         </sv:property>
         <sv:property sv:name="mootlywcm:srForm" sv:type="String">
           <sv:value/>
@@ -4373,7 +4562,7 @@ Our highly specialized team of professionals, with their profound understanding 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>014b38f4-1fbe-4e3e-ab02-567ad78a3907</sv:value>
+            <sv:value>7ce6ad7d-659a-4141-a6bd-2f715f4faefe</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -4412,7 +4601,7 @@ Our highly specialized team of professionals, with their profound understanding 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>bebf1661-419b-46cf-9829-9ac72f9bf7ad</sv:value>
+            <sv:value>8342447e-2545-449f-85b0-1dafcd6b987c</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -4456,6 +4645,17 @@ Our highly specialized team of professionals, with their profound understanding 
       <sv:property sv:name="jcr:uuid" sv:type="String">
         <sv:value>6905769b-3b29-4731-97f4-deac7006c9fc</sv:value>
       </sv:property>
+      <sv:node sv:name="hippo:translation">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hippo:translation</sv:value>
+        </sv:property>
+        <sv:property sv:name="hippo:language" sv:type="String">
+          <sv:value/>
+        </sv:property>
+        <sv:property sv:name="hippo:message" sv:type="String">
+          <sv:value>DigitalSignatureService</sv:value>
+        </sv:property>
+      </sv:node>
       <sv:node sv:name="digitalsignatureservice">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>mootlywcm:Service</sv:value>
@@ -4465,7 +4665,7 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>fcb874cd-4f53-4b28-b71e-1da09ae6c917</sv:value>
+          <sv:value>d4173d45-9798-4aab-9071-7189245a68fc</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -4490,13 +4690,13 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>2013-12-23T13:03:16.469+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-12-23T13:20:46.107+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:44.662+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-12-23T16:32:08.934+05:30</sv:value>
+          <sv:value>2013-12-30T13:21:47.476+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>51c93c26-16cb-4ce8-a0dc-36aefaab2dc4</sv:value>
@@ -4506,6 +4706,9 @@ Our highly specialized team of professionals, with their profound understanding 
         </sv:property>
         <sv:property sv:name="mootlywcm:Name" sv:type="String">
           <sv:value>Digital Signature Genration Service</sv:value>
+        </sv:property>
+        <sv:property sv:name="mootlywcm:canApllyForServiceOnline" sv:type="Boolean">
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="mootlywcm:categories" sv:type="String">
           <sv:value>Other Services</sv:value>
@@ -4559,7 +4762,7 @@ Our highly specialized team of professionals, with their profound understanding 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>bb8d9e17-2b06-4177-96c1-9dfe04d509b1</sv:value>
+            <sv:value>17087328-f7d0-4e64-a28c-f4d5ae1645c4</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -4590,17 +4793,6 @@ Our highly specialized team of professionals, with their profound understanding 
             <sv:value/>
           </sv:property>
         </sv:node>
-      </sv:node>
-      <sv:node sv:name="hippo:translation">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hippo:translation</sv:value>
-        </sv:property>
-        <sv:property sv:name="hippo:language" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="hippo:message" sv:type="String">
-          <sv:value>DigitalSignatureService</sv:value>
-        </sv:property>
       </sv:node>
     </sv:node>
   </sv:node>
@@ -4636,7 +4828,7 @@ Our highly specialized team of professionals, with their profound understanding 
       <sv:value>hippofacnav:facetnavigation</sv:value>
     </sv:property>
     <sv:property sv:name="hippo:count" sv:type="Long">
-      <sv:value>74</sv:value>
+      <sv:value>76</sv:value>
     </sv:property>
     <sv:property sv:name="hippo:docbase" sv:type="String">
       <sv:value>1e0fa363-e2d1-457e-a9dd-23d932c6d622</sv:value>
