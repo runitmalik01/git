@@ -29,9 +29,13 @@ import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
+import org.hippoecm.hst.content.beans.standard.HippoDocument;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentIterator;
 import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
 import org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
+import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.util.SearchInputParsingUtils;
 import org.hippoecm.hst.utils.BeanUtils;
@@ -111,6 +115,11 @@ public class AbstractSearchComponent extends TagComponent {
         request.setAttribute("query", StringEscapeUtils.escapeHtml(parsedQuery));
         HippoBean scope = getSiteContentBaseBeanForReseller(request);
         
+        String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("scopeRelativePath");
+        if (scopeRelativePath != null) {
+        	scope =  scope.getBean(scopeRelativePath);
+        }
+        
         if (scope == null) {
             log.error("Scope for search is null");
             return;
@@ -119,42 +128,42 @@ public class AbstractSearchComponent extends TagComponent {
         	if (log.isInfoEnabled()) {
         		log.info("Scope Path is :"+ scope.getPath());
         	}
+        	request.setAttribute("theScopeBean", scope);
         }
 
         try {
             HstQueryManager manager = getQueryManager(request);
-
-            @SuppressWarnings("unchecked")
-            String documentType = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("documentType");
-            HstQuery hstQuery = null;
-            if (documentType != null) {
-            	if (documentType.equals("KnowledgeArticle")) {
-            		hstQuery = manager.createQuery(scope, KnowledgeArticle.class);
-            	}
-            	else if (documentType.equals("FAQ"))  {
-            		hstQuery = manager.createQuery(scope, Faq.class);
-            	}
-            	else if (documentType.equals("Service"))  {
-            		hstQuery = manager.createQuery(scope, Service.class);
-            	}
-            	else if (documentType.equals("All"))  {
-            		hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class,Service.class);
-            	}
-            	else if (documentType.equals("HelpDeskTicket"))  {
-            		hstQuery = manager.createQuery(scope, HelpDeskTicketDocument.class);
-            	}
-            }
-            
+            @SuppressWarnings("unchecked")            
+            HstQuery hstQuery = null;                    
             if (hstQuery == null) { 
-            	hstQuery = manager.createQuery(scope, KnowledgeArticle.class, Faq.class,Service.class);
+            	if (scopeRelativePath != null) {
+            		hstQuery = manager.createQuery(scope);
+            	}
+            	else {
+            		hstQuery = manager.createQuery(scope);
+            	}
+            	Filter excludeFolders = hstQuery.createFilter();
+            	excludeFolders.addNotEqualTo("jcr:primaryType", "hippostd:folder");
+            	hstQuery.setFilter(excludeFolders);
             }
+            //hstQuery = manager.createQuery(scope);
 
-            HippoBean assetScope = getAssetBaseBean(request);
-            hstQuery.addScopes(Collections.singletonList(assetScope));
+            //HippoBean assetScope = getAssetBaseBean(request);
+            //hstQuery.addScopes(Collections.singletonList(assetScope));
 
             if (!StringUtils.isEmpty(parsedQuery)) {
                 Filter filter = hstQuery.createFilter();
                 hstQuery.setFilter(filter);
+                
+                
+                Filter excludeFolders = hstQuery.createFilter();
+            	excludeFolders.addNotEqualTo("jcr:primaryType", "hippostd:folder");
+            	filter.addAndFilter(excludeFolders);
+            	
+              
+                
+                
+                                
                 // title field
                 Filter titleFilter = hstQuery.createFilter();
                 titleFilter.addContains("@mootlywcm:title", parsedQuery);
@@ -174,7 +183,8 @@ public class AbstractSearchComponent extends TagComponent {
                 hstQuery.addOrderByDescending("mootlywcm:title");
             }
             HstQueryResult result = hstQuery.execute();
-
+            int getSize = result.getSize();
+            
             HippoBeanIterator beans = result.getHippoBeans();
             int pageSize = getPageSize(request);
             int currentPage = getCurrentPage(request);

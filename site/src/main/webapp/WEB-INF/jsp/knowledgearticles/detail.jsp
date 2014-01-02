@@ -27,13 +27,57 @@
         <jsp:include page="../inc/inline-editing-head-contributions.jsp"/>
     </c:if>
 </c:if>
-<hippo-gogreen:title title="${document.title}"/>
+<c:if test="${isVendor == 'true'}">
+	<c:if test="${not empty nodeName}">
+		<a href='<hst:link path="/knowledgeportal/knowledgearticle/edit/${nodeName}.html"/>'>Edit</a>
+	</c:if>
+</c:if>
+
 
 <div class="page">
-	<h4><c:out value="${document.title}"/></h4>
-	<p>
-		<c:out value="${document.description.content}" escapeXml="false"/>
-	</p>
+	<form name="frmKB" id="frmKB" action="<hst:actionURL/>" method="post">
+		<c:choose>
+			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+				 <h3>Title</h3>
+				 <input type="text" name="title" value="${document.title}"/>
+			</c:when>
+			<c:otherwise>
+				<h4><c:out value="${document.title}"/></h4>	
+			</c:otherwise>
+		</c:choose>
+		
+		<c:choose>
+			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+				 <h3>Summary</h3>
+				 <input type="text" name="summary" value="${document.summary}"/>
+			</c:when>
+			<c:otherwise>
+				<h4><c:out value="${document.summary}"/></h4>	
+			</c:otherwise>
+		</c:choose>
+		
+		<c:choose>
+			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+				<h3>Description</h3>
+				<textarea name="description" id="description" rows="20">
+					<c:out value="${document.description.content}" escapeXml="false"/>
+				</textarea>
+				<w4india:ckeditor_inline textAreaId="description"/>
+				<%-- <w4india:richtexteditor/>   --%>
+			</c:when>
+			<c:otherwise>
+				<p>
+					<c:out value="${document.description.content}" escapeXml="false"/>
+				</p>
+			</c:otherwise>
+		</c:choose>	
+		
+		<c:choose>
+			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+				<a href="javascript:$('#frmKB').submit();" id="hrefSave" class="btn btn-default btn-success">Save</a>
+			</c:when>
+		</c:choose>	
+	</form>
 </div>
 
 

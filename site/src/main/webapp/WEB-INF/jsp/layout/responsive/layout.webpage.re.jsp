@@ -42,7 +42,7 @@
     <meta name="DC.title" content="<fmt:message key="layout.webpage.metadctitle"/>" />
     <meta name="DC.language" content="en" scheme="DCTERMS.RFC3066" />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-	<%-- <meta name='robots' content='noindex,nofollow' /> --%>	
+	<%-- <meta name='robots' content='noindex,nofollow' /> --%>		
 	<hst:link var="stylecss" path="/css/style-stripped.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
     <hst:link var="w4indiacss" path="/css/w4india.css"/>
@@ -57,6 +57,8 @@
 	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/>
     <hst:headContributions categoryIncludes="css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/dropdown-submenu.css"></hst:link>"/>
+    
+    <hst:headContributions categoryIncludes="jsHead"/>    
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
     <hst:link var="modernizr" path="/js/modernizr.custom.39581.js"/>

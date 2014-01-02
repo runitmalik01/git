@@ -2274,7 +2274,7 @@
     <sv:value>crd-folder-component</sv:value>
   </sv:property>
 </sv:node>
-	<sv:node sv:name="efile-incometax" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+<sv:node sv:name="efile-incometax" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
 	  </sv:property>
@@ -2284,5 +2284,5 @@
 	  <sv:property sv:name="hst:componentclassname" sv:type="String">
 	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
 	  </sv:property>
-	</sv:node>
+</sv:node>
 </sv:node>

@@ -27,18 +27,24 @@ import javax.jcr.nodetype.ConstraintViolationException;
 import javax.jcr.nodetype.NoSuchNodeTypeException;
 import javax.jcr.version.VersionException;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import com.mootly.wcm.annotations.AutoCreateFormField;
+import com.mootly.wcm.annotations.BeanClone;
+import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.beans.compound.Copyright;
 import com.mootly.wcm.components.cms.view.AbstractFormField.FORM_FILED_TYPE;
+import com.mootly.wcm.services.FormMapHelper;
+import com.mootly.wcm.utils.CalculatedFieldHelper;
 import com.mootly.wcm.utils.Constants;
 
 @Node(jcrType = "mootlywcm:document")
-public class Document extends BaseDocument implements ContentNodeBinder {
+public class Document extends BaseDocument implements ContentNodeBinder,FormMapFiller {
 
 	
     private String title;
@@ -48,21 +54,27 @@ public class Document extends BaseDocument implements ContentNodeBinder {
 
 
     @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="title",label="Title",valueListName="",title="",placeHolder="",isMultiple=false)
+    @FormField(name = "title")
     public String getTitle() {
         return (title == null) ? (String) getProperty("mootlywcm:title") : title;
     }
     
+    @BeanClone
     public void setTitle(String title) {
         this.title = title;
     }
+    
     @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="summary",label="Summary",valueListName="",title="",placeHolder="",isMultiple=false)
+    @FormField(name = "summary")
     public String getSummary() {
         return (summary == null) ? (String) getProperty("mootlywcm:summary") : summary;
     }
-
+    
+    @BeanClone
     public void setSummary(String summary) {
         this.summary = summary;
     }
+    
     @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT_ARERA,name="description",label="Description",valueListName="",title="",placeHolder="",isMultiple=false)
     public HippoHtml getDescription() {
         if(description==null){
@@ -70,11 +82,13 @@ public class Document extends BaseDocument implements ContentNodeBinder {
         }
         return description;
     }
-
+    
+    @BeanClone
     public void setDescriptionContent(String descriptionContent) {
         this.descriptionContent = descriptionContent;
     }
     
+    @FormField(name = "description",propertyName="descriptionContent")
     public String getDescriptionContent() {
         if (descriptionContent == null) {
             if (getDescription() != null) {
@@ -125,4 +139,20 @@ public class Document extends BaseDocument implements ContentNodeBinder {
         }
         return true;
     }
+
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		if (formMap == null) return;
+		FormMapHelper formMapHelper = new FormMapHelper();
+		formMapHelper.fillFromFormMap(this, formMap);
+		CalculatedFieldHelper calculatedFieldHelper = new CalculatedFieldHelper();
+		calculatedFieldHelper.processCalculatedFields(this);
+	}
+
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+		
+	}
 }

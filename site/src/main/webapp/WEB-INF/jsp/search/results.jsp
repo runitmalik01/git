@@ -128,8 +128,8 @@
  						<c:when test="${hitClassName eq 'Service'}">
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.name}"/></a></li>
 		                </c:when>	
-		                <c:when test="${hitClassName eq 'KnowledgeArticle'}">
-		                  <li class="title"><a href="knowledgearticles/${hit.name}.html"><c:out value="${hit.name}"/></a></li>
+		                <c:when test="${hitClassName eq 'KnowledgeArticle'}">		                  
+		                  <li class="title"><a href="knowledgeportal/knowledgearticle/view<c:out value="${fn:replace(hit.path,theScopeBean.path,'')}"/>.html"><c:out value="${hit.title}"/></a></li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'HelpDeskTicketDocument'}">
 		                  <li class="title"><a href="helpdesk/${hit.name}.html"><c:out value="${hit.title}"/> (<c:out value="${document.identifier}"/>)</a></li>
@@ -140,9 +140,11 @@
 		                <c:otherwise>
 		                  <hst:link var="link" hippobean="${hit}"/>
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
+		                  <%--
 		                  <c:if test="${not empty hit.summary && hit.summary != ''}">
 		                 	 <li class="text"><c:out value="${hit.summary}"/></li>
 		                  </c:if>
+		                   --%>
 		                </c:otherwise>
 		              </c:choose>
 		            </ul>

@@ -24,6 +24,10 @@ import java.util.List;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.component.support.forms.FormUtils;
+import org.hippoecm.hst.component.support.forms.StoreFormResult;
+import org.hippoecm.hst.configuration.sitemap.HstSiteMapItem;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
@@ -40,248 +44,211 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.beans.KnowledgeArticle;
 import com.mootly.wcm.beans.Review;
 import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 
 @ParametersInfo(type = KnowledgeArticleDetailParamInfo.class)
 public class KnowledgeArticleDetail extends BaseComponent {
 
-    private static final Logger log = LoggerFactory.getLogger(KnowledgeArticleDetail.class);
+	private static final Logger log = LoggerFactory.getLogger(KnowledgeArticleDetail.class);
 
-    private static final String DATE_PATTERN = "yyyy-MM-dd HH.mm.ss.SSS";
-    private static final String NAME = "name";
-    private static final String COMMENT = "comment";
-    private static final String EMAIL = "email";
-    private static final String SUCCESS = "success";
-    private static final String ERRORS = "errors";
+	private static final String DATE_PATTERN = "yyyy-MM-dd HH.mm.ss.SSS";
+	private static final String NAME = "name";
+	private static final String COMMENT = "comment";
+	private static final String EMAIL = "email";
+	private static final String SUCCESS = "success";
+	private static final String ERRORS = "errors";
+	
+	FormMap parentBeanMap = null;
+	PAGE_ACTION pageAction = null;
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response) {
+		super.doBeforeRender(request, response);
+		init(request);
+		HippoBean document = getContentBeanFromPath(request);
+		if (document == null && pageAction !=  PAGE_ACTION.NEW) {
+			redirectToNotFoundPage(response);
+			return;
+		}
+		request.setAttribute("document", document);
+	}
 
-    @Override
-    public void doBeforeRender(HstRequest request, HstResponse response) {
+	@Override
+	public void doAction(HstRequest request, HstResponse response) {
+		//String aa = hstSiteMapItem.getLocalParameter("node-name");
+		init(request);
+		if (!(validate(request, response))) {
+			return;
+		}
+		HippoBean document  = getContentBeanFromPath(request);
+		
+		if (document == null && pageAction !=  PAGE_ACTION.NEW) {
+			redirectToNotFoundPage(response);
+			return;
+		}
 
-        super.doBeforeRender(request, response);
-        KnowledgeArticleDetailParamInfo paramInfo = getParametersInfo(request);
-        String reviewsFolderName = paramInfo.getReviewsFolder();
-        
-        String nodeName = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getParameter("nodeName");
-        
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
 
-        HippoBean document = (HippoBean) getContentBean(request);
-        
+		try {
+			persistableSession = getPersistableSession(request);
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			String baseAbsolutePathToReturnDocuments = getSiteContentBaseBeanForReseller(request).getCanonicalPath() + "/documents/knowledgearticles";
+			KnowledgeArticle knowledgeArticle = (KnowledgeArticle) document;
+			String parentBeanAbsolutePath = (knowledgeArticle != null ?  knowledgeArticle.getCanonicalHandlePath() : null);
+			String parentBeanNameSpace = "mootlywcm:knowledgearticle";
+			String title = GoGreenUtil.getEscapedParameter(request, "title");
+			String parentBeanNodeName = (document != null ?  document.getName() : title); //TODO escape it for node name
+			getItReturnComponentHelper().saveSingleDocument(parentBeanMap, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, persistableSession, wpm);
+		} catch (Exception e) {
+			log.warn("Failed to create /update KB", e);
+		} finally {
+			if (persistableSession != null) {
+				persistableSession.logout();
+			}
+		}
+	}
+	
+	protected HippoBean getContentBeanFromPath(HstRequest request) {
+		String nodeName = request.getRequestContext().getResolvedSiteMapItem().getParameter("node-name");
+		String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getParameter("scopeRelativePath");
+		
+		HippoBean theScopeBean = getSiteContentBaseBeanForReseller(request).getBean(scopeRelativePath);
+		if (theScopeBean != null) {
+			request.setAttribute("theScopeBean", theScopeBean);
+		}
+		
+		if (nodeName!= null) {
+			request.setAttribute("nodeName", nodeName);
+		}
 
-        if (document == null) {
-            redirectToNotFoundPage(response);
-            return;
-        }
-        request.setAttribute("document", document);
+		HippoBean siteContentBase = getSiteContentBaseBeanForReseller(request);
+		if (log.isInfoEnabled()) {
+			log.info(siteContentBase.getPath());
+		}
+		HippoBean theParentFolder = siteContentBase.getBean(scopeRelativePath);
+		HippoBean document = null;
+		if (theParentFolder != null){
+			document = theParentFolder.getBean(nodeName);
+		}
+		return document;
+	}
+	
+	
+	protected void init(HstRequest request) {
+		String action = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
+		if (action != null) {
+			pageAction = PAGE_ACTION.valueOf(action);
+			request.setAttribute("pageAction", pageAction);
+		}		
+	}
+	
+	protected boolean validate(HstRequest request, HstResponse response) {
+		parentBeanMap = new FormMap(request, new String[]{"title","summary","description"});
+		
+		if ( pageAction != null ){
+			switch (pageAction) {
+			case EDIT:
+				
+				
+				break;
+			}
+		}
 
-        HippoBean siteContentBase = getSiteContentBaseBeanForReseller(request);
-        HippoFolder reviewsFolder = siteContentBase.getBean(reviewsFolderName);
-        /*
-        if (reviewsFolder == null) {
-            log.warn("Product reviews folder not found: '{}/{}'. No product reviews will be shown.", siteContentBase.getPath(), reviewsFolderName);
-        } else {
-            try {
-                List<Review> reviews = new ArrayList<Review>();
+		String title = GoGreenUtil.getEscapedParameter(request, "title");
+		String summary = GoGreenUtil.getEscapedParameter(request, "summary");
 
-                final HstQuery incomingBeansQuery = ContentBeanUtils.createIncomingBeansQuery(document, reviewsFolder, 4, getObjectConverter(), Review.class, false);
-                final HstQueryResult result = incomingBeansQuery.execute();
-                final HippoBeanIterator beanIterator = result.getHippoBeans();
-                int count = 0;
-                while (beanIterator.hasNext()) {
-                    Review review = (Review) beanIterator.nextHippoBean();
-                    reviews.add(review);
-                    count++;
-                }
-                request.setAttribute("reviews", reviews);
-                request.setAttribute("votes", count);
-            } catch (QueryException e) {
-                log.error("Unable to execute query to get the reviews :" + e.getMessage(), e);
-            }
-        }
-        */
-        request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
-        request.setAttribute(COMMENT, request.getParameter(COMMENT));
-        request.setAttribute(NAME, request.getParameter(NAME));
-        request.setAttribute(EMAIL, request.getParameter(EMAIL));
-        request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
+		List<String> errors = new ArrayList<String>();
 
-        Boolean isReseller = request.isUserInRole("reseller");
-        request.setAttribute("reseller", isReseller);
-    }
+		if (StringUtils.isEmpty(title)) {
+			errors.add("invalid.name-label");
+		}
+		if (StringUtils.isEmpty(summary)) {
+			errors.add("invalid.comment-label");
+		}
+		
+		if (errors.size() > 0) {
+			StoreFormResult sfr = new StoreFormResult();
+			FormUtils.persistFormMap(request, response, parentBeanMap, sfr);
+			response.setRenderParameter("uuid", sfr.getUuid());
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public void doAction(HstRequest request, HstResponse response) {
-        String name = GoGreenUtil.getEscapedParameter(request, NAME);
-        String email = GoGreenUtil.getEscapedParameter(request, EMAIL);
-        String comment = GoGreenUtil.getEscapedParameter(request, COMMENT);
 
-        Long rating = Long.valueOf(request.getParameter("rating"));
+	@Override
+	public void doBeforeServeResource(HstRequest request, HstResponse response) throws HstComponentException {
 
-        List<String> errors = new ArrayList<String>();
+		super.doBeforeServeResource(request, response);
 
-        if (StringUtils.isEmpty(name)) {
-            errors.add("invalid.name-label");
-        }
-        if (StringUtils.isEmpty(comment)) {
-            errors.add("invalid.comment-label");
-        }
-        if (StringUtils.isEmpty(email) || email.indexOf('@')== -1) {
-            errors.add("invalid.email-label");
-        }
-        if (errors.size() > 0) {
-            response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
-            response.setRenderParameter(NAME, name);
-            response.setRenderParameter(COMMENT, comment);
-            response.setRenderParameter(EMAIL, email);
-            return;
-        }
+		boolean succeeded = true;
+		String errorMessage = "";
 
-        HippoBean reviewFor = this.getContentBean(request);
+		String workflowAction = request.getParameter("workflowAction");
 
-        if (!(reviewFor instanceof KnowledgeArticle)) {
-            log.warn("Reviews can only be created for a product document");
-            return;
-        }
+		String field = request.getParameter("field");
 
-        KnowledgeArticle product = (KnowledgeArticle) this.getContentBean(request);
-        String productUuid = product.getCanonicalHandleUUID();
-        Session persistableSession = null;
-        WorkflowPersistenceManager wpm;
+		final boolean requestPublication = "requestPublication".equals(workflowAction);
+		final boolean saveDocument = ("save".equals(workflowAction) || requestPublication);
 
-        try {
-            persistableSession = getPersistableSession(request);
-            wpm = getWorkflowPersistenceManager(persistableSession);
-            wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+		if (saveDocument || requestPublication) {
+			String documentPath = getContentBean(request).getPath();
+			Session persistableSession = null;
+			WorkflowPersistenceManager cpm = null;
 
-            final String reviewFolderPath = createReviewFolderPath(request, product);
-            final String reviewNodeName = createReviewNodeName(product);
+			try {
+				//NOTE: Don't need to use writable session here; use subject based session instead.
+				//persistableSession = getPersistableSession(request);
+				persistableSession = request.getRequestContext().getSession();
 
-            final String reviewPath = wpm.createAndReturn(reviewFolderPath, Constants.NT_REVIEW, reviewNodeName, true);
+				cpm = getWorkflowPersistenceManager(persistableSession);
+				cpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
+					public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+						if (requestPublication) {
+							FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
+							fraw.requestPublication();
+						}
+					}
+				});
 
-            Review review = (Review) wpm.getObject(reviewPath);
-            // update content properties
-            if (review != null) {
-                review.setName(name);
-                review.setComment(comment);
-                review.setRating(rating);
-                review.setEmail(email);
-                review.setProductUuid(productUuid);
+				KnowledgeArticle document = (KnowledgeArticle) cpm.getObject(documentPath);
 
-                // update now           `
-                wpm.update(review);
-                response.setRenderParameter(SUCCESS, SUCCESS);
-            } else {
-                log.warn("Failed to add review for product '{}': could not retrieve Review bean for node '{}'.", product.getName(), reviewPath);
-                GoGreenUtil.refreshWorkflowManager(wpm);
-            }
-        } catch (Exception e) {
-            log.warn("Failed to create a review for product '" + product.getName() + "'", e);
-        } finally {
-            if (persistableSession != null) {
-                persistableSession.logout();
-            }
-        }
-    }
+				if (saveDocument) {
+					String content = request.getParameter("editor");
 
-    private String createReviewFolderPath(HstRequest request, KnowledgeArticle product) {
-        StringBuilder builder = new StringBuilder();
+					if ("mootlywcm:summary".equals(field)) {
+						document.setSummary(content);
+					} else if ("mootlywcm:description".equals(field)) {
+						document.setDescriptionContent(content);
+					}
+				}
 
-        builder.append(request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath());
+				// update now
+				cpm.update(document);
+				cpm.save();
+			} catch (Exception e) {
+				log.warn("Failed to create a comment: ", e);
 
-        KnowledgeArticleDetailParamInfo paramInfo = getParametersInfo(request);
-        String reviewsFolderName = paramInfo.getReviewsFolder();
-        builder.append('/');
-        builder.append(reviewsFolderName);
-        builder.append('/');
-        builder.append(product.getTitle());
+				if (cpm != null) {
+					try {
+						cpm.refresh();
+					} catch (ObjectBeanPersistenceException e1) {
+						log.warn("Failed to refresh: ", e);
+					}
+				}
+			}
+			// NOTE: no need to close the persistable session here because subject based session was retrieved from rc.
+		}
 
-        return builder.toString();
-    }
+		request.setAttribute("payload", "{\"success\": " + succeeded + ", \"message\": \"" + errorMessage + "\"}");
+	}
 
-    private String createReviewNodeName(KnowledgeArticle product) {
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("Review for ");
-        builder.append(product.getTitle());
-        builder.append(' ');
-
-        final Date now = new Date();
-        final String timestamp = new SimpleDateFormat(DATE_PATTERN).format(now);
-        builder.append(timestamp);
-
-        return builder.toString();
-    }
-
-    @Override
-    public void doBeforeServeResource(HstRequest request, HstResponse response) throws HstComponentException {
-
-        super.doBeforeServeResource(request, response);
-
-        boolean succeeded = true;
-        String errorMessage = "";
-
-        String workflowAction = request.getParameter("workflowAction");
-
-        String field = request.getParameter("field");
-
-        final boolean requestPublication = "requestPublication".equals(workflowAction);
-        final boolean saveDocument = ("save".equals(workflowAction) || requestPublication);
-
-        if (saveDocument || requestPublication) {
-            String documentPath = getContentBean(request).getPath();
-            Session persistableSession = null;
-            WorkflowPersistenceManager cpm = null;
-
-            try {
-                //NOTE: Don't need to use writable session here; use subject based session instead.
-                //persistableSession = getPersistableSession(request);
-                persistableSession = request.getRequestContext().getSession();
-                
-                cpm = getWorkflowPersistenceManager(persistableSession);
-                cpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
-                    public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-                        if (requestPublication) {
-                            FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
-                            fraw.requestPublication();
-                        }
-                    }
-                });
-
-                KnowledgeArticle document = (KnowledgeArticle) cpm.getObject(documentPath);
-
-                if (saveDocument) {
-                    String content = request.getParameter("editor");
-
-                    if ("mootlywcm:summary".equals(field)) {
-                        document.setSummary(content);
-                    } else if ("mootlywcm:description".equals(field)) {
-                        document.setDescriptionContent(content);
-                    }
-                }
-
-                // update now
-                cpm.update(document);
-                cpm.save();
-            } catch (Exception e) {
-                log.warn("Failed to create a comment: ", e);
-
-                if (cpm != null) {
-                    try {
-                        cpm.refresh();
-                    } catch (ObjectBeanPersistenceException e1) {
-                        log.warn("Failed to refresh: ", e);
-                    }
-                }
-            }
-            // NOTE: no need to close the persistable session here because subject based session was retrieved from rc.
-        }
-
-        request.setAttribute("payload", "{\"success\": " + succeeded + ", \"message\": \"" + errorMessage + "\"}");
-    }
-
-    private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
-        public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-            wf.requestPublication();
-        }
-    }
+	private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
+		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+			wf.requestPublication();
+		}
+	}
 }

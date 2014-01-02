@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.jcr.RepositoryException;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -30,6 +31,8 @@ import org.hippoecm.hst.content.beans.standard.HippoFacetSelect;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
 import com.mootly.wcm.beans.compound.ImageSet;
+import com.mootly.wcm.services.FormMapHelper;
+import com.mootly.wcm.utils.CalculatedFieldHelper;
 
 
 /**
@@ -41,25 +44,9 @@ import com.mootly.wcm.beans.compound.ImageSet;
  * + mootlywcm:images (hippogallerypicker:imagelink) multiple
  */
 @Node(jcrType = "mootlywcm:knowledgearticle")
-public class KnowledgeArticle extends Document {
+public class KnowledgeArticle extends Document implements FormMapFiller{
 
     private List<ImageSet> images;
-    private Double price;
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-    
-    public Double getPrice() {
-        if (price == null) {
-            price = getProperty("mootlywcm:price");
-        }
-        return price;
-    }
-    
-    public Double getResellerPrice() {
-        return getPrice() * 0.9;
-    }
 
     public Double getRating() {
         return getProperty("mootlywcm:rating");
@@ -112,7 +99,6 @@ public class KnowledgeArticle extends Document {
         try {
             node.setProperty("mootlywcm:title", bean.getTitle());
             node.setProperty("mootlywcm:summary", bean.getSummary());
-            node.setProperty("mootlywcm:price", bean.getPrice());
             
             if (getDescriptionContent() != null) {
                 if (node.hasNode(PROP_DESCRIPTION)) {
@@ -132,5 +118,22 @@ public class KnowledgeArticle extends Document {
 
         return true;
     }
+
+	@Override
+	public void fill(FormMap formMap) {
+		// TODO Auto-generated method stub
+		if (formMap == null) return;
+		super.fill(formMap);
+		FormMapHelper formMapHelper = new FormMapHelper();
+		formMapHelper.fillFromFormMap(this, formMap);
+		CalculatedFieldHelper calculatedFieldHelper = new CalculatedFieldHelper();
+		calculatedFieldHelper.processCalculatedFields(this);
+	}
+
+	@Override
+	public <T extends HippoBean> void cloneBean(T sourceBean) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
