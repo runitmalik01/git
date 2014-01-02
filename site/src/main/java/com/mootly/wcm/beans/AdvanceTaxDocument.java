@@ -174,15 +174,17 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
         	 double sum5=0.0;
         	 double sum6=0.0;
         	if ( selfasses.getAdvanceTaxDetailList() != null &&  selfasses.getAdvanceTaxDetailList().size() > 0 ){
-        		log.info("checking size in salary income bean:::"+ selfasses.getAdvanceTaxDetailList().size());
+        		if(log.isInfoEnabled()){
+        			log.info("checking size in salary income bean:::"+ selfasses.getAdvanceTaxDetailList().size());	
+        		}
+        		
 
         		for (AdvanceTaxDetail objSelfAssesment:selfasses.getAdvanceTaxDetailList()) {
 
         			if (!objSelfAssesment.isMarkedForDeletion()) {
         				double amount=objSelfAssesment.getP_Amount();
-            		    log.info("value of amount after fetching from compound bean"+amount);
             		     sum=sum+amount;
-            		     try{
+            		  /*   try{
 
             		     String fetchDatefull=objSelfAssesment.getDateStr();
             		     log.info("fetchDate"+fetchDatefull);
@@ -197,29 +199,41 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 
             		  if(fetchDate.equals(date1) || fetchDate.after(date1)  && fetchDate.before(date2) || fetchDate.equals(date2))  {
             			  sum1=sum1+objSelfAssesment.getP_Amount();
-            			  log.info("conditionfirst");
-
+            			  if(log.isInfoEnabled()){
+            				  log.info("conditionfirst");
+            			  }
             		  }else{
             			  if(fetchDate.after(date2)  && fetchDate.before(date3) ||fetchDate.equals(date3)){
             			  sum2=sum2+objSelfAssesment.getP_Amount();
-            			  log.info("condition second");
-            		   }else {
+            			  if(log.isInfoEnabled()){
+            				  log.info("condition second");
+            			  }
+            			}else {
             			   if(fetchDate.after(date3)  && fetchDate.before(date4) || fetchDate.equals(date4)){
                  			  sum3=sum3+objSelfAssesment.getP_Amount();
-                 			 log.info("condition third");
-
-            		   } else{
+                 			 if(log.isInfoEnabled()){
+                 				log.info("condition third");
+               			  }
+            			   } else{
             			   if(fetchDate.after(date4) && fetchDate.before(date5) || fetchDate.equals(date5)){
 
             			   sum4=sum4+objSelfAssesment.getP_Amount();
-            			   log.info("condition four");
-            		   			} else{
+            			   if(log.isInfoEnabled()){
+            				   log.info("condition four");
+             			  }
+            			   	} else{
             		   	 if(fetchDate.after(date5) && fetchDate.before(date6) || fetchDate.equals(date6)){
             	        			   sum5=sum5+objSelfAssesment.getP_Amount();
-                        			   log.info("condition five");
+            	        			   if(log.isInfoEnabled()){
+            	        				   log.info("condition five");
+            	            			  }
+                        			   
 
             		   			} else{
+            		   			 if(log.isInfoEnabled()){
             		   				log.info("condition last");
+                   			  }
+            		   				
             		   			}
 
             		   			}
@@ -228,13 +242,13 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
             			   }
             		     }catch(Exception e){
 
-            		     }
+            		     }*/
 		                javax.jcr.Node html = node.addNode(PROP_DETAIL_BEAN, PROP_DETAIL_BEAN);
 		                objSelfAssesment.bindToNode(html);
         			}
         		}
 
-        			setTotal_Sum5(sum5);
+        			/*setTotal_Sum5(sum5);
         			node.setProperty("mootlywcm:totalsum5", getTotal_Sum5());
         			setTotal_Sum4(sum4);
         			node.setProperty("mootlywcm:totalsum4", getTotal_Sum4());
@@ -243,7 +257,7 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
         			setTotal_Sum2(sum2);
         			node.setProperty("mootlywcm:totalsum2", getTotal_Sum2());
         			setTotal_Sum1(sum1);
-        			node.setProperty("mootlywcm:totalsum1", getTotal_Sum1());
+        			node.setProperty("mootlywcm:totalsum1", getTotal_Sum1());*/
         			setTotal_Amount(sum);
         			log.info("value of sum"+sum);
         	}
@@ -268,7 +282,7 @@ public class AdvanceTaxDocument extends BaseDocument implements ContentNodeBinde
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		if (formMap != null) {
-
+			
 		}
 	}
 
