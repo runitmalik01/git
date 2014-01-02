@@ -158,17 +158,18 @@ public class KnowledgeArticleDetail extends BaseComponent {
 		}
 
 		String title = GoGreenUtil.getEscapedParameter(request, "title");
-		String summary = GoGreenUtil.getEscapedParameter(request, "summary");
+		//String summary = GoGreenUtil.getEscapedParameter(request, "summary");
 
 		List<String> errors = new ArrayList<String>();
 
 		if (StringUtils.isEmpty(title)) {
 			errors.add("invalid.name-label");
 		}
+		/*
 		if (StringUtils.isEmpty(summary)) {
 			errors.add("invalid.comment-label");
 		}
-		
+		*/
 		if (errors.size() > 0) {
 			StoreFormResult sfr = new StoreFormResult();
 			FormUtils.persistFormMap(request, response, parentBeanMap, sfr);

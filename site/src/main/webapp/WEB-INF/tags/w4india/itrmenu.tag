@@ -391,16 +391,16 @@ request.setAttribute("isDITVerified",isDITVerified);
 						</a>
 							<ul class="dropdown-menu">
 								<li><a
-									href="${scriptName}/../servicerequest-refund-status.html">Refund
-										Status</a>
+									href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Import 26AS</a>
 								</li>
 								<li><a
-									href="${scriptName}/../servicerequest-rectification-status.html">Rectification
-										Status</a>
+									href="${scriptName}/../servicerequest-refund-status.html">Refund Status</a>
 								</li>
 								<li><a
-									href="${scriptName}/../servicerequest-itr-v-status.html">ITR-V
-										Status</a>
+									href="${scriptName}/../servicerequest-rectification-status.html">Rectification Status</a>
+								</li>
+								<li><a
+									href="${scriptName}/../servicerequest-itr-v-status.html">ITR-V Status</a>
 								</li>
 								<li class="divider"></li>
 								<%-- hide Show XML only for developers --%>
@@ -468,8 +468,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 			data-dismiss="alert">&times;</button>
 		<strong>Save Time !!!</strong> Automatically import your TDS details
 		from Department Of Income Tax <small><a
-			href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Learn
-				More..</a>
+			href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Learn More..</a>
 		</small>
 	</div>
 </c:if>

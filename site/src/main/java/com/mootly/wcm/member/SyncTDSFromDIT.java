@@ -2,6 +2,11 @@ package com.mootly.wcm.member;
 
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.jcr.RepositoryException;
@@ -20,11 +25,13 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredBeans;
+import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
+import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail.DITSOAPOperation;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
@@ -41,6 +48,7 @@ import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
 import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.model.Twenty26ASResponse;
+import com.mootly.wcm.services.ditws.model.Twenty26ASTaxPayment;
 
 /**
  * servicerequest-itr-sync-tds-from-dit.html
@@ -131,8 +139,41 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 				//e.printStackTrace();
 			}
 			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
-
-			saveElementsToRepository(twenty26asResponse.getTwenty26asTaxPayments(),SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);
+			
+			/**
+			 * If the date deposited is after the financial year end then its self assessment tax
+			 * If the date deposited is within the financial year its advance tax
+			 */
+			List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
+			List<Twenty26ASTaxPayment> advTaxList = new ArrayList<Twenty26ASTaxPayment>();
+			if (twenty26asResponse != null && twenty26asResponse.getTwenty26asTaxPayments() != null && twenty26asResponse.getTwenty26asTaxPayments().size() > 0 ) {
+				for (Twenty26ASTaxPayment twenty26ASTaxPayment : twenty26asResponse.getTwenty26asTaxPayments()){
+					String strDate = twenty26ASTaxPayment.getDateDep();
+					Date date = null ;
+					DateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy"); 
+					GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+					try{
+						date = (Date)formatter.parse(strDate);
+						cal.setTime(date);
+						if ( cal.after(getFinancialYear().getDateEndFinancialYear()) ) {
+							selfAssessmentList.add(twenty26ASTaxPayment);
+						}
+						else {
+							advTaxList.add(twenty26ASTaxPayment);
+						}
+					}
+					catch(Exception e){
+						log.info("calendar error"+e);
+					}
+				}
+			}
+			if (selfAssessmentList != null && selfAssessmentList.size() > 0) {
+				saveElementsToRepository(selfAssessmentList,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);
+			}
+			if (advTaxList != null && advTaxList.size() > 0) {
+				saveElementsToRepository(advTaxList,AdvanceTaxDocument.class,AdvanceTaxDetail.class,persistableSession,wpm);
+			}
+			
 			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,persistableSession,wpm);
 			saveElementsToRepository(twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
 			saveElementsToRepository(twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,persistableSession,wpm);
