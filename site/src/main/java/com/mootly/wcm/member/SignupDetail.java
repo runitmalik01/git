@@ -44,6 +44,7 @@ public class SignupDetail extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 
+		/*
 		ChannelInfoWrapper channelInfoWrapper = null;
 		channelInfoWrapper = (ChannelInfoWrapper) request.getAttribute("channelInfoWrapper");
 		if(channelInfoWrapper != null){
@@ -52,7 +53,7 @@ public class SignupDetail extends BaseComponent {
 				return;
 			}
 		}
-
+*/
 		String success=request.getParameter(SUCCESS);
 		if (success != null && SUCCESS.equals(success)) {
 			response.setRenderPath("jsp/member/signup_success.jsp");
