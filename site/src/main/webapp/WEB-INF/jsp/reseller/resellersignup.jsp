@@ -28,7 +28,7 @@
 		 	  <label for="email">
 		          <small>Reseller ID (required)</small>
 		       </label>
-		       <input name="resellerID" id="resellerID" value="${fn:escapeXml(resellerID)}" size="22" tabindex="1" type="text" maxlength="6">
+		       <input name="resellerID" id="resellerID" value="${fn:escapeXml(resellerID)}" size="22" tabindex="1" type="text" maxlength="10">
 		       <label for="resellerID" class="error" generated="false"><c:if test="${not empty resellerIDError}"><fmt:message key="${resellerIDError}"/></c:if></label>
 		   </p>
 		   <p>
