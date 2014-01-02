@@ -524,26 +524,100 @@ public class XmlCalculation implements XmlCalculationImplement {
 		}
 
 		double dtotalamount=0.0d;
-		double dsum1=0.0d;
-		double dsum2=0.0d;
-		double dsum3=0.0d;
-		double dsum4=0.0d;
-		double dsum5=0.0d;
-		double dsum12=0.0d;
-
-		if(advanceTaxDocument!= null){
-
+		double installment_First=0.0d;
+		double installment_Sec=0.0d;
+		double installment_Third=0.0d;
+		double installment_Four=0.0d;
+		double installment_Fifth=0.0d;
+		double sum_Install_FirstAndSec=0.0d;
+		//i am dragging the entire logic of installment details from the advancetaxdocument  to here
+		double sum_Amt=0.0;double sum_Install_1=0.0;double sum_Install_2=0.0;double sum_Install_3=0.0;
+		double sum_Install_4=0.0;double sum_Install_5=0.0;
+		// Making installment dates from which the date of filling advance tax will be comapred
+		String install_1_Date = "01/04/"+financialYear.getStartYear();
+		String install_2_Date = "15/06/"+financialYear.getStartYear();
+		String install_3_Date = "15/09/"+financialYear.getStartYear();
+		String install_4_Date = "15/12/"+financialYear.getStartYear();
+		String install_5_Date = "15/03/"+financialYear.getEndYear();
+		String install_6_Date = "31/03/"+financialYear.getEndYear();
+		
+		if (advanceTaxDocument != null) {
 			dtotalamount = advanceTaxDocument.getTotal_Amount();
-			dsum1=advanceTaxDocument.getTotal_Sum1();
-			dsum2=advanceTaxDocument.getTotal_Sum2();
-			dsum3=advanceTaxDocument.getTotal_Sum3();
-			dsum4=advanceTaxDocument.getTotal_Sum4();
-			dsum5=advanceTaxDocument.getTotal_Sum5();
-			dsum12=dsum1+dsum2;
+			List<AdvanceTaxDetail> advanceTaxDetails =  advanceTaxDocument.getAdvanceTaxDetailList();
+			if ( advanceTaxDetails != null && advanceTaxDetails.size() > 0) {
+				for (AdvanceTaxDetail objAdvanceTax:advanceTaxDetails) {
+					double amount=objAdvanceTax.getP_Amount();
+					sum_Amt=sum_Amt+amount;
+					try{
+						String fetchDatefull=objAdvanceTax.getDateStr();
+						log.info("fetchDate"+fetchDatefull);
+						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						java.util.Date fetchDate= sdf.parse(fetchDatefull);
+						java.util.Date date1= sdf.parse(install_1_Date);
+						java.util.Date date2=sdf.parse(install_2_Date);
+						java.util.Date date3=sdf.parse(install_3_Date);
+						java.util.Date date4=sdf.parse(install_4_Date);
+						java.util.Date date5=sdf.parse(install_5_Date);
+						java.util.Date date6=sdf.parse(install_6_Date);
+
+						if(fetchDate.equals(date1) || fetchDate.after(date1)  && fetchDate.before(date2) || fetchDate.equals(date2))  {
+							sum_Install_1=sum_Install_1+objAdvanceTax.getP_Amount();
+							if(log.isInfoEnabled()){
+								log.info("conditionfirst");
+							}
+						}else{
+							if(fetchDate.after(date2)  && fetchDate.before(date3) ||fetchDate.equals(date3)){
+								sum_Install_2=sum_Install_2+objAdvanceTax.getP_Amount();
+								if(log.isInfoEnabled()){
+									log.info("condition second");
+								}
+							}else {
+								if(fetchDate.after(date3)  && fetchDate.before(date4) || fetchDate.equals(date4)){
+									sum_Install_3=sum_Install_3+objAdvanceTax.getP_Amount();
+									if(log.isInfoEnabled()){
+										log.info("condition third");
+									}
+								} else{
+									if(fetchDate.after(date4) && fetchDate.before(date5) || fetchDate.equals(date5)){
+
+										sum_Install_4=sum_Install_4+objAdvanceTax.getP_Amount();
+										if(log.isInfoEnabled()){
+											log.info("condition four");
+										}
+									} else{
+										if(fetchDate.after(date5) && fetchDate.before(date6) || fetchDate.equals(date6)){
+											sum_Install_5=sum_Install_5+objAdvanceTax.getP_Amount();
+											if(log.isInfoEnabled()){
+												log.info("condition five");
+											}
+										} else{
+											if(log.isInfoEnabled()){
+												log.info("condition last");
+											}
+
+										}
+
+									}
+								}
+							}
+						}
+					}catch(Exception e){
+
+					}
+
+				}
+			}
+			installment_First=sum_Install_1;
+			installment_Sec=sum_Install_2;
+			installment_Third=sum_Install_3;
+			installment_Four=sum_Install_4;
+			installment_Fifth=sum_Install_5;
+			sum_Install_FirstAndSec=installment_First+installment_Sec;
 
 		}
 
 		double nettaxLiability = TaxLiability.doubleValue() - dtotalamount;
+		
 		Interest234BCalc interest234BCalc = new Interest234BCalc();
 		Double intB = interest234BCalc.getInterest235B(financialYear, nettaxLiability, TaxLiability.doubleValue(), selfAssesmetTaxDocument);
 
@@ -553,9 +627,9 @@ public class XmlCalculation implements XmlCalculationImplement {
 		//totalMapForINTREST.put("ddate", DueDate);
 		totalMapForINTREST.put("aytaxd", TaxLiability.longValue());
 		totalMapForINTREST.put("aytaxp", dtotalamount);
-		totalMapForINTREST.put("atpq2", dsum12);
-		totalMapForINTREST.put("atpq3", dsum3+dsum12);
-		totalMapForINTREST.put("atpq4", dsum4+dsum3+dsum12);
+		totalMapForINTREST.put("atpq2", sum_Install_FirstAndSec);
+		totalMapForINTREST.put("atpq3", installment_Third+installment_Sec);
+		totalMapForINTREST.put("atpq4", installment_Four+installment_Third+sum_Install_FirstAndSec);
 		totalMapForINTREST.put("atlq2", 0);
 		totalMapForINTREST.put("atlq3", 0);
 		totalMapForINTREST.put("atlq4", 0);
