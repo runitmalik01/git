@@ -102,7 +102,7 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 			if(active){
 				
 				Session rootSession = getWorkflowContext().getInternalWorkflowSession();
-				Node hstHostNode = getWorkflowContext().getInternalWorkflowSession().getNode("/hst:hst/hst:hosts/dev-localhost/localhost/hst:root/r");
+				Node hstHostNode = getWorkflowContext().getInternalWorkflowSession().getNode("/hst:hst/hst:hosts/etaxfilestation-w4india/in/etaxfilestation/hst:root/r");
 				System.out.println("Start of Creation of Channel::");
 
 				if (hstHostNode != null) {	
