@@ -26,6 +26,7 @@
 <hst:link var="logout" path="/j_spring_security_logout"/>
 <hst:link var="signup" path="/signup"/>
 <hst:link var="myaccount" path="/member"/>
+<hst:link var="resellersignup" path="/resellersignup"/>
 <%--
 <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
 <a href="javascript:;" class="simpleCart_checkout">Checkout</a>
@@ -48,7 +49,12 @@
 			   <button type="submit" class="btn btn-default btn-info"  onclick="javascript:$('#frmLogin').attr('action','${logout}');$('#frmLogin').submit()">Logout</button>
 	</c:when>
 	<c:otherwise>	<!-- Login/Signup (when user is logging first time)-->
-		<button type="submit" class="btn btn-default btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
-		<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>					
+	<c:if test="${etaxfilestation}">
+	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${resellersignup}');$('#frmLogin').submit()">Apply Here !!!</button>
+	</c:if>
+	<c:if test="${etaxfilestationMembers}">
+	<button type="submit" class="btn btn-default btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
+	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>					
+	</c:if>
 	</c:otherwise>
 </c:choose>		
