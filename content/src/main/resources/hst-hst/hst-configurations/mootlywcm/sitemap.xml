@@ -778,35 +778,40 @@
                 <sv:value>members</sv:value>
               </sv:property>
             </sv:node>
-            <sv:node sv:name="servicerequest-itr.html">
-              <sv:property sv:name="jcr:primaryType" sv:type="Name">
-                <sv:value>hst:sitemapitem</sv:value>
-              </sv:property>
-              <sv:property sv:name="jcr:uuid" sv:type="String">
-                <sv:value>49e6a8f3-aace-4c77-9fbc-e82c5159742b</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-                <sv:value>hst:pages/member-start-application</sv:value>
-              </sv:property>
-              <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-                <sv:value>mainSiteMapItemRefId</sv:value>
-                <sv:value>action</sv:value>
-                <sv:value>nextScreen</sv:value>
-                <sv:value>checkForDuplicate</sv:value>
-              </sv:property>
-              <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-                <sv:value>servicerequest-itr</sv:value>
-                <sv:value>EDIT</sv:value>
-                <sv:value>servicerequest-itr-summary</sv:value>
-                <sv:value>false</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:refId" sv:type="String">
-                <sv:value>servicerequest-itr</sv:value>
-              </sv:property>
-              <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-                <sv:value>members</sv:value>
-              </sv:property>
-            </sv:node>
+  
+<!-- Start of servicerequest-itr.html -->
+<sv:node sv:name="servicerequest-itr.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>49e6a8f3-aace-4c77-9fbc-e82c5159742b</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/member-start-application</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+    <sv:value>nextScreen</sv:value>
+    <sv:value>checkForDuplicate</sv:value>
+    <sv:value>MaxDocAllowedForPackageChange</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>servicerequest-itr</sv:value>
+    <sv:value>EDIT</sv:value>
+    <sv:value>servicerequest-itr-summary</sv:value>
+    <sv:value>false</sv:value>
+    <sv:value>2</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>servicerequest-itr</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+<!-- end of servicerequest-itr.html -->
             <sv:node sv:name="personalinformation.html">
               <sv:property sv:name="jcr:primaryType" sv:type="Name">
                 <sv:value>hst:sitemapitem</sv:value>
