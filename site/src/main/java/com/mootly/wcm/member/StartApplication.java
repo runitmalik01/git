@@ -412,10 +412,12 @@ public class StartApplication extends ITReturnComponent {
 				String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
 				ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
 				int selectedITRPriority = selectedITR.getPriority();
+				String MaxDocAllowedForPackageChange = request.getRequestContext().getResolvedSiteMapItem().getParameter("MaxDocAllowedForPackageChange");
+	
 				if(savedITRPriority > selectedITRPriority){
 					HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
 					long size = hippoFolder.getDocumentSize();
-					if(size > 1){
+					if(size > Integer.parseInt(MaxDocAllowedForPackageChange)){
 						formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
 						response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
 						hasAValidSelection = false;
