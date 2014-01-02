@@ -6444,7 +6444,7 @@
               <sv:value>&lt;div class="jumbotron bg-jumbotron"&gt;
 								&lt;div
 								class="container"&gt;
-								&lt;h1&gt;Pricing as low as &amp;#8377;
+								&lt;h1&gt;One Pricing &amp;#8377;
 								199!&lt;/h1&gt;
 								&lt;h2&gt;The Easiest and Fastest Way to E-File
 								Tax
@@ -6538,9 +6538,7 @@
 								glyphicon-check"&gt;&lt;/span&gt;&lt;/h1&gt;
 								&lt;h1&gt;Simple.&lt;/h1&gt;
 								&lt;p class="lead"&gt;Simple, straight-forward pricing with no hidden
-								fees. Easy-to-use tools to help you complete your e-file or eZ
-								File tax return.&lt;br /&gt;
-								&lt;a href="home_simple.cms"&gt;Learn More...&lt;/a&gt;
+								fees. Easy-to-use tools to help you complete your tax return.
 								&lt;/p&gt;</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:html" sv:type="String">
@@ -6620,10 +6618,8 @@
 								glyphicon-send"&gt;&lt;/span&gt;&lt;/h1&gt;
 								&lt;h1&gt;Fast.&lt;/h1&gt;
 								&lt;p class="lead"&gt;Fast and easy service. Finish your e-file in as
-								little as 15 minutes! Don't know what to do? Just choose eZ
-								Filing option after you fill your personal information.&lt;br
-								/&gt;
-								&lt;a href="home_fast.cms"&gt;Learn More...&lt;/a&gt;
+								little as 15 minutes!.&lt;br
+								/&gt;								
 								&lt;/p&gt;</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:html" sv:type="String">
@@ -6704,9 +6700,7 @@
 								&lt;h1&gt;Safe.&lt;/h1&gt;
 								&lt;p class="lead"&gt;Our secure servers and SSL encryption will keep
 								your personal information safe. We are Authorized by Government
-								of India for e-Filing.&lt;br /&gt;&lt;a
-								href="home_safe.cms"&gt;Learn More...&lt;/a&gt;&lt;br
-								/&gt;&lt;/p&gt;</sv:value>
+								of India for e-Filing.&lt;/p&gt;</sv:value>
             </sv:property>
             <sv:property sv:name="mootlywcm:html" sv:type="String">
               <sv:value/>

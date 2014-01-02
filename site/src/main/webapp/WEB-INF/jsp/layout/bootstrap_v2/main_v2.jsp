@@ -19,7 +19,7 @@
 <body>
 	<div class="jumbotron bg-jumbotron" style="background-image: url('images/bootstrap_v2_img/bg_jumbotron_v2.png');"> 
 		<div class="container">
-			<h1>Pricing as low as &#8377; 199!</h1>
+			<h1>One Price &#8377; 199!</h1>
 			<h2>The Easiest and Fastest Way to E-File or eZ File Tax
 				Returns!</h2>
 			<p>
