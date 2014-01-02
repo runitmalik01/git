@@ -463,11 +463,11 @@ request.setAttribute("isDITVerified",isDITVerified);
 </c:if>
 <c:if
 	test="${showImportTDSButton == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
-	<div class="alert alert-important">
+	<div class="alert alert-success">
 		<button type="button" class="close" id='dismissImport'
 			data-dismiss="alert">&times;</button>
 		<strong>Save Time !!!</strong> Automatically import your TDS details
-		from Department Of Income Tax <small><a
+		from Department Of Income Tax <small><a class="alert-link"
 			href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Learn More..</a>
 		</small>
 	</div>
