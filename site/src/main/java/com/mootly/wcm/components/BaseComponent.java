@@ -203,12 +203,15 @@ public class BaseComponent extends BaseHstComponent {
         	request.setAttribute("error.key", getPublicRequestParameter(request, "error.key"));
         }  
         
+        request.setAttribute("etaxfilestation", itReturnComponentHelper.getResellerId(request).equals("etaxfilestation"));
+        request.setAttribute("etaxfilestationMembers", !itReturnComponentHelper.getResellerId(request).equals("etaxfilestation"));
         request.setAttribute("resellerId", resellerId);
+   
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-package", request.getRequestContext().getResolvedMount().getMount());
 		String urlToResellerPackage = link.toUrlForm(request.getRequestContext(), true);
 
 		// Check for Trial period
-		if(isVendor && request.getUserPrincipal() != null && !(resellerId.equals("w4india"))){
+	/*	if(isVendor && request.getUserPrincipal() != null && !(resellerId.equals("w4india"))){
 			if(channelInfoWrapper.getResellerPackage().equals("trialPeriod")){
 				request.setAttribute("isTrialPeriodActive", true);	
 				request.setAttribute("daysLeft", channelInfoWrapper.getDiffOfStartEndDate());
@@ -233,6 +236,7 @@ public class BaseComponent extends BaseHstComponent {
 				response.setRenderPath("jsp/reseller/licensenotvalid.jsp");	
 			}	
 		}  
+		*/
     }
     
     @Override
