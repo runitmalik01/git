@@ -3982,4 +3982,15 @@
 	    <sv:value>jsp/cms/itreurn-analysis.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<sv:node sv:name="reseller.event.log" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>5f3e5d63-33c0-49bd-9aa0-3637ed10f8de</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/cms/eventlog.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>

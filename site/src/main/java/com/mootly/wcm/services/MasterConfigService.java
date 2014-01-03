@@ -40,6 +40,18 @@ public class MasterConfigService implements ConfigService {
 	    	return getBoolean("itreturn.ditValidPAN.continueWithInvalidPAN");
 	}
 	
+	public Boolean shouldSaveVendorLogInformation(){
+		return getBoolean("vendor.log.information.save");
+	}
+	
+	public Boolean shouldSaveMemberLogInformation(){
+		return getBoolean("member.log.information.save");
+	}
+	
+	public Integer sizeOfLogInfoToSave(){
+		return getInteger("size.log.information.save");
+	}
+	
 	@Override
 	public String[] getArray(String propertyKey) {
 		// TODO Auto-generated method stub

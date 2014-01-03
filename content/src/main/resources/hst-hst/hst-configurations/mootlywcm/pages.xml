@@ -10756,7 +10756,7 @@
     <sv:value>hst:component</sv:value>
   </sv:property>
   <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>9dddb22b-37ea-4fb5-b45e-219d133dd632</sv:value>
+    <sv:value>29d9f9b1-2e8d-4a60-b676-33b3956f4f09</sv:value>
   </sv:property>
   <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
     <sv:value>bodyCss</sv:value>
@@ -10772,7 +10772,7 @@
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>aef14707-eab4-4c02-b91b-8a051896b70e</sv:value>
+      <sv:value>300d7ea5-eac1-4c03-a106-d817ba1753c0</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
       <sv:value>contentCssClass</sv:value>
@@ -10788,7 +10788,7 @@
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>7d404189-60bf-444e-b908-07bab9b23201</sv:value>
+        <sv:value>5056c6bd-92e4-4da6-85f3-d685dd20cb97</sv:value>
       </sv:property>
       <sv:property sv:name="hst:componentclassname" sv:type="String">
         <sv:value>com.mootly.wcm.components.cms.DashboardComponent</sv:value>
@@ -10801,13 +10801,27 @@
           <sv:value>hst:component</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>b2dd6a9e-3bd6-48c8-a796-f900842fc7e1</sv:value>
+          <sv:value>d510b3c9-a993-4118-8101-552f66cf5d2b</sv:value>
         </sv:property>
         <sv:property sv:name="hst:componentclassname" sv:type="String">
           <sv:value>com.mootly.wcm.components.cms.DashboardShortcutComponent</sv:value>
         </sv:property>
         <sv:property sv:name="hst:template" sv:type="String">
           <sv:value>dashboard-shortcuts</sv:value>
+        </sv:property>
+      </sv:node>
+      <sv:node sv:name="dashboard-event-log">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:component</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>a2b7e2c6-137e-4018-af1c-080f92e60fb7</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:componentclassname" sv:type="String">
+          <sv:value>com.mootly.wcm.components.cms.DashboardComponent</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>reseller.event.log</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
@@ -10899,6 +10913,9 @@
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
         <sv:value>2dcaeda6-f4da-4b0b-8d1b-c3d13f3b50a3</sv:value>
+      </sv:property>
+      <sv:property sv:name="hst:componentclassname" sv:type="String">
+        <sv:value>com.mootly.wcm.components.cms.ITReturnAnalysisComponent</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>itreurn-analysis</sv:value>

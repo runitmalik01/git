@@ -56,6 +56,7 @@ import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.components.cms.LogComponentManager;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
@@ -249,6 +250,23 @@ public class BaseComponent extends BaseHstComponent {
     	webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
         channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
         request.setAttribute("channelInfoWrapper", channelInfoWrapper);
+        try {
+			Session persistableSession = getPersistableSession(request);
+			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
+				@Override
+				public void processWorkflow(FullReviewedActionsWorkflow workflow)
+						throws Exception {
+					// TODO Auto-generated method stub
+					workflow.publish();
+				}
+			});
+			LogComponentManager logManager = new LogComponentManager(request);
+			logManager.SaveAdminActionLogInfo(getSiteContentBaseBeanForReseller(request), this.getClass(), persistableSession, wpm);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public final boolean isReseller() {

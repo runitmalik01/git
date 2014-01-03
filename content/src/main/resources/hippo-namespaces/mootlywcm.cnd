@@ -518,5 +518,9 @@ orderable
   orderable
 
 [mootlywcm:HelpDeskTicketNote] > hippo:compound, hippostd:relaxed
+  orderable 
+  
+[mootlywcm:eventlogdocument] > hippostd:relaxed, mootlywcm:basedocument
   orderable
- 
+[mootlywcm:eventlogdetail] > hippo:compound, hippostd:relaxed
+  orderable
