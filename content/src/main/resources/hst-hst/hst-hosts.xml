@@ -1041,7 +1041,7 @@
           <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
         </sv:property>
         <sv:property sv:name="hst:showport" sv:type="Boolean">
-          <sv:value>false</sv:value>
+          <sv:value>true</sv:value>
         </sv:property>
         <sv:node sv:name="r">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">
