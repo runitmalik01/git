@@ -204,9 +204,13 @@ public class BaseComponent extends BaseHstComponent {
         	request.setAttribute("error.key", getPublicRequestParameter(request, "error.key"));
         }  
         
-        request.setAttribute("etaxfilestation", itReturnComponentHelper.getResellerId(request).equals("etaxfilestation"));
-        request.setAttribute("etaxfilestationMembers", !itReturnComponentHelper.getResellerId(request).equals("etaxfilestation"));
-        request.setAttribute("resellerId", resellerId);
+        if(resellerId != null && resellerId.equals("etaxfilestation")){
+			request.setAttribute("etaxfilestation", true);
+		}else{
+			request.setAttribute("etaxfilestation", false);
+		}
+
+		request.setAttribute("resellerId", resellerId);
    
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-package", request.getRequestContext().getResolvedMount().getMount());
 		String urlToResellerPackage = link.toUrlForm(request.getRequestContext(), true);
