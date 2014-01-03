@@ -1,6 +1,7 @@
 
 package com.mootly.wcm.reseller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,9 @@ import java.util.UUID;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.component.support.forms.FormUtils;
+import org.hippoecm.hst.component.support.forms.StoreFormResult;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -17,6 +21,7 @@ import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,14 +37,14 @@ public class ResellerSignup extends BaseComponent {
 	//private static final String DATE_PATTERN = "yyyy-MM-dd HH.mm.ss.SSS";
 	private static final String RESELLERID = "resellerID";
 	private static final String PHONECUSTOMERSERVICE = "phoneCustomerService";
-    private static final String EMAIL = "email";
-    private static final String CONFIRM_EMAIL = "confirmEmail";
-    private static final String PASSWORD = "password";
-    private static final String CONFIRM_PASSWORD = "confirmPassword";
-    private static final String SIGNUP_TERMS = "signupTerms";
+	private static final String EMAIL = "email";
+	private static final String CONFIRM_EMAIL = "confirmEmail";
+	private static final String PASSWORD = "password";
+	private static final String CONFIRM_PASSWORD = "confirmPassword";
+	private static final String SIGNUP_TERMS = "signupTerms";
 
-    private static final String SUCCESS = "success";
-    private static final String ERRORS = "errors";
+	private static final String SUCCESS = "success";
+	private static final String ERRORS = "errors";
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -65,20 +70,15 @@ public class ResellerSignup extends BaseComponent {
 			}
 		}
 
-		//request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
-        request.setAttribute(EMAIL, request.getParameter(EMAIL));
-        //request.setAttribute(PASSWORD, request.getParameter(PASSWORD));
-        //request.setAttribute(CONFIRM_PASSWORD, request.getParameter(CONFIRM_PASSWORD));
+		request.setAttribute(EMAIL, request.getParameter(EMAIL));
+		request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
 
-        request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
-
-        try {
-        	HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
-        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
-        }catch (Exception ex) {
-        	log.info("Error",ex);
-        }
-
+		try {
+			HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
+			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+		}catch (Exception ex) {
+			log.info("Error",ex);
+		}
 	}
 
 	@Override
@@ -101,11 +101,11 @@ public class ResellerSignup extends BaseComponent {
 		if (StringUtils.isEmpty(email) || email.indexOf("@")==-1) {
 			errors.add("signup.email.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(resellerID)) {
 			errors.add("signup.resellerID.error.required");
 		}
-		
+
 		if (StringUtils.isEmpty(phoneCustomerService)) {
 			errors.add("signup.phoneCustomerService.error.required");
 		}
@@ -151,100 +151,51 @@ public class ResellerSignup extends BaseComponent {
 		}
 		// this method fetch username from repository and check whether exist or not
 
-		 try {
-        	HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
-        	if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
-        	if (siteContentBaseBean != null) {
-        		HippoBean resellersBean = siteContentBaseBean.getBean("resellers");
-        		if (resellersBean != null) {
-        			if(resellersBean instanceof HippoFolder){
-        				if(resellersBean.getBean(resellerID)!=null){
-        					errors.add("signup.resellerID.error.alreadyRegistered");
-        				}
-        			}
-        		}
-        	}
-        }catch (Exception ex) {
-        	log.info("Error",ex);
-        }
-		if (errors != null && errors.size() > 0 ){
-	            response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
-	            response.setRenderParameter(EMAIL, email);
-	            //response.setRenderParameter(PASSWORD, password);
-	            //response.setRenderParameter(CONFIRM_PASSWORD, confirm_password);
-	            response.setRenderParameter(EMAIL, email);
-
-	            for (String error:errors) {
-	            	log.warn(error);
-	            }
-	            return;
-		}
-
-		if (errors == null || errors.size() == 0)
-		{
-			// here we are creating object of vendorsignupdocument  for craeting documents.
-			ResellerSignupDocument rs = new ResellerSignupDocument();
-			rs.setResellerID(resellerID);
-			rs.setPhoneCustomerService(phoneCustomerService);
-			rs.setUserName(email.toLowerCase());
-			rs.setPassword(password);
-			rs.setEmail(email.toLowerCase());
-			createResellerSignupForm(request,rs);
-		}
-		response.setRenderParameter(SUCCESS, SUCCESS);
-		/*
 		try {
+			HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
+			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
+			if (siteContentBaseBean != null) {
+				HippoBean resellersBean = siteContentBaseBean.getBean("resellers");
+				if (resellersBean != null) {
+					if(resellersBean instanceof HippoFolder){
+						if(resellersBean.getBean(resellerID)!=null){
+							errors.add("signup.resellerID.error.alreadyRegistered");
+						}
+					}
+				}
+			}
+		}catch (Exception ex) {
+			log.info("Error",ex);
+		}
+		if (errors != null && errors.size() > 0 ){
+			response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
+			response.setRenderParameter(EMAIL, email);
+			//response.setRenderParameter(PASSWORD, password);
+			//response.setRenderParameter(CONFIRM_PASSWORD, confirm_password);
+			response.setRenderParameter(EMAIL, email);
 
-			// after signup it show a message to user about activate account
-			response.sendRedirect("/site/message");
+			for (String error:errors) {
+				log.warn(error);
+			}
+			return;
+		}
+
+		FormMap map = new FormMap(request,new String[]{"resellerID","phoneCustomerService","email","confirmEmail","password","confirmPassword","signupTerms"});
+		StoreFormResult sfr = new StoreFormResult();				
+		FormUtils.persistFormMap(request, response, map, sfr);
+		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-details", request.getRequestContext().getResolvedMount().getMount());
+		String urlToRedirect = link.toUrlForm(request.getRequestContext(), true)+"?uuid=" +  sfr.getUuid();
+		if (log.isInfoEnabled()) {
+			log.info("URL to redirect ::"+urlToRedirect);
+		}
+		try {
+			response.sendRedirect(urlToRedirect);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			log.warn("can't redirect");
+			e.printStackTrace();
 		}
-		*/
 	}
 
-	protected  ResellerSignupDocument createResellerSignupForm(HstRequest request,ResellerSignupDocument signupDocument) {
-		// TODO Auto-generated method stub
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
-		String finalResellershipDocumentPath = null;
-		try {
-			persistableSession = getPersistableSession(request);
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			String cPath =request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/resellers/"+signupDocument.getResellerID(); //getCanonicalBasePathForWrite(request);
-			final String memberFolderPath = cPath + "/" + ContentStructure.RESELLER_FOLDER_NAME;//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
-			finalResellershipDocumentPath = wpm.createAndReturn(memberFolderPath, ResellerSignupDocument.NAMESPACE ,  ResellerSignupDocument.NODE_NAME, true);
-			ResellerSignupDocument resellershipSignupDocument = (ResellerSignupDocument) wpm.getObject(finalResellershipDocumentPath);
-			// update content properties
-			if (resellershipSignupDocument != null) {
-				resellershipSignupDocument.setResellerID(signupDocument.getResellerID());
-				resellershipSignupDocument.setPhoneCustomerService(signupDocument.getPhoneCustomerService());
-				resellershipSignupDocument.setUserName(signupDocument.getUserName());
-				resellershipSignupDocument.setPassword(signupDocument.getPassword());
-				resellershipSignupDocument.setEmail(signupDocument.getEmail());
-				resellershipSignupDocument.setActivationCode(UUID.randomUUID().toString());
-				resellershipSignupDocument.setIsActive(false);
-				// update now           `
-				wpm.update(resellershipSignupDocument);
-				ResellerSignupDocument publishedSignUpDocument = (ResellerSignupDocument) wpm.getObject(finalResellershipDocumentPath); // getSiteContentBaseBean(request).getBean("member/" + signupDocument.getUserName().replaceAll("@","-at-") + "/membersignupdocument");
-				if (publishedSignUpDocument == null) return null;//major screwup
-				Map<String,Object> contextMap = new HashMap<String, Object>();
-				contextMap.put("resellershipSignupDocument", publishedSignUpDocument);
-				sendEmail(request, new String[]{resellershipSignupDocument.getEmail()}, null, "", "reseller_signup", contextMap);
-				return resellershipSignupDocument;
-			}
-			return null;
-		} catch (Exception e) {
-			log.warn("Failed to signup member ", e);
-			return null;
-		} finally {
-			if (persistableSession != null) {
-				persistableSession.logout();
-			}
-		}
-	}
 	@Override
 	public void doBeforeServeResource(HstRequest request, HstResponse response)
 			throws HstComponentException {
