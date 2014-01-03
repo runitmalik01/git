@@ -2301,6 +2301,19 @@
   </sv:property>
 </sv:node>
   <!-- end of reseller reactivation -->
+  <!-- start of reseller details -->
+<sv:node sv:name="reseller.details">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>d75694a9-f94a-4f8e-bdc6-ce2a880d3121</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/reseller/resellerdetails.jsp</sv:value>
+  </sv:property>
+</sv:node>
+  <!-- end of reseller details -->
   <!-- start of reseller signup box -->
 <sv:node sv:name="resellersignup.box.reactivation.ftl">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
