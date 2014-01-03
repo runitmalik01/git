@@ -48,7 +48,7 @@
 		var flagforPanAndTan=true;
 		var strictAddpan=true;
 		var d = new Date();
-		var minDate4NoticeAck = "01/04/"+d.getFullYear();
+		var minDate4NoticeAck = "01/04/"+(d.getFullYear()-1);
 		var maxDate_currDate = [d.getDate(), d.getMonth()+1, d.getFullYear()].join('/');
 		yrRange="1900:"+d.getFullYear();
 		var validationRules = new Object();
