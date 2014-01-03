@@ -50,20 +50,6 @@ import com.mootly.wcm.utils.GoGreenUtil;
 public class ResellerActivation extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(ResellerActivation.class);
 
-	private static final String EMAILCUSTOMERSERVICE = "emailCustomerService";
-	private static final String EMAILFROM = "emailFrom";
-	private static final String EMAILFROMNAME = "emailFromName";
-	private static final String EMAILSIGNATURE = "emailSignature";
-	private static final String ERIENABLE26ASIMPORT = "eriEnable26ASImport";
-	private static final String ERIENABLED = "eriEnabled";
-	private static final String ERIPASSWORD = "eriPassword";
-	private static final String ERIUSERID = "eriUserId";
-	private static final String ISRESELLER = "isReseller";
-	private static final String PAGETITLEPREFIX = "pageTitlePrefix";
-	private static final String PAYMENTAVAILABLETYPES = "paymentAvailableTypes";
-	private static final String PAYMENTENABLED = "paymentEnabled";
-	private static final String RESELLERNAME = "resellerName";
-
 	public static final String SUCCESS= "success";
 
 	private String Isactive;
@@ -101,6 +87,8 @@ public class ResellerActivation extends BaseComponent {
 				request.setAttribute("errorCode", "error.alreadyactivated");
 				request.setAttribute("userName", resellerSignupDocument.getEmail());
 				return;
+			}else if(resellerSignupDocument != null && !resellerSignupDocument.getIsActive()){
+				resellerCreation(request, response, persistableSession, wpm);
 			}
 		}catch (ObjectBeanManagerException e1) {
 			// TODO Auto-generated catch block
@@ -118,36 +106,14 @@ public class ResellerActivation extends BaseComponent {
 		}
 	}
 
-	@Override
-	public void doAction(HstRequest request, HstResponse response)
+	public void resellerCreation(HstRequest request, HstResponse response, Session persistableSession, WorkflowPersistenceManager wpm)
 			throws HstComponentException {
 
 		// TODO Auto-generated method stub
-		super.doAction(request, response);
-
-		String emailCustomerService = GoGreenUtil.getEscapedParameter(request, EMAILCUSTOMERSERVICE);
-		String emailFrom = GoGreenUtil.getEscapedParameter(request, EMAILFROM);
-		String emailFromName = GoGreenUtil.getEscapedParameter(request, EMAILFROMNAME);
-		String emailSignature = GoGreenUtil.getEscapedParameter(request, EMAILSIGNATURE);
-		String eriEnable26ASImport = GoGreenUtil.getEscapedParameter(request, ERIENABLE26ASIMPORT);
-		String eriEnabled = GoGreenUtil.getEscapedParameter(request, ERIENABLED);
-		String eriPassword = GoGreenUtil.getEscapedParameter(request, ERIPASSWORD);
-		String eriUserId = GoGreenUtil.getEscapedParameter(request, ERIUSERID);
-		String isReseller = GoGreenUtil.getEscapedParameter(request, ISRESELLER);
-		String pageTitlePrefix = GoGreenUtil.getEscapedParameter(request, PAGETITLEPREFIX);
-		String[] paymentAvailableTypes = GoGreenUtil.getEscapedParameterValues(request, PAYMENTAVAILABLETYPES);
-		String paymentEnabled = GoGreenUtil.getEscapedParameter(request, PAYMENTENABLED);
-		String resellerName = GoGreenUtil.getEscapedParameter(request, RESELLERNAME);
-
-		String startDate = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString();
-		String endDate = ITRXmlGeneratorServiceCommon.getEndDateForResellerTrailPeriod();
 
 		String activationCode = request.getRequestContext().getResolvedSiteMapItem().getParameter("activationCode");
 
-		String userName = null;
 		//now get the membershipdocument right away with the uuid
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
 		try {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
@@ -157,9 +123,10 @@ public class ResellerActivation extends BaseComponent {
 			HippoBean pathToServiceBeans = pathToCommonBeans.getBean("services");
 			if(pathToServiceBeans != null){
 				HippoFolder hippoFolder = (HippoFolder) resellerSignupDocument.getParentBean().getParentBean();
+				String newDocFolder = "documents";
 				String newFolderName = "services";
-				String newFolderBasePath = hippoFolder.getPath();
-				String newFolderPath = hippoFolder.getPath()+"/"+newFolderName;
+				String newFolderBasePath = hippoFolder.getPath()+"/"+newDocFolder;
+				String newFolderPath = hippoFolder.getPath()+"/"+newDocFolder+"/"+newFolderName;
 
 				final String pathToParentBean = wpm.createAndReturn(newFolderBasePath,"hippostd:folder",newFolderName,true);
 				if (log.isInfoEnabled()) {
@@ -249,31 +216,6 @@ public class ResellerActivation extends BaseComponent {
 
 			if(resellerSignupDocument != null && !(resellerSignupDocument.getIsActive())){
 				resellerSignupDocument.setIsActive(true);
-				resellerSignupDocument.setEmailCustomerService(emailCustomerService);
-				resellerSignupDocument.setEmailFrom(emailFrom);
-				resellerSignupDocument.setEmailFromName(emailFromName);
-				resellerSignupDocument.setEmailSignature(emailSignature);
-				resellerSignupDocument.setEriEnable26ASImport(Boolean.valueOf(eriEnable26ASImport));
-				resellerSignupDocument.setEriEnabled(Boolean.valueOf(eriEnabled));
-				resellerSignupDocument.setEriPassword(eriPassword);
-				resellerSignupDocument.setEriUserId(eriUserId);
-				resellerSignupDocument.setIsReseller(Boolean.valueOf(isReseller));
-				resellerSignupDocument.setPageTitlePrefix(pageTitlePrefix);
-				resellerSignupDocument.setPaymentAvailableTypes(paymentAvailableTypes);
-				resellerSignupDocument.setPaymentEnabled(Boolean.valueOf(paymentEnabled));
-				resellerSignupDocument.setResellerName(resellerName);
-				resellerSignupDocument.setStartDate(startDate);
-				resellerSignupDocument.setEndDate(endDate);
-				resellerSignupDocument.setResellerPackage("trialPeriod");
-				resellerSignupDocument.setNumberOfLicensedUsers("0");
-				
-				request.setAttribute("userName", resellerSignupDocument.getResellerID());
-				if(!(resellerSignupDocument.getResellerID().isEmpty())){
-					request.setAttribute("userName", resellerSignupDocument.getResellerID());
-					userName = resellerSignupDocument.getResellerID();
-				}else
-					userName = "User name not found";
-				
 				resellerId = resellerSignupDocument.getResellerID();
 			}
 
@@ -314,7 +256,6 @@ public class ResellerActivation extends BaseComponent {
 				persistableSession.logout();
 			}
 		}
-		response.setRenderParameter(SUCCESS, userName);
 	}
 
 	//Any submission will go here
