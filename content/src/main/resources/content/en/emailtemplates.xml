@@ -162,7 +162,7 @@ ${emailSignature}
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>30510a83-6a6d-41c8-8812-7d39bab7621a</sv:value>
+      <sv:value>f973f6ff-ceae-4ce6-8af1-026c00b53314</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -187,13 +187,13 @@ ${emailSignature}
       <sv:value>2013-01-03T02:22:18.719+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-12-06T12:13:04.909+05:30</sv:value>
+      <sv:value>2014-01-03T17:12:23.611+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-12-06T12:13:10.807+05:30</sv:value>
+      <sv:value>2014-01-03T17:12:28.715+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>8ebb2e95-1372-4df4-8a7a-82af158cef8d</sv:value>
@@ -217,16 +217,22 @@ ${emailSignature}
       <sv:value>&lt;html&gt;
 &lt;body&gt;
 
-&lt;p&gt;Dear User,&lt;/p&gt;
+&lt;p&gt;${userName}  has requested to create an account with following details.&lt;/p&gt;
 
-&lt;p&gt;Thank You for registering with ${resellerName}. To confirm your account we
-need to validate your email address.&lt;/p&gt;
+&lt;p&gt;Reseller ID: ${resellerID}&lt;/p&gt;
+
+&lt;p&gt;Contact No.: ${phoneCustomerService}&lt;/p&gt;
+
+&lt;p&gt;Email ID: ${emailID}&lt;/p&gt;
+
+&lt;p&gt;CA Details:&lt;/p&gt;
+
+&lt;p&gt;If above details are correct click on the given link to activate his/her
+account.&lt;/p&gt;
 
 &lt;p&gt;
 ${memberHostName}/reselleractivation/${resellershipSignupDocument.canonicalUUID}
 &lt;/p&gt;
-
-&lt;p&gt;Please click the link above to finish your registration.&lt;/p&gt;
 
 &lt;p&gt;${emailSignature}&lt;/p&gt;
 
@@ -237,13 +243,13 @@ ${memberHostName}/reselleractivation/${resellershipSignupDocument.canonicalUUID}
       <sv:value>Welcome to ${resellerName}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:subject" sv:type="String">
-      <sv:value>Please confirm your registration with ${resellerName}</sv:value>
+      <sv:value>Please confirm the registration of ${userName}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
       <sv:value>reseller_signup</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:to" sv:type="String">
-      <sv:value/>
+      <sv:value>resellersignup@wealth4india.com</sv:value>
     </sv:property>
     <sv:node sv:name="hippotranslation:translations">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -285,7 +291,7 @@ ${memberHostName}/reselleractivation/${resellershipSignupDocument.canonicalUUID}
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>1ac15ab6-0abb-417b-90cf-a568a53716dc</sv:value>
+      <sv:value>183c1745-a417-4cde-9b91-2e9488f0aa99</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -310,13 +316,13 @@ ${memberHostName}/reselleractivation/${resellershipSignupDocument.canonicalUUID}
       <sv:value>2013-01-03T02:22:18.719+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-12-20T11:40:42.129+05:30</sv:value>
+      <sv:value>2014-01-03T16:47:03.468+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-12-20T11:40:46.915+05:30</sv:value>
+      <sv:value>2014-01-03T16:47:06.928+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>4f7ee458-7ab6-4d6d-a74f-76af5f550149</sv:value>
@@ -342,15 +348,12 @@ ${memberHostName}/reselleractivation/${resellershipSignupDocument.canonicalUUID}
 
 &lt;p&gt;Dear User,&lt;/p&gt;
 
-&lt;p&gt;Thank You for registering with ${resellerName}. Your 7 days trial period is
+&lt;p&gt;Thank You for registering with ${resellerName}. Your 1 year trial period is
 ready to be used. Click on the given link to start your service&lt;/p&gt;
 
 &lt;p&gt;${resellerHostName}&lt;/p&gt;
 
 &lt;p&gt;You can Login with your UserName : ${userName}&lt;/p&gt;
-
-&lt;p&gt;Please upgrade your account after Login to enjoy all benefits of
-eTaxFileStation.&lt;/p&gt;
 
 &lt;p&gt; &lt;/p&gt;
 
