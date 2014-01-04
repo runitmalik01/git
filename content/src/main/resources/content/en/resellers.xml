@@ -59874,7 +59874,7 @@ eTaxFileStation.&lt;/p&gt;
                 <sv:value>hippotranslation:translated</sv:value>
               </sv:property>
               <sv:property sv:name="jcr:uuid" sv:type="String">
-                <sv:value>29f2ff4c-2d6e-4fdf-9340-079d0cef8d0a</sv:value>
+                <sv:value>919f4b23-ab45-4057-bfc2-f7f370736365</sv:value>
               </sv:property>
               <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
                 <sv:value>live</sv:value>
@@ -59899,13 +59899,13 @@ eTaxFileStation.&lt;/p&gt;
                 <sv:value>2013-11-29T05:11:40.858+05:30</sv:value>
               </sv:property>
               <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-                <sv:value>2014-01-02T20:52:13.271+05:30</sv:value>
+                <sv:value>2014-01-04T13:12:29.256+05:30</sv:value>
               </sv:property>
               <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
                 <sv:value>admin</sv:value>
               </sv:property>
               <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-                <sv:value>2014-01-02T20:52:17.052+05:30</sv:value>
+                <sv:value>2014-01-04T13:12:32.222+05:30</sv:value>
               </sv:property>
               <sv:property sv:name="hippotranslation:id" sv:type="String">
                 <sv:value>4460bc91-9b3b-4730-8905-e0a1cd67a6b1</sv:value>
@@ -59914,8 +59914,7 @@ eTaxFileStation.&lt;/p&gt;
                 <sv:value>en</sv:value>
               </sv:property>
               <sv:property sv:name="hst:script" sv:type="String">
-                <sv:value>&lt;div class="banner"&gt;
-&lt;img src="img/bg_etaxfilestation.png" alt=""  align="right" style="width: 1350px; height: 400px;"&gt;
+                <sv:value>&lt;div class="jumbotron bg-etaxfilestation" &gt;
 &lt;/div&gt;</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:html" sv:type="String">
