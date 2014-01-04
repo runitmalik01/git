@@ -87,9 +87,6 @@ public class ResellerDetails extends BaseComponent {
 		String paymentEnabled = GoGreenUtil.getEscapedParameter(request, PAYMENTENABLED);
 		String resellerName = GoGreenUtil.getEscapedParameter(request, RESELLERNAME);
 
-		String startDate = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString();
-		String endDate = ITRXmlGeneratorServiceCommon.getEndDateForResellerTrailPeriod();
-
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if (publicParameterUUID != null) {
 			try {
@@ -133,8 +130,6 @@ public class ResellerDetails extends BaseComponent {
 				resellershipSignupDocument.setPaymentAvailableTypes(paymentAvailableTypes);
 				resellershipSignupDocument.setPaymentEnabled(Boolean.valueOf(paymentEnabled));
 				resellershipSignupDocument.setResellerName(resellerName);
-				resellershipSignupDocument.setStartDate(startDate);
-				resellershipSignupDocument.setEndDate(endDate);
 				resellershipSignupDocument.setResellerPackage("trialPeriod");
 				resellershipSignupDocument.setNumberOfLicensedUsers("0");
 				resellershipSignupDocument.setActivationCode(UUID.randomUUID().toString());
