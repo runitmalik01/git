@@ -57,6 +57,7 @@ import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.components.cms.LogComponentManager;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
