@@ -112,6 +112,8 @@ public class ResellerActivation extends BaseComponent {
 		// TODO Auto-generated method stub
 
 		String activationCode = request.getRequestContext().getResolvedSiteMapItem().getParameter("activationCode");
+		String startDate = ITRXmlGeneratorServiceCommon.getCurrentDateInIndiaAsString();
+		String endDate = ITRXmlGeneratorServiceCommon.getEndDateForResellerTrailPeriod();
 
 		//now get the membershipdocument right away with the uuid
 		try {
@@ -216,6 +218,8 @@ public class ResellerActivation extends BaseComponent {
 
 			if(resellerSignupDocument != null && !(resellerSignupDocument.getIsActive())){
 				resellerSignupDocument.setIsActive(true);
+				resellerSignupDocument.setStartDate(startDate);
+				resellerSignupDocument.setEndDate(endDate);
 				resellerId = resellerSignupDocument.getResellerID();
 			}
 
