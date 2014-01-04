@@ -6,19 +6,23 @@ import java.util.List;
 
 public enum PackageForReseller {
 
-	singleUser("Single User",10000,"1","1 Year"),
-	multipleUser("Multiple User",40000,"unlimited","1 Year");
+	trialPeriod("Trail Period",0,1,true,true),
+	singleuser("Single User",10000,1,true,true),
+	multipleuser("Multiple User",40000,1,true,true);
 
 	String displayName;//name of Package
 	int amount;// Package cost
-	String numberOfLicensedUsers;//How many users can signup 
-	String vadilityOfLicense;
+	int vadilityOfLicense;// in years
+	boolean allowAccess;// downloadXML , Eamil XML and Summary etc
+	boolean multipleSignup;//How many users can signup 
+	
 
-	PackageForReseller(String displayName,int amount,String numberOfLicensedUsers,String vadilityOfLicense) {
+	PackageForReseller(String displayName, int amount, int vadilityOfLicense, boolean allowAccess, boolean multipleSignup) {
 		this.displayName = displayName;
 		this.amount = amount;
-		this.numberOfLicensedUsers = numberOfLicensedUsers;
 		this.vadilityOfLicense = vadilityOfLicense;
+		this.allowAccess = allowAccess;
+		this.multipleSignup = multipleSignup;
 	}
 
 	public String getDisplayName() {
@@ -27,11 +31,14 @@ public enum PackageForReseller {
 	public int getAmount() {
 		return amount;
 	}
-	public String getNumberOfLicensedUsers() {
-		return numberOfLicensedUsers;
-	}
-	public String getVadilityOfLicense() {
+	public int getVadilityOfLicense() {
 		return vadilityOfLicense;
+	}
+	public boolean getAllowAccess(){
+		return allowAccess;
+	}
+	public boolean getMultipleSignup(){
+		return multipleSignup;
 	}
 
 	public static List<PackageForReseller> getResellerPackage(){
