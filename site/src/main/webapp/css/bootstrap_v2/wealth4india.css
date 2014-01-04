@@ -68,12 +68,21 @@ body {
 
 .bg-etaxfilestation {
 	background-image: url('../../img/bg_etaxfilestation.png');
+	width: 1349px;
+	height: 400px;
+    background-repeat: no-repeat;
+	
 }
 
 /* JumboTron */
 
 .bg-jumbotron {
 	background-image: url('../../img/bg_jumbotron_v2.png');
+	width: 1350px;
+	height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+ 
 }
 
 .bg-jumbotron h1 {
