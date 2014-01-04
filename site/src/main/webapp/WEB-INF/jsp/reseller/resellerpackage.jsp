@@ -9,15 +9,15 @@
 		  	<table class="table table-bordered table-striped">
 				<tr align="center" class="success">
 					<th><b>Service Name</b></th>
-					<th><b>No. of Users</b></th>
-					<th><b>Validity</b></th>
+					<th><b>Multiple Signup</b></th>
+					<th><b>Validity (in years)</b></th>
 					<th><b>Amount</b></th>			
 				</tr>			
 				<c:if test="${not empty PackageForReseller}">
 				<c:forEach items="${PackageForReseller}" var="PackageForReseller">
 				<tr>
 				<td><input id="packageSelection" name="packageSelection" type ="radio" value="${PackageForReseller}"> <c:out value="${PackageForReseller.displayName}"></c:out></td>
-				<td><c:out value="${PackageForReseller.numberOfLicensedUsers}"></c:out></td>
+				<td><c:out value="${PackageForReseller.multipleSignup}"></c:out></td>
 				<td><c:out value="${PackageForReseller.vadilityOfLicense}"></c:out></td>
 				<td><c:out value="${PackageForReseller.amount}"></c:out></td>
 				</tr>
