@@ -101,7 +101,7 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 		String strdate = null;
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		strdate = formatter.format(currentdate.getTime());
-		System.out.println("strdate=>" + strdate);
+		System.out.println("startstrdate=>" + strdate);
 		TimeZone obj = TimeZone.getTimeZone("GMT + 5:30");
 
 		formatter.setTimeZone(obj);
@@ -111,11 +111,11 @@ public class ITRXmlGeneratorServiceCommon implements XmlGeneratorService {
 	
 	public static String getEndDateForResellerTrailPeriod() {
 		Calendar currentdate = Calendar.getInstance();
-		currentdate.add(Calendar.DATE, 7);
+		currentdate.add(Calendar.YEAR, 1);
 		String strdate = null;
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		strdate = formatter.format(currentdate.getTime());
-		System.out.println("strdate=>" + strdate);
+		System.out.println("endstrdate=>" + strdate);
 		TimeZone obj = TimeZone.getTimeZone("GMT + 5:30");
 
 		formatter.setTimeZone(obj);
