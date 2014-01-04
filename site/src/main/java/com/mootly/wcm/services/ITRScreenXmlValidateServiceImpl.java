@@ -44,6 +44,7 @@ import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRXmlValidation;
+import com.mootly.wcm.model.PackageForReseller;
 import com.mootly.wcm.model.ValidateProperty;
 import com.mootly.wcm.model.schedules.y2012_2013.PartB_TI;
 
@@ -333,6 +334,40 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 		}
 		return unCheckDoc;
 	}
+	
+	public boolean getEqualPropertyValidateReseller(Object object,ValidateProperty propertyName){
+		boolean unCheckDoc = true;
+		if(object instanceof Double){
+			if(Double.parseDouble(object.toString()) == Double.parseDouble(propertyName.getValueToValidate())){
+				unCheckDoc = false;
+			}
+		}
+		if(object instanceof Long){
+			if(Long.parseLong(object.toString()) == Long.parseLong(propertyName.getValueToValidate())){
+				unCheckDoc = false;
+			}
+		}
+		if(object instanceof String){
+			if(object.toString().equalsIgnoreCase(propertyName.getValueToValidate())){
+				List<PackageForReseller> resellerPackage = PackageForReseller.getResellerPackage();
+				for(PackageForReseller packageForReseller : resellerPackage){
+					if(packageForReseller.toString().equals(object.toString())){
+						if(packageForReseller.getAllowAccess()){
+							unCheckDoc = true;
+						}else{
+							unCheckDoc = false;
+						}
+					}
+				}	    
+			}
+		}
+		if(object instanceof Boolean){
+			if(object.toString().equalsIgnoreCase(propertyName.getValueToValidate())){
+				unCheckDoc = false;
+			}
+		}
+		return unCheckDoc;
+	}
 
 	public boolean getValidateWithTotalIncome(HstRequest request, FinancialYear financialYear, ITRXmlValidation VALIDATE, HippoFolder parentFolder){
 		boolean inValid = true;
@@ -436,7 +471,7 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 						if(object != null){
 							switch(propertyName.getValidateType()){
 							case EQUALITY:
-								invalid = getEqualPropertyValidate(object, propertyName);
+								invalid = getEqualPropertyValidateReseller(object, propertyName);
 								break;
 							default:
 								break;
