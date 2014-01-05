@@ -255,7 +255,7 @@ public class BaseComponent extends BaseHstComponent {
     	webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
         channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
         request.setAttribute("channelInfoWrapper", channelInfoWrapper);
-        try {
+        /*try {
 			Session persistableSession = getPersistableSession(request);
 			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
@@ -271,7 +271,7 @@ public class BaseComponent extends BaseHstComponent {
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
     }
     
     public final boolean isReseller() {
