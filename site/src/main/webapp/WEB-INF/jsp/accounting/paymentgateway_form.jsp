@@ -17,23 +17,23 @@
 	<c:when test="${not empty invoicePaymentDetail &&  empty invoicePaymentDetail.respCode }">	
 		<c:set var="actionURL" value="${checkoutURL}"/>
 		<form name="frmGateway" id="frmGateway" action="${actionURL}" method="post">
-			<input type="text" id="merchantTxnId" value="<c:out value="${invoicePaymentDetail.paymentTransactionId}"/>" name="merchantTxnId"/>
-			<input type="text" id="orderAmount" value="<c:out value="${invoicePaymentDetail.paymentAmount}"/>" name="orderAmount"/>
-			<input type="text" id="paymentType" value="<c:out value="${invoicePaymentDetail.paymentType}"/>" name="paymentType"/>
-			<input type="text" id="currency" value="INR" name="currency"/>
-			<input type="text" id="secSignature" value="${secSignature}" name="secSignature"/>
-			<input type="text" id="merchantAccessKey" value="${merchantAccessKey}" name="merchantAccessKey"/>
-			<input type="text" id="returnUrl" value="${returnUrl}" name="returnUrl"/>
+			<input type="hidden" id="merchantTxnId" value="<c:out value="${invoicePaymentDetail.paymentTransactionId}"/>" name="merchantTxnId"/>
+			<input type="hidden" id="orderAmount" value="<c:out value="${invoicePaymentDetail.paymentAmount}"/>" name="orderAmount"/>
+			<input type="hidden" id="paymentType" value="<c:out value="${invoicePaymentDetail.paymentType}"/>" name="paymentType"/>
+			<input type="hidden" id="currency" value="INR" name="currency"/>
+			<input type="hidden" id="secSignature" value="${secSignature}" name="secSignature"/>
+			<input type="hidden" id="merchantAccessKey" value="${merchantAccessKey}" name="merchantAccessKey"/>
+			<input type="hidden" id="returnUrl" value="${returnUrl}" name="returnUrl"/>
 			
-			<input type="text" id="email" value="${email}" name="email"/>
-			<input type="text" id="firstName" value="${firstName}" name="firstName"/>
-			<input type="text" id="lastName" value="${lastName}" name="lastName"/>
-			<input type="text" id="phoneNumber" value="${phoneNumber}" name="phoneNumber"/>
-			<input type="text" id="addressStreet1" value="${addressStreet1}" name="addressStreet1"/>
-			<input type="text" id="addressCity" value="${addressCity}" name="addressCity"/>
+			<input type="hidden" id="email" value="${email}" name="email"/>
+			<input type="hidden" id="firstName" value="${firstName}" name="firstName"/>
+			<input type="hidden" id="lastName" value="${lastName}" name="lastName"/>
+			<input type="hidden" id="phoneNumber" value="${phoneNumber}" name="phoneNumber"/>
+			<input type="hidden" id="addressStreet1" value="${addressStreet1}" name="addressStreet1"/>
+			<input type="hidden" id="addressCity" value="${addressCity}" name="addressCity"/>
 			
-			<input type="text" id="addressZip" value="${addressZip}" name="addressZip"/>
-			<input type="text" id="addressState" value="${addressState}" name="addressState"/>
+			<input type="hidden" id="addressZip" value="${addressZip}" name="addressZip"/>
+			<input type="hidden" id="addressState" value="${addressState}" name="addressState"/>
 			
 			<input type="submit" value="Submit"/>
 		</form>		
