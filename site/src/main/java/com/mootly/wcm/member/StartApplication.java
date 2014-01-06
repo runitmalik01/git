@@ -10,11 +10,13 @@ package com.mootly.wcm.member;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,9 @@ import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
+import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryResult;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
@@ -48,6 +53,7 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
@@ -106,10 +112,10 @@ public class StartApplication extends ITReturnComponent {
 		super.doBeforeRender(request, response);
 		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
 		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
-		
+
 		List<HippoDocumentBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/documents/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
 		request.setAttribute("listOfITRServices", listOfITRServices);
-		
+
 		RetrievePANResponse retrievePANResponse = null;
 		//Call to DIT Service then get the Response
 		if(shouldRetrievePANInformation()||shouldRetrievePANInformation()){
@@ -412,10 +418,38 @@ public class StartApplication extends ITReturnComponent {
 				String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
 				ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
 				int selectedITRPriority = selectedITR.getPriority();
-				String MaxDocAllowedForPackageChange = request.getRequestContext().getResolvedSiteMapItem().getParameter("MaxDocAllowedForPackageChange");
-	
+				//String MaxDocAllowedForPackageChange = request.getRequestContext().getResolvedSiteMapItem().getParameter("MaxDocAllowedForPackageChange");
 				if(savedITRPriority > selectedITRPriority){
 					HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
+					HstQuery hstQuery;
+					try {
+						hstQuery = this.getQueryManager(request).createQuery( memberPersonalInformation.getParentBean() );
+						final HstQueryResult result = hstQuery.execute();
+						Iterator<HippoBean> itResults = result.getHippoBeans();
+						for (;itResults.hasNext();) {
+							HippoBean hippoBean = itResults.next();
+							if (hippoBean instanceof HippoDocumentBean) {
+								if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPayment.class.getSimpleName())) {
+									continue;
+								}
+								if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPersonalInformation.class.getSimpleName())) {
+									continue;
+								}			
+								
+								//Calendar lstModDateOfHippoBean = hippoBean.getProperty("hippostdpubwf:lastModificationDate");			
+								//if(lstModDateOfHippoBean.compareTo(memberPersonalInformation.getLastModificationDate()) > 0){
+									formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
+									response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
+									hasAValidSelection = false;
+									return hasAValidSelection;
+								//}
+							}
+						}
+					} catch (QueryException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}			
+					/*
 					long size = hippoFolder.getDocumentSize();
 					if(size > Integer.parseInt(MaxDocAllowedForPackageChange)){
 						formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
@@ -423,6 +457,7 @@ public class StartApplication extends ITReturnComponent {
 						hasAValidSelection = false;
 						return hasAValidSelection;
 					}
+					 */
 				}
 			}
 		}
@@ -434,13 +469,13 @@ public class StartApplication extends ITReturnComponent {
 			wf.publish();
 		}
 	}
-	
+
 	@Override
 	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
 		// TODO Auto-generated method stub
 		return memberPersonalInfoUpdateHandler;
 	}
-	
+
 	@Override
 	protected boolean additionalValidation(HstRequest request,
 			HstResponse response, FormMap formMap) {
@@ -514,17 +549,17 @@ public class StartApplication extends ITReturnComponent {
 		}
 		return isValid;
 	}
-	
+
 	private void addDitVerificationStatusFieldToFormMap(FormMap formMap,VerificationStatus verificationStatus) {
 		addDitVerificationStatusFieldToFormMap(formMap,verificationStatus,null);
 	}
-	
+
 	private void addDitVerificationStatusFieldToFormMap(FormMap formMap,VerificationStatus verificationStatus,String verificationMessage) {
 		FormField verStatus = new FormField("ditVerificationStatus");
 		verStatus.addValue(verificationStatus.name());
-		
+
 		formMap.addFormField(verStatus);
-		
+
 		if (verificationMessage != null) {
 			FormField verMsg = new FormField("ditVerificationMessage");
 			verMsg.addValue(verificationMessage);
