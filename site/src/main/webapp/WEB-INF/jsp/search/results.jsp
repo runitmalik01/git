@@ -29,6 +29,11 @@
 </c:choose>
 <c:set var="searchresultstitle"><fmt:message key="search.results.title"/></c:set>
 <hippo-gogreen:title title="${searchresultstitle}"/>
+ <!-- the following is only for vendor to add new event -->
+ <c:if test="${isVendor == 'true'}">
+ <hst:link var="newKnowledgeArticle" siteMapItemRefId="newKnowledgeArt"></hst:link>
+ <div><a href="${newKnowledgeArticle}" class="btn btn-default btn-primary"> <small><i class="glyphicon  glyphicon glyphicon-white"></i>Add New Article</small></a> </div>
+ </c:if>
 <div class="page">
     <c:set var="isFound" value="${tags != null or searchResult.total > 0}"/>
     <c:set var="searched" value="'${fn:escapeXml(tag != null ? tag.label : query)}'"/>
