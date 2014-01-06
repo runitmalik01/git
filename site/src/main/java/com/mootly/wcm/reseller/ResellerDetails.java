@@ -64,6 +64,14 @@ public class ResellerDetails extends BaseComponent {
 			request.setAttribute(SUCCESS, success);
 			return;
 		}
+
+		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
+		if(publicParameterUUID == null){
+			request.setAttribute("isError", "true");
+			request.setAttribute("errorCode", "error.uuid.missing");
+			return;
+		}
+
 	}
 
 	@Override
