@@ -52,21 +52,25 @@ public class Detail extends BaseComponent {
 		super.doBeforeRender(request, response);
 
 		HippoBean document = getContentBean(request);
-		//HippoBean document = getSiteContentBaseBeanForReseller(request);
 		String editlink=getPublicRequestParameter(request,"edit");
 		String deletelink=getPublicRequestParameter(request,"delete");
+		String newsEditlink=getPublicRequestParameter(request,"newsEdit");
+		String newsDeletelink=getPublicRequestParameter(request,"newsDelete");
 		if(null!=editlink){
 			request.setAttribute("editlink", editlink);}
 		if(null!=deletelink){
 			request.setAttribute("deletelink", deletelink);}
-
-		if (document == null) {
+		if(null!=newsEditlink){
+			request.setAttribute("newsEditlink", newsEditlink);}
+		if(null!=newsDeletelink){
+			request.setAttribute("newsDeletelink", newsDeletelink);}
+		
+		if (document == null) { 
 			redirectToNotFoundPage(response);
 			return;
 		}
 		request.setAttribute("document", document);
 		request.getRequestContext().setAttribute("document", document);
-
 		HippoFolder commentsFolder = null;
 		int commentCount = 0;
 
@@ -86,51 +90,75 @@ public class Detail extends BaseComponent {
 			}
 
 		}
-
-
 		request.setAttribute("commentCount", commentCount);
-
 	}
-
-
 
 	@Override
 	public void doAction(HstRequest request, HstResponse response) {
 		String edit=getPublicRequestParameter(request, "edit");
 		String delete=getPublicRequestParameter(request, "delete");
+		String newsEdit=getPublicRequestParameter(request, "newsEdit");
+		String newsDelete=getPublicRequestParameter(request, "newsDelete");
 		if(log.isInfoEnabled())
 		{
-
 			log.info("delete link"+delete);
 		}
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String description = request.getParameter("description");
 		String flag = request.getParameter("deleteevent");
+		String newsflag = request.getParameter("deletenews");
 		//String date = request.getParameter("date");
-		EventDocument edoc = new EventDocument();
+		EventDocument edoc = new EventDocument();	
 		edoc.setTitle(title);
 		edoc.setSummary(summary);
 		edoc.setDescriptionContent(description);
+		NewsItem ndoc = new NewsItem();
+		ndoc.setTitle(title);
+		ndoc.setSummary(summary);
+		ndoc.setDescriptionContent(description);
 		if(null!=edit){
-
 			editNewEvents(request,edoc);
+			try {
+				response.sendRedirect("/site/r/"+getResellerId()+"/events");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		if(flag.equalsIgnoreCase("yes")){
-			DeleteEvents(request,edoc);
+		if(null!=newsEdit){
+			editNewNews(request,ndoc);
+			try {
+				response.sendRedirect("/site/r/"+getResellerId()+"/news");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		if(flag != null && !flag.isEmpty() ){
+			if(flag.equalsIgnoreCase("yes")){
+				DeleteEvents(request,edoc);
+			}	
+			try {
+				response.sendRedirect("/site/r/"+getResellerId()+"/events");
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 
-		}
-		try {
-			response.sendRedirect("/site/r/"+getResellerId()+"/events");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(newsflag != null && !newsflag.isEmpty()){
+			if(newsflag.equalsIgnoreCase("yes")){
+				DeleteNews(request,ndoc);				
+			}	
+			try {
+				response.sendRedirect("/site/r/"+getResellerId()+"/news");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-
-	protected  EventDocument editNewEvents(HstRequest request,EventDocument ed) {
-		// TODO Auto-generated method stub
+	// Edit Events
+	protected  void editNewEvents(HstRequest request,EventDocument ed) {
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 		try {
@@ -139,38 +167,63 @@ public class Detail extends BaseComponent {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			HippoBean document = (HippoBean) getContentBean(request);
 			String memberFolderPath= document.getCanonicalPath();
-			if(log.isInfoEnabled()){
-				log.info("path isssssss"+memberFolderPath);
-			}
 			EventDocument objEventDocument =  (EventDocument) wpm.getObject(memberFolderPath);
 			// update content properties
 			if (objEventDocument != null) {
 				objEventDocument.setTitle(ed.getTitle());
 				objEventDocument.setSummary(ed.getSummary());
-				objEventDocument.setDescriptionContent(ed.getDescriptionContent());
-				// update now  
+				objEventDocument.setDescriptionContent(ed.getDescriptionContent()); 
 				wpm.update(objEventDocument);
 				wpm.save();
 			}
-			return null;
 		} catch (Exception e) {
-			log.warn("Failed to edit document ", e);
-			return null;
+			log.warn("Failed to EDIT eventsdocument ", e);
 		} finally {
 			if (persistableSession != null) {
-
+				persistableSession.logout();
 			}
 		}
 	}
+
+	// Edit News
+	protected  void editNewNews(HstRequest request,NewsItem nd){
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
+		try {		
+			persistableSession = getPersistableSession(request);
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			HippoBean document = (HippoBean) getContentBean(request);
+			String memberFolderPath= document.getCanonicalPath();		
+			Object object =  wpm.getObject(memberFolderPath);
+			// update content properties
+			if (object != null) {
+				if(object instanceof NewsItem){
+					NewsItem objNewsItem = (NewsItem) object;
+					objNewsItem.setTitle(nd.getTitle());
+					objNewsItem.setSummary(nd.getSummary());
+					objNewsItem.setDescriptionContent(nd.getDescriptionContent()); 
+					wpm.update(objNewsItem);
+					wpm.save();
+				}
+			}
+		} catch (Exception e) {
+			log.warn("Failed to EDIT newsdocument ", e);
+		} finally {
+			if (persistableSession != null) {
+				persistableSession.logout();
+			}
+		}
+	}
+
+	//Delete Events
 	protected  void DeleteEvents(HstRequest request,EventDocument ed) {
-		// TODO Auto-generated method stub
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 		try {
 			HippoBean document = (HippoBean) getContentBean(request);
 			String memberFolderPath= document.getCanonicalPath();
 			persistableSession = request.getRequestContext().getSession();
-
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
 				public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
@@ -179,31 +232,53 @@ public class Detail extends BaseComponent {
 				}
 			});
 			EventDocument objEventDocument =  (EventDocument) wpm.getObject(memberFolderPath);
-			// update content properties
 			if (objEventDocument != null) {
-				log.warn("going to remove");
+				log.warn("Are you sure want to DELETE event?");
 				wpm.remove(objEventDocument);
-
 			}
 		} catch (Exception e) {
-			log.warn("Failed to delete doc ", e);
+			log.warn("Failed to DELETE event ", e);
 		} finally {
 			if (persistableSession != null) {
-
+			}
+		}
+	}
+	//Delete News
+	protected  void DeleteNews(HstRequest request,NewsItem nd) {
+		// TODO Auto-generated method stub
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
+		try {
+			HippoBean document = (HippoBean) getContentBean(request);
+			String memberFolderPath= document.getCanonicalPath();
+			persistableSession = request.getRequestContext().getSession();
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
+				public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+					FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
+					fraw.delete();
+				}
+			});
+			NewsItem objNewsItemDocument =  (NewsItem) wpm.getObject(memberFolderPath);
+			if (objNewsItemDocument != null) {
+				log.warn("Are you sure want to DELETE news ?");
+				wpm.remove(objNewsItemDocument);				
+			}
+		} catch (Exception e) {
+			log.warn("Failed to DELETE news ", e);
+		} finally {
+			if (persistableSession != null) {
 			}
 		}
 	}
 
 	@Override
 	public void doBeforeServeResource(HstRequest request, HstResponse response) throws HstComponentException {
-
 		super.doBeforeServeResource(request, response);
 
 		boolean succeeded = true;
 		String errorMessage = "";
-
 		String workflowAction = request.getParameter("workflowAction");
-
 		String field = request.getParameter("field");
 
 		final boolean requestPublication = "requestPublication".equals(workflowAction);
@@ -230,10 +305,8 @@ public class Detail extends BaseComponent {
 				});
 
 				Document document = (Document) cpm.getObject(documentPath);
-
 				if (saveDocument) {
 					String content = request.getParameter("editor");
-
 					if ("mootlywcm:summary".equals(field)) {
 						document.setSummary(content);
 					} else if ("mootlywcm:description".equals(field)) {
@@ -257,7 +330,6 @@ public class Detail extends BaseComponent {
 			}
 			// NOTE: no need to close the persistable session here because subject based session was retrieved from rc.
 		}
-
 		request.setAttribute("payload", "{\"success\": " + succeeded + ", \"message\": \"" + errorMessage + "\"}");
 	}
 	private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
@@ -266,5 +338,4 @@ public class Detail extends BaseComponent {
 
 		}
 	}
-
 }
