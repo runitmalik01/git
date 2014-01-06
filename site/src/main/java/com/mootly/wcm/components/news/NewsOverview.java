@@ -49,6 +49,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.Comment;
 import com.mootly.wcm.beans.NewsItem;
+import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.TagComponent;
 import com.mootly.wcm.utils.Constants;
@@ -80,121 +81,124 @@ import com.mootly.wcm.utils.PageableCollection;
  * <em>Public request parameters:</em>
  * <ul>
  * <li>pageNumber: the page to show</li>
-  *<li>query: the free text to combine with the facets to limit the fetched news items.</li>
+ *<li>query: the free text to combine with the facets to limit the fetched news items.</li>
  * </ul>
  */
 public class NewsOverview extends TagComponent {
 
-    public static final Logger log = LoggerFactory.getLogger(NewsOverview.class);
+	public static final Logger log = LoggerFactory.getLogger(NewsOverview.class);
 
-    private static final int DEFAULT_PAGE_SIZE = 5;
-    private static final String PARAM_CURRENT_PAGE = "pageNumber";
-    private static final int DEFAULT_CURRENT_PAGE = 1;
+	private static final int DEFAULT_PAGE_SIZE = 5;
+	private static final String PARAM_CURRENT_PAGE = "pageNumber";
+	private static final int DEFAULT_CURRENT_PAGE = 1;
 
-    @Override
-    public void doBeforeRender(HstRequest request, HstResponse response) {
-        super.doBeforeRender(request, response);
+	@Override
+	public void doBeforeRender(HstRequest request, HstResponse response) {
+		super.doBeforeRender(request, response);
+		
+		final HippoBean scope = getContentBean(request);
+		HippoBean contentBean = getSiteContentBaseBean(request).getBean("news/facetednews");
+		log.info("path of contentBean of News:::"+contentBean);
+			
+		if (scope == null) {
+			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
+			log.warn("Scope bean not found; please check the relative content path for sitemap item: {}. Relative content path: {}.", 
+					resolvedSiteMapItem.getHstSiteMapItem().getId(),
+					resolvedSiteMapItem.getRelativeContentPath());
+			return;
+		}
 
-        final HippoBean scope = getContentBean(request);
-        if (scope == null) {
-            ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
-            log.warn("Scope bean not found; please check the relative content path for sitemap item: {}. Relative content path: {}.", 
-                    resolvedSiteMapItem.getHstSiteMapItem().getId(),
-                    resolvedSiteMapItem.getRelativeContentPath());
-            return;
-        }
+		int pageSize = GoGreenUtil.getIntConfigurationParameter(request, Constants.PAGE_SIZE, DEFAULT_PAGE_SIZE);
 
-        int pageSize = GoGreenUtil.getIntConfigurationParameter(request, Constants.PAGE_SIZE, DEFAULT_PAGE_SIZE);
+		String currentPageParam = getPublicRequestParameter(request, PARAM_CURRENT_PAGE);
+		int currentPage = ComponentUtil.parseIntParameter(PARAM_CURRENT_PAGE, currentPageParam, DEFAULT_CURRENT_PAGE, log);
 
-        String currentPageParam = getPublicRequestParameter(request, PARAM_CURRENT_PAGE);
-        int currentPage = ComponentUtil.parseIntParameter(PARAM_CURRENT_PAGE, currentPageParam, DEFAULT_CURRENT_PAGE, log);
+		String query = this.getPublicRequestParameter(request, "query");
+		query = SearchInputParsingUtils.parse(query, false);
+		request.setAttribute("query", StringEscapeUtils.escapeHtml(query));
 
-        String query = this.getPublicRequestParameter(request, "query");
-        query = SearchInputParsingUtils.parse(query, false);
-        request.setAttribute("query", StringEscapeUtils.escapeHtml(query));
+		try {
+			final PageableCollection news = getNews(request, scope, pageSize, currentPage, query);
+			request.setAttribute("news", news);
 
-        try {
-            final PageableCollection news = getNews(request, scope, pageSize, currentPage, query);
-            request.setAttribute("news", news);
+			updateCommentsCount(request, news);
+		} catch (QueryException e) {
+			throw new HstComponentException("Query error while getting news: " + e.getMessage(), e);
+		}
+	}
 
-            updateCommentsCount(request, news);
-        } catch (QueryException e) {
-            throw new HstComponentException("Query error while getting news: " + e.getMessage(), e);
-        }
-    }
+	private PageableCollection getNews(HstRequest request, HippoBean scope, int pageSize, int currentPage, String query) throws QueryException {
+		List<? extends HippoBean> relatedBeans = getRelatedBeans(request);
 
-    private PageableCollection getNews(HstRequest request, HippoBean scope, int pageSize, int currentPage, String query) throws QueryException {
-        List<? extends HippoBean> relatedBeans = getRelatedBeans(request);
+		if (!relatedBeans.isEmpty()) {
+			// only show tagged news items
+			return new PageableCollection((List<HippoBean>) relatedBeans, pageSize, currentPage);
+		}
 
-        if (!relatedBeans.isEmpty()) {
-            // only show tagged news items
-            return new PageableCollection((List<HippoBean>) relatedBeans, pageSize, currentPage);
-        }
+		final HstQuery hstQuery = getQueryManager(request).createQuery(scope);
+		final BaseFilter filter = new PrimaryNodeTypeFilterImpl("mootlywcm:newsitem");
+		hstQuery.setFilter(filter);
+		hstQuery.addOrderByDescending("mootlywcm:date");
 
-        final HstQuery hstQuery = getQueryManager(request).createQuery(scope);
-        final BaseFilter filter = new PrimaryNodeTypeFilterImpl("mootlywcm:newsitem");
-        hstQuery.setFilter(filter);
-        hstQuery.addOrderByDescending("mootlywcm:date");
+		if (!StringUtils.isEmpty(query)) {
+			final Filter f = hstQuery.createFilter();
+			final Filter f1 = hstQuery.createFilter();
+			f1.addContains(".", query);
+			final Filter f2 = hstQuery.createFilter();
+			f2.addContains("mootlywcm:title", query);
+			f.addOrFilter(f2);
+			hstQuery.setFilter(f);
+		}
 
-        if (!StringUtils.isEmpty(query)) {
-            final Filter f = hstQuery.createFilter();
-            final Filter f1 = hstQuery.createFilter();
-            f1.addContains(".", query);
-            final Filter f2 = hstQuery.createFilter();
-            f2.addContains("mootlywcm:title", query);
-            f.addOrFilter(f2);
-            hstQuery.setFilter(f);
-        }
+		if (scope instanceof HippoFacetChildNavigationBean || scope instanceof HippoFacetNavigation) {
+			// only show faceted news items
+			final HippoFacetNavigationBean facetBean = BeanUtils.getFacetNavigationBean(request, hstQuery, objectConverter);
 
-        if (scope instanceof HippoFacetChildNavigationBean || scope instanceof HippoFacetNavigation) {
-            // only show faceted news items
-            final HippoFacetNavigationBean facetBean = BeanUtils.getFacetNavigationBean(request, hstQuery, objectConverter);
+			if (facetBean == null) {
+				final List<HippoBean> noResults = Collections.emptyList();
+				return new PageableCollection(0, noResults);
+			} else {
+				final HippoResultSetBean resultSet = facetBean.getResultSet();
+				final HippoDocumentIterator<NewsItem> facetIt = resultSet.getDocumentIterator(NewsItem.class);
+				if (hstQuery.getOffset() > 0) {
+					facetIt.skip(hstQuery.getOffset());
+				}
+				final int facetCount = facetBean.getCount().intValue();
+				return new PageableCollection(facetIt, facetCount, pageSize, currentPage);
+			}
+		}
 
-            if (facetBean == null) {
-                final List<HippoBean> noResults = Collections.emptyList();
-                return new PageableCollection(0, noResults);
-            } else {
-                final HippoResultSetBean resultSet = facetBean.getResultSet();
-                final HippoDocumentIterator<NewsItem> facetIt = resultSet.getDocumentIterator(NewsItem.class);
-                if (hstQuery.getOffset() > 0) {
-                    facetIt.skip(hstQuery.getOffset());
-                }
-                final int facetCount = facetBean.getCount().intValue();
-                return new PageableCollection(facetIt, facetCount, pageSize, currentPage);
-            }
-        }
+		// show all news items
+		final HstQueryResult result = hstQuery.execute();
+		final HippoBeanIterator iterator = result.getHippoBeans();
+		return new PageableCollection<NewsItem>(iterator, pageSize, currentPage);
+	}
 
-        // show all news items
-        final HstQueryResult result = hstQuery.execute();
-        final HippoBeanIterator iterator = result.getHippoBeans();
-        return new PageableCollection<NewsItem>(iterator, pageSize, currentPage);
-    }
+	private void updateCommentsCount(HstRequest request, PageableCollection news) throws QueryException {
+		List<Integer> commentCount = new ArrayList<Integer>();
 
-    private void updateCommentsCount(HstRequest request, PageableCollection news) throws QueryException {
-        List<Integer> commentCount = new ArrayList<Integer>();
-        
-        HippoBean siteContentBase = getSiteContentBaseBeanForReseller(request);
-        
-        if (siteContentBase == null) {
-            log.warn("Site content base bean is not found: {}", getSiteContentBasePath(request));
-            return;
-        }
-        
-        HippoFolder newsCommentFolder = siteContentBase.getBean("comments/news");
-        
-        if (newsCommentFolder == null) {
-            log.warn("News comment folder is not found: {}/comments/news. So it fails to update comments count", siteContentBase.getPath());
-            return;
-        }
-        
-        for (Object newsItem : news.getItems()) {
-            final HstQuery incomingBeansQuery = ContentBeanUtils.createIncomingBeansQuery((HippoDocumentBean) newsItem, newsCommentFolder, 4, getObjectConverter(), Comment.class, false);
-            commentCount.add(incomingBeansQuery.execute().getSize());
+		HippoBean siteContentBase = getSiteContentBaseBeanForReseller(request);
 
-        }
-        request.setAttribute("commentsCountList", commentCount);
+		if (siteContentBase == null) {
+			log.warn("Site content base bean is not found: {}", getSiteContentBasePath(request));
+			return;
+		}
 
-    }
+		HippoFolder newsCommentFolder = siteContentBase.getBean("comments/news");
+
+		if (newsCommentFolder == null) {
+			log.warn("News comment folder is not found: {}/comments/news. So it fails to update comments count", siteContentBase.getPath());
+			return;
+		}
+
+		for (Object newsItem : news.getItems()) {
+			final HstQuery incomingBeansQuery = ContentBeanUtils.createIncomingBeansQuery((HippoDocumentBean) newsItem, newsCommentFolder, 4, getObjectConverter(), Comment.class, false);
+			commentCount.add(incomingBeansQuery.execute().getSize());
+
+		}
+		request.setAttribute("commentsCountList", commentCount);
+
+	}
 
 
 }
