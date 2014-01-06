@@ -29,15 +29,16 @@
 </c:if>
 <c:if test="${isVendor == 'true'}">
 	<c:if test="${not empty nodeName}">
-		<a href='<hst:link path="/knowledgeportal/knowledgearticle/edit/${nodeName}.html"/>'>Edit</a>
+		<a class="btn btn-default btn-primary" href='<hst:link path="/knowledgeportal/knowledgearticle/edit/${nodeName}.html"/>'><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small></a>
+		<a class="btn btn-default btn-danger" href='<hst:link path="/knowledgeportal/knowledgearticle/delete/${nodeName}.html"/>'><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a>
+		
 	</c:if>
 </c:if>
-
-
 <div class="page">
 	<form name="frmKB" id="frmKB" action="<hst:actionURL/>" method="post">
+	
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW'}">
 				 <h3>Title</h3>
 				 <input type="text" name="title" value="${document.title}"/>
 			</c:when>
@@ -47,7 +48,7 @@
 		</c:choose>
 		
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW'} ">
 				 <h3>Summary</h3>
 				 <input type="text" name="summary" value="${document.summary}"/>
 			</c:when>
@@ -57,7 +58,7 @@
 		</c:choose>
 		
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW' }">
 				<h3>Description</h3>
 				<textarea name="description" id="description" rows="20">
 					<c:out value="${document.description.content}" escapeXml="false"/>
@@ -73,7 +74,7 @@
 		</c:choose>	
 		
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT'}">
+			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW'}">
 				<a href="javascript:$('#frmKB').submit();" id="hrefSave" class="btn btn-default btn-success">Save</a>
 			</c:when>
 		</c:choose>	
