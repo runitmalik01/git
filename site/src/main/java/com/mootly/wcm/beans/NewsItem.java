@@ -20,18 +20,23 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoAssetBean;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocument;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.hippoecm.hst.content.beans.standard.HippoMirrorBean;
 
 import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.beans.compound.ImageSetLink;
 import com.mootly.wcm.utils.Constants;
 
-@Node(jcrType=Constants.NT_NEWSITEM)
+//@Node(jcrType=Constants.NT_NEWSITEM)
+@Node(jcrType = "mootlywcm:newsitem")
+
 public class NewsItem extends Document{
-    
+	static final public String NAMESPACE = "mootlywcm:newsitem";
     private List<ImageSet> images;
     private List<HippoAssetBean> attachments;
     
@@ -88,4 +93,11 @@ public class NewsItem extends Document{
     public String[] getCategories() {
         return getProperty(Constants.PROP_CATEGORIES);
     }  
+    
+    @Override
+    public boolean bind(Object content, javax.jcr.Node node)
+    		throws ContentNodeBindingException {
+    	// TODO Auto-generated method stub
+    	return super.bind(content, node);
+    }
 }
