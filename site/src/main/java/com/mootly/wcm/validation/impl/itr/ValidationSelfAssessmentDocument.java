@@ -18,7 +18,7 @@ import com.mootly.wcm.validation.HippoBeanValidator;
 
 public class ValidationSelfAssessmentDocument implements HippoBeanValidator{
 	Logger logger = LoggerFactory.getLogger(ValidationSelfAssessmentDocument.class);
-	ITRValidationChecks iTRValidationChecks;
+
 
 	@Override
 	public boolean validate(FinancialYear financialYear, ITReturnScreen.PAGE_ACTION pageAction, Map<String,HippoBean> mapOfBeans,Map<String,Object> additionalData,Annotation[] annotations, HippoBeanValidationResponse response) {
