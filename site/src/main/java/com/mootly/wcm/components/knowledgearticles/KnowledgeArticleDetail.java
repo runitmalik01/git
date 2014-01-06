@@ -45,6 +45,8 @@ import com.mootly.wcm.beans.KnowledgeArticle;
 import com.mootly.wcm.beans.Review;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.member.Member;
+import com.mootly.wcm.member.MemberSecurity;
 import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
@@ -60,6 +62,7 @@ public class KnowledgeArticleDetail extends BaseComponent {
 	private static final String EMAIL = "email";
 	private static final String SUCCESS = "success";
 	private static final String ERRORS = "errors";
+	private static final String RefID = "knowledgeportal"; 
 	
 	FormMap parentBeanMap = null;
 	PAGE_ACTION pageAction = null;
@@ -73,6 +76,31 @@ public class KnowledgeArticleDetail extends BaseComponent {
 			return;
 		}
 		request.setAttribute("document", document);
+		// Here i am writing logic to delete my document
+		if(pageAction == PAGE_ACTION.DELETE){
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
+		try {
+			persistableSession = getPersistableSession(request);
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			String baseAbsolutePathToReturnDocuments = getSiteContentBaseBeanForReseller(request).getCanonicalPath() + "/documents/knowledgearticles";
+			KnowledgeArticle knowledgeArticle = (KnowledgeArticle) document;
+			String parentBeanAbsolutePath = (knowledgeArticle != null ?  knowledgeArticle.getCanonicalHandlePath() : null);
+			String parentBeanNameSpace = "mootlywcm:knowledgearticle";
+			String title = GoGreenUtil.getEscapedParameter(request, "title");
+			String parentBeanNodeName = (document != null ?  document.getName() : title); //TODO escape it for node name
+				getItReturnComponentHelper().deleteSingleDocument(parentBeanMap, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, persistableSession, wpm);
+			String targetPath= MemberSecurity.getTargerPath(request, RefID); 
+			response.sendRedirect(targetPath);
+		} catch (Exception e) {
+			log.warn("Failed to create /update KB", e);
+		} finally {
+			if (persistableSession != null) {
+				persistableSession.logout();
+			}
+		}
+		
+	}
 	}
 
 	@Override
@@ -101,7 +129,11 @@ public class KnowledgeArticleDetail extends BaseComponent {
 			String parentBeanNameSpace = "mootlywcm:knowledgearticle";
 			String title = GoGreenUtil.getEscapedParameter(request, "title");
 			String parentBeanNodeName = (document != null ?  document.getName() : title); //TODO escape it for node name
-			getItReturnComponentHelper().saveSingleDocument(parentBeanMap, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, persistableSession, wpm);
+			if(pageAction == PAGE_ACTION.NEW || pageAction == PAGE_ACTION.EDIT){
+				getItReturnComponentHelper().saveSingleDocument(parentBeanMap, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, persistableSession, wpm);
+			}
+			String targetPath= MemberSecurity.getTargerPath(request, RefID); 
+			response.sendRedirect(targetPath);
 		} catch (Exception e) {
 			log.warn("Failed to create /update KB", e);
 		} finally {
@@ -142,7 +174,9 @@ public class KnowledgeArticleDetail extends BaseComponent {
 		if (action != null) {
 			pageAction = PAGE_ACTION.valueOf(action);
 			request.setAttribute("pageAction", pageAction);
-		}		
+		}else{
+			pageAction = PAGE_ACTION.DEFAULT;
+		}
 	}
 	
 	protected boolean validate(HstRequest request, HstResponse response) {
@@ -151,8 +185,6 @@ public class KnowledgeArticleDetail extends BaseComponent {
 		if ( pageAction != null ){
 			switch (pageAction) {
 			case EDIT:
-				
-				
 				break;
 			}
 		}
