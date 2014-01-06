@@ -166,39 +166,14 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 			if (createNew) {
 				//String baseAbsolutePathToReturnDocuments = beanAfterUpdate.getPath() + "/../"
 				itReturnComponentHelper.saveAddNewChild(childBeanMap, parentBeanMap, childBeanLifeCycleHandler, parentBeanLifeCycleHandler, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, InvoiceDocumentDetail.class, wpm.getSession(), wpm);				
-				//check for legacy memberpayment bean if it exists lets add it to the new invoice this way its consistent with the new payment
-				
+				//check for legacy memberpayment bean if it exists lets add it to the new invoice this way its consistent with the new payment				
 			}
 			else if (updateExisting) {
 				//This means that we have the invoice and lets make sure any entries with memberpersonalinformation as source
 				// is updated with the new pricing if any package detail has been changed.
 				//String baseAbsolutePathToReturnDocuments = beanAfterUpdate.getPath() + "/../"
 				itReturnComponentHelper.saveUpdateExistingChild(childBeanMap, parentBeanMap, childBeanLifeCycleHandler, parentBeanLifeCycleHandler, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, InvoiceDocumentDetail.class, wpm.getSession(), wpm, childBeanCanonicalUUID);
-			}
-			
-			//memberPersonalInformation.getImportTDSSuccess()
-			//as of now I am simply going to run the IMPORT from DIT but making sure that the client has been authorized by DIT
-			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(channelInfoWrapper.getWebSiteInfo().getEriUserId(),channelInfoWrapper.getWebSiteInfo().getEriPassword(),channelInfoWrapper.getWebSiteInfo().getEriCertChain(),channelInfoWrapper.getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , financialYear.getAssessmentYearForDITSOAPCall());
-			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26asTaxPayments(),SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,wpm.getSession(),wpm);
-			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,wpm.getSession(),wpm);
-			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,wpm.getSession(),wpm);
-			itReturnComponentHelper.saveElementsToRepository(baseAbsolutePathToReturnDocuments, twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,wpm.getSession(),wpm);
-			
-			//now save an import document
-			FormMap theMapForSOAPResponse = new FormMap();
-			
-			FormField theSOAPOperation = new FormField("soapOperation");
-			theSOAPOperation.addValue(DITSOAPOperation.getTDSDetails.name());
-			theMapForSOAPResponse.addFormField(theSOAPOperation);
-			
-			childBeanLifeCycleHandler = null;
-			parentBeanLifeCycleHandler = null;
-			parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + DITResponseDocument.class.getSimpleName().toLowerCase();
-			parentBeanNameSpace = "mootlywcm:ditResponseDocument";
-			parentBeanNodeName = DITResponseDocument.class.getSimpleName().toLowerCase();
-			itReturnComponentHelper.saveAddNewChild(theMapForSOAPResponse, null, null, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, DITResponseDocumentDetail.class, wpm.getSession(), wpm);
-			
-			
+			}			
 			//now before the page is redirected lets set a parameter so that the next page can do a proper display on what we have imported.
 		}catch (Exception e) {
 			logger.error("Error in afterUpdate ",e);
