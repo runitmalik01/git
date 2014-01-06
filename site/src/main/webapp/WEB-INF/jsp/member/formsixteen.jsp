@@ -1013,8 +1013,8 @@
 			<div class="row show-grid">
 				<div class="col-md-4 col-md-offset-8 decimal">
 					<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
-						class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a
-						id="myModalHrefFormSixteen" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
+						class="btn btn-info">Cancel</a>&nbsp; <a
+						id="myModalHrefFormSixteen" role="button" class="btn btn-default btn-primary" style="color: black">Save</a>
 				</div>
 			</div>
 		</form>

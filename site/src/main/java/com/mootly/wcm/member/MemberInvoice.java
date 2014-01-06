@@ -56,14 +56,14 @@ public class MemberInvoice extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);		
 		request.setAttribute("type", "invoice");
-		List<HippoDocumentBean> serviceDocumentList = loadAllBeansUnderTheFolder(request,response,"services","mootlywcm:Name",SORT_DIRECTION.ASC);
-		if (log.isInfoEnabled()) {
-			if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
-				for (HippoBean theServiceBean:serviceDocumentList) {
-					log.info("The Key:" + theServiceBean + " ---- class name :" + theServiceBean.getClass().getSimpleName());						
-				}
-			}
-		}		
+		List<HippoDocumentBean> serviceDocumentList = loadAllBeansUnderTheFolder(request,response,"documents/services","mootlywcm:Name",SORT_DIRECTION.ASC);
+//		if (log.isInfoEnabled()) {
+//			if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
+//				for (HippoBean theServiceBean:serviceDocumentList) {
+//					log.info("The Key:" + theServiceBean + " ---- class name :" + theServiceBean.getClass().getSimpleName());						
+//				}
+//			}
+//		}		
 		if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
 			request.setAttribute("serviceDocumentList", serviceDocumentList);
 		}
@@ -73,8 +73,8 @@ public class MemberInvoice extends ITReturnComponent {
 		request.setAttribute("availablePaymentTypes", getChannelInfoWrapper().availablePaymentTypes());
 		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
 			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
-			System.out.println(invoiceDocument.getAmountDue());
-			System.out.println(invoiceDocument.getTotalInvoiceAmount());
+			//System.out.println(invoiceDocument.getAmountDue());
+			//System.out.println(invoiceDocument.getTotalInvoiceAmount());
 		}
 		//this is COOL we call citrus for each transaction which was NET Banking, Credit Card, Debit Card and check for respCode
 		// if there is no respCode we need to get it and update the record accordingly

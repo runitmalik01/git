@@ -40,14 +40,14 @@
 		</li>
 		<c:if test="${parentBean.amountDue > 0}">
 			<c:forEach items="${availablePaymentTypes}" var="paymentType">
-				<a class="btn btn-default btn-primary"
-					href="${scriptName}/payment/paymentadd/${paymentType}"><small><i
+				<a id="link_${paymentType}" class="btn btn-default btn-primary  <c:if test="${paymentType.requiresGateway}">classRequiresGateway</c:if>"
+					href="<c:choose><c:when test="${paymentType.requiresGateway}">javascript:void(0)</c:when><c:otherwise>${scriptName}/payment/paymentadd/${paymentType}</c:otherwise></c:choose>"><small><i
 						class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Pay by <fmt:message
 							key="paymentType.${paymentType}.label" /> </small> </a>
 			</c:forEach>
 
 		</c:if>
-	</ul>
+	</ul>	
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
 			<div class="alert alert-danger">
@@ -221,6 +221,7 @@
 					<th><b>Date</b></th>
 					<th><b>Payment By</b></th>
 					<th><b>Amount</b></th>
+					<th><b>Order Id</b></th>
 					<th><b>Status</b></th>
 					<c:if
 						test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
@@ -234,45 +235,54 @@
 						<c:if test="${invoicepaymentdetail.paymentVerificationStatus == 'VERIFIED'}"> 							
 							<c:choose>
 								<c:when
-									test="${invoicepaymentdetail.requiresGateway && not empty invoicepaymentdetail.respCode &&  invoicepaymentdetail.respCode == 'SUCCESS'}">
-									<c:set var="paymentStatus" value="VERIFIED" />
+									test="${invoicepaymentdetail.paymentType.requiresGateway}">										
+									<c:choose>
+										<c:when test="${not empty invoicepaymentdetail.respCode &&  invoicepaymentdetail.respCode == 'SUCCESS'}">
+											<c:set var="paymentStatus" value="VERIFIED" />
+										</c:when>
+										<c:otherwise>
+											<c:set var="paymentStatus" value="UNVERIFIED" />
+										</c:otherwise>
+									</c:choose>
 								</c:when>
 								<c:otherwise>
 									<c:set var="paymentStatus" value="VERIFIED" />
 								</c:otherwise>
 							</c:choose>
 						</c:if>
-						<tr>
-							<td><fmt:formatDate
-									value="${invoicepaymentdetail.paymentDate.time}"
-									timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" /></td>
-							<td><c:out
-									value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}" />
-							</td>
-							<td>
-								<c:choose>
-									<c:when test="${paymentStatus == 'VERIFIED'}">
-										<c:out value="${invoicepaymentdetail.txnAmount}" />
-									</c:when>
-									<c:otherwise>
-										<c:out value="${invoicepaymentdetail.paymentAmount}" />
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td>${paymentStatus}</td>
-							<c:if
-								test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
-								<td><a class="btn btn-default btn-primary"
-									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
-											class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
-									class="btn btn-default btn-danger"
-									href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
-									data-confirm=""><small><i
-											class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
+						<c:if test="${not invoicepaymentdetail.paymentType.requiresGateway || (invoicepaymentdetail.paymentType.requiresGateway && paymentStatus == 'VERIFIED')  || isVendor == 'true'}">
+							<tr>
+								<td><fmt:formatDate
+										value="${invoicepaymentdetail.paymentDate.time}"
+										timeZone="<%=IndianGregorianCalendar.indianTimeZone%>" /></td>
+								<td><c:out
+										value="${fn:replace(invoicepaymentdetail.paymentType,'_',' ')}" />
 								</td>
-							</c:if>
-						</tr>
-						<%--  </c:if> --%>
+								<td>
+									<c:choose>
+										<c:when test="${paymentStatus == 'VERIFIED'}">
+											<c:out value="${invoicepaymentdetail.txnAmount}" />
+										</c:when>
+										<c:otherwise>
+											<c:out value="${invoicepaymentdetail.paymentAmount}" />
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td><c:out value="${invoicepaymentdetail.paymentTransactionId}" /></td>
+								<td>${paymentStatus}</td>
+								<c:if
+									test="${not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+									<td><a class="btn btn-default btn-primary"
+										href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentedit?paymentType=${invoicepaymentdetail.paymentType}"><small><i
+												class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> </a>&nbsp;&nbsp;<a
+										class="btn btn-default btn-danger"
+										href="${scriptName}<c:out value="/payment/${invoicepaymentdetail.canonicalUUID}"/>/paymentdelete?paymentType=${invoicepaymentdetail.paymentType}"
+										data-confirm=""><small><i
+												class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
+									</td>
+								</c:if>
+							</tr>
+						</c:if> 
 					</c:forEach>
 				</c:if>
 			</table>
@@ -325,6 +335,7 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+<%--
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
      $('#filingMode,#services').change(function(){
@@ -342,7 +353,7 @@
 	  });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
-
+--%>
 <hst:element var="metaCustom" name="meta">
 	<hst:attribute name="http-equiv">Cache-Control</hst:attribute>
 	<hst:attribute name="content">no-cache, no-store, must-revalidate</hst:attribute>
@@ -401,14 +412,16 @@
 
 	<hst:element var="uiCustom" name="script">
 		<hst:attribute name="type">text/javascript</hst:attribute>
-	   $(document).ready ( function() {
-	   		$("#myModal").modal();	   		
-	   });
+	  	 $(document).ready ( function() {
+   			$("#myModal").modal();	  
+	   	});
 	</hst:element>
 	<hst:headContribution element="${uiCustom}" category="jsInternal" />
 
 </c:if>
 
-<res:client-validation formId="frmdataInvoice"
+	<hst:include ref="invoicepayment"/>
+
+	<res:client-validation formId="frmdataInvoice"
 	screenConfigurationDocumentName="memberinvoice"
 	formSubmitButtonId="myModalHrefinvoice" />

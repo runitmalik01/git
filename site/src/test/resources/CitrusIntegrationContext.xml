@@ -19,15 +19,15 @@
     <context:annotation-config>
 		<context:component-scan base-package="com.mootly.wcm"></context:component-scan>		
 	</context:annotation-config>
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <!--  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	    <property name="locations">
 	    	<list>
 	    		<value>classpath:CitrusIntegrationContext.properties</value>
 	    	</list>	        	        
 	    </property>
-	</bean>
+	</bean>-->
 	<!--  mock  -->
-	<bean class="com.mootly.wcm.citruspay.MockSequenceGenerator" id="sequenceGenerator"></bean>
+	<bean class="com.mootly.wcm.services.SequenceGeneratorImpl" id="sequenceGenerator"></bean>
 	
 	<!--  REAL  -->
     <!--  Citrus Payment Integration Common Services -->
@@ -38,6 +38,8 @@
         <property name="sequenceGenerator" ref="sequenceGenerator"/>      
         <property name="accessKey"><value>${accessKey}</value></property>
         <property name="secretKey"><value>${secretKey}</value></property>
+        <property name="currency"><value>INR</value></property>
+        <property name="merchantId"><value>${merchantId}</value></property>
     </bean>
     <bean id="paymentServiceXML" parent="paymentServiceGeneric" class="com.mootly.wcm.services.citruspay.impl.PaymentServiceXML" abstract="true"/>
     
@@ -45,8 +47,19 @@
     <bean id="endPointURL_Transaction" class="java.net.URL">
     	<constructor-arg value="${endPointURL_Transaction}"/>
     </bean>	
+    <bean id="endPointURL_Checkout" class="java.net.URL">
+    	<constructor-arg value="${checkout_URL}"/>
+    </bean>	
     <!--  we need an instance of this bean every time so we are making it prototype scope -->
     <bean scope="prototype" id="transactionServiceHTTPConnection" class="java.net.HttpURLConnection"  factory-bean="endPointURL_Transaction" factory-method="openConnection">
+        <property name="requestMethod"><value>POST</value></property>
+        <property name="doInput"><value>true</value></property>
+        <property name="doOutput"><value>true</value></property>
+        <property name="useCaches"><value>false</value></property>
+        <property name="allowUserInteraction"><value>false</value></property>
+	</bean>
+	
+    <bean scope="prototype" id="transactionServiceHTTPConnectionForCheckout" class="java.net.HttpURLConnection"  factory-bean="endPointURL_Checkout" factory-method="openConnection">
         <property name="requestMethod"><value>POST</value></property>
         <property name="doInput"><value>true</value></property>
         <property name="doOutput"><value>true</value></property>

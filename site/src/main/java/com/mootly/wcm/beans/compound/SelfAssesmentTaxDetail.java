@@ -145,7 +145,6 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 	public boolean bindToNode(javax.jcr.Node node) {
     	try {
     		super.bindToNode(node);
-    		log.warn("Bind to Node for TdsSalary Called");
     		node.setProperty(BSR,getP_BSR());
 			node.setProperty(SERIAL, getP_Serial());
 			node.setProperty(DATE, getP_Date());
@@ -229,7 +228,7 @@ public class SelfAssesmentTaxDetail extends FlexibleDocument implements FormMapF
 			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
 				date = (Date)formatter.parse(strDate); 
-				log.info("date"+date);
+				//log.info("date"+date);
 				cal.setTime(date);
 				setP_Date(cal);
 			}

@@ -8,9 +8,16 @@ For Mootly ITR Pricing Plans
 	<fmt:message key="service.price" />
 </c:set>
 <hippo-gogreen:title title="${servicepricetitle}" />
-<h2 class="title text-center text-success">
-	<fmt:message key="service.price.title" />
-</h2>
+<c:set var="flatPrice" value="299"/>
+<div class="page-header">
+	<h1><fmt:message key="service.price.title" /><small class="alert alert-info">
+        <strong>Limited time promotion!</strong>Enjoy one low flat price of <w4india:inr value="${flatPrice}"></w4india:inr>
+</small></h1>
+</div>
+
+
+
+
 
 <form>
 	<table class="table table-bordered table-hover table-striped">
@@ -36,7 +43,7 @@ For Mootly ITR Pricing Plans
 				</th>
 				<c:forEach items="${documents}" var="document">
 					<td width="15%">
-						&#8377; <c:out value="${document.efilePricing}" />
+						&#8377; <del><c:out value="${document.efilePricing}" /></del><c:out value="${flatPrice}"/>
 					</td>
 				</c:forEach>
 			</tr>
@@ -317,6 +324,7 @@ For Mootly ITR Pricing Plans
 	</div>
 	<table width="100%"
 		class="table table-bordered table-hover table-striped">
+		<%--
 		<tr>
 			<th width="15%"><fmt:message key="service.price.taxplanning" />
 			</th>
@@ -326,6 +334,8 @@ For Mootly ITR Pricing Plans
 				</td>
 			</c:forEach>
 		</tr>
+		 --%>
+		 <%--
 		<tr>
 			<th width="15%"><fmt:message key="service.price.expert" /></th>
 			<c:forEach items="${documents}" var="document">
@@ -334,6 +344,7 @@ For Mootly ITR Pricing Plans
 				</td>
 			</c:forEach>
 		</tr>
+		 --%>
 		<tr>
 			<th width="15%"><fmt:message key="service.price.protection" />
 			</th>
@@ -346,40 +357,40 @@ For Mootly ITR Pricing Plans
 		<tr>
 			<th width="15%"><fmt:message key="service.price.itr" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%">&#8377; <c:out
-						value="${document.pricingPlanAdditionalServices.itrSubmission }" />
+				<td width="5%">&#8377; <del><c:out
+						value="${document.pricingPlanAdditionalServices.itrSubmission }" /></del> FREE
 				</td>
 			</c:forEach>
 		</tr>
 		<tr>
 			<th width="15%"><fmt:message key="service.price.refund" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%">&#8377;<c:out
-						value="${document.pricingPlanAdditionalServices.refundStatus}" />
+				<td width="5%">&#8377; <del><c:out
+						value="${document.pricingPlanAdditionalServices.refundStatus}" /></del> FREE
 				</td>
 			</c:forEach>
 		</tr>
 		<tr>
 			<th width="15%"><fmt:message key="service.price.status" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%">&#8377; <c:out
-						value="${document.pricingPlanAdditionalServices.itrRecieptStatus}" />
+				<td width="5%">&#8377; <del><c:out
+						value="${document.pricingPlanAdditionalServices.itrRecieptStatus}" /></del> FREE
 				</td>
 			</c:forEach>
 		</tr>
 		<tr>
 			<th width="15%"><fmt:message key="service.price.return" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%">&#8377;<c:out
-						value="${document.pricingPlanAdditionalServices.returnProcessingStatus}" />
+				<td width="5%">&#8377; <del><c:out
+						value="${document.pricingPlanAdditionalServices.returnProcessingStatus}" /></del> FREE
 				</td>
 			</c:forEach>
 		</tr>
 		<tr>
 			<th width="15%"><fmt:message key="service.price.manager" /></th>
 			<c:forEach items="${documents}" var="document">
-				<td width="5%">&#8377;<c:out
-						value="${document.pricingPlanAdditionalServices.documentManager}" />
+				<td width="5%">&#8377;<del><c:out
+						value="${document.pricingPlanAdditionalServices.documentManager}" /></del> FREE
 				</td>
 			</c:forEach>
 		</tr>

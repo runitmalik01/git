@@ -1,3 +1,4 @@
+<%@tag import="com.mootly.wcm.beans.DITResponseDocument"%>
 <%@tag import="com.mootly.wcm.model.VerificationStatus"%>
 <%@tag import="com.mootly.wcm.channels.ChannelInfoWrapper"%>
 <%@tag import="com.mootly.wcm.beans.InvoiceDocument"%>
@@ -5,8 +6,6 @@
 <%@tag import="com.mootly.wcm.model.FilingSection"%>
 <%@tag import="com.mootly.wcm.model.ITReturnType"%>
 <%@tag import="com.mootly.wcm.model.FinancialYear"%>
-<%@tag
-	import="net.sf.ehcache.store.MemoryStoreEvictionPolicy.MemoryStoreEvictionPolicyEnum"%>
 <%@tag import="com.mootly.wcm.model.ITRServiceDelivery"%>
 <%@tag import="org.hippoecm.hst.util.HstResponseUtils"%>
 <%@tag import="org.hippoecm.hst.core.component.HstResponse"%>
@@ -145,8 +144,12 @@ boolean showImportTDSButton = false;
 if (channelInfoWrapper != null) {
 	isEriEnabled = channelInfoWrapper.getIsEriEnabled();
 	if (isEriEnabled && memberPersonalInformation != null) {
-		if ( memberPersonalInformation.getChoiceImportTDS() == null ){
-			showImportTDSButton = true;
+		DITResponseDocument ditResponseDocument = (DITResponseDocument) request.getAttribute(DITResponseDocument.class.getSimpleName().toLowerCase());
+		if ( ditResponseDocument != null ){
+			Integer totalGetTDSDetail = ditResponseDocument.getTotalCountOfOperation("getTDSDetails");
+			if (totalGetTDSDetail == null || totalGetTDSDetail == 0) {
+				showImportTDSButton = true;
+			}
 		}
 	}
 }
@@ -440,23 +443,23 @@ request.setAttribute("isDITVerified",isDITVerified);
 	<c:choose>
 		<c:when test="${fn:endsWith(scriptName,'servicerequest-itr.html')}">
 			<div class="alert alert-danger">
-				<small> Unverified Information. You will not be able to file
+				Unverified Information. You will not be able to file
 					your income tax until the information is verified. Review your
 					information (Name,DOB and PAN) and Click on the Save button. <c:if
 						test="${isVendor == 'true' && not empty memberpersonalinformation}">
 						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
-					</c:if> </small>
+					</c:if>
 			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-danger">
-				<small> Unverified Information. You will not be able to file
+				Unverified Information. You will not be able to file
 					your income tax until the information is verified <a class="alert-link"
 					href="${scriptName}../../servicerequest-itr.html">Click here to
 						review your information (Name,DOB and PAN)</a> <c:if
 						test="${isVendor == 'true' && not empty memberpersonalinformation}">
 						<c:out value="${memberpersonalinformation.ditVerificationMessage}" />
-					</c:if> </small>
+					</c:if>
 			</div>
 	</c:otherwise>
 	</c:choose>
@@ -541,7 +544,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 		</b>
 		</span> | <span>Payment : <b> <c:choose>
 					<c:when test="${invoicePresent == 'false'}">
-						<a href="${scriptName}/../memberinvoice.html/create">Create
+						<a href="${scriptName}/../memberinvoice.html">Create
 							Invoice</a>
 					</c:when>
 					<c:when test="${invoicePresent == 'true' }">
@@ -617,7 +620,7 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 		<hst:attribute name="type">text/javascript</hst:attribute>
 	   $(document).ready ( function() {
 	   		$("#dismissImport").click ( function() {
-	   			 $("#modalForImport").modal();
+	   			 //$("#modalForImport").modal();
 	   		}); 		
 	   });
 	</hst:element>

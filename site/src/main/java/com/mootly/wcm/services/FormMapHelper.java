@@ -53,6 +53,10 @@ public class FormMapHelper {
 			        String fieldName = formField.name();
 			        String propertyName = formField.propertyName();		
 			        Object theObjValue = directFieldAccessor.getPropertyValue(propertyName);
+			        if (theObjValue == null) {
+			        	log.info(propertyName + " value is NULL");
+			        	continue;
+			        }
 			        Class<? extends Object> theConverter = theObjValue.getClass(); 
 			        String theValue = null;
 			        if (theConverter != String.class) {		        		

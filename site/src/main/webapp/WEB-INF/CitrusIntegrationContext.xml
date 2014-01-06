@@ -38,6 +38,9 @@
         <property name="sequenceGenerator" ref="sequenceGenerator"/>      
         <property name="accessKey"><value>${accessKey}</value></property>
         <property name="secretKey"><value>${secretKey}</value></property>
+        <property name="currency"><value>INR</value></property>
+        <property name="merchantId"><value>${merchantId}</value></property>
+        <property name="checkoutURL"><value>${checkout_URL}</value></property>
     </bean>
     <bean id="paymentServiceXML" parent="paymentServiceGeneric" class="com.mootly.wcm.services.citruspay.impl.PaymentServiceXML" abstract="true"/>
     

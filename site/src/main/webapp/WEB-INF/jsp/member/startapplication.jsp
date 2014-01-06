@@ -59,37 +59,42 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<div id="ditPanInvalid" class="alert alert-danger <c:if test="${empty noPanMatchFound}">hide</c:if>"><strong><fmt:message key="err.match.pan.dit"/></strong></div>
 	<div id="lastNameInvalid" class="alert alert-danger hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
 	<div id="error" class="alert alert-danger" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
+	<%--
 	<h4>
 		<c:out value="${filingStatus}" /> Information
 	</h4>
+	 --%>
 	<form id="frmPersonalInfo" action="${actionUrl}" method="post"
 		name="pi">
-			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
-				<div class="col-md-12">
-					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.filingSection.xmlCode == '17'}">checked</c:if> value="revisingNoNotice" id="revisingNoNotice" name="returnTypeChoice" class="returnTypeChoice">I am revising my return for AY ${financialYear.displayAssessmentYear} and I have already submitted my original return.
-				</div>
-			</div>
-			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
-				<div class="col-md-8">
-					<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice" class="returnTypeChoice">I am filing my return in response to a notice received from the Income Tax Department and Section is
-				</div>
-				<div class="col-md-4" id="NoticeSection">
-					<select name="revisingWithNoticeSection" id="revisingWithNoticeSection">
-						<c:forEach items="${filingSections}" var="filingSection">
-							<c:if test="${filingSection.requiresNotice}">
-								<option <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == filingSection.xmlCode}">selected</c:if> value="${filingSection.xmlCode}">${fn:toUpperCase(filingSection.desc)}</option>
-							</c:if>
-						</c:forEach>
-					</select>
-				</div>
-			</div>
-			<div class="row show-grid" style="font-family: arial;font-size: 11px;border: 1px dashed #ccc;">
-				<div class="col-md-8">
-					<input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == '11' ||  memberpersonalinformation.filingSection.xmlCode == '12'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice" class="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )
-				</div>
-			</div>
 		<fieldset>
 			<legend>Filing Status</legend>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<tr>
+						<td colspan="2" align="left"><input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.filingSection.xmlCode == '17'}">checked</c:if> value="revisingNoNotice" id="revisingNoNotice" name="returnTypeChoice" class="returnTypeChoice">I am revising my return for AY ${financialYear.displayAssessmentYear} and I have already submitted my original return.</td>
+					</tr>
+					<tr>
+						<td align="left">
+							<input type="radio" <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection.requiresNotice}">checked</c:if> value="revisingWithNotice" id="revisingWithNotice" name="returnTypeChoice" class="returnTypeChoice">I am filing my return in response to a notice received from the Income Tax Department and Section is							
+						</td>
+						<td align="left">
+							<select name="revisingWithNoticeSection" id="revisingWithNoticeSection">
+								<c:forEach items="${filingSections}" var="filingSection">
+									<c:if test="${filingSection.requiresNotice}">
+										<option <c:if test="${not empty memberpersonalinformation && memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == filingSection.xmlCode}">selected</c:if> value="${filingSection.xmlCode}">${fn:toUpperCase(filingSection.desc)}</option>
+									</c:if>
+								</c:forEach>
+							</select>						
+						</td>
+					</tr>			
+					<tr>
+						<td colspan="2" align="left"><input  <c:if test="${empty memberpersonalinformation || memberpersonalinformation.returnType == 'O' && not empty memberpersonalinformation.filingSection && memberpersonalinformation.filingSection.xmlCode == '11' ||  memberpersonalinformation.filingSection.xmlCode == '12'}">checked</c:if> type="radio" value="originalReturn" id="originalReturn" name="returnTypeChoice" class="returnTypeChoice">None of the above (This is my first return for assessment year ${financialYear.displayAssessmentYear} )</td>
+					</tr>
+				</table>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Employment Category</legend>
 			<div class="row show-grid">
 				<%--
 				<div class="col-md-3">

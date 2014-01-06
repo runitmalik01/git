@@ -13,12 +13,14 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 	final String strPaymentTransactionId;
 	final HstRequest hstRequest;
 	final boolean isSavedByVendor;
+	final boolean isGatewayForm;
 
-	public InvoicePaymentDetailBeanHandler(PaymentType paymentType,HstRequest hstRequest,String strPaymentTransactionId,boolean isSavedByVendor) {
+	public InvoicePaymentDetailBeanHandler(PaymentType paymentType,HstRequest hstRequest,String strPaymentTransactionId,boolean isSavedByVendor,boolean isGatewayForm) {
 		this.paymentType = paymentType;
 		this.hstRequest = hstRequest;
 		this.strPaymentTransactionId = strPaymentTransactionId;
 		this.isSavedByVendor = isSavedByVendor;
+		this.isGatewayForm = isGatewayForm;
 	}
 
 	public final String getStrPaymentTransactionId() {
@@ -72,6 +74,10 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 					if (invoicePaymentDetail.getPaymentVerificationStatusStr()!= null) {
 						invoicePaymentDetail.setPaymentVerificationStatusStr(invoicePaymentDetail.getPaymentVerificationStatusStr());
 					}
+				}
+				//let the amount due be the paymentAmount
+				if (isGatewayForm && invoicePaymentDetail.getPaymentType().getRequiresGateway()) {
+					invoicePaymentDetail.setPaymentAmount( invoiceDocument.getAmountDue() );
 				}
 				//invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());				
 			}

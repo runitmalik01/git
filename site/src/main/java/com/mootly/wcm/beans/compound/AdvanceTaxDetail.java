@@ -65,6 +65,28 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
 
+	Boolean isImported;
+	private boolean isReviewed;
+	private Boolean isImportedFromDIT;
+	
+	public Boolean getIsImported() {
+		if (isImported == null) isImported = getProperty("mootlywcm:isimport");
+		return isImported;
+	}
+	public void setIsImported(Boolean isImported) {
+		this.isImported = isImported;
+	}
+	
+	public final Boolean isImportedFromDIT() {
+		if ( isImportedFromDIT == null) isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
+		return isImportedFromDIT;
+	}
+	
+
+	public final void setImportedFromDIT(boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
+	}
+	
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
@@ -137,11 +159,11 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 	}
 	public void bindToNode(javax.jcr.Node node) throws RepositoryException {
 		try {
-			log.warn("Bind to Node for TdsSalary Called");
-					node.setProperty(BSR,getP_BSR());
-					node.setProperty(SERIAL, getP_Serial());
-					node.setProperty(DATE, getP_Date());
-					node.setProperty(AMOUNT,getP_Amount());
+			node.setProperty(BSR,getP_BSR());
+			node.setProperty(SERIAL, getP_Serial());
+			node.setProperty(DATE, getP_Date());
+			node.setProperty(AMOUNT,getP_Amount());
+			if (isImportedFromDIT() != null) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 			throw re;
@@ -186,6 +208,12 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 			double amt=Double.parseDouble(strAmount);
 			setP_Amount(amt);
 		}
+		
+		if ( formMap.getField("isImportedFromDIT") != null) {
+			String isImportedFromDIT=formMap.getField("isImportedFromDIT").getValue();			
+			setImportedFromDIT(Boolean.valueOf(isImportedFromDIT));
+		}
+		
 		if ( formMap.getField("date_creditadv") != null) {
 			String strDate = formMap.getField("date_creditadv").getValue();
 			Date date = null ;
@@ -194,7 +222,7 @@ public class AdvanceTaxDetail extends HippoItem implements FormMapFiller {
 			GregorianCalendar cal=(GregorianCalendar) GregorianCalendar.getInstance();
 			try{
 				date = (Date)formatter.parse(strDate); 
-				log.info("date"+date);
+				//log.info("date"+date);
 				cal.setTime(date);
 				setP_Date(cal);
 			}

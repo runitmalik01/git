@@ -6,7 +6,7 @@ public interface ServicePriceParamsInfo {
 	
 	String PRICING_PARAM = "pricingLocation";
 	String DOC_TYPE = "mootlywcm:PricingPlan";
-	String DEFAULT_VALUE = "mootlypricingplan";
+	String DEFAULT_VALUE = "documents/mootlypricingplan";
 	String EX_PRICING_Name = "excludePricingName";
 
     @Parameter(name = PRICING_PARAM, defaultValue = DEFAULT_VALUE, required = false, displayName = "Pricing Location")

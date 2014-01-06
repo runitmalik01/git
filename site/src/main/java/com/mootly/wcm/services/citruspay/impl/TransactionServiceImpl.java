@@ -46,7 +46,9 @@ public class TransactionServiceImpl extends PaymentServiceXML implements Transac
 		return (HttpURLConnection) applicationContext.getBean("transactionServiceHTTPConnection");
 	}
 	
-	
+	/**
+	 * NOT BEING USED
+	 */
 	@Override
 	public Map<String, Object> acceptITRPaymentByDebitOrCreditCard(
 			String memberLoginName, FinancialYear financialYear, String PAN,
@@ -57,7 +59,7 @@ public class TransactionServiceImpl extends PaymentServiceXML implements Transac
 			String lastName, String mobile,String address, String addressCity,String addressState, String addressZip) {
 		// TODO Auto-generated method stub
 		String merchantTxId = newMerchantTxnId();
-		String hMacSignature = getHMACSignature(merchantTxId, amount);
+		String hMacSignature = getHMACSignatureMOTO(merchantTxId, amount);
 		
 		Map<String,String> headers = getHeaders(hMacSignature);
 		//lets make the body
@@ -136,7 +138,7 @@ public class TransactionServiceImpl extends PaymentServiceXML implements Transac
 		if (merchantTxId == null) {
 			merchantTxId = newMerchantTxnId(); //generate the transid
 		}
-		String hMacSignature = getHMACSignature(merchantTxId, amount);
+		String hMacSignature = getHMACSignatureMOTO(merchantTxId, amount);
 		
 		Map<String,String> headers = getHeaders(hMacSignature);
 		//lets make the body

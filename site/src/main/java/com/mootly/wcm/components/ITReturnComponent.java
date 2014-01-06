@@ -311,24 +311,16 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		if (!hasInitComplete) {
 			try {
-				initComponent(request,response);
+				initComponent(request,response,false);
 				fillDueDate(request,response); //this will fill the due date
 				executeValidationChain(request,response);
-			}
-			catch (InvalidPANException inpe) {
-				redirectToMemberHome(request,response);
-				return;
-			}
-			catch (InvalidNavigationException ine) {
-				redirectToNotFoundPage(response);
-				return;
-			}
+			}			
 			catch (Exception ex) {
 				log.error("Error in initializing component. FATAL",ex);
 				redirectToNotFoundPage(response);
 				return;
 			}
-			//hasInitComplete = true;
+			hasInitComplete = true;
 		}
 		if (getPAN() != null && (filingStatus == null || filingStatus.equals(FilingStatus.UNKNOWN))) {
 			log.error("Unknown Filing status for PAN:" + getPAN());
@@ -649,18 +641,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
 		if (!hasInitComplete) {
-			try {
-				initComponent(request,response);
-			}catch (InvalidPANException pse) {
-				redirectToMemberHome(request,response);
-			}
-			catch (InvalidNavigationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				redirectToNotFoundPage(response);
-				return;
-			}
-			//hasInitComplete = true;
+			initComponent(request,response,false);
+			hasInitComplete = true;
 		}
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 		String[] vendorFields = formFields.fieldNamesVendorOnly();
@@ -968,8 +950,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	public final HippoBean getHippoBeanMemberBase() {
 		return hippoBeanMemberBase;
 	}
-
-	protected void initComponent(HstRequest request,HstResponse response) throws InvalidNavigationException,InvalidPANException{
+	
+	@Override
+	protected void initComponent(HstRequest request,HstResponse response,boolean callSuper){		
+		if (callSuper) super.initComponent(request, response,false);
 		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
 
 		//configuration details for RetrievePanInformation Dit Service.
@@ -992,9 +976,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		redirectURLToSamePage = getScriptName();// getRedirectURL(request,response,FormSaveResult.FAILURE);
 		nextScreenSiteMapItemRefId = itReturnComponentHelper.getParamValueFromRequestContext(request, "nextScreen");// request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
 		//we must make sure itReturnType and PAN are not empty as well as they are valid
-		if (!StringUtils.isEmpty(pan) && !DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
-			throw new InvalidPANException("INVALID PAN NUMBER");
-		}
+		
 		itReturnPackage = itReturnComponentHelper.getITReturnPackage(request);
 		filingStatus = itReturnComponentHelper.getFilingStatus(getPAN());
 		//how to find the scriptName and the depth
@@ -1406,7 +1388,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			return false;
 		}
 		else {
-			log.info("could not possible");
+			//log.info("could not possible");
 			return true;
 		}
 	}

@@ -57,7 +57,6 @@ import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.components.cms.LogComponentManager;
-import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
@@ -104,14 +103,9 @@ public class BaseComponent extends BaseHstComponent {
 	public final EFileService geteFileService() {
 		return eFileService;
 	}
-
-	@Override
-    public void doBeforeRender(HstRequest request, HstResponse response) {
-        super.doBeforeRender(request, response);
-        
-        ComponentUtil.doRedirectionOnWrongLandingMount(request, response);
-        
-        isReseller = itReturnComponentHelper.isReSeller(request);
+	
+	protected void initComponent(HstRequest request,HstResponse response,boolean callSuper){		
+		  isReseller = itReturnComponentHelper.isReSeller(request);
     	resellerId = itReturnComponentHelper.getResellerId(request);
         
         request.setAttribute("preview", isPreview(request));
@@ -128,13 +122,13 @@ public class BaseComponent extends BaseHstComponent {
         String contentCssClass = getParameter("contentCssClass",request);
         String widgetsCssClass = getParameter("widgetsCssClass",request);
         String hasGrid = getParameter("hasGrid",request);
-//        if (log.isInfoEnabled()) {
-//        	log.info("theme:" + theme);
-//        	log.info("template:" + template);
-//        	log.info("bodyCssClass:" + bodyCssClass);
-//        	log.info("contentCssClass:" + contentCssClass);
-//        	log.info("widgetsCssClass:" + widgetsCssClass);
-//        }
+//	        if (log.isInfoEnabled()) {
+//	        	log.info("theme:" + theme);
+//	        	log.info("template:" + template);
+//	        	log.info("bodyCssClass:" + bodyCssClass);
+//	        	log.info("contentCssClass:" + contentCssClass);
+//	        	log.info("widgetsCssClass:" + widgetsCssClass);
+//	        }
         if (theme != null) request.setAttribute("theme", theme);
         if (template != null) request.setAttribute("template", template);
         if (bodyCssClass != null) request.setAttribute("bodyCssClass", bodyCssClass);
@@ -212,6 +206,16 @@ public class BaseComponent extends BaseHstComponent {
 		}
 
 		request.setAttribute("resellerId", resellerId);
+	}
+
+	@Override
+    public void doBeforeRender(HstRequest request, HstResponse response) {
+        super.doBeforeRender(request, response);
+        initComponent(request, response, true);
+        
+        ComponentUtil.doRedirectionOnWrongLandingMount(request, response);
+        
+      
    
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-package", request.getRequestContext().getResolvedMount().getMount());
 		String urlToResellerPackage = link.toUrlForm(request.getRequestContext(), true);
@@ -249,7 +253,9 @@ public class BaseComponent extends BaseHstComponent {
     public void doAction(HstRequest request, HstResponse response)
     		throws HstComponentException {
     	// TODO Auto-generated method stub
+    	initComponent(request, response, true);
     	super.doAction(request, response);
+    	/*
     	isReseller = itReturnComponentHelper.isReSeller(request);
     	resellerId = itReturnComponentHelper.getResellerId(request);
     	webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();

@@ -4105,39 +4105,60 @@
       </sv:node>
     </sv:node>
   </sv:node>
-  <sv:node sv:name="memberinvoice">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>a01a5533-3ac9-4f85-ade3-62cfa394af17</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage.re</sv:value>
-    </sv:property>
-    <sv:node sv:name="main">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:component</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>a2f51753-1546-4071-b020-27f0ec039ad9</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>standard.main.re</sv:value>
-      </sv:property>
-      <sv:node sv:name="content">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>hst:component</sv:value>
-        </sv:property>
-        <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>3367093f-4893-4e2c-9558-317afc7138ec</sv:value>
-        </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/memberinvoice</sv:value>
-        </sv:property>
-      </sv:node>
-    </sv:node>
+  <!-- update -->
+  <sv:node sv:name="memberinvoice" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>a01a5533-3ac9-4f85-ade3-62cfa394af17</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>a2f51753-1546-4071-b020-27f0ec039ad9</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>3367093f-4893-4e2c-9558-317afc7138ec</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/memberinvoice</sv:value>
+	      </sv:property>
+	      <sv:node sv:name="invoicepayment">
+	        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	          <sv:value>hst:component</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="jcr:uuid" sv:type="String">
+	          <sv:value>24ce656c-63f0-403a-8ba5-e08e3f40dad6</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	          <sv:value>gatewayForm</sv:value>
+	          <sv:value>action</sv:value>
+	        </sv:property>
+	        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	          <sv:value>true</sv:value>
+	          <sv:value>NEW_CHILD</sv:value>
+	        </sv:property>
+	        <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	          <sv:value>hst:components/invoice-payment</sv:value>
+	        </sv:property>
+	      </sv:node>
+	    </sv:node>
+	  </sv:node>
   </sv:node>
+  <!-- /update -->
   <sv:node sv:name="memberticket">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>

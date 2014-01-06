@@ -1,14 +1,20 @@
 package com.mootly.wcm.services.ditws.impl;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.activation.DataHandler;
-import javax.mail.util.ByteArrayDataSource;
+//import javax.mail.util.ByteArrayDataSource;
 import javax.xml.soap.AttachmentPart;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
@@ -75,11 +81,29 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 		try {
 			SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapperSubmitBulkITR, inputParams);
 			if (bytes != null) {
-				ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(bytes, "application/octet-stream");
-				DataHandler dataHandler = new DataHandler(byteArrayDataSource);
+				String tmpDir = System.getProperty("java.io.tmpdir");
+				String uuid = UUID.randomUUID().toString();
+				//create the dir
+				new File(tmpDir + "/" + uuid).mkdir();
+				String pdfFileName = "samplefile.zip";
+				String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
+				FileOutputStream fo = new FileOutputStream(temporaryPathToPDF);
+				fo.write(bytes);
+				fo.flush();
+				fo.close();
+				File theFile = new File (temporaryPathToPDF);
+				URL theURLToFile = theFile.toURI().toURL();
+				if (theURLToFile != null) {
+					if (logger.isInfoEnabled()) {
+						logger.info("theURLToFile:" + theURLToFile.toExternalForm());
+					}
+				}
+				//ByteArrayDataSource byteArrayDataSource = new ByteArrayDataSource(bytes, "application/zip");
+				DataHandler dataHandler = new DataHandler(theURLToFile);
 				AttachmentPart attachmentPart = soapMessage.createAttachmentPart(dataHandler);
+				attachmentPart.setContentType("application/octet-stream");
 				attachmentPart.setMimeHeader("Content-Type", "application/xml");
-				attachmentPart.setContent(new ByteArrayInputStream(bytes),"application/zip");
+				//attachmentPart.setContent(new ByteArrayInputStream(bytes),"application/octet-stream");
 				//attachmentPart.setContentType("application/xml");
 				//attachmentPart.setRawContent(new ByteArrayInputStream(bytes));//, "MIME");
 				attachmentPart.setContentId("itrXMLFile");
@@ -97,13 +121,23 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 			// TODO Auto-generated catch block
 			logger.error("Malformed URL",e);
 			e.printStackTrace();
+			throw new InvalidFormatException(e);
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			logger.error("XPathExpressionException",e);
+			throw new InvalidFormatException(e);
 		} catch (SOAPException e) {
 			// TODO Auto-generated catch block
 			logger.error("SOAPException",e);
+			throw new InvalidFormatException(e);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new InvalidFormatException(e);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new InvalidFormatException(e);
 		}		
-		return null;
 	}
 }

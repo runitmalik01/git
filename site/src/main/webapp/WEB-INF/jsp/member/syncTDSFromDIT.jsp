@@ -27,47 +27,45 @@
 		</div>
 	</c:forEach>
 </c:if>
-<h3>Please review the data
-	and click on Import if you want this data to be imported in your tax
-	return</h3>
-<c:if test="${not empty totalGetTDSDetail && totalGetTDSDetail > 0}">
-	<div>
-		<span class="label label-default label-warning">Our record indicates that you have already imported your 26AS information.Re-importing the information may result in duplicates</span>
+<c:if test="${not empty totalToBeImported && totalToBeImported == 0}">
+	<div class="alert alert-info">
+		Our records indicates that your income tax has all the latest 26AS information.
 	</div>
 </c:if>
-<c:choose>
-	<c:when test="${pageAction == 'SYNC_TDS_FROM_DIT'}">
-		<form id="tdsfromdit" action="${actionUrl}" method="post"
-			name="tdsfromdit">
-			<h4>TDS Salaries</h4>
+<c:if test="${pageAction == 'SYNC_TDS_FROM_DIT'}">					
+			<h4>26AS Information from Department of Income Tax</h4>
+			<c:set var="totalTDS" value="0"/>
 			<table class="table table-striped">
 				<tr>
-					<th>Deductor Name</th>
-					<th>TAN of Deductor</th>
+					<th>Category</th>
+					<th>TAN of Deductor/BSR Code</th>
+					<th>Deductor Name/Sr No of Challan</th>
+					<th>Date of Deposit</th>	
 					<th>Income Chargable on Salary</th>
-					<th>Total TDS on Salary</th>
+					<th>Total TDS/TCS</th>					
+					<th>Already Imported?</th>
 				</tr>
-				<c:choose>
-					<c:when
-						test="${not empty  twenty26asResponse.twenty26astdsOnSalaries && fn:length(twenty26asResponse.twenty26astdsOnSalaries) > 0}">
-						<c:forEach var="anItem"
-							items="${twenty26asResponse.twenty26astdsOnSalaries}">
-							<tr>
-								<td><c:out
-										value="${anItem.employerOrDeductorOrCollecterName}" /></td>
-								<td><c:out value="${anItem.TAN}" /></td>
-								<td align="right"><c:out value="${anItem.incChrgSal}" /></td>
-								<td align="right"><c:out value="${anItem.totalTDSSal}" />
-								</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<h5 style="font-style: italic; color: blue;">No data for TDS
-							Salaries</h5>
-					</c:otherwise>
-				</c:choose>
-			</table>
+				<c:if test="${not empty  twenty26asResponse.twenty26astdsOnSalaries && fn:length(twenty26asResponse.twenty26astdsOnSalaries) > 0}">
+					<c:forEach var="anItem"
+						items="${twenty26asResponse.twenty26astdsOnSalaries}">
+						<tr>
+							<td>Salaries</td>
+							<td><c:out value="${anItem.TAN}" /></td>
+							<td><c:out value="${anItem.employerOrDeductorOrCollecterName}" /></td>
+							<td></td>
+							<td align="right"><c:out value="${anItem.incChrgSal}" /></td>
+							<td align="right"><c:out value="${anItem.totalTDSSal}" /></td>
+							<td>
+								<c:if test="${anItem.hasAlreadyBeenImported == 'true'}">
+									<span class="glyphicon glyphicon-ok"></span>
+									<a href="${scriptName}../../formsixteen.html" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+								</c:if>
+							
+							</td>
+						</tr>
+						<c:set var="totalTDS" value="${totalTDS + anItem.totalTDSSal}"/>
+					</c:forEach>
+				</c:if>
 			<%-- TDS Other Than Salaries --%>
 			<%--
 	String DeductedYr;
@@ -77,45 +75,28 @@
 	String TAN;
 	String ClaimOutOfTotTDSOnAmtPaid;
 	 --%>
-			<h4>TDS Other than Salaries</h4>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Deductor Name</th>
-						<th>TAN of Deductor</th>
-						<th>Deducted Year</th>
-						<th>TDS Certificate No.</th>
-						<th>Total TDS On Amount Paid</th>
-						<th>Claim Out Of Total TDS On Amount Paid</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:choose>
-						<c:when
-							test="${not empty  twenty26asResponse.twenty26astdsOtherThanSalaries && fn:length(twenty26asResponse.twenty26astdsOtherThanSalaries) > 0}">
-							<c:forEach var="anItem"
-								items="${twenty26asResponse.twenty26astdsOtherThanSalaries}">
-								<tr>
-									<td><c:out
-											value="${anItem.employerOrDeductorOrCollecterName}" /></td>
-									<td><c:out value="${anItem.TAN}" /></td>
-									<td><c:out value="${anItem.deductedYr}" /></td>
-									<td><c:out value="${anItem.uniqueTDSCerNo}" /></td>
-									<td align="right"><c:out value="${anItem.totTDSOnAmtPaid}" />
-									</td>
-									<td align="right"><c:out
-											value="${anItem.claimOutOfTotTDSOnAmtPaid}" />
-									</td>
-								</tr>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<h5 style="font-style: italic; color: blue;">No data for TDS
-								Other Than Salaries</h5>
-						</c:otherwise>
-					</c:choose>
-				</tbody>
-			</table>
+		<c:if test="${not empty  twenty26asResponse.twenty26astdsOtherThanSalaries && fn:length(twenty26asResponse.twenty26astdsOtherThanSalaries) > 0}">
+			<c:forEach var="anItem"
+				items="${twenty26asResponse.twenty26astdsOtherThanSalaries}">
+				<tr>
+					<td>Other than Salaries</td>
+					<td><c:out value="${anItem.TAN}" /></td>
+					<td><c:out value="${anItem.employerOrDeductorOrCollecterName}" /></td>		
+					<td></td>
+					<td align="right">N/A</td>			
+					<%-- 
+					<td><c:out value="${anItem.deductedYr}" /></td>
+					<td><c:out value="${anItem.uniqueTDSCerNo}" /></td>
+					 --%>
+					<td align="right"><c:out value="${anItem.totTDSOnAmtPaid}" /></td>
+					<%--<td align="right"><c:out value="${anItem.claimOutOfTotTDSOnAmtPaid}" /></td> --%>
+					<td><c:if test="${anItem.hasAlreadyBeenImported == 'true'}"><span class="glyphicon glyphicon-ok"></span>
+					<a href="${scriptName}../../tdsfromothers.html" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+					</c:if></td>
+				</tr>
+				<c:set var="totalTDS" value="${totalTDS + anItem.totTDSOnAmtPaid}"/>
+			</c:forEach>
+		</c:if>
 			<!-- TCS -->
 			<%--
 	
@@ -124,39 +105,25 @@
 	String TAN;
 	String TotalTCS;
 	 --%>
-			<h4>Tax Collected from Source</h4>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Collector Name</th>
-						<th>TAN of Collector</th>
-						<th>Total TCS</th>
-						<th>Amount TCS Claimed This Year</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:choose>
-						<c:when
-							test="${not empty  twenty26asResponse.twenty26astcs && fn:length(twenty26asResponse.twenty26astcs) > 0}">
-							<c:forEach var="anItem"
-								items="${twenty26asResponse.twenty26astcs}">
-								<tr>
-									<td><c:out
-											value="${anItem.employerOrDeductorOrCollecterName}" /></td>
-									<td><c:out value="${anItem.TAN}" /></td>
-									<td align="right"><c:out value="${anItem.totalTCS}" /></td>
-									<td align="right"><c:out
-											value="${anItem.amtTCSClaimedThisYear}" /></td>
-								</tr>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<h5 style="font-style: italic; color: blue;">No data for TCS</h5>
-						</c:otherwise>
-					</c:choose>
-				</tbody>
-			</table>
-
+		<c:if test="${not empty  twenty26asResponse.twenty26astcs && fn:length(twenty26asResponse.twenty26astcs) > 0}">
+			<c:forEach var="anItem"
+				items="${twenty26asResponse.twenty26astcs}">
+				<tr>
+					<td>TCS</td>
+					<td><c:out value="${anItem.TAN}" /></td>
+					<td><c:out value="${anItem.employerOrDeductorOrCollecterName}" /></td>
+					<td></td>
+					<td align="right">N/A</td>
+					<td align="right"><c:out value="${anItem.totalTCS}" /></td>
+					<%--<td align="right"><c:out value="${anItem.amtTCSClaimedThisYear}" /></td> --%>
+					<td><c:if test="${anItem.hasAlreadyBeenImported == 'true'}">
+						<span class="glyphicon glyphicon-ok"></span>
+						<a href="${scriptName}../../tcs.html" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+					</c:if></td>
+				</tr>
+				<c:set var="totalTDS" value="${totalTDS + anItem.totalTCS}"/>
+			</c:forEach>
+		</c:if>
 			<!--  Tax Payments -->
 			<%--
 		String Amt;
@@ -164,47 +131,72 @@
 	String BSRCode;
 	String DateDep;
 	 --%>
-			<h4>Tax Payments</h4>
-			<table class="table table-striped">
-				<thead>
+	 		<%-- Advance Tax --%>
+			<c:if test="${not empty  selfAssessmentList && fn:length(selfAssessmentList) > 0}">
+				<c:forEach var="anItem"
+					items="${selfAssessmentList}">
 					<tr>
-						<th>BSR Code</th>
-						<th>Sr No Of Challan</th>
-						<th>Date Deposit</th>
-						<th>Amount</th>
+						<td>Self Assessment Tax</td>
+						<td><c:out value="${anItem.BSRCode}" /></td>
+						<td><c:out value="${anItem.srlNoOfChaln}" /></td>
+						<td><c:out value="${anItem.dateDep}" /></td>
+						<td>N/A</td>
+						<td align="right"><c:out value="${anItem.amt}" /></td>
+						<%--<td align="right">N/A</td> --%>
+						<td>
+							<c:if test="${anItem.hasAlreadyBeenImported == 'true'}">
+								<span class="glyphicon glyphicon-ok"></span>
+								<a href="${scriptName}../../selfassesmenttax.html" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+							</c:if>
+						</td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:choose>
-						<c:when
-							test="${not empty  twenty26asResponse.twenty26asTaxPayments && fn:length(twenty26asResponse.twenty26asTaxPayments) > 0}">
-							<c:forEach var="anItem"
-								items="${twenty26asResponse.twenty26asTaxPayments}">
-								<tr>
-									<td><c:out value="${anItem.BSRCode}" /></td>
-									<td><c:out value="${anItem.srlNoOfChaln}" /></td>
-									<td><c:out value="${anItem.dateDep}" /></td>
-									<td align="right"><c:out value="${anItem.amt}" /></td>
-								</tr>
-							</c:forEach>
-						</c:when>
-						<c:otherwise>
-							<h5 style="font-style: italic; color: blue;">No data for Tax
-								Payments</h5>
-						</c:otherwise>
-					</c:choose>
-				</tbody>
-			</table>
-
+					<c:set var="totalTDS" value="${totalTDS + anItem.amt}"/>
+				</c:forEach>
+			</c:if>
+			<%-- Self Assessment Tax --%>
+			<c:if test="${not empty  advTaxList && fn:length(advTaxList) > 0}">
+				<c:forEach var="anItem"
+					items="${advTaxList}">
+					<tr>
+						<td>Advance Tax</td>
+						<td><c:out value="${anItem.BSRCode}" /></td>
+						<td><c:out value="${anItem.srlNoOfChaln}" /></td>
+						<td><c:out value="${anItem.dateDep}" /></td>
+						<td>N/A</td>
+						<td align="right"><c:out value="${anItem.amt}" /></td>
+						<%--<td align="right">N/A</td>--%>
+						<td>
+							<c:if test="${anItem.hasAlreadyBeenImported == 'true'}">
+							<span class="glyphicon glyphicon-ok"></span>
+							<a href="${scriptName}../../advancetax.html" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+							</c:if>
+						</td>
+					</tr>
+					<c:set var="totalTDS" value="${totalTDS + anItem.amt}"/>
+				</c:forEach>
+			</c:if>
+			<%-- final total --%>
+			<c:if test="${totalTDS > 0}">
+				<tr>
+					<td align="right" colspan="5"><b>Total Tax Deducted</b></td>
+					<td align="right"><c:out value="${totalTDS}"/></td>
+					<td align="right"></td>
+				</tr>
+			</c:if>
+		</tbody>
+	</table>
+	<c:if test="${totalToBeImported > 0}">
+		<form id="tdsfromdit" action="${actionUrl}" method="post" name="tdsfromdit">
 			<div class="row show-grid">
 				<div class="col-md-3 col-md-offset-10">
-					<a href="${redirectURLToSamePage}" class="button olive">Cancel</a>
-					<input type="submit" value="Import" class="button default">
+					<a href="${redirectURLToSamePage}" class="btn btn-info">Cancel</a>
+					<button type="submit" class="btn btn-primary">Import</button>
+					<%--<input type="submit" value="Import" class="button default"> --%>
 				</div>
 			</div>
 		</form>
-	</c:when>
-</c:choose>
+	</c:if>
+</c:if>
 <res:client-validation formId="tdsfromdit"
 	screenConfigurationDocumentName="syncTDSFromDIT"
 	formSubmitButtonId="myModalHreftdsfromdit" />

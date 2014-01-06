@@ -29,6 +29,10 @@ public enum PaymentType {
 		}
 	}
 	
+	public boolean getRequiresGateway() {
+		return PaymentType.requiresGateway(this);
+	}
+	
 	public static boolean requiresGateway(PaymentType paymentType) {
 		if (paymentType == CREDIT_CARD || paymentType == DEBIT_CARD || paymentType == NET_BANKING) {
 			return true;

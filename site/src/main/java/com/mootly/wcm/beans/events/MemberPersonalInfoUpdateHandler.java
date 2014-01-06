@@ -20,7 +20,6 @@ import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.CostModel;
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
-import com.mootly.wcm.beans.compound.DITResponseDocumentDetail.DITSOAPOperation;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
@@ -28,6 +27,7 @@ import com.mootly.wcm.beans.compound.TcsDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.components.ITReturnComponentHelper;
+import com.mootly.wcm.model.DITSOAPOperation;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
@@ -131,7 +131,7 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
  			if (createNew) {
  				parentBeanMap = new FormMap();
  				FormField invoiceNumberField = new FormField("invoiceNumber");
- 				invoiceNumberField.addValue( ((Long) sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_INVOICE)).toString() );
+ 				invoiceNumberField.addValue( channelInfoWrapper.getWebSiteInfo().getResellerId() + "-" + ((Long) sequenceGenerator.getNextId(SequenceGenerator.SEQUENCE_INVOICE)).toString() );
  				parentBeanMap.addFormField(invoiceNumberField);
  			}
 			BeanLifecycle<HippoBean> childBeanLifeCycleHandler = null;

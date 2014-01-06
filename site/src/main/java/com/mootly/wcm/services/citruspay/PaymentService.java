@@ -170,11 +170,17 @@ public interface PaymentService {
 	public final static String PARAM_PAYMENT_MODE = "paymentMode";
 	public final static String PARAM_ISSUER_CODE = "issuerCode";
 	public final static String PARAM_MERCHANT_TXN_ID = "merchantTxnId";
-	
+	public final static String PARAM_MERCHANT_ID="merchantId";
+	public final static String PARAM_CURRENCY="currency";
+	public final static String PARAM_ORDER_AMOUNT="orderAmount";
 	
 	String getAccessKey();
 	String getSecretKey();
-	String getHMACSignature(String merchantTxId,String amount);
+	String getMerchantId();
+	String getCheckoutURL();
+	String getCurrency();
+	String getHMACSignatureSSL(String merchantTxId,String amount);
+	String getHMACSignatureMOTO(String merchantTxId,String amount);
 	CITRUS_CONTENT_TYPE getContentType();
 	CITRUS_CONTENT_TYPE getAccept();	
 	

@@ -28,7 +28,6 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
-import com.mootly.wcm.beans.compound.DITResponseDocumentDetail.DITSOAPOperation;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 /**
@@ -65,12 +64,12 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 	 * @param ditSOAPOperation
 	 * @return
 	 */
-	public final Integer getTotalCountOfOperation(DITSOAPOperation ditSOAPOperation) {
+	public final Integer getTotalCountOfOperation(String ditSOAPOperation) {
 		getDitResponseDocumentDetails();
 		Integer totalCount = 0;
 		if ( ditResponseDocumentDetailList != null && ditResponseDocumentDetailList.size() > 0) {
 			for (DITResponseDocumentDetail ditResponseDocumentDetail:ditResponseDocumentDetailList) {
-				if ( (ditResponseDocumentDetail.getIsFault() == null || !ditResponseDocumentDetail.getIsFault()) && ditResponseDocumentDetail.getDitSOperation() != null && ditResponseDocumentDetail.getDitSOperation() == ditSOAPOperation ) {
+				if ( (ditResponseDocumentDetail.getIsFault() == null || !ditResponseDocumentDetail.getIsFault()) && ditResponseDocumentDetail.getSoapOperation() != null && ditResponseDocumentDetail.getSoapOperation().equals(ditSOAPOperation) ) {
 					totalCount++;
 				}
 			}

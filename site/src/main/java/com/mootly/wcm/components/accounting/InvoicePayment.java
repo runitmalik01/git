@@ -1,8 +1,11 @@
 package com.mootly.wcm.components.accounting;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -24,6 +27,8 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.InvoicePaymentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.InvoicePaymentDetailBeanHandler;
+import com.mootly.wcm.channels.ChannelInfoWrapper;
+import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.components.InvalidPANException;
@@ -48,6 +53,8 @@ public class InvoicePayment extends ITReturnComponent {
 	InvoicePaymentDetailBeanHandler  invoicePaymentDetailBeanHandler = null;
 	
 	String paymentRedirectURL = null;
+	
+	boolean isGatewayForm = false;
 	@Override
 	public void init(ServletContext servletContext,
 			ComponentConfiguration componentConfig)
@@ -60,20 +67,83 @@ public class InvoicePayment extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
-		
-		super.doBeforeRender(request, response);
-		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
-		if (paymentTypeStr != null) {
-			paymentType = PaymentType.valueOf(paymentTypeStr);
-		}		
-		request.setAttribute("type", "payment");
-		request.setAttribute("paymentType", paymentType);		
-		if (getPageAction() != null && getPageAction() != PAGE_ACTION.EDIT && getPageAction() != PAGE_ACTION.EDIT_CHILD && getPageAction() != PAGE_ACTION.DELETE && getPageAction() != PAGE_ACTION.DELETE_CHILD ) {
-			if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
+		String gatewayForm = getParameter("gatewayForm", request);
+		if (gatewayForm != null && "true".equals(gatewayForm)) {
+			isGatewayForm = true;			
+		}
+		initComponent(request, response,true);
+		if (isGatewayForm) {
+			Map<String,String> formFields = new HashMap<String, String>();
+			//formFields.put("orderAmount", value)
+			if (request.getParameter("strTransactionId") != null) {
+				//validate the transaction Id -- this will involve fetching the data back from the bean and
+				String strTransactionId = request.getParameter("strTransactionId");
+				String returnUrl = getRedirectURLForSiteMapItem(request, response, null, "memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+				String notifyUrl = getRedirectURLForSiteMapItem(request, response, null,"memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+				boolean foundTr = false;
 				InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
-				if (invoiceDocument != null && invoiceDocument.getAmountDue() == 0D) {
-					response.setRenderPath("jsp/accounting/invoice-payment-already-paid.jsp");
-				}			
+				MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+				if (invoiceDocument != null) {
+					 for (InvoicePaymentDetail invoicePaymentDetail : invoiceDocument.getInvoicePaymentDetailList()) {
+						 if (invoicePaymentDetail.getPaymentTransactionId() != null && strTransactionId.equals(invoicePaymentDetail.getPaymentTransactionId())) {
+							 request.setAttribute("invoicePaymentDetail", invoicePaymentDetail);
+							 request.setAttribute( "orderAmount", invoicePaymentDetail.getPaymentAmount() );
+							 request.setAttribute( "merchantAccessKey", getTransaction().getAccessKey() );
+							 request.setAttribute( "checkoutURL", getTransaction().getCheckoutURL() );
+							 request.setAttribute( "currency", getTransaction().getCurrency() );
+							 request.setAttribute( "secSignature", getTransaction().getHMACSignatureSSL(invoicePaymentDetail.getPaymentTransactionId(), invoicePaymentDetail.getPaymentAmount().toString()));
+							 request.setAttribute( "returnUrl", returnUrl);
+							 
+							 if (memberPersonalInformation != null) {
+								 if (memberPersonalInformation.getEmail() != null) {
+									 if ( memberPersonalInformation.getEmail() != null ) request.setAttribute("email", memberPersonalInformation.getEmail());
+									 if ( memberPersonalInformation.getFirstName() != null ) request.setAttribute("firstName", memberPersonalInformation.getFirstName());
+									 if ( memberPersonalInformation.getLastName() != null ) request.setAttribute("lastName", memberPersonalInformation.getLastName());
+									 
+									 if ( memberPersonalInformation.getRoadStreet() != null ) request.setAttribute("addressStreet1", memberPersonalInformation.getRoadStreet());
+									 if ( memberPersonalInformation.getRoadStreet() != null ) request.setAttribute("addressCity", memberPersonalInformation.getTownCityDistrict());
+									 if ( memberPersonalInformation.getPhone() != null ) request.setAttribute("phoneNumber", memberPersonalInformation.getMobile());
+									 if ( memberPersonalInformation.getPinCode() != null ) request.setAttribute("addressZip", memberPersonalInformation.getPinCode());
+									 if ( memberPersonalInformation.getState() != null ) request.setAttribute("addressState", memberPersonalInformation.getState());
+								 }
+							 }
+							 
+							 break;
+						 }
+					 }
+				}
+			}
+			response.setRenderPath("jsp/accounting/paymentgateway_form.jsp");
+		}		
+		else {
+			String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
+			if (paymentTypeStr != null) {
+				paymentType = PaymentType.valueOf(paymentTypeStr);
+				if (paymentType == null ||  !getChannelInfoWrapper().availablePaymentTypes().contains(paymentType)) {
+					try {
+						response.sendError(HttpServletResponse.SC_FORBIDDEN);
+						return;
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return;
+				}else {
+					if (PaymentType.requiresGateway(paymentType)) { //this means that 
+						//we are using the SSL Integration for all gateway transactions 
+						request.setAttribute("requiresGateway","true");
+					}
+				}
+			}		
+			request.setAttribute("type", "payment");
+			request.setAttribute("paymentType", paymentType);		
+			if (getPageAction() != null && getPageAction() != PAGE_ACTION.EDIT && getPageAction() != PAGE_ACTION.EDIT_CHILD && getPageAction() != PAGE_ACTION.DELETE && getPageAction() != PAGE_ACTION.DELETE_CHILD ) {
+				if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
+					InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
+					if (invoiceDocument != null && invoiceDocument.getAmountDue() == 0D) {
+						response.setRenderPath("jsp/accounting/invoice-payment-already-paid.jsp");
+					}			
+				}
 			}
 		}
 	}
@@ -81,35 +151,46 @@ public class InvoicePayment extends ITReturnComponent {
 	@Override
 	protected boolean shouldRedirectAfterSuccess() {
 		// TODO Auto-generated method stub
-		return true;
+		if (!isGatewayForm) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		try {
-			initComponent(request, response);
-		} catch (InvalidNavigationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidPANException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String gatewayForm = getParameter("gatewayForm", request);
+		if (gatewayForm != null && "true".equals(gatewayForm)) {
+			isGatewayForm = true;
 		}
+		initComponent(request, response,true);
 		InvoiceDocument invoiceDocument  = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 		theTransactionId = invoiceDocument.getInvoiceNumber() + "-" + getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_PAYMENT);
 		//we want to 
 		
 		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
+		if (isGatewayForm && paymentTypeStr == null) {
+			paymentTypeStr = getPublicRequestParameter(request,"paymentType");
+		}
 		if (paymentTypeStr != null) {
 			paymentType = PaymentType.valueOf(paymentTypeStr);
 		}
+		
 		if (paymentType != null) {
-			if ( getChannelInfoWrapper().availablePaymentTypes() == null || !getChannelInfoWrapper().availablePaymentTypes().contains(paymentType) ) {
+			WebsiteInfo webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
+			ChannelInfoWrapper channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
+			if ( channelInfoWrapper.availablePaymentTypes() == null || !channelInfoWrapper.availablePaymentTypes().contains(paymentType) ) {
 				response.setRenderPath("jsp/accounting/invalid_paymentype.jsp");
 				return;
 			}
+		}
+		else {
+			return;
 		}
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);
@@ -118,8 +199,9 @@ public class InvoicePayment extends ITReturnComponent {
 		if (isVendor(request) && isOnVendorPortal()) {
 			isSavedByVendor = true;
 		}
-		invoicePaymentDetailBeanHandler = new InvoicePaymentDetailBeanHandler(paymentType,request, theTransactionId,isSavedByVendor);		
-		super.doAction(request, response);		
+		invoicePaymentDetailBeanHandler = new InvoicePaymentDetailBeanHandler(paymentType,request, theTransactionId,isSavedByVendor,isGatewayForm);		
+		super.doAction(request, response);			
+		response.setRenderParameter("strTransactionId", theTransactionId);
 	}
 
 	@Override
@@ -144,7 +226,7 @@ public class InvoicePayment extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		String returnUrl = getRedirectURLForSiteMapItem(request, response, null, "memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		String notifyUrl = getRedirectURLForSiteMapItem(request, response, null,"memberinvoice", getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
-		
+		/*
 		String email = getFormMap().getField("email").getValue();
 		String lastName = getFormMap().getField("lastName").getValue();
 		String firstName = getFormMap().getField("firstName").getValue();
@@ -154,8 +236,6 @@ public class InvoicePayment extends ITReturnComponent {
 		String pi_pinCode = getFormMap().getField("pi_pinCode").getValue();
 		String pi_mobile = getFormMap().getField("pi_mobile").getValue();
 		InvoiceDocument invDoc = (InvoiceDocument) getParentBean(); 
-		//String returnUrl = "http://www.wealth4india/site/blah";
-		//FinancialYear fy = FinancialYear.getByDisplayName(personalInformation.getFinancialYear());
 		if(paymentType.equals(PaymentType.NET_BANKING)){
 			BANK_ISSUER bankIssuer = null;
 			
@@ -186,30 +266,21 @@ public class InvoicePayment extends ITReturnComponent {
 			}
 		}
 		if(paymentType.equals(PaymentType.CREDIT_CARD) || paymentType.equals(PaymentType.DEBIT_CARD)){
-			String cardHolderName = getFormMap().getField("cardHolderName").getValue();
-			String expiryMonth = getFormMap().getField("expiryMonth").getValue();
-			String expiryYear = getFormMap().getField("expiryYear").getValue();
-			String cvvNumber = getFormMap().getField("cvvNumber").getValue();
-			String cardNumber = getFormMap().getField("cardNumber").getValue();
-			String cardType = getFormMap().getField("cardType").getValue();
-			/*
-			 * 	Map<String, Object> output = transaction.acceptITRPaymentByDebitOrCreditCard(
-					
-					memberLoginName, getFinancialYear(), getPAN(), 
-					returnUrl,notifyUrl,PaymentType.valueOf(paymentType.toString()),
-					cardHolderName,cardNumber, CARD_TYPE.valueOf(cardType),cvvNumber,expiryMonth,expiryYear,
-					amount,email,personalInformation.getFirstName(),personalInformation.getLastName(),personalInformation.getMobile(),
-					address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
-					*/	
-			/*
+			String strTransactionId = invoicePaymentDetailBeanHandler.getStrPaymentTransactionId();
+			if (log.isInfoEnabled()) {
+				log.info("The transaction Id for this transaction is :" + strTransactionId);
+			}
+			 Map<String, Object> output = getTransaction().acceptITRPaymentByDebitOrCreditCard(
+					strTransactionId,
+					getUserName(), getFinancialYear(), getPAN(), 
+					returnUrl,notifyUrl,PaymentType.valueOf(paymentType.toString()),invDoc.getAmountDue().toString());
 			if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
 				paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
 			}else {
 				getFormMap().addMessage("error.gateway.connection", "true");
 			}
-			*/
 		}	
-		
+		*/
 		return true;
 	}
 	

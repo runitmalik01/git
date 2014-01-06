@@ -33,6 +33,7 @@ import com.mootly.wcm.annotations.BeanClone;
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.model.DITSOAPOperation;
 import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.utils.BeanCloneHelper;
 import com.mootly.wcm.utils.CalculatedFieldHelper;
@@ -49,8 +50,6 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	
 	static final private Logger log = LoggerFactory.getLogger(DITResponseDocumentDetail.class);
 	
-	public static enum DITSOAPOperation { getTDSDetails };
-	
 	String soapOperation;
 	String soapRequest;
 	String soapResponse;
@@ -66,7 +65,7 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	static final String SOAP_IS_FAULT = "mootlywcm:isFault";
 	
 	
-	@FormField(name="soapOperation",convert=Boolean.class)
+	@FormField(name="soapOperation")
 	public final String getSoapOperation() {
 		if (soapOperation == null) soapOperation = getProperty(SOAP_OPERATION);
 		return soapOperation;

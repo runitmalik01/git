@@ -1,6 +1,8 @@
 package com.mootly.wcm.model;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -156,6 +158,24 @@ public enum FinancialYear {
 			gc.set(dateEndFinancialYear.get(GregorianCalendar.YEAR),7,05,23,59,59);
 		}
 		return gc;
+	}
+	
+	public boolean isDateAfter(String inDateStr,String inDateFormat) {
+		Date date = null ;
+		DateFormat formatter =  new SimpleDateFormat(inDateFormat); 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		//String newFormattedDateStr = IndianGregorianCalendar.formatDateAsString(cal,IndianGregorianCalendar.indianLocalDateFormStr2);
+		try {
+			date = (Date)formatter.parse(inDateStr);
+			cal.setTime(date);
+			if ( cal.after(dateEndFinancialYear) ) {
+				return true;
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean isPastDue(ITRForm itrForm, GregorianCalendar filingDate,String stateCode) {

@@ -2,7 +2,7 @@ package com.mootly.wcm.services.ditws.model;
 
 import com.mootly.wcm.annotations.FormField;
 
-public class Twenty26ASTaxPayment extends Twenty26ASGenericRecord{
+public class Twenty26ASAdvanceTaxPayment extends Twenty26ASGenericRecord{
 	
 	//{ScheduleTCS={AmtTCSClaimedThisYear=[0], EmployerOrDeductorOrCollecterName=[?], TAN=[3000], TotalTCS=[0]}, 
 	//TDSonOthThanSals={DeductedYr=[2015, 2001], UniqueTDSCerNo=[2, 1], EmployerOrDeductorOrCollecterName=[?, IBM], TotTDSOnAmtPaid=[10, 110], TAN=[2000, 2001], ClaimOutOfTotTDSOnAmtPaid=[20, 220]}, 
@@ -15,9 +15,19 @@ public class Twenty26ASTaxPayment extends Twenty26ASGenericRecord{
 	String DateDep;
 	String isImported = "true";	
 	Boolean isImportedFromDIT = true;
-
 	
-	@FormField(name="amountself",propertyName="Amt", dataTypeValidationTypes={})
+	public Twenty26ASAdvanceTaxPayment() {
+		
+	}
+	
+	public Twenty26ASAdvanceTaxPayment(String Amt,String SrlNoOfChaln,String BSRCode,String DateDep) {
+		this.Amt = Amt;
+		this.SrlNoOfChaln = SrlNoOfChaln;
+		this.BSRCode = BSRCode;
+		this.DateDep = DateDep;
+	}
+	
+	@FormField(name="amountadv",propertyName="Amt", dataTypeValidationTypes={})
 	public final String getAmt() {
 		return Amt;
 	}
@@ -25,7 +35,7 @@ public class Twenty26ASTaxPayment extends Twenty26ASGenericRecord{
 		Amt = amt;
 	}
 	
-	@FormField(name="Serial_challanself",propertyName="SrlNoOfChaln",dataTypeValidationTypes={})
+	@FormField(name="Serial_challanadv",propertyName="SrlNoOfChaln",dataTypeValidationTypes={})
 	public final String getSrlNoOfChaln() {
 		return SrlNoOfChaln;
 	}
@@ -33,14 +43,14 @@ public class Twenty26ASTaxPayment extends Twenty26ASGenericRecord{
 		SrlNoOfChaln = srlNoOfChaln;
 	}
 	
-	@FormField(name="bsr_codeself",propertyName="BSRCode",dataTypeValidationTypes={})
+	@FormField(name="bsr_codeadv",propertyName="BSRCode",dataTypeValidationTypes={})
 	public final String getBSRCode() {
 		return BSRCode;
 	}
 	public final void setBSRCode(String bSRCode) {
 		BSRCode = bSRCode;
 	}
-	@FormField(name="date_creditself",propertyName="DateDep", dataTypeValidationTypes={})
+	@FormField(name="date_creditadv",propertyName="DateDep", dataTypeValidationTypes={})
 	public final String getDateDep() {
 		return DateDep;
 	}

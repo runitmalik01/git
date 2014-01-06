@@ -59,7 +59,30 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
 	private String financial_year;
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
-   
+	
+	Boolean isImported;
+	private boolean isReviewed;
+	
+	private Boolean isImportedFromDIT;
+	
+	public Boolean getIsImported() {
+		if (isImported == null) isImported = getProperty("mootlywcm:isimport");
+		return isImported;
+	}
+	public void setIsImported(Boolean isImported) {
+		this.isImported = isImported;
+	}
+	
+	public final Boolean isImportedFromDIT() {
+		if ( isImportedFromDIT == null) isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
+		return isImportedFromDIT;
+	}
+	
+
+	public final void setImportedFromDIT(boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
+	}
+	
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}
@@ -144,13 +167,13 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
 		try {
 			
 			
-			node.setProperty(tan_deductor, getTan_Deductor());
-			node.setProperty(total_taxdeducted,getTotal_TaxDeductor());
-			node.setProperty(name_deductor,getName_Deductor());
-			node.setProperty(amount,getP_Amount());
-			node.setProperty(tds_Certificate,getTds_Certificate());
-			node.setProperty(financial_Year,getFinancial_Year());
-			
+			if ( getTan_Deductor() != null ) node.setProperty(tan_deductor, getTan_Deductor());
+			if ( getTotal_TaxDeductor() != null ) node.setProperty(total_taxdeducted,getTotal_TaxDeductor());
+			if ( getName_Deductor() != null ) node.setProperty(name_deductor,getName_Deductor());
+			if ( getP_Amount() != null ) node.setProperty(amount,getP_Amount());
+			if ( getTds_Certificate() != null ) node.setProperty(tds_Certificate,getTds_Certificate());
+			if ( getFinancial_Year() != null ) node.setProperty(financial_Year,getFinancial_Year());
+			if (isImportedFromDIT() != null) node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
 	    	
 
 		} catch (RepositoryException rex) {
@@ -190,7 +213,10 @@ public class TdsFromothersDetail extends HippoItem implements FormMapFiller {
 			setFinancial_Year(formMap.getField("financial_year").getValue());
 		}
 		
-		
+		if ( formMap.getField("isImportedFromDIT") != null) {
+			String isImportedFromDIT=formMap.getField("isImportedFromDIT").getValue();			
+			setImportedFromDIT(Boolean.valueOf(isImportedFromDIT));
+		}
 	}
 
 	public <T extends HippoBean> void cloneBean(T sourceBean) {

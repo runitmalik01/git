@@ -92,8 +92,11 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 			          	</select>
 		          	</div>
 		          </div>
-		     </div>
-		     <div align="center" ><a id="myModalHref" class="btn btn-default <c:choose><c:when test="${empty noPanMatchFound}">orange</c:when><c:otherwise>btn-danger</c:otherwise></c:choose> ">Click Here!! </a></div>
+		          <div class="col-md-2">
+		          	<div class="rowlabel"><label for="fy"><small></small></label></div>
+		          	<div class="rowlabel"><a id="myModalHref" class="btn btn-default <c:choose><c:when test="${empty noPanMatchFound}">btn-primary</c:when><c:otherwise>btn-danger</c:otherwise></c:choose> "><i class="glyphicon glyphicon-hand-right"></i>Click!!</a></div>
+		          </div>
+		     </div>		     
 		</fieldset>
 
                 <!--   <fieldset id="ul_revised" style="display:none;" class="revised_v original_h">
