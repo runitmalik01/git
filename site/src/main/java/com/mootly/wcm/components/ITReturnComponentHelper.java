@@ -390,12 +390,29 @@ public final class ITReturnComponentHelper {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			if (parentBeanInSession != null) {
 				wpm.update(parentBeanInSession);
+				//wpm.remove(parentBeanInSession);
 				HippoBean beanAfterUpdate = parentBeanInSession;
 				if (parentBeanLifeCycleHandler != null) {
 					parentBeanLifeCycleHandler.afterUpdate(beanBeforeUpdate,beanAfterUpdate,wpm,parentBeanAbsolutePath,this);
 				}
 			}			
 	}
+	
+	/*
+	 * The written down method will delete a single document
+	*/
+	public <T extends BeanLifecycle<HippoBean>> void deleteSingleDocument (FormMap parentBeanMap,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName, Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException, InstantiationException, IllegalAccessException {
+		HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
+		if (parentBeanInSession == null) {
+			final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,parentBeanNameSpace,parentBeanNodeName, true);
+			parentBeanInSession = (HippoBean) wpm .getObject(pathToParentBean);
+		}
+		wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+		if (parentBeanInSession != null) {
+			wpm.remove(parentBeanInSession);
+		}			
+}
+	
 	/**
 	 * Action to Save Add New Child
 	 * @param request
