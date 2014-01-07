@@ -30,17 +30,17 @@
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="glyphicon glyphicon-bar"></span> <span class="glyphicon glyphicon-bar"></span> <span
-					class="glyphicon glyphicon-bar"></span>
-			</button>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-nav">
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+            			<span class="icon-bar"></span>
+          		</button>
 			<!-- logo -->
 			<hst:include ref="logo" />
 		</div>
 		<!-- menu top-->
 		<!-- main-menu -->
-		<div class="navbar-collapse collapse">
+		<div class="navbar-collapse collapse top-nav">
 			<ul class="nav navbar-nav">
 				<hst:include ref="menu-main" />
 			</ul>
