@@ -59,8 +59,8 @@
 	<script type='text/javascript' src='${jquery_validate_min}'></script>
 	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 	<hst:headContributions categoryIncludes="jsExternal"/>
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+	<script src="//code.highcharts.com/highcharts.js"></script>
+    <script src="//code.highcharts.com/modules/exporting.js"></script>
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
 

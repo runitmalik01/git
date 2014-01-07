@@ -1,6 +1,5 @@
 package com.mootly.wcm.services.ditws.impl;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,7 +13,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.activation.DataHandler;
-//import javax.mail.util.ByteArrayDataSource;
 import javax.xml.soap.AttachmentPart;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
@@ -102,7 +100,7 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 				DataHandler dataHandler = new DataHandler(theURLToFile);
 				AttachmentPart attachmentPart = soapMessage.createAttachmentPart(dataHandler);
 				attachmentPart.setContentType("application/octet-stream");
-				attachmentPart.setMimeHeader("Content-Type", "application/xml");
+				//attachmentPart.setMimeHeader("Content-Type", "application/xml");
 				//attachmentPart.setContent(new ByteArrayInputStream(bytes),"application/octet-stream");
 				//attachmentPart.setContentType("application/xml");
 				//attachmentPart.setRawContent(new ByteArrayInputStream(bytes));//, "MIME");

@@ -113,6 +113,7 @@ import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.member.Member;
+import com.mootly.wcm.model.DITSubmissionStatus;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -2013,6 +2014,22 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		case EFILE:
 				EFileResponse eFileResponse = eFileITR( getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
 				if (eFileResponse != null) {
+					MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+					if (eFileResponse.getTokenNumber() != null && mi != null) {// (FormMap parentBeanMap,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName, Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException, InstantiationException, IllegalAccessException {
+						try {
+							Session persistableSession = getPersistableSession(request);
+							WorkflowPersistenceManager wpm  = getWorkflowPersistenceManager(persistableSession);
+							MemberPersonalInformation MPIInSesion = (MemberPersonalInformation) wpm.getObject(mi.getPath());
+							MPIInSesion.setDitSubmissionToken(eFileResponse.getTokenNumber());
+							MPIInSesion.setDitSubmissionStatus(DITSubmissionStatus.SUCCESS);
+							if (MPIInSesion != null) {
+								wpm.update(MPIInSesion);
+							}
+						} catch (RepositoryException | ObjectBeanManagerException e) {
+							// TODO Auto-generated catch block
+							log.error("Repository Exception",e);
+						}												
+					}
 					if (log.isInfoEnabled()) {
 						log.info ("eFileResponse.getTokenNumber();" + eFileResponse.getTokenNumber() ); 
 					}
@@ -2291,13 +2308,21 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	protected EFileResponse eFileITR(String userName, String password,String itrXML) throws EFileException, DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure {
 		///assuming all is WELL call another class so we can keep the Logic Seperated.
 		//String xml,String resellerId,String pan,FinancialYear financialYear,String canonicalPathToMemberIncomeTaxFolder) throws EFileException;
-		if (getMemberPersonalInformation() != null) {
-			String  canonicalPathToMemberIncomeTaxFolder = getMemberPersonalInformation().getParentBean().getCanonicalPath();
-			EFileResponse eFileResponse = geteFileService().eFile(userName,password, itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder);
-			return eFileResponse;
+		try {
+			if (getMemberPersonalInformation() != null) {
+				String  canonicalPathToMemberIncomeTaxFolder = getMemberPersonalInformation().getParentBean().getCanonicalPath();
+				EFileResponse eFileResponse = geteFileService().eFile(userName,password, itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder);
+				return eFileResponse;
+			}
+			else {
+				throw new EFileException("Problem with Member Personal Information");
+			}
+		}catch (EFileException | DigtalSignatureAssesseeFailure | DigtalSignatureERIUserFailure e) {
+			log.error("Error in eFile",e);
+			throw e;
 		}
-		else {
-			throw new EFileException("Problem with Member Personal Information");
+		catch (Exception e) {
+			throw new EFileException(e);
 		}
 	}
 
