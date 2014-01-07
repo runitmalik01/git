@@ -64,7 +64,7 @@
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
 
- 
+	<div id="wrap"> 
 	<hst:include ref="header"/>
 	<c:if test="${not empty isError && error.key == 'true' && loggedin == 'true'}">
 		<c:choose>
@@ -78,6 +78,7 @@
 	</c:if>
 	<hst:include ref="main"/>
 	<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
+	</div>
 	<hst:include ref="footer"/>
 	
 	<script>
