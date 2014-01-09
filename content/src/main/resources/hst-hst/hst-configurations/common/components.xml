@@ -2285,4 +2285,18 @@
 	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
 	  </sv:property>
 </sv:node>
+<sv:node sv:name="digital-signature" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>919e107b-468a-4c8d-828c-c8acb6b7c6d0</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.MemberDrive</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>member.digital-signature</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>

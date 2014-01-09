@@ -6348,6 +6348,31 @@
 				    <sv:value>members</sv:value>
 				  </sv:property>
 			</sv:node>
+			<sv:node sv:name="digitalsignature.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+                 <sv:property sv:name="jcr:primaryType" sv:type="Name">
+                   <sv:value>hst:sitemapitem</sv:value>
+                 </sv:property>
+                 <sv:property sv:name="jcr:uuid" sv:type="String">
+                   <sv:value>98739982-9d77-4075-a9b5-ff0bfeb719b9</sv:value>
+                 </sv:property>
+                 <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+                   <sv:value>hst:pages/digital-signature</sv:value>
+                 </sv:property>
+                 <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+                    <sv:value>maxsize</sv:value>
+                    <sv:value>subDriveName</sv:value>
+                 </sv:property>
+                 <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+                     <sv:value>100</sv:value>
+                     <sv:value>digitalsignature</sv:value>
+                 </sv:property>
+                 <sv:property sv:name="hst:refId" sv:type="String">
+                    <sv:value>digital-signature</sv:value>
+                 </sv:property>
+                 <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+                  <sv:value>members</sv:value>
+                 </sv:property>
+             </sv:node>
         <!-- /new sitemap -->
         </sv:node>
         </sv:node>
