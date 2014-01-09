@@ -2025,10 +2025,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 							if (MPIInSesion != null) {
 								wpm.update(MPIInSesion);
 							}
-						} catch (RepositoryException | ObjectBeanManagerException e) {
+						} catch (RepositoryException e ) {
 							// TODO Auto-generated catch block
 							log.error("Repository Exception",e);
-						}												
+						}		
+						catch  ( ObjectBeanManagerException e) {
+							log.error("Repository Exception",e);
+						}
 					}
 					if (log.isInfoEnabled()) {
 						log.info ("eFileResponse.getTokenNumber();" + eFileResponse.getTokenNumber() ); 
@@ -2317,7 +2320,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			else {
 				throw new EFileException("Problem with Member Personal Information");
 			}
-		}catch (EFileException | DigtalSignatureAssesseeFailure | DigtalSignatureERIUserFailure e) {
+		}catch (EFileException e) {
 			log.error("Error in eFile",e);
 			throw e;
 		}
