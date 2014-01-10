@@ -30,12 +30,19 @@
 						<c:out value="${document.name}" />
 					</h3>
 					<div>
-					    <c:if test="${document.serviceLeadTime != 0}">
+						<hst:cmseditlink hippobean="${document}" />
+						<c:if test="${document.serviceLeadTime != 0}">
 						   <div class="alert alert-info">
 							   <b>Service Lead Time : <c:out value="${document.serviceLeadTime}" /> Days</b>
 						   </div>
 						</c:if>
-						<hst:cmseditlink hippobean="${document}" />
+						<c:forEach items="${document.alertMessageDetails}" var="alertmsgdetail">
+							<c:if test="${alertmsgdetail.enable}">
+								<div class="alert alert-warning">
+									<c:out value="${alertmsgdetail.alertMessage}" escapeXml="false"/>
+								</div>
+							</c:if>
+						</c:forEach>
 						<div class="well text-cleft">
 							<c:out value="${document.serviceDescription}" />
 						</div>
@@ -84,7 +91,7 @@
 			</div>
 		</div>
 	</div>
-	<c:if test="${true }"><!-- document.canApllyForServiceOnline -->
+	<c:if test="${document.canApllyForServiceOnline }"><!--  -->
 	<div class="col-md-3">
 		<div class="rowlabel">
 			<hst:include ref="servicerequest-itr" />
