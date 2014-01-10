@@ -4665,7 +4665,7 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>hippotranslation:translated</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>d4173d45-9798-4aab-9071-7189245a68fc</sv:value>
+          <sv:value>b73c6069-6ca5-4a95-8883-60f50e8fc7fa</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
           <sv:value>live</sv:value>
@@ -4690,13 +4690,13 @@ Our highly specialized team of professionals, with their profound understanding 
           <sv:value>2013-12-23T13:03:16.469+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-          <sv:value>2013-12-30T13:21:44.662+05:30</sv:value>
+          <sv:value>2014-01-10T13:00:24.655+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
           <sv:value>admin</sv:value>
         </sv:property>
         <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-          <sv:value>2013-12-30T13:21:47.476+05:30</sv:value>
+          <sv:value>2014-01-10T13:00:27.882+05:30</sv:value>
         </sv:property>
         <sv:property sv:name="hippotranslation:id" sv:type="String">
           <sv:value>51c93c26-16cb-4ce8-a0dc-36aefaab2dc4</sv:value>
@@ -4762,7 +4762,7 @@ Our highly specialized team of professionals, with their profound understanding 
             <sv:value>hippo:harddocument</sv:value>
           </sv:property>
           <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>17087328-f7d0-4e64-a28c-f4d5ae1645c4</sv:value>
+            <sv:value>b8a3febc-b8ce-4783-875d-39b691361b17</sv:value>
           </sv:property>
           <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
           <sv:property sv:name="hippostd:state" sv:type="String">
@@ -4791,6 +4791,17 @@ Our highly specialized team of professionals, with their profound understanding 
           </sv:property>
           <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
             <sv:value/>
+          </sv:property>
+        </sv:node>
+        <sv:node sv:name="mootlywcm:alertmsgdetaildocument">
+          <sv:property sv:name="jcr:primaryType" sv:type="Name">
+            <sv:value>mootlywcm:alertmsgdetaildocument</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:alertMessage" sv:type="String">
+            <sv:value>All supporting documents must be attested by Gazetted Officer OR Bank Manager OR Post Master only . RA attestation will not be accepted on supporting documents as per the enclosed Office Order issued by CCA.</sv:value>
+          </sv:property>
+          <sv:property sv:name="mootlywcm:enable" sv:type="Boolean">
+            <sv:value>true</sv:value>
           </sv:property>
         </sv:node>
       </sv:node>

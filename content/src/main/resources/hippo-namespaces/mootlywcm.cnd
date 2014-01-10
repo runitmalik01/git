@@ -524,3 +524,5 @@ orderable
   orderable
 [mootlywcm:eventlogdetail] > hippo:compound, hippostd:relaxed
   orderable
+[mootlywcm:alertmsgdetaildocument] > hippo:compound, hippostd:relaxed
+  orderable
