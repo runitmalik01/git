@@ -7054,7 +7054,7 @@
     <sv:value>true</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
-    <sv:value>member</sv:value>
+    <sv:value>vendor</sv:value>
   </sv:property>
   <sv:property sv:name="hst:relativecontentpath" sv:type="String">
     <sv:value>members</sv:value>
