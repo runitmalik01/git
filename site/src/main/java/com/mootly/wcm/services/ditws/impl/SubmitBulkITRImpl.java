@@ -90,7 +90,7 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 					}
 				}
 				new File(dirToSave).mkdirs();
-				String pathSuffixOfReturnDocuments =  dirToSave = "/" + getPathSuffixOfReturnDocuments(absoluteBasePathToReturnDocuments);
+				String pathSuffixOfReturnDocuments =  dirToSave + "/" + getPathSuffixOfReturnDocuments(absoluteBasePathToReturnDocuments);
 				//create the dir
 				File dirToFinalDoc = new File(pathSuffixOfReturnDocuments);
 				if (!dirToFinalDoc.exists()) dirToFinalDoc.mkdirs();
