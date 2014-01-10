@@ -92,6 +92,8 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 				new File(dirToSave).mkdirs();
 				String pathSuffixOfReturnDocuments =  dirToSave = "/" + getPathSuffixOfReturnDocuments(absoluteBasePathToReturnDocuments);
 				//create the dir
+				File dirToFinalDoc = new File(pathSuffixOfReturnDocuments);
+				if (!dirToFinalDoc.exists()) dirToFinalDoc.mkdirs();
 				String pdfFileName = "itr_" + UUID.randomUUID().toString() + ".zip";
 				String temporaryPathToPDF = pathSuffixOfReturnDocuments + "/" + pdfFileName;
 				FileOutputStream fo = new FileOutputStream(temporaryPathToPDF);
