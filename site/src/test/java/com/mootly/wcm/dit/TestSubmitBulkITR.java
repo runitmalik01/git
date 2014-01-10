@@ -32,7 +32,7 @@ public class TestSubmitBulkITR  {
 	public void testBulkITR() {
 		SubmitBulkITR submitBulkITR =	ac.getBean(SubmitBulkITR.class);
 		try {
-			EFileResponse output = submitBulkITR.submitBulkITR("","","","",null);
+			EFileResponse output = submitBulkITR.submitBulkITR("","","","",null,null,null);
 			System.out.println(output);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

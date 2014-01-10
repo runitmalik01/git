@@ -16,6 +16,8 @@
 
 package com.mootly.wcm.beans.compound;
 
+import java.util.Map;
+
 import javax.jcr.RepositoryException;
 import javax.jcr.ValueFormatException;
 import javax.jcr.lock.LockException;
@@ -55,6 +57,8 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	String soapResponse;
 	Boolean isFault;
 	
+	FormMap soapOutputMap = null;
+	
 	DITSOAPOperation ditSOperation;
 	
 	private boolean markedForDeletion;
@@ -88,7 +92,7 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 		if (isFault == null) isFault = getProperty(SOAP_IS_FAULT);
 		return isFault;
 	}
-
+	
 	public DITSOAPOperation getDitSOperation() {
 		getSoapOperation();
 		if (soapOperation != null && !"".equals(soapOperation.trim()) ) {
@@ -130,6 +134,14 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 		this.markedForDeletion = markedForDeletion;
 	}
 	
+	public FormMap getSoapOutputMap() {
+		return soapOutputMap;
+	}
+
+	public void setSoapOutputMap(FormMap soapOutputMap) {
+		this.soapOutputMap = soapOutputMap;
+	}
+
 	@Override
 	public boolean bindToNode(javax.jcr.Node node)
 			throws ContentNodeBindingException {
@@ -140,6 +152,18 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 			if (getSoapResponse() != null) node.setProperty(SOAP_RESPONSE_NAMESPACE,getSoapResponse());
 			if (getSoapOperation() != null) node.setProperty(SOAP_OPERATION,getSoapOperation());
 			if (getIsFault() != null) node.setProperty(SOAP_IS_FAULT,getIsFault().toString());
+			if (soapOutputMap != null && soapOutputMap.getFormMap() != null && soapOutputMap.getFormMap().size() > 0 ){
+				for (String fieldName:soapOutputMap.getFormMap().keySet()) {
+					String theFieldName = fieldName;
+					if (!fieldName.startsWith("mootlywcm:")) {
+						theFieldName = "mootlywcm:" + theFieldName;
+					}
+					if (theFieldName.equals("mootlywcm:soapOperation") || theFieldName.equals("mootlywcm:soapRequest") || theFieldName.equals("mootlywcm:soapResponse") ||  theFieldName.equals("mootlywcm:isFault")  ) {
+						continue;
+					}
+					node.setProperty(theFieldName, soapOutputMap.getField(fieldName).getValue());
+				}
+			}
 		} catch (ValueFormatException e) {
 			// TODO Auto-generated catch block
 			log.error("Error in bindToNode",e);
@@ -169,14 +193,36 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 		formMapHelper.fillFromFormMap(this, formMap);
 		CalculatedFieldHelper calculatedFieldHelper = new CalculatedFieldHelper();
 		calculatedFieldHelper.processCalculatedFields(this);
+		soapOutputMap = formMap;
 	}
 
 	
 	public <T extends HippoBean> void cloneBean(T sourceBean) {
-		DITResponseDocumentDetail objinvoiceDetail = (DITResponseDocumentDetail) sourceBean;
+		DITResponseDocumentDetail ditResponseDocumentDetail = (DITResponseDocumentDetail) sourceBean;
 		super.cloneBean(sourceBean);
 		BeanCloneHelper beanCloneHelper = new BeanCloneHelper();
 		beanCloneHelper.cloneTheBean(sourceBean,this);
+		
+		if (ditResponseDocumentDetail.getProperties() != null){
+			FormMap formMap = new FormMap();
+			for (String key:ditResponseDocumentDetail.getProperties().keySet()) {
+				if (key.equals("mootlywcm:soapOperation") || key.equals("mootlywcm:soapRequest") || key.equals("mootlywcm:soapResponse") ||  key.equals("mootlywcm:isFault")  ) {
+					continue;
+				}
+				Object thePropValue = ditResponseDocumentDetail.getProperty(key);
+				if ( thePropValue != null && thePropValue instanceof String) {
+					String fieldName = key;
+					if (fieldName.startsWith("mootlywcm:")) {
+						fieldName = fieldName.substring("mootlywcm:".length());
+					}
+					org.hippoecm.hst.component.support.forms.FormField formField = new org.hippoecm.hst.component.support.forms.FormField(fieldName);
+					formField.addValue((String) thePropValue);
+					formMap.addFormField(formField);
+				}
+			}
+			if (ditResponseDocumentDetail.getSoapOutputMap() != null && ditResponseDocumentDetail.getSoapOutputMap().getFormMap() != null) formMap.getFormMap().putAll(ditResponseDocumentDetail.getSoapOutputMap().getFormMap());
+			setSoapOutputMap(formMap);
+		}
 		
 		if (log.isInfoEnabled()) {
 			log.info("The cloning is done");

@@ -118,10 +118,11 @@ public class StartApplication extends ITReturnComponent {
 
 		RetrievePANResponse retrievePANResponse = null;
 		//Call to DIT Service then get the Response
+		/*
 		if(shouldRetrievePANInformation()||shouldRetrievePANInformation()){
 			RetrievePANInformation retrievePANInformation = getRetrievePANInformationService();
 			try {
-				retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
+				retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN(),);
 			} catch (MissingInformationException e) {
 				// TODO Auto-generated catch block
 				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
@@ -143,6 +144,7 @@ public class StartApplication extends ITReturnComponent {
 				response.setHeader(respKey, resultResponseMap.get(respKey));
 			}
 		}
+		*/
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if (publicParameterUUID != null) {
 			try {
@@ -259,9 +261,9 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute("maphuf", maphuf);
 		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
 
-		if(shouldRetrievePANInformation() && publicParameterUUID !=null){
-			request.setAttribute("retrievePANResponse", retrievePANResponse);
-		}
+		//if(shouldRetrievePANInformation() && publicParameterUUID !=null){
+		//	request.setAttribute("retrievePANResponse", retrievePANResponse);
+		//}
 		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
 		if (checkForDuplicate != null && "true".equalsIgnoreCase(checkForDuplicate)) {  //check that Admin enable or disable the functionality
 			if(publicParameterUUID !=null && getPanFolder() !=null){                   //duplicate will applicable for New PAN entry 
@@ -498,8 +500,10 @@ public class StartApplication extends ITReturnComponent {
 					log.info("DIT getEriPassword:" +  getChannelInfoWrapper().getWebSiteInfo().getEriPassword());
 					log.info("DIT getEriCertChain:" +  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain());
 					log.info("DIT getEriSignature:" +  getChannelInfoWrapper().getWebSiteInfo().getEriSignature());
-				}				
-				AddClientDetailsResponse addClientDetailsResponse = getAddClientDetailsService().addClientDetails(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), null, null, PAN, theGCalDOB, email, null, null, null);
+				}			
+				Session persistableSession = getPersistableSession(request);
+				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+				AddClientDetailsResponse addClientDetailsResponse = getAddClientDetailsService().addClientDetails(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), null, null, PAN, theGCalDOB, email, null, null, null,getAbsoluteBasePathToReturnDocuments(),wpm);
 				if (addClientDetailsResponse == null || addClientDetailsResponse.getError() != null) {
 					//formMap.addMessage("RAW_MESSAGE_1",addClientDetailsResponse.getError());
 					isValid = false;

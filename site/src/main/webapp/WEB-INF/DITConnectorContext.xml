@@ -36,6 +36,7 @@
 				<entry key="pan" value="http://panws.dit.tcs.com/"/>
 				<entry key="typ" value="http://panws.dit.tcs.com/types/"/>
 				<entry key="mas" value="http://incometaxindiaefiling.gov.in/master"/>
+				<entry key="ns2" value="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0"/>
 			</map>
 		</constructor-arg>
 		<constructor-arg index="1">
@@ -44,7 +45,7 @@
 				<entry value="v" key="http://incometaxindiaefiling.gov.in/ditws/ITRVStatus/v_1_0"/>
 				<entry value="pan" key="http://panws.dit.tcs.com/"/>
 				<entry value="typ" key="http://panws.dit.tcs.com/types/"/>
-				<entry value="mas" key="http://incometaxindiaefiling.gov.in/master"/>
+				<entry value="ns2" key="http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0"/>
 			</map>
 		</constructor-arg>
 	</bean>
@@ -109,6 +110,11 @@
         <constructor-arg index="2" value="${certChain}"/>
         <constructor-arg index="3" value="${signature}"/>
         <constructor-arg index="4" ref="soapService"/>
+        
+        <constructor-arg index="5" ref="itReturnComponentHelper"></constructor-arg>
+      	<constructor-arg index="6" value="false"/>
+      	<constructor-arg index="7" value="${soapRequestSaveLocation}"/>
+      	<constructor-arg index="8" value="true"/>
     </bean>
     
     <import resource="AddClientDetails.xml"/>

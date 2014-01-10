@@ -35,7 +35,7 @@ public class TestAddClientDetails  {
 	public void testAddClientDetails() {
 		AddClientDetails addClientDetails =	ac.getBean(AddClientDetails.class);
 		try {
-			AddClientDetailsResponse output = addClientDetails.addClientDetails("username", "password", "certChain", "signature", "PAN", IndianGregorianCalendar.getIndianInstance(), "email", AddClientOption.tdsOption, "TAN", FinancialYear.TwentyThirteen);
+			AddClientDetailsResponse output = addClientDetails.addClientDetails("username", "password", "certChain", "signature", "PAN", IndianGregorianCalendar.getIndianInstance(), "email", AddClientOption.tdsOption, "TAN", FinancialYear.TwentyThirteen,null,null);
 			System.out.println(output);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

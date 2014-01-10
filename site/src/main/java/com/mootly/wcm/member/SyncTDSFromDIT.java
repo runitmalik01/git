@@ -117,7 +117,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			}
 		}
 		try {
-			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall());
+			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall(), null ,null);
 			List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
 			List<Twenty26ASAdvanceTaxPayment> advTaxList = new ArrayList<Twenty26ASAdvanceTaxPayment>();
 			splitTaxPayment(twenty26asResponse, selfAssessmentList, advTaxList);
@@ -148,12 +148,29 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		Retrieve26ASInformation retrieve26asInformation = getRetrieve26ASService();
 		MemberPersonalInformation mpi = null;
 		try {
+			persistableSession=getPersistableSession(request);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("error in persistableSession",e);
+			//e.printStackTrace();
+		}
+		WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+		
+		try {
 			mpi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 			if (mpi == null) {
 				response.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return;
 			}
-			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), mpi.getPAN(), mpi.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall());
+			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), mpi.getPAN(), mpi.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall(),getAbsoluteBasePathToReturnDocuments(),wpm);
+			try {
+				persistableSession=getPersistableSession(request);
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				log.error("error in persistableSession",e);
+				//e.printStackTrace();
+			}
+			wpm = getWorkflowPersistenceManager(persistableSession);
 			List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
 			List<Twenty26ASAdvanceTaxPayment> advTaxList = new ArrayList<Twenty26ASAdvanceTaxPayment>();
 			splitTaxPayment(twenty26asResponse, selfAssessmentList, advTaxList);
@@ -161,15 +178,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			int totalToBeImported = totalToBeImported(twenty26asResponse, selfAssessmentList, advTaxList);
 			if (totalToBeImported > 0 ) {				
 				//List list = Collections.synchronizedList(new ArrayList());
-				try {
-					persistableSession=getPersistableSession(request);
-				} catch (RepositoryException e) {
-					// TODO Auto-generated catch block
-					log.error("error in persistableSession",e);
-					//e.printStackTrace();
-				}
-				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
-				
+			
 			
 				if (selfAssessmentList != null && selfAssessmentList.size() > 0) {
 					saveElementsToRepository(selfAssessmentList,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);

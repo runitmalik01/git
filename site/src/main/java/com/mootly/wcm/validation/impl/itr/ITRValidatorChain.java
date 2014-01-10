@@ -39,7 +39,7 @@ public class ITRValidatorChain implements HippoBeanValidatorChain {
 		HippoBeanValidationResponse validationResponse = new HippoBeanValidationResponse();
 		for (HippoBeanValidator aValidatorBean:listOfHippoBeanValidator) {
 			aValidatorBean.validate(financialYear,pageAction, mapOfBeans,additionalData,annotations, validationResponse);	
-			if (!validationResponse.getHasErrors()) {
+			if (validationResponse.getHasErrors()) {
 				break;
 			}			
 		}	

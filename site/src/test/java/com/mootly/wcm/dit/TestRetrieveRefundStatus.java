@@ -32,7 +32,7 @@ public class TestRetrieveRefundStatus  {
 	public void testRetrieveRefundStatus() {
 		RetrieveRefundStatus retrieveRefundStatus =	ac.getBean(RetrieveRefundStatus.class);
 		try {
-			RetrieveRefundResponse retrieveRefundResponse = retrieveRefundStatus.retrieveRefundStatus("ERIU101869", "arun@123", "certChain1", "signature1", "ABNPP1234G", "2013-14");
+			RetrieveRefundResponse retrieveRefundResponse = retrieveRefundStatus.retrieveRefundStatus("ERIU101869", "arun@123", "certChain1", "signature1", "ABNPP1234G", "2013-14",null,null);
 			System.out.println(retrieveRefundResponse);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

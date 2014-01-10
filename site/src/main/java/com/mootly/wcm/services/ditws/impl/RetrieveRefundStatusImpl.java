@@ -10,9 +10,11 @@ import javax.xml.soap.SOAPException;
 import javax.xml.ws.soap.SOAPFaultException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.services.ditws.RetrieveRefundStatus;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -27,8 +29,8 @@ import com.mootly.wcm.services.ditws.soap.SOAPService;
 public class RetrieveRefundStatusImpl extends DITSOAPServiceImpl implements RetrieveRefundStatus {
 	
 	public RetrieveRefundStatusImpl(String userName, String password,
-			String certChain, String signature, SOAPService soapService) {
-		super(userName, password, certChain, signature, soapService);
+			String certChain, String signature, SOAPService soapService,ITReturnComponentHelper itReturnComponentHelper,boolean saveAllSOAPReuqestToFileSystem,  String soapRequestSaveLocation,  boolean saveAllSOAPRequestToRepository) {
+		super(userName, password, certChain, signature, soapService,itReturnComponentHelper,saveAllSOAPReuqestToFileSystem,soapRequestSaveLocation,saveAllSOAPRequestToRepository);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,7 +48,7 @@ public class RetrieveRefundStatusImpl extends DITSOAPServiceImpl implements Retr
 	}
 
 	@Override
-	public RetrieveRefundResponse retrieveRefundStatus(String userName,String password,String certChain, String signature, String PAN, String assessmentYear)
+	public RetrieveRefundResponse retrieveRefundStatus(String userName,String password,String certChain, String signature, String PAN, String assessmentYear,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm)
 			throws MissingInformationException, DataMismatchException,
 			InvalidFormatException {
 		// TODO Auto-generated method stub
@@ -74,6 +76,13 @@ public class RetrieveRefundStatusImpl extends DITSOAPServiceImpl implements Retr
 		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrieveRefundStatus,inputParams);
+			if (isSaveAllSOAPRequestToRepository()) {
+				try {
+					saveSOAPRequestToRepository(soapCallWrapperRetrieveRefundStatus.getOperation(), absoluteBasePathToReturnDocuments, wpm, outputMap);
+				}catch (Exception e) {
+					logger.error("Saving into repository exception",e);
+				}
+			}
 			RetrieveRefundResponse retrieveRefundResponse = SOAPCallWrapperHelper.getInstanceFromSOAPMapSingleInstance(RetrieveRefundResponse.class, outputMap);
 			return retrieveRefundResponse;
 		} catch (InstantiationException e) {

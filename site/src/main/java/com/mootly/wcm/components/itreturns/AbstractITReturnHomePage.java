@@ -253,6 +253,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			response.setRenderParameter("valiPanWithLastNameError", "true");
 			return;
 		}
+		/*
 		if(shouldValidatePANWithDIT()){
 			RetrievePANInformation retrievePANInformation =  getRetrievePANInformationService();
 			//Boolean defContinueInvalidPAN = Boolean.valueOf(map.getField("invalidSubmit").getValue());
@@ -276,6 +277,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
 			}
 		}
+		*/
 
 		StoreFormResult sfr = new StoreFormResult();				
 		FormUtils.persistFormMap(request, response, map, sfr);

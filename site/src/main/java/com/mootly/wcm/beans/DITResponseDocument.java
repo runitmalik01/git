@@ -164,7 +164,6 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				DITResponseDocumentDetail destination =(DITResponseDocumentDetail) o;
 				DITResponseDocumentDetail source  = (DITResponseDocumentDetail) child;
 				destination.setMarkedForDeletion(true);

@@ -2285,4 +2285,19 @@
 	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
 	  </sv:property>
 </sv:node>
+	<!-- new component -->
+	<sv:node sv:name="efile-incometax-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>31b753e9-4136-4d56-a311-2c73d10ca3cf</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>efile-incometax-confirmation</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>

@@ -113,7 +113,6 @@ import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.member.Member;
-import com.mootly.wcm.model.DITSubmissionStatus;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -157,7 +156,11 @@ import com.mootly.wcm.services.efile.exception.EFileException;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric.ACTION;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric.TYPE;
 import com.mootly.wcm.validation.HippoBeanValidationResponse;
+import com.mootly.wcm.validation.RepositoryUpdateRequest;
 import com.mootly.wcm.validation.impl.itr.ITRValidatorChain;
 import com.mootly.wcm.view.PaymentUpdateResponse;
 
@@ -169,17 +172,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	Retrieve26ASInformation retrieve26ASService = null;
 	RetrievePANInformation retrievePANInformation = null;
 	AddClientDetails addClientDetailsService = null;
-	
 	RetrieveRectificationStatus retrieveRectificationStatus = null;
 	RetrieveRefundStatus retrieveRefundStatus = null;
-
 	String servletPath = null;
 	String xsltPath = null;
-
+	SequenceGenerator sequenceGenerator = null;
+	RetrievePANResponse retrievePANResponse = null;
+	Transaction transaction = null;
+	Enquiry enquiry =	null;
+	
 	//local variables
-	boolean hasInitComplete = false;
+	//boolean hasInitComplete = false;
 	String redirectURLToSamePage=  null;
-
 	//User/Member Parameters
 	String userName;
 	String userNameNormalized;
@@ -202,7 +206,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	FilingStatus filingStatus;
 	FormMap formMap = null;
 	ITReturnPackage itReturnPackage = ITReturnPackage.basic;
-
 	HippoBean siteContentBaseBean = null;
 	//Document Specific
 	HippoBean hippoBeanBaseITReturnDocuments;
@@ -213,7 +216,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	String parentBeanAbsolutePath;
 	HippoBean parentBean;
 	HippoBean childBean;
-
 	String uuid;
 	String maxChildrenAllowed = null;
 
@@ -223,28 +225,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	PAGE_ACTION pageAction;
 	String screenMode;
 	String nextScreenSiteMapItemRefId;
-
 	String mainSiteMapItemRefId = null;
-
 	String clientSideValidationJSON;
-
 	///Name of the HTML File and the depth its in
 	String scriptName;
-
-	SequenceGenerator sequenceGenerator = null;
-
 	Map<String,HippoBean> mapOfAllBeans = new HashMap<String, HippoBean>();
-
-
 	MemberPersonalInformation memberPersonalInformation;
 	DITResponseDocument ditResponseDocument;
 	boolean shouldRetrievePANInformation = false;
 	boolean shouldValidatePANWithDIT = false;
 	boolean ditInvalidPanContnue = false; 
 	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
-	RetrievePANResponse retrievePANResponse = null;
-	Transaction transaction = null;
-	Enquiry enquiry =	null;
+	
 
 	@Override
 	public void init(ServletContext servletContext,
@@ -309,20 +301,43 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
-
-		if (!hasInitComplete) {
+		//Map<String, String> mapOfComponents  = HstServices.getComponentManager().getComponentsOfType(String.class);
+		boolean isFrozen = false;
+		//if (!hasInitComplete) {
 			try {
 				initComponent(request,response,false);
 				fillDueDate(request,response); //this will fill the due date
-				executeValidationChain(request,response);
+				HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
+				if (hippoBeanValidationResponse != null) {
+					HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
+					if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
+						isFrozen = true;
+						request.setAttribute("freezeIncomeTaxAction", freezeIncomeTaxAction);
+						request.setAttribute("isFrozen", isFrozen);
+						request.setAttribute("ackResponse", hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION) );
+						request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
+						request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
+					}
+				}
 			}			
 			catch (Exception ex) {
 				log.error("Error in initializing component. FATAL",ex);
 				redirectToNotFoundPage(response);
 				return;
 			}
-			hasInitComplete = true;
-		}
+			
+			String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+			if (isFrozen && pageAction == PAGE_ACTION.EFILE) {
+				try {
+					response.sendRedirect(redirectToAfterEFile);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
+		//	hasInitComplete = true;
+		//}
 		if (getPAN() != null && (filingStatus == null || filingStatus.equals(FilingStatus.UNKNOWN))) {
 			log.error("Unknown Filing status for PAN:" + getPAN());
 			response.setRenderPath("jsp/security/invalidpan.jsp");
@@ -430,7 +445,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-memberinvoice" : "memberinvoice"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
-		String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		//String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
 		if (pageAction != null && (pageAction.equals(PAGE_ACTION.EFILE) || pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
@@ -516,11 +531,39 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				log.error("Error in validating XML",e);
+				try {
+					response.sendRedirect(redirectToAfterEFile);
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					log.error("Error in validating XML",ex);
+					ex.printStackTrace();
+				}
+				return;
 			} catch (DigtalSignatureERIUserFailure e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				log.error("Error in validating XML",e);
+				try {
+					response.sendRedirect(redirectToAfterEFile);
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					log.error("Error in validating XML",ex);
+					ex.printStackTrace();
+				}
+				return;
 			}
+		}
+		//new code for bulk
+		if (pageAction != null && pageAction == PAGE_ACTION.EFILE) {
+			//add and then redirect back to the page
+			try {
+				response.sendRedirect(redirectToAfterEFile);
+			} catch (IOException ex) {
+				// TODO Auto-generated catch block
+				log.error("Error in validating XML",ex);
+				ex.printStackTrace();
+			}
+			return;
 		}
 		//new code for bulk
 		if (pageAction != null && pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION) {
@@ -559,7 +602,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_ITRV_STATUS) {
 			if (retrieveITRVService != null) {
 				try {
-					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					
+					Session	persistableSession=getPersistableSession(request);
+					WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall(),getAbsoluteBasePathToReturnDocuments(),wpm);
 					request.setAttribute("itrvStatus", itrvStatus);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
@@ -570,6 +616,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					log.error("Error in RetrieveITRVStatus-DataMismatchException",e);
 					request.setAttribute("isError", "true");
 				} catch (InvalidFormatException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
+					request.setAttribute("isError", "true");
+				} catch (RepositoryException e) {
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
 					request.setAttribute("isError", "true");
@@ -585,7 +635,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		else if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_REFUND_STATUS) {
 			if (retrieveRefundStatus != null) {
 				try {
-					RetrieveRefundResponse retrieveRefundResponse  = retrieveRefundStatus.retrieveRefundStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					Session persistableSession = getPersistableSession(request);
+					WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+					RetrieveRefundResponse retrieveRefundResponse  = retrieveRefundStatus.retrieveRefundStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall(),getAbsoluteBasePathToReturnDocuments(),wpm);
 					request.setAttribute("retrieveRefundResponse", retrieveRefundResponse);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
@@ -596,6 +648,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					log.error("Error in RetrieveITRVStatus-DataMismatchException",e);
 					request.setAttribute("isError", "true");
 				} catch (InvalidFormatException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
+					request.setAttribute("isError", "true");
+				} catch (RepositoryException e) {
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
 					request.setAttribute("isError", "true");
@@ -611,7 +667,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		else if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_RECTIFICATION_STATUS) {
 			if (retrieveITRVService != null) {
 				try {
-					RetrieveRectificationResponse retrieveRectificationResponse = retrieveRectificationStatus.retrieveRectificationStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					Session persistableSession = getPersistableSession(request);
+					WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+					RetrieveRectificationResponse retrieveRectificationResponse = retrieveRectificationStatus.retrieveRectificationStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall(),getAbsoluteBasePathToReturnDocuments(),wpm);
 					request.setAttribute("retrieveRectificationResponse", retrieveRectificationResponse);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
@@ -625,6 +683,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
 					request.setAttribute("isError", "true");
+				} catch (RepositoryException e) {
+					// TODO Auto-generated catch block
+					log.error("RepositoryException",e);
 				}
 			}
 			else {
@@ -641,9 +702,25 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		if (!hasInitComplete) {
+		boolean isFrozen = false;
+		try {
 			initComponent(request,response,false);
-			hasInitComplete = true;
+			fillDueDate(request,response); //this will fill the due date
+			executeValidationChain(request,response);
+			HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
+			if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
+				isFrozen = true;
+				request.setAttribute("isFrozen", isFrozen);
+			}
+		}			
+		catch (Exception ex) {
+			log.error("Error in initializing component. FATAL",ex);
+			redirectToNotFoundPage(response);
+			return;
+		}
+		if (isFrozen) {
+			log.warn("Attempted Post when the Income Tax was FROZEN");
+			return ;
 		}
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 		String[] vendorFields = formFields.fieldNamesVendorOnly();
@@ -1353,6 +1430,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		//validate last name of Member with PAN 
 		startappvalidserv.validLastName(formMap);
 		//validate last name of Member with Income Tax department by Call RetrievePanInformation Dit Service
+		/*
 		if(shouldValidatePANWithDIT()){
 			try {
 				RetrievePANResponse retrievePANResponse = retrievePANInformation();
@@ -1363,11 +1441,6 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						}
 					}
 				}
-				//change if we don't want to Save Pan If found error In RetrievePanInformation DIT Service
-				/*boolean validpan = false;
-					if(retrievePANResponse!=null && StringUtils.isNotBlank(retrievePANResponse.getError()) && validpan){
-						formMap.getField("pan").addMessage("err.match.pan.dit");
-					}*/
 			} catch (MissingInformationException e) {
 				// TODO Auto-generated catch block
 				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
@@ -1379,6 +1452,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
 			}
 		}
+		 */
 		
 		//additionalv validation
 		additionalValidation(request, response, formMap);
@@ -1491,8 +1565,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-	protected void executeValidationChain(HstRequest request,HstResponse response) {
+	protected HippoBeanValidationResponse executeValidationChain(HstRequest request,HstResponse response) {
 		//
+		if ( getMemberPersonalInformation() == null) return null;
+		
 		Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
 		@SuppressWarnings("unchecked")
 		Enumeration<String> enmAttrNames = request.getAttributeNames();
@@ -1503,9 +1579,31 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				mapOfBeans.put(anObj.getClass().getSimpleName().toLowerCase(), (HippoBean) anObj);
 			}
 		}
-
-		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(getFinancialYear(), pageAction,  mapOfBeans, null, getClass().getAnnotations());
+		
+		Map<String,Object> additionalData = new HashMap<String,Object>();
+		additionalData.put("webSiteInfo", getWebSiteInfo());
+		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(getFinancialYear(), pageAction,  mapOfBeans, additionalData , getClass().getAnnotations());
+		if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getRepositoryUpdateRequests() != null && hippoBeanValidationResponse.getRepositoryUpdateRequests().size()  > 0 ) {
+			BeanLifecycle<HippoBean> childBeanLifeCycleHandler = null;
+			BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = null;
+			for ( RepositoryUpdateRequest repositoryUpdateRequest : hippoBeanValidationResponse.getRepositoryUpdateRequests() ) {
+				Session persistableSession = null;
+				WorkflowPersistenceManager wpm = null;
+				try {
+					persistableSession = getPersistableSession(request);
+					wpm = getWorkflowPersistenceManager(persistableSession);
+					PAGE_ACTION pageAction = repositoryUpdateRequest.getPageAction();
+					if (pageAction == PAGE_ACTION.EDIT_CHILD) {
+						getITReturnComponentHelper().saveUpdateExistingChild(repositoryUpdateRequest.getChildFormMap(), repositoryUpdateRequest.getParentFormMap(), childBeanLifeCycleHandler, parentBeanLifeCycleHandler , getAbsoluteBasePathToReturnDocuments() ,repositoryUpdateRequest.getParentBeanAbsolutePath(), repositoryUpdateRequest.getParentBeanNameSpace(), repositoryUpdateRequest.getParentBeanNodeName(), repositoryUpdateRequest.getChildBeanClass(), persistableSession, wpm, repositoryUpdateRequest.getChildUuid());
+					}			
+				}catch (Exception e){
+					log.error("Error updating the Object",e);
+				}
+			}
+		}
+		
 		if (hippoBeanValidationResponse != null) request.setAttribute("hippoBeanValidationResponse", hippoBeanValidationResponse);
+		
 		if ( hippoBeanValidationResponse != null) {
 			if (hippoBeanValidationResponse.getTotalErrors() > 0 ) {
 				request.setAttribute("hippoBeanValidationResponse_totalErrors", hippoBeanValidationResponse.getTotalErrors() );
@@ -1514,6 +1612,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				request.setAttribute("hippoBeanValidationResponse_totalWarnings", hippoBeanValidationResponse.getTotalWarnings() );
 			}
 		}
+		
+		return hippoBeanValidationResponse;
 	}
 
 	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {
@@ -2012,7 +2112,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			break;
 		case EFILE:
-				EFileResponse eFileResponse = eFileITR( getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
+				EFileResponse eFileResponse = eFileITR(request, getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
+				request.setAttribute("eFileResponse",eFileResponse);
+				/*
 				if (eFileResponse != null) {
 					MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 					if (eFileResponse.getTokenNumber() != null && mi != null) {// (FormMap parentBeanMap,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName, Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException, InstantiationException, IllegalAccessException {
@@ -2037,6 +2139,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						log.info ("eFileResponse.getTokenNumber();" + eFileResponse.getTokenNumber() ); 
 					}
 				}
+				*/
 		}
 		//Object theForm = request.getAttribute("theForm");
 	}
@@ -2308,13 +2411,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return true;
 	}
 	
-	protected EFileResponse eFileITR(String userName, String password,String itrXML) throws EFileException, DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure {
+	protected EFileResponse eFileITR(HstRequest request,String userName, String password,String itrXML) throws EFileException, DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure {
 		///assuming all is WELL call another class so we can keep the Logic Seperated.
 		//String xml,String resellerId,String pan,FinancialYear financialYear,String canonicalPathToMemberIncomeTaxFolder) throws EFileException;
 		try {
 			if (getMemberPersonalInformation() != null) {
+				Session persistableSession = getPersistableSession(request);
+				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
 				String  canonicalPathToMemberIncomeTaxFolder = getMemberPersonalInformation().getParentBean().getCanonicalPath();
-				EFileResponse eFileResponse = geteFileService().eFile(userName,password, itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder);
+				EFileResponse eFileResponse = geteFileService().eFile(userName,password, itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder,getAbsoluteBasePathToReturnDocuments(),wpm);
 				return eFileResponse;
 			}
 			else {
@@ -2350,22 +2455,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	protected boolean shouldRetrievePANInformation() {
 		return shouldRetrievePANInformation;
 	}
-
-	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {
-		return retrievePANInformation(getPAN());
-	}
-
-	protected RetrievePANResponse retrievePANInformation(String PAN) throws MissingInformationException, DataMismatchException, InvalidFormatException {
-		if (retrievePANResponse == null) {
-			String argument = PAN;
-			if (PAN == null) {
-				argument = getPAN();
-			}
-			retrievePANResponse = retrievePANInformation.retrievePANInformation(argument);
-		}
-		return retrievePANResponse;
-	}
-
+	
 	protected RetrievePANInformation.VALIDATION_RESULT getRetrievePANInformationValidationResult() {
 		return retrievePANInformationValidationResult;
 	}

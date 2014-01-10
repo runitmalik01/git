@@ -3,6 +3,6 @@ package com.mootly.wcm.validation;
 public class HippoBeanValidationError extends HippoBeanValidationGeneric  {
 	public HippoBeanValidationError(String message) {
 		// TODO Auto-generated constructor stub
-		super(message);
+		super(TYPE.ERROR, message);
 	}
 }
