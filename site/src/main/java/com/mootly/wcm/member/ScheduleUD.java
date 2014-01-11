@@ -49,15 +49,15 @@ public class ScheduleUD extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		// to take values from Schedule of UD
-		Map<String, HippoBean> inputBeans = loadBeansAndSetRequestAttributes(request, response);
+		Map<String, HippoBean> inputBeans =  getITRInitData(request).loadBeansAndSetRequestAttributes(request);
 		
 		UnabsorbedDepreciationDocument unabsorbedDepreciationDocument = (UnabsorbedDepreciationDocument) request.getAttribute(UnabsorbedDepreciationDocument.class.getSimpleName().toLowerCase());
 		if(unabsorbedDepreciationDocument != null){
 			ITR4_ScheduleUD iTR4_ScheduleUD = new ITR4_ScheduleUD(unabsorbedDepreciationDocument);	
 			if(iTR4_ScheduleUD != null){
 				ITR itr = new ITR();
-				request.setAttribute("listofValuesDep", iTR4_ScheduleUD.getITR4ScheduleUD(itr, getFinancialYear(), inputBeans).getScheduleUD());
-				request.setAttribute("totalCarryFwdAmt", iTR4_ScheduleUD.getITR4ScheduleUD(itr, getFinancialYear(), inputBeans).getTotalBalCFNY());
+				request.setAttribute("listofValuesDep", iTR4_ScheduleUD.getITR4ScheduleUD(itr,  getITRInitData(request).getFinancialYear(), inputBeans).getScheduleUD());
+				request.setAttribute("totalCarryFwdAmt", iTR4_ScheduleUD.getITR4ScheduleUD(itr,  getITRInitData(request).getFinancialYear(), inputBeans).getTotalBalCFNY());
 			}
 		}
 	}
@@ -70,12 +70,12 @@ public class ScheduleUD extends ITReturnComponent {
 	}
 	// getting the values form Schedule BFLA for setting off the value
 	public Double getAttributeForDepreciation(HstRequest request, HstResponse response){
-			Map<String, HippoBean> inputBeans= loadBeansAndSetRequestAttributes(request,response);
+			Map<String, HippoBean> inputBeans= getITRInitData(request).loadBeansAndSetRequestAttributes(request);
 		// BroughtFwdLossesSchedules objBFL = new BroughtFwdLossesSchedules();
 		ITR itr = new ITR();
 		// ScheduleBFLA scheduleBFLA = objBFL.getScheduleBFLA(itr, getFinancialYear(), inputBeans);
 		CurrentYearLossesSchedules currentYearLossesSchedules = new CurrentYearLossesSchedules();
-		ScheduleCYLA scheduleCYLA = currentYearLossesSchedules.getScheduleCYLA(itr, getFinancialYear(), inputBeans);
+		ScheduleCYLA scheduleCYLA = currentYearLossesSchedules.getScheduleCYLA(itr, getITRInitData(request).getFinancialYear(), inputBeans);
 		BigInteger maxAmountDepreciation =  scheduleCYLA.getHP().getIncCYLA().getIncOfCurYrAfterSetOff().add(scheduleCYLA.getBusProfExclSpecProf().getIncCYLA().getIncOfCurYrAfterSetOff()).add(scheduleCYLA.getSpeculativeInc().getIncCYLA().getIncOfCurYrAfterSetOff())
 				.add(scheduleCYLA.getSpecifiedInc().getIncCYLA().getIncOfCurYrAfterSetOff()).add(scheduleCYLA.getSTCG().getIncCYLA().getIncOfCurYrAfterSetOff()).add(scheduleCYLA.getLTCG().getIncCYLA().getIncOfCurYrAfterSetOff()).
 				add(scheduleCYLA.getOthSrcExclRaceHorse().getIncCYLA().getIncOfCurYrAfterSetOff()).add(scheduleCYLA.getOthSrcRaceHorse().getIncCYLA().getIncOfCurYrAfterSetOff());

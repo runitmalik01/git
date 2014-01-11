@@ -75,7 +75,7 @@ public class SummaryDetail extends ITReturnComponent {
 
 		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
 		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
-		String assYear=getAssessmentYear();
+		String assYear= getITRInitData(request).getAssessmentYear();
 		if(null!=assYear){
 			request.setAttribute("assYear", assYear);
 		}

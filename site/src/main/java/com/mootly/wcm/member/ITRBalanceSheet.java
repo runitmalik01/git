@@ -157,7 +157,7 @@ public class ITRBalanceSheet extends ITReturnComponent {
 			objWorkflowPersistenceManager= getWorkflowPersistenceManager(persistableSession);
 			objWorkflowPersistenceManager.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 
-			String getPathBalanceSheetDocument=getAbsoluteBasePathToReturnDocuments()+"/"+BalanceSheetDocument.class.getSimpleName().toLowerCase();
+			String getPathBalanceSheetDocument= getITRInitData(request).getAbsoluteBasePathToReturnDocuments()+"/"+BalanceSheetDocument.class.getSimpleName().toLowerCase();
 			BalanceSheetDocument objBalanceSheetDocument= (BalanceSheetDocument)objWorkflowPersistenceManager.getObject(getPathBalanceSheetDocument);
 			if(objBalanceSheetDocument != null){
 				log.info("Got Document.Let's remove it then recreate it::");

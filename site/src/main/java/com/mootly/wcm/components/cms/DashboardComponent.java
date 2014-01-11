@@ -26,7 +26,7 @@ public class DashboardComponent extends ITReturnComponent{
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		HippoBean resellerHippoBeanScope = getSiteContentBaseBeanForReseller(request);
+		HippoBean resellerHippoBeanScope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		if(resellerHippoBeanScope != null) {
 			HippoBean eventLogBean = resellerHippoBeanScope.getBean("admin/log");
 			if(eventLogBean != null) {

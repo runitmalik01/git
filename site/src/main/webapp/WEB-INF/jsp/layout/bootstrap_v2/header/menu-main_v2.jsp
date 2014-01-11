@@ -17,7 +17,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../../../includes/tags.jspf"%>
 
-<c:if test = "${etaxfilestation == false}">
+<c:if test = "${empty etaxfilestation || etaxfilestation == false}">
 		<c:forEach var="item" items="${menu.siteMenuItems}">
 			<c:set var="itemLink" value="${item.hstLink}" />
 			<c:if test="${not empty itemLink}">

@@ -157,7 +157,7 @@ public class ITRScheduleAMTC extends ITReturnComponent{
 				natureInvestmentDocument,signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument,
 				tcsDocument,incBusinessProfessionDoc,profitAndLossDocument, otherInformationDocument, scheduleDPMDocument, scheduleDOADocument,
 				scheduleESRDocument, deductionSchedTenADocumemt,scheduleAMTCDocument, incomeFromFirmsDocument);
-		PartBTTI btti = partB_TTI.getPartBTTI(itr, getFinancialYear(), inputBeans);
+		PartBTTI btti = partB_TTI.getPartBTTI(itr,  getITRInitData(request).getFinancialYear(), inputBeans);
 		Double taxAgainstCredit = 0d;
 		request.setAttribute("taxUndSec115JC", btti.getComputationOfTaxLiability().getTaxPayableOnDeemedTI().getTotalTax());
 		request.setAttribute("taxUnderOtherProv", btti.getComputationOfTaxLiability().getGrossTaxLiability());

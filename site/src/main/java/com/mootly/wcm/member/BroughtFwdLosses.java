@@ -100,7 +100,7 @@ public class BroughtFwdLosses extends ITReturnComponent {
 		inputBeans.put(BroughtFwdLossesDocument.class.getSimpleName().toLowerCase(),broughtFwdLossesDocument);
 
 		CurrentYearLossesSchedules currentYearLossesSchedules = new CurrentYearLossesSchedules();
-		ScheduleCYLA scheduleCYLA = currentYearLossesSchedules.getScheduleCYLA(itr, getFinancialYear(), inputBeans);
+		ScheduleCYLA scheduleCYLA = currentYearLossesSchedules.getScheduleCYLA(itr, getITRInitData(request).getFinancialYear(), inputBeans);
 
 		request.setAttribute("SalaryIncomeAftSetOff", scheduleCYLA.getSalary().getIncCYLA().getIncOfCurYrAfterSetOff());
 		request.setAttribute("HPIncomeAftSetOff", scheduleCYLA.getHP().getIncCYLA().getIncOfCurYrAfterSetOff());
@@ -180,7 +180,7 @@ public class BroughtFwdLosses extends ITReturnComponent {
 			request.setAttribute("maintainingRaceHorseLoss", scheduleCYLA.getOthSrcRaceHorse().getIncCYLA().getIncOfCurYrAfterSetOff());
 
 		ITR4_ScheduleBFLA iTR4_ScheduleBFLA = new ITR4_ScheduleBFLA(broughtFwdLossesDocument);
-		ScheduleBFLA scheduleBFLA = iTR4_ScheduleBFLA.getScheduleBFLA(itr, getFinancialYear(), inputBeans);
+		ScheduleBFLA scheduleBFLA = iTR4_ScheduleBFLA.getScheduleBFLA(itr,  getITRInitData(request).getFinancialYear(), inputBeans);
 
 		request.setAttribute("hpTotal", scheduleBFLA.getHP().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());
 		request.setAttribute("biTotal", scheduleBFLA.getBusProfExclSpecProf().getIncBFLA().getIncOfCurYrAfterSetOffBFLosses());

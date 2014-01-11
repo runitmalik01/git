@@ -201,7 +201,7 @@ public class ResellerActivation extends BaseComponent {
 			HippoFolder hippoFolder = (HippoFolder) resellerSignupDocument.getParentBean().getParentBean();
 			String finalMembershipDocumentPath = null;
 			String cPath = hippoFolder.getPath();
-			final String memberFolderPath = cPath + "/" + ContentStructure.MEMBER_FOLDER_NAME + "/" + getNormalizedUserName(request, resellerSignupDocument.getUserName());//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
+			final String memberFolderPath = cPath + "/" + ContentStructure.MEMBER_FOLDER_NAME + "/" + getITRInitData(request).getNormalizedUserName(request, resellerSignupDocument.getUserName());//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
 			finalMembershipDocumentPath = wpm.createAndReturn(memberFolderPath, MemberSignupDocument.NAMESPACE ,  MemberSignupDocument.NODE_NAME, true);
 			MemberSignupDocument membershipSignupDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath);
 			// update content properties

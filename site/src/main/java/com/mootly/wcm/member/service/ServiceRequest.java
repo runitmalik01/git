@@ -42,12 +42,14 @@ import com.mootly.wcm.beans.ServiceRequestDocument;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnComponentHelper;
+import com.mootly.wcm.components.ITReturnInitData;
 import com.mootly.wcm.model.ServiceRequestStatus;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
 import com.mootly.wcm.services.efile.EFileService;
 import com.mootly.wcm.utils.ContentStructure;
+import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.VelocityUtils;
 
 
@@ -89,12 +91,13 @@ public class ServiceRequest extends EasyFormComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		//ITReturnInitData itReturnInitData = new ITReturnInitData(request, itReturnComponentHelper, getSiteContentBaseBean(request), getObjectBeanManager(request), getQueryManager(request), getCanonicalBasePathForWrite(request), getComponentConfiguration(),getClass());
 		MemberPersonalInformation pi = null;
 		if(request.getUserPrincipal() != null){
 			BaseComponent component = new BaseComponent();
 			List<MemberPersonalInformation> piList = new ArrayList<MemberPersonalInformation>();
 			String pan = getPublicRequestParameter(request, "pan");
-			String memberScopePath = "members/" + component.getNormalizedUserName(request) + "/pans";
+			String memberScopePath =  (request.getUserPrincipal() != null ? "members/" + MootlyFormUtils.getNormalizedString(request.getUserPrincipal().getName()) + "/pans" : "");
 			HippoBean hippoBeanScope = getSiteContentBaseBeanForReseller(request).getBean(memberScopePath);
 			if(hippoBeanScope !=null){
 				try {

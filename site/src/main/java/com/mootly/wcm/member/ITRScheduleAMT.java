@@ -82,7 +82,7 @@ public class ITRScheduleAMT extends ITReturnComponent{
 			DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument,
 					(MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()),
 					(OtherSourcesDocument)(OtherSourcesDocument)request.getAttribute(OtherSourcesDocument.class.getSimpleName().toLowerCase()));
-			ScheduleVIA  scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, getFinancialYear(), inputBeans);
+			ScheduleVIA  scheduleVIA = deductionVIASchedules.getScheduleVIA(itr,  getITRInitData(request).getFinancialYear(), inputBeans);
 			request.setAttribute("dedUnderChapSix", scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions());
 		}
 		PartB_TI partB_TI = new	PartB_TI((FormSixteenDocument)request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase()),
@@ -95,7 +95,7 @@ public class ITRScheduleAMT extends ITReturnComponent{
 				(OtherInformationDocument)request.getAttribute(OtherInformationDocument.class.getSimpleName().toLowerCase()),(ScheduleDPMDocument)request.getAttribute(ScheduleDPMDocument.class.getSimpleName().toLowerCase()),
 				(ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()),(ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()),
 				(DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()), (IncomeFromFirmsDocument)request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
-		PartBTI partBTI = partB_TI.getPartBTI(itr, getFinancialYear(), inputBeans);
+		PartBTI partBTI = partB_TI.getPartBTI(itr,  getITRInitData(request).getFinancialYear(), inputBeans);
 		request.setAttribute("partBTIitem13", partBTI.getTotalIncome());
 	}
 

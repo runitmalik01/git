@@ -40,6 +40,7 @@ import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.services.SequenceGenerator;
 
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
@@ -52,9 +53,9 @@ public class ITReturnCopyOrMove extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);	
 		boolean isSuccess = false;
-		PAGE_ACTION pageAction = getPageAction();
+		PAGE_ACTION pageAction = getITRInitData(request).getPageAction();
 		if (log.isInfoEnabled()) {
-			log.info("Page Action is:"+ getPageAction());
+			log.info("Page Action is:"+ getITRInitData(request).getPageAction());
 		}
 		if (pageAction == PAGE_ACTION.COPY_ORIGINAL_TO_REVISED ) {
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());

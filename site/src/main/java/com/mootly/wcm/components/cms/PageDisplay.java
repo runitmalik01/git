@@ -23,8 +23,8 @@ public final class PageDisplay extends BaseComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		boolean isReseller = isReseller();
-		String resellerId = getResellerId();
+		boolean isReseller = getITRInitData(request).isReseller();
+		String resellerId = getITRInitData(request).getResellerId();
 		Boolean isCommonPage = false;
 		String pathInfo = request.getRequestContext().getResolvedSiteMapItem().getPathInfo();
 		
@@ -33,7 +33,7 @@ public final class PageDisplay extends BaseComponent {
 			pageId = "home";
 		}
 		//find the page first
-		HippoBean theBaseBean = getSiteContentBaseBeanForReseller(request);
+		HippoBean theBaseBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		//the path to the requested page.
 		String relPathToTheRequestedPage = "cms/pages/" + pageId ;
 		if (log.isInfoEnabled()) {
@@ -105,7 +105,7 @@ public final class PageDisplay extends BaseComponent {
 			}
 			request.setAttribute("pageDisplayView", pageDisplayView);			
 			request.setAttribute("pageDocument", pageDocument);
-			request.setAttribute("isVendor", isVendor(request));
+			request.setAttribute("isVendor", getITRInitData(request).isVendor(request));
 			request.setAttribute("isCommonPage", isCommonPage);
 		}
 	}

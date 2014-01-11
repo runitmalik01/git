@@ -54,9 +54,9 @@ public class LogComponentManager{
 		this.resellerID = componentHelper.getResellerId(request);
 		this.isReseller = componentHelper.isReSeller(request);
 		BaseComponent baseComponent = new BaseComponent();
-		this.isVendor = baseComponent.isVendor(request);
-		this.isLoggedIn = baseComponent.isLoggedIn(request);
-		this.normalisedUserName = baseComponent.getNormalizedUserName(request);
+		//this.isVendor = baseComponent.isVendor(request);
+		//this.isLoggedIn = baseComponent.isLoggedIn(request);
+		//this.normalisedUserName = baseComponent.getNormalizedUserName(request);
 		this.parentBeanNodeName = EventLogDocument.NODE_NAME;
 		this.parentBeanNameSpace = EventLogDocument.NAMESPACE;
 		this.childBeanClass = EventLogDetail.class;

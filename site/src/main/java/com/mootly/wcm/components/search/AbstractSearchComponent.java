@@ -113,7 +113,7 @@ public class AbstractSearchComponent extends TagComponent {
         String parsedQuery = SearchInputParsingUtils.parse(query,false);
         
         request.setAttribute("query", StringEscapeUtils.escapeHtml(parsedQuery));
-        HippoBean scope = getSiteContentBaseBeanForReseller(request);
+        HippoBean scope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
         
         String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("scopeRelativePath");
         if (scopeRelativePath != null) {

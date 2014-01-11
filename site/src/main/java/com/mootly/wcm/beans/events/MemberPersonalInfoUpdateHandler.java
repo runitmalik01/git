@@ -80,6 +80,10 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 		super.afterUpdate(beanBeforeUpdate, beanAfterUpdate, wpm,baseAbsolutePathToReturnDocuments,itReturnComponentHelper);
 		try {
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) wpm.getObject(baseAbsolutePathToReturnDocuments + "/" + MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			if (memberPersonalInformation == null) {
+				logger.warn("This is strange, we need to replicate this behavior");
+				return;
+			}
 			//DITResponseDocument ditResponseDocument = (DITResponseDocument) wpm.getObject(baseAbsolutePathToReturnDocuments + "/" + DITResponseDocument.class.getSimpleName().toLowerCase());
 			Service selectedService = null;
 			CostModel theSelectedCostModel = null;

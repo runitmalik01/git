@@ -24,6 +24,7 @@ import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.ScheduleDOADocument;
 import com.mootly.wcm.beans.compound.ScheduleDOADetails;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 @PrimaryBean(primaryBeanClass=ScheduleDOADocument.class)
 @ChildBean(childBeanClass=ScheduleDOADetails.class)
 @FormFields(fieldNames={"rates","valFirstDayPrevYr","periodMore180Day","prevYrConsider","amtDepreciationFullRate","periodLess180Day","considerOrRealDuringYr",
@@ -61,7 +62,7 @@ public class SchedDOA extends ITReturnComponent {
 		if(super.validate(request, response, formMap)){
 			PAGE_ACTION pageAction = null;
 			
-			ScheduleDOADocument objScheduleDOADocument = (ScheduleDOADocument) getParentBean();
+			ScheduleDOADocument objScheduleDOADocument = (ScheduleDOADocument) getITRInitData(request).getParentBean();
 			if((objScheduleDOADocument != null) && (pageAction == PAGE_ACTION.NEW_CHILD )){
 			List<ScheduleDOADetails> listScheduleDOADetails = objScheduleDOADocument.getScheduleDOADetailList();
 			if((objScheduleDOADocument != null) && (objScheduleDOADocument.getScheduleDOADetailList().size() > 0)){

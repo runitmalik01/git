@@ -29,6 +29,7 @@ import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 @PrimaryBean(primaryBeanClass=FormSixteenDocument.class)
 @ChildBean(childBeanClass=FormSixteenDetail.class)
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
@@ -83,8 +84,8 @@ public class FormSixteen extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);	
-		if (getPageAction() != null && getPageAction().equals(PAGE_ACTION.EDIT_CHILD) && getChildBean() != null) {
-			FormSixteenDetail form16Detail=(FormSixteenDetail) getChildBean();
+		if (getITRInitData(request).getPageAction() != null && getITRInitData(request).getPageAction().equals(PAGE_ACTION.EDIT_CHILD) && getITRInitData(request).getChildBean() != null) {
+			FormSixteenDetail form16Detail=(FormSixteenDetail) getITRInitData(request).getChildBean();
 			request.getRequestContext().setAttribute("form16InEditMode",Boolean.TRUE);
 			request.getRequestContext().setAttribute("form16UniqueUUID",form16Detail.getForm16Uuid());
 		}
@@ -129,7 +130,7 @@ public class FormSixteen extends ITReturnComponent {
 			if(request.getRequestContext().getResolvedSiteMapItem().getParameter("action").equalsIgnoreCase("formsixteen_NEW_CHILD")){
 				FormSixteenDocument form16=(FormSixteenDocument)request.getAttribute("parentBean");
 				String lastCanonicalUuid=form16.getFormSixteenDetailList().get(form16.getFormSixteenDetailList().size()-1).getCanonicalUUID();
-				String modUrlToRedirect=getScriptName()+"/"+lastCanonicalUuid+"/formsixteenedit";
+				String modUrlToRedirect= getITRInitData(request).getScriptName()+"/"+lastCanonicalUuid+"/formsixteenedit";
 				try {
 					response.sendRedirect(modUrlToRedirect);
 				} catch (IOException e) {
@@ -143,8 +144,8 @@ public class FormSixteen extends ITReturnComponent {
 	@Override
 	public boolean beforeSave(HstRequest request) {
 		// TODO Auto-generated method stub
-		if (getPageAction().equals(PAGE_ACTION.NEW_CHILD)) {
-			FormSixteenDetail formSixteenDetail = (FormSixteenDetail) getChildBean();
+		if (getITRInitData(request).getPageAction().equals(PAGE_ACTION.NEW_CHILD)) {
+			FormSixteenDetail formSixteenDetail = (FormSixteenDetail) getITRInitData(request).getChildBean();
 			if (formSixteenDetail != null) {
 				formSixteenDetail.setForm16Uuid(UUID.randomUUID().toString());
 			}

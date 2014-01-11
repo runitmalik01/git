@@ -43,7 +43,7 @@ public class DocumentUpdateComponent extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
+		HippoBean siteContentBaseBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		if(siteContentBaseBean == null){
 			if(log.isInfoEnabled()){
 				log.info("Site content Bean is { } null.Not able to proceed.");

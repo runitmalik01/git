@@ -27,6 +27,7 @@
 <hst:link var="signup" path="/signup"/>
 <hst:link var="myaccount" path="/member"/>
 <hst:link var="resellersignup" path="/resellersignup"/>
+
 <%--
 <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
 <a href="javascript:;" class="simpleCart_checkout">Checkout</a>
@@ -49,10 +50,10 @@
 			   <button type="submit" class="btn btn-default btn-info"  onclick="javascript:$('#frmLogin').attr('action','${logout}');$('#frmLogin').submit()">Logout</button>
 	</c:when>
 	<c:otherwise>	<!-- Login/Signup (when user is logging first time)-->
-	<c:if test="${etaxfilestation == true}">
-	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${resellersignup}');$('#frmLogin').submit()">Apply Here !!!</button>
+	<c:if test="${not empty etaxfilestation && etaxfilestation == 'true'}">
+		<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${resellersignup}');$('#frmLogin').submit()">Apply Here !!!</button>
 	</c:if>
-	<c:if test="${etaxfilestation == false}">
+	<c:if test="${empty etaxfilestation || etaxfilestation == 'false'}">
 	<button type="submit" class="btn btn-default btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
 	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>					
 	</c:if>

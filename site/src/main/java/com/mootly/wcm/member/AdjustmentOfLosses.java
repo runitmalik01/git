@@ -34,6 +34,7 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.AdjustmentOfLossesCom;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRScheduleCFLSections;
 
@@ -103,11 +104,11 @@ public class AdjustmentOfLosses extends ITReturnComponent {
 			persistenceSession = getPersistableSession(request);
 			WorkflowPersistenceManager wpm=getWorkflowPersistenceManager(persistenceSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			path=getAbsoluteBasePathToReturnDocuments()+"/"+AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase();
+			path=getITRInitData(request).getAbsoluteBasePathToReturnDocuments()+"/"+AdjustmentOfLossesDoc.class.getSimpleName().toLowerCase();
 			AdjustmentOfLossesDoc adjustmentOfLossesDoc = (AdjustmentOfLossesDoc) wpm.getObject(path);
-			String currAssessmentYear=getFormMap().getField("AssessmentYear").getValue();
-			String currDate = getFormMap().getField("DateOfFilingYear").getValue();
-			if(getPageAction().equals(PAGE_ACTION.EDIT_CHILD)){
+			String currAssessmentYear=getITRInitData(request).getFormMap().getField("AssessmentYear").getValue();
+			String currDate = getITRInitData(request).getFormMap().getField("DateOfFilingYear").getValue();
+			if(getITRInitData(request).getPageAction().equals(PAGE_ACTION.EDIT_CHILD)){
 				if(adjustmentOfLossesDoc != null){
 					listofAdjustmentOfLossesCom = adjustmentOfLossesDoc.getAdjustmentOfLossesList() ;
 					if ( listofAdjustmentOfLossesCom != null && listofAdjustmentOfLossesCom.size() > 0 ){

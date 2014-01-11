@@ -37,15 +37,43 @@ public class SOAPService {
 	
 	String logFileLocationBaseDir;
 	
+	boolean enableMockSubmission;
+	String realSubmissionEndpoint;
+	String submitITROperationName;
+	
 	public SOAPService() {
 			
 	}
 	
-	public String getLogFileLocationBaseDir() {
-		return logFileLocationBaseDir;
+	public String getSubmitITROperationName() {
+		return submitITROperationName;
 	}
 
 
+	public void setSubmitITROperationName(String submitITROperationName) {
+		this.submitITROperationName = submitITROperationName;
+	}
+
+
+	public String getLogFileLocationBaseDir() {
+		return logFileLocationBaseDir;
+	}
+	
+	public boolean isEnableMockSubmission() {
+		return enableMockSubmission;
+	}
+
+	public void setEnableMockSubmission(boolean enableMockSubmission) {
+		this.enableMockSubmission = enableMockSubmission;
+	}
+
+	public String getRealSubmissionEndpoint() {
+		return realSubmissionEndpoint;
+	}
+
+	public void setRealSubmissionEndpoint(String realSubmissionEndpoint) {
+		this.realSubmissionEndpoint = realSubmissionEndpoint;
+	}
 
 	public void setLogFileLocationBaseDir(String logFileLocationBaseDir) {
 		this.logFileLocationBaseDir = logFileLocationBaseDir;
@@ -143,11 +171,11 @@ public class SOAPService {
 		SOAPMessage soapResponse = null;
 		
 		//THIS CODE MUSTNOT GO PUBLIC ////
-		soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
-		/*
-		if (soapCallWrapper.getOperation().equals("submitITR")) {
+		//soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
+		
+		if (isEnableMockSubmission() && getRealSubmissionEndpoint() != null && getSubmitITROperationName() != null && soapCallWrapper.getOperation().equals(getSubmitITROperationName()) && !soapCallWrapper.getEndPointURL().toExternalForm().equalsIgnoreCase(getRealSubmissionEndpoint())) {
 			try {
-				soapResponse = getSoapMessageFromString("<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"><env:Header/><env:Body><ns2:DITWSResponseEle xmlns:ns2=\"http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0\"><ns2:result>111148210</ns2:result></ns2:DITWSResponseEle></env:Body></env:Envelope>");
+				soapResponse = getSoapMessageFromString("<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"><env:Header/><env:Body><ns2:DITWSResponseEle xmlns:ns2=\"http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0\"><ns2:result>" + System.currentTimeMillis() + " </ns2:result></ns2:DITWSResponseEle></env:Body></env:Envelope>");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -156,7 +184,7 @@ public class SOAPService {
 		else {
 			soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
 		}
-		*/
+		
 		String soapResponseStr = null;
 		try {
 			//doTrustToCertificates();

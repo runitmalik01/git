@@ -84,8 +84,8 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		 */
 		//Twenty26ASTCS twenty26ASTCS = new Twenty26ASTCS();
 		// String  valueImport = twenty26ASTCS.getIsImported();
-		String enableImportData = getWebSiteInfo().getEriEnable26ASImport();
-		if (!getChannelInfoWrapper().getIsEriEnabled() || enableImportData == null || enableImportData.equalsIgnoreCase("false")) {
+		String enableImportData = getITRInitData(request).getWebSiteInfo().getEriEnable26ASImport();
+		if (!getITRInitData(request).getChannelInfoWrapper().getIsEriEnabled() || enableImportData == null || enableImportData.equalsIgnoreCase("false")) {
 			try {
 				response.sendError(HttpServletResponse.SC_FORBIDDEN, "Reseller is not authorized to run the import");
 				return;
@@ -96,8 +96,9 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		}
 		
 		Integer totalGetTDSDetail = 0;
-		if ( getDITResponseDocument() != null) {
-			totalGetTDSDetail = getDITResponseDocument().getTotalCountOfOperation("getTDSDetails");
+		DITResponseDocument ditResponseDocument = (DITResponseDocument) request.getAttribute(DITResponseDocument.class.getSimpleName().toLowerCase());
+		if ( ditResponseDocument != null) {
+			totalGetTDSDetail = ditResponseDocument.getTotalCountOfOperation("getTDSDetails");
 		}
 		request.setAttribute("totalGetTDSDetail", totalGetTDSDetail);
 			
@@ -117,10 +118,10 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			}
 		}
 		try {
-			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall(), null ,null);
+			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getITRInitData(request).getWebSiteInfo().getEriUserId(),getITRInitData(request).getWebSiteInfo().getEriPassword(),getITRInitData(request).getWebSiteInfo().getEriCertChain(),getITRInitData(request).getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(), null ,null);
 			List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
 			List<Twenty26ASAdvanceTaxPayment> advTaxList = new ArrayList<Twenty26ASAdvanceTaxPayment>();
-			splitTaxPayment(twenty26asResponse, selfAssessmentList, advTaxList);
+			splitTaxPayment(request,twenty26asResponse, selfAssessmentList, advTaxList);
 			setIfIsAlreadyImported(request,twenty26asResponse,selfAssessmentList,advTaxList);
 			int totalToBeImported = totalToBeImported(twenty26asResponse,selfAssessmentList,advTaxList);
 			request.setAttribute("twenty26asResponse", twenty26asResponse);
@@ -162,7 +163,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 				response.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return;
 			}
-			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getWebSiteInfo().getEriUserId(),getWebSiteInfo().getEriPassword(),getWebSiteInfo().getEriCertChain(),getWebSiteInfo().getEriSignature(), mpi.getPAN(), mpi.getDOB() , getFinancialYear().getAssessmentYearForDITSOAPCall(),getAbsoluteBasePathToReturnDocuments(),wpm);
+			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getITRInitData(request).getWebSiteInfo().getEriUserId(),getITRInitData(request).getWebSiteInfo().getEriPassword(),getITRInitData(request).getWebSiteInfo().getEriCertChain(),getITRInitData(request).getWebSiteInfo().getEriSignature(), mpi.getPAN(), mpi.getDOB() , getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(),getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),wpm);
 			try {
 				persistableSession=getPersistableSession(request);
 			} catch (RepositoryException e) {
@@ -173,7 +174,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
 			List<Twenty26ASAdvanceTaxPayment> advTaxList = new ArrayList<Twenty26ASAdvanceTaxPayment>();
-			splitTaxPayment(twenty26asResponse, selfAssessmentList, advTaxList);
+			splitTaxPayment(request,twenty26asResponse, selfAssessmentList, advTaxList);
 			setIfIsAlreadyImported(request,twenty26asResponse,selfAssessmentList, advTaxList);
 			int totalToBeImported = totalToBeImported(twenty26asResponse, selfAssessmentList, advTaxList);
 			if (totalToBeImported > 0 ) {				
@@ -181,10 +182,10 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			
 			
 				if (selfAssessmentList != null && selfAssessmentList.size() > 0) {
-					saveElementsToRepository(selfAssessmentList,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);
+					saveElementsToRepository(request,selfAssessmentList,SelfAssesmetTaxDocument.class,SelfAssesmentTaxDetail.class,persistableSession,wpm);
 				}
 				if (advTaxList != null && advTaxList.size() > 0) {
-					saveElementsToRepository(advTaxList,AdvanceTaxDocument.class,AdvanceTaxDetail.class,persistableSession,wpm);
+					saveElementsToRepository(request,advTaxList,AdvanceTaxDocument.class,AdvanceTaxDetail.class,persistableSession,wpm);
 				}
 				
 				//lets set the category of form 16
@@ -200,9 +201,9 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 					}
 				}
 				
-				saveElementsToRepository(twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,persistableSession,wpm);
-				saveElementsToRepository(twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
-				saveElementsToRepository(twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,persistableSession,wpm);
+				saveElementsToRepository(request,twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,persistableSession,wpm);
+				saveElementsToRepository(request,twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
+				saveElementsToRepository(request,twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,persistableSession,wpm);
 	
 				//now save an import document
 				FormMap theMapForSOAPResponse = new FormMap();
@@ -213,10 +214,10 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 				
 				BeanLifecycle<HippoBean> childBeanLifeCycleHandler = null;
 				BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = null;
-				String parentBeanAbsolutePath = getAbsoluteBasePathToReturnDocuments() + "/" + DITResponseDocument.class.getSimpleName().toLowerCase();
+				String parentBeanAbsolutePath = getITRInitData(request).getAbsoluteBasePathToReturnDocuments() + "/" + DITResponseDocument.class.getSimpleName().toLowerCase();
 				String parentBeanNameSpace = "mootlywcm:ditResponseDocument";
 				String parentBeanNodeName = DITResponseDocument.class.getSimpleName().toLowerCase();
-				getItReturnComponentHelper().saveAddNewChild(theMapForSOAPResponse, null, null, null, getAbsoluteBasePathToReturnDocuments(), parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, DITResponseDocumentDetail.class, wpm.getSession(), wpm);
+				getItReturnComponentHelper().saveAddNewChild(theMapForSOAPResponse, null, null, null, getITRInitData(request).getAbsoluteBasePathToReturnDocuments(), parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, DITResponseDocumentDetail.class, wpm.getSession(), wpm);
 				
 				response.setRenderParameter("success", "success");
 			}
@@ -255,7 +256,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		}
 	}
 
-	protected void saveElementsToRepository(List<? extends Object> listOfObjects,Class<? extends HippoBean> parentBeanClass,Class<? extends HippoBean> childBeanClass,Session persistableSession, WorkflowPersistenceManager wpm) throws InvalidNavigationException, InstantiationException, IllegalAccessException, ObjectBeanManagerException {
+	protected void saveElementsToRepository(HstRequest request, List<? extends Object> listOfObjects,Class<? extends HippoBean> parentBeanClass,Class<? extends HippoBean> childBeanClass,Session persistableSession, WorkflowPersistenceManager wpm) throws InvalidNavigationException, InstantiationException, IllegalAccessException, ObjectBeanManagerException {
 		ITReturnComponentHelper itReturnComponentHelper = getITReturnComponentHelper();
 		FormMapHelper formMapHelper = new FormMapHelper();
 		ParentBeanLifeCycleHandler parentBeanLifeCycleHandler = new ParentBeanLifeCycleHandler();
@@ -271,7 +272,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 						continue;
 					}
 				}
-				String baseAbsolutePathToReturnDocuments = getAbsoluteBasePathToReturnDocuments();
+				String baseAbsolutePathToReturnDocuments = getITRInitData(request).getAbsoluteBasePathToReturnDocuments();
 				String parentBeanNodeName = itReturnComponentHelper.getParentBeanNodeName(parentBeanClass);
 				String parentBeanNameSpace = itReturnComponentHelper.getParentBeanNamespace(parentBeanClass);
 				String parentBeanAbsolutePath = itReturnComponentHelper.getParentBeanAbsolutePath(baseAbsolutePathToReturnDocuments, parentBeanNodeName);
@@ -297,7 +298,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 	 * List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
 			List<Twenty26ASAdvanceTaxPayment> advTaxList = new ArrayList<Twenty26ASAdvanceTaxPayment>();
 	 */
-	protected void splitTaxPayment(Twenty26ASResponse twenty26asResponse,List<Twenty26ASTaxPayment> selfAssessmentList,List<Twenty26ASAdvanceTaxPayment> advTaxList) {
+	protected void splitTaxPayment(HstRequest request, Twenty26ASResponse twenty26asResponse,List<Twenty26ASTaxPayment> selfAssessmentList,List<Twenty26ASAdvanceTaxPayment> advTaxList) {
 		if (twenty26asResponse != null && twenty26asResponse.getTwenty26asTaxPayments() != null && twenty26asResponse.getTwenty26asTaxPayments().size() > 0 ) {
 			for (Twenty26ASTaxPayment twenty26ASTaxPayment : twenty26asResponse.getTwenty26asTaxPayments()){
 				String strDate = twenty26ASTaxPayment.getDateDep();
@@ -308,7 +309,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 					date = (Date)formatter.parse(strDate);
 					cal.setTime(date);
 					String newFormattedDateStr = IndianGregorianCalendar.formatDateAsString(cal,IndianGregorianCalendar.indianLocalDateFormStr2);
-					if ( cal.after(getFinancialYear().getDateEndFinancialYear()) ) {
+					if ( cal.after( getITRInitData(request).getFinancialYear().getDateEndFinancialYear()) ) {
 						twenty26ASTaxPayment.setDateDep(newFormattedDateStr);
 						selfAssessmentList.add(twenty26ASTaxPayment);							
 					}

@@ -62,6 +62,10 @@
     
     <bean id="soapService" class="com.mootly.wcm.services.ditws.soap.SOAPService"> 
     	<property name="logFileLocationBaseDir" value="${soap_service_log_base_dir}"/>   
+    	<property name="enableMockSubmission" value="true"/>
+    	<property name="realSubmissionEndpoint" value="https://incometaxindiaefiling.gov.in/e-FilingWS/ditws"/>
+    	<property name="submitITROperationName" value="submitITR"/>
+    	
     </bean>
     
     <bean id="endPointURL_AddClientDetails" class="java.net.URL">

@@ -66,7 +66,7 @@ public class MemberSecurity extends BaseComponent {
 		MemberSignupDocument memberSignupDoc=null;
 		try {
 			if(enableSecurityQuestion.equalsIgnoreCase("true")){
-				memberPath = getCanonicalBasePathForWrite(request)+"/members/"+getNormalizedUserName(request)+ "/" +MemberSignupDocument.class.getSimpleName().toLowerCase();
+				memberPath = getCanonicalBasePathForWrite(request)+"/members/"+ getITRInitData(request).getNormalizedUserName(request)+ "/" +MemberSignupDocument.class.getSimpleName().toLowerCase();
 				//ContentStructure.getSignUpDocumentPath(getNormalizedUserName(request)).toLowerCase();
 				memberSignupDoc=(MemberSignupDocument)getObjectBeanManager(request).getObject(memberPath);
 				if(memberSignupDoc!=null){
@@ -142,7 +142,7 @@ public class MemberSecurity extends BaseComponent {
 			persistableSession=getPersistableSession(request);
 			wpm=getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			memberDocPath = ContentStructure.getMemberFolder(request, getNormalizedUserName(request));
+			memberDocPath = ContentStructure.getMemberFolder(request, getITRInitData(request).getNormalizedUserName(request));
 			MemberSignupDocument memberSignUpDocument=(MemberSignupDocument) wpm.getObject(memberDocPath+"/"+MemberSignupDocument.NODE_NAME);
 			if(memberSignUpDocument!=null){
 				memberSignUpDocument.setSecurityQuestions(true);

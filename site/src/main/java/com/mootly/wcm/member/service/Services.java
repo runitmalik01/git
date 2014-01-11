@@ -50,7 +50,7 @@ public class Services extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		//final HippoBean scope = getContentBean(request);
-		final HippoBean scope = getSiteContentBaseBeanForReseller(request); 
+		final HippoBean scope = getITRInitData(request).getSiteContentBaseBeanForReseller(request); 
 		request.setAttribute("scope", scope);
 		if (scope == null) {
 			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();

@@ -74,7 +74,7 @@ public class ResellerSignup extends BaseComponent {
 		request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
 
 		try {
-			HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
+			HippoBean siteContentBaseBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
 		}catch (Exception ex) {
 			log.info("Error",ex);

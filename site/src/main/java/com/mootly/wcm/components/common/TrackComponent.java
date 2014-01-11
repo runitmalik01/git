@@ -37,7 +37,7 @@ public class TrackComponent extends ITReturnComponent {
 		super.doBeforeRender(request, response);
 		HippoBean targetBeanScope = null;
 		//TrackComponentParamsInfo paramsInfo = getParametersInfo(request);
-		HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);//getSiteContentBaseBean(request);//
+		HippoBean siteContentBaseBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);//getSiteContentBaseBean(request);//
 		if(siteContentBaseBean == null){
 			if(log.isInfoEnabled()){
 				log.info("Site content Bean is { } null.Not able to proceed.");

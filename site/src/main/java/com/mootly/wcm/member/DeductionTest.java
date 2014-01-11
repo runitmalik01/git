@@ -39,6 +39,7 @@ import com.mootly.wcm.beans.MemberDeductionScheduleVIA;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.UrlUtility;
@@ -79,9 +80,9 @@ public class DeductionTest extends ITReturnComponent {
 		//super.beforeSave(request);
 		//we need to change the child bean in case of new child to ensure correct section is saved
 		String deduction_section = request.getRequestContext().getResolvedSiteMapItem().getParameter("deduction_section");
-		if (getPageAction().equals(PAGE_ACTION.NEW_CHILD) && deduction_section != null) {
-			if (getChildBean() != null) {
-				DeductionDocumentDetail dd = (DeductionDocumentDetail) getChildBean();				
+		if (getITRInitData(request).getPageAction().equals(PAGE_ACTION.NEW_CHILD) && deduction_section != null) {
+			if (getITRInitData(request).getChildBean() != null) {
+				DeductionDocumentDetail dd = (DeductionDocumentDetail) getITRInitData(request).getChildBean();				
 				dd.setSection(deduction_section);
 			}
 		}

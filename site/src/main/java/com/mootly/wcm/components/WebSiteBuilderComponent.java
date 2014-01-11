@@ -202,7 +202,7 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 			String[] vendorFields = formFields.fieldNamesVendorOnly();
 			String[] theFieldsArray = formFields.fieldNames();
-			if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
+			if (getITRInitData(request).isVendor(request) && vendorFields != null && vendorFields.length > 0){
 				theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 			}
 			FormMap formMap = new FormMap(request,theFieldsArray);
@@ -310,7 +310,7 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 		String[] vendorFields = formFields.fieldNamesVendorOnly();
 		String[] theFieldsArray = formFields.fieldNames();
-		if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
+		if (getITRInitData(request).isVendor(request) && vendorFields != null && vendorFields.length > 0){
 			theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 		}
 		formMap = new FormMap(request,theFieldsArray);
@@ -566,7 +566,7 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 			}
 			else {
 				String redirectURL = null;
-				if (isVendor(request) && isOnVendorPortal()) {
+				if (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) {
 					//redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"vendor-servicerequest-itr-summary",getFinancialYear(),getTheFolderContainingITRDocuments(), getPAN());
 				}
 				else {
@@ -665,7 +665,7 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 		boolean isReseller = itReturnComponentHelper.isReSeller(request);
 		String resellerId = itReturnComponentHelper.getResellerId(request);
 		if (isReseller && resellerId != null) {
-			hippoBeanCmsBase = getSiteContentBaseBeanForReseller(request).getBean("cms");
+			hippoBeanCmsBase = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean("cms");
 		}
 		if (hippoBeanCmsBase != null) {
 			cmsRootFolderAbsolutePath = hippoBeanCmsBase.getPath();
@@ -963,7 +963,7 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 		if (log.isInfoEnabled()) {
 			log.info("I will not attempt to fetch the primary bean using the following path:" + getParentBeanPath());
 		}
-		parentBean = getSiteContentBaseBeanForReseller(request).getBean(getParentBeanPath(),getParentBeanClass());
+		parentBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(getParentBeanPath(),getParentBeanClass());
 	}
 
 	protected void setRequestAttributes(HstRequest request) {
@@ -1006,14 +1006,14 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 
 	}
 
-	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {
+	protected void redirectToMemberHome(HstRequest request, HstResponse response) {
 		try {
 			response.setRenderParameter("error", "invalid.pan");
-			hstRequest.setAttribute("error", "invalid.pan");
+			request.setAttribute("error", "invalid.pan");
 			String forwardTo = "/member/itreturn";
-			if (isOnVendorPortal() && isVendor(hstRequest)) forwardTo = "/vendor/itreturn";
+			if (getITRInitData(request).isOnVendorPortal() && getITRInitData(request).isVendor(request)) forwardTo = "/vendor/itreturn";
 			if (getFinancialYear() != null) {
-				forwardTo += "/" + getFinancialYear();
+				forwardTo += "/" + getITRInitData(request).getFinancialYear();
 			}
 			response.forward(forwardTo);
 		} catch (IOException e) {
@@ -1229,7 +1229,7 @@ public class WebSiteBuilderComponent extends BaseComponent implements WebSiteBui
 	 * @param pathToTheItReturn
 	 */
 	protected List<HippoBean> loadAllBeansUnderTheFolder(HstRequest request,HstResponse response,String baseRelPathToComponentDocuments,String sortByAttribute,SORT_DIRECTION sortDirection) {
-		HippoBean theBean = getSiteContentBaseBeanForReseller(request);
+		HippoBean theBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		if (theBean == null) {
 			return null;
 		}

@@ -104,7 +104,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		request.setAttribute("noPanMatchFound", request.getParameter("noPanMatchFound"));
 		//set parameter if Last name does not Match with PAN
 		request.setAttribute("valiPanWithLastNameError", request.getParameter("valiPanWithLastNameError"));
-		HippoFolder hippoFolder = getPanFolder();
+		HippoFolder hippoFolder = getITRInitData(request).getPanFolder();
 		List<HippoFolderBean> pansForMember = null;
 		HippoBean currentBean = null;
 		if (hippoFolder != null) {
@@ -150,7 +150,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		}
 		//hack on search.not use query search.empty query so that we have all page collection which have PersonalInformation(serviceRequest)
 		String PAYMENT_QUERY = null;
-		if(StringUtils.isNotBlank(query) && isOnVendorPortal()){ 
+		if(StringUtils.isNotBlank(query) && getITRInitData(request).isOnVendorPortal()){ 
 			PAYMENT_QUERY=query;
 			query="";
 		}
@@ -170,7 +170,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 					MemberPersonalInformation m = (MemberPersonalInformation) o;
 					HippoFolder theParentofPersonalInfo=(HippoFolder) m.getParentBean();
 					MemberPayment memberPaymentDocs = theParentofPersonalInfo.getBean("memberpayment", MemberPayment.class);
-					if(PAYMENT_QUERY!=null && isOnVendorPortal()){
+					if(PAYMENT_QUERY!=null && getITRInitData(request).isOnVendorPortal()){
 						FreeTextSearchSreviceImpl freeTextSearchSreviceImpl = new FreeTextSearchSreviceImpl();
 						if(freeTextSearchSreviceImpl.getFreeTextResultOnMember(m, PAYMENT_QUERY, memberPaymentDocs)){
 							listOfITReturnHomePageView.add(createITReturnPageView(m, request));
@@ -184,7 +184,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			}
 			//at above we have only 25 element due to limit page size so not some time not have in query 
 			//to overcome this we will regenrate page collection and now find query in this.
-			if(listOfITReturnHomePageView.isEmpty() && isOnVendorPortal()){
+			if(listOfITReturnHomePageView.isEmpty() && getITRInitData(request).isOnVendorPortal()){
 				Long RepageSize = pages.getTotal();
 				Map<String, Object> RehstQueryResulSettMap = generatePageCollectionResultOfHstQuery(request, currentBean, hstQuery, RepageSize.intValue(), currentPage);
 				PageableCollection Repages=(PageableCollection) RehstQueryResulSettMap.get("pages");
@@ -290,7 +290,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		// sending email to admin of wealth4india :- by Pankaj Singh
 		String StartApp_Mobile = map.getField("pi_mobile").getValue();
 		Map<String,Object> velocityContext = new HashMap<String, Object>();
-		velocityContext.put("userName",getUserName());
+		velocityContext.put("userName",getITRInitData(request).getUserName());
 		velocityContext.put("pi_mobile", StartApp_Mobile);
 		velocityContext.put("StartApp_Mobile", StartApp_Mobile);
 		sendEmail(request, null, null, null, "memberstartapptemplate", velocityContext);
