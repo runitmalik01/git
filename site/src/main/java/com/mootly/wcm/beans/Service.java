@@ -25,6 +25,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
 import com.mootly.wcm.annotations.AutoCreateFormField;
+import com.mootly.wcm.beans.compound.AlertMessageDetailDocument;
 import com.mootly.wcm.beans.compound.CostModel;
 import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.beans.compound.ImageSetLink;
@@ -148,5 +149,9 @@ public class Service extends Document {
 	}
 	public Boolean getCanApllyForServiceOnline(){
 		return getProperty("mootlywcm:canApllyForServiceOnline");
+	}
+	
+	public List<AlertMessageDetailDocument> getAlertMessageDetails(){
+		return getChildBeans("mootlywcm:alertmsgdetaildocument");
 	}
 }

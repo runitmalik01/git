@@ -4006,6 +4006,18 @@
     <sv:value>jsp/cms/eventlog.jsp</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="member.digital-signature" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>95bf6aa1-b0e1-4bf6-9d0a-4b60c6dc03b8</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/digital-signature.jsp</sv:value>
+  </sv:property>
+</sv:node>
 	<!-- new template  -->
 	<sv:node sv:name="efile-incometax-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
