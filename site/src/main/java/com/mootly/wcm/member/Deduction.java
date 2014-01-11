@@ -78,6 +78,7 @@ import com.mootly.wcm.beans.compound.DeductionDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HouseIncomeDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.DoneeWithPan;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ResidentStatus;
@@ -142,8 +143,8 @@ public class Deduction extends ITReturnComponent {
 		if ( form16InEditMode == null ) form16InEditMode = Boolean.FALSE;
 
 		request.setAttribute("deductionListService", deductionListService);
-		if (deductionListService != null && deductionListService.getDeductionSectionMap() != null &&  deductionListService.getDeductionSectionMap().containsKey(getFinancialYear())) {
-			deductionSectionMap = deductionListService.getDeductionSectionMap().get(getFinancialYear());
+		if (deductionListService != null && deductionListService.getDeductionSectionMap() != null &&  deductionListService.getDeductionSectionMap().containsKey(getITRInitData(request).getFinancialYear())) {
+			deductionSectionMap = deductionListService.getDeductionSectionMap().get(getITRInitData(request).getFinancialYear());
 			request.setAttribute("deductionSectionMap", deductionSectionMap);
 		}
 
@@ -157,8 +158,8 @@ public class Deduction extends ITReturnComponent {
 			//bankSavingDetail.se
 		}
 		//Amit Patkar Hack for Section 80tta which is a derived section and NOT a REAL deduction
-		if (getParentBean()!= null || listOfDerivedDeductionDocuments.size() > 0) {
-			DeductionDocument deductionDocument = (DeductionDocument) getParentBean();
+		if (getITRInitData(request).getParentBean()!= null || listOfDerivedDeductionDocuments.size() > 0) {
+			DeductionDocument deductionDocument = (DeductionDocument) getITRInitData(request).getParentBean();
 			List<DeductionDocumentDetail> deductionDocumentDetailList = null;
 			if (deductionDocument != null) {
 				deductionDocumentDetailList = deductionDocument.getDeductionDocumentDetailList();
@@ -187,7 +188,7 @@ public class Deduction extends ITReturnComponent {
 						savedData.put(deductionDocumentDetail.getSection(), new ArrayList<DeductionDocumentDetail>());
 					}
 					savedData.get(deductionDocumentDetail.getSection()).add(deductionDocumentDetail);
-					if (getPageAction() == PAGE_ACTION.EDIT_CHILD && getUuid() != null && getUuid().equals(deductionDocumentDetail.getCanonicalUUID())) {
+					if (getITRInitData(request).getPageAction() == PAGE_ACTION.EDIT_CHILD && getITRInitData(request).getUuid() != null && getITRInitData(request).getUuid().equals(deductionDocumentDetail.getCanonicalUUID())) {
 						request.setAttribute("editingSection", deductionDocumentDetail);
 					}
 					if (!totalOfSavedData.containsKey(deductionDocumentDetail.getSection())){
@@ -212,8 +213,8 @@ public class Deduction extends ITReturnComponent {
 			}
 		}
 
-		if (getPageAction() == PAGE_ACTION.EDIT_CHILD && getUuid() != null && getChildBean() != null) {
-			DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
+		if (getITRInitData(request).getPageAction() == PAGE_ACTION.EDIT_CHILD && getITRInitData(request).getUuid() != null && getITRInitData(request).getChildBean() != null) {
+			DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getITRInitData(request).getChildBean();
 			DoneeWithPan doneeWithPAN = DoneeWithPan.getInstanceFromChildBean(dDetail);
 			request.setAttribute("doneeWithPAN", doneeWithPAN);
 			if (deductionSectionMap != null && dDetail != null && dDetail.getSection() != null && deductionSectionMap.containsKey(dDetail.getSection())) {
@@ -221,8 +222,8 @@ public class Deduction extends ITReturnComponent {
 			}
 		}
 		else {
-			DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getChildBean();
-			DoneeWithPan doneeWithPAN = DoneeWithPan.getInstanceFromFormMap(getFormMap());
+			DeductionDocumentDetail dDetail = (DeductionDocumentDetail) getITRInitData(request).getChildBean();
+			DoneeWithPan doneeWithPAN = DoneeWithPan.getInstanceFromFormMap(getITRInitData(request).getFormMap());
 			if (doneeWithPAN != null)request.setAttribute("doneeWithPAN", doneeWithPAN);
 			String deduction_section = request.getRequestContext().getResolvedSiteMapItem().getParameter("deduction_section");
 			if (deduction_section != null) {
@@ -234,7 +235,7 @@ public class Deduction extends ITReturnComponent {
 		}
 
 		//time to calculate
-		if (getParentBean() != null  || listOfDerivedDeductionDocuments.size() > 0 ) {
+		if (getITRInitData(request).getParentBean() != null  || listOfDerivedDeductionDocuments.size() > 0 ) {
 			//hashmap for javascript
 			Map<String,Object> totalMapForJS = new HashMap<String, Object>();
 			for (String deductionSectionKey:deductionSectionMap.keySet()){
@@ -273,8 +274,8 @@ public class Deduction extends ITReturnComponent {
 			// totalIncomeFromOtherSourcesExcludingTaxFreeIncome
 
 			if (memberPersonalInformation != null) {
-				int ageInYears = getFinancialYear().getAgeInYears(memberPersonalInformation.getDOB().getTime());
-				boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
+				int ageInYears = getITRInitData(request).getFinancialYear().getAgeInYears(memberPersonalInformation.getDOB().getTime());
+				boolean isSeniorCitizen = getITRInitData(request).getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
 				totalMapForJS.put("ageInYears",ageInYears);
 				totalMapForJS.put("isSeniorCitizen",isSeniorCitizen);
 				residentStatus = ResidentStatus.valueOf(memberPersonalInformation.getResidentCategory());
@@ -352,7 +353,7 @@ public class Deduction extends ITReturnComponent {
 					(OtherInformationDocument)request.getAttribute(OtherInformationDocument.class.getSimpleName().toLowerCase()),(ScheduleDPMDocument)request.getAttribute(ScheduleDPMDocument.class.getSimpleName().toLowerCase()),
 					(ScheduleDOADocument)request.getAttribute(ScheduleDOADocument.class.getSimpleName().toLowerCase()),(ScheduleESRDocument)request.getAttribute(ScheduleESRDocument.class.getSimpleName().toLowerCase()),
 					(DeductionSchedTenADocumemt)request.getAttribute(DeductionSchedTenADocumemt.class.getSimpleName().toLowerCase()), (IncomeFromFirmsDocument)request.getAttribute(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase()));
-			PartBTI partBTI = partB_TI.getPartBTI(itr, getFinancialYear(), inputBeans);
+			PartBTI partBTI = partB_TI.getPartBTI(itr, getITRInitData(request).getFinancialYear(), inputBeans);
 			businessIncome = partBTI.getProfBusGain().getTotProfBusGain().doubleValue();
 		}
 		return businessIncome;
@@ -395,9 +396,9 @@ public class Deduction extends ITReturnComponent {
 		//super.beforeSave(request);
 		//we need to change the child bean in case of new child to ensure correct section is saved
 		String deduction_section = request.getRequestContext().getResolvedSiteMapItem().getParameter("deduction_section");
-		if (getPageAction().equals(PAGE_ACTION.NEW_CHILD) && deduction_section != null) {
-			if (getChildBean() != null) {
-				DeductionDocumentDetail dd = (DeductionDocumentDetail) getChildBean();
+		if (getITRInitData(request).getPageAction().equals(PAGE_ACTION.NEW_CHILD) && deduction_section != null) {
+			if (getITRInitData(request).getChildBean() != null) {
+				DeductionDocumentDetail dd = (DeductionDocumentDetail) getITRInitData(request).getChildBean();
 				dd.setSection(deduction_section);
 				String uuidform_16 = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuidform_16");
 				//String form16UniqueUUID = (String) request.getRequestContext().getAttribute("form16UniqueUUID");

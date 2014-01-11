@@ -10,9 +10,11 @@ import java.util.Map;
 import javax.xml.soap.SOAPException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
@@ -27,8 +29,8 @@ import com.mootly.wcm.services.ditws.soap.SOAPService;
 public class Retrieve26ASInformationImpl extends DITSOAPServiceImpl implements Retrieve26ASInformation {
 	
 	public Retrieve26ASInformationImpl(String userName, String password,
-			String certChain, String signature, SOAPService soapService) {
-		super(userName, password, certChain, signature, soapService);
+			String certChain, String signature, SOAPService soapService,ITReturnComponentHelper itReturnComponentHelper,boolean saveAllSOAPReuqestToFileSystem,  String soapRequestSaveLocation,  boolean saveAllSOAPRequestToRepository) {
+		super(userName, password, certChain, signature, soapService,itReturnComponentHelper,saveAllSOAPReuqestToFileSystem,soapRequestSaveLocation,saveAllSOAPRequestToRepository);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -47,7 +49,7 @@ public class Retrieve26ASInformationImpl extends DITSOAPServiceImpl implements R
 	
 	@Override
 	public Twenty26ASResponse retrieve26ASInformation(String userName,String password,String certChain, String signature, String PAN,
-			GregorianCalendar DOB, String assessmentYear)
+			GregorianCalendar DOB, String assessmentYear,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm)
 			throws MissingInformationException, DataMismatchException,
 			InvalidFormatException {
 		// TODO Auto-generated method stub
@@ -77,6 +79,13 @@ public class Retrieve26ASInformationImpl extends DITSOAPServiceImpl implements R
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrieve26ASInformation,inputParams);
 			Twenty26ASResponse twentyASResponse = Twenty26ASResponse.createFromSOAPResponse(outputMap);
+			if (isSaveAllSOAPRequestToRepository()) {
+				try {
+					saveSOAPRequestToRepository(soapCallWrapperRetrieve26ASInformation.getOperation(), absoluteBasePathToReturnDocuments, wpm, outputMap);
+				}catch (Exception e) {
+					logger.error("Saving into repository exception",e);
+				}
+			}
 			return twentyASResponse;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

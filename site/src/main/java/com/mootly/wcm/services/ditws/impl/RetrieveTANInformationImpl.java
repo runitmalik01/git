@@ -9,9 +9,11 @@ import java.util.Map;
 import javax.xml.soap.SOAPException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.services.ditws.RetrieveTANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -26,8 +28,8 @@ import com.mootly.wcm.services.ditws.soap.SOAPService;
 public class RetrieveTANInformationImpl extends DITSOAPServiceImpl implements RetrieveTANInformation {
 	
 	public RetrieveTANInformationImpl(String userName, String password,
-			String certChain, String signature, SOAPService soapService) {
-		super(userName, password, certChain, signature, soapService);
+			String certChain, String signature, SOAPService soapService,ITReturnComponentHelper itReturnComponentHelper,boolean saveAllSOAPReuqestToFileSystem,  String soapRequestSaveLocation,  boolean saveAllSOAPRequestToRepository) {
+		super(userName, password, certChain, signature, soapService,itReturnComponentHelper,saveAllSOAPReuqestToFileSystem,soapRequestSaveLocation,saveAllSOAPRequestToRepository);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,7 +48,7 @@ public class RetrieveTANInformationImpl extends DITSOAPServiceImpl implements Re
 	
 	@Override
 	public RetrieveTANResponse retrieveTANInformation(String userName,
-			String password,String certChain, String signature, String TAN) throws MissingInformationException,
+			String password,String certChain, String signature, String TAN,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm) throws MissingInformationException,
 			DataMismatchException, InvalidFormatException {
 		// TODO Auto-generated method stub
 		if (userName  != null)  setUserName(userName);
@@ -69,6 +71,13 @@ public class RetrieveTANInformationImpl extends DITSOAPServiceImpl implements Re
 		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrieveTANInfo,inputParams);
+			if (isSaveAllSOAPRequestToRepository()) {
+				try {
+					saveSOAPRequestToRepository(soapCallWrapperRetrieveTANInfo.getOperation(), absoluteBasePathToReturnDocuments, wpm, outputMap);
+				}catch (Exception e) {
+					logger.error("Saving into repository exception",e);
+				}
+			}
 			RetrieveTANResponse retrieveTANResponse = SOAPCallWrapperHelper.getInstanceFromSOAPMapSingleInstance(RetrieveTANResponse.class, outputMap);
 			return retrieveTANResponse;
 		} catch (MalformedURLException e) {

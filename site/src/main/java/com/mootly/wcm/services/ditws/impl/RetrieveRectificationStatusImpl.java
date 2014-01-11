@@ -9,9 +9,11 @@ import java.util.Map;
 import javax.xml.soap.SOAPException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.services.ditws.RetrieveRectificationStatus;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -26,8 +28,8 @@ import com.mootly.wcm.services.ditws.soap.SOAPService;
 public class RetrieveRectificationStatusImpl extends DITSOAPServiceImpl implements RetrieveRectificationStatus {
 	
 	public RetrieveRectificationStatusImpl(String userName, String password,
-			String certChain, String signature, SOAPService soapService) {
-		super(userName, password, certChain, signature, soapService);
+			String certChain, String signature, SOAPService soapService,ITReturnComponentHelper itReturnComponentHelper,boolean saveAllSOAPReuqestToFileSystem,  String soapRequestSaveLocation,  boolean saveAllSOAPRequestToRepository) {
+		super(userName, password, certChain, signature, soapService,itReturnComponentHelper,saveAllSOAPReuqestToFileSystem,soapRequestSaveLocation,saveAllSOAPRequestToRepository);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,7 +48,7 @@ public class RetrieveRectificationStatusImpl extends DITSOAPServiceImpl implemen
 
 	@Override
 	public RetrieveRectificationResponse retrieveRectificationStatus(String userName,String password,String certChain, String signature, String PAN,
-			String assessmentYear) throws MissingInformationException,
+			String assessmentYear,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm) throws MissingInformationException,
 			DataMismatchException, InvalidFormatException {
 		// TODO Auto-generated method stub
 		if (userName  != null)  setUserName(userName);
@@ -70,6 +72,13 @@ public class RetrieveRectificationStatusImpl extends DITSOAPServiceImpl implemen
 		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrieveRectificationStatus,inputParams);
+			if (isSaveAllSOAPRequestToRepository()) {
+				try {
+					saveSOAPRequestToRepository(soapCallWrapperRetrieveRectificationStatus.getOperation(), absoluteBasePathToReturnDocuments, wpm, outputMap);
+				}catch (Exception e) {
+					logger.error("Saving into repository exception",e);
+				}
+			}
 			RetrieveRectificationResponse retrieveRectificationResponse = SOAPCallWrapperHelper.getInstanceFromSOAPMapSingleInstance(RetrieveRectificationResponse.class, outputMap);
 			return retrieveRectificationResponse;
 		} catch (MalformedURLException e) {

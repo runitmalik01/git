@@ -32,6 +32,11 @@
 <%@ tag import="java.util.*"%>
 <%
 HstRequest hstRequest = (HstRequest) request;
+Boolean isFrozen = (Boolean) request.getAttribute("isFrozen");
+if (isFrozen == null ) {
+	isFrozen = false;
+}
+
 ResolvedSiteMapItem resolvedMapItem = hstRequest.getRequestContext().getResolvedSiteMapItem();
 String actionInSiteMap =  resolvedMapItem.getLocalParameter("action");
 String tabName = (String)request.getAttribute("Tab");
@@ -141,7 +146,7 @@ boolean isEriEnabled = false;
 boolean showImportTDSButton = false;
 
 //if DIT is enabled and user has not chosen for 26AS import show the button
-if (channelInfoWrapper != null) {
+if (!isFrozen && channelInfoWrapper != null) {
 	isEriEnabled = channelInfoWrapper.getIsEriEnabled();
 	if (isEriEnabled && memberPersonalInformation != null) {
 		DITResponseDocument ditResponseDocument = (DITResponseDocument) request.getAttribute(DITResponseDocument.class.getSimpleName().toLowerCase());
@@ -150,6 +155,9 @@ if (channelInfoWrapper != null) {
 			if (totalGetTDSDetail == null || totalGetTDSDetail == 0) {
 				showImportTDSButton = true;
 			}
+		}
+		else {
+			showImportTDSButton = true;
 		}
 	}
 }
@@ -437,7 +445,12 @@ request.setAttribute("isDITVerified",isDITVerified);
 		<!-- /.nav-collapse -->
 	</div>
 	<!-- /.navbar  -->
-
+	<c:if test="${not empty isFrozen && isFrozen == 'true'}">
+		<div class="alert alert-info">
+			Our record indicates that this income tax return was submitted to the Income Tax Department on <strong><i><c:if test="${not empty eFileDateTime}"><c:out value="${eFileDateTime.message}"/></c:if></i></strong> with <strong>Acknowledgement Number <i><c:if test="${not empty ackResponse}"><c:out value="${ackResponse.message}"/></c:if> </i></strong>.
+			We do not allow any more modifications to the current income tax. <small> If you want to revise your income tax. Please start a new return </small>
+		</div>
+	</c:if>
 <c:if
 	test="${isDITVerified == 'false' && not empty memberpersonalinformation}">
 	<c:choose>

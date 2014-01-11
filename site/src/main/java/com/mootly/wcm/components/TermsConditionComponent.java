@@ -23,7 +23,7 @@ public class TermsConditionComponent extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		HippoBean tcContentBean = getSiteContentBaseBeanForReseller(request);
+		HippoBean tcContentBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		if(tcContentBean == null){
 			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
 			log.warn("Scope bean not found; please check the relative content path for sitemap item: {}. Relative content path: {}.", 

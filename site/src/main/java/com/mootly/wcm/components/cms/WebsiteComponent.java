@@ -23,7 +23,7 @@ public class WebsiteComponent extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		HippoBean hippoBeanScope = getSiteContentBaseBeanForReseller(request);
+		HippoBean hippoBeanScope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		if(hippoBeanScope == null){
 			if (log.isInfoEnabled()) {
 				log.info("Scope of Bean for Reseller is { } null.Not able to fetch BeanScopes");
@@ -31,7 +31,7 @@ public class WebsiteComponent extends ITReturnComponent {
 			}
 		}
 		List<HippoDocumentBean> documentsList = null; //new ArrayList<HippoDocumentBean>();
-		documentsList = loadAllBeansUnderTheFolder(request, response, BASE_PATH_OF_PAGE_DOC, null, SORT_DIRECTION.ASC);
+		documentsList = getITRInitData(request).loadAllBeansUnderTheFolder(request, BASE_PATH_OF_PAGE_DOC, null, SORT_DIRECTION.ASC);
 		request.setAttribute("pageDocumentsList", documentsList);
 		WebsiteInfo websiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
 		request.setAttribute("resellerInfo", websiteInfo);

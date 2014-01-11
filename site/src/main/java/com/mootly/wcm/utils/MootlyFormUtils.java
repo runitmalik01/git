@@ -17,6 +17,16 @@ import org.slf4j.LoggerFactory;
 
 public class MootlyFormUtils extends FormUtils {
 	 static Logger log = LoggerFactory.getLogger(FormUtils.class);
+	 
+	 public static String getNormalizedString(String whatToNormalize) {
+			if ( whatToNormalize != null) {
+				return whatToNormalize.replaceAll("@", "-at-");
+			}
+			else {
+				return null;
+			}
+		}
+
 	/**
      * This method tries to repopulate an earlier posted form that was stored in the repository.
      *

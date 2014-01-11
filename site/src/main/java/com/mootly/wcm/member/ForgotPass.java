@@ -155,8 +155,8 @@ public class ForgotPass extends BaseComponent {
 			contextMap.put("member", member);
 			StringBuffer sbHostName = new StringBuffer();
 			   sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append(request.getContextPath());
-			   if (isReseller() && getResellerId() != null) {
-			    sbHostName.append("/r/").append(getResellerId());
+			   if (getITRInitData(request).isReseller() && getITRInitData(request).getResellerId() != null) {
+			    sbHostName.append("/r/").append(getITRInitData(request).getResellerId());
 			   }
 			contextMap.put("memberHostName", sbHostName.toString());
 			contextMap.put("encyptUserName", SecureHashGeneration.simpleBase64Encrption(member.getUserName()));

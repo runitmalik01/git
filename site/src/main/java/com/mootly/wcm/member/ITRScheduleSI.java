@@ -44,6 +44,7 @@ import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.ScheduleSIDocument;
 import com.mootly.wcm.beans.compound.ScheduleSIDocumentDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRScheduleSISections;
 import com.mootly.wcm.model.ResidentStatus;
@@ -66,7 +67,7 @@ import com.mootly.wcm.utils.XmlCalculation;
 public class ITRScheduleSI extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(ITRScheduleSI.class);
-	public static Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
+	
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -98,6 +99,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 	public void afterSave(HstRequest request, FormMap map,
 			PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
+		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
 		super.afterSave(request, map, pageAction);
 		Session persistableSession = null;
 		FinancialYear fy=(FinancialYear)request.getAttribute("financialYear");
@@ -119,7 +121,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 		//Schedule SI section depends upon Capital Gain and Other Sources if some one not does not Request for this section doc then we can create SI doc by call method
 		log.info("Create schedule SI Document:");
 		
-		createInActiveScheduleSISection(persistableSession, inputBean, fy); 
+		createInActiveScheduleSISection(request,persistableSession, inputBean, fy); 
 	}
 	
 	/**
@@ -131,13 +133,13 @@ public class ITRScheduleSI extends ITReturnComponent {
 	 * 
 	 * @return void
 	 * */
-	public void createInActiveScheduleSISection(Session persistableSession,Map<String, HippoBean> inputBean,FinancialYear fy){
+	public void createInActiveScheduleSISection(HstRequest request, Session persistableSession,Map<String, HippoBean> inputBean,FinancialYear fy){
 		try {
 			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			ScheduleSIDocument siDoc = (ScheduleSIDocument) wpm.getObject(getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleSIDocument.class.getSimpleName().toLowerCase());
+			ScheduleSIDocument siDoc = (ScheduleSIDocument) wpm.getObject(getITRInitData(request).getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleSIDocument.class.getSimpleName().toLowerCase());
 			if(siDoc==null){
-				String createdDocPath = wpm.createAndReturn(getAbsoluteBasePathToReturnDocuments(), ScheduleSIDocument.NAMESPACE, ScheduleSIDocument.NODE_NAME, true);
+				String createdDocPath = wpm.createAndReturn(getITRInitData(request).getAbsoluteBasePathToReturnDocuments(), ScheduleSIDocument.NAMESPACE, ScheduleSIDocument.NODE_NAME, true);
 				siDoc = (ScheduleSIDocument) wpm.getObject(createdDocPath);
 			}
 			List<ITRScheduleSISections> scheduleSIList = ITRScheduleSISections.createInActiveScheduleSIList(inputBean);
@@ -233,6 +235,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 			totalMapForJS.put("slabValue", slabValue);
 			totalMapForJS.put("xmlCode", siSection.getXmlCode());
 		}
+		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
 		resultMap = ScreenCalculatorService.getScreenCalculations("ScheduleSI.js", requestParameterMap, totalMapForJS);
 		return resultMap;
 	}
@@ -262,6 +265,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 		}else{
 			totalMapForJS.put("cbasscategory",o.getSex());
 		}
+		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", requestParameterMap, totalMapForJS);
 		//If Except than RES then there will no adjustment in Income of User.
 		if(Double.parseDouble(resultMap.get("txtTax").toString())==0d && o.getResidentCategory().equalsIgnoreCase(ResidentStatus.RES.toString())){

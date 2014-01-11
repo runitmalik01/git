@@ -15,7 +15,7 @@
                 http://www.springframework.org/schema/util 
                 http://www.springframework.org/schema/util/spring-util-2.0.xsd
                 http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd"> 
-
+                
     <!--  SOAP Call Wrapper for GetRequest_ById -->
     <bean id="soapCallWrapperRetrieveITRVGetStatus" class="com.mootly.wcm.services.ditws.soap.SOAPCallWrapper">
     	<constructor-arg index="0" name="operation" value="getITRVStatus"/>

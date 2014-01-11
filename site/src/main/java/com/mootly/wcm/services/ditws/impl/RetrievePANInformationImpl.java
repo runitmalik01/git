@@ -9,9 +9,11 @@ import java.util.Map;
 import javax.xml.soap.SOAPException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -26,8 +28,8 @@ import com.mootly.wcm.services.ditws.soap.SOAPService;
 public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements RetrievePANInformation {
 	
 	public RetrievePANInformationImpl(String userName, String password,
-			String certChain, String signature, SOAPService soapService) {
-		super(userName, password, certChain, signature, soapService);
+			String certChain, String signature, SOAPService soapService,ITReturnComponentHelper itReturnComponentHelper,boolean saveAllSOAPReuqestToFileSystem,  String soapRequestSaveLocation,  boolean saveAllSOAPRequestToRepository) {
+		super(userName, password, certChain, signature, soapService,itReturnComponentHelper,saveAllSOAPReuqestToFileSystem,soapRequestSaveLocation,saveAllSOAPRequestToRepository);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,7 +48,7 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 	
 	@Override
 	public RetrievePANResponse retrievePANInformation(String userName,
-			String password,String certChain, String signature, String PAN) throws MissingInformationException,
+			String password,String certChain, String signature, String PAN,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm) throws MissingInformationException,
 			DataMismatchException, InvalidFormatException {
 		// TODO Auto-generated method stub
 		if (userName  != null)  setUserName(userName);
@@ -69,6 +71,13 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 		
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperRetrievePANInfo,inputParams);
+			if (isSaveAllSOAPRequestToRepository()) {
+				try {
+					saveSOAPRequestToRepository(soapCallWrapperRetrievePANInfo.getOperation(), absoluteBasePathToReturnDocuments, wpm, outputMap);
+				}catch (Exception e) {
+					logger.error("Saving into repository exception",e);
+				}
+			}
 			RetrievePANResponse retrievePANResponse = SOAPCallWrapperHelper.getInstanceFromSOAPMapSingleInstance(RetrievePANResponse.class, outputMap);
 			return retrievePANResponse;
 		} catch (MalformedURLException e) {
@@ -90,13 +99,4 @@ public class RetrievePANInformationImpl extends DITSOAPServiceImpl implements Re
 		}
 		return null;
 	}
-	
-	@Override
-	public RetrievePANResponse retrievePANInformation(String PAN)
-			throws MissingInformationException, DataMismatchException,
-			InvalidFormatException {
-		// TODO Auto-generated method stub
-		return retrievePANInformation(getUserName(),getPassword(),getCertChain(),getSignature(),PAN);
-	}
-	
 }

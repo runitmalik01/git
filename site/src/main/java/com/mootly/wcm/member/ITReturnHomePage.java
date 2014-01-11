@@ -32,6 +32,7 @@ public class ITReturnHomePage extends AbstractITReturnHomePage {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
+		/*
 		//AJAX validation Service start here
 		String reqFormJson = getPublicRequestParameter(request, "data");
 		String validation = getPublicRequestParameter(request, "validation");
@@ -62,6 +63,7 @@ public class ITReturnHomePage extends AbstractITReturnHomePage {
 				response.setHeader(respKey, resultResponseMap.get(respKey));
 			}
 		}
+		*/
 	}
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
@@ -77,7 +79,7 @@ public class ITReturnHomePage extends AbstractITReturnHomePage {
 	@Override
 	public HippoBean getScope(HstRequest request) {
 		// TODO Auto-generated method stub
-		return getPanFolder();
+		return getITRInitData(request).getPanFolder();
 	}
 	
 }

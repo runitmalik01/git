@@ -23,7 +23,7 @@ public class PrivacyPolicyComponent extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		HippoBean ppContentBean = getSiteContentBaseBeanForReseller(request);
+		HippoBean ppContentBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		
 		if(ppContentBean == null){
 			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();

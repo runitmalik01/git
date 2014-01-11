@@ -32,7 +32,7 @@ public class CountComponent extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		HippoBean targetBeanScope = null;
-		HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);//getSiteContentBaseBean(request);//
+		HippoBean siteContentBaseBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);//getSiteContentBaseBean(request);//
 		if(siteContentBaseBean == null){
 			if(log.isInfoEnabled()){
 				log.info("Site content Bean is { } null.Not able to proceed.");
@@ -43,7 +43,7 @@ public class CountComponent extends ITReturnComponent {
 		if(!counterList.isEmpty()){
 			for(Counting counter:counterList){
 				Integer countValue = 0;
-				List<HippoDocumentBean> hippoBeanList = loadAllBeansUnderTheFolder(request, response, counter.getCounterScope(), null, null);
+				List<HippoDocumentBean> hippoBeanList = getITRInitData(request).loadAllBeansUnderTheFolder(request,counter.getCounterScope(), null, null);
 				log.info("Size of hippoBean List returned"+hippoBeanList.size());
 				for(HippoBean hippoBean:hippoBeanList){
 					if(hippoBean.getClass().equals(counter.getCounterBean())){

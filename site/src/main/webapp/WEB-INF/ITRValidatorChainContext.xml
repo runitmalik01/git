@@ -22,13 +22,18 @@
   
   <bean id="validateForm16Document" class="com.mootly.wcm.validation.impl.itr.ValidateForm16Document"/>
   
+  <bean id="validateEfileStatus" class="com.mootly.wcm.validation.impl.itr.audit.ValidateEfileStatus">
+  	<property name="retrieveITRVStatusByTokenAndPAN" ref="retrieveITRVStatusByTokenAndPAN"/>
+  </bean>
+  
   <!-- Finally define the chain -->
   <bean id="itrValidationChain" class="com.mootly.wcm.validation.impl.itr.ITRValidatorChain">
       <constructor-arg>
                 <list>
                     <!-- commented out a major change no need for now for this -->
                    <!--  <ref bean="itrValidationForSectionAndDueDate"/>  -->
-                   <ref bean="validateForm16Document"/>                    
+                   <ref bean="validateForm16Document"/>      
+                   <ref bean="validateEfileStatus"/>              
                 </list>
       </constructor-arg>
   </bean>

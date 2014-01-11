@@ -45,7 +45,7 @@ public class SRDocumentUpload extends ITReturnComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);				
-		ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
+		ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
 		request.setAttribute("ReqSuccess", request.getRequestContext().getAttribute("Success"));
 		request.setAttribute("serviceRequestNumber", request.getRequestContext().getAttribute("serviceRequestNumber"));
 		request.setAttribute("srdocument", request.getRequestContext().getAttribute("document"));
@@ -71,7 +71,7 @@ public class SRDocumentUpload extends ITReturnComponent {
 			if(log.isInfoEnabled()){
 				log.info("Lets analyse the request so that we can seprate::" + isMultipart);
 			}
-			ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
+			ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
 			String srRequestNumber = GoGreenUtil.getEscapedParameter(request, "serviceRequestNumber");
 			ServletFileUpload fileUpload = new ServletFileUpload(new DiskFileItemFactory());					
 			List<FileItem> items = fileUpload.parseRequest(request);

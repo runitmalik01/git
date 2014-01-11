@@ -80,8 +80,8 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 						if(itrXmlValidation.getItrForms().length > 0){
 							for(ITRForm itrForm:itrXmlValidation.getItrForms()){
 								ITReturnComponentHelper iTReturnComponentHelper = new ITReturnComponentHelper();
-								FinancialYear financialYear = iTReturnComponentHelper.getFinancialYear(strFinancialYear, request, response);
-								String folderContainsITReturnDocuments = iTReturnComponentHelper.getTheFolderContainingITRDocuments(request, response);
+								FinancialYear financialYear = iTReturnComponentHelper.getFinancialYear(strFinancialYear, request);
+								String folderContainsITReturnDocuments = iTReturnComponentHelper.getTheFolderContainingITRDocuments(request);
 								String siteMapReferenceId = itrXmlValidation.getScreenSiteMapRefID();
 								ITReturnComponent itReturnComponent = new ITReturnComponent();
 								String redirectURLForSiteMapItem = itReturnComponent.getRedirectURLForSiteMapItem(request, response, null, siteMapReferenceId, financialYear, folderContainsITReturnDocuments, pan);
@@ -425,8 +425,8 @@ public class ITRScreenXmlValidateServiceImpl implements ITRScreenXmlValidateServ
 		ITReturnComponentHelper iTReturnComponentHelper = new ITReturnComponentHelper();
 		//set Basic parameter to create URL for Screens which will validate For ITR
 		String strFinancialYear = mpi.getFinancialYear();
-		FinancialYear financialYear = iTReturnComponentHelper.getFinancialYear(strFinancialYear, request, response);
-		String folderContainsITReturnDocuments = iTReturnComponentHelper.getTheFolderContainingITRDocuments(request, response);
+		FinancialYear financialYear = iTReturnComponentHelper.getFinancialYear(strFinancialYear, request);
+		String folderContainsITReturnDocuments = iTReturnComponentHelper.getTheFolderContainingITRDocuments(request);
 		String siteMapReferenceId = itrXmlValidation.getScreenSiteMapRefID();
 		String dependSiteMapReferenceId = itrXmlValidation.getDependScreenSiteMapRefID();
 		ITReturnComponent itReturnComponent = new ITReturnComponent();

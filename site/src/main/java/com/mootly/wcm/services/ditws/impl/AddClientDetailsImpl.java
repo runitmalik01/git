@@ -11,9 +11,11 @@ import javax.xml.soap.SOAPException;
 import javax.xml.ws.soap.SOAPFaultException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ditws.AddClientDetails;
@@ -28,9 +30,10 @@ import com.mootly.wcm.services.ditws.soap.SOAPService;
 
 public class AddClientDetailsImpl extends DITSOAPServiceImpl implements AddClientDetails {
 	
+	
 	public AddClientDetailsImpl(String userName, String password,
-			String certChain, String signature, SOAPService soapService) {
-		super(userName, password, certChain, signature, soapService);
+			String certChain, String signature, SOAPService soapService,ITReturnComponentHelper itReturnComponentHelper,boolean saveAllSOAPReuqestToFileSystem,  String soapRequestSaveLocation,  boolean saveAllSOAPRequestToRepository) {
+		super(userName, password, certChain, signature, soapService,itReturnComponentHelper,saveAllSOAPReuqestToFileSystem,soapRequestSaveLocation,saveAllSOAPRequestToRepository);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -52,7 +55,7 @@ public class AddClientDetailsImpl extends DITSOAPServiceImpl implements AddClien
 			String password, String certChain, String signature, String PAN,
 			GregorianCalendar DOB, String email,
 			AddClientOption addClientOption, String TAN,
-			FinancialYear financialYear) throws SOAPFaultException, MissingInformationException,
+			FinancialYear financialYear,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm) throws SOAPFaultException, MissingInformationException,
 			DataMismatchException, InvalidFormatException {
 		// TODO Auto-generated method stub
 		if (userName  != null)  setUserName(userName);
@@ -80,6 +83,14 @@ public class AddClientDetailsImpl extends DITSOAPServiceImpl implements AddClien
 		AddClientDetailsResponse addClientDetailsResponse = new AddClientDetailsResponse();
 		try {
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperaddClientDetailsImpl,inputParams);
+			if (isSaveAllSOAPRequestToRepository()) {
+				try {
+					saveSOAPRequestToRepository(soapCallWrapperaddClientDetailsImpl.getOperation(), absoluteBasePathToReturnDocuments, wpm, outputMap);
+				}catch (Exception e) {
+					logger.error("Saving into repository exception",e);
+				}
+			}
+			
 			return addClientDetailsResponse;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

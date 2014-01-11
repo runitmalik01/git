@@ -119,14 +119,14 @@ public class OtherIncome extends ITReturnComponent {
 		if (ret) {
 			boolean con_exempt=true;
 			String max_allowed_exempt=request.getRequestContext().getResolvedSiteMapItem().getParameter("max_allowed_exempt");
-			String total_taxfree_income=getFormMap().getField("Total_taxfree_income").getValue();
+			String total_taxfree_income=getITRInitData(request).getFormMap().getField("Total_taxfree_income").getValue();
 			MemberPersonalInformation personalinfo=(MemberPersonalInformation)request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 			if(max_allowed_exempt!=null){
 				if(personalinfo.getSelectedITRForm().toString().equals("ITR1")){
 					if(Integer.parseInt(total_taxfree_income) > Integer.parseInt(max_allowed_exempt)){
 						log.info("Exceed Over Limit For ITR1");
 						eRROR_MAX_ALLOWED="err.maxallowed.exceed";
-						getFormMap().addMessage("Total_taxfree_income", "err.maxallowed.exceed");
+						getITRInitData(request).getFormMap().addMessage("Total_taxfree_income", "err.maxallowed.exceed");
 						con_exempt=false;
 					}else{
 						eRROR_MAX_ALLOWED=null;

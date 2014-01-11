@@ -43,7 +43,7 @@ public class NewEvent extends BaseComponent {
 		super.doBeforeRender(request, response);
 
 		//HippoBean document = getContentBean(request);
-		HippoBean document = getSiteContentBaseBeanForReseller(request);
+		HippoBean document = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		/*String Newlink=getPublicRequestParameter(request,"new");
 		String editlink=getPublicRequestParameter(request,"edit");
 		String deletelink=getPublicRequestParameter(request,"delete");
@@ -78,7 +78,7 @@ public class NewEvent extends BaseComponent {
 			createNewEvents(request,edoc);
 		}*/
 		try {
-			response.sendRedirect("/site/r/"+getResellerId()+"/events");
+			response.sendRedirect("/site/r/"+getITRInitData(request).getResellerId()+"/events");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

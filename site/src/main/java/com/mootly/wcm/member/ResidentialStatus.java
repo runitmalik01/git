@@ -54,7 +54,7 @@ public class ResidentialStatus extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		//get the bundle 
-		String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
+		String assessmentYear = getITRInitData(request).getAssessmentYear() == null ? "2012-2013"  : getITRInitData(request).getAssessmentYear();
 		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
 		
 		List<String> keyList = new ArrayList<String>();
@@ -84,8 +84,8 @@ public class ResidentialStatus extends ITReturnComponent {
 			}
 		}
 		Map<String, String> fetchmap = new LinkedHashMap<String, String>();
-		if (getParentBean() != null) {
-			MemberResidentialStatus memberresi = (MemberResidentialStatus) getParentBean();			
+		if (getITRInitData(request).getParentBean() != null) {
+			MemberResidentialStatus memberresi = (MemberResidentialStatus) getITRInitData(request).getParentBean();			
 			
 			fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());			
 			if(!(memberresi.getRsstatusQYes().matches("Select")))

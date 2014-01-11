@@ -31,19 +31,6 @@ public class TestPANInformation  {
 	@Test
 	public void testPANInformation() {
 		RetrievePANInformation retrievePANInformation =	ac.getBean(RetrievePANInformation.class);
-		try {
-			RetrievePANResponse retrievePANResponse = retrievePANInformation.retrievePANInformation("ABNPP1234G");
-			System.out.println(retrievePANResponse);
-		} catch (MissingInformationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DataMismatchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
+		
 	}
 }

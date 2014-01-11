@@ -78,7 +78,7 @@ public class DashboardShortcutComponent extends ITReturnComponent {
 		HstLink hstLink = request.getRequestContext().getHstLinkCreator().createByRefId(REDIRECT_REF_ID, request.getRequestContext().getResolvedMount().getMount());
 		String redirectURL = hstLink.toUrlForm(request.getRequestContext(), true);
 		String basePathForDocument = resellerSiteHippoBean.getCanonicalPath();
-		FormMap dashboardFormMap = getFormMap();
+		FormMap dashboardFormMap = getITRInitData(request).getFormMap();
 		if(dashboardFormMap != null){
 			String contentFolder = dashboardFormMap.getField(CONTENT_FOLDER).getValue();
 			String documentType = dashboardFormMap.getField(DOCUMENT_TYPE).getValue();
@@ -118,6 +118,8 @@ public class DashboardShortcutComponent extends ITReturnComponent {
 			}
 		}
 	}
+	
+
 	/**
 	 * This method is used to create the Absolute Path for Document.
 	 * 

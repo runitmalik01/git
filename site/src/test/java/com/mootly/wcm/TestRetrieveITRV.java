@@ -27,7 +27,7 @@ public class TestRetrieveITRV  {
 	public void testRetrieveITRVStatus() {
 		RetrieveITRV retrieveITRV =	ac.getBean(RetrieveITRVImpl.class);
 		try {
-			ITRVStatus itvStatus = retrieveITRV.retrieveITRVStatus("bhmps2932k", "2013-14");
+			ITRVStatus itvStatus = retrieveITRV.retrieveITRVStatus("bhmps2932k", "2013-14",null,null);
 			System.out.println(itvStatus);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

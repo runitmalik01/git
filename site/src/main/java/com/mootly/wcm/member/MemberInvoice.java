@@ -56,7 +56,7 @@ public class MemberInvoice extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);		
 		request.setAttribute("type", "invoice");
-		List<HippoDocumentBean> serviceDocumentList = loadAllBeansUnderTheFolder(request,response,"documents/services","mootlywcm:Name",SORT_DIRECTION.ASC);
+		List<HippoDocumentBean> serviceDocumentList = getITRInitData(request).loadAllBeansUnderTheFolder(request,"documents/services","mootlywcm:Name",SORT_DIRECTION.ASC);
 //		if (log.isInfoEnabled()) {
 //			if (serviceDocumentList != null && serviceDocumentList.size() > 0) {
 //				for (HippoBean theServiceBean:serviceDocumentList) {
@@ -70,7 +70,7 @@ public class MemberInvoice extends ITReturnComponent {
 		else {
 			return ;
 		}
-		request.setAttribute("availablePaymentTypes", getChannelInfoWrapper().availablePaymentTypes());
+		request.setAttribute("availablePaymentTypes", getITRInitData(request).getChannelInfoWrapper().availablePaymentTypes());
 		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
 			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 			//System.out.println(invoiceDocument.getAmountDue());
@@ -81,12 +81,12 @@ public class MemberInvoice extends ITReturnComponent {
 		//if there is a respCode and its not success ignore it
 		InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 		if (invoiceDocument == null || invoiceDocument.getInvoiceDocumentDetailList() == null || invoiceDocument.getInvoiceDocumentDetailList().size() == 0) {
-			MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), serviceDocumentList, getChannelInfoWrapper(), getAddClientDetailsService(),getRetrieve26ASService(),getFinancialYear());
+			MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), serviceDocumentList, getITRInitData(request).getChannelInfoWrapper(), getAddClientDetailsService(),getRetrieve26ASService(),getITRInitData(request).getFinancialYear());
 			Session persSession;
 			try {
 				persSession = getPersistableSession(request);
 				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persSession);
-				memberPersonalInfoUpdateHandler.afterUpdate(null, null, wpm, getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
+				memberPersonalInfoUpdateHandler.afterUpdate(null, null, wpm, getITRInitData(request).getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
 				request.setAttribute("didInvoiceGotUpdated","true");
 			} catch (RepositoryException e) {
 				// TODO Auto-generated catch block
@@ -105,9 +105,9 @@ public class MemberInvoice extends ITReturnComponent {
 	} 
 	
 	@Override
-	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
+	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler(HstRequest request) {
 		// TODO Auto-generated method stub
-		return new InvoiceDocumentBeanHandler(getSequenceGenerator(),getResellerId());
+		return new InvoiceDocumentBeanHandler(getSequenceGenerator(),getITRInitData(request).getResellerId());
 	}
 }
 

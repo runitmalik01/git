@@ -29,6 +29,7 @@ import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 
 @PrimaryBean(primaryBeanClass=MemberPayment.class)
@@ -44,7 +45,7 @@ public class ITRPayment extends ITReturnComponent {
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
-		MemberPayment memberPayment = (MemberPayment) getParentBean();
+		MemberPayment memberPayment = (MemberPayment) getITRInitData(request).getParentBean();
 		if (memberPayment != null) {
 			String theSuccess = getPublicRequestParameter(request, "success");
 			if ( theSuccess != null && "true".equals(theSuccess)) {
@@ -68,12 +69,12 @@ public class ITRPayment extends ITReturnComponent {
 		//String[] to = new String[] {"info@wealth4india.com","amit@mootly.com"};
 		super.afterSave(request,formMap,pageAction);
 		Map<String,Object> velocityContext = new HashMap<String, Object>();
-		velocityContext.put("userName",getUserName());
-		velocityContext.put("userNameNormalized",getUserNameNormalized());
+		velocityContext.put("userName",getITRInitData(request).getUserName());
+		velocityContext.put("userNameNormalized",getITRInitData(request).getUserNameNormalized());
 		//now lets put the document detail
-		velocityContext.put("PAN",getPAN());
-		velocityContext.put("financialYear",getFinancialYear().getDisplayName());
-		velocityContext.put("itReturnType",getITReturnType().getDisplayName());
+		velocityContext.put("PAN",getITRInitData(request).getPAN());
+		velocityContext.put("financialYear",getITRInitData(request).getFinancialYear().getDisplayName());
+		velocityContext.put("itReturnType",getITRInitData(request).getITReturnType().getDisplayName());
 		
 		if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
@@ -90,7 +91,7 @@ public class ITRPayment extends ITReturnComponent {
 		}		
 		//if this is the vendor and on vendor portal and the payment was set to verified then send an email back to the member
 		boolean verificationEmailSent = false;
-		if (isVendor(request) && isOnVendorPortal()) {
+		if (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) {
 			if (formMap != null && formMap.getField("paymentVerificationStatus") != null ) {
 				String paymentVerificationStatus = formMap.getField("paymentVerificationStatus").getValue();
 				if (paymentVerificationStatus != null && !"".equals(paymentVerificationStatus)) {

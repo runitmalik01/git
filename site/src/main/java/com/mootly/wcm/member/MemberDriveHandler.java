@@ -28,7 +28,6 @@ import com.mootly.wcm.beans.EmailTemplate;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.channels.WebsiteInfo;
-import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.utils.ContentStructure;
@@ -64,7 +63,7 @@ public class MemberDriveHandler {
 	public MemberDriveHandler(HstRequest request,FormMap formMap) {
 		// TODO Auto-generated constructor stub
 		ITReturnComponentHelper helper = new ITReturnComponentHelper();
-		BaseComponent baseComponent = new BaseComponent();
+		//BaseComponent baseComponent = new BaseComponent();
 		this.request = request;
 		this.formMap = formMap;
 		this.memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
@@ -76,7 +75,7 @@ public class MemberDriveHandler {
 		this.financialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		this.pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan");
 		this.userName = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : null;
-		this.normalisedUserName = baseComponent.getNormalizedUserName(request);
+		//this.normalisedUserName = getITRInitData(request).getNormalizedUserName(request);
 		this.isReseller = helper.isReSeller(request);
 		this.resellerID = helper.getResellerId(request);
 	}

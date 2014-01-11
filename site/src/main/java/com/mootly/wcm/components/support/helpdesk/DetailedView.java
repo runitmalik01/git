@@ -142,7 +142,7 @@ public class DetailedView extends BaseComponent{
 				//save the data making sure the client validation is done
 				FormMap childBeanMap = getFormMap(request, new String[] {"note"});
 				FormField formFieldStrUpdaterType = new FormField("strUpdaterType");
-				formFieldStrUpdaterType.addValue((isVendor(request) && isOnVendorPortal() ? UserType.VENDOR.name() : UserType.MEMBER.name())); 
+				formFieldStrUpdaterType.addValue((getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal() ? UserType.VENDOR.name() : UserType.MEMBER.name())); 
 				childBeanMap.addFormField(formFieldStrUpdaterType);
 				
 				Session persistableSession = null;
@@ -173,7 +173,7 @@ public class DetailedView extends BaseComponent{
 	public HelpDeskTicketDocument getTheHelpDeskTicket(HstRequest request) {
 		String node_name = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("node-name");
 		if (node_name != null) {
-			HippoBean siteContentBaseBeanForResellers = getSiteContentBaseBeanForReseller(request);
+			HippoBean siteContentBaseBeanForResellers = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 			HippoBean theBean = siteContentBaseBeanForResellers.getBean( getRelativeBaseSavePath(request) + "/" +node_name);
 			if (theBean != null) {
 				HelpDeskTicketDocument document = (HelpDeskTicketDocument) theBean;			
@@ -184,18 +184,18 @@ public class DetailedView extends BaseComponent{
 	}
 	
 	private String getBaseSavePath(HstRequest request) {
-		HippoBean siteContentBaseBeanForResellers = getSiteContentBaseBeanForReseller(request);
+		HippoBean siteContentBaseBeanForResellers = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		String thePath = siteContentBaseBeanForResellers.getCanonicalPath() + "/" + getRelativeBaseSavePath(request);
 		return thePath;
 	}
 	
 	private String getRelativeBaseSavePath(HstRequest request) {
 		String thePath = null;
-		if (isVendor(request) && isOnVendorPortal()) {
+		if (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) {
 			thePath = BASE_PATH;
 		}
 		else {
-			thePath = "members/" + getNormalizedUserName(request) + "/" + BASE_PATH;
+			thePath = "members/" + getITRInitData(request).getNormalizedUserName(request) + "/" + BASE_PATH;
 		}
 		return thePath;				
 	}

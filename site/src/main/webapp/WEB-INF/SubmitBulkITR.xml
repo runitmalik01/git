@@ -46,8 +46,7 @@
     	</property>
     	<property name="outputElementMap">
     		<map>
-				<entry key="result" value="//result"></entry>
-				<entry key="error" value="//error"></entry>
+				<entry key="result" value="//ns2:result"></entry>
 			</map>
     	</property>
     	<!--  no head is required for this call -->

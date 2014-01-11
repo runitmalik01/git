@@ -1,16 +1,21 @@
 package com.mootly.wcm.services.ditws.soap;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.soap.MessageFactory;
+import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConnection;
 import javax.xml.soap.SOAPException;
@@ -32,15 +37,43 @@ public class SOAPService {
 	
 	String logFileLocationBaseDir;
 	
+	boolean enableMockSubmission;
+	String realSubmissionEndpoint;
+	String submitITROperationName;
+	
 	public SOAPService() {
 			
 	}
 	
-	public String getLogFileLocationBaseDir() {
-		return logFileLocationBaseDir;
+	public String getSubmitITROperationName() {
+		return submitITROperationName;
 	}
 
 
+	public void setSubmitITROperationName(String submitITROperationName) {
+		this.submitITROperationName = submitITROperationName;
+	}
+
+
+	public String getLogFileLocationBaseDir() {
+		return logFileLocationBaseDir;
+	}
+	
+	public boolean isEnableMockSubmission() {
+		return enableMockSubmission;
+	}
+
+	public void setEnableMockSubmission(boolean enableMockSubmission) {
+		this.enableMockSubmission = enableMockSubmission;
+	}
+
+	public String getRealSubmissionEndpoint() {
+		return realSubmissionEndpoint;
+	}
+
+	public void setRealSubmissionEndpoint(String realSubmissionEndpoint) {
+		this.realSubmissionEndpoint = realSubmissionEndpoint;
+	}
 
 	public void setLogFileLocationBaseDir(String logFileLocationBaseDir) {
 		this.logFileLocationBaseDir = logFileLocationBaseDir;
@@ -132,9 +165,26 @@ public class SOAPService {
 			soapRequestStr = byteArrayOutputStream.toString("UTF-8");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			logger.error("Error",e);
 			e.printStackTrace();
 		}
-		SOAPMessage soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
+		SOAPMessage soapResponse = null;
+		
+		//THIS CODE MUSTNOT GO PUBLIC ////
+		//soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
+		
+		if (isEnableMockSubmission() && getRealSubmissionEndpoint() != null && getSubmitITROperationName() != null && soapCallWrapper.getOperation().equals(getSubmitITROperationName()) && !soapCallWrapper.getEndPointURL().toExternalForm().equalsIgnoreCase(getRealSubmissionEndpoint())) {
+			try {
+				soapResponse = getSoapMessageFromString("<env:Envelope xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"><env:Header/><env:Body><ns2:DITWSResponseEle xmlns:ns2=\"http://incometaxindiaefiling.gov.in/ws/ds/common/v_1_0\"><ns2:result>" + System.currentTimeMillis() + " </ns2:result></ns2:DITWSResponseEle></env:Body></env:Envelope>");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			soapResponse = executeSOAPCallRAW(soapCallWrapper, initialParamValues,soapMessage);
+		}
+		
 		String soapResponseStr = null;
 		try {
 			//doTrustToCertificates();
@@ -220,5 +270,11 @@ public class SOAPService {
 			
 		}
 	}
+	
+	private SOAPMessage getSoapMessageFromString(String xml) throws SOAPException, IOException {
+	    MessageFactory factory = MessageFactory.newInstance();
+	    SOAPMessage message = factory.createMessage(new MimeHeaders(), new ByteArrayInputStream(xml.getBytes(Charset.forName("UTF-8"))));
+	    return message;
+	} 
 }
 

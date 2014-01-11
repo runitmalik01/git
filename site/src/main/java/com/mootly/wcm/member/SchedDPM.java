@@ -24,6 +24,7 @@ import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.ScheduleDPMDocument;
 import com.mootly.wcm.beans.compound.ScheduleDPMDetails;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 @PrimaryBean(primaryBeanClass=ScheduleDPMDocument.class)
 @ChildBean(childBeanClass=ScheduleDPMDetails.class)
 @FormFields(fieldNames={"rates","valFirstDayPrevYr","periodMore180Day","prevYrConsider","amtDepreciationFullRate","periodLess180Day","considerOrRealDuringYr",
@@ -63,7 +64,7 @@ public class SchedDPM extends ITReturnComponent {
 		PAGE_ACTION	pageAction= null;
 		if(super.validate(request, response, formMap)){
 			
-			ScheduleDPMDocument objScheduleDPMDocument = (ScheduleDPMDocument) getParentBean();
+			ScheduleDPMDocument objScheduleDPMDocument = (ScheduleDPMDocument) getITRInitData(request).getParentBean();
 			if((objScheduleDPMDocument != null) && (pageAction == PAGE_ACTION.NEW_CHILD)){
 			List<ScheduleDPMDetails> listScheduleDPMDetails = objScheduleDPMDocument.getScheduleDPMDetailList();
 			if((objScheduleDPMDocument != null) && (objScheduleDPMDocument.getScheduleDPMDetailList().size() > 0)){

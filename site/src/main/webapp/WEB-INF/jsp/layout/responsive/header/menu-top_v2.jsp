@@ -33,7 +33,7 @@
  --%>
 <hst:link var="securelink" siteMapItemRefId="secure-connection"></hst:link>
 <c:choose>
-	<c:when test="${loggedin}">			
+	<c:when test="${not empty loggedin && loggedin == 'true'}">			
 		<%--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724" style="color: brown"><small><strong></strong></small></li> --%>
                <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="glyphicon glyphicon-user glyphicon glyphicon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
                <ul class="dropdown-menu">
@@ -49,10 +49,10 @@
 			   <button type="submit" class="btn btn-default btn-info"  onclick="javascript:$('#frmLogin').attr('action','${logout}');$('#frmLogin').submit()">Logout</button>
 	</c:when>
 	<c:otherwise>	<!-- Login/Signup (when user is logging first time)-->
-	<c:if test="${etaxfilestation == true}">
+	<c:if test="${not empty etaxfilestation && etaxfilestation == 'true'}">
 	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${resellersignup}');$('#frmLogin').submit()">Apply Here !!!</button>
 	</c:if>
-	<c:if test="${etaxfilestation == false}">
+	<c:if test="${empty etaxfilestation || etaxfilestation == 'false'}">
 	<button type="submit" class="btn btn-default btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
 	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>					
 	</c:if>

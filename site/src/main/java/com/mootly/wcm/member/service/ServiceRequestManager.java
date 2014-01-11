@@ -26,6 +26,7 @@ import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.IndianGregorianCalendar;
+import com.mootly.wcm.utils.MootlyFormUtils;
 
 /**
  * @author admin
@@ -45,7 +46,7 @@ public class ServiceRequestManager {
 		// TODO Auto-generated constructor stub
 		this.component = new BaseComponent();
 		this.request = request;
-		this.normalisedUserName = component.getNormalizedUserName(request);
+		this.normalisedUserName = MootlyFormUtils.getNormalizedString(request.getUserPrincipal().getName());
 		this.resellerBeanScope = resellerBeanScope;
 		this.isLoggedIn = request.getUserPrincipal() != null ? true : false;
 	}

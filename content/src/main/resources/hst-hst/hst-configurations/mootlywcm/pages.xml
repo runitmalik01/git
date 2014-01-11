@@ -5553,26 +5553,6 @@
         <sv:property sv:name="hst:referencecomponent" sv:type="String">
           <sv:value>hst:components/member.formsixteen</sv:value>
         </sv:property>
-        <sv:node sv:name="deduction-form16">
-          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-            <sv:value>hst:component</sv:value>
-          </sv:property>
-          <sv:property sv:name="jcr:uuid" sv:type="String">
-            <sv:value>56d2693e-9510-44c2-aaf3-5ac5b118b68d</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:componentclassname" sv:type="String">
-            <sv:value>com.mootly.wcm.member.Deduction</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-            <sv:value>ischildofform16</sv:value>
-          </sv:property>
-          <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-            <sv:value>true</sv:value>
-          </sv:property>
-          <sv:property sv:name="hst:template" sv:type="String">
-            <sv:value>member.deduction</sv:value>
-          </sv:property>
-        </sv:node>
       </sv:node>
     </sv:node>
   </sv:node>
@@ -10945,4 +10925,51 @@
     </sv:node>
   </sv:node>
 </sv:node>
+	<!--  new -->
+	<sv:node sv:name="efile-incometax-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e48e5bcb-72e6-461f-92b3-b64e21fbf5e6</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>bodyCss</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>bodyCssClass</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>b9134279-1ce7-4455-9f06-6831e9f028c5</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>contentCssClass</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>grid-right col-940</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>63edeb76-128a-48d2-becd-9877105ab903</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/efile-incometax-confirmation</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+	<!-- /new -->
 </sv:node>

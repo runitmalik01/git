@@ -53,7 +53,7 @@ public class ServicePrice extends BaseComponent {
 			excludePricingNames = paramsInfo.getExcludePricings();
 		}
 
-		HippoBean bean = getSiteContentBaseBeanForReseller(request).getBean(pricingRelativeContentPath);//Reseller Module Implementation.
+		HippoBean bean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(pricingRelativeContentPath);//Reseller Module Implementation.
 		//log.info("Content Bean as :::"+getSiteContentBaseBeanForReseller(request).getName());
 		if (bean == null) {
 			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();

@@ -31,7 +31,7 @@ public class TestTANInformation  {
 	public void testPANInformation() {
 		retrieveTANInformation =	ac.getBean(RetrieveTANInformation.class);
 		try {
-			RetrieveTANResponse retrieveTANResponse = retrieveTANInformation.retrieveTANInformation("ERIU101869", "arun@123", "certChain1", "signature1", "DELA32045G");
+			RetrieveTANResponse retrieveTANResponse = retrieveTANInformation.retrieveTANInformation("ERIU101869", "arun@123", "certChain1", "signature1", "DELA32045G",null,null);
 			System.out.println(retrieveTANResponse.toString());
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

@@ -128,7 +128,7 @@ public class Interest extends ITReturnComponent {
 
 		Map<String,Object> totalMapForJSDe = new HashMap<String, Object>();
 		DeductionListService deductionListService=new DeductionListService();
-		Map<String,DeductionSection> deductionSectionMap=deductionListService.getDeductionSectionMap().get(getFinancialYear());
+		Map<String,DeductionSection> deductionSectionMap=deductionListService.getDeductionSectionMap().get(getITRInitData(request).getFinancialYear());
 		if(deductionDocument!=null){
 			if (deductionDocument.getDeductionDocumentDetailList() != null && deductionDocument.getDeductionDocumentDetailList().size() > 0 ){
 				for(String key:deductionSectionMap.keySet()){
@@ -171,7 +171,7 @@ public class Interest extends ITReturnComponent {
 			}
 		}
 		//totalMapForJSDe.put("ageInYears",ageInYears);
-		totalMapForJSDe.put("isSeniorCitizen",getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
+		totalMapForJSDe.put("isSeniorCitizen",getITRInitData(request).getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime()));
 		totalMapForJSDe.put("salarypension",TotalSalaryIncome);
 		totalMapForJSDe.put("othersources",OtherIncome);
 		totalMapForJSDe.put("houseproperty",houseIncomeTotal);
@@ -215,14 +215,14 @@ public class Interest extends ITReturnComponent {
         TotalIncome = grsstotal - indianCurrencyHelper.longRound(totaleligiblededuction);
 
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();
-		totalMapForJS.put("cbassyear",getAssessmentYear());
+		totalMapForJS.put("cbassyear",getITRInitData(request).getAssessmentYear());
 		totalMapForJS.put("cbasstype", memberPersonalInformation.getFilingStatus());
 		//totalMapForJS.put("cbasstype", "I");
 		totalMapForJS.put("cbresistatus",memberPersonalInformation.getResidentCategory());
 		totalMapForJS.put("txtNetIncome",TotalIncome);
-		boolean isSeniorCitizen = getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
+		boolean isSeniorCitizen = getITRInitData(request).getFinancialYear().isSeniorCitizen(memberPersonalInformation.getDOB().getTime());
 		if(isSeniorCitizen){
-			boolean isSuperSeniorCitizen = getFinancialYear().isSuperSeniorCitizen(memberPersonalInformation.getDOB().getTime());
+			boolean isSuperSeniorCitizen = getITRInitData(request).getFinancialYear().isSuperSeniorCitizen(memberPersonalInformation.getDOB().getTime());
 			if(isSuperSeniorCitizen){
 				totalMapForJS.put("cbasscategory","Super Senior Citizen");
 			}else

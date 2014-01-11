@@ -4018,4 +4018,16 @@
     <sv:value>jsp/member/digital-signature.jsp</sv:value>
   </sv:property>
 </sv:node>
+	<!-- new template  -->
+	<sv:node sv:name="efile-incometax-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>25b871ab-606b-45d8-93ad-4d291e3c34ba</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/efile-incometax-confirmation.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>

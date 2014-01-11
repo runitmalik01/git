@@ -58,7 +58,7 @@ public class Reviews extends BaseComponent {
 		request.setAttribute("document", document);
 		log.info("document",document);
 
-		HippoBean siteContentBase = getSiteContentBaseBeanForReseller(request);
+		HippoBean siteContentBase = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 		HippoFolder reviewsFolder = siteContentBase.getBean("wealth4indiareviews");
 		if (reviewsFolder == null) {
 			log.warn("Product reviews folder not found: '{}/{}'. No product reviews will be shown.", siteContentBase.getPath(), reviewsFolderName);

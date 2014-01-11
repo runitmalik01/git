@@ -120,7 +120,7 @@ public class Detail extends BaseComponent {
 		if(null!=edit){
 			editNewEvents(request,edoc);
 			try {
-				response.sendRedirect("/site/r/"+getResellerId()+"/events");
+				response.sendRedirect("/site/r/"+ getITRInitData(request).getResellerId() +"/events");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -128,7 +128,7 @@ public class Detail extends BaseComponent {
 		if(null!=newsEdit){
 			editNewNews(request,ndoc);
 			try {
-				response.sendRedirect("/site/r/"+getResellerId()+"/news");
+				response.sendRedirect("/site/r/"+ getITRInitData(request).getResellerId()+"/news");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -138,7 +138,7 @@ public class Detail extends BaseComponent {
 				DeleteEvents(request,edoc);
 			}	
 			try {
-				response.sendRedirect("/site/r/"+getResellerId()+"/events");
+				response.sendRedirect("/site/r/"+ getITRInitData(request).getResellerId()+"/events");
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -150,7 +150,7 @@ public class Detail extends BaseComponent {
 				DeleteNews(request,ndoc);				
 			}	
 			try {
-				response.sendRedirect("/site/r/"+getResellerId()+"/news");
+				response.sendRedirect("/site/r/"+getITRInitData(request).getResellerId()+"/news");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

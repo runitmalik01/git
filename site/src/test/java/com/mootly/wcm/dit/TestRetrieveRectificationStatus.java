@@ -33,7 +33,7 @@ public class TestRetrieveRectificationStatus  {
 	public void testRetrieveRectificationStatus() {
 		RetrieveRectificationStatus retrieveRectificationStatus =	ac.getBean(RetrieveRectificationStatus.class);
 		try {
-			RetrieveRectificationResponse retrieveRectificationResponse = retrieveRectificationStatus.retrieveRectificationStatus("ERIU101869", "arun@123", "certChain1", "signature1", "ABNPP1234G", FinancialYear.TwentyTweleve.getAssessmentYearForDITSOAPCall());
+			RetrieveRectificationResponse retrieveRectificationResponse = retrieveRectificationStatus.retrieveRectificationStatus("ERIU101869", "arun@123", "certChain1", "signature1", "ABNPP1234G", FinancialYear.TwentyTweleve.getAssessmentYearForDITSOAPCall(),null,null);
 			
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block

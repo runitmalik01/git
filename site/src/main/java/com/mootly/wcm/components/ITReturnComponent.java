@@ -22,20 +22,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -67,17 +62,13 @@ import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
-import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
-import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
-import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -101,33 +92,26 @@ import com.mootly.wcm.annotations.RegExValidationFields;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.annotations.SyncInvoiceWithCitrus;
-import com.mootly.wcm.annotations.ValueListBeans;
 import com.mootly.wcm.beans.CompoundChildUpdate;
-import com.mootly.wcm.beans.DITResponseDocument;
 import com.mootly.wcm.beans.FormMapFiller;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
-import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
-import com.mootly.wcm.member.Member;
-import com.mootly.wcm.model.DITSubmissionStatus;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_OUTPUT_FORMAT;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
-import com.mootly.wcm.model.ITReturnPackage;
-import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.IndianGregorianCalendar;
-import com.mootly.wcm.model.SORT_DIRECTION;
 import com.mootly.wcm.model.ValidationResponse;
 import com.mootly.wcm.services.DownloadConfirmationRequiredException;
 import com.mootly.wcm.services.ITRScreenXmlValidateServiceImpl;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
-import com.mootly.wcm.services.MasterConfigService;
 import com.mootly.wcm.services.PaymentRequiredException;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
@@ -141,7 +125,6 @@ import com.mootly.wcm.services.ditws.ITRVStatus;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
 import com.mootly.wcm.services.ditws.RetrievePANInformation;
-import com.mootly.wcm.services.ditws.RetrievePANInformation.VALIDATION_RESULT;
 import com.mootly.wcm.services.ditws.RetrieveRectificationStatus;
 import com.mootly.wcm.services.ditws.RetrieveRefundStatus;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
@@ -154,14 +137,17 @@ import com.mootly.wcm.services.efile.EFileResponse;
 import com.mootly.wcm.services.efile.exception.DigtalSignatureAssesseeFailure;
 import com.mootly.wcm.services.efile.exception.DigtalSignatureERIUserFailure;
 import com.mootly.wcm.services.efile.exception.EFileException;
-import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.XmlCalculation;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric.ACTION;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric.TYPE;
 import com.mootly.wcm.validation.HippoBeanValidationResponse;
+import com.mootly.wcm.validation.RepositoryUpdateRequest;
 import com.mootly.wcm.validation.impl.itr.ITRValidatorChain;
 import com.mootly.wcm.view.PaymentUpdateResponse;
 
-public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
+public class ITReturnComponent extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(ITReturnComponent.class);
 	ITRXmlGeneratorServiceFactory itrXmlGeneratorServiceFactory = null;
 	ITRValidatorChain itrValidationChain = null;
@@ -169,82 +155,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	Retrieve26ASInformation retrieve26ASService = null;
 	RetrievePANInformation retrievePANInformation = null;
 	AddClientDetails addClientDetailsService = null;
-	
 	RetrieveRectificationStatus retrieveRectificationStatus = null;
 	RetrieveRefundStatus retrieveRefundStatus = null;
-
 	String servletPath = null;
 	String xsltPath = null;
-
-	//local variables
-	boolean hasInitComplete = false;
-	String redirectURLToSamePage=  null;
-
-	//User/Member Parameters
-	String userName;
-	String userNameNormalized;
-	boolean isLoggedIn = false;
-	String memberRootFolderRelPath = null;
-	String memberRootFolderAbsolutePath = null;
-	Member member = null;
-	HippoBean hippoBeanMemberBase;
-	HippoFolder panFolder;
-
-	//ITReturn Specific
-	String baseRelPathToReturnDocuments;
-	String baseAbsolutePathToReturnDocuments;
-	String assessmentYear;
-	FinancialYear financialYear;
-	ITReturnType itReturnType = ITReturnType.ORIGINAL;
-	String theFolderContainingITRDocuments = null;
-	String itrFolderSuffix = null;
-	String pan = null;
-	FilingStatus filingStatus;
-	FormMap formMap = null;
-	ITReturnPackage itReturnPackage = ITReturnPackage.basic;
-
-	HippoBean siteContentBaseBean = null;
-	//Document Specific
-	HippoBean hippoBeanBaseITReturnDocuments;
-	Class<? extends HippoBean> parentBeanClass = null;
-	Class<? extends HippoBean> childBeanClass = null;
-	String parentBeanNameSpace;
-	String parentBeanPath;
-	String parentBeanAbsolutePath;
-	HippoBean parentBean;
-	HippoBean childBean;
-
-	String uuid;
-	String maxChildrenAllowed = null;
-
-	//MemberPersonalInformation memberPersonalInformation = null;
-	//Screen Specific
-	PAGE_OUTPUT_FORMAT pageOutputFormat;
-	PAGE_ACTION pageAction;
-	String screenMode;
-	String nextScreenSiteMapItemRefId;
-
-	String mainSiteMapItemRefId = null;
-
-	String clientSideValidationJSON;
-
-	///Name of the HTML File and the depth its in
-	String scriptName;
-
 	SequenceGenerator sequenceGenerator = null;
-
-	Map<String,HippoBean> mapOfAllBeans = new HashMap<String, HippoBean>();
-
-
-	MemberPersonalInformation memberPersonalInformation;
-	DITResponseDocument ditResponseDocument;
-	boolean shouldRetrievePANInformation = false;
-	boolean shouldValidatePANWithDIT = false;
-	boolean ditInvalidPanContnue = false; 
-	RetrievePANInformation.VALIDATION_RESULT retrievePANInformationValidationResult = VALIDATION_RESULT.NOT_INITIATED;
 	RetrievePANResponse retrievePANResponse = null;
 	Transaction transaction = null;
 	Enquiry enquiry =	null;
+	
+	
+	
 
 	@Override
 	public void init(ServletContext servletContext,
@@ -309,37 +230,118 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
-
-		if (!hasInitComplete) {
+		//Map<String, String> mapOfComponents  = HstServices.getComponentManager().getComponentsOfType(String.class);
+		boolean isFrozen = false;
+		//if (!hasInitComplete) {
 			try {
-				initComponent(request,response,false);
 				fillDueDate(request,response); //this will fill the due date
-				executeValidationChain(request,response);
+				HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
+				if (hippoBeanValidationResponse != null) {
+					HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
+					if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
+						isFrozen = true;
+						request.setAttribute("freezeIncomeTaxAction", freezeIncomeTaxAction);
+						request.setAttribute("isFrozen", isFrozen);
+						request.setAttribute("ackResponse", hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION) );
+						request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
+						request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
+					}
+				}
 			}			
 			catch (Exception ex) {
 				log.error("Error in initializing component. FATAL",ex);
 				redirectToNotFoundPage(response);
 				return;
 			}
-			hasInitComplete = true;
-		}
-		if (getPAN() != null && (filingStatus == null || filingStatus.equals(FilingStatus.UNKNOWN))) {
-			log.error("Unknown Filing status for PAN:" + getPAN());
+			
+			String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
+			if (isFrozen && getITRInitData(request).pageAction == PAGE_ACTION.EFILE) {
+				try {
+					response.sendRedirect(redirectToAfterEFile);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
+		//	hasInitComplete = true;
+		//}
+		if (getITRInitData(request).getPAN() != null && (getITRInitData(request).filingStatus == null || getITRInitData(request).filingStatus.equals(FilingStatus.UNKNOWN))) {
+			log.error("Unknown Filing status for PAN:" + getITRInitData(request).getPAN());
 			response.setRenderPath("jsp/security/invalidpan.jsp");
 			return;
 		}
 
-		if (pageAction == PAGE_ACTION.NEW_CHILD && request.getAttribute("NEW_CHILD_DISABLED") != null) {
+		if (getITRInitData(request).pageAction == PAGE_ACTION.NEW_CHILD && request.getAttribute("NEW_CHILD_DISABLED") != null) {
 			log.error("User attempting to over ride the maxAllowedChildren parameter");
 			response.setRenderPath("jsp/security/invalidoperation.jsp");
 			return;
 		}
+		
+		//lets try to load the SCreen Configuration Document for this component
+		String pathToScreenConfig = "configuration/screenconfigs/" + this.getClass().getSimpleName().toLowerCase();
+		ScreenConfigDocument screenConfigDocument = getITRInitData(request).siteContentBaseBean.getBean(pathToScreenConfig, ScreenConfigDocument.class);
+		if (screenConfigDocument != null) {
+			if (log.isInfoEnabled()){
+				log.info("screenConfigDocument:" + screenConfigDocument.toString());
+			}
+			request.setAttribute("screenConfigDocument",screenConfigDocument);
+			String screenConfigDocumentJSON = ScreenConfigService.generateJSON(screenConfigDocument);
+			if (screenConfigDocumentJSON != null) {
+				request.setAttribute("screenConfigDocumentJSON", screenConfigDocumentJSON);
+			}
+		}
+		//Screen Calculation Configuration
+		String isCalc = getPublicRequestParameter (request,"command");
+		String screen=getPublicRequestParameter(request, "screen");
+		if (isCalc != null && isCalc.equals("calc") && screen!=null) {
+			log.info("We are Requesting fot this "+screen+" Screen");
+			String pathToScreenCalc = "configuration/screencalculation/" + screen.toLowerCase();
+			ScreenCalculation screencalc= getSiteContentBaseBean(request).getBean(pathToScreenCalc, ScreenCalculation.class);
+			// for screen calcualtions.......
+			Map<String,Object> additionalParameters= new HashMap<String,Object>();
+			MemberPersonalInformation objMemberInfo= (MemberPersonalInformation) request.getAttribute("memberpersonalinformation");
+			if(objMemberInfo != null){
+				additionalParameters.put("IsSeniorCitizen",getITRInitData(request).getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime()));
+				if(getITRInitData(request).getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime())){
+					additionalParameters.put("cbasscategory","Senior Citizen");
+				}else{
+					additionalParameters.put("cbasscategory",objMemberInfo.getSex());
+				}
+				additionalParameters.put("objMemberInfo",objMemberInfo);
+				additionalParameters.put("cbresistatus",objMemberInfo.getResidentCategory());
+				additionalParameters.put("cbassyear",getITRInitData(request).getAssessmentYear());
+				additionalParameters.put("cbasstype",objMemberInfo.getFilingStatus());
 
+				XmlCalculation objXmlCalc= new XmlCalculation ();
+				additionalParameters.put("txtNetIndianIncome",objXmlCalc.grossTotal(request, response));
+			}
+			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), additionalParameters);
+			if (resultSet != null) {
+				request.setAttribute("resultSet", resultSet);
+				JSONObject jsonObject  = new JSONObject(resultSet);
+				request.setAttribute("jsonObject", jsonObject);
+				//response.setContentType("application/json");
+				response.setRenderPath("jsp/common/calculation_response.jsp");
+			}
+		}
+		
+
+		//check if invoice refresh is 
+		boolean didGotUpdated = false;
+		if (this.getClass().isAnnotationPresent(SyncInvoiceWithCitrus.class)) {
+			didGotUpdated = updateInvoice(request);
+			request.setAttribute("didInvoiceGotUpdated", didGotUpdated);
+			if (didGotUpdated) {
+
+			}
+		}
+		
 		if (getClass().isAnnotationPresent(FormFields.class)) {
 			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 			String[] vendorFields = formFields.fieldNamesVendorOnly();
 			String[] theFieldsArray = formFields.fieldNames();
-			if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
+			if (getITRInitData(request).isVendor(request) && vendorFields != null && vendorFields.length > 0){
 				theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 			}
 			FormMap formMap = new FormMap(request,theFieldsArray);
@@ -350,7 +352,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			if (formMap != null && formMap.getMessage() != null && formMap.getMessage().size() > 0) {
 				request.setAttribute("formMap", formMap);
-				if (pageAction.equals(PAGE_ACTION.NEW_CHILD) || pageAction.equals(PAGE_ACTION.EDIT_CHILD)) {
+				if (getITRInitData(request).pageAction.equals(PAGE_ACTION.NEW_CHILD) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EDIT_CHILD)) {
 					if (this.getClass().isAnnotationPresent(ChildBean.class)) {
 						HippoBean childBean = null;
 						try {
@@ -368,14 +370,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 						}
 					}
 				}
-				else if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.NEW)) {
+				else if (getITRInitData(request).pageAction.equals(PAGE_ACTION.EDIT) || getITRInitData(request).pageAction.equals(PAGE_ACTION.NEW)) {
 					if (this.getClass().isAnnotationPresent(PrimaryBean.class)) {
 						HippoBean childBean = null;
 						try {
-							parentBean = this.getClass().getAnnotation(PrimaryBean.class).primaryBeanClass().newInstance();
-							if (parentBean instanceof FormMapFiller) {
-								((FormMapFiller) parentBean).fill(formMap);
-								request.setAttribute("parentBean", parentBean);
+							getITRInitData(request).parentBean = this.getClass().getAnnotation(PrimaryBean.class).primaryBeanClass().newInstance();
+							if (getITRInitData(request).parentBean instanceof FormMapFiller) {
+								((FormMapFiller) getITRInitData(request).parentBean).fill(formMap);
+								request.setAttribute("parentBean", getITRInitData(request).parentBean);
 							}
 						} catch (InstantiationException e) {
 							// TODO Auto-generated catch block
@@ -389,11 +391,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				request.setAttribute("error","true");
 			}
 
-			if (pageAction.equals(PAGE_ACTION.DELETE) || pageAction.equals(PAGE_ACTION.DELETE_CHILD)) {
+			if (getITRInitData(request).pageAction.equals(PAGE_ACTION.DELETE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DELETE_CHILD)) {
 				save(request,formMap);
 				//initComponent(request);
 				try {
-					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.SUCCESS);
+					String urlToRedirect = getITRInitData(request).getScriptName(); //getRedirectURL(request,response,FormSaveResult.SUCCESS);
 					if (log.isInfoEnabled()) {
 						log.info(urlToRedirect + ":" + urlToRedirect);
 					}
@@ -424,14 +426,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 		/** Validate XML According to Compulsory Screen that need to be Filled Before download **/
-		if (pageAction != null && (pageAction.equals(PAGE_ACTION.EFILE) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
+		if (getITRInitData(request).pageAction != null && (getITRInitData(request).pageAction.equals(PAGE_ACTION.EFILE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			ITRScreenXmlValidateServiceImpl iTRScreenXmlValidateServiceImpl = new ITRScreenXmlValidateServiceImpl();
 			iTRScreenXmlValidateServiceImpl.getValidateXmlBasedOnReqScreen(request, response);
 		}
-		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (isVendor(request) && isOnVendorPortal()) ? "vendor-memberinvoice" : "memberinvoice"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
-		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
-		String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
-		if (pageAction != null && (pageAction.equals(PAGE_ACTION.EFILE) || pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
+		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-memberinvoice" : "memberinvoice"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
+		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
+		//String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		if (getITRInitData(request).pageAction != null && (getITRInitData(request).pageAction.equals(PAGE_ACTION.EFILE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
 			}catch (InvalidXMLException invalidXml) {
@@ -440,12 +442,12 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				FormField formFieldFinancialYear = new FormField("financialYear");
 
 				FormField formFieldPan = new FormField("PAN");
-				formFieldPan.addValue(getPAN());
+				formFieldPan.addValue(getITRInitData(request).getPAN());
 				FormField formFieldFilingStatus = new FormField("itReturnType");
-				formFieldFilingStatus.addValue(getITReturnType().name());
+				formFieldFilingStatus.addValue(getITRInitData(request).getITReturnType().name());
 
 				FormField formFieldTheFolderContainingITRDocuments = new FormField("theFolderContainingITRDocuments");
-				formFieldFilingStatus.addValue(getTheFolderContainingITRDocuments());
+				formFieldFilingStatus.addValue(getITRInitData(request).getTheFolderContainingITRDocuments());
 
 
 				FormField formFieldReason = new FormField("reason");
@@ -453,7 +455,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 				ValidationResponse validationResponse = invalidXml.getValidationResponse();
 				formFieldXml.addValue(validationResponse.getXml());
-				formFieldFinancialYear.addValue(getFinancialYear().getDisplayName());
+				formFieldFinancialYear.addValue(getITRInitData(request).getFinancialYear().getDisplayName());
 
 				formMap.addFormField(formFieldXml);
 				formMap.addFormField(formFieldFinancialYear);
@@ -516,21 +518,49 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				log.error("Error in validating XML",e);
+				try {
+					response.sendRedirect(redirectToAfterEFile);
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					log.error("Error in validating XML",ex);
+					ex.printStackTrace();
+				}
+				return;
 			} catch (DigtalSignatureERIUserFailure e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				log.error("Error in validating XML",e);
+				try {
+					response.sendRedirect(redirectToAfterEFile);
+				} catch (IOException ex) {
+					// TODO Auto-generated catch block
+					log.error("Error in validating XML",ex);
+					ex.printStackTrace();
+				}
+				return;
 			}
 		}
 		//new code for bulk
-		if (pageAction != null && pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION) {
+		if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.EFILE) {
+			//add and then redirect back to the page
+			try {
+				response.sendRedirect(redirectToAfterEFile);
+			} catch (IOException ex) {
+				// TODO Auto-generated catch block
+				log.error("Error in validating XML",ex);
+				ex.printStackTrace();
+			}
+			return;
+		}
+		//new code for bulk
+		if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK_ADD_TO_SESSION) {
 			//add and then redirect back to the page
 			HttpSession session = request.getSession(true);
 			List<String> listOfPaths = (List<String>) session.getAttribute("bulk_download_xml_paths");
 			if (listOfPaths == null) {
 				listOfPaths = new ArrayList<String>();
 			}
-			listOfPaths.add(baseRelPathToReturnDocuments);
+			listOfPaths.add(getITRInitData(request).baseRelPathToReturnDocuments);
 			session.setAttribute("bulk_download_xml_paths", listOfPaths);
 			String referer = request.getHeader("REFERER");
 			if (referer != null) {
@@ -543,7 +573,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			return;
 		}
-		if (pageAction != null && pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK) {
+		if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.DOWNLOAD_ITR_XML_BULK) {
 			List<String> listOfPath = (List<String>) request.getSession().getAttribute("bulk_download_xml_paths");
 			String[] theNewArray =listOfPath.toArray(new String[listOfPath.size()]);
 			try {
@@ -556,10 +586,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			request.getSession().removeAttribute("bulk_download_xml_paths");
 		}
 		//new functionality test connectivity with DIT this one doesn't need username password
-		if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_ITRV_STATUS) {
+		if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.RETRIEVE_ITRV_STATUS) {
 			if (retrieveITRVService != null) {
 				try {
-					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					
+					Session	persistableSession=getPersistableSession(request);
+					WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getITRInitData(request).getPAN(), getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(),getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),wpm);
 					request.setAttribute("itrvStatus", itrvStatus);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
@@ -573,19 +606,25 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
 					request.setAttribute("isError", "true");
+				} catch (RepositoryException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
+					request.setAttribute("isError", "true");
 				}
 			}
 			else {
 				request.setAttribute("isError", "true");
 			}
-			if (getPageOutputFormat() != null && getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
+			if (getITRInitData(request).getPageOutputFormat() != null && getITRInitData(request).getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
 				response.setRenderPath("jsp/common/json_output.jsp");
 			}
 		}
-		else if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_REFUND_STATUS) {
+		else if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.RETRIEVE_REFUND_STATUS) {
 			if (retrieveRefundStatus != null) {
 				try {
-					RetrieveRefundResponse retrieveRefundResponse  = retrieveRefundStatus.retrieveRefundStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					Session persistableSession = getPersistableSession(request);
+					WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+					RetrieveRefundResponse retrieveRefundResponse  = retrieveRefundStatus.retrieveRefundStatus(getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getITRInitData(request).getPAN(), getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(),getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),wpm);
 					request.setAttribute("retrieveRefundResponse", retrieveRefundResponse);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
@@ -599,19 +638,25 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
 					request.setAttribute("isError", "true");
+				} catch (RepositoryException e) {
+					// TODO Auto-generated catch block
+					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
+					request.setAttribute("isError", "true");
 				}
 			}
 			else {
 				request.setAttribute("isError", "true");
 			}
-			if (getPageOutputFormat() != null && getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
+			if (getITRInitData(request).getPageOutputFormat() != null && getITRInitData(request).getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
 				response.setRenderPath("jsp/common/json_output.jsp");
 			}
 		}
-		else if (pageAction != null && pageAction == PAGE_ACTION.RETRIEVE_RECTIFICATION_STATUS) {
+		else if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.RETRIEVE_RECTIFICATION_STATUS) {
 			if (retrieveITRVService != null) {
 				try {
-					RetrieveRectificationResponse retrieveRectificationResponse = retrieveRectificationStatus.retrieveRectificationStatus(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getPAN(), getFinancialYear().getAssessmentYearForDITSOAPCall());
+					Session persistableSession = getPersistableSession(request);
+					WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+					RetrieveRectificationResponse retrieveRectificationResponse = retrieveRectificationStatus.retrieveRectificationStatus(getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEmailSignature(),  getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriCertChain(), getITRInitData(request).getPAN(), getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(),getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),wpm);
 					request.setAttribute("retrieveRectificationResponse", retrieveRectificationResponse);
 				} catch (MissingInformationException e) {
 					// TODO Auto-generated catch block
@@ -625,12 +670,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					// TODO Auto-generated catch block
 					log.error("Error in RetrieveITRVStatus-InvalidFormatException",e);
 					request.setAttribute("isError", "true");
+				} catch (RepositoryException e) {
+					// TODO Auto-generated catch block
+					log.error("RepositoryException",e);
 				}
 			}
 			else {
 				request.setAttribute("isError", "true");
 			}
-			if (getPageOutputFormat() != null && getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
+			if (getITRInitData(request).getPageOutputFormat() != null && getITRInitData(request).getPageOutputFormat() == PAGE_OUTPUT_FORMAT.JSON) {
 				response.setRenderPath("jsp/common/json_output.jsp");
 			}
 		}
@@ -641,39 +689,54 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		if (!hasInitComplete) {
-			initComponent(request,response,false);
-			hasInitComplete = true;
+		boolean isFrozen = false;
+		try {
+			fillDueDate(request,response); //this will fill the due date
+			executeValidationChain(request,response);
+			HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
+			if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
+				isFrozen = true;
+				request.setAttribute("isFrozen", isFrozen);
+			}
+		}			
+		catch (Exception ex) {
+			log.error("Error in initializing component. FATAL",ex);
+			redirectToNotFoundPage(response);
+			return;
+		}
+		if (isFrozen) {
+			log.warn("Attempted Post when the Income Tax was FROZEN");
+			return ;
 		}
 		FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 		String[] vendorFields = formFields.fieldNamesVendorOnly();
 		String[] theFieldsArray = formFields.fieldNames();
-		if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
+		if (getITRInitData(request).isVendor(request) && vendorFields != null && vendorFields.length > 0){
 			theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 		}
-		formMap = new FormMap(request,theFieldsArray);
+		getITRInitData(request).formMap = new FormMap(request,theFieldsArray);
 
-		boolean isValid = validate(request,response,formMap);
+		boolean isValid = validate(request,response,getITRInitData(request).formMap);
 		if (!isValid) {
 			log.info("Lets check result of validation:"+isValid);
 			//this action is save
 			return;
 		}
-		sanitize(request,response,formMap);
-		if (pageAction.equals(PAGE_ACTION.EDIT) || pageAction.equals(PAGE_ACTION.EDIT_CHILD) || pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
+		sanitize(request,response,getITRInitData(request).formMap);
+		if (getITRInitData(request).pageAction.equals(PAGE_ACTION.EDIT) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EDIT_CHILD) || getITRInitData(request).pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 			if (log.isInfoEnabled()) {
-				if (formMap != null) {
+				if (getITRInitData(request).formMap != null) {
 					for (String aFieldName:formFields.fieldNames()) {
-						log.info("Field Name:" + aFieldName + " Value:" +  formMap.getField(aFieldName).getValue());
+						log.info("Field Name:" + aFieldName + " Value:" +  getITRInitData(request).formMap.getField(aFieldName).getValue());
 					}
 				}
 			}
-			boolean saveResult = save(request,formMap);
+			boolean saveResult = save(request,getITRInitData(request).formMap);
 			if (!saveResult) return;
-			afterSave(request,formMap,pageAction);
+			afterSave(request,getITRInitData(request).formMap,getITRInitData(request).pageAction);
 			try {
-				if (formMap.getMessage() != null && formMap.getMessage().size() > 0 ) {
-					String urlToRedirect = getScriptName(); //getRedirectURL(request,response,FormSaveResult.FAILURE) ;
+				if (getITRInitData(request).formMap.getMessage() != null && getITRInitData(request).formMap.getMessage().size() > 0 ) {
+					String urlToRedirect = getITRInitData(request).getScriptName(); //getRedirectURL(request,response,FormSaveResult.FAILURE) ;
 					if (log.isInfoEnabled()) {
 						log.info("URLToRedirect:"+ urlToRedirect);
 					}
@@ -684,8 +747,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					response.sendRedirect( urlToRedirect );
 				}
 				else {
-					if (!shouldRedirectAfterSuccess()) return;
-					String urlToRedirect = urlToRedirectAfterSuccess(request,response,formMap) ;
+					if (!shouldRedirectAfterSuccess(request)) return;
+					String urlToRedirect = urlToRedirectAfterSuccess(request,response,getITRInitData(request).formMap) ;
 					if (urlToRedirect == null) {
 						urlToRedirect = getScriptName(request,response,FormSaveResult.SUCCESS); // getRedirectURL(request,response,FormSaveResult.SUCCESS) ;
 					}
@@ -718,524 +781,31 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-	@Override
-	public HippoBean getParentBean() {
-		// TODO Auto-generated method stub
-		return parentBean;
-	}
-
-	public final HippoBean getChildBean() {
-		return childBean;
-	}
-
-	public boolean isLoggedIn() {
-		return isLoggedIn;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public String getUserNameNormalized() {
-		return userNameNormalized;
-	}
-
-	public String getRootMemberFolderRelPath() {
-		return this.memberRootFolderRelPath;
-	}
-
-	public String getRootMemberFolderAbsolutePath() {
-		return this.memberRootFolderAbsolutePath;
-	}
-
-	public String getPAN() {
-		return pan;
-	}
-
-	public String getItrFolderSuffix() {
-		return itrFolderSuffix;
-	}
-
-	public String getAssessmentYear() {
-		return assessmentYear;
-	}
-
-	public FinancialYear getFinancialYear() {
-		return financialYear;
-	}
-
-	public ITReturnType getITReturnType () {
-		return itReturnType;
-	}
-
-	public String getTheFolderContainingITRDocuments() {
-		return theFolderContainingITRDocuments;
-	}
-
-	@Override
-	public String getMemberUserName() {
-		// TODO Auto-generated method stub
-		return userName;
-	}
-
-	@Override
-	public String getNormalizedMemberEmail() {
-		// TODO Auto-generated method stub
-		return userNameNormalized;
-	}
-
-	void onBeforeRender(HstRequest request) {
-		loadParentBean(request);
-		setRequestAttributes(request);
-	}
-
-	public final HippoFolder getPanFolder() {
-		return panFolder;
-	}
-
-	@Override
-	public Member getMember() {
-		// TODO Auto-generated method stub
-		return this.member;
-	}
-
-
-
-	@Override
-	public void setPAN(HstRequest request, String pan) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	@Override
-	public Class<? extends HippoBean> getParentBeanClass() {
-		// TODO Auto-generated method stub
-		return parentBeanClass;
-	}
-
-	public Class<? extends HippoBean> getChildBeanClass() {
-		// TODO Auto-generated method stub
-		return childBeanClass;
-	}
-
-
-	@Override
-	public String getParentBeanNodeName() {
-		// TODO Auto-generated method stub
-		PrimaryBean primaryBean = this.getClass().getAnnotation(PrimaryBean.class);
-		return primaryBean.primaryBeanClass().getSimpleName().toLowerCase();
-	}
-
-	@Override
-	public String getParentBeanPath() {
-		// TODO Auto-generated method stub
-		return parentBeanPath;
-	}
-
-	@Override
-	public String getParentBeanNameSpace() {
-		// TODO Auto-generated method stub
-		return parentBeanNameSpace;
-	}
-
-	@Override
-	public String getNextScreenSiteMapItemRefId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean hasNextScreen() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean hasPrevScreen() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isLastScreen() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public ScreenAction getScreenAction() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getPrevScreenSiteMapItemRefId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public final String getParentBeanAbsolutePath() {
-		return parentBeanAbsolutePath;
-	}
-
-
-	@Override
-	public String getAbsoluteBasePathToReturnDocuments()			 {
-		// TODO Auto-generated method stub
-		return baseAbsolutePathToReturnDocuments;
-	}
-
-	@Override
-	public String getRelBasePathToReturnDocuments()			{
-		// TODO Auto-generated method stub
-		return baseRelPathToReturnDocuments;
-	}
-
-	@Override
-	public DateFormat getDateFormatter() {
-		// TODO Auto-generated method stub
-		return  new SimpleDateFormat("yyyy-MM-dd");
-	}
-
-	public FormMap getFormMap() {
-		return formMap;
-	}
+	
 
 	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
 		// TODO Auto-generated method stub
 		String strShouldPostToSelf = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldPostToSelf");
 		if (strShouldPostToSelf != null && strShouldPostToSelf.equals("true")) {
-			return scriptName;
+			return getITRInitData(request).scriptName;
 		}
 		else {
 			if (formSaveResult == null || formSaveResult != FormSaveResult.SUCCESS) {
-				return scriptName;
+				return getITRInitData(request).scriptName;
 			}
 			else {
 				String redirectURL = null;
-				if (isVendor(request) && isOnVendorPortal()) {
-					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"vendor-servicerequest-itr-summary",getFinancialYear(),getTheFolderContainingITRDocuments(), getPAN());
+				if (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) {
+					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"vendor-servicerequest-itr-summary",getITRInitData(request).getFinancialYear(),getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 				}
 				else {
-					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"servicerequest-itr-summary",getFinancialYear(),getTheFolderContainingITRDocuments(), getPAN());
+					redirectURL = getRedirectURLForSiteMapItem(request,response,formSaveResult,"servicerequest-itr-summary",getITRInitData(request).getFinancialYear(),getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 				}
 				return redirectURL;
 			}
 		}
 	}
-
-	public String getScriptName() {
-		return scriptName;
-	}
-
-
-	public ITReturnPackage getItReturnPackage() {
-		return itReturnPackage;
-	}
-
-	public String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
-
-	@Override
-	public PAGE_ACTION getPageAction() {
-		// TODO Auto-generated method stub
-		return pageAction;
-	}
-
-	public final HippoBean getHippoBeanMemberBase() {
-		return hippoBeanMemberBase;
-	}
 	
-	@Override
-	protected void initComponent(HstRequest request,HstResponse response,boolean callSuper){		
-		if (callSuper) super.initComponent(request, response,false);
-		ResolvedSiteMapItem resolvedMapItem = request.getRequestContext().getResolvedSiteMapItem();
-
-		//configuration details for RetrievePanInformation Dit Service.
-		String retrievePANInfo = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldRetrievePANInformation");
-		shouldRetrievePANInformation = StringUtils.isNotBlank(retrievePANInfo) && "true".equalsIgnoreCase(retrievePANInfo) ? true : false;
-		String validPanWithDit = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldValidatePANWithDIT");
-		shouldValidatePANWithDIT = StringUtils.isNotBlank(validPanWithDit) && "true".equalsIgnoreCase(validPanWithDit) ? true : false;
-		MasterConfigService masterConfigService = MasterConfigService.getInstance();
-		ditInvalidPanContnue = masterConfigService.shouldContinueWithInvalidPAN();
-
-		member = itReturnComponentHelper.getMember(request);
-		scriptName = itReturnComponentHelper.getScriptName(request, (String) request.getAttribute("selectedItrTab"), getPublicRequestParameter(request, "selectedItrTab"));
-		String strFinancialYear = itReturnComponentHelper.getStrFinancialYear(request, response);  //request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
-		financialYear =  itReturnComponentHelper.getFinancialYear(strFinancialYear, request, response); //FinancialYear.getByDisplayName(strFinancialYear);
-		assessmentYear = itReturnComponentHelper.getAssessmentYear(financialYear);
-		theFolderContainingITRDocuments = itReturnComponentHelper.getTheFolderContainingITRDocuments(request, response); //request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
-		itrFolderSuffix = itReturnComponentHelper.getITRFolderSuffix(theFolderContainingITRDocuments);
-		pan = itReturnComponentHelper.getPANFromRequestContext(request);// request.getRequestContext().getResolvedSiteMapItem().getParameter("pan"); //original versus amend
-		mainSiteMapItemRefId = itReturnComponentHelper.getParamValueFromRequestContext(request, "mainSiteMapItemRefId");// request.getRequestContext().getResolvedSiteMapItem().getParameter("");
-		redirectURLToSamePage = getScriptName();// getRedirectURL(request,response,FormSaveResult.FAILURE);
-		nextScreenSiteMapItemRefId = itReturnComponentHelper.getParamValueFromRequestContext(request, "nextScreen");// request.getRequestContext().getResolvedSiteMapItem().getParameter("nextScreen");
-		//we must make sure itReturnType and PAN are not empty as well as they are valid
-		
-		itReturnPackage = itReturnComponentHelper.getITReturnPackage(request);
-		filingStatus = itReturnComponentHelper.getFilingStatus(getPAN());
-		//how to find the scriptName and the depth
-		//one assumption that the scriptName is always .html file and nothing else
-		pageOutputFormat = itReturnComponentHelper.getPageOutputFormat(request);
-
-
-		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
-		//this is tricky lets allow components to override the configuration by passing it themselves
-		//this is useful for form16 -- deductions scenario where a parent is hosting a child
-		String strPageActionFromComponent = getParameter("action", request);
-		if (strPageActionFromComponent != null) {
-			if (log.isInfoEnabled()) {
-				log.info("Found action parameter in the component. Will override " + strPageAction + " with the component action " + strPageActionFromComponent );
-			}
-			strPageAction = strPageActionFromComponent;
-		}
-		if (strPageAction == null) {
-			pageAction = ITReturnScreen.PAGE_ACTION.DEFAULT;
-		}
-		else {
-			String[] listOfPageActions = null;
-			listOfPageActions = strPageAction.split("[,]");
-			for (String aPageAction:listOfPageActions) {
-				try {
-					pageAction = ITReturnScreen.PAGE_ACTION.valueOf(aPageAction);
-					break;
-				}catch (IllegalArgumentException aie) {
-					if (log.isInfoEnabled()) {
-						log.info("We will now try to find if it contains the classname");
-					}
-					if (aPageAction != null && aPageAction.contains(this.getClass().getSimpleName().toLowerCase())) {
-						int indexOfFirstUnderScore = aPageAction.indexOf("_");
-						aPageAction = aPageAction.substring(indexOfFirstUnderScore+1);
-						//now lets try the value of AGAIN
-						if (log.isInfoEnabled()) {
-							log.info("strPageAction after substring=" + aPageAction);
-						}
-						pageAction = ITReturnScreen.PAGE_ACTION.valueOf(aPageAction);
-						break;
-					}
-				}
-			}
-		}
-
-		isLoggedIn = request.getUserPrincipal() != null ? true : false;
-		userName = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : null;
-		userNameNormalized = request.getUserPrincipal() != null ? request.getUserPrincipal().getName().replaceAll("@", "-at-") : null;
-
-		siteContentBaseBean = getSiteContentBaseBean(request);
-		String memberFolderName= getMemberFolderPath(request);
-		hippoBeanMemberBase = siteContentBaseBean.getBean("members/" + memberFolderName);
-		boolean isReseller = itReturnComponentHelper.isReSeller(request);
-		String resellerId = itReturnComponentHelper.getResellerId(request);
-		if (isReseller && resellerId != null) {
-			hippoBeanMemberBase = getSiteContentBaseBeanForReseller(request).getBean("members/" + memberFolderName);
-		}
-		if (hippoBeanMemberBase != null) {
-			memberRootFolderAbsolutePath = hippoBeanMemberBase.getPath();
-			//we need to get into pans sub folder
-			panFolder = hippoBeanMemberBase.getBean("pans", HippoFolder.class) ;// .getChildBeansByName("pans", HippoFolder.class);
-		}
-		else {
-			panFolder = null;
-		}
-
-		baseRelPathToReturnDocuments = itReturnComponentHelper.getBaseRelPathToReturnDocuments(getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);  //"members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
-		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
-		baseAbsolutePathToReturnDocuments =  getCanonicalBasePathForWrite(request) + "/" + baseRelPathToReturnDocuments; //itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
-
-		//check if invoice refresh is 
-		boolean didGotUpdated = false;
-		if (this.getClass().isAnnotationPresent(SyncInvoiceWithCitrus.class)) {
-			didGotUpdated = updateInvoice(request);
-			request.setAttribute("didInvoiceGotUpdated", didGotUpdated);
-			if (didGotUpdated) {
-
-			}
-		}
-		//if (hippoBeanBaseITReturnDocuments != null) {
-		//	baseAbsolutePathToReturnDocuments = hippoBeanBaseITReturnDocuments.getPath();
-		//}
-		if (this.getClass().isAnnotationPresent(PrimaryBean.class)) {
-			PrimaryBean primaryBean = this.getClass().getAnnotation(PrimaryBean.class);
-			parentBeanClass = primaryBean.primaryBeanClass();
-			org.hippoecm.hst.content.beans.Node node = parentBeanClass.getAnnotation(org.hippoecm.hst.content.beans.Node.class);
-			if (node != null) {
-				parentBeanNameSpace	= node.jcrType();
-			}
-			parentBeanPath = baseRelPathToReturnDocuments + "/" + getParentBeanNodeName();
-			parentBeanAbsolutePath = baseAbsolutePathToReturnDocuments + "/" + getParentBeanNodeName();
-		}
-		if (this.getClass().isAnnotationPresent(ChildBean.class)) {
-			ChildBean childBean = this.getClass().getAnnotation(ChildBean.class);
-			childBeanClass = childBean.childBeanClass();
-		}
-		screenMode = GoGreenUtil.getEscapedParameter(request, "screenMode");
-
-		mapOfAllBeans = loadBeansAndSetRequestAttributes(request, response);		
-		//time has come to reset the ITReturnType and other variables
-		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase();
-		//if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
-		if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
-			memberPersonalInformation = (MemberPersonalInformation) mapOfAllBeans.get(keyToMemberPersonalInformation);
-			itReturnType = ITReturnType.getByXmlStatus(memberPersonalInformation.getReturnType()); //this will determine original or revised
-			ditResponseDocument = (DITResponseDocument) mapOfAllBeans.get(DITResponseDocument.class.getSimpleName().toLowerCase());			
-		}
-
-		//lets load ValueList Beans
-		ValueListBeans valueListBeans = this.getClass().getAnnotation(ValueListBeans.class);
-		if (valueListBeans != null && valueListBeans.paths() != null && valueListBeans.paths().length > 0 ) {
-			for (int i=0;i<valueListBeans.paths().length;i++) {
-				String valueListBeanPath = valueListBeans.paths()[i];
-				String accessKey =  valueListBeans.accessKey()[i];
-				//attemp to get the list from properties file instead
-				//I really don't know what is causing the behavior on zapto server
-				//It could be a memory issue, for now the implementation can be changed to ensure the
-				String quotedPattern = Pattern.quote("${financialYear}");
-				String replacedValueListBeanPath = valueListBeanPath.replaceAll(quotedPattern, financialYear.getDisplayName());
-				Properties properties = null;
-				InputStream is = this.getClass().getClassLoader().getResourceAsStream("com/mootly/wcm/components/" + replacedValueListBeanPath + ".properties");
-				if (is == null) {
-					is = this.getClass().getResourceAsStream(replacedValueListBeanPath + ".properties");
-				}
-				if (is != null) {
-					try {
-						properties = new Properties();
-						properties.load(is);
-						log.info("VAlue List Bean's DEtail Item will now be stored as request attribute under :" + accessKey);
-					}catch (Exception ex) {
-						properties = null;
-						log.warn("Error loading properties file from resource. Will attempt to load from CMS value list",ex);
-					}
-				}
-				if (properties != null && properties.size() > 0 ) {
-					request.setAttribute(accessKey,properties);
-				}
-				else {
-					String relPath = "common/valuelists/" + replacedValueListBeanPath;
-					if (log.isInfoEnabled()) {
-						log.info("VAlue List Bean To Load :" + relPath);
-					}
-					String absPathToBean = request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + relPath;
-					if (log.isInfoEnabled()) {
-						log.info("VAlue List Bean To Load :" + absPathToBean);
-					}
-					//ValueListDocument valueListDocument = siteContentBase.getBean(relPath,ValueListDocument.class);
-					ValueListDocument valueListDocument;
-					try {
-						valueListDocument = (ValueListDocument) getObjectBeanManager(request).getObject(absPathToBean);
-						if (valueListDocument != null && valueListDocument.getValueListDocumentDetailList().size() > 0 ) {
-							if (log.isInfoEnabled()) {
-								log.info("VAlue List Bean's DEtail Item will now be stored as request attribute under :" + accessKey);
-								request.setAttribute(accessKey,valueListDocument.getValueListDocumentDetailMap());
-							}
-						}
-					} catch (ObjectBeanManagerException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						log.error("Error getting Bean :" + absPathToBean,e);
-					}
-				}
-			}
-		}
-
-		onBeforeRender(request);
-
-		if (pageAction.equals(ITReturnScreen.PAGE_ACTION.EDIT_CHILD) || pageAction.equals(ITReturnScreen.PAGE_ACTION.DELETE_CHILD) && parentBean != null) {
-			//find the object by uuid
-			uuid = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid");
-			if (log.isInfoEnabled()) {
-				log.info("We will now be editing the object with UUID:" + uuid);
-			}
-			if (parentBean != null) {
-				List<HippoBean> listOfChildBeans = parentBean.getChildBeans(HippoBean.class);
-				if (listOfChildBeans != null && listOfChildBeans.size() > 0) {
-					for (HippoBean aBean:listOfChildBeans) {
-						if (aBean != null && aBean.getCanonicalUUID() != null && aBean.getCanonicalUUID().equals(uuid)) {
-							//childBean = (HippoBean) getObjectBeanManager(request).getObjectByUuid(uuid);
-							childBean = aBean;
-							request.setAttribute("childBean", childBean);
-							break;
-						}
-					}
-				}
-			}
-			request.setAttribute("uuid", uuid);
-		}
-
-		maxChildrenAllowed = request.getRequestContext().getResolvedSiteMapItem().getParameter("maxChildrenAllowed");
-		if (maxChildrenAllowed != null) {
-			int totalOfCurrentChildren = getTotalChildren();
-			if (totalOfCurrentChildren > 0) {
-				try {
-					int intMaxAllow = Integer.valueOf(maxChildrenAllowed);
-					if (totalOfCurrentChildren >= intMaxAllow) {
-						request.setAttribute("NEW_CHILD_DISABLED", "true");
-					}
-				}catch (NumberFormatException nex) {
-
-				}
-			}
-			if (log.isInfoEnabled()) {
-				log.info("maxChildrenAllowed not null :" + maxChildrenAllowed);
-			}
-		}
-
-		clientSideValidationJSON = ScreenConfigService.generateJSON(this.getClass());
-
-		//lets try to load the SCreen Configuration Document for this component
-		String pathToScreenConfig = "configuration/screenconfigs/" + this.getClass().getSimpleName().toLowerCase();
-		ScreenConfigDocument screenConfigDocument = siteContentBaseBean.getBean(pathToScreenConfig, ScreenConfigDocument.class);
-		if (screenConfigDocument != null) {
-			if (log.isInfoEnabled()){
-				log.info("screenConfigDocument:" + screenConfigDocument.toString());
-			}
-			request.setAttribute("screenConfigDocument",screenConfigDocument);
-			String screenConfigDocumentJSON = ScreenConfigService.generateJSON(screenConfigDocument);
-			if (screenConfigDocumentJSON != null) {
-				request.setAttribute("screenConfigDocumentJSON", screenConfigDocumentJSON);
-			}
-		}
-		//Screen Calculation Configuration
-		String isCalc = getPublicRequestParameter(request,"command");
-		String screen=getPublicRequestParameter(request, "screen");
-		if (isCalc != null && isCalc.equals("calc") && screen!=null) {
-			log.info("We are Requesting fot this "+screen+" Screen");
-			String pathToScreenCalc = "configuration/screencalculation/" + screen.toLowerCase();
-			ScreenCalculation screencalc=siteContentBaseBean.getBean(pathToScreenCalc, ScreenCalculation.class);
-			// for screen calcualtions.......
-			Map<String,Object> additionalParameters= new HashMap<String,Object>();
-			MemberPersonalInformation objMemberInfo= (MemberPersonalInformation) request.getAttribute("memberpersonalinformation");
-			if(objMemberInfo != null){
-				additionalParameters.put("IsSeniorCitizen",getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime()));
-				if(getFinancialYear().isSeniorCitizen(objMemberInfo.getDOB().getTime())){
-					additionalParameters.put("cbasscategory","Senior Citizen");
-				}else{
-					additionalParameters.put("cbasscategory",objMemberInfo.getSex());
-				}
-				additionalParameters.put("objMemberInfo",objMemberInfo);
-				additionalParameters.put("cbresistatus",objMemberInfo.getResidentCategory());
-				additionalParameters.put("cbassyear",getAssessmentYear());
-				additionalParameters.put("cbasstype",objMemberInfo.getFilingStatus());
-
-				XmlCalculation objXmlCalc= new XmlCalculation ();
-				additionalParameters.put("txtNetIndianIncome",objXmlCalc.grossTotal(request, response));
-			}
-			Map<String,Object> resultSet = ScreenCalculatorService.getScreenCalculations(screencalc.getScript(), request.getParameterMap(""), additionalParameters);
-			if (resultSet != null) {
-				request.setAttribute("resultSet", resultSet);
-				JSONObject jsonObject  = new JSONObject(resultSet);
-				request.setAttribute("jsonObject", jsonObject);
-				//response.setContentType("application/json");
-				response.setRenderPath("jsp/common/calculation_response.jsp");
-			}
-		}
-	}
-
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
 		//lets add the username into form map
 		FormField formFieldLoggedInUser = null;
@@ -1248,12 +818,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 	}
+	
 	protected boolean validate(HstRequest request,HstResponse response,FormMap formMap) {
 		//validate required fields first
 		if (this.getClass().isAnnotationPresent(RequiredFields.class)) {
 			RequiredFields requiredFieldsAnnotations = this.getClass().getAnnotation(RequiredFields.class);
 			String[] fieldNames = requiredFieldsAnnotations.fieldNames();
-			String[] additionalFieldNames = getRequiredFields();
+			String[] additionalFieldNames = getRequiredFields(request);
 			if (additionalFieldNames != null) {
 				 List<String> both = new ArrayList<String>(fieldNames.length + additionalFieldNames.length);
 				 Collections.addAll(both, fieldNames);
@@ -1338,52 +909,25 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				}
 			}
 		}
-		if (maxChildrenAllowed != null && pageAction == PAGE_ACTION.NEW_CHILD) {
-			int maxChildAllowed = Integer.valueOf(maxChildrenAllowed);
-			int totalChildren = getTotalChildren();
+		if (getITRInitData(request).maxChildrenAllowed != null && getITRInitData(request).pageAction == PAGE_ACTION.NEW_CHILD) {
+			int maxChildAllowed = Integer.valueOf(getITRInitData(request).maxChildrenAllowed);
+			int totalChildren = getITRInitData(request).getTotalChildren();
 			if (totalChildren >= maxChildAllowed) {
 				formMap.addMessage("generic","An error has occurred");
 			}
 		}
 
 		StartApplicationValidationService startappvalidserv=new StartApplicationValidationService();
-		if(filingStatus.getXmlCode()=="I"){
-			startappvalidserv.validResidential(formMap, assessmentYear);
+		if(getITRInitData(request).filingStatus.getXmlCode()=="I"){
+			startappvalidserv.validResidential(formMap, getITRInitData(request).assessmentYear);
 		}
 		//validate last name of Member with PAN 
 		startappvalidserv.validLastName(formMap);
-		//validate last name of Member with Income Tax department by Call RetrievePanInformation Dit Service
-		if(shouldValidatePANWithDIT()){
-			try {
-				RetrievePANResponse retrievePANResponse = retrievePANInformation();
-				if(ditInvalidPanContnue){
-					if(formMap.getField("pi_last_Name")!=null && formMap.getField("pan")!=null){
-						if(!startappvalidserv.validLastNameWithDIT(formMap.getField("pan").getValue(), formMap.getField("pi_last_Name").getValue(), retrievePANResponse)){
-							formMap.getField("pi_last_name").addMessage("err.match.last.name.dit");
-						}
-					}
-				}
-				//change if we don't want to Save Pan If found error In RetrievePanInformation DIT Service
-				/*boolean validpan = false;
-					if(retrievePANResponse!=null && StringUtils.isNotBlank(retrievePANResponse.getError()) && validpan){
-						formMap.getField("pan").addMessage("err.match.pan.dit");
-					}*/
-			} catch (MissingInformationException e) {
-				// TODO Auto-generated catch block
-				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
-			} catch (DataMismatchException e) {
-				// TODO Auto-generated catch block
-				log.error("Error while Mocking Dit Service for Pan Information due to Data Missed",e);
-			} catch (InvalidFormatException e) {
-				// TODO Auto-generated catch block
-				log.error("Error while Mocking Dit Service for Pan Information due to Invalid Format of Inputs",e);
-			}
-		}
 		
 		//additionalv validation
 		additionalValidation(request, response, formMap);
 		
-		if (formMap.getMessage() != null && formMap.getMessage().size() > 0) {
+		if (getITRInitData(request).formMap.getMessage() != null && getITRInitData(request).formMap.getMessage().size() > 0) {
 			log.info("size of message"+formMap.getMessage().size());
 			FormUtils.persistFormMap(request, response, formMap, null);
 			return false;
@@ -1394,71 +938,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-	protected int getTotalChildren() {
-		if (this.getClass().isAnnotationPresent(ChildBean.class) && parentBean != null) {
-			try {
-				List<? extends HippoBean> listOfBeans = this.parentBean.getChildBeans(this.getClass().getAnnotation(ChildBean.class).childBeanClass());
-				return (listOfBeans != null ? listOfBeans.size() : 0 );
-			}
-			catch (Exception ex) {
-				log.error("An error occurred",ex);
-				return -1;
-			}
-		}
-		return 0;
-	}
 
-	protected void loadParentBean(HstRequest request) {
-		//what we need to do is to get the object using the path
-		if (log.isInfoEnabled()) {
-			log.info("I will not attempt to fetch the primary bean using the following path:" + getParentBeanPath());
-		}
-		parentBean = getSiteContentBaseBeanForReseller(request).getBean(getParentBeanPath(),getParentBeanClass());
-	}
-
-	protected void setRequestAttributes(HstRequest request) {
-		if (this.getParentBean() != null) {
-			request.setAttribute("parentBean", parentBean);
-		}
-		request.setAttribute("assessmentYear",getAssessmentYear());
-		request.setAttribute("financialYear",getFinancialYear());
-		request.setAttribute("itReturnType",getITReturnType());
-		request.setAttribute("theFolderContainingITRDocuments",getTheFolderContainingITRDocuments());
-		request.setAttribute("pan",getPAN());
-
-		request.setAttribute("filingStatus",filingStatus);
-		request.setAttribute("itrFolderSuffix",itrFolderSuffix);
-
-		//TO DO we need to get this based on some parameter other wise it is causing issue
-		try {
-			//HippoBean siteContentBaseBean = getSiteContentBaseBean(request);
-			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
-		}catch (Exception ex) {
-			log.info("Error",ex);
-		}
-
-
-		request.setAttribute("pageAction",pageAction);
-		request.setAttribute("mainSiteMapItemRefId", mainSiteMapItemRefId);
-
-		request.setAttribute("hippoBeanMemberBase",hippoBeanMemberBase);
-		request.setAttribute("panFolder",panFolder);
-
-		if (clientSideValidationJSON!=null) {
-			request.setAttribute("clientSideValidationJSON", clientSideValidationJSON);
-		}
-
-		if (scriptName != null) {
-			request.setAttribute("scriptName", scriptName);
-		}
-
-		if (redirectURLToSamePage != null) request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
-		//set attributes in request for RetrievePanInformation Dit Service
-		request.setAttribute("shouldRetrievePANInformation", shouldRetrievePANInformation());
-		request.setAttribute("shouldValidatePANWithDIT", shouldValidatePANWithDIT());
-		request.setAttribute("ditInvalidPanContnue", ditInvalidPanContnue);
-
-	}
+	
 
 	protected void fillDueDate(HstRequest request,HstResponse response) {
 		//
@@ -1470,7 +951,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			if (memberPersonalInformation != null) {
 				String stateCode = memberPersonalInformation.getState();
 				ITRForm itrForm = memberPersonalInformation.getSelectedITRForm();
-				FinancialYear currentFinancialYear = getFinancialYear();
+				FinancialYear currentFinancialYear = getITRInitData(request).getFinancialYear();
 				boolean isPastDue = currentFinancialYear.isIncomeTaxPastDue(itrForm, stateCode);
 				Calendar theDueDate = currentFinancialYear.getDueDate(itrForm, stateCode);
 				String thePastDueDateStr =  IndianGregorianCalendar.formatDateAsString(theDueDate, IndianGregorianCalendar.indianDateTimeFormStr);
@@ -1491,8 +972,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-	protected void executeValidationChain(HstRequest request,HstResponse response) {
+	protected HippoBeanValidationResponse executeValidationChain(HstRequest request,HstResponse response) {
 		//
+		if ( getITRInitData(request).getMemberPersonalInformation() == null) return null;
+		
 		Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
 		@SuppressWarnings("unchecked")
 		Enumeration<String> enmAttrNames = request.getAttributeNames();
@@ -1503,9 +986,31 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				mapOfBeans.put(anObj.getClass().getSimpleName().toLowerCase(), (HippoBean) anObj);
 			}
 		}
-
-		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(getFinancialYear(), pageAction,  mapOfBeans, null, getClass().getAnnotations());
+		
+		Map<String,Object> additionalData = new HashMap<String,Object>();
+		additionalData.put("webSiteInfo", getITRInitData(request).getWebSiteInfo());
+		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(getITRInitData(request).getFinancialYear(), getITRInitData(request).pageAction,  mapOfBeans, additionalData , getClass().getAnnotations());
+		if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getRepositoryUpdateRequests() != null && hippoBeanValidationResponse.getRepositoryUpdateRequests().size()  > 0 ) {
+			BeanLifecycle<HippoBean> childBeanLifeCycleHandler = null;
+			BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = null;
+			for ( RepositoryUpdateRequest repositoryUpdateRequest : hippoBeanValidationResponse.getRepositoryUpdateRequests() ) {
+				Session persistableSession = null;
+				WorkflowPersistenceManager wpm = null;
+				try {
+					persistableSession = getPersistableSession(request);
+					wpm = getWorkflowPersistenceManager(persistableSession);
+					PAGE_ACTION pageAction = repositoryUpdateRequest.getPageAction();
+					if (pageAction == PAGE_ACTION.EDIT_CHILD) {
+						getITReturnComponentHelper().saveUpdateExistingChild(repositoryUpdateRequest.getChildFormMap(), repositoryUpdateRequest.getParentFormMap(), childBeanLifeCycleHandler, parentBeanLifeCycleHandler , getITRInitData(request).getAbsoluteBasePathToReturnDocuments() ,repositoryUpdateRequest.getParentBeanAbsolutePath(), repositoryUpdateRequest.getParentBeanNameSpace(), repositoryUpdateRequest.getParentBeanNodeName(), repositoryUpdateRequest.getChildBeanClass(), persistableSession, wpm, repositoryUpdateRequest.getChildUuid());
+					}			
+				}catch (Exception e){
+					log.error("Error updating the Object",e);
+				}
+			}
+		}
+		
 		if (hippoBeanValidationResponse != null) request.setAttribute("hippoBeanValidationResponse", hippoBeanValidationResponse);
+		
 		if ( hippoBeanValidationResponse != null) {
 			if (hippoBeanValidationResponse.getTotalErrors() > 0 ) {
 				request.setAttribute("hippoBeanValidationResponse_totalErrors", hippoBeanValidationResponse.getTotalErrors() );
@@ -1514,16 +1019,18 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				request.setAttribute("hippoBeanValidationResponse_totalWarnings", hippoBeanValidationResponse.getTotalWarnings() );
 			}
 		}
+		
+		return hippoBeanValidationResponse;
 	}
 
-	protected void redirectToMemberHome(HstRequest hstRequest, HstResponse response) {
+	protected void redirectToMemberHome(HstRequest request, HstResponse response) {
 		try {
 			response.setRenderParameter("error", "invalid.pan");
-			hstRequest.setAttribute("error", "invalid.pan");
+			request.setAttribute("error", "invalid.pan");
 			String forwardTo = "/member/itreturn";
-			if (isOnVendorPortal() && isVendor(hstRequest)) forwardTo = "/vendor/itreturn";
-			if (getFinancialYear() != null) {
-				forwardTo += "/" + getFinancialYear();
+			if (getITRInitData(request).isOnVendorPortal() && getITRInitData(request).isVendor(request)) forwardTo = "/vendor/itreturn";
+			if (getITRInitData(request).getFinancialYear() != null) {
+				forwardTo += "/" + getITRInitData(request).getFinancialYear();
 			}
 			response.forward(forwardTo);
 		} catch (IOException e) {
@@ -1541,13 +1048,13 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 	protected String getRedirectURLForSiteMapItem(HstRequest request,HstResponse response,FormSaveResult formSaveResult) {
 		if (formSaveResult.equals(FormSaveResult.FAILURE)) {
-			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,getITRInitData(request).mainSiteMapItemRefId,getITRInitData(request).getFinancialYear(),getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 		}
-		else if (formSaveResult.equals(FormSaveResult.SUCCESS) && nextScreenSiteMapItemRefId != null) {
-			return getRedirectURLForSiteMapItem(request, response, formSaveResult,nextScreenSiteMapItemRefId,getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+		else if (formSaveResult.equals(FormSaveResult.SUCCESS) && getITRInitData(request).nextScreenSiteMapItemRefId != null) {
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,getITRInitData(request).nextScreenSiteMapItemRefId,getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 		}
 		else {
-			return getRedirectURLForSiteMapItem(request, response, formSaveResult,mainSiteMapItemRefId,getFinancialYear(),getTheFolderContainingITRDocuments(), getPAN());
+			return getRedirectURLForSiteMapItem(request, response, formSaveResult,getITRInitData(request).mainSiteMapItemRefId,getITRInitData(request).getFinancialYear(),getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 		}
 	}
 
@@ -1558,8 +1065,8 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId(siteMapReferenceId, request.getRequestContext().getResolvedMount().getMount());
 		if (link != null) {
 			String strFirstRep = null;
-			if (isOnVendorPortal() && isVendor(request)) {
-				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", getMemberhandleuuid());
+			if (getITRInitData(request).isOnVendorPortal() && getITRInitData(request).isVendor(request)) {
+				strFirstRep = link.toUrlForm(request.getRequestContext(), true).replaceFirst("_default_", getITRInitData(request).getMemberhandleuuid());
 				strFirstRep = strFirstRep.replaceFirst("_default_", financialYear.toString());
 			}
 			else {
@@ -1581,6 +1088,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 */
 	protected boolean save(HstRequest request,FormMap formMap) {
 		boolean savedSuccessfully = false;
+		PAGE_ACTION pageAction = getITRInitData(request).getPageAction();
+		HippoBean childBean = getITRInitData(request).getChildBean();
+		
 		//what are we supposed to do??
 		if (pageAction.equals(PAGE_ACTION.EDIT_CHILD) && childBean != null) {
 			//we are updating a child node here
@@ -1598,7 +1108,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			if (pageAction.equals(PAGE_ACTION.EDIT_CHILD) && childBean != null) {
-				itReturnComponentHelper.saveUpdateExistingChild(formMap, null, getChildBeanLifeCycleHandler(), getParentBeanLifeCycleHandler(), baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, getParentBeanNameSpace(), getParentBeanNodeName(), getChildBeanClass(), persistableSession, wpm, uuid);
+				itReturnComponentHelper.saveUpdateExistingChild(formMap, null, getChildBeanLifeCycleHandler(request), getParentBeanLifeCycleHandler(request),getITRInitData(request).baseAbsolutePathToReturnDocuments, getITRInitData(request).parentBeanAbsolutePath, getITRInitData(request).getParentBeanNameSpace(), getITRInitData(request).getParentBeanNodeName(), getITRInitData(request).getChildBeanClass(), persistableSession, wpm, getITRInitData(request).uuid);
 				savedSuccessfully = true;
 			}
 			else if (pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
@@ -1610,11 +1120,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					dedSectnFormField.addValue(deduction_section);
 					formMap.addFormField(dedSectnFormField);
 				}
-				itReturnComponentHelper.saveAddNewChild(formMap, null, getChildBeanLifeCycleHandler(), getParentBeanLifeCycleHandler(), baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, getParentBeanNameSpace(), getParentBeanNodeName(),  childBeanLocal.childBeanClass(), persistableSession, wpm);
+				itReturnComponentHelper.saveAddNewChild(formMap, null, getChildBeanLifeCycleHandler(request), getParentBeanLifeCycleHandler(request), getITRInitData(request).baseAbsolutePathToReturnDocuments, getITRInitData(request).parentBeanAbsolutePath, getITRInitData(request).getParentBeanNameSpace(), getITRInitData(request).getParentBeanNodeName(),  childBeanLocal.childBeanClass(), persistableSession, wpm);
 				savedSuccessfully = true;
 			}
 			else if (pageAction.equals(PAGE_ACTION.DELETE_CHILD) && childBean != null) {
-				HippoBean childBeanInSession = (HippoBean) wpm.getObjectByUuid(uuid);
+				HippoBean childBeanInSession = (HippoBean) wpm.getObjectByUuid(getITRInitData(request).uuid);
 				HippoBean parentBeanInSession = childBeanInSession.getParentBean();
 				if (parentBeanInSession instanceof CompoundChildUpdate) {
 					CompoundChildUpdate compoundChildUpdate = (CompoundChildUpdate) parentBeanInSession;
@@ -1632,15 +1142,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			else if (pageAction.equals(PAGE_ACTION.EDIT)) {
 				//Object parentBeanInSession = wpm.getObject(parentBean.getCanonicalUUID());
 				boolean isNew = false;
-				HippoBean parentBeanInSession = (HippoBean) wpm.getObject(parentBeanAbsolutePath);
+				HippoBean parentBeanInSession = (HippoBean) wpm.getObject(getITRInitData(request).parentBeanAbsolutePath);
 				HippoBean beanBeforeUpdate = parentBeanInSession;
-				BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = getParentBeanLifeCycleHandler();
+				BeanLifecycle<HippoBean> parentBeanLifeCycleHandler = getParentBeanLifeCycleHandler(request);
 				if (parentBeanInSession == null) {
 					//gotta create this damn thing
 					if (log.isInfoEnabled()) {
 						log.info("Parent Bean is missing, we will need to recreate it");
 					}
-					final String pathToParentBean = wpm.createAndReturn(baseAbsolutePathToReturnDocuments,getParentBeanNameSpace(),getParentBeanNodeName(), true);
+					final String pathToParentBean = wpm.createAndReturn(getITRInitData(request).baseAbsolutePathToReturnDocuments,getITRInitData(request).getParentBeanNameSpace(),getITRInitData(request).getParentBeanNodeName(), true);
 					parentBeanInSession = (HippoBean) wpm .getObject(pathToParentBean);
 					isNew = true;
 					//initParentBean(parentBeanInSession);
@@ -1672,7 +1182,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 					wpm.update(parentBeanInSession);
 					HippoBean beanAfterUpdate = parentBeanInSession;
 					if (parentBeanLifeCycleHandler != null) {
-						parentBeanLifeCycleHandler.afterUpdate(beanBeforeUpdate,beanAfterUpdate,wpm,getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
+						parentBeanLifeCycleHandler.afterUpdate(beanBeforeUpdate,beanAfterUpdate,wpm,getITRInitData(request).getAbsoluteBasePathToReturnDocuments(), getITReturnComponentHelper());
 					}
 					savedSuccessfully = true;
 				}			
@@ -1722,7 +1232,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			Map<FinancialYear,List<Object>> listOfITRForms = new HashMap<FinancialYear, List<Object>>();
 			for (String aPath:pathToITR) {
 				@SuppressWarnings("unchecked")
-				HippoBean hippoBean = getSiteContentBaseBeanForReseller(request).getBean(aPath);
+				HippoBean hippoBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(aPath);
 				HstQuery hstQuery = this.getQueryManager(request).createQuery(hippoBean);
 				final HstQueryResult result = hstQuery.execute();
 				Map<String,HippoBean> inputMap = new HashMap<String, HippoBean>();
@@ -1784,7 +1294,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		String generatedPathToPDF = null;
 		String generatedPathToXML = null;
 
-		String downloadBaseFileName = "return-"+ getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + "-" + getITReturnType();
+		String downloadBaseFileName = "return-"+  getITRInitData(request).getPAN() +"-AY-" + getITRInitData(request).getFinancialYear().getDisplayAssessmentYear() + "-" + getITRInitData(request).getITReturnType();
 		String downloadPDFFileName = downloadBaseFileName  + ".pdf";
 		String downloadXMLFileName = downloadBaseFileName  + ".xml";
 
@@ -1797,7 +1307,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
 
 		//time to hand over
-		XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getFinancialYear());
+		XmlGeneratorService xmlGeneratorService = itrXmlGeneratorServiceFactory.getInstance(getITRInitData(request).getFinancialYear());
 		if (itrXmlGeneratorServiceFactory != null) {
 			if (xmlGeneratorService != null) {
 				try {
@@ -1812,10 +1322,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 
-		if (pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) return; //no need to go forward at all
+		if (getITRInitData(request).getPageAction().equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) return; //no need to go forward at all
 
 		boolean isValidationRequired = false;
-		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isValidationRequired = true;
+		if (! getITRInitData(request).getPageAction().equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isValidationRequired = true;
 		if (log.isInfoEnabled()) {
 			log.info("Validation of XML is required for this action");
 		}
@@ -1858,10 +1368,10 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 				MootlyFormUtils.populate(request, publicParameterUUID, savedValuesFormMap);
 				if (savedValuesFormMap != null) {
-					boolean panMatched = ( (savedValuesFormMap.getField("PAN") != null && savedValuesFormMap.getField("PAN").getValue().equals(getPAN())) ? true : false);
-					boolean financialYearMatched = ( (savedValuesFormMap.getField("financialYear") != null && savedValuesFormMap.getField("financialYear").getValue().equals(getFinancialYear().name())) ? true : false );
-					boolean theFolderContainingITRDocumentsMatched = ( (savedValuesFormMap.getField("theFolderContainingITRDocuments") != null && savedValuesFormMap.getField("theFolderContainingITRDocuments").getValue().equals(getTheFolderContainingITRDocuments())) ? true : false);
-					boolean userNameMatched = ( (savedValuesFormMap.getField("userName") != null && savedValuesFormMap.getField("userName").getValue().equals(getUserName())) ? true : false );
+					boolean panMatched = ( (savedValuesFormMap.getField("PAN") != null && savedValuesFormMap.getField("PAN").getValue().equals(getITRInitData(request).getPAN())) ? true : false);
+					boolean financialYearMatched = ( (savedValuesFormMap.getField("financialYear") != null && savedValuesFormMap.getField("financialYear").getValue().equals(getITRInitData(request).getFinancialYear().name())) ? true : false );
+					boolean theFolderContainingITRDocumentsMatched = ( (savedValuesFormMap.getField("theFolderContainingITRDocuments") != null && savedValuesFormMap.getField("theFolderContainingITRDocuments").getValue().equals(getITRInitData(request).getTheFolderContainingITRDocuments())) ? true : false);
+					boolean userNameMatched = ( (savedValuesFormMap.getField("userName") != null && savedValuesFormMap.getField("userName").getValue().equals(getITRInitData(request).getUserName())) ? true : false );
 
 					if (panMatched && financialYearMatched && theFolderContainingITRDocumentsMatched && userNameMatched) {
 						doesASavedFormExists = true;
@@ -1880,17 +1390,17 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			FormMap toBeSavedValuesFormMap = new FormMap(request,new String[]{"redirectToOriginalPage","PAN","financialYear","itReturnType","userName","generatedHtmlSummary","originalPageAction","theFolderContainingITRDocuments"});
 
 
-			toBeSavedValuesFormMap.getField("PAN").addValue(getPAN());
-			toBeSavedValuesFormMap.getField("financialYear").addValue(getFinancialYear().name());
-			toBeSavedValuesFormMap.getField("itReturnType").addValue(getITReturnType().name());
-			toBeSavedValuesFormMap.getField("theFolderContainingITRDocuments").addValue(getTheFolderContainingITRDocuments());
-			toBeSavedValuesFormMap.getField("userName").addValue(getUserName());
+			toBeSavedValuesFormMap.getField("PAN").addValue(getITRInitData(request).getPAN());
+			toBeSavedValuesFormMap.getField("financialYear").addValue(getITRInitData(request).getFinancialYear().name());
+			toBeSavedValuesFormMap.getField("itReturnType").addValue(getITRInitData(request).getITReturnType().name());
+			toBeSavedValuesFormMap.getField("theFolderContainingITRDocuments").addValue(getITRInitData(request).getTheFolderContainingITRDocuments());
+			toBeSavedValuesFormMap.getField("userName").addValue(getITRInitData(request).getUserName());
 			toBeSavedValuesFormMap.getField("generatedHtmlSummary").addValue(generatedHtmlSummary);
-			toBeSavedValuesFormMap.getField("originalPageAction").addValue(pageAction.name());
+			toBeSavedValuesFormMap.getField("originalPageAction").addValue(getITRInitData(request).getPageAction().name());
 
 			String refId = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getRefId();
 			if (refId != null) {
-				String redirectToOriginalPage = getRedirectURLForSiteMapItem(request, response, FormSaveResult.SUCCESS, refId, getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
+				String redirectToOriginalPage = getRedirectURLForSiteMapItem(request, response, FormSaveResult.SUCCESS, refId, getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 				toBeSavedValuesFormMap.getField("redirectToOriginalPage").addValue(redirectToOriginalPage);
 			}
 
@@ -1906,9 +1416,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		boolean isPaymentRequired = false;
 		isPaid = false;
-		if (! pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
+		if (! getITRInitData(request).getPageAction().equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
 		
-		if (isVendor(request) && (pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY)) ) {
+		if (getITRInitData(request).isVendor(request) && (getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY)) ) {
 			isPaymentRequired = false; //TO-DO 
 		}
 		if (isPaymentRequired) {
@@ -1918,7 +1428,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
 					isPaid = true;
 				*/
-				InvoiceDocument invoiceDocument = (InvoiceDocument) mapOfAllBeans.get(InvoiceDocument.class.getSimpleName().toLowerCase());				
+				InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());				
 				if (invoiceDocument != null  && invoiceDocument.getAmountDue() != null && invoiceDocument.getAmountDue() == 0 && invoiceDocument.getInvoiceDocumentDetailList() != null && invoiceDocument.getInvoiceDocumentDetailList().size() > 0) {
 					for (InvoiceDocumentDetail invoiceDocumentDetail : invoiceDocument.getInvoiceDocumentDetailList()) {
 						
@@ -1950,7 +1460,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
 
-		if (generatedHtmlSummary != null &&( pageAction == PAGE_ACTION.DOWNLOAD_ITR_SUMMARY || pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY )) {
+		if (generatedHtmlSummary != null &&( getITRInitData(request).getPageAction() == PAGE_ACTION.DOWNLOAD_ITR_SUMMARY ||  getITRInitData(request).getPageAction() == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY )) {
 			//time to generate the PDF
 			try {
 				generatedPathToPDF = generatePDF(request, response, generatedHtmlSummary);
@@ -1965,11 +1475,11 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 		}
 
-		if (pageAction == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY) { //time to save the XML in temporary path
-			generatedPathToXML = saveXmlToTemporaryFile(generatedXml);
+		if ( getITRInitData(request).getPageAction() == PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY) { //time to save the XML in temporary path
+			generatedPathToXML = saveXmlToTemporaryFile(request,generatedXml);
 		}
 
-		switch (pageAction) {
+		switch ( getITRInitData(request).getPageAction()) {
 		case DOWNLOAD_ITR_XML:
 			request.setAttribute("fileName", downloadXMLFileName);
 			response.setRenderPath("jsp/member/downloadfile.jsp");
@@ -1984,16 +1494,16 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 				String deliveryEmail = getPublicRequestParameter(request, "email");
 				String[] to = null;
 				if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
-					to = new String[]{ getUserName(), deliveryEmail };
+					to = new String[]{  getITRInitData(request).getUserName(), deliveryEmail };
 				}
 				else {
-					to = new String[]{ getUserName()};
+					to = new String[]{  getITRInitData(request).getUserName()};
 				}
 
 				//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
 				Map<String,Object> vC = new HashMap<String, Object>();
-				vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
-				vC.put("financialYear", getFinancialYear());
+				vC.put("financialYearDisplay",  getITRInitData(request).getFinancialYear().getDisplayName());
+				vC.put("financialYear",  getITRInitData(request).getFinancialYear());
 
 				try {
 					MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
@@ -2004,7 +1514,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 
 				}
 
-				sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Attached is your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
+				sendEmail(request, to, generatedPathToXML + "," + generatedPathToPDF,"Attached is your Income Tax Return for Financial Year " +  getITRInitData(request).getFinancialYear().getDisplayName(),"w4i_email",vC);
 				request.setAttribute("emailMeStatus", "success");
 			}
 			else {
@@ -2012,33 +1522,9 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			}
 			break;
 		case EFILE:
-				EFileResponse eFileResponse = eFileITR( getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
-				if (eFileResponse != null) {
-					MemberPersonalInformation mi = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-					if (eFileResponse.getTokenNumber() != null && mi != null) {// (FormMap parentBeanMap,T parentBeanLifeCycleHandler, String baseAbsolutePathToReturnDocuments, String parentBeanAbsolutePath, String parentBeanNameSpace,String parentBeanNodeName, Session persistableSession,WorkflowPersistenceManager wpm) throws ObjectBeanManagerException, InstantiationException, IllegalAccessException {
-						try {
-							Session persistableSession = getPersistableSession(request);
-							WorkflowPersistenceManager wpm  = getWorkflowPersistenceManager(persistableSession);
-							MemberPersonalInformation MPIInSesion = (MemberPersonalInformation) wpm.getObject(mi.getPath());
-							MPIInSesion.setDitSubmissionToken(eFileResponse.getTokenNumber());
-							MPIInSesion.setDitSubmissionStatus(DITSubmissionStatus.SUCCESS);
-							if (MPIInSesion != null) {
-								wpm.update(MPIInSesion);
-							}
-						} catch (RepositoryException e ) {
-							// TODO Auto-generated catch block
-							log.error("Repository Exception",e);
-						}		
-						catch  ( ObjectBeanManagerException e) {
-							log.error("Repository Exception",e);
-						}
-					}
-					if (log.isInfoEnabled()) {
-						log.info ("eFileResponse.getTokenNumber();" + eFileResponse.getTokenNumber() ); 
-					}
-				}
+				EFileResponse eFileResponse = eFileITR(request, getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
+				request.setAttribute("eFileResponse",eFileResponse);
 		}
-		//Object theForm = request.getAttribute("theForm");
 	}
 
 	/**
@@ -2046,14 +1532,14 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	 * @param xml
 	 * @return
 	 */
-	protected String saveXmlToTemporaryFile(String xml) {
+	protected String saveXmlToTemporaryFile(HstRequest request,String xml) {
 		BufferedWriter writer = null;
 		try
 		{
 			String tmpDir = System.getProperty("java.io.tmpdir");
 			String uuid = UUID.randomUUID().toString();
 			new File(tmpDir + "/" + uuid).mkdir();
-			String filePath = tmpDir + "/" + uuid + "/" + "itreturn-AY-" +getFinancialYear().getDisplayAssessmentYear() + ".xml";
+			String filePath = tmpDir + "/" + uuid + "/" + "itreturn-AY-" + getITRInitData(request).getFinancialYear().getDisplayAssessmentYear() + ".xml";
 
 			writer = new BufferedWriter(new FileWriter(filePath));
 			writer.write(xml);
@@ -2145,7 +1631,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		String uuid = UUID.randomUUID().toString();
 		//create the dir
 		new File(tmpDir + "/" + uuid).mkdir();
-		String pdfFileName = "itreturnsummary-" + getPAN() +"-AY-" + getFinancialYear().getDisplayAssessmentYear() + ".pdf";
+		String pdfFileName = "itreturnsummary-" + getITRInitData(request).getPAN() +"-AY-" + getITRInitData(request).getFinancialYear().getDisplayAssessmentYear() + ".pdf";
 		String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(temporaryPathToPDF));
 		writer.setInitialLeading(12.5f);
@@ -2170,19 +1656,19 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			String deliveryEmail = getPublicRequestParameter(request, "email");
 			String[] to = null;
 			if (deliveryEmail != null && !"".equals(deliveryEmail.trim())) {
-				to = new String[]{ getUserName(), deliveryEmail };
+				to = new String[]{ getITRInitData(request).getUserName(), deliveryEmail };
 			}
 			else {
-				to = new String[]{ getUserName()};
+				to = new String[]{ getITRInitData(request).getUserName()};
 			}
 
 			//sendEmail(request, to, null, new String[] {"info@wealth4india.com"}, "Your IT Return", temporaryPathToPDF + "," + temporaryPathToXML, "Your IT Return Summary", "itreturnSummaryAndXml", null);
 			Map<String,Object> vC = new HashMap<String, Object>();
-			vC.put("financialYearDisplay", getFinancialYear().getDisplayName());
-			vC.put("financialYear", getFinancialYear());
+			vC.put("financialYearDisplay", getITRInitData(request).getFinancialYear().getDisplayName());
+			vC.put("financialYear", getITRInitData(request).getFinancialYear());
 			boolean ret = false;
 			try {
-				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your Income Tax Return for Financial Year " + getFinancialYear().getDisplayName(),"w4i_email",vC);
+				sendEmail(request, to, temporaryPathToPDF + "," + temporaryPathToXML,"Your Income Tax Return for Financial Year " + getITRInitData(request).getFinancialYear().getDisplayName(),"w4i_email",vC);
 				ret = true;
 			}catch (Exception ex) {
 				ret = false;
@@ -2194,78 +1680,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		}
 	}
 
-	protected Map<String,HippoBean> loadBeansAndSetRequestAttributes(HstRequest request,HstResponse response) {
-		//loading Additional Beans
-		Map<String,HippoBean> localMapOfAllBeans = new HashMap<String, HippoBean>();
-		List<HippoDocumentBean> listOfBeans = loadAllBeansUnderTheFolder(request, response,baseRelPathToReturnDocuments,null,null);
-		if (listOfBeans != null) {
-			localMapOfAllBeans = new HashMap<String, HippoBean>();
-			for (HippoBean theBean:listOfBeans) {
-				localMapOfAllBeans.put(theBean.getClass().getSimpleName().toLowerCase(), theBean);
-			}
-		}
-		// As mapOfAllBeans define globally (Member of Class) So for new Entry of pan it remain hold  
-		// previous viewed or entered value for pan so we have to kill this as it depends upon result of loadAllBeansUnderTheFolder() function i.e listOfBeans
-		//fill up request
-		//if (mapOfAllBeans != null) {
-		if (localMapOfAllBeans != null && listOfBeans != null) {
-			for (String theKey:localMapOfAllBeans.keySet()) {
-				request.setAttribute(theKey, localMapOfAllBeans.get(theKey));		
-			}			
-		}		
-		return localMapOfAllBeans;
-	}
-	/**
-	 *
-	 * @param request
-	 * @param response
-	 * @param pathToTheItReturn
-	 */
-	protected List<HippoDocumentBean> loadAllBeansUnderTheFolder(HstRequest request,HstResponse response,String baseRelPathToReturnDocuments,String sortByAttribute,SORT_DIRECTION sortDirection) {
-		HippoBean theBean = getSiteContentBaseBeanForReseller(request);
-		if (theBean == null) {
-			return null;
-		}
-		HippoBean scopeForAllBeans =  theBean.getBean(baseRelPathToReturnDocuments);
-		HstQuery hstQuery;
-		List<HippoDocumentBean> theLocalBeansUnderMemberFolder = null;
-		if (scopeForAllBeans == null)  return null;
-		theLocalBeansUnderMemberFolder =  scopeForAllBeans.getChildBeans(HippoDocumentBean.class);
-		try {
-			theLocalBeansUnderMemberFolder = new ArrayList<HippoDocumentBean>();
-			hstQuery = getQueryManager(request).createQuery( scopeForAllBeans );
-			if (sortDirection == null) sortDirection = SORT_DIRECTION.ASC;
-			if (sortByAttribute != null) {
-				switch (sortDirection) {
-				case ASC:
-					hstQuery.addOrderByAscending(sortByAttribute);
-					break;
-				case DESC:
-					hstQuery.addOrderByAscending(sortByAttribute);
-					break;
-				}
-			}
-			final HstQueryResult result = hstQuery.execute();
-			Iterator<HippoBean> itResults = result.getHippoBeans();
-			if (log.isInfoEnabled()) {
-				log.info("Now will look into all HippoDocuments under the same folder and make a copy of each " + theBean.getPath());
-			}
-			for (;itResults.hasNext();) {
-				HippoBean hippoBean = itResults.next();
-				if (hippoBean instanceof HippoDocumentBean) {
-					theLocalBeansUnderMemberFolder.add( (HippoDocumentBean) hippoBean);
-					//request.setAttribute(hippoBean.getClass().getSimpleName().toLowerCase(), hippoBean);
-					//if (hippoBean instanceof MemberPersonalInformation) {
-					//memberPersonalInformation = (MemberPersonalInformation) hippoBean;
-					//}
-				}
-			}
-		} catch (QueryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return theLocalBeansUnderMemberFolder;
-	}
+	
 
 	/**
 	 * 
@@ -2278,7 +1693,7 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		try {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
-			String pathToInvoiceDocument = getAbsoluteBasePathToReturnDocuments() + "/" + InvoiceDocument.class.getSimpleName().toLowerCase();
+			String pathToInvoiceDocument = getITRInitData(request).getAbsoluteBasePathToReturnDocuments() + "/" + InvoiceDocument.class.getSimpleName().toLowerCase();
 			List<PaymentUpdateResponse> listOfPaymentUpdateResponse = getItReturnComponentHelper().syncInvoiceWithPaymentGateway(pathToInvoiceDocument, request, getEnquiry() , persistableSession, wpm);
 			if (listOfPaymentUpdateResponse == null || listOfPaymentUpdateResponse.size() == 0) {
 				didGotUpdated = false;
@@ -2304,17 +1719,15 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 		return didGotUpdated;
 	}
 
-	protected boolean shouldRedirectAfterSuccess() {
-		return true;
-	}
-	
-	protected EFileResponse eFileITR(String userName, String password,String itrXML) throws EFileException, DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure {
+	protected EFileResponse eFileITR(HstRequest request,String userName, String password,String itrXML) throws EFileException, DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure {
 		///assuming all is WELL call another class so we can keep the Logic Seperated.
 		//String xml,String resellerId,String pan,FinancialYear financialYear,String canonicalPathToMemberIncomeTaxFolder) throws EFileException;
 		try {
-			if (getMemberPersonalInformation() != null) {
-				String  canonicalPathToMemberIncomeTaxFolder = getMemberPersonalInformation().getParentBean().getCanonicalPath();
-				EFileResponse eFileResponse = geteFileService().eFile(userName,password, itrXML, getResellerId(),getPAN(), getFinancialYear(), canonicalPathToMemberIncomeTaxFolder);
+			if (getITRInitData(request).getMemberPersonalInformation() != null) {
+				Session persistableSession = getPersistableSession(request);
+				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+				String  canonicalPathToMemberIncomeTaxFolder = getITRInitData(request).getMemberPersonalInformation().getParentBean().getCanonicalPath();
+				EFileResponse eFileResponse = geteFileService().eFile(userName,password, itrXML, getITRInitData(request).getResellerId(),getITRInitData(request).getPAN(), getITRInitData(request).getFinancialYear(), canonicalPathToMemberIncomeTaxFolder,getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),wpm);
 				return eFileResponse;
 			}
 			else {
@@ -2328,57 +1741,25 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 			throw new EFileException(e);
 		}
 	}
-
-	@Override
-	public PAGE_OUTPUT_FORMAT getPageOutputFormat() {
+	
+	protected HippoBean getSiteContentBaseBeanForReseller(HstRequest request) {
 		// TODO Auto-generated method stub
-		return pageOutputFormat;
+		return getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 	}
 
-	protected MemberPersonalInformation getMemberPersonalInformation() {
-		return memberPersonalInformation;
+	protected boolean shouldRedirectAfterSuccess(HstRequest request) {
+		return true;
 	}
 	
-	protected DITResponseDocument getDITResponseDocument() {
-		return ditResponseDocument;
-	}
-
-	protected boolean shouldValidatePANWithDIT() {
-		return shouldValidatePANWithDIT;
-	}
-
-	protected boolean shouldRetrievePANInformation() {
-		return shouldRetrievePANInformation;
-	}
-
-	protected RetrievePANResponse retrievePANInformation() throws MissingInformationException, DataMismatchException, InvalidFormatException {
-		return retrievePANInformation(getPAN());
-	}
-
-	protected RetrievePANResponse retrievePANInformation(String PAN) throws MissingInformationException, DataMismatchException, InvalidFormatException {
-		if (retrievePANResponse == null) {
-			String argument = PAN;
-			if (PAN == null) {
-				argument = getPAN();
-			}
-			retrievePANResponse = retrievePANInformation.retrievePANInformation(argument);
-		}
-		return retrievePANResponse;
-	}
-
-	protected RetrievePANInformation.VALIDATION_RESULT getRetrievePANInformationValidationResult() {
-		return retrievePANInformationValidationResult;
-	}
-
-	protected BeanLifecycle<HippoBean> getChildBeanLifeCycleHandler() {
+	protected BeanLifecycle<HippoBean> getChildBeanLifeCycleHandler(HstRequest request) {
 		return null;
 	}
 
-	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
+	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler(HstRequest request) {
 		return null;
 	}
 	
-	protected String[] getRequiredFields() {
+	protected String[] getRequiredFields(HstRequest request) {
 		return null;
 	}
 	
@@ -2389,4 +1770,5 @@ public class ITReturnComponent extends BaseComponent implements ITReturnScreen{
 	protected String urlToRedirectAfterSuccess(HstRequest request,HstResponse response,FormMap formMap) {
 		return null;
 	}
+	
 }

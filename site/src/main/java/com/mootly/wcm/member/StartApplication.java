@@ -59,6 +59,7 @@ import com.mootly.wcm.beans.ScheduleFiveADocument;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.IndianGregorianCalendar;
@@ -102,26 +103,28 @@ public class StartApplication extends ITReturnComponent {
 	private static final String ERRORS = "errors";
 	private static final String DOB = "pi_dob";
 
-	FormMap savedValuesFormMap=null;
-	String memberName = null;
-	MemberPersonalInformation parentBean=null;
-	MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = null;
+
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
+		
+		FormMap savedValuesFormMap=null;
+		String memberName = null;
+		MemberPersonalInformation parentBean=null;
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
 		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
 
-		List<HippoDocumentBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "services/documents/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
+		List<HippoDocumentBean> listOfITRServices = getITRInitData(request).loadAllBeansUnderTheFolder(request, "services/documents/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
 		request.setAttribute("listOfITRServices", listOfITRServices);
 
 		RetrievePANResponse retrievePANResponse = null;
 		//Call to DIT Service then get the Response
+		/*
 		if(shouldRetrievePANInformation()||shouldRetrievePANInformation()){
 			RetrievePANInformation retrievePANInformation = getRetrievePANInformationService();
 			try {
-				retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN());
+				retrievePANResponse = retrievePANInformation.retrievePANInformation(getPAN(),);
 			} catch (MissingInformationException e) {
 				// TODO Auto-generated catch block
 				log.error("Error while Calling Dit Mock Service due to lack of Information",e);
@@ -143,6 +146,7 @@ public class StartApplication extends ITReturnComponent {
 				response.setHeader(respKey, resultResponseMap.get(respKey));
 			}
 		}
+		*/
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if (publicParameterUUID != null) {
 			try {
@@ -156,7 +160,7 @@ public class StartApplication extends ITReturnComponent {
 				publicParameterUUID = null;
 			}
 		}
-		String assessmentYear = getAssessmentYear() == null ? "2012-2013"  : getAssessmentYear();
+		String assessmentYear = getITRInitData(request).getAssessmentYear() == null ? "2012-2013"  : getITRInitData(request).getAssessmentYear();
 		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
 		ResourceBundle rbNew = ResourceBundle.getBundle("rstatushuf_"+assessmentYear);
 		log.info("object getting"+rbNew);
@@ -226,8 +230,8 @@ public class StartApplication extends ITReturnComponent {
 				}*/
 		}
 		Map<String, String> fetchmap = new LinkedHashMap<String, String>();
-		if (getParentBean() != null) {
-			MemberPersonalInformation memberresi = (MemberPersonalInformation) getParentBean();
+		if (getITRInitData(request).getParentBean() != null) {
+			MemberPersonalInformation memberresi = (MemberPersonalInformation) getITRInitData(request).getParentBean();
 
 			fetchmap.put("rsstatus_q",memberresi.getRsstatusQ());
 			if(!(memberresi.getRsstatusQYes().matches("Select")))
@@ -259,21 +263,21 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute("maphuf", maphuf);
 		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
 
-		if(shouldRetrievePANInformation() && publicParameterUUID !=null){
-			request.setAttribute("retrievePANResponse", retrievePANResponse);
-		}
+		//if(shouldRetrievePANInformation() && publicParameterUUID !=null){
+		//	request.setAttribute("retrievePANResponse", retrievePANResponse);
+		//}
 		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
 		if (checkForDuplicate != null && "true".equalsIgnoreCase(checkForDuplicate)) {  //check that Admin enable or disable the functionality
-			if(publicParameterUUID !=null && getPanFolder() !=null){                   //duplicate will applicable for New PAN entry 
-				List<HippoFolderBean> hippoFolderList = getPanFolder().getFolders();  //get list of all pans
+			if(publicParameterUUID !=null && getITRInitData(request).getPanFolder() !=null){                   //duplicate will applicable for New PAN entry 
+				List<HippoFolderBean> hippoFolderList = getITRInitData(request).getPanFolder().getFolders();  //get list of all pans
 				if(!hippoFolderList.isEmpty() && hippoFolderList.size() > 0){        //check that PAN Folder list should not be empty
 					for(HippoFolderBean hipFoldBean:hippoFolderList){               //iterate PAN Folder List 
-						if(hipFoldBean.getName().toLowerCase().contains(getPAN().toLowerCase())){   //Find the entered PAN in the List of PAN Folders
+						if(hipFoldBean.getName().toLowerCase().contains(getITRInitData(request).getPAN().toLowerCase())){   //Find the entered PAN in the List of PAN Folders
 							if(hipFoldBean.getFolders().size() > 0){                               //Now get the List of Folder in Matched PAN Folder
 								for(HippoFolderBean hipfyFolder:hipFoldBean.getFolders()){        //Iterate List of Financial Folder In Matched PAN Folder
-									if(hipfyFolder.getName().equalsIgnoreCase(getFinancialYear().getDisplayName())){//find Match of FY Folder with Choose Financial Year
+									if(hipfyFolder.getName().equalsIgnoreCase(getITRInitData(request).getFinancialYear().getDisplayName())){//find Match of FY Folder with Choose Financial Year
 										for(HippoFolderBean hipPANFolder:hipfyFolder.getFolders()){                //iterate all Folders in Matched FY Folder
-											if(hipPANFolder.getName().toLowerCase().contains(getPAN().toLowerCase())){ //Find that Folder contain Entered PAN in it
+											if(hipPANFolder.getName().toLowerCase().contains(getITRInitData(request).getPAN().toLowerCase())){ //Find that Folder contain Entered PAN in it
 												request.setAttribute("duplicatePANFolder", hipPANFolder.getName());   //set the this PAN Folder(with Sequence Number) 
 												request.setAttribute("isDuplicate", "true");                         //set Duplicate Parameter true
 												break;
@@ -304,12 +308,12 @@ public class StartApplication extends ITReturnComponent {
 			}
 			 */
 			Map<String,Object> velocityContext = new HashMap<String, Object>();
-			velocityContext.put("userName",getUserName());
-			velocityContext.put("userNameNormalized",getUserNameNormalized());
+			velocityContext.put("userName",getITRInitData(request).getUserName());
+			velocityContext.put("userNameNormalized",getITRInitData(request).getUserNameNormalized());
 			//now lets put the document detail
-			velocityContext.put("PAN",getPAN());
-			velocityContext.put("financialYear",getFinancialYear().getDisplayName());
-			velocityContext.put("itReturnType",getITReturnType().getDisplayName());
+			velocityContext.put("PAN",getITRInitData(request).getPAN());
+			velocityContext.put("financialYear",getITRInitData(request).getFinancialYear().getDisplayName());
+			velocityContext.put("itReturnType",getITRInitData(request).getITReturnType().getDisplayName());
 
 			if (request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase()) != null ) {
 				MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
@@ -325,7 +329,7 @@ public class StartApplication extends ITReturnComponent {
 			sendEmail(request, null, null, null, "memberitrsrupdate", velocityContext);
 		}
 		// this is code which delete the document of schedule5adocument if portugese civil code is "No":- By Pankaj SIngh
-		String IsPortuges= getFormMap().getField("portugesecivil").getValue();
+		String IsPortuges= getITRInitData(request).getFormMap().getField("portugesecivil").getValue();
 		if(IsPortuges.equals("N")){
 			Session persistableSession= null;
 			WorkflowPersistenceManager objWorkflowPersistenceManager= null;
@@ -334,7 +338,7 @@ public class StartApplication extends ITReturnComponent {
 				objWorkflowPersistenceManager= getWorkflowPersistenceManager(persistableSession);
 				objWorkflowPersistenceManager.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 
-				String getPathSchedule5a=getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleFiveADocument.class.getSimpleName().toLowerCase();
+				String getPathSchedule5a= getITRInitData(request).getAbsoluteBasePathToReturnDocuments()+"/"+ScheduleFiveADocument.class.getSimpleName().toLowerCase();
 				ScheduleFiveADocument objScheduleFiveADocument= (ScheduleFiveADocument)objWorkflowPersistenceManager.getObject(getPathSchedule5a);
 				if(objScheduleFiveADocument != null){
 					objWorkflowPersistenceManager.remove(objScheduleFiveADocument);
@@ -355,8 +359,14 @@ public class StartApplication extends ITReturnComponent {
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
 		// TODO Auto-generated method stub
-		List<HippoDocumentBean> listOfITRServices = loadAllBeansUnderTheFolder(request, response, "documents/services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
-		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), listOfITRServices ,getChannelInfoWrapper(),getAddClientDetailsService(),getRetrieve26ASService(),getFinancialYear());
+		FormMap savedValuesFormMap=null;
+		String memberName = null;
+		MemberPersonalInformation parentBean=null;
+		MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = null;
+		
+		List<HippoDocumentBean> listOfITRServices = getITRInitData(request).loadAllBeansUnderTheFolder(request,  "documents/services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
+		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), listOfITRServices ,getITRInitData(request).getChannelInfoWrapper(),getAddClientDetailsService(),getRetrieve26ASService(),getITRInitData(request).getFinancialYear());
+		request.setAttribute("memberPersonalInfoUpdateHandler", memberPersonalInfoUpdateHandler);
 		super.doAction(request, response);
 	}
 
@@ -411,7 +421,7 @@ public class StartApplication extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		if(super.validate(request, response, formMap)){
 			boolean hasAValidSelection = true;
-			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) getParentBean();
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation)getITRInitData(request).getParentBean();
 			if(memberPersonalInformation != null){
 				ITRForm saveditrForm = memberPersonalInformation.getSelectedITRForm();
 				int savedITRPriority = saveditrForm.getPriority();
@@ -471,9 +481,9 @@ public class StartApplication extends ITReturnComponent {
 	}
 
 	@Override
-	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler() {
+	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler(HstRequest request) {
 		// TODO Auto-generated method stub
-		return memberPersonalInfoUpdateHandler;
+		return (MemberPersonalInfoUpdateHandler) request.getAttribute("memberPersonalInfoUpdateHandler");
 	}
 
 	@Override
@@ -481,10 +491,10 @@ public class StartApplication extends ITReturnComponent {
 			HstResponse response, FormMap formMap) {
 		// TODO Auto-generated method stub
 		boolean isValid = false;
-		if (!getChannelInfoWrapper().getIsEriEnabled()) {
+		if (!getITRInitData(request).getChannelInfoWrapper().getIsEriEnabled()) {
 			log.warn("Will SKIP the validation for information");
 		}
-		if (formMap != null && getChannelInfoWrapper().getIsEriEnabled()) {
+		if (formMap != null && getITRInitData(request).getChannelInfoWrapper().getIsEriEnabled()) {
 			try {				
 				String PAN = formMap.getField("pan").getValue();	
 				String dobStr = formMap.getField("pi_dob").getValue();	
@@ -494,12 +504,14 @@ public class StartApplication extends ITReturnComponent {
 				String email = formMap.getField("pi_email").getValue();
 				if (log.isInfoEnabled()) {
 					log.info("Will call DIT ");
-					log.info("DIT getEriUserId:" + getChannelInfoWrapper().getWebSiteInfo().getEriUserId());
-					log.info("DIT getEriPassword:" +  getChannelInfoWrapper().getWebSiteInfo().getEriPassword());
-					log.info("DIT getEriCertChain:" +  getChannelInfoWrapper().getWebSiteInfo().getEriCertChain());
-					log.info("DIT getEriSignature:" +  getChannelInfoWrapper().getWebSiteInfo().getEriSignature());
-				}				
-				AddClientDetailsResponse addClientDetailsResponse = getAddClientDetailsService().addClientDetails(getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), null, null, PAN, theGCalDOB, email, null, null, null);
+					log.info("DIT getEriUserId:" + getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriUserId());
+					log.info("DIT getEriPassword:" +  getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriPassword());
+					log.info("DIT getEriCertChain:" +  getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriCertChain());
+					log.info("DIT getEriSignature:" + getITRInitData(request). getChannelInfoWrapper().getWebSiteInfo().getEriSignature());
+				}			
+				Session persistableSession = getPersistableSession(request);
+				WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
+				AddClientDetailsResponse addClientDetailsResponse = getAddClientDetailsService().addClientDetails(getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), null, null, PAN, theGCalDOB, email, null, null, null,getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),wpm);
 				if (addClientDetailsResponse == null || addClientDetailsResponse.getError() != null) {
 					//formMap.addMessage("RAW_MESSAGE_1",addClientDetailsResponse.getError());
 					isValid = false;

@@ -53,12 +53,12 @@ public final class ITReturnComponentHelper {
 		return member;
 	}
 
-	public String getStrFinancialYear(HstRequest request,HstResponse response) {
+	public String getStrFinancialYear(HstRequest request) {
 		String strFinancialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear"); 
 		return strFinancialYear;
 	}
 
-	public FinancialYear getFinancialYear(String strFinancialYear,HstRequest request,HstResponse response) {
+	public FinancialYear getFinancialYear(String strFinancialYear,HstRequest request) {
 		FinancialYear financialYear = FinancialYear.getByDisplayName(strFinancialYear);
 		return financialYear;
 	}
@@ -71,7 +71,7 @@ public final class ITReturnComponentHelper {
 		return assessmentYear;
 	}
 
-	public String getTheFolderContainingITRDocuments(HstRequest request,HstResponse response) {
+	public String getTheFolderContainingITRDocuments(HstRequest request) {
 		return request.getRequestContext().getResolvedSiteMapItem().getParameter("itReturnType");
 	}
 

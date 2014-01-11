@@ -11,6 +11,7 @@ import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +42,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 	
 	@Override
 	public EFileResponse eFile(String userName, String password,String xml, String resellerId,String pan,
-			FinancialYear financialYear, String canonicalPathToMemberIncomeTaxFolder) 
+			FinancialYear financialYear, String canonicalPathToMemberIncomeTaxFolder,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm) 
 					throws DigtalSignatureAssesseeFailure,DigtalSignatureERIUserFailure, EFileException {
 		// TODO Auto-generated method stub
 		if (log.isInfoEnabled()) {
@@ -146,7 +147,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		ByteArrayOutputStream bo = new ByteArrayOutputStream();
 		//BufferedOutputStream bfo = new BufferedOutputStream(bo);
 		ZipOutputStream zo = new ZipOutputStream(bo);		
-		ZipEntry ze = new ZipEntry("itr");
+		ZipEntry ze = new ZipEntry("itr.xml");
 		try {
 			zo.putNextEntry(ze);
 			zo.write(finalXml.getBytes("UTF-8"));
@@ -200,7 +201,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		String signature = erisoapHeaderSignatureResponse.getSignature();
 		
 		try {
-			EFileResponse eFileResponse = getSubmitBulkITRService().submitBulkITR(userName, password, certChain, signature, theByteArray);
+			EFileResponse eFileResponse = getSubmitBulkITRService().submitBulkITR(userName, password, certChain, signature, theByteArray, absoluteBasePathToReturnDocuments ,wpm);
 			return eFileResponse;
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block
@@ -222,7 +223,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 	public EFileResponse eFile(String userName, String password,String xml, String resellerId, String pan,
 			FinancialYear financialYear,
 			DigitalSignatureWrapper assesseSignature,
-			DigitalSignatureWrapper eriSubUserSignature) throws DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure, EFileException {
+			DigitalSignatureWrapper eriSubUserSignature,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm) throws DigtalSignatureAssesseeFailure, DigtalSignatureERIUserFailure, EFileException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -44,7 +44,7 @@ public class SiteMenu extends BaseComponent {
         
         String siteMenuName = GoGreenUtil.getSiteMenuName(this, request);
         HstSiteMenu menu = request.getRequestContext().getHstSiteMenus().getSiteMenu(siteMenuName);
-        menu = new WrappedSiteMenu(menu, request.isUserInRole("reseller"), isLoggedIn(request));
+        menu = new WrappedSiteMenu(menu, request.isUserInRole("reseller"), getITRInitData(request).isLoggedIn(request));
         request.setAttribute("menu", menu);
 
         HippoBean bean = getContentBean(request);

@@ -18,13 +18,8 @@ package com.mootly.wcm.components;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.jcr.ItemNotFoundException;
-import javax.jcr.LoginException;
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
 
@@ -42,7 +37,6 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
-import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +50,6 @@ import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
-import com.mootly.wcm.components.cms.LogComponentManager;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.SequenceGeneratorImpl;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
@@ -67,21 +60,14 @@ import com.mootly.wcm.utils.VelocityUtils;
 public class BaseComponent extends BaseHstComponent {
 	private static final Logger log = LoggerFactory.getLogger(BaseComponent.class);
 	
-	String strIsOnVendorPortal;
-	String strIsOnSystemAdminPortal;
-	String memberhandleuuid;
-	String memberFolderPath;
-	
 	ITReturnComponentHelper itReturnComponentHelper = null;
 	SequenceGenerator sequenceGenerator = null;
 	DigitalSignatureService digitalSignatureService = null;
 	EFileService eFileService = null;
 	
-	ChannelInfoWrapper channelInfoWrapper = null;
-	WebsiteInfo webSiteInfo = null;
+	//ChannelInfoWrapper channelInfoWrapper = null;
+	//WebsiteInfo webSiteInfo = null;
 	
-	boolean isReseller = false; //itReturnComponentHelper.isReSeller(request);
-	String resellerId = null; //itReturnComponentHelper.getResellerId(request);
 	
 	@Override
 	public void init(ServletContext servletContext,
@@ -104,122 +90,21 @@ public class BaseComponent extends BaseHstComponent {
 		return eFileService;
 	}
 	
-	protected void initComponent(HstRequest request,HstResponse response,boolean callSuper){		
-		  isReseller = itReturnComponentHelper.isReSeller(request);
-    	resellerId = itReturnComponentHelper.getResellerId(request);
-        
-        request.setAttribute("preview", isPreview(request));
-        request.setAttribute("composermode", request.getRequestContext().getResolvedMount().getMount().isOfType("composermode"));
-        
-        String cmsApplicationUrl = request.getRequestContext().getContainerConfiguration().getString("cms.location", "/cms/");
-        request.setAttribute("cmsApplicationUrl", cmsApplicationUrl);
-        
-        request.setAttribute("loggedin", request.getUserPrincipal() != null);
-        
-        String theme = getParameter("theme",request);
-        String template = getParameter("template",request);
-        String bodyCssClass = getParameter("bodyCssClass",request);
-        String contentCssClass = getParameter("contentCssClass",request);
-        String widgetsCssClass = getParameter("widgetsCssClass",request);
-        String hasGrid = getParameter("hasGrid",request);
-//	        if (log.isInfoEnabled()) {
-//	        	log.info("theme:" + theme);
-//	        	log.info("template:" + template);
-//	        	log.info("bodyCssClass:" + bodyCssClass);
-//	        	log.info("contentCssClass:" + contentCssClass);
-//	        	log.info("widgetsCssClass:" + widgetsCssClass);
-//	        }
-        if (theme != null) request.setAttribute("theme", theme);
-        if (template != null) request.setAttribute("template", template);
-        if (bodyCssClass != null) request.setAttribute("bodyCssClass", bodyCssClass);
-        if (contentCssClass != null) request.setAttribute("contentCssClass", contentCssClass);
-        if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);   
-        if (hasGrid != null) request.setAttribute("hasGrid", hasGrid);   
-        
-        Map<String, String> params = getParameters(request);
-        
-        Map<String, String> gridParams = new LinkedHashMap<String, String>(2);
-        String spanOrder = getParameter("spanOrder", request);
-        if (params != null && spanOrder != null) {
-        	String[] spanOrderParts = spanOrder.split("[,]");
-        	for (String aPart:spanOrderParts) {
-        		String getPartParam = getParameter(aPart, request);
-        		if (getPartParam != null) gridParams.put(aPart, getPartParam);
-        	}
-        	request.setAttribute("gridParams", gridParams);   
-        }
-        
-        if (params != null) {
-        	for (String aParam:params.keySet()) {
-        		request.setAttribute(aParam, params.get(aParam));
-        	}
-        }
-        
-        ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
-        strIsOnVendorPortal = resolvedSiteMapItem.getParameter("isOnVendorPortal");
-        strIsOnSystemAdminPortal = resolvedSiteMapItem.getParameter("strIsOnSystemAdminPortal");
-        if (strIsOnVendorPortal != null) request.setAttribute("strIsOnVendorPortal", strIsOnVendorPortal);
-        if (strIsOnSystemAdminPortal != null) request.setAttribute("strIsOnSystemAdminPortal", strIsOnSystemAdminPortal);
-        
-        boolean isVendor = ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
-        request.setAttribute("isVendor", isVendor);
-        
-        memberhandleuuid = resolvedSiteMapItem.getParameter("memberhandleuuid");
-        if (memberhandleuuid != null && !"".equals(memberhandleuuid.trim())) {
-	        try {
-				Node theMemberHandle = request.getRequestContext().getSession().getNodeByIdentifier(memberhandleuuid);
-				if (theMemberHandle != null) memberFolderPath = theMemberHandle.getName();
-			} catch (ItemNotFoundException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			} catch (LoginException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			} catch (RepositoryException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			}	        
-        }
-        
-        webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
-        channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
-        
-        request.setAttribute("channelInfoWrapper", channelInfoWrapper);
-        
-        setLogo(request, response);
-        
-        String isError = request.getParameter("isError");
-        String errorKey = request.getParameter("error.key");
-        //response.setRenderParameter("error", "true");
-		//response.setRenderParameter("errorMessageKey", "error.paymentgateway.connection");
-        if (isError != null && isError.equalsIgnoreCase("true")) {
-        	request.setAttribute("isError", "true");
-        }
-        if (errorKey != null) {
-        	request.setAttribute("error.key", getPublicRequestParameter(request, "error.key"));
-        }  
-        
-        if(resellerId != null && resellerId.equals("etaxfilestation")){
-			request.setAttribute("etaxfilestation", true);
-		}else{
-			request.setAttribute("etaxfilestation", false);
-		}
-
-		request.setAttribute("resellerId", resellerId);
-	}
+	
 
 	@Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-        initComponent(request, response, true);
-        
+        getITRInitData(request);
         ComponentUtil.doRedirectionOnWrongLandingMount(request, response);
         
       
    
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-package", request.getRequestContext().getResolvedMount().getMount());
-		String urlToResellerPackage = link.toUrlForm(request.getRequestContext(), true);
-
+		setLogo(request, response);
+		
+	        
+	        
 		// Check for Trial period
 	/*	if(isVendor && request.getUserPrincipal() != null && !(resellerId.equals("w4india"))){
 			if(channelInfoWrapper.getResellerPackage().equals("trialPeriod")){
@@ -253,41 +138,10 @@ public class BaseComponent extends BaseHstComponent {
     public void doAction(HstRequest request, HstResponse response)
     		throws HstComponentException {
     	// TODO Auto-generated method stub
-    	initComponent(request, response, true);
     	super.doAction(request, response);
-    	/*
-    	isReseller = itReturnComponentHelper.isReSeller(request);
-    	resellerId = itReturnComponentHelper.getResellerId(request);
-    	webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
-        channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
-        request.setAttribute("channelInfoWrapper", channelInfoWrapper);
-        /*try {
-			Session persistableSession = getPersistableSession(request);
-			WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
-				@Override
-				public void processWorkflow(FullReviewedActionsWorkflow workflow)
-						throws Exception {
-					// TODO Auto-generated method stub
-					workflow.publish();
-				}
-			});
-			LogComponentManager logManager = new LogComponentManager(request);
-			logManager.SaveAdminActionLogInfo(getSiteContentBaseBeanForReseller(request), this.getClass(), persistableSession, wpm);
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+    	getITRInitData(request);
     }
     
-    public final boolean isReseller() {
-		return isReseller;
-	}
-
-	public final String getResellerId() {
-		return resellerId;
-	}
-
 	protected void redirectToNotFoundPage(HstResponse response) {
         try {
             response.forward("/404");
@@ -295,61 +149,7 @@ public class BaseComponent extends BaseHstComponent {
             throw new HstComponentException(e);
         }
     }
-    
-    public String getNormalizedUserName(HstRequest request) {
-    	return getNormalizedUserName (request, null);
-    }
-    
-    public String getNormalizedUserName(HstRequest request,String emailAddress) {
-    	String whatToNormalize = emailAddress;
-    	if (whatToNormalize == null) {
-    		whatToNormalize = ( (request.getUserPrincipal() != null && request.getUserPrincipal().getName() != null) ? request.getUserPrincipal().getName() : null); 
-    	}
-    	if ( whatToNormalize != null) {
-    		return whatToNormalize.replaceAll("@", "-at-");
-    	}
-    	else {
-    		return null;
-    	}
-    }
-    
-    public boolean isLoggedIn(HstRequest request) {
-    	 return ( request.getUserPrincipal() != null ? true : false);
-    }
-    
-    public boolean isVendor(HstRequest request) {
-   	 return ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
-   }
-    
-    public boolean isSystemAdmin(HstRequest request) {
-      	 return ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_systemadmin") ) ? true : false);
-    }
-   
-    
-    public boolean isOnVendorPortal() {
-    	return ( (strIsOnVendorPortal == null || strIsOnVendorPortal.equals("false")) ? false :  true); 
-    }
-    
-    public boolean isOnSystemAdminPortal() {
-    	return ( (strIsOnSystemAdminPortal == null || strIsOnSystemAdminPortal.equals("false")) ? false :  true); 
-    }
-    
-    public String getMemberhandleuuid() {
-		return memberhandleuuid;
-	}
 
-	public void setMemberhandleuuid(String memberhandleuuid) {
-		this.memberhandleuuid = memberhandleuuid;
-	}
-
-	public String getMemberFolderPath(HstRequest request) {    	
-    	if (isOnVendorPortal() && isVendor(request)) {
-			return memberFolderPath;
-		}
-    	else {
-    		return getNormalizedUserName(request);
-    	}
-	}
 
 	/**
      * 
@@ -408,11 +208,11 @@ public class BaseComponent extends BaseHstComponent {
 
 			});
     		String pathToEmail = "";
-    		if (getNormalizedUserName(request) == null) {
+    		if (getITRInitData(request).getNormalizedUserName(request) == null) {
     			pathToEmail = basePathToSiteContentBean + "/members/emails";
     		}
     		else {
-    			pathToEmail = basePathToSiteContentBean + "/members/" + getNormalizedUserName(request) + "/emails";
+    			pathToEmail = basePathToSiteContentBean + "/members/" + getITRInitData(request).getNormalizedUserName(request) + "/emails";
     		}
     		EmailTemplate emailTemplate = (EmailTemplate) wpm.getObject(ContentStructure.getEmailTemplatesPath(request) + "/"+templateKey);
     		
@@ -434,8 +234,8 @@ public class BaseComponent extends BaseHstComponent {
     		StringBuffer sbHostName = new StringBuffer();
 			sbHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append(request.getContextPath());
 			
-			if (isReseller() && getResellerId() != null) {
-				sbHostName.append("/r/").append(getResellerId());
+			if (getITRInitData(request).isReseller() && getITRInitData(request).getResellerId() != null) {
+				sbHostName.append("/r/").append(getITRInitData(request).getResellerId());
 			}
 			
 			StringBuffer resellerHostName = new StringBuffer();
@@ -487,25 +287,6 @@ public class BaseComponent extends BaseHstComponent {
         }
     }
     
-    public HippoBean getSiteContentBaseBeanForReseller(HstRequest request) {
-    	// TODO Auto-generated method stub
-    	boolean isReseller = itReturnComponentHelper.isReSeller(request);
-    	String resellerId = itReturnComponentHelper.getResellerId(request);
-    	HippoBean siteContentBaseBean = super.getSiteContentBaseBean(request);
-    	HippoBean hippoBeanForReseller = null;
-    	if (isReseller && resellerId != null) {
-    		hippoBeanForReseller = siteContentBaseBean.getBean("resellers/"+resellerId);
-    		if ( hippoBeanForReseller == null ) {
-    			return siteContentBaseBean;
-    		}
-    		else {
-    			return hippoBeanForReseller;
-    		}
-    	}
-    	return siteContentBaseBean;
-    }
-    
-    
     public String getCanonicalBasePathForWrite(HstRequest request) {
     	// TODO Auto-generated method stub
     	boolean isReseller = itReturnComponentHelper.isReSeller(request);
@@ -533,30 +314,6 @@ public class BaseComponent extends BaseHstComponent {
 		return sequenceGenerator;
 	}
 
-	protected String getStrIsOnVendorPortal() {
-		return strIsOnVendorPortal;
-	}
-
-	protected void setStrIsOnVendorPortal(String strIsOnVendorPortal) {
-		this.strIsOnVendorPortal = strIsOnVendorPortal;
-	}
-
-	protected String getMemberFolderPath() {
-		return memberFolderPath;
-	}
-
-	protected void setMemberFolderPath(String memberFolderPath) {
-		this.memberFolderPath = memberFolderPath;
-	}
-	
-	public WebsiteInfo getWebSiteInfo() {
-		return webSiteInfo;
-	}
-	
-	public ChannelInfoWrapper getChannelInfoWrapper() {
-		return channelInfoWrapper;
-	}
-	
 	protected PAGE_ACTION getPageAction(HstRequest request) {
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
 		//this is tricky lets allow components to override the configuration by passing it themselves
@@ -589,7 +346,7 @@ public class BaseComponent extends BaseHstComponent {
 			if (formFields != null) {
 				String[] vendorFields = formFields.fieldNamesVendorOnly();
 				theFieldsArray = formFields.fieldNames();
-				if (isVendor(request) && vendorFields != null && vendorFields.length > 0){
+				if (getITRInitData(request).isVendor(request) && vendorFields != null && vendorFields.length > 0){
 					theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 				}
 			}
@@ -611,13 +368,39 @@ public class BaseComponent extends BaseHstComponent {
 			sbHostName.append(request.getContextPath());
 		}
 		
-		if (isReseller() && getResellerId() != null) {
-			sbHostName.append("/r/").append(getResellerId());
+		if (getITRInitData(request).isReseller() && getITRInitData(request).getResellerId() != null) {
+			sbHostName.append("/r/").append(getITRInitData(request).getResellerId());
 		}
 		
 		return sbHostName.toString();
 	}
 	
+	protected HippoBean getSiteContentBaseBeanForReseller(HstRequest request) {
+		// TODO Auto-generated method stub
+		return getITRInitData(request).getSiteContentBaseBeanForReseller(request);
+	}
 	
+	/*
+	 * this.itReturnComponentHelper = itReturnComponentHelper;
+		this.siteContentBaseBean = siteContentBaseBean;
+		this.objectBeanManager = objectBeanManager;
+		this.queryManager = queryManager;
+	 */
+	//TODO Will need ot get it back to request context otherwise this will get called every time Killing the performance
+	//Lets make sure it always initialized the request variables and move it in a separate method so that we can call it separately
+	protected ITReturnInitData getITRInitData(HstRequest request) {
+		ITReturnInitData itReturnInitData = null;
+		//if (request.getRequestContext().getAttribute("itrInitData") == null) {
+		if (request.getAttribute("itrInitData") == null) {
+			itReturnInitData = new ITReturnInitData(request,getItReturnComponentHelper(),getSiteContentBaseBean(request),getObjectBeanManager(request),getQueryManager(request), getCanonicalBasePathForWrite(request), getComponentConfiguration(),this.getClass());
+			//request.getRequestContext().setAttribute("itrInitData", itReturnInitData);
+			request.setAttribute("itrInitData", itReturnInitData);
+		}
+		else {
+			//itReturnInitData = (ITReturnInitData) request.getRequestContext().getAttribute("itrInitData");
+			itReturnInitData = (ITReturnInitData) request.getAttribute("itrInitData");
+		}
+		return itReturnInitData;
+	}
 	
 }

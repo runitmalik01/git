@@ -18,9 +18,12 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.components.ITReturnComponentHelper;
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ditws.SubmitBulkITR;
 import com.mootly.wcm.services.ditws.exception.DataMismatchException;
 import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
@@ -35,8 +38,8 @@ import com.mootly.wcm.services.efile.EFileResponse;
 public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkITR {
 	
 	public SubmitBulkITRImpl(String userName, String password,
-			String certChain, String signature, SOAPService soapService) {
-		super(userName, password, certChain, signature, soapService);
+			String certChain, String signature, SOAPService soapService,ITReturnComponentHelper itReturnComponentHelper,boolean saveAllSOAPReuqestToFileSystem,  String soapRequestSaveLocation,  boolean saveAllSOAPRequestToRepository) {
+		super(userName, password, certChain, signature, soapService,itReturnComponentHelper,saveAllSOAPReuqestToFileSystem,soapRequestSaveLocation,saveAllSOAPRequestToRepository);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -54,7 +57,7 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 	}
 
 	@Override
-	public EFileResponse submitBulkITR(String userName,String password,String certChain, String signature, byte[] bytes)
+	public EFileResponse submitBulkITR(String userName,String password,String certChain, String signature, byte[] bytes,String absoluteBasePathToReturnDocuments , WorkflowPersistenceManager wpm)
 			throws MissingInformationException, DataMismatchException,
 			InvalidFormatException {
 		// TODO Auto-generated method stub
@@ -79,12 +82,20 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 		try {
 			SOAPMessage soapMessage = SOAPCallWrapperHelper.createSOAPMessage(soapCallWrapperSubmitBulkITR, inputParams);
 			if (bytes != null) {
-				String tmpDir = System.getProperty("java.io.tmpdir");
-				String uuid = UUID.randomUUID().toString();
+				String dirToSave = System.getProperty("java.io.tmpdir");
+				if (getSoapRequestSaveLocation() != null) {
+					File f = new File(getSoapRequestSaveLocation());
+					if (f.exists()) {
+						dirToSave = f.getAbsolutePath();
+					}
+				}
+				new File(dirToSave).mkdirs();
+				String pathSuffixOfReturnDocuments =  dirToSave + "/" + getPathSuffixOfReturnDocuments(absoluteBasePathToReturnDocuments);
 				//create the dir
-				new File(tmpDir + "/" + uuid).mkdir();
-				String pdfFileName = "samplefile.zip";
-				String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
+				File dirToFinalDoc = new File(pathSuffixOfReturnDocuments);
+				if (!dirToFinalDoc.exists()) dirToFinalDoc.mkdirs();
+				String pdfFileName = "itr_" + UUID.randomUUID().toString() + ".zip";
+				String temporaryPathToPDF = pathSuffixOfReturnDocuments + "/" + pdfFileName;
 				FileOutputStream fo = new FileOutputStream(temporaryPathToPDF);
 				fo.write(bytes);
 				fo.flush();
@@ -109,6 +120,22 @@ public class SubmitBulkITRImpl extends DITSOAPServiceImpl implements SubmitBulkI
 				soapMessage.addAttachmentPart(attachmentPart);
 			}
 			Map<String,Object> outputMap = soapService.executeSOAPCall(soapCallWrapperSubmitBulkITR,inputParams,soapMessage);
+			if (isSaveAllSOAPRequestToRepository()) {
+				try {
+					if (outputMap == null) outputMap = new HashMap<String,Object>();
+					if (inputParamValues != null) {
+						outputMap.putAll(inputParamValues);
+					}
+					outputMap.put("eFileDateTime",IndianGregorianCalendar.getCurrentDateTimeInIndiaAsStandardString());
+					String PAN = getPANFromAbsoluteReturnPath(absoluteBasePathToReturnDocuments);
+					if (PAN != null ) outputMap.put("PAN",PAN.toUpperCase());
+					//outputMap.put("signature",IndianGregorianCalendar.getCurrentDateInIndiaAsLocalString());
+					// /content/documents/mootlywcm/resellers/w4india/members/nandinias11-at-gmail.com/pans/awbpr0486j/2012-2013/awbpr0486j_f_308
+					saveSOAPRequestToRepository(soapCallWrapperSubmitBulkITR.getOperation(), absoluteBasePathToReturnDocuments, wpm, outputMap);
+				}catch (Exception e) {
+					logger.error("Saving into repository exception",e);
+				}
+			}
 			EFileResponse eFileResponse = new EFileResponse ();
 			if (outputMap != null && outputMap.containsKey("result")) {
 				String tokenNumber = (String) outputMap.get("result");

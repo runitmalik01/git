@@ -60,7 +60,7 @@ public class MemberDrive extends ITReturnComponent {
 		
 		String serviceRequestNumber = getPublicRequestParameter(request, "serviceRequest");
 		if(StringUtils.isNotBlank(serviceRequestNumber)) {
-			ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
+			ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
 			Service serviceDocument = requestManager.getServiceForServiceRequest(serviceRequestNumber);
 			if(serviceDocument != null){
 				request.setAttribute("documentList", serviceDocument.getDocumentNames());
@@ -104,10 +104,10 @@ public class MemberDrive extends ITReturnComponent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/"+getUserNameNormalized()+"/drive";
-		List<HippoDocumentBean> listOfAllMemberFiles = loadAllBeansUnderTheFolder(request, response, baseRelPathToMemberFiles, null, null);
+		String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/"+ getITRInitData(request).getUserNameNormalized()+"/drive";
+		List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, baseRelPathToMemberFiles, null, null);
 		request.setAttribute("listOfAllMemberFiles", listOfAllMemberFiles);
-		HippoBean memberDriveHippoBean = getSiteContentBaseBeanForReseller(request).getBean(baseRelPathToMemberFiles);
+		HippoBean memberDriveHippoBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(baseRelPathToMemberFiles);
 
 		if(memberDriveHippoBean instanceof HippoFolderBean){
 			HippoFolderBean memberDriveHippoFolderBean = (HippoFolderBean) memberDriveHippoBean;
@@ -132,9 +132,9 @@ public class MemberDrive extends ITReturnComponent {
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			MemberDriveHandler memberDriveHandler = new MemberDriveHandler(request, formMap);
-			Boolean isFileSave = memberDriveHandler.SaveFileInMemberDrive(null, subDriveName, wpm, isLoggedIn());
+			Boolean isFileSave = memberDriveHandler.SaveFileInMemberDrive(null, subDriveName, wpm, getITRInitData(request).isLoggedIn());
 			if(isFileSave){				
-				ServiceRequestManager requestManager = new ServiceRequestManager(request, getSiteContentBaseBeanForReseller(request));
+				ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
 				requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, serviceRequestNumber);
 				
 				response.setRenderParameter("FileUpload", "Success");
@@ -204,9 +204,9 @@ public class MemberDrive extends ITReturnComponent {
 		String financialYear=request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		String pan=request.getRequestContext().getResolvedSiteMapItem().getParameter("pan");
 		StringBuilder builder = new StringBuilder();
-		builder.append(getSiteContentBaseBeanForReseller(request).getCanonicalPath());
+		builder.append(getITRInitData(request).getSiteContentBaseBeanForReseller(request).getCanonicalPath());
 		builder.append('/');
-		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(getUserNameNormalized()).append("/").append("drive");
+		builder.append(MEMBER_DRIVE_FOLDER_NAME).append("/").append(getITRInitData(request).getUserNameNormalized()).append("/").append("drive");
 		builder.append("/").append(pan).append("/").append(financialYear).append("/").append(returnType);
 		return builder.toString();
 	}
@@ -255,8 +255,8 @@ public class MemberDrive extends ITReturnComponent {
 		WorkflowPersistenceManager wpm=null;
 		Session persistableSession=null;
 		boolean delete=false;
-		String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/"+getUserNameNormalized()+"/drive";
-		List<HippoDocumentBean> listOfAllMemberFiles = loadAllBeansUnderTheFolder(request, response, baseRelPathToMemberFiles, null, null);
+		String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/" + getITRInitData(request).getUserNameNormalized() +"/drive";
+		List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, baseRelPathToMemberFiles, null, null);
 		try {
 			persistableSession=getPersistableSession(request);
 			persistableSession.save();

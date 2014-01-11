@@ -44,7 +44,7 @@ public class NewNews extends BaseComponent {
 
 		createNewNews(request,ndoc);
 		try {
-			response.sendRedirect("/site/r/"+getResellerId()+"/news");
+			response.sendRedirect("/site/r/"+getITRInitData(request).getResellerId()+"/news");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

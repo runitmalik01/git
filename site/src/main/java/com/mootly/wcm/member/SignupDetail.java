@@ -79,7 +79,7 @@ public class SignupDetail extends BaseComponent {
 		request.setAttribute(SUCCESS, request.getParameter(SUCCESS));
 
 		try {
-			HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request);
+			HippoBean siteContentBaseBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
 			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
 		}catch (Exception ex) {
 			log.info("Error",ex);
@@ -149,7 +149,7 @@ public class SignupDetail extends BaseComponent {
 		// this method fetch username from repository and check whether exist or not
 
 		try {
-			HippoBean siteContentBaseBean = getSiteContentBaseBeanForReseller(request); // getSiteContentBaseBean(request);
+			HippoBean siteContentBaseBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request); // getSiteContentBaseBean(request);
 			if (siteContentBaseBean != null) request.setAttribute("siteContentBaseBean", siteContentBaseBean);
 			if (siteContentBaseBean != null) {
 				String normalizedEmail = email.replaceAll("@","-at-").toLowerCase();
@@ -206,7 +206,7 @@ public class SignupDetail extends BaseComponent {
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			String cPath = getCanonicalBasePathForWrite(request);
-			final String memberFolderPath = cPath + "/" + ContentStructure.MEMBER_FOLDER_NAME + "/" + getNormalizedUserName(request, signupDocument.getUserName());//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
+			final String memberFolderPath = cPath + "/" + ContentStructure.MEMBER_FOLDER_NAME + "/" + getITRInitData(request).getNormalizedUserName(request, signupDocument.getUserName());//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
 			finalMembershipDocumentPath = wpm.createAndReturn(memberFolderPath, MemberSignupDocument.NAMESPACE ,  MemberSignupDocument.NODE_NAME, true);
 			MemberSignupDocument membershipSignupDocument = (MemberSignupDocument) wpm.getObject(finalMembershipDocumentPath);
 			// update content properties
