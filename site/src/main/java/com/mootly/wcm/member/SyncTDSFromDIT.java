@@ -394,20 +394,28 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		int totalToBeImported = 0 ;
 		if (twenty26asResponse == null) return 0;
 		
-		for (Twenty26ASGenericRecord tGenericRecord:twenty26asResponse.getTwenty26astdsOnSalaries()) {
-			if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+		if (twenty26asResponse.getTwenty26astdsOnSalaries() != null ) {
+			for (Twenty26ASGenericRecord tGenericRecord:twenty26asResponse.getTwenty26astdsOnSalaries()) {
+				if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+			}
 		}
 		
-		for (Twenty26ASGenericRecord tGenericRecord:twenty26asResponse.getTwenty26astdsOtherThanSalaries()) {
-			if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+		if (twenty26asResponse.getTwenty26astdsOtherThanSalaries() != null ) {
+			for (Twenty26ASGenericRecord tGenericRecord:twenty26asResponse.getTwenty26astdsOtherThanSalaries()) {
+				if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+			}
 		}
 		
-		for (Twenty26ASGenericRecord tGenericRecord: selfAssessmentList) {
-			if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+		if (selfAssessmentList != null ) {
+			for (Twenty26ASGenericRecord tGenericRecord: selfAssessmentList) {
+				if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+			}
 		}
 		
-		for (Twenty26ASGenericRecord tGenericRecord : advTaxList) {
-			if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+		if (advTaxList != null ) {
+			for (Twenty26ASGenericRecord tGenericRecord : advTaxList) {
+				if (!tGenericRecord.getHasAlreadyBeenImported()) totalToBeImported++;
+			}
 		}
 		
 		return totalToBeImported;
