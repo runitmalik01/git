@@ -200,14 +200,6 @@ public class StartApplication extends ITReturnComponent {
 				}
 				map.put(aKey, MessageFormat.format(ke,memberName));
 			}
-			/*else {
-					//map.put(aKey, rb.getString(aKey));
-					String ke = rb.getString(aKey);
-					if (log.isInfoEnabled()) {
-						log.info("Now attempting to apply format to " + ke);
-					}
-					map.put(aKey, MessageFormat.format(ke,"the Individual"));
-				}*/
 		}
 		// new map for huf, abhi 14/09/2013
 		Map<String, String> maphuf = new LinkedHashMap<String, String>();
@@ -220,14 +212,6 @@ public class StartApplication extends ITReturnComponent {
 				}
 				maphuf.put(bKey, MessageFormat.format(key,memberName));
 			}
-			/*else {
-					//map.put(aKey, rb.getString(aKey));
-					String ke = rb.getString(aKey);
-					if (log.isInfoEnabled()) {
-						log.info("Now attempting to apply format to " + ke);
-					}
-					map.put(aKey, MessageFormat.format(ke,"the Individual"));
-				}*/
 		}
 		Map<String, String> fetchmap = new LinkedHashMap<String, String>();
 		if (getITRInitData(request).getParentBean() != null) {
@@ -262,6 +246,15 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute("map", map);
 		request.setAttribute("maphuf", maphuf);
 		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
+		
+		ResourceBundle incomeSourceBundle = ResourceBundle.getBundle("income_sources_"+assessmentYear);
+		Map<String, String> incomeSourceMap = new LinkedHashMap<String, String>();
+		for(String key:incomeSourceBundle.keySet()){
+			incomeSourceMap.put(key, incomeSourceBundle.getString(key));
+		}
+		JSONObject jsonObjectIncomeSource = new JSONObject(incomeSourceMap);
+		request.setAttribute("incomeSourceMap", incomeSourceMap);
+		request.setAttribute("jsonObjectIncomeSource", jsonObjectIncomeSource);
 
 		//if(shouldRetrievePANInformation() && publicParameterUUID !=null){
 		//	request.setAttribute("retrievePANResponse", retrievePANResponse);

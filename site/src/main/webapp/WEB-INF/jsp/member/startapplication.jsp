@@ -702,16 +702,16 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</c:otherwise>
 			</c:choose>
 		</fieldset>
-		<fieldset>
+		<fieldset class="hlpackageselection">
 			<legend>ITR Package selection</legend>
 			<div class="row show-grid">
 			    <div class="col-md-2">
 			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
 			    </div>
-				<div class="col-md-5">
+				<div class="col-md-4">
 					<div class="rowlabel"><label for="whoCan"><small>Who can select this package</small></label></div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-4">
 					<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
 				</div>
 				<%--
@@ -719,6 +719,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to <w4india:resellername/> and then let <w4india:resellername/> prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
 				</div>
 				 --%>
+				<div class="col-md-2">
+					<div class="rowlabel"><label for="filingMode"><a class="btn btn-warning btn-sm" id="llpackageselection">Low Level Selection</a></label></div>
+				</div>
 			</div>
 			<div class="row show-grid">
 				<div class="col-md-2">
@@ -729,10 +732,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</select>
 					<input type="hidden" name="flex_string_ITRServiceDelivery" value="DIY"/>					
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-4">
 					<div style="font-size:small" id="whoCan"></div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-4">
 					<div style="font-size:small" id="whoCannot"></div>
 				</div>
 				<%--
@@ -746,6 +749,17 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</div>
 				 --%>
 			</div>
+		</fieldset>
+		<fieldset class="llpackageselection hide">
+			<legend> ITR Package selection </legend>
+			<h5>
+				<small><fmt:message key="member.resi.status.sentence" /></small>
+			</h5>
+			<jsp:include page="../member/startapp/startapp_package_selection_v1.0.jsp">
+			  <jsp:param name="jsonObjectPackage" value="${jsonObjectPackage}"/>
+			  <jsp:param name="mapPackage" value="${mapPackage}"/>
+			  <jsp:param name="filingStatus" value="${filingStatus}"/>
+			</jsp:include>
 		</fieldset>
 		<c:choose>
 			<c:when
@@ -992,6 +1006,14 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         	$(document).ready( function() {
         	  if($('#myModal').length > 0) $('#myModal').modal();
         	  // to display revised fields
+        	  	$('#hlpackageselection').on('click',function(){
+	                 $('.llpackageselection').hide();
+	                 $('.hlpackageselection').show();
+	            });
+	            $('#llpackageselection').on('click',function(){
+	                 $('.llpackageselection').show();
+	                 $('.hlpackageselection').hide();
+	            });
         	  var pageAction = '<c:out value="${pageAction}"></c:out>';
         	  var returnType = '<c:out value="${memberpersonalinformation.returnType}"></c:out>';
         	  <c:if test="${pageAction eq 'EDIT' and not empty memberpersonalinformation}">
