@@ -12,12 +12,12 @@
 <div class="page">
 	<form id="events" action="${actionUrl}" name="events" method="post">
 		<fieldset>
-			<legend>Edit Your own Events</legend>
+			<legend>Edit your Events</legend>
 
 			<div class="row show-grid">
 				<div class="col-md-5">
 					<div class="rowlabel">
-						<label for="title">Title Of Events </label>
+						<label for="title">Title Of Event </label>
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="title" name="title">
@@ -47,7 +47,7 @@
 			</div>
 			<div class="row show-grid">
 				<div class="rowlabel">
-					<input type="submit" value="Save" style="color: blue;">
+					<input type="submit" class="btn btn-default btn-success" value="Save">
 				</div>
 
 			</div>

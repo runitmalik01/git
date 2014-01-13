@@ -5,9 +5,10 @@
 <c:set var="newsoverviewtitle">
 	<fmt:message key="news.overview.content.title" />
 </c:set>
+<hst:link var="newslink" siteMapItemRefId="news" />
 <hippo-gogreen:title title="${newsoverviewtitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<hst:link var="newslink" siteMapItemRefId="news" />
+
 
 
 <div class="page" id="news">
@@ -18,13 +19,14 @@
 			<li><a href="<hst:link siteMapItemRefId="home" />"><fmt:message
 						key="news.overview.content.location.home" /> </a> &gt;</li>
 		</ol>
-		
+
 		<div class="row show-grid">
 			<span class="col-md-8">
 				<li><fmt:message key="news.overview.content.title" />
 					&nbsp;&nbsp;&nbsp; <hst:link var="linknew" hippobean="${newsitem}" />
 					<c:if test="${isVendor eq 'true' }">
-						<a class="btn btn-default navbar-btn navbar-right btn-primary" href="${newslink}/newNews"><small><i
+						<a class="btn btn-default navbar-btn navbar-right btn-primary"
+							href="${newslink}/newNews"><small><i
 								class="glyphicon glyphicon-plus"></i>Create New</small></a>
 					</c:if></li>
 			</span>
