@@ -35,8 +35,8 @@
 		href="${home}"><fmt:message key="events.overview.location.home" />
 	</a> &gt;</li>
 	<li><hst:link var="events" siteMapItemRefId="events" /> <a
-		href="${events}"><fmt:message key="events.overview.title" />
-	</a> &gt;</li>
+		href="${events}"><fmt:message key="events.overview.title" /> </a>
+		&gt;</li>
 </ol>
 <c:choose>
 	<c:when test="${not empty editlink }">
@@ -94,7 +94,7 @@
 				</div>
 				<div class="row show-grid">
 					<div class="rowlabel">
-						<input type="submit" value="Save" style="color: blue;">
+						<input type="submit" class="btn btn-default btn-success" value="Save">
 					</div>
 
 				</div>
@@ -105,7 +105,16 @@
 		<form id="events" action="${actionUrl}" name="events" method="post">
 			<fieldset>
 				<legend>Edit Your own Events</legend>
-
+				<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="title">Title Of Event </label>
+						</div>
+						<div class="rowlabel">
+							<c:out value="${document.title}" />
+						</div>
+					</div>
+				</div>
 				<div class="row show-grid">
 					<div class="col-md-4">
 						<div class="rowlabel">
@@ -113,15 +122,16 @@
 						</div>
 						<div class="rowlabel">
 							<select id="deleteevent" name="deleteevent">
+							<option value="select">-Select-</option>
 								<option value="yes">Yes</option>
-								<option value="no">NO</option>
+								<option value="no">No</option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div class="row show-grid">
 					<div class="rowlabel">
-						<input type="submit" value="Save" style="color: blue;">
+						<input type="submit" class="btn btn-default btn-success" value="Save">
 					</div>
 
 				</div>
@@ -155,7 +165,8 @@
 				<span class="date"> <fmt:formatDate
 						value="${document.date.time}" pattern="MMM dd, yyyy" />&nbsp;-&nbsp;
 					<fmt:formatDate value="${document.endDate.time}"
-						pattern="MMM dd, yyyy" /> </span>
+						pattern="MMM dd, yyyy" />
+				</span>
 
 				<div class="calendar">
 					<span class="month"><fmt:formatDate

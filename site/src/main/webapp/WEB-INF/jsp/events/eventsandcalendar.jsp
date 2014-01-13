@@ -27,8 +27,7 @@
 <!-- content -->
 <div class="page" id="events">
 	<ol class="breadcrumb">
-		<li><fmt:message key="events.overview.location.label" />
-		</li>
+		<li><fmt:message key="events.overview.location.label" /></li>
 		<li><hst:link var="home" siteMapItemRefId="home" /> <a
 			href="${home}"><fmt:message key="events.overview.location.home" />
 		</a> &gt;</li>
@@ -38,13 +37,12 @@
 		<span class="col-md-8">
 			<h2>
 				<fmt:message key="events.overview.title" />
-				&nbsp;&nbsp;&nbsp;
 				<hst:link var="linknew" hippobean="${document}" />
 				<li><c:if test="${isVendor eq 'true' }">
-						<a href="${events}/newEvent">Create New</a>
-					</c:if>
-				</li>
-
+						<a class="btn btn-default navbar-btn navbar-right btn-primary"
+							href="${events}/newEvent"><small><i
+								class="glyphicon glyphicon-plus glyphicon glyphicon-white"></i>Create New</small></a>
+					</c:if></li>
 			</h2> <c:forEach var="document" items="${documents.items}">
 				<ul class="event-item<c:if test="${preview}"> editable</c:if>">
 					<hst:link var="link" hippobean="${document}" />
@@ -59,12 +57,16 @@
 							value="${document.date.time}" pattern="MMM" /></li>
 					<li class="text"><c:out value="${document.summary}" /></li>
 					<c:if test="${isVendor eq 'true' }">
-						<a href="${link}?edit=editEvent">edit</a> &nbsp;&nbsp;&nbsp;<a
-							href="${link}?delete=deleteLink">Delete</a>
+						<a class="btn btn-default btn-sm btn-success"
+							href="${link}?edit=editEvent"><small><i
+								class="glyphicon glyphicon-pencil"></i>Edit</small></a> &nbsp;&nbsp;&nbsp;<a
+							class="btn btn-default btn-sm btn-danger"
+							href="${link}?delete=deleteLink"><small><i
+								class="glyphicon glyphicon-trash"></i>Delete</small></a>
 					</c:if>
 				</ul>
-			</c:forEach> <hippo-gogreen:pagination pageableResult="${documents}" /> </span> <span
-			class="col-md-4"> <!-- right -->
+			</c:forEach> <hippo-gogreen:pagination pageableResult="${documents}" />
+		</span> <span class="col-md-4"> <!-- right -->
 			<div id="events">
 				<h2>
 					<fmt:message key="events.calendar.title" />
@@ -88,20 +90,13 @@
 							key="events.calendar.next" /> </a> </span>
 				<table id="calendar">
 					<tr>
-						<th><fmt:message key="events.calendar.monday" />
-						</th>
-						<th><fmt:message key="events.calendar.tuesday" />
-						</th>
-						<th><fmt:message key="events.calendar.wednesday" />
-						</th>
-						<th><fmt:message key="events.calendar.thursday" />
-						</th>
-						<th><fmt:message key="events.calendar.friday" />
-						</th>
-						<th><fmt:message key="events.calendar.saturday" />
-						</th>
-						<th><fmt:message key="events.calendar.sunday" />
-						</th>
+						<th><fmt:message key="events.calendar.monday" /></th>
+						<th><fmt:message key="events.calendar.tuesday" /></th>
+						<th><fmt:message key="events.calendar.wednesday" /></th>
+						<th><fmt:message key="events.calendar.thursday" /></th>
+						<th><fmt:message key="events.calendar.friday" /></th>
+						<th><fmt:message key="events.calendar.saturday" /></th>
+						<th><fmt:message key="events.calendar.sunday" /></th>
 					</tr>
 					<c:forEach var="week" items="${calendar.weeks}">
 						<tr>
@@ -123,30 +118,26 @@
 												<li class="top"></li>
 												<li class="date-title"><c:out value="${day.dayOfMonth}" />&nbsp;<c:out
 														value="${calendar.monthName}" />&nbsp;<c:out
-														value="${calendar.year}" />
-												</li>
+														value="${calendar.year}" /></li>
 												<c:forEach var="event" items="${day.events}" begin="0"
 													end="1">
 													<hst:link var="eventLink" hippobean="${event}" />
 													<li class="title"><a href="${eventLink}"><c:out
-																value="${event.title}" /> </a>
-													</li>
-													<li class="text"><c:out value="${event.summary}" />
-													</li>
+																value="${event.title}" /> </a></li>
+													<li class="text"><c:out value="${event.summary}" /></li>
 												</c:forEach>
 												<li class="bottom"></li>
-											</ul>
-										</td>
+											</ul></td>
 									</c:when>
 									<c:otherwise>
-										<td><c:out value="${day.dayOfMonth}" />
-										</td>
+										<td><c:out value="${day.dayOfMonth}" /></td>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 						</tr>
 					</c:forEach>
 				</table>
-			</div> </span>
+			</div>
+		</span>
 	</div>
 </div>

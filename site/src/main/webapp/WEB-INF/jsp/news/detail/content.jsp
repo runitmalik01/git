@@ -26,7 +26,7 @@
 	<c:when test="${not empty newsEditlink }">
 		<form id="news" action="${actionUrl}" name="news" method="post">
 			<fieldset>
-				<legend>Edit Your own News</legend>
+				<legend>Edit your News</legend>
 				<div class="row show-grid">
 					<div class="col-md-6">
 						<div class="rowlabel">
@@ -67,20 +67,31 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row show-grid">
 					<div class="rowlabel">
-						<input type="submit" value="Save" style="color: blue;">
+						<input type="submit" class="btn btn-default btn-success"
+							value="Save">
 					</div>
 				</div>
 			</fieldset>
 		</form>
 	</c:when>
 	<c:when test="${not empty newsDeletelink}">
-		<form id="newsDelete" action="${actionUrl}" name="newsDelete" method="post">
+		<form id="newsDelete" action="${actionUrl}" name="newsDelete"
+			method="post">
 			<fieldset>
-				<legend>Delete Your own News</legend>
-
+				<legend>Delete your News</legend>
+				<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="title">Title Of News </label>
+						</div>
+						<div class="rowlabel">
+							<c:out value="${document.title}" />
+						</div>
+					</div>
+				</div>
 				<div class="row show-grid">
 					<div class="col-md-4">
 						<div class="rowlabel">
@@ -88,7 +99,7 @@
 						</div>
 						<div class="rowlabel">
 							<select id="deletenews" name="deletenews">
-							<option value="select">-Select-</option>
+								<option value="select">-Select-</option>
 								<option value="yes">Yes</option>
 								<option value="no">No</option>
 							</select>
@@ -97,7 +108,8 @@
 				</div>
 				<div class="row show-grid">
 					<div class="rowlabel">
-						<input type="submit" value="Save" style="color: blue;">
+						<input type="submit" class="btn btn-default btn-success"
+							value="Save">
 					</div>
 				</div>
 			</fieldset>
@@ -132,7 +144,8 @@
 							<c:otherwise>
 								<fmt:message key="news.detail.content.nocomments" />
 							</c:otherwise>
-						</c:choose> </a> </span>
+						</c:choose>
+				</a> </span>
 
 
 				<div id="editable_cont" class="inline-editor-editable-container">
@@ -152,8 +165,7 @@
 					<ul>
 						<c:forEach items="${document.attachments}" var="asset">
 							<li><a href="<hst:link hippobean="${asset}"/>"><c:out
-										value="${asset.name}" /> </a>
-							</li>
+										value="${asset.name}" /> </a></li>
 						</c:forEach>
 					</ul>
 				</c:if>
