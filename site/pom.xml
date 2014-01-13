@@ -347,6 +347,12 @@
 		<systemPath>${basedir}/../3rdparty/citruspay/HMACGenerator-1.0.jar</systemPath>
 	</dependency>
 	 -->
+	 <!-- ICICI -->
+	<dependency>
+		<groupId>cryptix</groupId>
+		<artifactId>cryptix</artifactId>
+		<version>3.2.0</version>
+	</dependency>
   </dependencies>
 
   <build>

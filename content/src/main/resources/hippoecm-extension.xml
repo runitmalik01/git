@@ -525,7 +525,7 @@
 			<sv:value>10110.2</sv:value>
 		</sv:property>
 	</sv:node>
-	<sv:node sv:name="mootlywcm-hst-pages">
+	<sv:node sv:name="mootlywcm-hst-pages-common">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
@@ -533,13 +533,13 @@
 			<sv:value>hst-hst/hst-configurations/mootlywcm/pages.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hst:hst/hst:configurations/mootlywcm</sv:value>
+			<sv:value>/hst:hst/hst:configurations/common</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>10130.0</sv:value>
 		</sv:property>
 	</sv:node>
-	<sv:node sv:name="mootlywcm-hst-sitemap">
+	<sv:node sv:name="mootlywcm-hst-sitemap-common">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
@@ -547,13 +547,111 @@
 			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hst:hst/hst:configurations/mootlywcm</sv:value>
+			<sv:value>/hst:hst/hst:configurations/common</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>10130.1</sv:value>
 		</sv:property>
 	</sv:node>
-	<sv:node sv:name="mootlywcm-hst-sitemenus">
+	<sv:node sv:name="mootlywcm-hst-sitemap-common-member">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap/member/member.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hst:hst/hst:configurations/common/hst:sitemap</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>10130.12</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-hst-sitemap-common-member-itreturn">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap/member/itreturn.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hst:hst/hst:configurations/common/hst:sitemap/member</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>10130.13</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-hst-sitemap-common-vendor">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap/vendor/vendor.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hst:hst/hst:configurations/common/hst:sitemap</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>10130.14</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-hst-sitemap-common-vendor-itreturn">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap/vendor/itreturn.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hst:hst/hst:configurations/common/hst:sitemap/vendor</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>10130.15</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-hst-sitemap-common-vendor-document-editor">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap/vendor/document-editor.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hst:hst/hst:configurations/common/hst:sitemap/vendor</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>10130.1</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-hst-sitemap-common-vendor-helpdesk">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap/vendor/helpdesk.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hst:hst/hst:configurations/common/hst:sitemap/vendor</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>10130.16</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-hst-sitemap-common-vendor-websitebuilder">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hippo:initializeitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentresource" sv:type="String">
+			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemap/vendor/websitebuilder.xml</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:contentroot" sv:type="String">
+			<sv:value>/hst:hst/hst:configurations/common/hst:sitemap/vendor</sv:value>
+		</sv:property>
+		<sv:property sv:name="hippo:sequence" sv:type="Double">
+			<sv:value>10130.17</sv:value>
+		</sv:property>
+	</sv:node>
+	<sv:node sv:name="mootlywcm-hst-common-sitemenus">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hippo:initializeitem</sv:value>
 		</sv:property>
@@ -561,7 +659,7 @@
 			<sv:value>hst-hst/hst-configurations/mootlywcm/sitemenus.xml</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:contentroot" sv:type="String">
-			<sv:value>/hst:hst/hst:configurations/mootlywcm</sv:value>
+			<sv:value>/hst:hst/hst:configurations/common</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
 			<sv:value>10130.2</sv:value>
@@ -1852,7 +1950,7 @@
 			<sv:value>/content/documents/mootlywcm/resellers/w4india</sv:value>
 		</sv:property>
 		<sv:property sv:name="hippo:sequence" sv:type="Double">
-			<sv:value>30032.514</sv:value>
+			<sv:value>30032.515</sv:value>
 		</sv:property>
 	</sv:node>
 	<!--  /Reseller - Credit Safe India  -->
