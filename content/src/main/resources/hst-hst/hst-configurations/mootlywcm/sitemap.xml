@@ -1172,7 +1172,7 @@
     <sv:value>news</sv:value>
   </sv:property>
   <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-    <sv:value>news</sv:value>
+    <sv:value>resellers</sv:value>
   </sv:property>
   <sv:node sv:name="tags">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1184,20 +1184,6 @@
     <sv:property sv:name="hst:relativecontentpath" sv:type="String">
       <sv:value>tagclouds/newstags</sv:value>
     </sv:property>
-    <sv:node sv:name="_any_">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:sitemapitem</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>acb847a7-4491-493e-a57b-e0d1bc497464</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
-        <sv:value>hst:pages/news-overview</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:relativecontentpath" sv:type="String">
-        <sv:value>${parent}/newstags/${1}</sv:value>
-      </sv:property>
-    </sv:node>
   </sv:node>
   <sv:node sv:name="_any_.html">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1208,12 +1194,6 @@
     </sv:property>
     <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
       <sv:value>hst:pages/news-detail</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-      <sv:value>bannerlocation</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-      <sv:value>common/banners/sustainable-wood-ipod-sound-system</sv:value>
     </sv:property>
     <sv:property sv:name="hst:relativecontentpath" sv:type="String">
       <sv:value>${parent}/${1}</sv:value>
@@ -1247,5 +1227,17 @@
       </sv:property>
     </sv:node>
   </sv:node>
-</sv:node><!-- end News -->
+  <sv:node sv:name="newNews">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>124cb849-46a9-4eba-bf54-def600e7131b</sv:value>
+    </sv:property>
+    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+      <sv:value>hst:pages/news</sv:value>
+    </sv:property>
+  </sv:node>
+</sv:node>
+<!-- end News -->
 </sv:node>
