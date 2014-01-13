@@ -5628,7 +5628,7 @@
                 <sv:value/>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -5833,7 +5833,7 @@
                 <sv:value/>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -6038,7 +6038,7 @@
                 <sv:value/>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -6243,7 +6243,7 @@
                 <sv:value/>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -6502,7 +6502,7 @@
                 <sv:value>Cost is depend upon the select of file mode</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -7016,7 +7016,7 @@
 								</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -7268,7 +7268,7 @@
 									</sv:value>
                 </sv:property>
                 <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                  <sv:value>e File</sv:value>
+                  <sv:value>DIY</sv:value>
                 </sv:property>
               </sv:node>
               <sv:node sv:name="mootlywcm:costmodel">
@@ -7508,7 +7508,7 @@
 									</sv:value>
                 </sv:property>
                 <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                  <sv:value>e File</sv:value>
+                  <sv:value>DIY</sv:value>
                 </sv:property>
               </sv:node>
               <sv:node sv:name="mootlywcm:costmodel">
@@ -7754,7 +7754,7 @@
 									</sv:value>
                 </sv:property>
                 <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                  <sv:value>e File</sv:value>
+                  <sv:value>DIY</sv:value>
                 </sv:property>
               </sv:node>
               <sv:node sv:name="mootlywcm:costmodel">
@@ -8013,7 +8013,7 @@
 								</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -8282,7 +8282,7 @@
 								</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -8551,7 +8551,7 @@
 								</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -8835,7 +8835,7 @@
 								</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -9104,7 +9104,7 @@
 								</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
@@ -9386,7 +9386,7 @@
 								</sv:value>
               </sv:property>
               <sv:property sv:name="mootlywcm:offeringMode" sv:type="String">
-                <sv:value>e File</sv:value>
+                <sv:value>DIY</sv:value>
               </sv:property>
             </sv:node>
             <sv:node sv:name="mootlywcm:costmodel">
