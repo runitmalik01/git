@@ -12,7 +12,7 @@
 <div class="page">
 	<form id="news" action="${actionUrl}" name="news" method="post">
 		<fieldset>
-			<legend>Add Your own News</legend>
+			<legend>Add your News</legend>
 
 			<div class="row show-grid">
 				<div class="col-md-5">
@@ -47,7 +47,7 @@
 			</div>
 			<div class="row show-grid">
 				<div class="rowlabel">
-					<input type="submit" value="Save" style="color: blue;">
+					<input type="submit" class="btn btn-default btn-success" value="Save">
 				</div>
 
 			</div>

@@ -5,9 +5,10 @@
 <c:set var="newsoverviewtitle">
 	<fmt:message key="news.overview.content.title" />
 </c:set>
+<hst:link var="newslink" siteMapItemRefId="news" />
 <hippo-gogreen:title title="${newsoverviewtitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
- <hst:link var="newslink" siteMapItemRefId="news" /> 
+
 
 
 <div class="page" id="news">
@@ -21,13 +22,13 @@
 
 		<div class="row show-grid">
 			<span class="col-md-8">
-				<h2>	<fmt:message key="news.overview.content.title" />
-					&nbsp;&nbsp;&nbsp;
-					<hst:link var="linknew" hippobean="${newsitem}" />
+				<li><fmt:message key="news.overview.content.title" />
+					&nbsp;&nbsp;&nbsp; <hst:link var="linknew" hippobean="${newsitem}" />
 					<c:if test="${isVendor eq 'true' }">
-							<a href="${newslink}/newNews">Create New News</a>
-						</c:if> 
-						</h2>
+						<a class="btn btn-default navbar-btn navbar-right btn-primary"
+							href="${newslink}/newNews"><small><i
+								class="glyphicon glyphicon-plus"></i>Create New</small></a>
+					</c:if></li>
 			</span>
 		</div>
 	</c:if>
@@ -39,18 +40,24 @@
 					<hst:link var="src"
 						hippobean="${newsitem.firstImage.smallThumbnail}" />
 					<a href="${link}"><img src="${src}"
-						alt="${fn:escapeXml(newsitem.firstImage.alt)}" />
-					</a>
+						alt="${fn:escapeXml(newsitem.firstImage.alt)}" /> </a>
 				</c:if></li>
 			<li class="title"><hst:cmseditlink hippobean="${newsitem}"
 					var="cmsEditLink" /> <a href="${link}"><c:out
 						value="${newsitem.title}" /> </a>
-			</li>
-
-			<li class="date"><a href="${link}"><fmt:formatDate
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${link}"><fmt:formatDate
 						value="${newsitem.date.time}" type="date" pattern="MMM d, yyyy" />
-			</a> |</li>
-			<li class="comments"><a href="${link}"> <c:choose>
+			</a>
+			<li class="text"><c:out value="${newsitem.summary}" /></li>
+			<li class="comments"><c:if test="${isVendor eq 'true' }">
+					<a class="btn btn-default btn-sm btn-success"
+						href="${link}?newsEdit=newsEditlink"><small><i
+							class="glyphicon glyphicon-pencil"></i>Edit</small></a> &nbsp;&nbsp;&nbsp;<a
+						class="btn btn-default btn-sm btn-danger"
+						href="${link}?newsDelete=newsDeletelink"><small><i
+							class="glyphicon glyphicon-trash"></i>Delete</small></a>
+				</c:if> &nbsp;&nbsp;&nbsp;<a class="btn btn-default btn-sm btn-info"
+				href="${link}"> <c:choose>
 						<c:when test="${commentsCountList[status.index] > 0}">
 							<c:out value="${commentsCountList[status.index]} " />
 							<fmt:message key="news.overview.content.commentsfound" />
@@ -61,13 +68,9 @@
 						<c:otherwise>
 							<fmt:message key="news.overview.content.nocomments" />
 						</c:otherwise>
-					</c:choose> </a></li>
-			<li class="text"><c:out value="${newsitem.summary}" /></li>
-			<c:if test="${isVendor eq 'true' }">
-				<a href="${link}?newsEdit=newsEditlink">Edit</a> &nbsp;&nbsp;&nbsp;<a
-					href="${link}?newsDelete=newsDeletelink">Delete</a>
-			</c:if>
-			</ul>
+					</c:choose>
+			</a></li>
+		</ul>
 	</c:forEach>
 	<c:choose>
 		<c:when test="${news.total eq 0}">
