@@ -41,16 +41,12 @@
 					</div>
 					<div class="rowlabel">
 						<textarea class="field col-md-12" id="description" name="description"></textarea>
+						<w4india:ckeditor_inline textAreaId="description"/>
 
 					</div>
 				</div>
 			</div>
-			<div class="row show-grid">
-				<div class="rowlabel">
-					<input type="submit" class="btn btn-default btn-success" value="Save">
-				</div>
-
-			</div>
+			<input type="submit" class="btn btn-default btn-success" value="Save">
 		</fieldset>
 	</form>
 </div>

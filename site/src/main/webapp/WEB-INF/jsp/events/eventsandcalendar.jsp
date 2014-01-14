@@ -8,7 +8,8 @@
 </c:set>
 <hippo-gogreen:title title="${overviewtitle}" />
 <hst:link var="events" siteMapItemRefId="events" />
-<!-- content -->
+
+<!-- Events Overview -->
 <div class="page" id="events">
 	<ol class="breadcrumb">
 		<li><fmt:message key="events.overview.location.label" /></li>
