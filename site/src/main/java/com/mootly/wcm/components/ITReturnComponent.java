@@ -246,6 +246,15 @@ public class ITReturnComponent extends BaseComponent {
 						request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
 						request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
 					}
+					//check if this action is not restricted
+					if (hippoBeanValidationResponse.getRestrictedActions() != null && getITRInitData(request).getPageAction() != null &&  hippoBeanValidationResponse.getRestrictedActions().contains(getITRInitData(request).getPageAction()) ) {
+						response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
+						return;
+					}
+					if (hippoBeanValidationResponse.getRestrictedComponents() != null &&  hippoBeanValidationResponse.getRestrictedComponents().contains(getClass()) ) {
+						response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
+						return;
+					}
 				}
 			}			
 			catch (Exception ex) {

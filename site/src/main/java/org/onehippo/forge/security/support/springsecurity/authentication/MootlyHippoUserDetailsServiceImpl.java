@@ -1,8 +1,10 @@
 package org.onehippo.forge.security.support.springsecurity.authentication;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.jcr.Credentials;
@@ -247,22 +249,22 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	      
 
 	      
-	      boolean isVendor = false;
+	      //boolean isVendor = false;
+	      List<String> roles = null;
 	      try {
 	    	  if (userNode.hasProperty("mootlywcm:roles")) {
 	    		   Property theProperty = userNode.getProperty("mootlywcm:roles");
 	    		   if (theProperty.isMultiple()) {
+	    			   roles = new ArrayList<String>();
 	    			   Value[] values =  theProperty.getValues();
 	    			   for (Value aValue:values) {
-	    				   if ( aValue.getString().equalsIgnoreCase("VENDOR")) {
-	    					   isVendor = true;
-	    					   break;
-	    				   }
+	    				   roles.add(aValue.getString());
 	    			   }
 	    		   }
 	    		   else {
-	    			   if ( theProperty.getString() != null && "VENDOR".equalsIgnoreCase(theProperty.getString()) ) {
-	    				   isVendor = true;
+	    			   if ( theProperty.getString() != null  ) {
+	    				   roles = new ArrayList<String>();
+	    				   roles.add(theProperty.getString());
 	    			   }
 	    		   }
 	    	  }		      
@@ -273,7 +275,7 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	      boolean accountNonExpired = true;
 	      boolean credentialsNonExpired = true;
 	      boolean accountNonLocked = true;
-	      Collection<? extends GrantedAuthority> authorities = getGrantedAuthoritiesOfUser(username,isVendor,mountIdentifier);
+	      Collection<? extends GrantedAuthority> authorities = getGrantedAuthoritiesOfUser(username,mountIdentifier,roles);
 
 	      user = new User(username, password != null ? password : passwordProp, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	    } catch (RepositoryException e) {
@@ -290,15 +292,19 @@ public class MootlyHippoUserDetailsServiceImpl implements MootlyUserDetailsServi
 	    return user;
 	  }
 
-	  protected Collection<? extends GrantedAuthority> getGrantedAuthoritiesOfUser(String username,boolean isVendor,String mountIdentifier) throws LoginException, RepositoryException {
+	  protected Collection<? extends GrantedAuthority> getGrantedAuthoritiesOfUser(String username,String mountIdentifier,List<String> roles) throws LoginException, RepositoryException {
 	    Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 	    //Amit Patkar for now lets give member and everybody to all logged in users
 	    //lets check if this user 	    
 	    authorities.add(new GrantedAuthorityImpl("ROLE_everybody"));
 	    authorities.add(new GrantedAuthorityImpl("ROLE_member"));
-	    if (isVendor)authorities.add(new GrantedAuthorityImpl("ROLE_vendor")); 
+	    if (roles != null && roles.size() > 0 ) {
+	    	for (String aRole:roles) {
+	    		authorities.add(new GrantedAuthorityImpl("ROLE_" + aRole)); 
+	    	}
+	    }
 	    if (mountIdentifier != null) {
-	    	if (isVendor)authorities.add(new GrantedAuthorityImpl("ROLE_" + mountIdentifier)); 
+	    	authorities.add(new GrantedAuthorityImpl("ROLE_" + mountIdentifier)); 
 	    }
 	    /*
 	    try {
