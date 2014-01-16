@@ -21,7 +21,16 @@
 				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
 				<c:out value="${screenConfigDocument.screenHeading}" />
 			</c:when>
-			<c:otherwise>Pension Income</c:otherwise>
+			<c:otherwise><!-- Pension Income -->
+			<div class="page-header">
+				<h2>
+					<b>Pension Income</b>
+				</h2>
+				<small>Enter details of your previous employer from Form 16 e.g. PAN,
+					TAN, Address, etc. These details can be found
+					in Form-16 issued to you by your employer.</small>
+			</div>
+			</c:otherwise>
 		</c:choose>
 	</h3>
 	<c:if test="${not empty formMap}">
@@ -35,13 +44,15 @@
 	<c:choose>
 		<c:when
 			test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD') || pageAction == 'NEW_CHILD'}">
-			<h5>
+			<%-- <h5>
 				<small><fmt:message key="member.employe.message" /> </small>
-			</h5>
+			</h5> --%>
 			<form id="frmdataSlryInc" action="${actionUrl}" name="salaryincome"
 				method="post">
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Employment</legend>
+				<legend style="font-style: italic; color: blue;">Employer
+						Details </legend>
+					<!-- <legend style="color: green; font-weight: bold;">Employment</legend> -->
 					<div class="row show-grid">
 						<div class="col-md-3">
 							<div class="rowlabel">
@@ -58,7 +69,7 @@
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Employer</legend>
+					<legend style="font-style: italic; color: blue;">Employer</legend>
 					<div class="row show-grid">
 						<div class="col-md-4">
 							<div class="rowlabel">
@@ -122,7 +133,7 @@
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Employer Address</legend>
+					<legend style="font-style: italic; color: blue;">Employer Address</legend>
 					<div class="row show-grid">
 						<div class="col-md-3">
 							<div class="rowlabel">
@@ -204,7 +215,7 @@
 					</div>
 				</fieldset>--%>
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Compensation and Taxation</legend>
+					<legend style="font-style: italic; color: blue;">Compensation and Taxation</legend>
 					<div class="row show-grid">
 					    <div class="col-md-4">
 					         <div class = "rowlabel">
@@ -233,8 +244,8 @@
 					<div class="col-md-4 col-md-offset-8 decimal">
 						<a
 							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"
-							class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a id="myModalHrefSlryInc"
-							role="button" class="btn btn-default btn-success" style="color: black">Save</a>
+							class="btn btn-default btn-danger">Cancel</a>&nbsp; <a id="myModalHrefSlryInc"
+							role="button" class="btn btn-default btn-success">Save</a>
 					</div>
 				</div>
 			</form>
@@ -280,7 +291,9 @@
 	</c:if>
 	<br/><br/>
 <c:if test="${finStatus eq 'H' }">
-	<h1 style="font-style: italic;color: red" align="center"><b>Sorry</b> This service is not applicable in case of 'HUF'</h1></c:if>
+	<h4 class="alert alert-danger">
+		<b>Sorry!!!</b> This service is not applicable for tax payee having filing status as 'HUF'.
+	</h4></c:if>
 
 </div>
 </div>
