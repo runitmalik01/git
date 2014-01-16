@@ -33,6 +33,10 @@ public enum PaymentType {
 		return PaymentType.requiresGateway(this);
 	}
 	
+	public boolean getRequiresIntermediateFormPost() {
+		return ( (PaymentType.requiresGateway(this) && this != NET_BANKING) ? true : false);
+	}
+	
 	public static boolean requiresGateway(PaymentType paymentType) {
 		if (paymentType == CREDIT_CARD || paymentType == DEBIT_CARD || paymentType == NET_BANKING) {
 			return true;
@@ -41,4 +45,5 @@ public enum PaymentType {
 			return false;
 		}
 	}
+	
 }

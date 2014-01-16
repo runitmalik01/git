@@ -22,6 +22,30 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 		this.isSavedByVendor = isSavedByVendor;
 		this.isGatewayForm = isGatewayForm;
 	}
+	
+	public final PaymentType getPaymentType() {
+		return paymentType;
+	}
+
+
+
+	public final HstRequest getHstRequest() {
+		return hstRequest;
+	}
+
+
+
+	public final boolean isSavedByVendor() {
+		return isSavedByVendor;
+	}
+
+
+
+	public final boolean isGatewayForm() {
+		return isGatewayForm;
+	}
+
+
 
 	public final String getStrPaymentTransactionId() {
 		return strPaymentTransactionId;
@@ -59,14 +83,15 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 					//	System.out.println("CASH:::"+invoicePaymentDetail.getPaymentAmount());
 
 				}
-				if(invoicePaymentDetail.getPaymentType() == PaymentType.CHECK){
+				else if(invoicePaymentDetail.getPaymentType() == PaymentType.CHECK){
 					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getCheckAmount());
 					//System.out.println("CHEQUE:::"+invoicePaymentDetail.getPaymentAmount());
 				}
-				if(invoicePaymentDetail.getPaymentType() == PaymentType.RTGS){
+				else if(invoicePaymentDetail.getPaymentType() == PaymentType.RTGS){
 					invoicePaymentDetail.setPaymentAmount(invoicePaymentDetail.getRtgsAmount());
 					//	System.out.println("RTGS:::"+invoicePaymentDetail.getPaymentAmount());
 				}
+				
 				if (isSavedByVendor) {
 					if (invoicePaymentDetail.getVendor_txnAmount() != null) {
 						invoicePaymentDetail.setTxnAmount(invoicePaymentDetail.getVendor_txnAmount());
@@ -76,7 +101,7 @@ public class InvoicePaymentDetailBeanHandler extends GenericLifeCycleHandler imp
 					}
 				}
 				//let the amount due be the paymentAmount
-				if (isGatewayForm && invoicePaymentDetail.getPaymentType().getRequiresGateway()) {
+				if (invoicePaymentDetail.getPaymentType().getRequiresGateway()) {
 					invoicePaymentDetail.setPaymentAmount( invoiceDocument.getAmountDue() );
 				}
 				//invoicePaymentDetail.setTxnAmount(invoiceDocument.getAmountDue());				

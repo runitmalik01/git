@@ -34,6 +34,22 @@ public class ValidateForm16Document implements HippoBeanValidator{
 							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.employeeCategory");
 							response.addError(hippoBeanValidationError);
 						}
+						if ( formSixteenDetail.getAddressdetail() ==  null || "".equals(formSixteenDetail.getAddressdetail()) ) {
+							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.addressdetail");
+							response.addError(hippoBeanValidationError);
+						}
+						if ( formSixteenDetail.getCity() ==  null || "".equals(formSixteenDetail.getCity()) ) {
+							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.city");
+							response.addError(hippoBeanValidationError);
+						}
+						if ( formSixteenDetail.getState() ==  null || "".equals(formSixteenDetail.getState()) ) {
+							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.state");
+							response.addError(hippoBeanValidationError);
+						}
+						if ( formSixteenDetail.getPin() ==  null || "".equals(formSixteenDetail.getPin()) ) {
+							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.pin");
+							response.addError(hippoBeanValidationError);
+						}
 					}
 				}
 				/*

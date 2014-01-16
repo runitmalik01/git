@@ -19,15 +19,6 @@
     <context:annotation-config>
 		<context:component-scan base-package="com.mootly.wcm"></context:component-scan>		
 	</context:annotation-config>
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-	    <property name="locations">
-	    	<list>
-	    		<value>classpath:DITConnectorContext.properties</value>
-	    		<value>classpath:CitrusIntegrationContext.properties</value>
-	    	</list>	        	        
-	    </property>
-	</bean>
-	
 	<bean id="SOAPNameSpaceContext" class="com.mootly.wcm.services.ditws.soap.SOAPNameSpaceContext">
 		<constructor-arg index="0">
 			<map>

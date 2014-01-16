@@ -33,7 +33,8 @@
                     <!-- commented out a major change no need for now for this -->
                    <!--  <ref bean="itrValidationForSectionAndDueDate"/>  -->
                    <ref bean="validateForm16Document"/>      
-                   <ref bean="validateEfileStatus"/>              
+                   <ref bean="validateEfileStatus"/>
+                   <bean class="com.mootly.wcm.validation.impl.itr.ValidateMemberPersonalInformationDocument"/>           
                 </list>
       </constructor-arg>
   </bean>

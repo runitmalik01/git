@@ -5,4 +5,5 @@ import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 
 public interface Enquiry extends PaymentService {
 	TxnEnquiryResponse doEnquiry(String transactionId);
+	TxnEnquiryResponse doEnquiryForCreditAndDebitCard(String transactionId) throws Exception;
 }

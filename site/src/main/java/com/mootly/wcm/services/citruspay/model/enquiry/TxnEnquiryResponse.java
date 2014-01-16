@@ -33,15 +33,21 @@ import com.mootly.wcm.services.citruspay.model.XMLObject;
 @XmlRootElement( name = "txnEnquiryResponse" )
 public class TxnEnquiryResponse extends XMLObject {
 	  @XmlElement(name = "enquiryResponse")
-	  protected List<EnquiryResponse> enquiryResponse;
+	  protected List<EnquiryResponse> enquiryResponses;
 	  
 	  public List<EnquiryResponse> getEnquiryResponse() {
-	        if (enquiryResponse == null) {
-	        	enquiryResponse = new ArrayList<EnquiryResponse>();
+	        if (enquiryResponses == null) {
+	        	enquiryResponses = new ArrayList<EnquiryResponse>();
 	        }
-	        return this.enquiryResponse;
+	        return this.enquiryResponses;
 	    }
-	  
+	
+	  public void addEnquiryResponse(EnquiryResponse enquiryResponse) {
+        if (enquiryResponses == null) {
+        	enquiryResponses = new ArrayList<EnquiryResponse>();
+        }
+        enquiryResponses.add(enquiryResponse);
+	  }
 	  @Override
 	public String toString() {
 		// TODO Auto-generated method stub

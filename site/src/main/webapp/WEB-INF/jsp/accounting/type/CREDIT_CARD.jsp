@@ -257,6 +257,7 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 		</c:if>
 </c:otherwise>
 </c:choose>
+<%--
 <res:client-validation screenConfigurationDocumentName="credit_card" formId="payment_${fn:toLowerCase(paymentType)}" formSubmitButtonId="payment_submit"></res:client-validation>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
@@ -272,3 +273,4 @@ request.setAttribute("SavCardType", CARD_TYPE.values());
 	  });
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+--%>
