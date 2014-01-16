@@ -230,7 +230,16 @@ public final class ITReturnComponentHelper {
 		if (invoiceDocumentInSession == null) return null;
 		for (InvoicePaymentDetail invoicePaymentDetail:invoiceDocumentInSession.getInvoicePaymentDetailList()) {
 			if ( invoicePaymentDetail.getPaymentType() != null &&  (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING || invoicePaymentDetail.getPaymentType() == PaymentType.CREDIT_CARD || invoicePaymentDetail.getPaymentType() == PaymentType.DEBIT_CARD)) {
-				TxnEnquiryResponse theEnquiryOutput = enquiry.doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
+				TxnEnquiryResponse theEnquiryOutput = null;
+				if (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING) {
+					theEnquiryOutput = enquiry.doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
+				} else {
+					try {
+						theEnquiryOutput = enquiry.doEnquiryForCreditAndDebitCard(invoicePaymentDetail.getPaymentTransactionId());
+					}catch (Exception e) {
+						log.error("Error in enquiry",e);
+					}
+				}
 				if (theEnquiryOutput != null) {
 					if (log.isInfoEnabled()) {
 						log.info("Transaction Id:" + invoicePaymentDetail.getPaymentTransactionId());
@@ -245,7 +254,12 @@ public final class ITReturnComponentHelper {
 								invoicePaymentDetail.setRespMsg(enquiryResponse.getRespMsg());
 								invoicePaymentDetail.setRespCode(enquiryResponse.getRespCode());
 								if (enquiryResponse.getPgTxnId() != null) invoicePaymentDetail.setPgTxnId(enquiryResponse.getPgTxnId());
-								invoicePaymentDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
+								if (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING) {
+									invoicePaymentDetail.setTxnAmount(Double.valueOf(enquiryResponse.getAmount()));
+								}
+								else {
+									invoicePaymentDetail.setTxnAmount(invoicePaymentDetail.getPaymentAmount()); //this is because the PAYSEAL is not sending the actual tRansaction amount
+								}
 								invoicePaymentDetail.setRrn(enquiryResponse.getRRN());
 								invoicePaymentDetail.setAuthIdCode(enquiryResponse.getAuthIdCode());
 								invoicePaymentDetail.setTxnDateTime(enquiryResponse.getTxnDateTime());

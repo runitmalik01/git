@@ -71,6 +71,9 @@
 	</bean>
     <bean id="enquiryService" class="com.mootly.wcm.services.citruspay.impl.EnquiryImpl" parent="paymentServiceXML">
         <property name="httpConnectionService" ref="httpConnectionService"/>
-        <property name="endPointURL_Enquiry"><value>${endPointURL_Enquiry}</value></property>     
+        <property name="endPointURL_Enquiry"><value>${endPointURL_Enquiry}</value></property>   
+        <property name="paysealMerchantId" value="${paysealMerchantId}"/>  
+        <property name="paysealNoResultMessage" value="${paysealNoResultMessage}"/>  
+        <property name="paysealNoResultCode" value="${paysealNoResultCode}"/>  
     </bean>
 </beans>

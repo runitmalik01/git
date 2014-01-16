@@ -136,6 +136,9 @@ public class FormMapHelper {
 			        if (propertyName == null || "".equals(propertyName.trim())) {
 			        	propertyName = fieldName;
 			        }
+			        if (fieldName.equals("redirectionTxnId")) {
+			        	System.out.println("ASDAD");
+			        }
 			        //String theValue = (String) directFieldAccessor.getPropertyValue(propertyName);			        
 			        org.hippoecm.hst.component.support.forms.FormField theFormField =  formMap.getField(fieldName);
 			        if ( theFormField != null && theFormField.getValue() != null) {

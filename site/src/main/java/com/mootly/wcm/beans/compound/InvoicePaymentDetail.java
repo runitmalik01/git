@@ -102,6 +102,34 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	private String rtgsTime;
 	private String rtgsTransNumber;
 	
+	//these fields are specifically from the ICICI Gateway lets store all of them as is
+	
+	String strRespCode;
+	String strRespMessage;
+	String strRedirectionTxnId;
+	String strTxnId;
+	String strEPGTxnId;
+	String strAuthIdCode;
+	String strRRN;
+	String strTxnType;
+	String strTxnDateTime;
+	String strCVRespCode;
+	String strCookie;
+	String strFDMSResult;
+	String strFDMSScore;
+	String strReserveFld1;
+	String strReserveFld2;
+	String strReserveFld3;
+	String strReserveFld4;
+	String strReserveFld5;
+	String strReserveFld6;
+	String strReserveFld7;
+	String strReserveFld8;
+	String strReserveFld9;
+	String strReserveFld10;
+	
+	
+	
 	Double vendor_txnAmount;		
 	
 	PaymentVerificationStatus paymentVerificationStatus; 
@@ -445,6 +473,168 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 		if (vendor_txnAmount == null) vendor_txnAmount = 0.0D;
 		return vendor_txnAmount;
 	}
+	
+	
+	@FormField(name="strRespCode")
+	@NodeBinder(nodePropertyName="mootlywcm:strRespCode")
+	public String getStrRespCode() {
+		if (strRespCode == null) strRespCode = getProperty("mootlywcm:strRespCode");
+		return strRespCode;
+	}
+
+	@FormField(name="strRespMessage")
+	@NodeBinder(nodePropertyName="mootlywcm:strRespMessage")
+	public String getStrRespMessage() {
+		if (strRespMessage == null) strRespMessage = getProperty("mootlywcm:strRespMessage");
+		return strRespMessage;
+	}
+
+	@FormField(name="strRedirectionTxnId")
+	@NodeBinder(nodePropertyName="mootlywcm:strRedirectionTxnId")
+	public String getStrRedirectionTxnId() {
+		if (strRedirectionTxnId == null) strRespCode = getProperty("mootlywcm:strRedirectionTxnId");
+		return strRedirectionTxnId;
+	}
+
+	@FormField(name="strTxnId")
+	@NodeBinder(nodePropertyName="mootlywcm:strTxnId")
+	public String getStrTxnId() {
+		if (strTxnId == null) strTxnId = getProperty("mootlywcm:strTxnId");
+		return strTxnId;
+	}
+
+	@FormField(name="strEPGTxnId")
+	@NodeBinder(nodePropertyName="mootlywcm:strEPGTxnId")
+	public String getStrEPGTxnId() {
+		if (strEPGTxnId == null) strEPGTxnId = getProperty("mootlywcm:strEPGTxnId");
+		return strEPGTxnId;
+	}
+
+	@FormField(name="strAuthIdCode")
+	@NodeBinder(nodePropertyName="mootlywcm:strAuthIdCode")
+	public String getStrAuthIdCode() {
+		if (strAuthIdCode == null) strAuthIdCode = getProperty("mootlywcm:strAuthIdCode");
+		return strAuthIdCode;
+	}
+
+	@FormField(name="strRRN")
+	@NodeBinder(nodePropertyName="mootlywcm:strRRN")
+	public String getStrRRN() {
+		if (strRRN == null) strRRN = getProperty("mootlywcm:strRRN");
+		return strRRN;
+	}
+
+	@FormField(name="strTxnType")
+	@NodeBinder(nodePropertyName="mootlywcm:strTxnType")
+	public String getStrTxnType() {
+		if (strTxnType == null) strTxnType = getProperty("mootlywcm:strTxnType");
+		return strTxnType;
+	}
+
+	@FormField(name="strTxnDateTime")
+	@NodeBinder(nodePropertyName="mootlywcm:strTxnDateTime")
+	public String getStrTxnDateTime() {
+		if (strTxnDateTime == null) strTxnDateTime = getProperty("mootlywcm:strTxnDateTime");
+		return strTxnDateTime;
+	}
+
+	@FormField(name="strCVRespCode")
+	@NodeBinder(nodePropertyName="mootlywcm:strCVRespCode")
+	public String getStrCVRespCode() {
+		if (strCVRespCode == null) strCVRespCode = getProperty("mootlywcm:strCVRespCode");
+		return strCVRespCode;
+	}
+
+	@FormField(name="strCookie")
+	@NodeBinder(nodePropertyName="mootlywcm:strCookie")
+	public String getStrCookie() {
+		if (strCookie == null) strCookie = getProperty("mootlywcm:strCookie");
+		return strCookie;
+	}
+
+	@FormField(name="strFDMSResult")
+	@NodeBinder(nodePropertyName="mootlywcm:strFDMSResult")
+	public String getStrFDMSResult() {
+		if (strFDMSResult == null) strFDMSResult = getProperty("mootlywcm:strFDMSResult");
+		return strFDMSResult;
+	}
+
+	@FormField(name="strFDMSScore")
+	@NodeBinder(nodePropertyName="mootlywcm:strFDMSScore")
+	public String getStrFDMSScore() {
+		if (strFDMSScore == null) strFDMSScore = getProperty("mootlywcm:strFDMSScore");
+		return strFDMSScore;
+	}
+
+	@FormField(name="strReserveFld1")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld1")
+	public String getStrReserveFld1() {
+		if (strReserveFld1 == null) strReserveFld1 = getProperty("mootlywcm:strReserveFld1");
+		return strReserveFld1;
+	}
+
+	@FormField(name="strReserveFld2")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld2")
+	public String getStrReserveFld2() {
+		if (strReserveFld2 == null) strReserveFld2 = getProperty("mootlywcm:strReserveFld2");
+		return strReserveFld2;
+	}
+
+	@FormField(name="strReserveFld3")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld3")
+	public String getStrReserveFld3() {
+		if (strReserveFld3 == null) strReserveFld3 = getProperty("mootlywcm:strReserveFld3");
+		return strReserveFld3;
+	}
+
+	@FormField(name="strReserveFld4")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld4")
+	public String getStrReserveFld4() {
+		if (strReserveFld4 == null) strReserveFld4 = getProperty("mootlywcm:strReserveFld4");
+		return strReserveFld4;
+	}
+
+	@FormField(name="strReserveFld5")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld5")
+	public String getStrReserveFld5() {
+		if (strReserveFld5 == null) strReserveFld5 = getProperty("mootlywcm:strReserveFld5");
+		return strReserveFld5;
+	}
+
+	@FormField(name="strReserveFld6")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld6")
+	public String getStrReserveFld6() {
+		if (strReserveFld6 == null) strReserveFld6 = getProperty("mootlywcm:strReserveFld6");
+		return strReserveFld6;
+	}
+
+	@FormField(name="strReserveFld7")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld7")
+	public String getStrReserveFld7() {
+		if (strReserveFld7 == null) strReserveFld7 = getProperty("mootlywcm:strReserveFld7");
+		return strReserveFld7;
+	}
+
+	@FormField(name="strReserveFld8")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld8")
+	public String getStrReserveFld8() {
+		if (strReserveFld8 == null) strReserveFld8 = getProperty("mootlywcm:strReserveFld8");
+		return strReserveFld8;
+	}
+
+	@FormField(name="strReserveFld9")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld9")
+	public String getStrReserveFld9() {
+		if (strReserveFld9 == null) strReserveFld9 = getProperty("mootlywcm:strReserveFld9");
+		return strReserveFld9;
+	}
+
+	@FormField(name="strReserveFld10")
+	@NodeBinder(nodePropertyName="mootlywcm:strReserveFld10")
+	public String getStrReserveFld10() {
+		if (strReserveFld10 == null) strReserveFld10 = getProperty("mootlywcm:strReserveFld10");
+		return strReserveFld10;
+	}
 
 	public final void setMarkedForDeletion(boolean markedForDeletion) {
 		this.markedForDeletion = markedForDeletion;
@@ -621,6 +811,99 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 	public final void setVendor_txnAmount(Double vendor_txnAmount) {
 		this.vendor_txnAmount = vendor_txnAmount;
 	}
+	
+	@BeanClone
+	public void setStrRespCode(String strRespCode) {
+		this.strRespCode = strRespCode;
+	}
+	@BeanClone
+	public void setStrRespMessage(String strRespMessage) {
+		this.strRespMessage = strRespMessage;
+	}
+	@BeanClone
+	public void setStrRedirectionTxnId(String strRedirectionTxnId) {
+		this.strRedirectionTxnId = strRedirectionTxnId;
+	}
+	@BeanClone
+	public void setStrTxnId(String strTxnId) {
+		this.strTxnId = strTxnId;
+	}
+	@BeanClone
+	public void setStrEPGTxnId(String strEPGTxnId) {
+		this.strEPGTxnId = strEPGTxnId;
+	}
+	@BeanClone
+	public void setStrAuthIdCode(String strAuthIdCode) {
+		this.strAuthIdCode = strAuthIdCode;
+	}
+	@BeanClone
+	public void setStrRRN(String strRRN) {
+		this.strRRN = strRRN;
+	}
+	@BeanClone
+	public void setStrTxnType(String strTxnType) {
+		this.strTxnType = strTxnType;
+	}
+	@BeanClone
+	public void setStrTxnDateTime(String strTxnDateTime) {
+		this.strTxnDateTime = strTxnDateTime;
+	}
+	@BeanClone
+	public void setStrCVRespCode(String strCVRespCode) {
+		this.strCVRespCode = strCVRespCode;
+	}
+	@BeanClone
+	public void setStrCookie(String strCookie) {
+		this.strCookie = strCookie;
+	}
+	@BeanClone
+	public void setStrFDMSResult(String strFDMSResult) {
+		this.strFDMSResult = strFDMSResult;
+	}
+	@BeanClone
+	public void setStrFDMSScore(String strFDMSScore) {
+		this.strFDMSScore = strFDMSScore;
+	}
+	@BeanClone
+	public void setStrReserveFld1(String strReserveFld1) {
+		this.strReserveFld1 = strReserveFld1;
+	}
+	@BeanClone
+	public void setStrReserveFld2(String strReserveFld2) {
+		this.strReserveFld2 = strReserveFld2;
+	}
+	@BeanClone
+	public void setStrReserveFld3(String strReserveFld3) {
+		this.strReserveFld3 = strReserveFld3;
+	}
+	@BeanClone
+	public void setStrReserveFld4(String strReserveFld4) {
+		this.strReserveFld4 = strReserveFld4;
+	}
+	@BeanClone
+	public void setStrReserveFld5(String strReserveFld5) {
+		this.strReserveFld5 = strReserveFld5;
+	}
+	@BeanClone
+	public void setStrReserveFld6(String strReserveFld6) {
+		this.strReserveFld6 = strReserveFld6;
+	}
+	@BeanClone
+	public void setStrReserveFld7(String strReserveFld7) {
+		this.strReserveFld7 = strReserveFld7;
+	}
+	@BeanClone
+	public void setStrReserveFld8(String strReserveFld8) {
+		this.strReserveFld8 = strReserveFld8;
+	}
+	@BeanClone
+	public void setStrReserveFld9(String strReserveFld9) {
+		this.strReserveFld9 = strReserveFld9;
+	}
+	@BeanClone
+	public void setStrReserveFld10(String strReserveFld10) {
+		this.strReserveFld10 = strReserveFld10;
+	}
 
 	public boolean bindToNode(javax.jcr.Node node) throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
@@ -673,4 +956,6 @@ public class InvoicePaymentDetail extends FlexibleDocument implements FormMapFil
 			log.info("The cloning is done");
 		}
 	}
+	
+	
 }
