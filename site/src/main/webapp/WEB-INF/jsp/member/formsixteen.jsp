@@ -25,8 +25,8 @@
 					<b>Salary Income</b>
 				</h2>
 				<small>Enter details of your employer from Form 16 e.g. PAN,
-					TAN, Address, etc. These details can be found
-					in your Form-16 issued to you by your employer.</small>
+					TAN, Address, etc. These details can be found in your Form-16
+					issued to you by your employer.</small>
 			</div>
 			<!-- <h2 style="color: black;">Salary Income: Employer Details</h2> -->
 		</c:otherwise>
@@ -49,8 +49,8 @@
 					tax deducted at source from income chargeable under the head
 					"Salaries".</p> -->
 				<fieldset>
-					<legend style="font-style: italic; color: blue;">Employer
-						Details </legend>
+					<legend style="font-style: italic; color: blue;">Category
+						Of Employment</legend>
 					<div class="row show-grid">
 						<div class="col-md-3">
 							<div class="rowlabel">
@@ -72,6 +72,8 @@
 						</div>
 					</div>
 					<br />
+					<legend style="font-style: italic; color: blue;"> Details
+						Of Employer & Employee</legend>
 					<div class="row show-grid">
 						<div class="col-md-4">
 							<div class="rowlabel">
@@ -84,6 +86,27 @@
 							</div>
 						</div>
 						<div class="col-md-4">
+							<div class="rowlabel">
+								<label for="pan_deductor">PAN of Employer</label>
+							</div>
+
+							<div class="rowlabel">
+								<input type="text" name="pan_deductor" class="uprcase"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="rowlabel">
+								<label for="tan_deductor">TAN of Employer <small><w4india:knowyourtan
+											companyNameId="employer" /></small></label>
+							</div>
+							<div class="rowlabel">
+								<input type="text" id="tan_deductor" name="tan_deductor"
+									class="uprcase"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
+							</div>
+						</div>
+						<%-- <div class="col-md-4">
 							<div class="rowlabel">
 								<label for="employee">Name of Employee</label>
 							</div>
@@ -103,11 +126,11 @@
 								<input type="text" name="pan_deductor" class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
 							</div>
-						</div>
+						</div> --%>
 
 					</div>
 					<div class="row show-grid">
-						<div class="col-md-4">
+						<%-- <div class="col-md-4">
 							<div class="rowlabel">
 								<label for="tan_deductor">TAN of Employer <small><w4india:knowyourtan
 											companyNameId="employer" /></small></label>
@@ -116,6 +139,17 @@
 								<input type="text" id="tan_deductor" name="tan_deductor"
 									class="uprcase"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.tan_deductor}"/></c:if>">
+							</div>
+						</div> --%>
+						<div class="col-md-4">
+							<div class="rowlabel">
+								<label for="employee">Name of Employee</label>
+							</div>
+							<div class="rowlabel">
+								<input type="text" name="employee" class="uprcase"
+									value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${memberpersonalinformation.name}"/>
+								</c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>"
+									readonly="readonly" />
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -1016,13 +1050,12 @@
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><w4india:inr value="${childBean.relief_12}"/></c:if>"
 								placeholder="Rs."></td>
 						</tr>--%>
-
 					<div class="row show-grid">
 						<div class="col-md-4 col-md-offset-8 decimal">
-							<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
-								class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
-								id="myModalHrefFormSixteen" role="button"
+							<a id="myModalHrefFormSixteen" role="button"
 								class="btn btn-default btn-success">Save</a>
+							&nbsp;<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
+								class="btn btn-default btn-danger">Cancel</a>
 						</div>
 					</div>
 			</form>
@@ -1030,8 +1063,8 @@
 		<c:otherwise>
 			<table class="table table-bordered">
 				<tr align="center">
-					<th><b>Employer Name</b></th>
-					<th><b>Employee Name</b></th>
+					<th><b>Name Of Employer</b></th>
+					<th><b>Name Of Employee</b></th>
 					<th><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
@@ -1044,18 +1077,19 @@
 							<td><c:out value="${salaryItemDetail.employee}" /></td>
 							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i
-										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+										class="glyphicon glyphicon-pencil"></i>Edit</small>
 							</a>&nbsp;&nbsp;<a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"
 								data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+										class="glyphicon glyphicon-trash"></i>Delete</small>
 							</a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</table>
 			<a href="${scriptName}/formsixteennew"
-				class="btn btn-default btn-info">Add New</a>
+				class="btn btn-default btn-info"><small><i
+					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
 </c:if>
@@ -1064,7 +1098,8 @@
 <br />
 <c:if test="${finStatus eq 'H' }">
 	<h4 class="alert alert-danger">
-		<b>Sorry!!!</b> This service is not applicable for tax payee having filing status as 'HUF'.
+		<b>Sorry!!!</b> This service is not applicable for tax payee having
+		filing status as 'HUF'.
 	</h4>
 </c:if>
 
