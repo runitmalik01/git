@@ -52,28 +52,24 @@
 				</div>
 
 				<div class="row show-grid">
-					<div class="co
-					l-md-8">
+					<div class="col-md-8">
 						<div class="rowlabel">
 							<label for="description">Description </label>
 						</div>
 						<div class="rowlabel">
-							<textarea class="field col-md-10" rows="8" cols="80"
-								id="description" name="description"
-								value="<span class="<c:if test="${preview}">editable</c:if> inline"
-							id="mootlywcm:description"><hst:html
-								hippohtml="${document.description}"/></span>"></textarea>
-
+							<textarea name="description" id="description" rows="30"
+								value="<c:if test="${preview}">editable</c:if> inline"
+								id="mootlywcm:description">
+							<c:out value="${document.description.content}" escapeXml="false" />
+								<%-- <hst:html
+								hippohtml="${document.description}"/> --%>
+							</textarea>
+							<w4india:ckeditor_inline textAreaId="description" />
 						</div>
 					</div>
 				</div>
-
-				<div class="row show-grid">
-					<div class="rowlabel">
-						<input type="submit" class="btn btn-default btn-success"
-							value="Save">
-					</div>
-				</div>
+				<input type="submit" class="btn btn-default btn-success"
+					value="Save">
 			</fieldset>
 		</form>
 	</c:when>
@@ -106,12 +102,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="row show-grid">
-					<div class="rowlabel">
-						<input type="submit" class="btn btn-default btn-success"
-							value="Save">
-					</div>
-				</div>
+				<input type="submit" class="btn btn-default btn-success"
+					value="Save">
 			</fieldset>
 		</form>
 	</c:when>
