@@ -9,6 +9,8 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleS;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
@@ -48,7 +50,8 @@ public class Form16DocumentSchedules {
 					addressDetail.setStateCode(formSixteenDetail.getState());
 					salaries.setAddressDetail(addressDetail);
 					salaries.setNameOfEmployer(formSixteenDetail.getEmployer());
-					if(!(formSixteenDetail.getPan_deductor().isEmpty()))
+					//if(!(formSixteenDetail.getPan_deductor().isEmpty()))
+					if(StringUtils.isNotBlank(formSixteenDetail.getPan_deductor()))
 						salaries.setPANofEmployer(formSixteenDetail.getPan_deductor());
 					Salarys salarys = new Salarys();
 					salarys.setSalary(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getGross_a()).subtract(indianCurrencyHelper.bigIntegerRound(formSixteenDetail.getLess_total_2())));
@@ -84,7 +87,8 @@ public class Form16DocumentSchedules {
 					addressDetail.setStateCode(salaryIncomeDetail.getState());
 					salaries.setAddressDetail(addressDetail);
 					salaries.setNameOfEmployer(salaryIncomeDetail.getName_employer());
-					if(!(salaryIncomeDetail.getPan_employer().isEmpty()))
+					//if(!(salaryIncomeDetail.getPan_employer().isEmpty()))
+					if(StringUtils.isNotBlank(salaryIncomeDetail.getPan_employer()))
 						salaries.setPANofEmployer(salaryIncomeDetail.getPan_employer());
 					Salarys salarys = new Salarys();
 					salarys.setSalary(indianCurrencyHelper.bigIntegerRound(salaryIncomeDetail.getGross_salary()));
