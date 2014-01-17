@@ -31,9 +31,6 @@ public class EnquiryImpl extends PaymentServiceXML implements Enquiry, Applicati
 	ApplicationContext applicationContext;
 	HTTPConnectionService httpConnectionService;
 	
-	String paysealMerchantId;
-	String paysealNoResultMessage;
-	String paysealNoResultCode;
 	
 	String endPointURL_Enquiry;
 	
@@ -52,30 +49,6 @@ public class EnquiryImpl extends PaymentServiceXML implements Enquiry, Applicati
 		return theReturnValue;
 	}
 	
-	public final String getPaysealMerchantId() {
-		return paysealMerchantId;
-	}
-
-	public final void setPaysealMerchantId(String paysealMerchantId) {
-		this.paysealMerchantId = paysealMerchantId;
-	}
-	
-	public final String getPaysealNoResultMessage() {
-		return paysealNoResultMessage;
-	}
-
-	public final void setPaysealNoResultMessage(String paysealNoResultMessage) {
-		this.paysealNoResultMessage = paysealNoResultMessage;
-	}
-
-	public final String getPaysealNoResultCode() {
-		return paysealNoResultCode;
-	}
-
-	public final void setPaysealNoResultCode(String paysealNoResultCode) {
-		this.paysealNoResultCode = paysealNoResultCode;
-	}
-
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext)
 			throws BeansException {

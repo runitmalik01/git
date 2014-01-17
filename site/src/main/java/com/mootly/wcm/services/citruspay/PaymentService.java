@@ -188,5 +188,9 @@ public interface PaymentService {
 	
 	void setSequenceGenerator(SequenceGenerator sequenceGenerator);
 	SequenceGenerator getSequenceGenerator();
+	
+	String getPaysealMerchantId();
+	String getPaysealNoResultMessage();
+	String getPaysealNoResultCode();
 
 }
