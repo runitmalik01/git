@@ -10,31 +10,19 @@ import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.DITResponseDocument;
-import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
-import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.Service;
-import com.mootly.wcm.beans.TcsDocument;
-import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.CostModel;
-import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
-import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
-import com.mootly.wcm.beans.compound.TcsDetail;
-import com.mootly.wcm.beans.compound.TdsOthersDetail;
 import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.components.ITReturnComponentHelper;
-import com.mootly.wcm.model.DITSOAPOperation;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.ITRServiceDelivery;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.ditws.AddClientDetails;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
-import com.mootly.wcm.services.ditws.model.Twenty26ASResponse;
 
 public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler implements BeanLifecycle<HippoBean>{
 	Logger logger = LoggerFactory.getLogger(MemberPersonalInfoUpdateHandler.class);
@@ -89,6 +77,17 @@ public class MemberPersonalInfoUpdateHandler extends GenericLifeCycleHandler imp
 			CostModel theSelectedCostModel = null;
 			ITRForm itrForm = memberPersonalInformation.getSelectedITRForm();
 			ITRServiceDelivery itrServiceDelivery = memberPersonalInformation.getSelectedServiceDeliveryOption();
+			if (logger.isInfoEnabled()) {
+				logger.info("itrForm:" + itrForm);
+				logger.info("itrServiceDelivery:" + itrServiceDelivery);
+				logger.info("itrServices:" + itrServices);
+				if (itrServices == null && itrServices.size() == 0) {
+					logger.info("itrServices is null");
+				}
+				else {
+					logger.info("itrServices size:" + itrServices.size());
+				}
+			}
 			for (HippoBean aBean:itrServices) {
 				Service theService = (Service) aBean;
 				if ( theService.getName().equalsIgnoreCase(itrForm.name())) {
