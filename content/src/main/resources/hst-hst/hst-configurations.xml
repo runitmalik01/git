@@ -98,4 +98,12 @@
       <sv:value>../common</sv:value>
     </sv:property>
   </sv:node>
+   <sv:node sv:name="etaxfilestation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:configuration</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>0fa8ab66-d608-4391-9337-5144ab00e46b</sv:value>
+    </sv:property>
+  </sv:node>
 </sv:node>
