@@ -1158,7 +1158,7 @@
           <sv:value>/hst:hst/hst:channels/etaxfilestation</sv:value>
         </sv:property>
         <sv:property sv:name="hst:mountpoint" sv:type="String">
-          <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+          <sv:value>/hst:hst/hst:sites/etaxfilestation</sv:value>
         </sv:property>
         <sv:property sv:name="hst:showport" sv:type="Boolean">
           <sv:value>true</sv:value>
@@ -1177,7 +1177,7 @@
             <sv:value>/hst:hst/hst:channels/etaxfilestation</sv:value>
           </sv:property>
           <sv:property sv:name="hst:mountpoint" sv:type="String">
-            <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+            <sv:value>/hst:hst/hst:sites/etaxfilestation</sv:value>
           </sv:property>
           <sv:node sv:name="etaxfilestation">
             <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -1196,7 +1196,7 @@
               <sv:value>en_US</sv:value>
             </sv:property>
             <sv:property sv:name="hst:mountpoint" sv:type="String">
-              <sv:value>/hst:hst/hst:sites/mootlywcm</sv:value>
+              <sv:value>/hst:hst/hst:sites/etaxfilestation</sv:value>
             </sv:property>
           </sv:node>
         </sv:node>
