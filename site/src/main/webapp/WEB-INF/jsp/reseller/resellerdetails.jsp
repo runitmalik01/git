@@ -10,14 +10,11 @@
 		            <h3><fmt:message key="${errorCode}"/></h3><br/>
 	            </c:when>
 		        <c:when test="${not empty success}">
-		          Congratulations !!!!! Your request has been successfully submitted.
+		          Congratulations !!!!! Your account has been created successfully.
 		        <h2 style="color:green">We would like to thank you for choosing our service.</h2>
-		        <p><strong><span style="color:#AC1700;">IMPORTANT: </span>Your account will be activated within 24 hrs</strong></p>
-	            <p style="width:80%;  font-size:14px;">You will be sent an email after the verification of your details.
-	              We cannot begin login your account until we check the details given by you. 
-	              This is done to protect your privacy and prevent unauthorized sign-ups.</p> 
+		        <p><strong><span style="color:#AC1700;">IMPORTANT: </span>Please check your email</strong></p>
 	            <ol style="margin-bottom:30px; margin-top:20px; width:90%;">
-	            <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>Please check your email.</strong> An Activation Email will be there within 24 hrs. If you do not receive it, please contact  
+	            <li style="font-size:14px; line-height:16px; margin-bottom:10px;"> An Activation Email will be there shortly. If you do not receive it, please contact  
 	            <a href="mailto:<w4india:emailcustomerservice/>"><w4india:emailcustomerservice/></a>.</li>
 	            <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>Click the given Link.</strong></li>
 	            <li style="font-size:14px; line-height:16px; margin-bottom:10px;"><strong>Start Enjoying you signed up for.</strong></li>
@@ -48,7 +45,7 @@
 		            </label>
 		        </div>
 		        <div class="rowlabel">
-		            <input name="emailFrom" id="emailFrom" value="${fn:escapeXml(emailFrom)}" size="22" tabindex="1" type="text" maxlength="50">
+		            <input name="emailFrom" id="emailFrom" value="${fn:escapeXml(emailFrom)}" size="22" tabindex="2" type="text" maxlength="50">
 		        </div>
 		   </div>    
 		   <div class="col-md-4">
@@ -58,7 +55,7 @@
 		           </label>
 		        </div>
 		        <div class="rowlabel">
-		           <input name="emailFromName" id="emailFromName" value="" size="22" tabindex="2" type="text" maxlength="50">
+		           <input name="emailFromName" id="emailFromName" value="" size="22" tabindex="3" type="text" maxlength="50">
 		        </div>
 		  </div>
 		  </div> 
@@ -70,7 +67,7 @@
 		             </label>
 		             </div>
 		          <div class="rowlabel">
-		            <input name="emailSignature" id="emailSignature" value="" size="22" tabindex="3" type="text" maxlength="50">
+		            <input name="emailSignature" id="emailSignature" value="" size="22" tabindex="4" type="text" maxlength="50">
 		          </div>
 		      </div>
 		      <div class="col-md-4">
@@ -80,7 +77,7 @@
 		               </label>
 		            </div> 
 		            <div class="rowlabel">   
-		               <select id= "eriEnable26ASImport" name="eriEnable26ASImport">
+		               <select id= "eriEnable26ASImport" name="eriEnable26ASImport" tabindex="5">
 							<option value="">-Select-</option>
 							<option value="true">Yes</option>
 							<option value="false">No</option>
@@ -94,7 +91,7 @@
 		           </label>
 		        </div>
 		        <div class="rowlabel">
-		            <select id= "eriEnabled" name="eriEnabled">
+		            <select id= "eriEnabled" name="eriEnabled" tabindex="6">
 						<option value="">-Select-</option>
 						<option value="true">Yes</option>
 						<option value="false">No</option>
@@ -112,7 +109,7 @@
 		           </label>
 		        </div>
 		        <div class="rowlabel">	
-		           <input name="eriPassword" id="eriPassword" value="" size="22" tabindex="3" type="password" maxlength="20">
+		           <input name="eriPassword" id="eriPassword" value="" size="22" tabindex="7" type="password" maxlength="20">
 		       </div>
 		   </div>
 		   	<div class="col-md-4">
@@ -122,7 +119,7 @@
 		          </label>
 		       </div>
 		       <div class="rowlabel">	
-		           <input name="eriUserId" id="eriUserId" value="${fn:escapeXml(eriUserId)}" size="22" tabindex="1" type="text" maxlength="20">
+		           <input name="eriUserId" id="eriUserId" value="${fn:escapeXml(eriUserId)}" size="22" tabindex="8" type="text" maxlength="20">
 		       </div>
 		    </div>
 		     <div class="col-md-4">
@@ -132,7 +129,7 @@
 		                </label>
 		            </div>
 		            <div class="rowlabel">
-		                <input name="resellerName" id="resellerName" value="${fn:escapeXml(resellerName)}" size="22" tabindex="1" type="text" maxlength="20">
+		                <input name="resellerName" id="resellerName" value="${fn:escapeXml(resellerName)}" size="22" tabindex="9" type="text" maxlength="20">
 		            </div>
 		        </div>
 		    <!-- 
@@ -160,7 +157,7 @@
 		                </label>
 		            </div>
 		            <div class="rowlabel">
-		               <input name="pageTitlePrefix" id="pageTitlePrefix" value="${fn:escapeXml(pageTitlePrefix)}" size="22" tabindex="1" type="text" maxlength="50">
+		               <input name="pageTitlePrefix" id="pageTitlePrefix" value="${fn:escapeXml(pageTitlePrefix)}" size="22" tabindex="10" type="text" maxlength="50">
 		            </div>
 		        </div>
 		        <div class="col-md-4">
@@ -170,7 +167,7 @@
 		               </label>
 		            </div>
 		            <div class="rowlabel">	
-		               <select id= "paymentAvailableTypes" name="paymentAvailableTypes" multiple="multiple">
+		               <select id= "paymentAvailableTypes" name="paymentAvailableTypes" multiple="multiple" tabindex="11">
 						     <option value="CASH">Cash</option>
 						     <option value="RTGS">RTGS</option>
 						     <option value="CREDIT">Credit</option>
@@ -184,7 +181,7 @@
 		               </label>
 		             </div>
 		             <div class="rowlabel">
-		                <select id= "paymentEnabled" name="paymentEnabled">
+		                <select id= "paymentEnabled" name="paymentEnabled" tabindex="12">
 						     <option value="">-Select-</option>
 						     <option value="true">Yes</option>
 						     <option value="false">No</option>
@@ -195,7 +192,7 @@
  </fieldset>
 	      <div class="row show-grid">
 			  <div class="col-md-4 col-md-offset-8 decimal">
-		   		  <a href="javascript:void(0);" id="hrefSignup" class="btn btn-default btn-warning">Finish</a>
+		   		  <a href="javascript:void(0);" id="hrefSignup" class="btn btn-default btn-warning" tabindex="13">Submit</a>
 		      </div>
 		  </div>
 		 

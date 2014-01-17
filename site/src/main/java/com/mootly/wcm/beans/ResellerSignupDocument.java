@@ -49,6 +49,7 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 	String firstName;
 	String lastName;
 	String activationCode;
+	String caFirmno;
 	Boolean isActive;
 	String[] roles;
 	String[] groups;
@@ -194,6 +195,10 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 		if (numberOfLicensedUsers == null) numberOfLicensedUsers = getProperty("mootlywcm:numberOfLicensedUsers");
 		return numberOfLicensedUsers;
 	}
+	public String getCaFirmno() {
+		if (caFirmno == null) caFirmno = getProperty("mootlywcm:caFirmno");
+		return caFirmno;
+	}
 
 	public final void setUserName(String userName) {
 		this.userName = userName;
@@ -282,6 +287,9 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 	public void setNumberOfLicensedUsers(String numberOfLicensedUsers) {
 		this.numberOfLicensedUsers = numberOfLicensedUsers;
 	}
+	public void setCaFirmno(String caFirmno) {
+		this.caFirmno = caFirmno;
+	}
 
 
 	//for personal information
@@ -364,6 +372,7 @@ public class ResellerSignupDocument extends BaseDocument implements ContentNodeB
 			node.setProperty("mootlywcm:resellerName", resellerSignup.getResellerName());
 			node.setProperty("mootlywcm:resellerPackage", resellerSignup.getResellerPackage());
 			node.setProperty("mootlywcm:numberOfLicensedUsers", resellerSignup.getNumberOfLicensedUsers());
+			node.setProperty("mootlywcm:caFirmno", resellerSignup.getCaFirmno());
 
 			if (resellerSignup.getPAN() != null) {
 				node.setProperty("mootlywcm:pan", resellerSignup.getPAN());
