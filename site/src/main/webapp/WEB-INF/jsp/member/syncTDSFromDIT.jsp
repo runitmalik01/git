@@ -33,9 +33,11 @@
 	</div>
 </c:if>
 <c:if test="${pageAction == 'SYNC_TDS_FROM_DIT'}">					
-			<h4>26AS Information from Department of Income Tax</h4>
-			<c:set var="totalTDS" value="0"/>
-			<table class="table table-striped">
+	<h4>26AS Information from Department of Income Tax</h4>
+	    <c:set var="totalTDS" value="0"/>
+		    <c:choose>
+			  <c:when test="${not empty isInfoAvail && isInfoAvail == true}">
+			    <table class="table table-striped">
 				<tr>
 					<th>Category</th>
 					<th>TAN of Deductor/BSR Code</th>
@@ -196,6 +198,21 @@
 			</div>
 		</form>
 	</c:if>
+  </c:when>
+  <c:otherwise>
+  <div class="alert alert-info">
+  <span style="color:#AC1700;">We are unable to find any information related to your 26AS from the Department of Income Tax.
+    You can always update your Tax Deduction information using one of the following</span><br><br>
+     <a href="formsixteen.html"><button type="button" class="btn btn-primary"> Form 16 (Salaried)</button></a>
+      <a href="salaryincome.html"><button type="button" class="btn btn-primary"> Pension</button></a>
+       <a href="advancetax.html"> <button type="button" class="btn btn-primary"> Advanced Tax</button></a>
+        <a href="selfassesmenttax.html"> <button type="button" class="btn btn-primary"> Self Assessment</button></a>
+        <a href="tdsfromothers.html"> <button type="button" class="btn btn-primary"> TDS Others</button></a><br><br>
+       <span style="color:#AC1700;"> If you have questions feel free to contact us <strong><a href="mailto:<w4india:emailcustomerservice/>"><w4india:emailcustomerservice/></a>.
+       </strong></span>	
+  </div>	
+  </c:otherwise>
+</c:choose>		
 </c:if>
 <res:client-validation formId="tdsfromdit"
 	screenConfigurationDocumentName="syncTDSFromDIT"
