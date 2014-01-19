@@ -355,7 +355,7 @@
       <sv:value>arun@123</sv:value>
     </sv:property>
     <sv:property sv:name="eriUserId" sv:type="String">
-      <sv:value></sv:value>
+      <sv:value/>
     </sv:property>
     <sv:property sv:name="isReseller" sv:type="String">
       <sv:value>true</sv:value>
@@ -379,7 +379,7 @@
       <sv:value>etaxfilestation</sv:value>
     </sv:property>
     <sv:property sv:name="resellerName" sv:type="String">
-      <sv:value>Wealth4India</sv:value>
+      <sv:value>eTaxFileStation</sv:value>
     </sv:property>
     <sv:property sv:name="themeCss" sv:type="String">
       <sv:value>/content/assets/themes/css/white.css</sv:value>

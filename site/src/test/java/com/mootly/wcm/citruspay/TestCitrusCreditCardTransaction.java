@@ -1,17 +1,11 @@
 package com.mootly.wcm.citruspay;
 
 
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.mootly.wcm.model.FinancialYear;
-import com.mootly.wcm.model.PaymentType;
-import com.mootly.wcm.services.citruspay.Transaction;
-import com.mootly.wcm.services.citruspay.Transaction.CARD_TYPE;
 import com.mootly.wcm.services.ditws.RetrieveITRV;
 
 public class TestCitrusCreditCardTransaction  {
@@ -37,6 +31,7 @@ public class TestCitrusCreditCardTransaction  {
 	 */
 	@Test
 	public void testTransaction() {
+		/*
 		Transaction transaction =	ac.getBean(Transaction.class);
 		Map<String, Object> output = transaction.acceptITRPaymentByDebitOrCreditCard(
 										//memberLoginName, financialYear, PAN, 
@@ -49,7 +44,9 @@ public class TestCitrusCreditCardTransaction  {
 										"1.0","amitpatkar@gmail.com","Swar","Sur","9878685612",
 										"Address","Mumbai","Maharashtra","411500");
 										
+
 		System.out.println(output);
+				*/
 	}
 	/*
 	@Test

@@ -139,7 +139,7 @@ public class InvoicePayment extends ITReturnComponent {
 			else {
 				response.setRenderPath("jsp/accounting/paymentgateway_form.jsp");
 			}
-			*/
+			 */
 		}		
 		else {	
 			if (getITRInitData(request).getPageAction() != null && getITRInitData(request).getPageAction() != PAGE_ACTION.EDIT && getITRInitData(request).getPageAction() != PAGE_ACTION.EDIT_CHILD && getITRInitData(request).getPageAction() != PAGE_ACTION.DELETE && getITRInitData(request).getPageAction() != PAGE_ACTION.DELETE_CHILD ) {
@@ -153,7 +153,7 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 	}
 
-	
+
 	@Override
 	protected boolean shouldRedirectAfterSuccess(HstRequest request) {
 		boolean isGatewayForm = false;
@@ -170,7 +170,7 @@ public class InvoicePayment extends ITReturnComponent {
 		else {
 			return false;
 		}
-		*/
+		 */
 	}
 
 	@Override
@@ -189,8 +189,8 @@ public class InvoicePayment extends ITReturnComponent {
 		if (gatewayForm != null && "true".equals(gatewayForm)) {
 			isGatewayForm = true;
 		}
-		
-		
+
+
 		InvoiceDocument invoiceDocument  = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 		theTransactionId = invoiceDocument.getInvoiceNumber() + "-" + getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_PAYMENT);
 		//we want to 
@@ -244,7 +244,7 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 		return null;
 	}
-	
+
 	@Override
 	protected String urlToRedirectAfterSuccess(HstRequest request,
 			HstResponse response, FormMap formMap) {
@@ -260,7 +260,7 @@ public class InvoicePayment extends ITReturnComponent {
 			return null;
 		}
 	}
-	
+
 	@Override
 	protected boolean additionalValidation(HstRequest request, HstResponse response, FormMap formMap) {
 		// TODO Auto-generated method stub
@@ -282,7 +282,7 @@ public class InvoicePayment extends ITReturnComponent {
 			String pi_pinCode = getITRInitData(request).getFormMap().getField("pi_pinCode").getValue();
 			String pi_mobile = getITRInitData(request).getFormMap().getField("pi_mobile").getValue();
 			BANK_ISSUER bankIssuer = null;
-			
+
 			String issuerCodeStr = null;
 			if ( getITRInitData(request).getFormMap() != null && getITRInitData(request).getFormMap().getField("issuerCode") != null && getITRInitData(request).getFormMap().getField("issuerCode").getValue() != null) {
 				issuerCodeStr = getITRInitData(request).getFormMap().getField("issuerCode").getValue();
@@ -299,12 +299,12 @@ public class InvoicePayment extends ITReturnComponent {
 				}
 				Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(
 						strTransactionId,
-						 getITRInitData(request).getUserName(), getITRInitData(request).getFinancialYear(), getITRInitData(request).getPAN(), 
+						getITRInitData(request).getUserName(), getITRInitData(request).getFinancialYear(), getITRInitData(request).getPAN(), 
 						returnUrl, notifyUrl, bankIssuer, invDoc.getAmountDue().toString(), email, firstName, lastName,
 						pi_mobile, bilingAddress, pi_townCity, pi_state, pi_pinCode);			
 				if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
-						String paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
-						request.setAttribute("paymentRedirectURL", paymentRedirectURL);
+					String paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
+					request.setAttribute("paymentRedirectURL", paymentRedirectURL);
 				}else {
 					getITRInitData(request).getFormMap().addMessage("error.gateway.connection", "true");
 				}
@@ -318,8 +318,8 @@ public class InvoicePayment extends ITReturnComponent {
 			//String cardNumber = getITRInitData(request).getFormMap().getField("cardNumber").getValue();
 			//String cardType = getITRInitData(request).getFormMap().getField("cardType").getValue();
 			String strTransactionId = ((InvoicePaymentDetailBeanHandler) getChildBeanLifeCycleHandler(request)).getStrPaymentTransactionId();
-			
-		
+
+
 			com.opus.epg.sfa.java.BillToAddress oBTA 	= new com.opus.epg.sfa.java.BillToAddress();
 			com.opus.epg.sfa.java.ShipToAddress oSTA 	= new com.opus.epg.sfa.java.ShipToAddress();
 			com.opus.epg.sfa.java.Merchant oMerchant 	= new com.opus.epg.sfa.java.Merchant();
@@ -334,36 +334,36 @@ public class InvoicePayment extends ITReturnComponent {
 				e1.printStackTrace();
 			}
 			com.opus.epg.sfa.java.PGReserveData oPGReserveData	= new com.opus.epg.sfa.java.PGReserveData();
-			
+
 			com.opus.epg.sfa.java.CustomerDetails oCustomer = new com.opus.epg.sfa.java.CustomerDetails ();
 			com.opus.epg.sfa.java.MerchanDise oMerchanDise = new com.opus.epg.sfa.java.MerchanDise();
 			com.opus.epg.sfa.java.SessionDetail oSessionDetail = new com.opus.epg.sfa.java.SessionDetail();
 			com.opus.epg.sfa.java.Address oHomeAddress =new com.opus.epg.sfa.java.Address();
 			com.opus.epg.sfa.java.Address oOfficeAddress =new com.opus.epg.sfa.java.Address();
 			com.opus.epg.sfa.java.AirLineTransaction oAirLineTrans= new com.opus.epg.sfa.java.AirLineTransaction();
-				
-			
+
+
 			oMerchant.setMerchantDetails(
-							"32020315"
-							,"32020315"
-							,"32020315"
-							,request.getRemoteAddr()
-							, strTransactionId
-							,strTransactionId
-							//, "http://10.10.10.6/RailwayTicketing/PGResponse.asp"
-							,returnUrl
-							, "POST"
-							,"INR"
-							,invDoc.getInvoiceNumber()						
-							,"req.Sale"
-							, invDoc.getAmountDue().toString()	
-							, IndianGregorianCalendar.getCurrentDateInIndiaAsDate().getTimeZone().getID()
-							, "JAVA"
-							, "true"
-							, "JAVA"
-							, "JAVA"
-							, "JAVA"
-							);
+					getTransaction().getPaysealMerchantId()
+					,getTransaction().getPaysealMerchantId()
+					,getTransaction().getPaysealMerchantId()
+					,request.getRemoteAddr()
+					, strTransactionId
+					,strTransactionId
+					//, "http://10.10.10.6/RailwayTicketing/PGResponse.asp"
+					,returnUrl
+					, "POST"
+					,"INR"
+					,invDoc.getInvoiceNumber()						
+					,"req.Sale"
+					, invDoc.getAmountDue().toString()	
+					, IndianGregorianCalendar.getCurrentDateInIndiaAsDate().getTimeZone().getID()
+					, "JAVA"
+					, "true"
+					, "JAVA"
+					, "JAVA"
+					, "JAVA"
+					);
 
 
 
@@ -393,72 +393,72 @@ public class InvoicePayment extends ITReturnComponent {
 					);
 
 			oMPI.setMPIRequestDetails(
-						invDoc.getAmountDue().toString()	 //mstrPurchaseAmount
-						,"INR" + invDoc.getAmountDue().toString()	//mstrDisplayAmount
-						,"1", //mstrCurrencyVal
-						"1" //mstrExponent
-						,"eFile ITReturn" //mstrOrderDesc
-						,"0" //mstrRecurFreq
-						,"0" //mstrRecurEnd
-						,"0" //mstrInstallment
-						,"0" //mstrDeviceCategory
-						,"" //mstrWhatIUse
-						,request.getHeader("accept") //,"image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, application/x-shockwave-flash, */*" //mstrAcceptHdr
-						,request.getHeader("user-agent") //"Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)" //mstrAgentHdr
-						); 
+					invDoc.getAmountDue().toString()	 //mstrPurchaseAmount
+					,"INR" + invDoc.getAmountDue().toString()	//mstrDisplayAmount
+					,"1", //mstrCurrencyVal
+					"1" //mstrExponent
+					,"eFile ITReturn" //mstrOrderDesc
+					,"0" //mstrRecurFreq
+					,"0" //mstrRecurEnd
+					,"0" //mstrInstallment
+					,"0" //mstrDeviceCategory
+					,"" //mstrWhatIUse
+					,request.getHeader("accept") //,"image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, application/x-shockwave-flash, */*" //mstrAcceptHdr
+					,request.getHeader("user-agent") //"Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)" //mstrAgentHdr
+					); 
 
-		oHomeAddress.setAddressDetails(
-				memberPersonalInformation.getFlatDoorBuilding()
-				,memberPersonalInformation.getAreaLocality()
-				,memberPersonalInformation.getRoadStreet()
-				,memberPersonalInformation.getTownCityDistrict()
-				,memberPersonalInformation.getState()
-				,memberPersonalInformation.getPinCode()
-				,"IND"
-				,memberPersonalInformation.getEmail()
+			oHomeAddress.setAddressDetails(
+					memberPersonalInformation.getFlatDoorBuilding()
+					,memberPersonalInformation.getAreaLocality()
+					,memberPersonalInformation.getRoadStreet()
+					,memberPersonalInformation.getTownCityDistrict()
+					,memberPersonalInformation.getState()
+					,memberPersonalInformation.getPinCode()
+					,"IND"
+					,memberPersonalInformation.getEmail()
 					);
-							
-		oOfficeAddress.setAddressDetails(
-				memberPersonalInformation.getFlatDoorBuilding()
-				,memberPersonalInformation.getAreaLocality()
-				,memberPersonalInformation.getRoadStreet()
-				,memberPersonalInformation.getTownCityDistrict()
-				,memberPersonalInformation.getState()
-				,memberPersonalInformation.getPinCode()
-				,"IND"
-				,memberPersonalInformation.getEmail()
+
+			oOfficeAddress.setAddressDetails(
+					memberPersonalInformation.getFlatDoorBuilding()
+					,memberPersonalInformation.getAreaLocality()
+					,memberPersonalInformation.getRoadStreet()
+					,memberPersonalInformation.getTownCityDistrict()
+					,memberPersonalInformation.getState()
+					,memberPersonalInformation.getPinCode()
+					,"IND"
+					,memberPersonalInformation.getEmail()
 					);
-										  
+
 			oCustomer.setCustomerDetails(
-				memberPersonalInformation.getFirstName(), // first name 
-				memberPersonalInformation.getLastName(), //last name
-			    oOfficeAddress,
-			    oHomeAddress,
-			    memberPersonalInformation.getMobile(),//mobile number
-			    "13-06-2007", // Reg Date
-			     "Y" // Billing and shipping address match
-			);
-				
-			oSessionDetail.setSessionDetails(request.getRemoteAddr(), //This Customer ip,merchant need to send it.
-				  getSecureCookie(request),  //cookie string
-				  request.getLocale().getCountry(),
-				  request.getLocale().getLanguage(), 
-				  request.getLocale().getVariant() ,
-				  request.getHeader ("user-agent")
-			);
+					memberPersonalInformation.getFirstName(), // first name 
+					memberPersonalInformation.getLastName(), //last name
+					oOfficeAddress,
+					oHomeAddress,
+					memberPersonalInformation.getMobile(),//mobile number
+					"13-06-2007", // Reg Date
+					"Y" // Billing and shipping address match
+					);
 
-				
-				oMerchanDise.setMerchanDiseDetails(
-									   memberPersonalInformation.getSelectedITRForm().name(),
-									   "1", //mstrQuantity
-									   getITRInitData(request).getResellerId(),
-									   "", //mstrModelNumber
-									   memberPersonalInformation.getName(), //buyers name
-									   "Y" //Buyername and Card name match.
-									   );
-							   
-								   
-				/*
+			oSessionDetail.setSessionDetails(request.getRemoteAddr(), //This Customer ip,merchant need to send it.
+					getSecureCookie(request),  //cookie string
+					request.getLocale().getCountry(),
+					request.getLocale().getLanguage(), 
+					request.getLocale().getVariant() ,
+					request.getHeader ("user-agent")
+					);
+
+
+			oMerchanDise.setMerchanDiseDetails(
+					memberPersonalInformation.getSelectedITRForm().name(),
+					"1", //mstrQuantity
+					getITRInitData(request).getResellerId(),
+					"", //mstrModelNumber
+					memberPersonalInformation.getName(), //buyers name
+					"Y" //Buyername and Card name match.
+					);
+
+
+			/*
 				oAirLineTrans.setAirLineTransactionDetails( "10-06-2007", //booking Date				   
 							   	   "22-06-2007", //Flight Date
 							   	   "13:20", //Flight Time
@@ -470,78 +470,78 @@ public class InvoicePayment extends ITReturnComponent {
 							   	   "Pune", // Sector From
 							   	   "Mumbai"//Sector To
 							   	   );
-				*/
-			
-				//PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,null,null,null,null);
-				PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,oCustomer,oSessionDetail,oAirLineTrans,null);
-				if(oPGResponse.getRedirectionUrl() != null) {
-					try {
-						BeanInfo bi = Introspector.getBeanInfo(oPGResponse.getClass());
-						if (formMap == null) formMap = new FormMap();
-						for(PropertyDescriptor property : bi.getPropertyDescriptors()) {
-					        Method aReadMethod = property.getReadMethod();
-					    	Object theValue =  aReadMethod.invoke(oPGResponse);
-					    	if (theValue != null && theValue instanceof String) {
-					    		String newFieldName = "str" + WordUtils.capitalize(property.getName()); // some how the stupid ICICI has done a crappy job of field names
-						    	FormField formField  = new FormField( newFieldName ); 
-						    	formField.addValue((String)theValue);
-						    	formMap.addFormField(formField);
-					    	}
-				    		//Object theValue = directFieldAccessorSrc.getPropertyValue(property.getName());
-				    		//directFieldAccessorDest.setPropertyValue(property.getName(), theValue);
-					    }	
-					} catch (IntrospectionException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					String strRedirectionURL = oPGResponse.getRedirectionUrl();
-					request.setAttribute("paymentRedirectURL", strRedirectionURL);
-					/*
+			 */
+
+			//PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,null,null,null,null);
+			PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,oCustomer,oSessionDetail,oAirLineTrans,null);
+			if(oPGResponse.getRedirectionUrl() != null) {
+				try {
+					BeanInfo bi = Introspector.getBeanInfo(oPGResponse.getClass());
+					if (formMap == null) formMap = new FormMap();
+					for(PropertyDescriptor property : bi.getPropertyDescriptors()) {
+						Method aReadMethod = property.getReadMethod();
+						Object theValue =  aReadMethod.invoke(oPGResponse);
+						if (theValue != null && theValue instanceof String) {
+							String newFieldName = "str" + WordUtils.capitalize(property.getName()); // some how the stupid ICICI has done a crappy job of field names
+							FormField formField  = new FormField( newFieldName ); 
+							formField.addValue((String)theValue);
+							formMap.addFormField(formField);
+						}
+						//Object theValue = directFieldAccessorSrc.getPropertyValue(property.getName());
+						//directFieldAccessorDest.setPropertyValue(property.getName(), theValue);
+					}	
+				} catch (IntrospectionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String strRedirectionURL = oPGResponse.getRedirectionUrl();
+				request.setAttribute("paymentRedirectURL", strRedirectionURL);
+				/*
 					try {
 						response.sendRedirect(strRedirectionURL);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					*/
-					
-				}
-				else {
-					System.out.println("Error encountered. Error Code : " +oPGResponse.getRespCode() + " . Message " +  oPGResponse.getRespMessage());
-					getITRInitData(request).getFormMap().addMessage("error.gateway.connection", "true");
-				}
-		
-		
+				 */
+
+			}
+			else {
+				System.out.println("Error encountered. Error Code : " +oPGResponse.getRespCode() + " . Message " +  oPGResponse.getRespMessage());
+				getITRInitData(request).getFormMap().addMessage("error.gateway.connection", "true");
+			}
+
+
 			/*
 			 * 	Map<String, Object> output = transaction.acceptITRPaymentByDebitOrCreditCard(
-					
+
 					memberLoginName, getFinancialYear(), getPAN(), 
 					returnUrl,notifyUrl,PaymentType.valueOf(paymentType.toString()),
 					cardHolderName,cardNumber, CARD_TYPE.valueOf(cardType),cvvNumber,expiryMonth,expiryYear,
 					amount,email,personalInformation.getFirstName(),personalInformation.getLastName(),personalInformation.getMobile(),
 					address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
-					*/	
+			 */	
 			/*
 			if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
 				paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
 			}else {
 				getITRInitData(request).getFormMap().addMessage("error.gateway.connection", "true");
 			}
-			*/
+			 */
 		}	
-		
+
 		return true;
 	}
-	
+
 	private PaymentType getPaymentType(HstRequest request,boolean isGatewayForm) {
 		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
 		PaymentType paymentType = null;
@@ -553,19 +553,19 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 		return paymentType;
 	}
-	
-	
+
+
 	protected String getSecureCookie(HstRequest request) {
-        String secureCookie = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) { 
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equals("vsc")) {
-                    secureCookie = cookies[i].getValue().trim();
-                    break; 
-                }
-            }
-        }
-        return secureCookie;
-    }
+		String secureCookie = null;
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) { 
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("vsc")) {
+					secureCookie = cookies[i].getValue().trim();
+					break; 
+				}
+			}
+		}
+		return secureCookie;
+	}
 }

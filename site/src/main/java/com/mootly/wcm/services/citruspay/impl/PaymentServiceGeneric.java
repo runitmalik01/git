@@ -20,6 +20,38 @@ public abstract class PaymentServiceGeneric implements PaymentService {
 	final String formatForAccessKeySSL= "%s%s%s%s"; //String data=merchantId+orderAmount+merchantTxnId+currency;
 	final String formatForAccessKeyMOTO = "merchantAccessKey=%s&transactionId=%s&amount=%s";
 	
+	String paysealMerchantId;
+	String paysealNoResultMessage;
+	String paysealNoResultCode;
+	
+	@Override
+	public final String getPaysealMerchantId() {
+		return paysealMerchantId;
+	}
+
+	public final void setPaysealMerchantId(String paysealMerchantId) {
+		this.paysealMerchantId = paysealMerchantId;
+	}
+	
+	@Override
+	public final String getPaysealNoResultMessage() {
+		return paysealNoResultMessage;
+	}
+
+	public final void setPaysealNoResultMessage(String paysealNoResultMessage) {
+		this.paysealNoResultMessage = paysealNoResultMessage;
+	}
+
+	@Override
+	public final String getPaysealNoResultCode() {
+		return paysealNoResultCode;
+	}
+
+	public final void setPaysealNoResultCode(String paysealNoResultCode) {
+		this.paysealNoResultCode = paysealNoResultCode;
+	}
+
+	
 	@Override
 	public final String getAccessKey() {
 		// TODO Auto-generated method stub
