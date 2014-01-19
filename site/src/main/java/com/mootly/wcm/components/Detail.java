@@ -18,6 +18,14 @@ package com.mootly.wcm.components;
 
 import java.io.IOException;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
+
 import javax.jcr.Session;
 
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
@@ -40,6 +48,7 @@ import com.mootly.wcm.beans.Comment;
 import com.mootly.wcm.beans.Document;
 import com.mootly.wcm.beans.EventDocument;
 import com.mootly.wcm.beans.NewsItem;
+import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 
 public class Detail extends BaseComponent {
 
@@ -64,7 +73,7 @@ public class Detail extends BaseComponent {
 			request.setAttribute("newsEditlink", newsEditlink);}
 		if(null!=newsDeletelink){
 			request.setAttribute("newsDeletelink", newsDeletelink);}
-		
+
 		if (document == null) { 
 			redirectToNotFoundPage(response);
 			return;
@@ -90,6 +99,7 @@ public class Detail extends BaseComponent {
 			}
 
 		}
+
 		request.setAttribute("commentCount", commentCount);
 	}
 
@@ -106,13 +116,17 @@ public class Detail extends BaseComponent {
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String description = request.getParameter("description");
+		String newStartDate = request.getParameter("newstartdate");
+		String newEndDate= request.getParameter("newenddate");
 		String flag = request.getParameter("deleteevent");
-		String newsflag = request.getParameter("deletenews");
-		//String date = request.getParameter("date");
+		String newsflag = request.getParameter("deletenews");		
+		
 		EventDocument edoc = new EventDocument();	
 		edoc.setTitle(title);
 		edoc.setSummary(summary);
 		edoc.setDescriptionContent(description);
+		edoc.setNewStartDate(newStartDate);
+		edoc.setNewEndDate(newEndDate);
 		NewsItem ndoc = new NewsItem();
 		ndoc.setTitle(title);
 		ndoc.setSummary(summary);
@@ -139,7 +153,7 @@ public class Detail extends BaseComponent {
 			}	
 			try {
 				response.sendRedirect("/site/r/"+ getITRInitData(request).getResellerId()+"/events");
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -161,6 +175,7 @@ public class Detail extends BaseComponent {
 	protected  void editNewEvents(HstRequest request,EventDocument ed) {
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
+
 		try {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
@@ -172,7 +187,9 @@ public class Detail extends BaseComponent {
 			if (objEventDocument != null) {
 				objEventDocument.setTitle(ed.getTitle());
 				objEventDocument.setSummary(ed.getSummary());
-				objEventDocument.setDescriptionContent(ed.getDescriptionContent()); 
+				objEventDocument.setDescriptionContent(ed.getDescriptionContent());
+				objEventDocument.setNewStartDate(ed.getNewStartDate());
+				objEventDocument.setNewEndDate(ed.getNewEndDate());		
 				wpm.update(objEventDocument);
 				wpm.save();
 			}
@@ -184,7 +201,7 @@ public class Detail extends BaseComponent {
 			}
 		}
 	}
-
+	
 	// Edit News
 	protected  void editNewNews(HstRequest request,NewsItem nd){
 		Session persistableSession = null;
@@ -218,6 +235,7 @@ public class Detail extends BaseComponent {
 
 	//Delete Events
 	protected  void DeleteEvents(HstRequest request,EventDocument ed) {
+		
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 		try {
@@ -271,6 +289,8 @@ public class Detail extends BaseComponent {
 			}
 		}
 	}
+
+
 
 	@Override
 	public void doBeforeServeResource(HstRequest request, HstResponse response) throws HstComponentException {

@@ -18,6 +18,7 @@ package com.mootly.wcm.components.events;
 
 import java.util.Calendar;
 
+
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
@@ -45,12 +46,13 @@ public class EventsAndCalendar extends BaseComponent {
 	private static final String PARAM_CURRENT_PAGE = "pageNumber";
 	private static final int DEFAULT_CURRENT_PAGE = 1;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
 		//HippoFolderBean n = (HippoFolderBean) getContentNode(request);
 		HippoBean eventsOverviewBean = this.getContentBean(request);
-		
+
 		HippoBean contentBean = getSiteContentBaseBean(request).getBean("events/facetedevents");
 		HippoBean contentBean1 = getSiteContentBaseBean(request).getBean("events");
 
