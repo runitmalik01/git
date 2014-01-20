@@ -6,17 +6,16 @@ This file is for NPV Calculator
 <c:set var="maxYear" value="50"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="memberlogin page type-page"></div>
-<h3>
+<c:set var="npvtitle">
 	<fmt:message key="npv_calculator" />
-</h3>
-
-
-Net Present Value (NPV) of a time series of cash flows, both incoming and outgoing, is defined as the sum of the present values of the individual cash flows with rate.
+</c:set>
+<hippo-gogreen:title title="${npvtitle}" />
+<h3 class="title text-center"><fmt:message key="npv_calculator" /></h3>
+<div class="text-info">Net Present Value (NPV) of a time series of cash flows, both incoming and outgoing, is defined as the sum of the present values of the individual cash flows with rate.
 Its a tool in discounted cash flow (DCF) analysis and is a standard method for using the time value of money to appraise long-term projects and for capital budgeting as if </br>
- NPV>0,  investment would add value to firm. </br>
- NPV<0,  investment would subtract value from firm. </br>
- NPV=0,  investment would neither gain nor lose value for the firm. </br>
-
+ NPV > 0,  investment would <b>add</b> value to firm.</br>
+ NPV < 0,  investment would <b>subtract</b> value from firm. </br>
+ NPV = 0,  investment would <b>neither gain nor lose</b> value for the firm. </br></div>
 
 <%
 	if (request.getQueryString() != null) {
@@ -31,7 +30,7 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 		<form action="${actionURL}" method="POST" id="frmNPV">
 			<p>
 				<label for="initial_invest"><fmt:message
-						key="npv_initialinvestment" />
+						key="npv_initialinvestment" />(&#8377;)
 				</label> <input  type="text" name="initial_invest" id="initial_invest" onkeypress="return isNumberKey(event)" />
 			</p>
 			<p>
@@ -63,7 +62,7 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 				<tr>
 					<th>Year</th>
 					<th>Discount Rate</th>
-					<th>Net Cash Inflow (Annual Return)</th>
+					<th>Net Cash Inflow (Annual Return) (&#8377;)</th>
 				</tr>
 				<c:forEach begin="1" var="y" end="${no_of_year}">
 					<tr>
@@ -79,9 +78,9 @@ Its a tool in discounted cash flow (DCF) analysis and is a standard method for u
 					readonly="readonly" />
 			</p>
 	
-			<a href="javascript:call()" role="button" class="btn btn-default orange"><fmt:message key="tax_button" /></a>
+			<a href="javascript:call()" role="button" class="btn btn-default btn-success"><fmt:message key="tax_button" /></a>
 	        &nbsp;&nbsp;&nbsp;
-			<a id="rst" role="button" class="btn btn-default orange"><fmt:message key="npv1_button" /></a>
+			<a id="rst" role="button" class="btn btn-default btn-danger"><fmt:message key="npv1_button" /></a>
 		</div>
 	</c:otherwise>
 </c:choose>
