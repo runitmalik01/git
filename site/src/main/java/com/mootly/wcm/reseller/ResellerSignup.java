@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.ResellerSignupDocument;
 import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.member.SignupDetail.FullReviewedWorkflowCallbackHandler;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.GoGreenUtil;
 
@@ -42,6 +43,7 @@ public class ResellerSignup extends BaseComponent {
 	private static final String PASSWORD = "password";
 	private static final String CONFIRM_PASSWORD = "confirmPassword";
 	private static final String SIGNUP_TERMS = "signupTerms";
+	private static final String CA_FIRMNO = "caFirmno";
 
 	private static final String SUCCESS = "success";
 	private static final String ERRORS = "errors";
@@ -52,10 +54,11 @@ public class ResellerSignup extends BaseComponent {
 		super.doBeforeRender(request, response);
 
 		String success=request.getParameter(SUCCESS);
-		if (success != null && SUCCESS.equals(success)) {
-			response.setRenderPath("jsp/member/signup_success.jsp");
+		if (success != null) {
+			request.setAttribute(SUCCESS, success);
 			return;
 		}
+
 
 		String[] errors = request.getParameterValues(ERRORS);
 		if (errors != null) {
@@ -67,6 +70,7 @@ public class ResellerSignup extends BaseComponent {
 				else if (anError.startsWith("signup.terms.")) request.setAttribute("signupTermsError",anError);
 				else if (anError.startsWith("signup.resellerID.")) request.setAttribute("resellerIDError",anError);
 				else if (anError.startsWith("signup.phoneCustomerService.")) request.setAttribute("phoneCustomerServiceError",anError);
+				else if (anError.startsWith("signup.caFirmno.")) request.setAttribute("caFirmno",anError);
 			}
 		}
 
@@ -92,8 +96,9 @@ public class ResellerSignup extends BaseComponent {
 		String password = GoGreenUtil.getEscapedParameter(request, PASSWORD);
 		String confirmPassword = GoGreenUtil.getEscapedParameter(request, CONFIRM_PASSWORD);
 		String signupTerms = GoGreenUtil.getEscapedParameter(request, SIGNUP_TERMS);
-		String resellerID = GoGreenUtil.getEscapedParameter(request, RESELLERID);
+		String resellerId = GoGreenUtil.getEscapedParameter(request, RESELLERID);
 		String phoneCustomerService = GoGreenUtil.getEscapedParameter(request, PHONECUSTOMERSERVICE);
+		String caFirmno = GoGreenUtil.getEscapedParameter(request, CA_FIRMNO);
 		//String passwordReminder = GoGreenUtil.getEscapedParameter(request, "passwordReminder");
 
 		List<String> errors = new ArrayList<String>();
@@ -102,7 +107,7 @@ public class ResellerSignup extends BaseComponent {
 			errors.add("signup.email.error.required");
 		}
 
-		if (StringUtils.isEmpty(resellerID)) {
+		if (StringUtils.isEmpty(resellerId)) {
 			errors.add("signup.resellerID.error.required");
 		}
 
@@ -116,6 +121,10 @@ public class ResellerSignup extends BaseComponent {
 
 		if (StringUtils.isEmpty(password)) {
 			errors.add("signup.password.error.required");
+		}
+		
+		if (StringUtils.isEmpty(caFirmno)) {
+			errors.add("signup.caFirmno.error.required");
 		}
 
 		if (StringUtils.isEmpty(signupTerms)) {
@@ -158,7 +167,7 @@ public class ResellerSignup extends BaseComponent {
 				HippoBean resellersBean = siteContentBaseBean.getBean("resellers");
 				if (resellersBean != null) {
 					if(resellersBean instanceof HippoFolder){
-						if(resellersBean.getBean(resellerID)!=null){
+						if(resellersBean.getBean(resellerId)!=null){
 							errors.add("signup.resellerID.error.alreadyRegistered");
 						}
 					}
@@ -180,7 +189,7 @@ public class ResellerSignup extends BaseComponent {
 			return;
 		}
 
-		FormMap map = new FormMap(request,new String[]{"resellerID","phoneCustomerService","email","confirmEmail","password","confirmPassword","signupTerms"});
+	/*	FormMap map = new FormMap(request,new String[]{"resellerID","phoneCustomerService","email","confirmEmail","password","confirmPassword","signupTerms"});
 		StoreFormResult sfr = new StoreFormResult();				
 		FormUtils.persistFormMap(request, response, map, sfr);
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-details", request.getRequestContext().getResolvedMount().getMount());
@@ -194,6 +203,52 @@ public class ResellerSignup extends BaseComponent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
+		
+		Session persistableSession = null;
+		WorkflowPersistenceManager wpm;
+		String finalResellershipDocumentPath = null;
+		try {
+			persistableSession = getPersistableSession(request);
+			wpm = getWorkflowPersistenceManager(persistableSession);
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			String cPath =request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/resellers/"+resellerId; //getCanonicalBasePathForWrite(request);
+			final String memberFolderPath = cPath + "/" + ContentStructure.RESELLER_FOLDER_NAME;//ContentStructure.getMemberFolder(request,signupDocument.getUserName());
+			finalResellershipDocumentPath = wpm.createAndReturn(memberFolderPath, ResellerSignupDocument.NAMESPACE ,  ResellerSignupDocument.NODE_NAME, true);
+			ResellerSignupDocument resellershipSignupDocument = (ResellerSignupDocument) wpm.getObject(finalResellershipDocumentPath);
+			// update content properties
+			if (resellershipSignupDocument != null) {
+				resellershipSignupDocument.setResellerID(resellerId);
+				resellershipSignupDocument.setPhoneCustomerService(phoneCustomerService);
+				resellershipSignupDocument.setUserName(email);
+				resellershipSignupDocument.setPassword(password);
+				resellershipSignupDocument.setEmail(email);
+				resellershipSignupDocument.setActivationCode(UUID.randomUUID().toString());
+				resellershipSignupDocument.setCaFirmno(caFirmno);
+				resellershipSignupDocument.setIsActive(false);
+				// update now           `
+				wpm.update(resellershipSignupDocument);
+				ResellerSignupDocument publishedSignUpDocument = (ResellerSignupDocument) wpm.getObject(finalResellershipDocumentPath); // getSiteContentBaseBean(request).getBean("member/" + signupDocument.getUserName().replaceAll("@","-at-") + "/membersignupdocument");
+
+				Map<String,Object> contextMap = new HashMap<String, Object>();
+				contextMap.put("resellerID", resellershipSignupDocument.getResellerID());
+				contextMap.put("phoneCustomerService", resellershipSignupDocument.getPhoneCustomerService());
+				contextMap.put("userName", resellershipSignupDocument.getUserName());
+				contextMap.put("emailID", resellershipSignupDocument.getEmail());
+				contextMap.put("resellershipSignupDocument", publishedSignUpDocument);
+				contextMap.put("caFirmno", caFirmno);
+				sendEmail(request, null, null, "", "reseller_signup", contextMap);
+			}
+		} catch (Exception e) {
+			log.warn("Failed to signup member ", e);
+		} finally {
+			if (persistableSession != null) {
+				persistableSession.logout();
+			}
+		}
+
+		response.setRenderParameter(SUCCESS, "success");
+		
 	}
 
 	@Override

@@ -10,7 +10,7 @@
 		            <h3><fmt:message key="${errorCode}"/></h3><br/>
 	            </c:when>
 		        <c:otherwise>
-		          Congratulations !!!!! Requested user has been Successfully Activated
+		          Thanks for the verification of requested user !!!!!!
 		     </c:otherwise>
 		 </c:choose>
 		</form>
