@@ -2,6 +2,9 @@
 
 <%@include file="../includes/tags.jspf"%>
 <jsp:useBean id="now" class="java.util.Date" />
+<%@page import="java.util.Calendar"%>
+
+
 
 <c:set var="overviewtitle">
 	<fmt:message key="events.overview.title" />
@@ -26,18 +29,20 @@
 					<a class="btn btn-default btn-primary" href="${events}/newEvent"><small><i
 							class="glyphicon glyphicon-plus glyphicon glyphicon-white"></i>Create
 							New</small></a>
-				</c:if></li> <c:forEach var="document" items="${documents.items}">
+				</c:if></li> 
+				
+				<c:forEach var="document" items="${documents.items}">			
 				<ul class="event-item<c:if test="${preview}"> editable</c:if>">
 					<hst:link var="link" hippobean="${document}" />
 					<li class="title"><hst:cmseditlink hippobean="${document}"
 							var="cmsEditLink" /><a href="${link}"><c:out
 								value="${document.title}" /> </a></li>
-
-
-					<li class="day"><fmt:formatDate value="${document.date.time}"
-							pattern="dd" /></li>
+								
+					<%-- 
+					 <li class="day"><fmt:formatDate
+							value="${document.date.time}" pattern="dd" /></li> 
 					<li class="month"><fmt:formatDate
-							value="${document.date.time}" pattern="MMM" /></li>
+							value="${document.date.time}" pattern="MMM" /></li>  --%>
 					<li class="text"><c:out value="${document.summary}" /></li>
 					<c:if test="${isVendor eq 'true' }">
 						<a class="btn btn-default btn-sm btn-success"

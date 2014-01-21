@@ -25,6 +25,26 @@
 				</div>
 			</div>
 			<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="newstartdate"> Start Date </label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="newstartdate" name="newstartdate"/>
+						</div>
+					</div>
+				</div>
+			<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="newenddate"> End Date</label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="newenddate" name="newenddate"/>
+						</div>
+					</div>
+				</div>
+			<div class="row show-grid">
 				<div class="col-md-7">
 					<div class="rowlabel">
 						<label for="summary">Summary </label>
@@ -50,3 +70,5 @@
 		</fieldset>
 	</form>
 </div>
+<res:client-validation formId="events"
+	screenConfigurationDocumentName="newevents"/>

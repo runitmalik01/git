@@ -1,23 +1,13 @@
-<%--
 
-    Copyright (C) 2010 Hippo B.V.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
---%>
 <%--@elvariable id="document" type="com.mootly.wcm.beans.EventDocument"--%>
 <%@include file="../../includes/tags.jspf"%>
+<%@page import=" java.text.ParseException"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@ page
+	import="java.util.Date,java.text.SimpleDateFormat,java.text.ParseException"%>
 
+<%@page import="java.util.Calendar"%>
 <!-- NOTE: Switch on the following variable if you want to eanble Inline Editing feature in this page. -->
 <c:set var="inlineEditingEnabled" value="false" />
 
@@ -54,6 +44,42 @@
 						</div>
 					</div>
 				</div>
+				<%-- <div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="date"> End Date </label>
+						</div>
+						<div class="rowlabel">
+							<input type="date" id="date" name="date"
+								value ="<fmt:formatDate
+						value="${document.endDate.time}" pattern="MMM dd, yyyy" />"/>
+						</div>
+					</div>
+				</div> --%>
+				<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="newstartdate"> Start Date </label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="newstartdate" name="newstartdate"
+								value="${document.newStartDate}" />
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="newenddate"> End Date </label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="newenddate" name="newenddate"
+								value="${document.newEndDate}" />
+						</div>
+					</div>
+				</div>
 				<div class="row show-grid">
 					<div class="col-md-6">
 						<div class="rowlabel">
@@ -65,17 +91,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="row show-grid">
-					<div class="col-md-6">
-						<div class="rowlabel">
-							<label for="date"> End Date </label>
-						</div>
-						<div class="rowlabel">
-							<input type="date" id="date" name="date"
-								value="${document.endDate.time}" />
-						</div>
-					</div>
-				</div>
 
 				<div class="row show-grid">
 					<div class="col-md-8">
@@ -83,16 +98,19 @@
 							<label for="description">Description </label>
 						</div>
 						<div class="rowlabel">
-						<textarea name="description" id="description" rows="20"								
+							<textarea name="description" id="description" rows="20"
 								value="<c:if test="${preview}">editable</c:if> inline"
-							id="mootlywcm:description">
-							<c:out value="${document.description.content}" escapeXml="false" /><%-- <hst:html
-								hippohtml="${document.description}"/> --%></textarea>
-								<w4india:ckeditor_inline textAreaId="description" />
+								id="mootlywcm:description">
+							<c:out value="${document.description.content}" escapeXml="false" />
+								<%-- <hst:html
+								hippohtml="${document.description}"/> --%>
+							</textarea>
+							<w4india:ckeditor_inline textAreaId="description" />
 						</div>
 					</div>
 				</div>
-						<input type="submit" class="btn btn-default btn-success" value="Save">
+				<input type="submit" class="btn btn-default btn-success"
+					value="Save">
 			</fieldset>
 		</form>
 	</c:when>
@@ -117,23 +135,21 @@
 						</div>
 						<div class="rowlabel">
 							<select id="deleteevent" name="deleteevent">
-							<option value="select">-Select-</option>
+								<option value="select">-Select-</option>
 								<option value="yes">Yes</option>
 								<option value="no">No</option>
 							</select>
 						</div>
 					</div>
 				</div>
-				<input type="submit" class="btn btn-default btn-success" value="Save">
+				<input type="submit" class="btn btn-default btn-success"
+					value="Save">
 			</fieldset>
 		</form>
 	</c:when>
 	<c:otherwise>
 		<div id="content"
 			class="yui-b left-and-right <c:if test="${preview}"> editable</c:if>">
-
-
-
 			<h2 class="title">
 				<c:out value="${document.title}" />
 			</h2>
@@ -144,6 +160,7 @@
 					<hippo-gogreen:image-gallery />
 					<hippo-gogreen:imagecopyright image="${document.images[0]}" />
 				</c:if>
+
 				<%--
             <c:set var="image" value="${document.firstImage}"/>
             <c:if test="${image != null}">
@@ -152,17 +169,18 @@
                 <hippo-gogreen:imagecopyright image="${image}"/>
             </c:if>
              --%>
-				<span class="date"> <fmt:formatDate
-						value="${document.date.time}" pattern="MMM dd, yyyy" />&nbsp;-&nbsp;
-					<fmt:formatDate value="${document.endDate.time}"
-						pattern="MMM dd, yyyy" />
-				</span>
 
-				<div class="calendar">
+
+				<%-- <div class="calendar">
 					<span class="month"><fmt:formatDate
 							value="${document.date.time}" pattern="MMM" /> </span> <span
 						class="day"><fmt:formatDate value="${document.date.time}"
 							pattern="dd" /> </span>
+				</div> --%>
+				<div class="date">
+					<c:out value="${document.newStartDate}" />
+					&nbsp;-&nbsp;
+					<c:out value="${document.newEndDate}" />
 				</div>
 
 				<div id="editable_cont" class="inline-editor-editable-container">
@@ -194,6 +212,8 @@
 	</c:otherwise>
 </c:choose>
 
+<res:client-validation formId="events"
+	screenConfigurationDocumentName="newevents" />
 
 <c:if test="${preview && inlineEditingEnabled}">
 	<jsp:include page="../../inc/inline-editing-editor-form.jsp" />
