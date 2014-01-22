@@ -25,6 +25,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
@@ -252,30 +253,32 @@ public class AssetComponent extends BaseComponent {
 		WorkflowPersistenceManager wpm = null;
 		Session persistableSession = null;
 		boolean delete = false;
-		try {
-			persistableSession = getPersistableSession(request);
-			persistableSession.save();
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			//wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
-			for(AssetDocument o:getAssetDriveFileResource(request, response)){
-				if(o.getCanonicalUUID().equals(fileuuid)){
-					wpm.remove(o);
-					wpm.save();
-					delete=true;
-					break;
+		if(StringUtils.isNotBlank(fileuuid)) {
+			try {
+				persistableSession = getPersistableSession(request);
+				persistableSession.save();
+				wpm = getWorkflowPersistenceManager(persistableSession);
+				//wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
+				for(AssetDocument o:getAssetDriveFileResource(request, response)){
+					if(o.getCanonicalUUID().equals(fileuuid)){
+						wpm.remove(o);
+						wpm.save();
+						delete=true;
+						break;
+					}
 				}
-			}
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			log.error("Error to get the PersistableSession From JCR Repository!!"+e);
-			return false;
-		} catch (ObjectBeanPersistenceException e) {
-			// TODO Auto-generated catch block
-			log.error("Error while to Delete the Object from Repo path"+e);
-			return false;
-		} finally{
-			if(persistableSession!=null){
-				persistableSession.logout();
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				log.error("Error to get the PersistableSession From JCR Repository!!"+e);
+				return false;
+			} catch (ObjectBeanPersistenceException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while to Delete the Object from Repo path"+e);
+				return false;
+			} finally{
+				if(persistableSession!=null){
+					persistableSession.logout();
+				}
 			}
 		}
 		return delete;

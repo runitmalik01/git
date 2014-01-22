@@ -33,6 +33,8 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoResource;
 
+import com.mootly.wcm.model.PERMISSION;
+
 
 /**
  * [mootlywcm:product] > mootlywcm:document, relateddocs:relatabledocs
@@ -53,18 +55,20 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	private String docPassword;
 	private String docAdditionalNotes;
 	private String memberFileName;
+	private String accessPermission;
 	private String MEMBER_DOCS ="mootlywcm:memberDocs";
 	private String DESCRIPTION ="mootlywcm:description";
 	private String DOCUMENT_PASSWORD ="mootlywcm:docPassword";
 	private String DOCUMENT_ADDITIONAL_NOTES ="mootlywcm:additionalNotes";
 	private String MEMBER_FILE_NAME ="mootlywcm:memberFileName";
+	private String ACCESS_PERMISSION="mootlywcm:accessPermission";
 	/**
 	 * @return the memberFileResource
 	 */
 	public HippoResource getMemberFileResource() {
 		return getBean(MEMBER_DOCS);
 	}
-	
+
 	public HippoResource getMemberFileResourceWithFileName() {
 		return getBean(getMemberFileName());
 	}
@@ -136,6 +140,30 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	public void setMemberFileName(String memberFileName) {
 		this.memberFileName = memberFileName;
 	}
+	public String getAccessPermissionStr() {
+		if(accessPermission == null) accessPermission = getProperty(ACCESS_PERMISSION);
+		//If still have null from document then we can set default value for access Permission
+		if(accessPermission == null) accessPermission = PERMISSION.WRITE.name().toString();
+		return accessPermission;
+	}
+	public PERMISSION getAccessPermission(){
+		if(getAccessPermissionStr() != null){
+			for(PERMISSION permission:PERMISSION.values()){
+				if(permission.name().toString().equalsIgnoreCase(getAccessPermissionStr())){
+					return permission;
+				}
+			}
+			return PERMISSION.WRITE;
+		} else {
+			//If still have null from document then we can set default value for access Permission
+			return PERMISSION.WRITE;
+		}
+	}
+
+	public void setAccessPermission(String accessPermission) {
+		this.accessPermission = accessPermission;
+	}
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node) throws ContentNodeBindingException {
 		MemberDriveDocument bean = (MemberDriveDocument) content;        
@@ -173,6 +201,7 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			node.setProperty(DOCUMENT_PASSWORD, bean.getDocPassword());
 			node.setProperty(DOCUMENT_ADDITIONAL_NOTES, bean.getDocPassword());
 			node.setProperty(MEMBER_FILE_NAME, getMemberFileName());
+			node.setProperty(ACCESS_PERMISSION, bean.getAccessPermissionStr());
 		} 
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);
@@ -191,6 +220,12 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 		}
 		if(formMap.getField("additionalnotes") != null){
 			setDocAdditionalNotes(formMap.getField("additionalnotes").getValue());
+		}
+		if(formMap.getField("accesspermission") != null){
+			setDocAdditionalNotes(formMap.getField("accesspermission").getValue());
+		} else{
+			//set a default permission on  PERMISSION.WRITE.
+			setDocAdditionalNotes(PERMISSION.WRITE.name());
 		}
 	}
 	@Override

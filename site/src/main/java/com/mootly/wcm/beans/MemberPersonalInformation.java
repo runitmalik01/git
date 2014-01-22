@@ -72,6 +72,7 @@ import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes;
 import static com.mootly.wcm.utils.Constants.Rsstatus_q_yes_yes;
 
 import java.util.GregorianCalendar;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
@@ -204,6 +205,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String  ditSubmissionToken;
 	private String digitalSignatureHandleUUID;
 
+	private String sourceIncPackSelectKey;
+	private Boolean sourceIncPackSelect;
 
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
 
@@ -529,7 +532,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		return null;
 	}
 
-
 	public GregorianCalendar getDate_FurnishAuditReport() {
 		if (date_FurnishAuditReport == null) date_FurnishAuditReport = getProperty("mootlywcm:date_FurnishAuditReport");
 		return date_FurnishAuditReport;
@@ -543,12 +545,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		return null;
 	}
 
-
 	public String getIsLiable_FurnishSec92E() {
 		if (isLiable_FurnishSec92E == null) isLiable_FurnishSec92E = getProperty("mootlywcm:isLiable_FurnishSecNinetyTwoE");
 		return isLiable_FurnishSec92E;
 	}
-
 
 	public String getPersonalInfoUuid() {
 		return PIUUID;
@@ -703,7 +703,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		this.ward_circle = ward_circle;
 	}
 
-
 	public final void setPinCode(String pinCode) {
 		this.pinCode = pinCode;
 	}
@@ -725,7 +724,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 	// Member Bank Detail
 	public Boolean getBankDetailStatus(){
 		if (bankDetailStatus == null) bankDetailStatus = getProperty(BD_STATUS);
@@ -858,18 +856,15 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setRsstatusQNoYesYes(String rsstatus_q_no_yes_yes) {
 		this.rsstatus_q_no_yes_yes = rsstatus_q_no_yes_yes;
 	}
-
 	public final void setRsstatusQNoNo(String rsstatus_q_no_no) {
 		this.rsstatus_q_no_no = rsstatus_q_no_no;
 	}
-
 	public final void setResidentCategory(String residentCategory) {
 		this.residentCategory = residentCategory;
 	}
 	public void setPersonalInforUuid(String piuuid) {
 		this.PIUUID = piuuid;
 	}
-
 	// next 4 methods are added for itr2
 	public final void setIsRepresentative(String isRepresentative) {
 		this.isRepresentative = isRepresentative;
@@ -883,7 +878,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setPan_Representative(String pan_Representative) {
 		this.pan_Representative = pan_Representative;
 	}
-
 	// next 9 to 10 methods are added for itr4
 	public final void setIsLiable_ManageAcc(String isLiable_ManageAcc) {
 		this.isLiable_ManageAcc = isLiable_ManageAcc;
@@ -891,8 +885,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setIsLiable_ForAudit(String isLiable_ForAudit) {
 		this.isLiable_ForAudit = isLiable_ForAudit;
 	}
-
-
 	public final void setDate_FurnishAuditReport(GregorianCalendar date_FurnishAuditReport) {
 		this.date_FurnishAuditReport = date_FurnishAuditReport;
 	}
@@ -911,12 +903,9 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setDate_AuditReport(GregorianCalendar date_AuditReport) {
 		this.date_AuditReport = date_AuditReport;
 	}
-
-
 	public final void setIsLiable_FurnishSec92E(String isLiable_FurnishSec92E) {
 		this.isLiable_FurnishSec92E = isLiable_FurnishSec92E;
 	}
-
 	public void setDitVerificationStatus(
 			VerificationStatus ditVerificationStatus) {
 		this.ditVerificationStatus = ditVerificationStatus;
@@ -1006,7 +995,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			node.setProperty(Rsstatus_q_no_no_yes, mpi.getRsstatusQNoNoYes());
 			node.setProperty(Rsstatus_q_no_no_yes_yes, mpi.getRsstatusQNoNoYesYes());
 			node.setProperty(Rsstatus_q_no_yes_yes_yes, mpi.getRsstatusQNoYesYesYes());
-
 			// added for itr2
 			node.setProperty("mootlywcm:isRepresentative", mpi.getIsRepresentative());
 			node.setProperty("mootlywcm:name_Representative", mpi.getName_Representative());
@@ -1031,15 +1019,12 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			if (mpi.getDitVerificationStatus() != null) {
 				node.setProperty("mootlywcm:ditVerificationStatus", mpi.getDitVerificationStatus().name());
 			}
-
 			if (mpi.getDitVerificationMessage() != null) {
 				node.setProperty("mootlywcm:ditVerificationMessage", mpi.getDitVerificationMessage());
 			}
-
 			if (mpi.getChoiceImportTDS() != null) {
 				node.setProperty("mootlywcm:choiceImportTDS", mpi.getChoiceImportTDS());
 			}
-
 			if (mpi.getImportTDSSuccess() != null) {
 				node.setProperty("mootlywcm:importTDSSuccess", mpi.getImportTDSSuccess());
 			}
@@ -1054,19 +1039,24 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			javax.jcr.Node digitalSignatureNode = null;
 			if(node.hasNode("mootlywcm:pathToDigitalSignature")){
 				digitalSignatureNode = node.getNode("mootlywcm:pathToDigitalSignature");
-			}else{
+			} else {
 				digitalSignatureNode = node.addNode("mootlywcm:pathToDigitalSignature", Constants.NT_HIPPO_MIRROR);
-				if (digitalSignatureNode!= null) {
-					digitalSignatureNode.setProperty("hippo:docbase", "cafebabe-cafe-babe-cafe-babecafebabe");
-				}				
 			}
-			/*if(digitalSignatureNode != null){
-				digitalSignatureNode.setProperty(Constants.PROP_HIPPO_DOCBASE, getDigitalSignatureHandleUUID());
-			}*/
+			if(digitalSignatureNode != null){
+				if(StringUtils.isNotBlank(getDigitalSignatureHandleUUID())) {
+					digitalSignatureNode.setProperty(Constants.PROP_HIPPO_DOCBASE, getDigitalSignatureHandleUUID());
+				} else {
+					digitalSignatureNode.setProperty("hippo:docbase", "cafebabe-cafe-babe-cafe-babecafebabe");
+				}
+			}
+			/*if (digitalSignatureNode!= null) {
+					digitalSignatureNode.setProperty("hippo:docbase", "cafebabe-cafe-babe-cafe-babecafebabe");
+				}*/
+			node.setProperty("mootlywcm:sourceIncPackSelect", mpi.getSourceIncPackSelect());
+			node.setProperty("mootlywcm:sourceIncPackSelectKey", mpi.getSourceIncPackSelectKey());
 
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
-
 		}
 		return true;
 	}
@@ -1078,7 +1068,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (log.isInfoEnabled()) {
 			log.info("Into the fill method");
 		}
-		log.info("here areeeeeee"+getFilingStatus());
 		if (formMap == null) return;
 		if ( formMap.getField("tax_status") != null) setTaxStatus(formMap.getField("tax_status").getValue());
 		if ( formMap.getField("return_section") != null) setReturnFileSection(Long.parseLong(formMap.getField("return_section").getValue()));
@@ -1087,20 +1076,31 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
 		if ( formMap.getField("portugesecivil") != null) setPortugesecivil(formMap.getField("portugesecivil").getValue());
 		//new changes for Return Filed under section on 06/08/2013
-		String returnTypeChoice = formMap.getField("returnTypeChoice").getValue();
-		String revisingWithNoticeSection = formMap.getField("revisingWithNoticeSection").getValue();
-
+		String returnTypeChoice = null;
+		if(formMap.getField("returnTypeChoice") != null){
+			returnTypeChoice = formMap.getField("returnTypeChoice").getValue();
+		}
+		String revisingWithNoticeSection = null;
+		if(formMap.getField("revisingWithNoticeSection") != null){
+			revisingWithNoticeSection = formMap.getField("revisingWithNoticeSection").getValue();
+		}
 		FinancialYear finanYr = FinancialYear.TwentyTweleve;
 		for(FinancialYear financialYear:FinancialYear.values()){
 			if(!financialYear.equals(FinancialYear.UNKNOWN)){
-				if(financialYear.getDisplayName().equals(formMap.getField("fy").getValue())){
-					finanYr = financialYear;
+				if(formMap.getField("fy") != null) {
+					if(financialYear.getDisplayName().equals(formMap.getField("fy").getValue())){
+						finanYr = financialYear;
+					}
 				}
 			}
 		}
 		FilingSection filingSection;
 		//revisingWithNoticeSection")
-		boolean isPastDue = finanYr.isPastDue(getSelectedITRForm(), formMap.getField("pi_state").getValue());if (isPastDue) {
+		boolean isPastDue = false;
+		if(formMap.getField("pi_state") != null){
+			isPastDue = finanYr.isPastDue(getSelectedITRForm(), formMap.getField("pi_state").getValue());
+		}
+		if (isPastDue) {
 			filingSection = FilingSection.AfterDueDate_139_4;
 		}
 		else {
@@ -1110,19 +1110,15 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (returnTypeChoice != null && ("revisingNoNotice".equals(returnTypeChoice))) {
 			setReturnType("R");
 			filingSection = FilingSection.Revised_139_5;
-
 		}else if(returnTypeChoice != null && "revisingWithNotice".equals(returnTypeChoice)){
 			setReturnType("O");
 			filingSection = FilingSection.getByXmlCode(revisingWithNoticeSection);
-
-		}
-		else {
+		} else {
 			setReturnType("O");
 		}
 		if (filingSection != null && filingSection == FilingSection.Revised_139_9) {
 			setDefective("Y");
-		}
-		else {
+		} else {
 			setDefective("N");
 		}
 		//if ( formMap.getField("pi_return_type") != null) setReturnType(formMap.getField("pi_return_type").getValue());
@@ -1185,7 +1181,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (formMap.getField("isLiable_ManageAcc") != null) setIsLiable_ManageAcc(formMap.getField("isLiable_ManageAcc").getValue());
 		if (formMap.getField("isLiable_ForAudit") != null) setIsLiable_ForAudit(formMap.getField("isLiable_ForAudit").getValue());
 
-
 		if (formMap.getField("name_AuditorSign_Report") != null) setName_AuditorSign_Report(formMap.getField("name_AuditorSign_Report").getValue());
 		if (formMap.getField("membershipNo_auditor") != null) setMembershipNo_auditor(formMap.getField("membershipNo_auditor").getValue());
 		if (formMap.getField("name_auditorFirm") != null) setName_auditorFirm(formMap.getField("name_auditorFirm").getValue());
@@ -1199,9 +1194,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			String strdate_AuditReport= formMap.getField("date_AuditReport").getValue();
 			setDate_AuditReport(ConvDateStringToCalendar(strdate_AuditReport));
 		}
-
-
-
 		if (formMap.getField("isLiable_FurnishSec92E") != null) setIsLiable_FurnishSec92E(formMap.getField("isLiable_FurnishSec92E").getValue());
 		if (formMap.getField("pan_Representative") != null) setPan_Representative(formMap.getField("pan_Representative").getValue());
 
@@ -1224,23 +1216,18 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (formMap.getField("bd_account_type") != null) setBD_TYPE_ACC(formMap.getField("bd_account_type").getValue());
 		if (formMap.getField("bd_account_no") != null) setBD_ACC_NUMBER(formMap.getField("bd_account_no").getValue());
 		if (formMap.getField("bd_ecs") != null) setBD_ECS(formMap.getField("bd_ecs").getValue());
-
 		// for itr4s
-		double amt=0.0d;
 		if (formMap.getField("trpnumber") != null) setTrpnumber(formMap.getField("trpnumber").getValue());
 		if (formMap.getField("trpname") != null) setTrpname(formMap.getField("trpname").getValue());
-
 		if (formMap.getField("isTaxPreparebyTRP") != null) setIsTaxPreparebyTRP(formMap.getField("isTaxPreparebyTRP").getValue());
-		if (formMap.getField("trpreimbursement").getValue().isEmpty())
-		{
-			setTrpreimbursement(amt);
-		}else
-		{
+		if (formMap.getField("trpreimbursement")!= null) {
 			String trpreimbursement= formMap.getField("trpreimbursement").getValue();
-			double trpamount= Double.parseDouble(trpreimbursement);
+			double trpamount = 0.0d;
+			if(StringUtils.isNotBlank(trpreimbursement)) {
+				trpamount = Double.parseDouble(trpreimbursement);
+			}
 			setTrpreimbursement(trpamount);
-
-		}
+		} 
 		//Residential Status
 		if (formMap.getField("rsstatus_q") != null) {
 			setRsstatusQ(formMap.getField("rsstatus_q").getValue());
@@ -1304,37 +1291,46 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		String modchoice="rsstatus_q_"+choice.trim();
 		//In case of HUF we are not asking question to member so if "rsstatus_q" has a value that have residential status then we will set Residential Status
 		// new case for huf, abhi 14/09/2013
-		if(getFilingStatus().equals("H")){
-			log.info("for huf"+modchoice);
-			ResourceBundle rbNew = ResourceBundle.getBundle(rbfilenameNew);
-			for (String bKey: rbNew.keySet()) {
-
-				if(bKey.matches(modchoice.trim().substring(0,modchoice.length()-1))){
-					if(log.isInfoEnabled()){
-						log.info("this is residential status new for huf"+rbNew.getString(bKey).replaceFirst("ans_","").trim());
+		if (formMap.getField("fy") != null) {
+			//If financial Year value will be null then we will not be able to fetch the resource bundle 
+			if(getFilingStatus().equals("H")){
+				ResourceBundle rbNew = null;
+				try {
+					rbNew = ResourceBundle.getBundle(rbfilenameNew);
+				} catch (MissingResourceException e){
+					log.warn("Error Resource is not Available ",e);
+				}
+				if(rbNew != null){
+					for (String bKey: rbNew.keySet()) {
+						if(bKey.matches(modchoice.trim().substring(0,modchoice.length()-1))){
+							if(log.isInfoEnabled()){
+								log.info("this is residential status new for huf"+rbNew.getString(bKey).replaceFirst("ans_","").trim());
+							}
+							setResidentCategory(ResidentialFind(rbNew.getString(bKey)));
+							break;
+						}
 					}
-					setResidentCategory(ResidentialFind(rbNew.getString(bKey)));
-					log.info("value of res is another"+ResidentialFind(rbNew.getString(bKey)));
-					break;
+				}
+			} else{
+				ResourceBundle rb = null;
+				try{
+					rb = ResourceBundle.getBundle(rbfilename);
+				} catch(MissingResourceException e){
+					log.warn("Error Resource is not Available ",e);
+				}
+				if(rb != null){
+					for (String aKey: rb.keySet() ) {
+						if(aKey.matches(modchoice.trim())){
+							if(log.isInfoEnabled()){
+								log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
+							}
+							setResidentCategory(ResidentialFind(rb.getString(aKey)));
+							break;
+						}
+					}
 				}
 			}
 		}
-		else{
-			log.info("for huf"+modchoice);
-
-			ResourceBundle rb = ResourceBundle.getBundle(rbfilename);
-			for (String aKey: rb.keySet() ) {
-				if(aKey.matches(modchoice.trim())){
-					if(log.isInfoEnabled()){
-						log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
-					}
-					setResidentCategory(ResidentialFind(rb.getString(aKey)));
-					log.info("value of res is"+ResidentialFind(rb.getString(aKey)));
-					break;
-				}
-			}
-		}
-
 		//DIT VErification
 		if (formMap.getField("ditVerificationStatus") != null) {
 			String ditVerificationStatusStr = formMap.getField("ditVerificationStatus").getValue();
@@ -1356,7 +1352,6 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			}
 		}
 
-
 		if (formMap.getField("ditSubmissionStatus") != null) {
 			String ditSubmissionStatusStr = formMap.getField("ditSubmissionStatus").getValue();
 			try {
@@ -1371,7 +1366,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			String ditSubmissionToken = formMap.getField("ditSubmissionToken").getValue();
 			setDitSubmissionToken(ditSubmissionToken);
 		}
-
+		
 		/*	if(StringUtils.isBlank(getResidentCategory())){
 			for(ResidentStatus resiStat:ResidentStatus.values()){
 				if(resiStat.name().equalsIgnoreCase(getRsstatusQ())){
@@ -1380,9 +1375,17 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			}
 		}*/
 		if(formMap.getField("digitalSignatureHandleUUID") !=null){
+			log.info("Lets see digital Signature Handle UUID::"+formMap.getField("digitalSignatureHandleUUID").getValue());
 			setDigitalSignatureHandleUUID(formMap.getField("digitalSignatureHandleUUID").getValue());
 		}
+		if(formMap.getField("sourceIncPackSelectKey") !=null){
+			setSourceIncPackSelectKey(formMap.getField("sourceIncPackSelectKey").getValue());
+		}
+		if(formMap.getField("sourceIncPackSelect") !=null){
+			setSourceIncPackSelect(Boolean.valueOf(formMap.getField("sourceIncPackSelect").getValue()));
+		}
 	}
+	
 	private String ResidentialFind(String key){
 		if(key.matches("ans_Resident and Ordinarily Resident")) return "RES";
 		if(key.matches("ans_Resident but Not Ordinarily Resident")) return "NOR";
@@ -1452,7 +1455,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		return driveDocumentDS;
 	}
 	public String getDigitalSignaturePath() {
-		return getDigitalSignature().getCanonicalPath();
+		if(getDigitalSignature() != null){
+			return getDigitalSignature().getCanonicalPath();	
+		}else {
+			return null;
+		}
 	}
 
 	public String getDigitalSignatureHandleUUID() {
@@ -1466,5 +1473,23 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 	public void setDigitalSignatureHandleUUID(String digitalSignatureHandleUUID) {
 		this.digitalSignatureHandleUUID = digitalSignatureHandleUUID;
+	}
+
+	public Boolean getSourceIncPackSelect() {
+		if(sourceIncPackSelect == null) sourceIncPackSelect = getProperty("mootlywcm:sourceIncPackSelect");
+		return sourceIncPackSelect;
+	}
+
+	public void setSourceIncPackSelect(Boolean sourceIncPackSelect) {
+		this.sourceIncPackSelect = sourceIncPackSelect;
+	}
+
+	public String getSourceIncPackSelectKey() {
+		if(sourceIncPackSelectKey == null) sourceIncPackSelectKey = getProperty("mootlywcm:sourceIncPackSelectKey");
+		return sourceIncPackSelectKey;
+	}
+
+	public void setSourceIncPackSelectKey(String sourceIncPackSelectKey) {
+		this.sourceIncPackSelectKey = sourceIncPackSelectKey;
 	}
 }

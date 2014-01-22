@@ -61,14 +61,18 @@ pageContext.setAttribute("hostname", builder.toString());
 		   </div>
 		</c:if>
 		<c:if test="${not empty msg}">
-			<div class="row show-grid">
+			<div class="row">
+			  <div class="col-md-12">
 				<div class="alert alert-success">Your have successfully
 					uploaded file in Member Drive.</div>
+			  </div>
 			</div>
 		</c:if>
 		<c:if test="${not empty delete}">
 			<div class="row show-grid">
+			  <div class="col-md-12">
 				<div class="alert alert-info">File has been deleted from Member Drive</div>
+			  </div>
 			</div>
 		</c:if>
 		<div class="row show-grid">
@@ -179,7 +183,8 @@ pageContext.setAttribute("hostname", builder.toString());
 				 </div>
 			  </div>
 			</div>
-		    <div class="row show-grid">
+		    <div class="row">
+		       <div class="col-md-12">
                    <div class="file_name">
                         <table class="table table-hover table-bordered">
                            <thead>
@@ -192,8 +197,8 @@ pageContext.setAttribute("hostname", builder.toString());
                                </tr>
                            </thead>
                            <tbody>
-                             <%-- <c:forEach var="file" items="${listOfAllMemberFiles}"> --%>
-                             <c:forEach var="file" items="${memberFiles}">
+                             <%-- <c:forEach var="file" items="${memberFiles}"> --%>
+                             <c:forEach var="file" items="${listOfAllMemberFiles}">
                                <tr>
                                   <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
                         	     <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
@@ -204,8 +209,10 @@ pageContext.setAttribute("hostname", builder.toString());
                                       <i class="glyphicon glyphicon-eye-open glyphicon glyphicon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-default btn-primary">
                                       <i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
-                                      <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
-                                      <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>                                   
+                                      <c:if test="${not empty file.accessPermission && file.accessPermission eq 'WRITE'}">
+                                         <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
+                                         <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>
+                                      </c:if>                                   
                                   </td>
                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
                                </tr>
@@ -213,6 +220,7 @@ pageContext.setAttribute("hostname", builder.toString());
                             </tbody>
                            </table>
                       </div>
+                  </div>
 		      </div>
 	</fieldset>
 	<%--

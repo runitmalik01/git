@@ -753,7 +753,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<fieldset class="llpackageselection hide">
 			<legend> ITR Package selection </legend>
 			<h5>
-				<small><fmt:message key="member.resi.status.sentence" /></small>
+				<small>We are trying our best to provide better sevice and
+					easy to file Income tax.Please read abbrevations carefully before
+					making any selections.These income source selection will decide
+					your Package in which you are liable.</small>
 			</h5>
 			<jsp:include page="../member/startapp/startapp_package_selection_v1.0.jsp">
 			  <jsp:param name="jsonObjectPackage" value="${jsonObjectPackage}"/>
@@ -1007,10 +1010,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         	  if($('#myModal').length > 0) $('#myModal').modal();
         	  // to display revised fields
         	  	$('#hlpackageselection').on('click',function(){
+        	  	     $('#sourceIncPackSelect').val('false');
+        	  	     $('#sourceIncPackSelectKey').val('');
 	                 $('.llpackageselection').hide();
 	                 $('.hlpackageselection').show();
 	            });
 	            $('#llpackageselection').on('click',function(){
+	                 $('#sourceIncPackSelect').val('true');
 	                 $('.llpackageselection').show();
 	                 $('.hlpackageselection').hide();
 	            });
@@ -1327,15 +1333,28 @@ request.setAttribute("objHashMapstates", objHashMapstates);
         }
 
         // The following logic is for itr2 and itr4 both
+        
     $('#flex_string_ITRForm').change(function(){
     var packageName = $('#flex_string_ITRForm').val();
     if((packageName == 'ITR2' || (packageName == 'ITR4') || (packageName == 'ITR3'))) {
     $('#represenative_detail').show();
-    }
-    else{
+    } else{
     $('#represenative_detail').hide();
     }
-    })
+    if(packageName == 'ITR4') {
+	$('#fieldsfor_ITR4').show();
+	} else{
+	$('#fieldsfor_ITR4').hide();
+	}
+	// This code is for ITR4S
+	if(packageName == 'ITR4S'){
+	$('#trpdetails').show();
+	} else {  
+	  $('#trpdetails').hide();
+	  }
+	  //handleChangeOfItrPackageSelection();
+    });
+    
     $('#isRepresentative').change(function(){
     var yesRepresenative = $('#isRepresentative').val();
     if((yesRepresenative == 'N') || (yesRepresenative == '')){
@@ -1345,7 +1364,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
     }
     })
  // And This logic is for itr4
-	$('#flex_string_ITRForm').change(function(){
+	/*$('#flex_string_ITRForm').change(function(){
 	var packageName = $('#flex_string_ITRForm').val();
 	if(packageName == 'ITR4') {
 	$('#fieldsfor_ITR4').show();
@@ -1356,7 +1375,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	if(packageName == 'ITR4S'){
 	$('#trpdetails').show();
 	} else  $('#trpdetails').hide();
-	});
+	});*/
 	$('#isTaxPreparebyTRP').change(function(){
 	 var val_TaxPreparebyTRP = $('#isTaxPreparebyTRP').val();
 	 if((val_TaxPreparebyTRP == 'N') || (val_TaxPreparebyTRP == ''))

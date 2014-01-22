@@ -39,8 +39,15 @@ import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.ValueListDocument;
+import com.mootly.wcm.beans.compound.FormField;
+import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.member.service.ServiceRequestManager;
+import com.mootly.wcm.services.ds.exception.InvalidDigitalSignatureException;
+import com.mootly.wcm.services.ds.exception.MissingDigitalCertificateException;
+import com.mootly.wcm.services.ds.exception.MissingPrivateKeyException;
+import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
 
 
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
@@ -55,9 +62,11 @@ public class MemberDrive extends ITReturnComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
+		//set the name of drive in request so that we can show only subdrive documents
 		String subDriveName = request.getRequestContext().getResolvedSiteMapItem().getParameter("subDriveName");
 		request.setAttribute("subDriveName", subDriveName);
 		
+		//Handle Pending service requests in member.
 		String serviceRequestNumber = getPublicRequestParameter(request, "serviceRequest");
 		if(StringUtils.isNotBlank(serviceRequestNumber)) {
 			ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
@@ -67,7 +76,7 @@ public class MemberDrive extends ITReturnComponent {
 				request.setAttribute("srDocument", serviceDocument);
 			}
 		}
-		
+
 		String fileuuid=getPublicRequestParameter(request, "delete");
 		if(DeleteMemberDriveFile(request, response, fileuuid)){
 			request.setAttribute("delete", "Success");
@@ -76,6 +85,8 @@ public class MemberDrive extends ITReturnComponent {
 			request.setAttribute("memberFiles", getMemberDriveFileResource(request, response));
 		}
 		request.setAttribute("msg", request.getParameter("FileUpload"));
+		request.setAttribute("errorList", request.getParameter("errorList"));
+		request.setAttribute("digiverified", request.getParameter("digiverified"));
 		List<ValueListDocument> uploadDocumentList=new ArrayList<ValueListDocument>();
 		try {
 			String listPath=request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath()+"/uploaddocumentlist";
@@ -116,6 +127,7 @@ public class MemberDrive extends ITReturnComponent {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -133,17 +145,48 @@ public class MemberDrive extends ITReturnComponent {
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			MemberDriveHandler memberDriveHandler = new MemberDriveHandler(request, formMap);
 			Boolean isFileSave = memberDriveHandler.SaveFileInMemberDrive(null, subDriveName, wpm, getITRInitData(request).isLoggedIn());
-			if(isFileSave){				
-				ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
-				requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, serviceRequestNumber);
-				
+			if(isFileSave){		
+				if(serviceRequestNumber != null) {
+					ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
+					requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, serviceRequestNumber);
+				}
+				if(subDriveName != null && "digitalsignature".equalsIgnoreCase(subDriveName)) {
+					if(log.isInfoEnabled()){
+						log.info("Lets validate digital signature and save in memberPersonalinformation:::");	
+					}
+					Object object = getDigitalSignatureHandleService(request, subDriveName, wpm, memberDriveHandler);
+					if(object != null) {
+						if(object instanceof Boolean){
+							if(((Boolean) object).booleanValue()) {
+								response.setRenderParameter("digiverified", "true");	
+							}
+						}
+						if(object instanceof ArrayList){
+							List<String> errorList = new ArrayList<String>();
+							List<String> returnObjectOfList = (List<String>) object;
+							for(String key:returnObjectOfList){
+								errorList.add(key);
+							}
+							if(errorList.size() > 0) {
+								if(log.isInfoEnabled()){
+									log.info("Have error in digital Signature ::");	
+								}
+								response.setRenderParameter("errorList", errorList.toArray(new String[errorList.size()]));
+								return;
+							}
+						}
+					}
+				}
 				response.setRenderParameter("FileUpload", "Success");
 			}
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
-			log.error("Error to get the PersistableSession From JCR Repository!!",e);
+			log.warn("Error to get the PersistableSession From JCR Repository!!",e);
+		} finally{
+			if(persistableSession!=null){
+				persistableSession.logout();
+			}
 		}
-
 	}
 	/**
 	 * This Method is used to Create the MemberDrive Document and Return that Document Object
@@ -255,32 +298,36 @@ public class MemberDrive extends ITReturnComponent {
 		WorkflowPersistenceManager wpm=null;
 		Session persistableSession=null;
 		boolean delete=false;
-		String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/" + getITRInitData(request).getUserNameNormalized() +"/drive";
-		List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, baseRelPathToMemberFiles, null, null);
-		try {
-			persistableSession=getPersistableSession(request);
-			persistableSession.save();
-			wpm=getWorkflowPersistenceManager(persistableSession);
-			//wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
-			for(HippoDocumentBean o:listOfAllMemberFiles){
-				if(o.getCanonicalUUID().equals(fileuuid)){
-					wpm.remove(o);
-					wpm.save();
-					delete=true;
-					break;
+		if(StringUtils.isNotBlank(fileuuid)) {
+			String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/" + getITRInitData(request).getUserNameNormalized() +"/drive";
+			List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, baseRelPathToMemberFiles, null, null);
+			try {
+				persistableSession=getPersistableSession(request);
+				persistableSession.save();
+				wpm=getWorkflowPersistenceManager(persistableSession);
+				//wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
+				if(listOfAllMemberFiles != null){
+					for(HippoDocumentBean o:listOfAllMemberFiles){
+						if(o.getCanonicalUUID().equals(fileuuid)){
+							wpm.remove(o);
+							wpm.save();
+							delete=true;
+							break;
+						}
+					}
 				}
-			}
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			log.error("Error to get the PersistableSession From JCR Repository!!"+e);
-			return false;
-		} catch (ObjectBeanPersistenceException e) {
-			// TODO Auto-generated catch block
-			log.error("Error while to Delete the Object from Repo path"+e);
-			return false;
-		} finally{
-			if(persistableSession!=null){
-				persistableSession.logout();
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				log.warn("Error to get the PersistableSession From JCR Repository!!"+e);
+				return false;
+			} catch (ObjectBeanPersistenceException e) {
+				// TODO Auto-generated catch block
+				log.warn("Error while to Delete the Object from Repo path"+e);
+				return false;
+			} finally{
+				if(persistableSession!=null){
+					persistableSession.logout();
+				}
 			}
 		}
 		return delete;
@@ -289,5 +336,105 @@ public class MemberDrive extends ITReturnComponent {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.delete();
 		}
+	}
+
+	public Object getDigitalSignatureHandleService(HstRequest request,String subDriveName,WorkflowPersistenceManager wpm,MemberDriveHandler memberDriveHandler){	
+		boolean digitalSignatureStatus = false;
+		MemberDriveDocument digiSigDriveDocument = null;
+		String jcrPathToMemberDriveNode = null;
+		MemberPersonalInformation information = null;
+		String memberDriveHandleUUID = null;
+		List<MemberDriveDocument> listOfAllMemberFiles = null;
+		List<String> errorList = new ArrayList<String>();
+		//String baseRelPathToMemberFiles = memberDriveHandler.getMemberDriveDocPathHandler(null, subDriveName);
+		//String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/"+ getITRInitData(request).getUserNameNormalized()+"/drive";
+		//HippoBean driveHippoBeanScope = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(baseRelPathToMemberFiles);
+		try {
+			Object object = wpm.getObject(memberDriveHandler.getMemberDriveDocPathHandler(null, subDriveName));
+			if(object != null) {
+				if(object instanceof HippoFolder) {
+					HippoFolder digiSignHippoFolder = (HippoFolder) object;
+					listOfAllMemberFiles = new ArrayList<MemberDriveDocument>();
+					listOfAllMemberFiles = digiSignHippoFolder.getDocuments(MemberDriveDocument.class);
+				}
+			} else {
+				if(log.isInfoEnabled()){
+					log.info("Don't have any Subdrive with name: "+ subDriveName +" in drive of Member");	
+				}
+				return digitalSignatureStatus;
+			}
+			//List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, baseRelPathToMemberFiles, null, null);
+			if(log.isInfoEnabled()){
+				log.info("Lets validate digital signature and save in memberPersonalinformation:::"+listOfAllMemberFiles);	
+			}
+			if(listOfAllMemberFiles != null) {
+				for(MemberDriveDocument documentBean:listOfAllMemberFiles) {
+					if(StringUtils.contains(documentBean.getCanonicalPath(), subDriveName)) {
+						digiSigDriveDocument = documentBean;
+						memberDriveHandleUUID = digiSigDriveDocument.getCanonicalHandleUUID();
+						break;
+					}					
+				}
+				if(digiSigDriveDocument != null) {
+					jcrPathToMemberDriveNode = digiSigDriveDocument.getCanonicalHandlePath();
+					DigitalSignatureWrapper assessWrapper = getDigitalSignatureService().getDigitalSignatureFromRepository(jcrPathToMemberDriveNode, true);
+					if(memberDriveHandleUUID != null) {
+						information = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+						if(information != null) {
+							if(log.isInfoEnabled()){
+								log.info("Have PersonalInformaion Node to update with signature:::");	
+							}
+							Session persistableSession = getPersistableSession(request);
+							String parentBeanNodeName = getItReturnComponentHelper().getParentBeanNodeName(MemberPersonalInformation.class);
+							String parentBeanNameSpace = getItReturnComponentHelper().getParentBeanNamespace(MemberPersonalInformation.class);
+							FormMap parenBeanFormMap = new FormMap(request, new String[]{"digitalSignatureHandleUUID"});
+							parenBeanFormMap.getField("digitalSignatureHandleUUID").addValue(memberDriveHandleUUID);
+							String baseAbsolutePathToReturnDocuments = getITRInitData(request).getAbsoluteBasePathToReturnDocuments();
+							String parentBeanAbsolutePath = getItReturnComponentHelper().getParentBeanAbsolutePath(baseAbsolutePathToReturnDocuments, parentBeanNodeName);
+							MemberPersonalInfoUpdateHandler parentBeanLifeCycleHandler = null;						
+							getItReturnComponentHelper().saveSingleDocument(parenBeanFormMap, parentBeanLifeCycleHandler, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, persistableSession, wpm);
+							digitalSignatureStatus = true;						    
+						}
+					}
+				}
+			}
+		} catch (MissingPrivateKeyException e){
+			HandleDigitalSignatureExceptiotn(errorList, wpm, digiSigDriveDocument, e);
+			return errorList;
+		} catch (InvalidDigitalSignatureException e){
+			HandleDigitalSignatureExceptiotn(errorList, wpm, digiSigDriveDocument, e);
+			return errorList;
+		} catch(MissingDigitalCertificateException e) {
+			HandleDigitalSignatureExceptiotn(errorList, wpm, digiSigDriveDocument, e);
+			return errorList;
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjectBeanPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return digitalSignatureStatus;
+	}
+	protected void HandleDigitalSignatureExceptiotn(List<String> errorList,WorkflowPersistenceManager wpm,MemberDriveDocument driveDocument ,Exception e){
+		//Lets update the digital signature in drive of member as we have error in digital signature so we have to remove it and show an error message.
+		errorList.add("error.digital.signature");
+		try {
+			wpm.remove(driveDocument);
+			wpm.save();
+		} catch (ObjectBeanPersistenceException e1) {
+			// TODO Auto-generated catch block
+			log.warn("Exception while update drive of Member(Assess)",e);
+		}							
+		e.printStackTrace();	
 	}
 }

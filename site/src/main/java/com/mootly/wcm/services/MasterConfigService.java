@@ -52,6 +52,14 @@ public class MasterConfigService implements ConfigService {
 		return getInteger("size.log.information.save");
 	}
 	
+	public Boolean shouldSignedXmlWithDigitalSignature(){
+		return getBoolean("itreturn.shouldSignedSignatureInXml");
+	}
+	
+	public Integer allowedDigitalSignatureForPAN(){
+		return getInteger("itreturn.allowedDigitalSignature");
+	}
+	
 	@Override
 	public String[] getArray(String propertyKey) {
 		// TODO Auto-generated method stub

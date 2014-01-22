@@ -11,21 +11,37 @@
 		</div>
 	</c:forEach>
 </c:if>
-<%StringBuilder builder=new StringBuilder();
-builder.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
-HstRequest hstRequest = (HstRequest) request;
-ITReturnComponentHelper componentHelper = new ITReturnComponentHelper();
-if(componentHelper.isReSeller(hstRequest)){
-	if(componentHelper.getResellerId(hstRequest) != null){
-		builder.append("/r/").append(componentHelper.getResellerId(hstRequest));
+<c:forEach var="file" items="${listOfAllMemberFiles}">
+	<!-- We show only those files which are in digitalsignature subdrive -->
+	<c:choose>
+		<c:when test="${not empty subDriveName && fn:contains(file.canonicalPath, subDriveName)}">
+			<c:set value="true" var="digiSign" />
+		</c:when>
+		<c:otherwise>
+			<c:set value="false" var="digiSign" />
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+<%
+	StringBuilder builder = new StringBuilder();
+	builder.append(
+			request.getScheme() + "://" + request.getServerName())
+			.append(":").append(request.getServerPort());
+	HstRequest hstRequest = (HstRequest) request;
+	ITReturnComponentHelper componentHelper = new ITReturnComponentHelper();
+	if (componentHelper.isReSeller(hstRequest)) {
+		if (componentHelper.getResellerId(hstRequest) != null) {
+			builder.append("/r/").append(
+					componentHelper.getResellerId(hstRequest));
+		}
 	}
-}
-pageContext.setAttribute("hostname", builder.toString());
+	pageContext.setAttribute("hostname", builder.toString());
 %>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <w4india:itrmenu/>
 	<h4>Digital Signature</h4>
+	<div class="alert alert-info">You are allowed to upload only one Digital Signature for <c:out value="${memberpersonalinformation.PAN}"/> pan.If you want to change the signature then delete previous then upload new.</div>
 	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
 	<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
 		<fieldset>
@@ -45,6 +61,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			</div>
 		</fieldset>
 	</c:if>
+	<c:if test="${not empty digiSign && digiSign eq 'false'}">
 	<fieldset>
 		<legend>Upload your Digital Signature for FY:${memberpersonalinformation.financialYear}</legend>
 		   <!--  <div class="row show-grid">
@@ -61,14 +78,27 @@ pageContext.setAttribute("hostname", builder.toString());
 		   </div>
 		</c:if>
 		<c:if test="${not empty msg}">
-			<div class="row show-grid">
-				<div class="alert alert-success">Your have successfully
-					uploaded file in Member Drive.</div>
+			<div class="row">
+			  <div class="col-md-12">
+				<div class="alert alert-success"><c:if test="${not empty digiverified && digiverified eq 'true'}">Upload Digital Signature is valid.&nbsp;</c:if>Your have successfully
+					uploaded file in Member Drive.</div>				
+			   </div>
+			</div>
+		</c:if>
+		<c:if test="${not empty errorList || (not empty digiverified && digiverified eq 'false')}">
+			<div class="row">
+			  <div class="col-md-12">
+				<div class="alert alert-danger">Uploaded digital signature is
+					not valid.May be signature or password is incorrect.Please upload
+					valid Digital Signature.</div>
+			   </div>
 			</div>
 		</c:if>
 		<c:if test="${not empty delete}">
-			<div class="row show-grid">
+			<div class="row">
+			  <div class="col-md-12">
 				<div class="alert alert-info">File has been deleted from Member Drive</div>
+			  </div>
 			</div>
 		</c:if>
 		<div class="row show-grid">
@@ -123,8 +153,9 @@ pageContext.setAttribute("hostname", builder.toString());
 				 </div>
 		</div>
 	</fieldset>
+	</c:if>
 	<fieldset>
-		<legend>Your documents for Financial Year:${memberpersonalinformation.financialYear}</legend>
+		<legend>Your Digital Signature for Financial Year:${memberpersonalinformation.financialYear}</legend>
 		<div class="row show-grid hide" id="file_process">
 		      <div class="well">
 		         <div class="col-md-8">
@@ -144,7 +175,8 @@ pageContext.setAttribute("hostname", builder.toString());
 				 </div>
 			  </div>
 			</div>
-		    <div class="row show-grid">
+		    <div class="row">
+		       <div class="col-md-12">
                    <div class="file_name">
                         <table class="table table-hover table-bordered">
                            <thead>
@@ -159,6 +191,8 @@ pageContext.setAttribute("hostname", builder.toString());
                            <tbody>
                              <%-- <c:forEach var="file" items="${memberFiles}"> --%>
                              <c:forEach var="file" items="${listOfAllMemberFiles}">
+                             <!-- We show only those files which are in digitalsignature subdrive -->
+                             <c:if test="${not empty subDriveName && fn:contains(file.canonicalPath, subDriveName)}">
                                <tr>
                                   <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
                         	     <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
@@ -169,15 +203,19 @@ pageContext.setAttribute("hostname", builder.toString());
                                       <i class="glyphicon glyphicon-eye-open glyphicon glyphicon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-default btn-primary">
                                       <i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
-                                      <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
-                                      <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>                                   
+                                      <c:if test="${not empty file.accessPermission && file.accessPermission eq 'WRITE'}">
+                                         <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
+                                         <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>
+                                      </c:if>                       
                                   </td>
                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
-                               </tr>
+                                </tr>
+                               </c:if>
                               </c:forEach>
                             </tbody>
                            </table>
                       </div>
+                   </div>
 		      </div>
 	</fieldset>
 	<%--
