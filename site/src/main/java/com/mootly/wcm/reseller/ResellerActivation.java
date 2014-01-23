@@ -88,7 +88,13 @@ public class ResellerActivation extends BaseComponent {
 				request.setAttribute("userName", resellerSignupDocument.getEmail());
 				return;
 			}else if(resellerSignupDocument != null && !resellerSignupDocument.getIsActive()){
-				resellerCreation(request, response, persistableSession, wpm);
+				//resellerCreation(request, response, persistableSession, wpm);
+				Map<String,Object> contextMap = new HashMap<String, Object>();
+				contextMap.put("userName",resellerSignupDocument.getUserName());
+				contextMap.put("resellerId",resellerId);
+				contextMap.put("resellershipSignupDocument", resellerSignupDocument);
+				sendEmail(request, new String[]{resellerSignupDocument.getEmail()}, null, "", "reseller_activation", contextMap);
+
 			}
 		}catch (ObjectBeanManagerException e1) {
 			// TODO Auto-generated catch block

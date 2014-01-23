@@ -40,8 +40,8 @@
 		</li>
 		<c:if test="${parentBean.amountDue > 0}">
 			<c:forEach items="${availablePaymentTypes}" var="paymentType">
-				<a id="link_${paymentType}" class="btn btn-default btn-primary  <c:if test="${paymentType.requiresGateway}">classRequiresGateway</c:if>"
-					href="<c:choose><c:when test="${paymentType.requiresGateway}">javascript:void(0)</c:when><c:otherwise>${scriptName}/payment/paymentadd/${paymentType}</c:otherwise></c:choose>"><small><i
+				<a id="link_${paymentType}" class="btn btn-default btn-primary  <c:if test="${paymentType.requiresGateway && paymentType.requiresIntermediateFormPost}">classRequiresGateway</c:if>"
+					href="<c:choose><c:when test="${paymentType.requiresGateway && paymentType.requiresIntermediateFormPost}">javascript:void(0)</c:when><c:otherwise>${scriptName}/payment/paymentadd/${paymentType}</c:otherwise></c:choose>"><small><i
 						class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Pay by <fmt:message
 							key="paymentType.${paymentType}.label" /> </small> </a>
 			</c:forEach>

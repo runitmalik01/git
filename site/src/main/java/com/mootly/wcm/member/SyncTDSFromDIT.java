@@ -124,10 +124,12 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			splitTaxPayment(request,twenty26asResponse, selfAssessmentList, advTaxList);
 			setIfIsAlreadyImported(request,twenty26asResponse,selfAssessmentList,advTaxList);
 			int totalToBeImported = totalToBeImported(twenty26asResponse,selfAssessmentList,advTaxList);
+			boolean isInfoAvail = isInfoAvailable(twenty26asResponse,selfAssessmentList,advTaxList);
 			request.setAttribute("twenty26asResponse", twenty26asResponse);
 			request.setAttribute("selfAssessmentList", selfAssessmentList);
 			request.setAttribute("advTaxList", advTaxList);
 			request.setAttribute("totalToBeImported", totalToBeImported);
+			request.setAttribute("isInfoAvail", isInfoAvail);
 		} catch (MissingInformationException e) {
 			// TODO Auto-generated catch block
 			log.error("Missing Information",e);
@@ -138,6 +140,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			// TODO Auto-generated catch block
 			log.error("InvalidFormatException",e);
 		}
+		
 	}
 
 	@Override
@@ -419,6 +422,26 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		}
 		
 		return totalToBeImported;
+	}
+	
+	protected boolean isInfoAvailable(Twenty26ASResponse twenty26asResponse,List<Twenty26ASTaxPayment> selfAssessmentList,List<Twenty26ASAdvanceTaxPayment> advTaxList){	
+		boolean isInfoAvail = false;	
+		
+		if (twenty26asResponse == null) return false;
+		
+		if (twenty26asResponse.getTwenty26astdsOnSalaries() != null ) {
+			isInfoAvail = true;
+		}	
+		if (twenty26asResponse.getTwenty26astdsOtherThanSalaries() != null ) {
+			isInfoAvail = true;
+		}	
+		if (selfAssessmentList != null ) {
+			isInfoAvail = true;
+		}		
+		if (advTaxList != null ) {
+			isInfoAvail = true;
+		}
+		return isInfoAvail;
 	}
 }
 

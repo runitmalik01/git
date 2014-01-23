@@ -71,11 +71,6 @@ public class MemberInvoice extends ITReturnComponent {
 			return ;
 		}
 		request.setAttribute("availablePaymentTypes", getITRInitData(request).getChannelInfoWrapper().availablePaymentTypes());
-		if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
-			InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
-			//System.out.println(invoiceDocument.getAmountDue());
-			//System.out.println(invoiceDocument.getTotalInvoiceAmount());
-		}
 		//this is COOL we call citrus for each transaction which was NET Banking, Credit Card, Debit Card and check for respCode
 		// if there is no respCode we need to get it and update the record accordingly
 		//if there is a respCode and its not success ignore it

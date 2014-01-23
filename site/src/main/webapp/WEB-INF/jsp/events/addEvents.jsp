@@ -12,18 +12,38 @@
 <div class="page">
 	<form id="events" action="${actionUrl}" name="events" method="post">
 		<fieldset>
-			<legend>Edit Your own Events</legend>
+			<legend>Edit your Events</legend>
 
 			<div class="row show-grid">
 				<div class="col-md-5">
 					<div class="rowlabel">
-						<label for="title">Title Of Events </label>
+						<label for="title">Title Of Event </label>
 					</div>
 					<div class="rowlabel">
 						<input type="text" id="title" name="title">
 					</div>
 				</div>
 			</div>
+			<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="newstartdate"> Start Date </label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="newstartdate" name="newstartdate"/>
+						</div>
+					</div>
+				</div>
+			<div class="row show-grid">
+					<div class="col-md-6">
+						<div class="rowlabel">
+							<label for="newenddate"> End Date</label>
+						</div>
+						<div class="rowlabel">
+							<input type="text" id="newenddate" name="newenddate"/>
+						</div>
+					</div>
+				</div>
 			<div class="row show-grid">
 				<div class="col-md-7">
 					<div class="rowlabel">
@@ -41,16 +61,14 @@
 					</div>
 					<div class="rowlabel">
 						<textarea class="field col-md-12" id="description" name="description"></textarea>
+						<w4india:ckeditor_inline textAreaId="description"/>
 
 					</div>
 				</div>
 			</div>
-			<div class="row show-grid">
-				<div class="rowlabel">
-					<input type="submit" value="Save" style="color: blue;">
-				</div>
-
-			</div>
+			<input type="submit" class="btn btn-default btn-success" value="Save">
 		</fieldset>
 	</form>
 </div>
+<res:client-validation formId="events"
+	screenConfigurationDocumentName="newevents"/>

@@ -40,7 +40,8 @@ import com.mootly.wcm.services.citruspay.model.XMLObject;
     "maskedCardNumber",
     "txnGateway",
     "issuerCode",
-    "cardType"
+    "cardType",
+    "cvRespCode"
 })
 @XmlRootElement( name = "enquiryResponse" )
 public class EnquiryResponse extends XMLObject {
@@ -75,6 +76,9 @@ public class EnquiryResponse extends XMLObject {
 	
 	@XmlElement(name = "cardType", required = false)
 	String cardType;
+	
+	@XmlElement(name = "cvRespCode", required = false)
+	String cvRespCode;
 
 	public final Transaction.ENQUIRY_RESP_CODE getRespCode() {
 		if (respCode != null) {
@@ -147,5 +151,68 @@ public class EnquiryResponse extends XMLObject {
 		return cardType;
 	}
 	
+	public final String getCvRespCode() {
+		return cvRespCode;
+	}
+
+	public final void setRespCode(String respCode) {
+		this.respCode = respCode;
+	}
+
+	public final void setRespMsg(String respMsg) {
+		this.respMsg = respMsg;
+	}
+
+	public final void setTxnId(String txnId) {
+		this.txnId = txnId;
+	}
+
+	public final void setPgTxnId(String pgTxnId) {
+		this.pgTxnId = pgTxnId;
+	}
+
+	public final void setAuthIdCode(String authIdCode) {
+		this.authIdCode = authIdCode;
+	}
+
+	public final void setRRN(String rRN) {
+		RRN = rRN;
+	}
+
+	public final void setTxnType(String txnType) {
+		this.txnType = txnType;
+	}
+
+	public final void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+	public final void setTxnDateTime(String txnDateTime) {
+		this.txnDateTime = txnDateTime;
+	}
+
+	public final void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
+	}
+
+	public final void setMaskedCardNumber(String maskedCardNumber) {
+		this.maskedCardNumber = maskedCardNumber;
+	}
+
+	public final void setTxnGateway(String txnGateway) {
+		this.txnGateway = txnGateway;
+	}
+
+	public final void setIssuerCode(String issuerCode) {
+		this.issuerCode = issuerCode;
+	}
+
+	public final void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
+
+	public final void setCvRespCode(String cvRespCode) {
+		this.cvRespCode = cvRespCode;
+	}
 	
 }

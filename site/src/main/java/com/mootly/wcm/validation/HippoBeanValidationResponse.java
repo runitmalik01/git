@@ -3,6 +3,8 @@ package com.mootly.wcm.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric.ACTION;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric.ACTION_REASON;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric.TYPE;
@@ -17,7 +19,8 @@ public class HippoBeanValidationResponse {
 	//List<HippoBeanValidationError> errors;
 	List<HippoBeanValidationGeneric> messages;
 	List<RepositoryUpdateRequest> repositoryUpdateRequests;
-	
+	List<PAGE_ACTION> restrictedActions;
+	List<Class<? extends BaseComponent>> restrictedComponents;
 	
 	public List<HippoBeanValidationGeneric> getActions() {
 		return getMessages(TYPE.ACTION);
@@ -97,6 +100,14 @@ public class HippoBeanValidationResponse {
 	
 	public int getTotalActions() {
 		return getTotalMessages(TYPE.ACTION);
+	}
+	
+	public List<PAGE_ACTION> getRestrictedActions() {
+		return restrictedActions;
+	}
+	
+	public List<Class<? extends BaseComponent>> getRestrictedComponents() {
+		return restrictedComponents;
 	}
 	
 	public boolean getHasMessages() {
@@ -200,6 +211,18 @@ public class HippoBeanValidationResponse {
 		newAction.setAction(action);
 		newAction.setType(TYPE.ACTION);
 		boolean ret = messages.add(newAction);
+		return ret;
+	}
+	
+	public boolean addRestrictedAction(PAGE_ACTION action) {
+		if (restrictedActions == null) restrictedActions = new ArrayList<PAGE_ACTION>();
+		boolean ret = restrictedActions.add(action);
+		return ret;
+	}
+	
+	public boolean addRestrictedComponent(Class<? extends BaseComponent> componentClass) {
+		if (restrictedComponents == null) restrictedComponents = new ArrayList<Class<? extends BaseComponent>>();
+		boolean ret = restrictedComponents.add(componentClass);
 		return ret;
 	}
 	

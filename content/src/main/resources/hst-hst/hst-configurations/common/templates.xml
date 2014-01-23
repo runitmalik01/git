@@ -1193,18 +1193,6 @@
       <sv:value>jsp/home/productsfacetnav.jsp</sv:value>
     </sv:property>
   </sv:node>
-  <sv:node sv:name="news.overview.content">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:template</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>7a20bbec-c778-4901-a5b4-f79050d5aa45</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
-    <sv:property sv:name="hst:renderpath" sv:type="String">
-      <sv:value>jsp/news/overview/content.jsp</sv:value>
-    </sv:property>
-  </sv:node>
   <sv:node sv:name="news.detail.content">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:template</sv:value>
@@ -4030,4 +4018,29 @@
 	    <sv:value>jsp/member/efile-incometax-confirmation.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<!-- Renamed newsOverview -->
+	<sv:node sv:name="news.overview.content" >
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7a20bbec-c778-4901-a5b4-f79050d5aa45</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/news/overview/newsOverview.jsp</sv:value>
+  </sv:property>
+</sv:node>
+	<!-- Add NewNews -->
+	<sv:node sv:name="newnews">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>dd220ee2-4a23-4940-abae-3e33a669fd14</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/news/addNews.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>

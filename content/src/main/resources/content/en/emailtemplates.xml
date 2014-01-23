@@ -162,7 +162,7 @@ ${emailSignature}
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>f973f6ff-ceae-4ce6-8af1-026c00b53314</sv:value>
+      <sv:value>c4f982be-428a-4d31-86e1-29c19e51047a</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -187,13 +187,13 @@ ${emailSignature}
       <sv:value>2013-01-03T02:22:18.719+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2014-01-03T17:12:23.611+05:30</sv:value>
+      <sv:value>2014-01-17T16:28:06.173+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2014-01-03T17:12:28.715+05:30</sv:value>
+      <sv:value>2014-01-17T16:28:09.612+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>8ebb2e95-1372-4df4-8a7a-82af158cef8d</sv:value>
@@ -217,7 +217,7 @@ ${emailSignature}
       <sv:value>&lt;html&gt;
 &lt;body&gt;
 
-&lt;p&gt;${userName}  has requested to create an account with following details.&lt;/p&gt;
+&lt;p&gt;${userName} has requested to create an account with following details.&lt;/p&gt;
 
 &lt;p&gt;Reseller ID: ${resellerID}&lt;/p&gt;
 
@@ -225,7 +225,7 @@ ${emailSignature}
 
 &lt;p&gt;Email ID: ${emailID}&lt;/p&gt;
 
-&lt;p&gt;CA Details:&lt;/p&gt;
+&lt;p&gt;CA Firm Number: ${caFirmno}&lt;/p&gt;
 
 &lt;p&gt;If above details are correct click on the given link to activate his/her
 account.&lt;/p&gt;
@@ -382,6 +382,127 @@ ready to be used. Click on the given link to start your service&lt;/p&gt;
   </sv:node>
 </sv:node>
   <!-- end of reseller confirmation -->
+  <!-- start of reseller_activation -->
+<sv:node sv:name="reseller_activation">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hippo:handle</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:value>hippo:hardhandle</sv:value>
+    <sv:value>hippo:translated</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e3561ce7-5871-4389-9d51-3205b227c1f2</sv:value>
+  </sv:property>
+  <sv:node sv:name="hippo:translation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hippo:translation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:language" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="hippo:message" sv:type="String">
+      <sv:value>reseller_activation</sv:value>
+    </sv:property>
+  </sv:node>
+  <sv:node sv:name="reseller_activation">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>mootlywcm:emailtemplate</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+      <sv:value>hippo:harddocument</sv:value>
+      <sv:value>hippotranslation:translated</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>585aace8-b130-4c92-99a3-188b2a5a49c3</sv:value>
+    </sv:property>
+    <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
+      <sv:value>live</sv:value>
+      <sv:value>preview</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippo:related___pathreference" sv:type="String">
+      <sv:value>reseller_activation</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:holder" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:state" sv:type="String">
+      <sv:value>published</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostd:stateSummary" sv:type="String">
+      <sv:value>live</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:createdBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:creationDate" sv:type="Date">
+      <sv:value>2013-01-03T02:22:18.719+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
+      <sv:value>2014-01-17T16:23:12.566+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
+      <sv:value>admin</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
+      <sv:value>2014-01-17T16:23:15.935+05:30</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:id" sv:type="String">
+      <sv:value>dc656ad4-d29e-4fe1-b845-b594137deaf6</sv:value>
+    </sv:property>
+    <sv:property sv:name="hippotranslation:locale" sv:type="String">
+      <sv:value>en</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:From" sv:type="String">
+      <sv:value>${emailFrom}</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:bcc" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:cc" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:fromName" sv:type="String">
+      <sv:value>${emailFromName}</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:htmlBody" sv:type="String">
+      <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Dear User,&lt;/p&gt;
+
+&lt;p&gt;Thank You for registering with ${resellerName}. Your details has been
+verified. Click on the given link to start your service.&lt;/p&gt;
+
+&lt;p&gt;
+${memberHostName}/reselleractivation/${resellershipSignupDocument.canonicalUUID}/reseller-details.html
+&lt;/p&gt;
+
+&lt;p&gt;${emailSignature}&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:plainBody" sv:type="String">
+      <sv:value>Welcome to ${resellerName}</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:subject" sv:type="String">
+      <sv:value>Please confirm your registration with ${resellerName}</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:templateKey" sv:type="String">
+      <sv:value>reseller_activation</sv:value>
+    </sv:property>
+    <sv:property sv:name="mootlywcm:to" sv:type="String">
+      <sv:value/>
+    </sv:property>
+    <sv:node sv:name="hippotranslation:translations">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hippotranslation:translations</sv:value>
+      </sv:property>
+    </sv:node>
+  </sv:node>
+</sv:node>
+  <!-- end of reseller_activation -->
   <!-- start of reseller reActivation -->
 <sv:node sv:name="reseller_resend_activationcode">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">

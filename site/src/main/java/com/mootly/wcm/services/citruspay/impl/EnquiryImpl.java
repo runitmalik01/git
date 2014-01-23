@@ -11,9 +11,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import com.mootly.wcm.services.citruspay.Enquiry;
+import com.mootly.wcm.services.citruspay.model.enquiry.EnquiryResponse;
 import com.mootly.wcm.services.citruspay.model.enquiry.TxnEnquiryResponse;
 import com.mootly.wcm.services.http.HTTPConnectionException;
 import com.mootly.wcm.services.http.HTTPConnectionService;
+import com.opus.epg.sfa.java.PGResponse;
+import com.opus.epg.sfa.java.PGSearchResponse;
+import com.opus.epg.sfa.java.PostLib;
 
 /**
  * Final Implementation of Transaction Service
@@ -26,6 +30,7 @@ public class EnquiryImpl extends PaymentServiceXML implements Enquiry, Applicati
 	//XPath xPath;
 	ApplicationContext applicationContext;
 	HTTPConnectionService httpConnectionService;
+	
 	
 	String endPointURL_Enquiry;
 	
@@ -73,6 +78,47 @@ public class EnquiryImpl extends PaymentServiceXML implements Enquiry, Applicati
 			// TODO Auto-generated catch block
 			logger.error("Error in JAXBException",e);
 			//e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * This method is going to work with ICICI interface, we could have created separate methods but what the hack lets just do it here.
+	 */
+	
+	@Override
+	public TxnEnquiryResponse doEnquiryForCreditAndDebitCard(String transactionId) throws Exception {
+		// TODO Auto-generated method stub
+		com.opus.epg.sfa.java.Merchant oMerchant 	= new com.opus.epg.sfa.java.Merchant();
+		PostLib oPostLib	= new PostLib();
+		
+		oMerchant.setMerchantOnlineInquiry(getPaysealMerchantId(), transactionId);
+		PGSearchResponse pgSearchResponse = oPostLib.postStatusInquiry(oMerchant);
+		
+		if (pgSearchResponse != null && pgSearchResponse.getPGResponseObjects() != null && pgSearchResponse.getPGResponseObjects().size() > 0) {
+			//convert these into the XML format this way the OLD way can work or just simply comvert them into response objects
+			TxnEnquiryResponse txnEnquiryResponse = new TxnEnquiryResponse();
+			for (Object pgResponseObj:pgSearchResponse.getPGResponseObjects()) {
+				PGResponse pgResponse = (PGResponse) pgResponseObj;
+				EnquiryResponse enquiryResponse = new EnquiryResponse();
+				
+				enquiryResponse.setRespCode(pgResponse.getRespCode());
+				enquiryResponse.setRespMsg(pgResponse.getRespMessage());
+				enquiryResponse.setTxnId(pgResponse.getTxnId());
+				enquiryResponse.setTxnGateway(pgResponse.getEpgTxnId());
+				
+				enquiryResponse.setAuthIdCode(pgResponse.getAuthIdCode());
+				enquiryResponse.setRRN(pgResponse.getRRN());
+				enquiryResponse.setCvRespCode(pgResponse.getCVRespCode());
+				
+				enquiryResponse.setTxnType("SALE");
+				
+				txnEnquiryResponse.addEnquiryResponse(enquiryResponse);
+			}
+			return txnEnquiryResponse;
+		}
+		else if (pgSearchResponse != null && pgSearchResponse.getRespCode() != null && pgSearchResponse.getRespCode().equals(getPaysealNoResultCode())  && pgSearchResponse.getRespMessage().equals(getPaysealNoResultMessage())) {
+			
 		}
 		return null;
 	}

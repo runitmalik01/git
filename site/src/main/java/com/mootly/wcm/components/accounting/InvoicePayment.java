@@ -1,12 +1,20 @@
 package com.mootly.wcm.components.accounting;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.WordUtils;
+import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -31,11 +39,11 @@ import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentType;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.citruspay.PaymentService.BANK_ISSUER;
 import com.mootly.wcm.services.citruspay.Transaction;
-import com.mootly.wcm.utils.MootlyITReturnUtil;
 import com.opus.epg.sfa.java.PGResponse;
 
 @PrimaryBean(primaryBeanClass=InvoiceDocument.class)
@@ -67,8 +75,31 @@ public class InvoicePayment extends ITReturnComponent {
 		if (gatewayForm != null && "true".equals(gatewayForm)) {
 			isGatewayForm = true;		
 		}
+		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
+		if (paymentTypeStr != null) {
+			paymentType = PaymentType.valueOf(paymentTypeStr);
+			if (paymentType == null ||  !getITRInitData(request).getChannelInfoWrapper().availablePaymentTypes().contains(paymentType)) {
+				try {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}else {
+				if (PaymentType.requiresGateway(paymentType)) { //this means that 
+					//we are using the SSL Integration for all gateway transactions 
+					request.setAttribute("requiresGateway","true");
+				}
+			}
+		}		
+		request.setAttribute("type", "payment");
+		request.setAttribute("paymentType", paymentType);	
 		if (isGatewayForm) {
 			//formFields.put("orderAmount", value)
+			response.setRenderPath("jsp/accounting/paymentgateway_form.jsp");
+			/*
 			if (request.getParameter("strTransactionId") != null) {
 				//validate the transaction Id -- this will involve fetching the data back from the bean and
 				String strTransactionId = request.getParameter("strTransactionId");
@@ -105,30 +136,12 @@ public class InvoicePayment extends ITReturnComponent {
 					}
 				}
 			}
-			response.setRenderPath("jsp/accounting/paymentgateway_form.jsp");
+			else {
+				response.setRenderPath("jsp/accounting/paymentgateway_form.jsp");
+			}
+			 */
 		}		
-		else {
-			String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
-			if (paymentTypeStr != null) {
-				paymentType = PaymentType.valueOf(paymentTypeStr);
-				if (paymentType == null ||  !getITRInitData(request).getChannelInfoWrapper().availablePaymentTypes().contains(paymentType)) {
-					try {
-						response.sendError(HttpServletResponse.SC_FORBIDDEN);
-						return;
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					return;
-				}else {
-					if (PaymentType.requiresGateway(paymentType)) { //this means that 
-						//we are using the SSL Integration for all gateway transactions 
-						request.setAttribute("requiresGateway","true");
-					}
-				}
-			}		
-			request.setAttribute("type", "payment");
-			request.setAttribute("paymentType", paymentType);		
+		else {	
 			if (getITRInitData(request).getPageAction() != null && getITRInitData(request).getPageAction() != PAGE_ACTION.EDIT && getITRInitData(request).getPageAction() != PAGE_ACTION.EDIT_CHILD && getITRInitData(request).getPageAction() != PAGE_ACTION.DELETE && getITRInitData(request).getPageAction() != PAGE_ACTION.DELETE_CHILD ) {
 				if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
 					InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
@@ -140,7 +153,7 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 	}
 
-	
+
 	@Override
 	protected boolean shouldRedirectAfterSuccess(HstRequest request) {
 		boolean isGatewayForm = false;
@@ -148,6 +161,8 @@ public class InvoicePayment extends ITReturnComponent {
 		if (gatewayForm != null && "true".equals(gatewayForm)) {
 			isGatewayForm = true;		
 		}
+		return true;
+		/*
 		// TODO Auto-generated method stub
 		if (!isGatewayForm) {
 			return true;
@@ -155,6 +170,7 @@ public class InvoicePayment extends ITReturnComponent {
 		else {
 			return false;
 		}
+		 */
 	}
 
 	@Override
@@ -173,20 +189,13 @@ public class InvoicePayment extends ITReturnComponent {
 		if (gatewayForm != null && "true".equals(gatewayForm)) {
 			isGatewayForm = true;
 		}
-		
-		
+
+
 		InvoiceDocument invoiceDocument  = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
 		theTransactionId = invoiceDocument.getInvoiceNumber() + "-" + getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_PAYMENT);
 		//we want to 
 
-		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
-		if (isGatewayForm && paymentTypeStr == null) {
-			paymentTypeStr = getPublicRequestParameter(request,"paymentType");
-		}
-		if (paymentTypeStr != null) {
-			paymentType = PaymentType.valueOf(paymentTypeStr);
-		}
-
+		paymentType = getPaymentType(request,isGatewayForm);
 		if (paymentType != null) {
 			WebsiteInfo webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
 			ChannelInfoWrapper channelInfoWrapper = new ChannelInfoWrapper(webSiteInfo);
@@ -235,45 +244,45 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 		return null;
 	}
+
 	@Override
 	protected String urlToRedirectAfterSuccess(HstRequest request,
 			HstResponse response, FormMap formMap) {
+		String paymentRedirectURL = null;
+		if (request.getAttribute("paymentRedirectURL") != null) {
+			paymentRedirectURL = (String) request.getAttribute("paymentRedirectURL");
+		}
 		// TODO Auto-generated method stub
-		return null;
-		/*
 		if (paymentRedirectURL != null ) {
 			return paymentRedirectURL;
 		}
 		else {
 			return null;
 		}
-		*/
 	}
-	
+
 	@Override
 	protected boolean additionalValidation(HstRequest request, HstResponse response, FormMap formMap) {
 		// TODO Auto-generated method stub
 		String returnUrl = getRedirectURLForSiteMapItem(request, response, null, "memberinvoice", getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 		String notifyUrl = getRedirectURLForSiteMapItem(request, response, null,"memberinvoice", getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
-		PaymentType paymentType = null;
-		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
-		if (paymentTypeStr != null) {
-			paymentType = PaymentType.valueOf(paymentTypeStr);
-		}		
-		String email =  getITRInitData(request).getFormMap().getField("email").getValue();
-		String lastName = getITRInitData(request).getFormMap().getField("lastName").getValue();
-		String firstName = getITRInitData(request).getFormMap().getField("firstName").getValue();
-		String bilingAddress = getITRInitData(request).getFormMap().getField("bilingAddress").getValue();
-		String pi_townCity = getITRInitData(request).getFormMap().getField("pi_townCity").getValue();
-		String pi_state = getITRInitData(request).getFormMap().getField("pi_state").getValue();
-		String pi_pinCode = getITRInitData(request).getFormMap().getField("pi_pinCode").getValue();
-		String pi_mobile = getITRInitData(request).getFormMap().getField("pi_mobile").getValue();
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		PaymentType paymentType = getPaymentType(request,((InvoicePaymentDetailBeanHandler) getChildBeanLifeCycleHandler(request)).isGatewayForm());
+		if (paymentType == null) return false;
 		InvoiceDocument invDoc = (InvoiceDocument) getITRInitData(request).getParentBean(); 
 		//String returnUrl = "http://www.wealth4india/site/blah";
 		//FinancialYear fy = FinancialYear.getByDisplayName(personalInformation.getFinancialYear());
 		if(paymentType.equals(PaymentType.NET_BANKING)){
+			String email =  getITRInitData(request).getFormMap().getField("email").getValue();
+			String lastName = getITRInitData(request).getFormMap().getField("lastName").getValue();
+			String firstName = getITRInitData(request).getFormMap().getField("firstName").getValue();
+			String bilingAddress = getITRInitData(request).getFormMap().getField("bilingAddress").getValue();
+			String pi_townCity = getITRInitData(request).getFormMap().getField("pi_townCity").getValue();
+			String pi_state = getITRInitData(request).getFormMap().getField("pi_state").getValue();
+			String pi_pinCode = getITRInitData(request).getFormMap().getField("pi_pinCode").getValue();
+			String pi_mobile = getITRInitData(request).getFormMap().getField("pi_mobile").getValue();
 			BANK_ISSUER bankIssuer = null;
-			
+
 			String issuerCodeStr = null;
 			if ( getITRInitData(request).getFormMap() != null && getITRInitData(request).getFormMap().getField("issuerCode") != null && getITRInitData(request).getFormMap().getField("issuerCode").getValue() != null) {
 				issuerCodeStr = getITRInitData(request).getFormMap().getField("issuerCode").getValue();
@@ -290,61 +299,65 @@ public class InvoicePayment extends ITReturnComponent {
 				}
 				Map<String, Object> output = getTransaction().acceptITRPaymentByNetBanking(
 						strTransactionId,
-						 getITRInitData(request).getUserName(), getITRInitData(request).getFinancialYear(), getITRInitData(request).getPAN(), 
+						getITRInitData(request).getUserName(), getITRInitData(request).getFinancialYear(), getITRInitData(request).getPAN(), 
 						returnUrl, notifyUrl, bankIssuer, invDoc.getAmountDue().toString(), email, firstName, lastName,
 						pi_mobile, bilingAddress, pi_townCity, pi_state, pi_pinCode);			
 				if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
-						String paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
+					String paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
+					request.setAttribute("paymentRedirectURL", paymentRedirectURL);
 				}else {
 					getITRInitData(request).getFormMap().addMessage("error.gateway.connection", "true");
 				}
 			}
 		}
 		if(paymentType.equals(PaymentType.CREDIT_CARD) || paymentType.equals(PaymentType.DEBIT_CARD)){
-			String cardHolderName = getITRInitData(request).getFormMap().getField("cardHolderName").getValue();
-			String expiryMonth = getITRInitData(request).getFormMap().getField("expiryMonth").getValue();
-			String expiryYear = getITRInitData(request).getFormMap().getField("expiryYear").getValue();
-			String cvvNumber = getITRInitData(request).getFormMap().getField("cvvNumber").getValue();
-			String cardNumber = getITRInitData(request).getFormMap().getField("cardNumber").getValue();
-			String cardType = getITRInitData(request).getFormMap().getField("cardType").getValue();
-			
+			//String cardHolderName = getITRInitData(request).getFormMap().getField("cardHolderName").getValue();
+			//String expiryMonth = getITRInitData(request).getFormMap().getField("expiryMonth").getValue();
+			//String expiryYear = getITRInitData(request).getFormMap().getField("expiryYear").getValue();
+			//String cvvNumber = getITRInitData(request).getFormMap().getField("cvvNumber").getValue();
+			//String cardNumber = getITRInitData(request).getFormMap().getField("cardNumber").getValue();
+			//String cardType = getITRInitData(request).getFormMap().getField("cardType").getValue();
+			String strTransactionId = ((InvoicePaymentDetailBeanHandler) getChildBeanLifeCycleHandler(request)).getStrPaymentTransactionId();
+
+
 			com.opus.epg.sfa.java.BillToAddress oBTA 	= new com.opus.epg.sfa.java.BillToAddress();
 			com.opus.epg.sfa.java.ShipToAddress oSTA 	= new com.opus.epg.sfa.java.ShipToAddress();
 			com.opus.epg.sfa.java.Merchant oMerchant 	= new com.opus.epg.sfa.java.Merchant();
 			com.opus.epg.sfa.java.MPIData oMPI 		= new com.opus.epg.sfa.java.MPIData();
 			com.opus.epg.sfa.java.CardInfo oCI 		= new com.opus.epg.sfa.java.CardInfo();
+
 			com.opus.epg.sfa.java.PostLib oPostLib = null;
 			try {
-				oPostLib	= new com.opus.epg.sfa.java.PostLib();
-			} catch (Exception e) {
+				oPostLib = new com.opus.epg.sfa.java.PostLib();
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
 			com.opus.epg.sfa.java.PGReserveData oPGReserveData	= new com.opus.epg.sfa.java.PGReserveData();
-			
+
 			com.opus.epg.sfa.java.CustomerDetails oCustomer = new com.opus.epg.sfa.java.CustomerDetails ();
 			com.opus.epg.sfa.java.MerchanDise oMerchanDise = new com.opus.epg.sfa.java.MerchanDise();
 			com.opus.epg.sfa.java.SessionDetail oSessionDetail = new com.opus.epg.sfa.java.SessionDetail();
 			com.opus.epg.sfa.java.Address oHomeAddress =new com.opus.epg.sfa.java.Address();
 			com.opus.epg.sfa.java.Address oOfficeAddress =new com.opus.epg.sfa.java.Address();
 			com.opus.epg.sfa.java.AirLineTransaction oAirLineTrans= new com.opus.epg.sfa.java.AirLineTransaction();
-			
+
+
 			oMerchant.setMerchantDetails(
-					"00001203"
-					,"00001203"
-					,"00001203"
-					,"10.10.10.167"
-					, System.currentTimeMillis()+""
-					,"ORD123"
+					getTransaction().getPaysealMerchantId()
+					,getTransaction().getPaysealMerchantId()
+					,getTransaction().getPaysealMerchantId()
+					,request.getRemoteAddr()
+					, strTransactionId
+					,strTransactionId
 					//, "http://10.10.10.6/RailwayTicketing/PGResponse.asp"
-					, "http://10.10.10.167:8080/TestPages/SFAResponse.jsp"
+					,returnUrl
 					, "POST"
 					,"INR"
-					,"INV123"
-					
+					,invDoc.getInvoiceNumber()						
 					,"req.Sale"
-					, "350.50"
-					,"GMT+05:30"
+					, invDoc.getAmountDue().toString()	
+					, IndianGregorianCalendar.getCurrentDateInIndiaAsDate().getTimeZone().getID()
 					, "JAVA"
 					, "true"
 					, "JAVA"
@@ -354,159 +367,205 @@ public class InvoicePayment extends ITReturnComponent {
 
 
 
-	oBTA.setAddressDetails(
-			"CID"
-			,"CustName"
-			,"AddrLine1"
-			,"AddrLine2"
-			,"AddrLine3"
-			,"city"
-			,"state"
-			,"523466"
-			,"IND"
-			, "test@test.com"
-			);
-
-
-	oSTA.setAddressDetails(
-			"2 Mitali"
-			,"Orion Comp"
-			,"Aundh Road"
-			,"city"
-			,"state"
-			,"4385435873"
-			,"IND"
-			,"test@test.com"
-			);
-
-	oMPI.setMPIRequestDetails("1245"
-				,"$12.45"
-				,"418",
-				"2"
-				,"2 shirts"
-				,"12"
-				,"20011212"
-				,"12"
-				,"0"
-				,""
-				,"image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, application/x-shockwave-flash, */*"
-				,"Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)"
-				); 
-
-		oHomeAddress.setAddressDetails(
-					"2,Sandeep"
-					,"Uttam Corner"
-					,"Chinchwad"
-					,"Pune"
-					,"state"
-					,"4385435873"
+			oBTA.setAddressDetails(
+					memberPersonalInformation.getCanonicalHandleUUID()
+					,memberPersonalInformation.getName()
+					,memberPersonalInformation.getFlatDoorBuilding()
+					,memberPersonalInformation.getAreaLocality()
+					,memberPersonalInformation.getRoadStreet()
+					,memberPersonalInformation.getTownCityDistrict()
+					,memberPersonalInformation.getState()
+					,memberPersonalInformation.getPinCode()
 					,"IND"
-					, "test@test.com"
+					,memberPersonalInformation.getEmail()
 					);
-					
-		oOfficeAddress.setAddressDetails(
-						"2,Opus"
-						,"MayFairTowers"
-						,"Wakdewadi"
-						,"Pune"
-						,"state"
-						,"4385435873"
-						,"IND"
-						, "test@test.com"
+
+
+			oSTA.setAddressDetails(
+					memberPersonalInformation.getFlatDoorBuilding()
+					,memberPersonalInformation.getAreaLocality()
+					,memberPersonalInformation.getRoadStreet()
+					,memberPersonalInformation.getTownCityDistrict()
+					,memberPersonalInformation.getState()
+					,memberPersonalInformation.getPinCode()
+					,"IND"
+					,memberPersonalInformation.getEmail()
 					);
-								  
-		oCustomer.setCustomerDetails(
-		                             "Sandeep", // first name 
-					     "patil", //last name
-					     oOfficeAddress,
-					     oHomeAddress,
-					     "9423203297",//mobile number
-					     "13-06-2007", // Reg Date
-					     "Y" // Billing and shipping address match
+
+			oMPI.setMPIRequestDetails(
+					invDoc.getAmountDue().toString()	 //mstrPurchaseAmount
+					,"INR" + invDoc.getAmountDue().toString()	//mstrDisplayAmount
+					,"1", //mstrCurrencyVal
+					"1" //mstrExponent
+					,"eFile ITReturn" //mstrOrderDesc
+					,"0" //mstrRecurFreq
+					,"0" //mstrRecurEnd
+					,"0" //mstrInstallment
+					,"0" //mstrDeviceCategory
+					,"" //mstrWhatIUse
+					,request.getHeader("accept") //,"image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, application/x-shockwave-flash, */*" //mstrAcceptHdr
+					,request.getHeader("user-agent") //"Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)" //mstrAgentHdr
+					); 
+
+			oHomeAddress.setAddressDetails(
+					memberPersonalInformation.getFlatDoorBuilding()
+					,memberPersonalInformation.getAreaLocality()
+					,memberPersonalInformation.getRoadStreet()
+					,memberPersonalInformation.getTownCityDistrict()
+					,memberPersonalInformation.getState()
+					,memberPersonalInformation.getPinCode()
+					,"IND"
+					,memberPersonalInformation.getEmail()
 					);
-		
-		oSessionDetail.setSessionDetails(request.getRemoteAddr(), //This Customer ip,merchant need to send it.
-							  getSecureCookie(request),  //cookie string
-							  request.getLocale().getCountry(),
-							  request.getLocale().getLanguage(), 
-							  request.getLocale().getVariant() ,
-							  request.getHeader ("user-agent")
-					  );
 
-		
-		oMerchanDise.setMerchanDiseDetails("Computer",
-							   "2",
-							   "Intel",
-							   "P4",
-							   "Sandeep Patil", //buyers name
-							   "Y" //Buyername and Card name match.
-							   );
-					   
-						   
-		
-		oAirLineTrans.setAirLineTransactionDetails( "10-06-2007", //booking Date				   
-					   	   "22-06-2007", //Flight Date
-					   	   "13:20", //Flight Time
-					   	   "119",  //Flight number
-					   	   "Sandeep", //Passenger Name
-					   	   "1", //Number if Tickets
-					   	   "Y",// PassebgerName and Card name match
-					   	   "25c",//PBR
-					   	   "Pune", // Sector From
-					   	   "Mumbai"//Sector To
-					   	   );
+			oOfficeAddress.setAddressDetails(
+					memberPersonalInformation.getFlatDoorBuilding()
+					,memberPersonalInformation.getAreaLocality()
+					,memberPersonalInformation.getRoadStreet()
+					,memberPersonalInformation.getTownCityDistrict()
+					,memberPersonalInformation.getState()
+					,memberPersonalInformation.getPinCode()
+					,"IND"
+					,memberPersonalInformation.getEmail()
+					);
 
-		System.out.println("before calling postssl ");
+			oCustomer.setCustomerDetails(
+					memberPersonalInformation.getFirstName(), // first name 
+					memberPersonalInformation.getLastName(), //last name
+					oOfficeAddress,
+					oHomeAddress,
+					memberPersonalInformation.getMobile(),//mobile number
+					"13-06-2007", // Reg Date
+					"Y" // Billing and shipping address match
+					);
 
-		
-		//PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,null,null,null,null);
-		PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,oCustomer,oSessionDetail,oAirLineTrans,null);
-		if(oPGResponse.getRedirectionUrl() != null) {
-			String strRedirectionURL = oPGResponse.getRedirectionUrl();
-			try {
-				response.sendRedirect(strRedirectionURL);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			oSessionDetail.setSessionDetails(request.getRemoteAddr(), //This Customer ip,merchant need to send it.
+					getSecureCookie(request),  //cookie string
+					request.getLocale().getCountry(),
+					request.getLocale().getLanguage(), 
+					request.getLocale().getVariant() ,
+					request.getHeader ("user-agent")
+					);
+
+
+			oMerchanDise.setMerchanDiseDetails(
+					memberPersonalInformation.getSelectedITRForm().name(),
+					"1", //mstrQuantity
+					getITRInitData(request).getResellerId(),
+					"", //mstrModelNumber
+					memberPersonalInformation.getName(), //buyers name
+					"Y" //Buyername and Card name match.
+					);
+
+
+			/*
+				oAirLineTrans.setAirLineTransactionDetails( "10-06-2007", //booking Date				   
+							   	   "22-06-2007", //Flight Date
+							   	   "13:20", //Flight Time
+							   	   "119",  //Flight number
+							   	   "Sandeep", //Passenger Name
+							   	   "1", //Number if Tickets
+							   	   "Y",// PassebgerName and Card name match
+							   	   "25c",//PBR
+							   	   "Pune", // Sector From
+							   	   "Mumbai"//Sector To
+							   	   );
+			 */
+
+			//PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,null,null,null,null);
+			PGResponse oPGResponse = oPostLib.postSSL(oBTA,oSTA,oMerchant,oMPI,response,oPGReserveData,oCustomer,oSessionDetail,oAirLineTrans,null);
+			if(oPGResponse.getRedirectionUrl() != null) {
+				try {
+					BeanInfo bi = Introspector.getBeanInfo(oPGResponse.getClass());
+					if (formMap == null) formMap = new FormMap();
+					for(PropertyDescriptor property : bi.getPropertyDescriptors()) {
+						Method aReadMethod = property.getReadMethod();
+						Object theValue =  aReadMethod.invoke(oPGResponse);
+						if (theValue != null && theValue instanceof String) {
+							String newFieldName = "str" + WordUtils.capitalize(property.getName()); // some how the stupid ICICI has done a crappy job of field names
+							FormField formField  = new FormField( newFieldName ); 
+							formField.addValue((String)theValue);
+							formMap.addFormField(formField);
+						}
+						//Object theValue = directFieldAccessorSrc.getPropertyValue(property.getName());
+						//directFieldAccessorDest.setPropertyValue(property.getName(), theValue);
+					}	
+				} catch (IntrospectionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String strRedirectionURL = oPGResponse.getRedirectionUrl();
+				request.setAttribute("paymentRedirectURL", strRedirectionURL);
+				/*
+					try {
+						response.sendRedirect(strRedirectionURL);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				 */
+
 			}
-		}
-		else {
-			System.out.println("Error encountered. Error Code : " +oPGResponse.getRespCode() + " . Message " +  oPGResponse.getRespMessage());
-		}
-		System.out.println("before PGResponse");
+			else {
+				System.out.println("Error encountered. Error Code : " +oPGResponse.getRespCode() + " . Message " +  oPGResponse.getRespMessage());
+				getITRInitData(request).getFormMap().addMessage("error.gateway.connection", "true");
+			}
+
+
 			/*
 			 * 	Map<String, Object> output = transaction.acceptITRPaymentByDebitOrCreditCard(
-					
+
 					memberLoginName, getFinancialYear(), getPAN(), 
 					returnUrl,notifyUrl,PaymentType.valueOf(paymentType.toString()),
 					cardHolderName,cardNumber, CARD_TYPE.valueOf(cardType),cvvNumber,expiryMonth,expiryYear,
 					amount,email,personalInformation.getFirstName(),personalInformation.getLastName(),personalInformation.getMobile(),
 					address, personalInformation.getTownCityDistrict(), personalInformation.getState(), personalInformation.getPinCode());
-					*/	
+			 */	
 			/*
 			if (output != null && output.containsKey(Transaction.RETURN_URL_KEY)) {
 				paymentRedirectURL = (String) output.get(Transaction.RETURN_URL_KEY);
 			}else {
 				getITRInitData(request).getFormMap().addMessage("error.gateway.connection", "true");
 			}
-			*/
+			 */
 		}	
-		
+
 		return true;
 	}
-	
-	
+
+	private PaymentType getPaymentType(HstRequest request,boolean isGatewayForm) {
+		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
+		PaymentType paymentType = null;
+		if (isGatewayForm && paymentTypeStr == null) {
+			paymentTypeStr = getPublicRequestParameter(request,"paymentType");
+		}
+		if (paymentTypeStr != null) {
+			paymentType = PaymentType.valueOf(paymentTypeStr);
+		}
+		return paymentType;
+	}
+
+
 	protected String getSecureCookie(HstRequest request) {
-        String secureCookie = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) { 
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equals("vsc")) {
-                    secureCookie = cookies[i].getValue().trim();
-                    break; 
-                }
-            }
-        }
-        return secureCookie;
-    }
+		String secureCookie = null;
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) { 
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("vsc")) {
+					secureCookie = cookies[i].getValue().trim();
+					break; 
+				}
+			}
+		}
+		return secureCookie;
+	}
 }

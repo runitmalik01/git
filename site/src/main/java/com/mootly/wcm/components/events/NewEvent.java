@@ -1,22 +1,12 @@
-/**
- * Copyright (C) 2010 Hippo B.V.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.mootly.wcm.components.events;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.jcr.Session;
 
@@ -61,13 +51,16 @@ public class NewEvent extends BaseComponent {
 		log.info("inside do action");
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
-		String description = request.getParameter("description");
-		String date = request.getParameter("date");
+		String description = request.getParameter("description");		
+		String newStartDate = request.getParameter("newstartdate");		
+		String newEndDate = request.getParameter("newenddate");
 		EventDocument edoc = new EventDocument();
 		edoc.setTitle(title);
 		edoc.setSummary(summary);
 		edoc.setDescriptionContent(description);
-
+		edoc.setNewStartDate(newStartDate);
+		edoc.setNewEndDate(newEndDate);
+		
 		createNewEvents(request,edoc);
 		//editNewEvents(request,edoc);
 		/*if(delete!=null){
@@ -98,7 +91,6 @@ public class NewEvent extends BaseComponent {
 			//HippoFolder hippoFolder=(HippoFolder) getContentBean(request);
 			//HippoBean document = (HippoBean) getContentBean(request);
 			//String memberFolderPath= document.getCanonicalPath();
-			//log.info(""+memberFolderPath);
 			String cPath = getCanonicalBasePathForWrite(request);
 			final String memberFolderPathnew= cPath+"/cms/events";
 			finalMembershipDocumentPath = wpm.createAndReturn(memberFolderPathnew, EventDocument.NAMESPACE, ed.getTitle(), true);
@@ -109,15 +101,15 @@ public class NewEvent extends BaseComponent {
 				objEventDocument.setTitle(ed.getTitle());
 				objEventDocument.setSummary(ed.getSummary());
 				objEventDocument.setDescriptionContent(ed.getDescriptionContent());
-				//objEventDocument.setDate(ed.getDate())
-
+				objEventDocument.setNewStartDate(ed.getNewStartDate());
+				objEventDocument.setNewEndDate(ed.getNewEndDate());
 				// update now  
 				wpm.update(objEventDocument);
 
 			}
 			return null;
 		} catch (Exception e) {
-			log.warn("Failed to signup member ", e);
+			log.warn("Failed to CREATE new event", e);
 			return null;
 		} finally {
 			if (persistableSession != null) {
@@ -146,6 +138,8 @@ public class NewEvent extends BaseComponent {
 				objEventDocument.setTitle(ed.getTitle());
 				objEventDocument.setSummary(ed.getSummary());
 				objEventDocument.setDescriptionContent(ed.getDescriptionContent());
+				objEventDocument.setNewStartDate(ed.getNewStartDate());
+				objEventDocument.setNewEndDate(ed.getNewEndDate());
 				// update now  
 				wpm.update(objEventDocument);
 				wpm.save();
@@ -188,7 +182,7 @@ public class NewEvent extends BaseComponent {
 
 			}
 		} catch (Exception e) {
-			log.warn("Failed to signup member ", e);
+			log.warn("Failed to remove Events  ", e);
 		} finally {
 			if (persistableSession != null) {
 

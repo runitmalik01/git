@@ -18,6 +18,9 @@ package com.mootly.wcm.beans;
 
 import static com.mootly.wcm.utils.Constants.PROP_DESCRIPTION;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.jcr.ItemExistsException;
 import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
@@ -51,6 +54,8 @@ public class Document extends BaseDocument implements ContentNodeBinder,FormMapF
     private String summary;
     private HippoHtml description;
     private String descriptionContent;
+    private String newstartdate;
+    private String newenddate;
 
 
     @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="title",label="Title",valueListName="",title="",placeHolder="",isMultiple=false)
@@ -74,7 +79,7 @@ public class Document extends BaseDocument implements ContentNodeBinder,FormMapF
     public void setSummary(String summary) {
         this.summary = summary;
     }
-    
+
     @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT_ARERA,name="description",label="Description",valueListName="",title="",placeHolder="",isMultiple=false)
     public HippoHtml getDescription() {
         if(description==null){
@@ -88,6 +93,31 @@ public class Document extends BaseDocument implements ContentNodeBinder,FormMapF
         this.descriptionContent = descriptionContent;
     }
     
+    // New Start Date
+    @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="newstartdate",label="newstartdate",valueListName="",title="",placeHolder="",isMultiple=false)
+    @FormField(name = "newstartdate")
+    public String getNewStartDate() {
+        return (newstartdate == null) ? (String) getProperty("mootlywcm:newstartdate") : newstartdate;
+    }
+    
+    @BeanClone
+    public void setNewStartDate(String newstartdate) {
+        this.newstartdate = newstartdate;
+    }
+    
+    // New End Date
+    @AutoCreateFormField(fieldType=FORM_FILED_TYPE.TEXT,name="newenddate",label="newenddate",valueListName="",title="",placeHolder="",isMultiple=false)
+    @FormField(name = "newenddate")
+    public String getNewEndDate() {
+        return (newenddate == null) ? (String) getProperty("mootlywcm:newenddate") : newenddate;
+    }
+    
+    @BeanClone
+    public void setNewEndDate(String newenddate) {
+        this.newenddate = newenddate;
+    }
+    
+    // Description
     @FormField(name = "description",propertyName="descriptionContent")
     public String getDescriptionContent() {
         if (descriptionContent == null) {
@@ -107,6 +137,9 @@ public class Document extends BaseDocument implements ContentNodeBinder,FormMapF
             Document bean = (Document) content;
             node.setProperty("mootlywcm:title", bean.getTitle());
             node.setProperty("mootlywcm:summary", bean.getSummary());
+            node.setProperty("mootlywcm:newstartdate", bean.getNewStartDate());
+            node.setProperty("mootlywcm:newenddate", bean.getNewEndDate());
+            
             
             if (getDescriptionContent() != null) {
                 if (node.hasNode(PROP_DESCRIPTION)) {
