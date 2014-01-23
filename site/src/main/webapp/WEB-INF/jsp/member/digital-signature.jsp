@@ -11,17 +11,24 @@
 		</div>
 	</c:forEach>
 </c:if>
-<c:forEach var="file" items="${listOfAllMemberFiles}">
-	<!-- We show only those files which are in digitalsignature subdrive -->
-	<c:choose>
-		<c:when test="${not empty subDriveName && fn:contains(file.canonicalPath, subDriveName)}">
-			<c:set value="true" var="digiSign" />
-		</c:when>
-		<c:otherwise>
-			<c:set value="false" var="digiSign" />
-		</c:otherwise>
-	</c:choose>
-</c:forEach>
+<c:choose>
+	<c:when test="${not empty  listOfAllMemberFiles}">
+		<c:forEach var="file" items="${listOfAllMemberFiles}">
+			<!-- We show only those files which are in digitalsignature subdrive -->
+			<c:choose>
+				<c:when test="${not empty subDriveName && fn:contains(file.canonicalPath, subDriveName)}">
+					<c:set value="true" var="digiSign" />
+				</c:when>
+				<c:otherwise>
+					<c:set value="false" var="digiSign" />
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<c:set value="false" var="digiSign" />
+	</c:otherwise>
+</c:choose>
 <%
 	StringBuilder builder = new StringBuilder();
 	builder.append(
