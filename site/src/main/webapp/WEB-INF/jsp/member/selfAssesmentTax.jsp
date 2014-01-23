@@ -6,8 +6,9 @@
 <%@ page import="com.mootly.wcm.beans.*"%>
 
 <c:set var="tds2">
-	<fmt:message key="member.advancetax.title" />
+	<fmt:message key="slefassess.title" />
 </c:set>
+<hippo-gogreen:title title="${tds2}" />
 <w4india:itrmenu></w4india:itrmenu>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -16,13 +17,16 @@
 		</div>
 	</c:forEach>
 </c:if>
-<hippo-gogreen:title title="${tds2}" />
 
 <hst:actionURL var="actionUrl" />
-
-<h4>
-	<fmt:message key="member.tds.selfassesment.tax" />
-</h4>
+<div class="page-header">
+	<h2 class="title page-title">Self Assessment Tax</h2>
+	<h4>
+		<small>Self Assessment tax means any balance tax paid by the
+			assessee on the assessed income after deducting TDS and Advance tax
+			before filing the Return of income.</small>
+	</h4>
+</div>
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
@@ -30,7 +34,9 @@
 			name="selfassementtax">
 
 			<fieldset>
-				<legend style="color: green; font-weight: bold;">Enter Details</legend>
+				<legend class="header-color">
+					<fmt:message key="member.tds.selfassesment.tax" />
+				</legend>
 				<div class="row show-grid">
 					<div class="col-md-4">
 						<div class="rowlabel">
@@ -82,8 +88,11 @@
 			</fieldset>
 			<div class="row show-grid">
 				<div class="col-md-4 col-md-offset-8 decimal">
-					<a href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalHrefSelfTax" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
+					<a
+						href="${scriptName}?selectedItrTab=<%=ITRTab.TAX_SELF_ASSESSMENT%>"
+						class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
+						id="myModalHrefSelfTax" role="button"
+						class="btn btn-default btn-success">Save</a>
 				</div>
 			</div>
 		</form>
@@ -92,51 +101,50 @@
 	<c:otherwise>
 		<table class="table table-bordered">
 			<tr align="center">
-				<th><b><fmt:message key="tds.bsr.code" /> </b>
-				</th>
-				<th><b><fmt:message key="tds.date.credit" /> </b>
-				</th>
-				<th><b><fmt:message key="tds.serial.challan" /> </b>
-				</th>
-				<th><b><fmt:message key="tds.amount.selfassesment" /> </b>
-				</th>
+				<th><b><fmt:message key="tds.bsr.code" /> </b></th>
+				<th><b><fmt:message key="tds.date.credit" /> </b></th>
+				<th><b><fmt:message key="tds.serial.challan" /> </b></th>
+				<th><b><fmt:message key="tds.amount.selfassesment" /> </b></th>
 				<th><b>Actions</b></th>
 			</tr>
 			<c:if test="${not empty parentBean}">
 				<c:forEach items="${parentBean.selfAssesmentDetailList}"
 					var="selfassesmentdetail">
 					<tr>
-						<td><c:out value="${selfassesmentdetail.p_BSR}" />
-						</td>
-						<td><c:out value="${selfassesmentdetail.dateStr}" />
-						</td>
-						<td><c:out value="${selfassesmentdetail.p_Serial}" />
-						</td>
+						<td><c:out value="${selfassesmentdetail.p_BSR}" /></td>
+						<td><c:out value="${selfassesmentdetail.dateStr}" /></td>
+						<td><c:out value="${selfassesmentdetail.p_Serial}" /></td>
 						<td><w4india:inr value="${selfassesmentdetail.p_Amount}" />
 						</td>
 						<td><a class="btn btn-default btn-primary"
-							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp;
-						</a>&nbsp;&nbsp;<a class="btn btn-default btn-danger" href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete" id="delete" data-confirm=""><small><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
-							</td>
+							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxedit"><small><i
+									class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+								&nbsp;&nbsp; </a>&nbsp;&nbsp;<a class="btn btn-default btn-danger"
+							href="${scriptName}/<c:out value="${selfassesmentdetail.canonicalUUID}"/>/selfassesmenttaxdelete"
+							id="delete" data-confirm=""><small><i
+									class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+						</a></td>
 					</tr>
-			</c:forEach>
+				</c:forEach>
 				<tr>
 					<td colspan="3"><fmt:message key="tds.amount.total" /></td>
-					<td ><w4india:inr value="${parentBean.total_Amount}" /></td>
+					<td><w4india:inr value="${parentBean.total_Amount}" /></td>
 			</c:if>
 		</table>
-		<a href="${scriptName}/selfassesmenttaxnew" class="btn btn-default btn-info" style="color: black">Add New</a>
+		<a href="${scriptName}/selfassesmenttaxnew"
+			class="btn btn-default btn-info"><small><i
+				class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 	</c:otherwise>
 </c:choose>
 
 <res:client-validation formId="frmdataSelfTax"
 	screenConfigurationDocumentName="selfassementtax"
 	formSubmitButtonId="myModalHrefSelfTax" />
-	<hst:element var="uiCustom" name="script">
-    <hst:attribute name="type">text/javascript</hst:attribute>
+<hst:element var="uiCustom" name="script">
+	<hst:attribute name="type">text/javascript</hst:attribute>
     $(document).ready(function() {
 
-    var AY='<c:out value="${assessmentYear}"/>'.split("-", 4);
+    var AY='<c:out value="${assessmentYear}" />'.split("-", 4);
     var currDate = '<c:out value="${currDate}"></c:out>';
 	itrFinYrMax=currDate;
 	itrFinYrMin="01/04/"+'<c:out value="${endYear}"></c:out>';
@@ -145,4 +153,4 @@
 			});
 
 </hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal"/>
+<hst:headContribution element="${uiCustom}" category="jsInternal" />

@@ -67,7 +67,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<form id="frmPersonalInfo" action="${actionUrl}" method="post"
 		name="pi">
 		<fieldset>
-			<legend>Filing Status</legend>
+			<legend class="header-color"
+			><small>Filing Status</small></legend>
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<tr>
@@ -94,7 +95,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 		</fieldset>
 		<fieldset>
-			<legend>Employment Category</legend>
+			<legend class="header-color"><small>Employment Category</small></legend>
 			<div class="row show-grid">
 				<%--
 				<div class="col-md-3">
@@ -167,7 +168,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</fieldset>		
 		
 		<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || (memberpersonalinformation.returnType == 'O' && (memberpersonalinformation.filingSection.xmlCode == '12'))}">display: none;</c:if>">
-			<legend>Revised Return Details</legend>
+			<legend class="header-color"
+			><small>Revised Return Details</small></legend>
 			<div class="row show-grid" id="ul_revised_input">
 				<div class="col-md-3" id="ackNo">
 					<div class="rowlabel">
@@ -232,9 +234,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 		</fieldset>	
 		<fieldset>
-			<legend>
+			<legend class="header-color"><small>
 				<c:out value="${filingStatus}" />
-				Details
+				Details</small>
 			</legend>
 			<div class="row show-grid">
 				<c:choose>
@@ -338,7 +340,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				</c:if>
 		</fieldset>
 		<fieldset>
-			<legend>Address &amp; Contact Information</legend>
+			<legend class="header-color"><small>Address &amp; Contact Information</small></legend>
 			<div class="row show-grid">
 
 				<div class="col-md-6">
@@ -492,8 +494,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</div>
 		</fieldset>
 		<fieldset>
-			<legend>
-				<fmt:message key="member.residential.status" />
+			<legend class="header-color">
+			<small><fmt:message key="member.residential.status" /></small>	
 			</legend>
 			<c:choose>
 				<c:when test="${filingStatus eq 'PERSON'}">
@@ -703,7 +705,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</c:choose>
 		</fieldset>
 		<fieldset>
-			<legend>ITR Package selection</legend>
+			<legend class="header-color"><small>ITR Package Selection</small></legend>
 			<div class="row show-grid">
 			    <div class="col-md-2">
 			    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
@@ -776,8 +778,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</c:when>
 		</c:choose>
 		<fieldset>
-			<legend>
-				<fmt:message key="member.bank.detail" />
+			<legend class="header-color"><small>
+				<fmt:message key="member.bank.detail" /></small>
 			</legend>
 			<div class="row show-grid">
 				<div class="col-md-6">
@@ -963,7 +965,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		  --%>
 		<div class="row show-grid">
 			<div class="col-md-4 col-md-offset-8 decimal">
-				<a id="hrefLogin" role="button" class="btn btn-default orange">Save</a>
+				<a id="hrefLogin" role="button" class="btn btn-default btn-success">Save</a>
 			</div>
 		</div>
 	</form>

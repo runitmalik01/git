@@ -1,27 +1,15 @@
-<%--
-
-    Copyright (C) 2010 Hippo B.V.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
---%>
 
 <%@include file="../includes/tags.jspf"%>
+<c:set var="feedbacktitle">
+	<fmt:message key="easyforms.formtemplate" />
+</c:set>
+<hippo-gogreen:title title="${feedbacktitle}" />
 
 <%--@elvariable id="form" type="org.onehippo.forge.easyforms.model.Form"--%>
 <%--@elvariable id="likert" type="org.onehippo.forge.easyforms.model.Likert"--%>
 <%--@elvariable id="ef_errors" type="java.util.List"--%>
 <%--@elvariable id="error" type="org.onehippo.forge.easyforms.model.ErrorMessage"--%>
+
 
 <%
 	if (request.getUserPrincipal() != null) {
@@ -29,30 +17,71 @@
 				.getName());
 	}
 %>
+<div class="memberfeedback page type-page">
+	<h2 class="title">Feedback</h2>
+	<c:choose>
+		<c:when test="${success eq 'eventsuccess'}">
+			<fmt:message key="easyforms.formtemplate.thankyou.event" />
+		</c:when>
+		<c:when test="${success eq 'dummysuccess'}">
 
-
-<c:choose>
-	<c:when test="${success eq 'eventsuccess'}">
-		<fmt:message key="easyforms.formtemplate.thankyou.event" />
-	</c:when>
-	<c:when test="${success eq 'dummysuccess'}">
-
-		<div id="content">
-			<fmt:message key="easyforms.formtemplate1.thankyou.form" />
-		</div>
-	</c:when>
-	<c:otherwise>
-		<c:forEach items="${ef_errors}" var="error">
-			<div class="form-error">
-				<c:out value="${error.message}" />
+			<div id="content">
+				<fmt:message key="easyforms.formtemplate1.thankyou.form" />
 			</div>
-		</c:forEach>
-		<form class="form" name="contactus" action="<hst:actionURL />"
-			method="post" id="${form.id}">
-			
-			<div class="row show-grid">
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${ef_errors}" var="error">
+				<div class="form-error">
+					<c:out value="${error.message}" />
+				</div>
+			</c:forEach>
+			<form class="form" name="contactus" action="<hst:actionURL />"
+				method="post" id="${form.id}">
+				<p>
+					<label for="username"> <small>Your Name</small>
+					</label> <input id="name" type="text" name="name" required="required"><br>
+					<br>
+				</p>
+				<p>
+					<label for="emailid"><small>E-mail ID</small>
+					</label> <input type="text" id="email" name="email" required="required"><br>
+					<br>
+				</p>
+				<p>
+					<label> <small>Category</small><span style="color: red">*</span></label>
+						<label for="category"><select name="category" id="category" required="required">
+						<option value="">-Select-</option>
+						<option value="am">Accounting Management</option>
+						<option value="nd">Newsletter Delivery</option>
+						<option value="up">Username and Password</option>
+						<option value="ep">Email Preferences</option>
+						<option value="ma">Mailing Address Change</option>
+						<option value="oth">Other</option>
+					</select>
+											
+					</label>			
+				</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>
+					<label> <small>Comments/Questions</small></label>
+					<textarea cols="40" rows="20" name="comments"></textarea>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>
+					<label><small>Resolution</small></label>
+					<textarea cols="40" rows="20" name="resolution"></textarea>
+					<br>
+				</p>
+
+
+				<!-- <div class="row show-grid">
 				<div class="col-md-3">Your Name<span style="color: red">*</span></div>
-				<div class="col-md-8">
+				<div class="col-md-14">
 					<input id="name" type="text" name="name" required="required"><br><br>
 				</div>
 			</div>
@@ -60,7 +89,7 @@
 				<div class="col-md-3">E-mail ID<span style="color: red">*</span></div>
 				<div class="col-md-8">
 					<input type="text" id="email" name="email" required="required"><br><br>
-				</div>
+				</div> 
 
 			</div>
 			<div class="row show-grid">
@@ -77,6 +106,7 @@
 					</select> <br>
 				</div>
 			</div>
+			
 		<div class="row show-grid">
 				<div class="col-md-3">Comments/Questions</div>
 				<div class="col-md-8">	<textarea cols="40" rows="20" name="comments"></textarea><br>
@@ -86,16 +116,22 @@
 				<div class="col-md-3">Resolution</div>
 				<div class="col-md-8">	<textarea cols="40" rows="20" name="resolution"></textarea><br>
 				</div>
-			</div>
-			<div class="ef-buttons">
-				<c:forEach var="button" items="${form.buttons}">
+			</div>-->
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>	
+					
+				<div class="ef-buttons">		
+					<c:forEach var="button" items="${form.buttons}">
                 ${button.html}
             </c:forEach>
-			</div>
+				</div>
+			</form>
+		</c:otherwise>
+	</c:choose>
+</div>
 
-		</form>
-	</c:otherwise>
-</c:choose>
 <%--
     HERE WE PRINT JAVASCRIPT CALL WHICH WILL VALIDATE OUR FORM
 --%>

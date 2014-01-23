@@ -22,15 +22,11 @@
 					<c:out value="${screenConfigDocument.screenHeading}" />
 				</c:when>
 				<c:otherwise>
-					<!-- Pension Income -->
-					<div class="page-header">
-						<h2>
-							<b>Pension Income</b>
-						</h2>
-						<small>Enter details of your previous employer from Form
-							16 e.g. PAN, TAN, Address, etc. These details can be found in
-							Form-16 issued to you by your employer.</small>
-					</div>
+					<h2 class="page-title">Pension Income</h2>
+					<small>Enter details of your previous employer from Form 16
+						e.g. PAN, TAN, Address, etc. These details can be found in Form-16
+						issued to you by your employer.</small>
+
 				</c:otherwise>
 			</c:choose>
 		</h3>
@@ -51,8 +47,9 @@
 					<form id="frmdataSlryInc" action="${actionUrl}" name="salaryincome"
 						method="post">
 						<fieldset>
-							<legend style="font-style: italic; color: blue;">Category
-								Of Employment</legend>
+							<legend class="header-color">
+								<small>Category Of Employment</small>
+							</legend>
 							<!-- <legend style="color: green; font-weight: bold;">Employment</legend> -->
 							<div class="row show-grid">
 								<div class="col-md-3">
@@ -75,8 +72,9 @@
 							</div>
 						</fieldset>
 						<fieldset>
-							<legend style="font-style: italic; color: blue;">
-								Details Of Employer & Employee</legend>
+							<legend class="header-color">
+								<small> Details Of Employer & Employee</small>
+							</legend>
 							<div class="row show-grid">
 								<div class="col-md-4">
 									<div class="rowlabel">
@@ -187,8 +185,9 @@
 							</div>
 						</fieldset>
 						<fieldset>
-							<legend style="font-style: italic; color: blue;">
-								Address Of Employer</legend>
+							<legend class="header-color">
+								<small>Address Of Employer</small>
+							</legend>
 							<div class="row show-grid">
 								<div class="col-md-3">
 									<div class="rowlabel">
@@ -272,8 +271,9 @@
 					</div>
 				</fieldset>--%>
 						<fieldset>
-							<legend style="font-style: italic; color: blue;">Compensation
-								and Taxation</legend>
+							<legend class="header-color">
+								<small>Compensation and Taxation</small>
+							</legend>
 							<div class="row show-grid">
 								<div class="col-md-6">
 									<div class="rowlabel">
@@ -302,14 +302,14 @@
 							</div>
 						</fieldset>
 						<div class="row show-grid">
-					<div class="col-md-4 col-md-offset-8 decimal">
-						<a id="myModalHrefSlryInc"
-							role="button" class="btn btn-default btn-success" style="color: black">Save</a>
-							<a
-							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"
-							class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; 
-					</div>
-				</div>
+							<div class="col-md-4 col-md-offset-8 decimal">
+								<a
+									href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_SALARY_PENSION%>"
+									class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
+									id="myModalHrefSlryInc" role="button"
+									class="btn btn-default btn-success">Save</a>
+							</div>
+						</div>
 					</form>
 				</c:when>
 				<c:otherwise>

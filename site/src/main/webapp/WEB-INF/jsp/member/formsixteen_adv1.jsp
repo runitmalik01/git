@@ -14,8 +14,8 @@ SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getSt
 request.setAttribute("objHashMapstates", objHashMapstates);
 %>
 <fieldset>
-	<legend style="font-style: italic; color: blue;">Employer
-		Address</legend>
+	<legend class="header-color"><small>Employer
+		Address</small></legend>
 	<div class="row show-grid">
 		<div class="col-md-3">
 			<div class="rowlabel">

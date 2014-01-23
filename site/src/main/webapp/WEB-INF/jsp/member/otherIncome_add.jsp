@@ -5,8 +5,8 @@
 
 
 <fieldset>
-		<legend style="color: green; font-weight: bold;">
-			Income From Owning and Maintaining Race Horses
+		<legend class="header-color"><small>
+			Income From Owning and Maintaining Race Horses</small>
 		</legend>
 		<div class="row show-grid">
 			<div class="col-md-4">
@@ -41,8 +41,8 @@
 		</div>
 	</fieldset>
     <fieldset>
-		<legend style="color: green; font-weight: bold;">
-			Winnings from lotteries, crossword puzzles, races, games, gambling, betting etc
+		<legend class="header-color">
+			<small>Winnings from lotteries, crossword puzzles, races, games, gambling, betting etc</small>
 		</legend>
 		<div class="row show-grid">
 	        <div class="col-md-8">
