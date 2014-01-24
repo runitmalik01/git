@@ -31,6 +31,7 @@ import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.utils.ContentStructure;
+import com.mootly.wcm.utils.MootlyFormUtils;
 import com.mootly.wcm.utils.VelocityUtils;
 
 @FormFields(fieldNames={"member_file","description","protected","additionalnotes"})
@@ -75,7 +76,7 @@ public class MemberDriveHandler {
 		this.financialYear = request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		this.pan = request.getRequestContext().getResolvedSiteMapItem().getParameter("pan");
 		this.userName = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : null;
-		//this.normalisedUserName = getITRInitData(request).getNormalizedUserName(request);
+		this.normalisedUserName = MootlyFormUtils.getNormalizedString(userName);
 		this.isReseller = helper.isReSeller(request);
 		this.resellerID = helper.getResellerId(request);
 	}

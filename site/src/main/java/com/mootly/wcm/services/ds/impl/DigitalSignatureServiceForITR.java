@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -52,6 +53,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -66,14 +68,14 @@ import com.mootly.wcm.services.ds.model.ERISOAPHeaderSignatureResponse;
 import com.mootly.wcm.services.impl.SystemRepositorySupportProvider;
 
 public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvider implements DigitalSignatureService {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(DigitalSignatureServiceForITR.class);
 	String propertyNameForPassword;
 	String relPathChildNodeWithKey;
 	String propertyNameDigitalCertificate;
 	String keyStoreType;
 	String keyStoreProvider;
-	
+
 	@Override
 	public DigitalSignatureWrapper getDigitalSignature(File file, boolean validate)
 			throws MissingPrivateKeyException {
@@ -129,16 +131,16 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 			else {
 				throw new MissingDigitalCertificateException();
 			}
-		
+
 			//this must have a children which has the actual file
 			DigitalSignatureWrapper digitalSignatureWrapper = new DigitalSignatureWrapper(theByteArray,thePrivateKeyPassword);
-			
-			
+
+
 			if (validate) {
 				X509Certificate certificate = validateAndGetCertificate(digitalSignatureWrapper);
 				digitalSignatureWrapper.setCertificate(certificate);
 			}
-			
+
 			return digitalSignatureWrapper;			
 		}
 		finally {
@@ -154,7 +156,7 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 	@Override
 	public X509Certificate validateAndGetCertificate(DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException,InvalidDigitalSignatureException {
 		// TODO Auto-generated method stub
-		
+
 		try {
 			if (digitalSignatureWrapper != null && digitalSignatureWrapper.getPrivateKeyPassword() == null) {
 				throw new MissingPrivateKeyException();
@@ -172,29 +174,29 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 				String theAlias = theAliasEnm.nextElement();
 				theCertificate =  store.getCertificate(theAlias);
 				Certificate[] certificationChain = store.getCertificateChain(theAlias);
-	            PrivateKey privateKey = (PrivateKey) store.getKey(theAlias, digitalSignatureWrapper.getPrivateKeyPassword().toCharArray());
-	            digitalSignatureWrapper.setPrivateKey(privateKey);	            
-	            String  base64EncodedCertChain = encodeX509CertChainToBase64(certificationChain);
-	            digitalSignatureWrapper.setBase64EncodedCertChain(base64EncodedCertChain);
+				PrivateKey privateKey = (PrivateKey) store.getKey(theAlias, digitalSignatureWrapper.getPrivateKeyPassword().toCharArray());
+				digitalSignatureWrapper.setPrivateKey(privateKey);	            
+				String  base64EncodedCertChain = encodeX509CertChainToBase64(certificationChain);
+				digitalSignatureWrapper.setBase64EncodedCertChain(base64EncodedCertChain);
 				break;
 			}
-			
+
 			if (theCertificate == null && !(theCertificate instanceof X509Certificate)) {
 				throw new InvalidDigitalSignatureException();
 			}
 			theX509Cert = (X509Certificate) theCertificate;
 			theX509Cert.checkValidity(IndianGregorianCalendar.getCurrentDateInIndiaAsDate().getTime());
-			
-			
-			
+
+
+
 			String principalName = theX509Cert.getSubjectDN().getName();
 			if (log.isInfoEnabled()) {
 				log.info("Principal Name:" + principalName);
 			}
-			
+
 			return theX509Cert;
 			//theX509Cert.verify(key)
-					
+
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -252,18 +254,18 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 						fac.newSignatureMethod(SignatureMethod.RSA_SHA1, null),
 						Collections.singletonList(ref));
 
-		 // Next, create the referenced Object
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
-        Document doc = dbf.newDocumentBuilder().newDocument();
-        org.w3c.dom.Node text = doc.createTextNode("");
-        //Node text2 = doc.createAttribute("Id");
-        //text2.setNodeValue("PANXXXXXXX");
-        XMLStructure content = new DOMStructure(text);
-        XMLObject obj = fac.newXMLObject
-            (Collections.singletonList(content), "CDVPS0756D", null, null);
-		
-        /*
+		// Next, create the referenced Object
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setNamespaceAware(true);
+		Document doc = dbf.newDocumentBuilder().newDocument();
+		org.w3c.dom.Node text = doc.createTextNode("");
+		//Node text2 = doc.createAttribute("Id");
+		//text2.setNodeValue("PANXXXXXXX");
+		XMLStructure content = new DOMStructure(text);
+		XMLObject obj = fac.newXMLObject
+				(Collections.singletonList(content), "CDVPS0756D", null, null);
+
+		/*
 		KeyStore store = readPFXFile();
 		int totalEntries = store.size();
 		System.err.println(totalEntries);
@@ -273,16 +275,13 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 			System.err.println(aliases.nextElement());
 		}
 		Key thePrivateKey = store.getKey("le-85750fa4-2aa5-4229-9c3f-e83cea3757cb", "112233".toCharArray());
-		
+
 		X509Certificate certificate = (X509Certificate)store.getCertificate("le-85750fa4-2aa5-4229-9c3f-e83cea3757cb");
 		System.err.println(certificate.getNotAfter());
 		System.err.println(certificate.getNotBefore());
 		System.err.println(certificate.toString());
-		
 		//certificate chain
-		
-		*/
-
+		 */
 
 		KeyInfoFactory kif = fac.getKeyInfoFactory();
 		KeyValue kv = kif.newKeyValue(digitalSignatureWrapper.getCertificate().getPublicKey());
@@ -294,32 +293,41 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 		X509Data xd = kif.newX509Data(x509Content);
 		ki = kif.newKeyInfo(Collections.singletonList(xd));
 		//ki = kif.newKeyInfo(content);
-		
-		dbf.setNamespaceAware(true);
-		doc = dbf.newDocumentBuilder().parse(new FileInputStream("C:\\temp\\dsc\\ITR1_ABJPK1442L.xml"));
 
-		DOMSignContext dsc = new DOMSignContext
-				(digitalSignatureWrapper.getPrivateKey(), doc.getDocumentElement());
+		dbf.setNamespaceAware(true);
+		InputStream xmlInputStream = null;
+		//get inputStream for passed XML String for Signing Digital Signatuer in it
+		if(StringUtils.isNotBlank(xml)){
+			xmlInputStream = new ByteArrayInputStream(xml.getBytes());
+		} else {
+			//If XML is Null then we can not signed Signature in it.
+			if(log.isInfoEnabled()){
+				log.info("Can not Signed Digital Signature in Passed Xml as it { } empty");
+			}
+			return null;
+		}
+		if(xmlInputStream != null){
+			doc = dbf.newDocumentBuilder().parse(xmlInputStream);	
+		}
+		//doc = dbf.newDocumentBuilder().parse(new FileInputStream("C:\\temp\\dsc\\ITR1_ABJPK1442L.xml"));
+		DOMSignContext dsc = new DOMSignContext(digitalSignatureWrapper.getPrivateKey(), doc.getDocumentElement());
+
 		System.out.println( " thePrivateKey.getAlgorithm() :" +  digitalSignatureWrapper.getPrivateKey().getAlgorithm());
 		System.out.println( " thePrivateKey.getFormat() :" +  digitalSignatureWrapper.getPrivateKey().getFormat());
+
 		XMLSignature signature = fac.newXMLSignature(signedInfo, ki,Collections.singletonList(obj), null, null);
 		signature.sign(dsc);
 
 		TransformerFactory tf = TransformerFactory.newInstance();
 		Transformer trans = tf.newTransformer();
 		StringWriter writer = new StringWriter();
-		try {
-			trans.transform(
-				new DOMSource(doc),
-				new StreamResult(
-						new FileOutputStream("C:\\temp\\mysigned.xml")));	
+		/*try {
+			trans.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("C:\\temp\\mysigned.xml")));	
 		}catch (Exception e) {
 			log.error("Error",e);
-		}
-		trans.transform(
-				new DOMSource(doc),
-				new StreamResult(
-						writer));
+		}*/
+		trans.transform(new DOMSource(doc), new StreamResult(writer));
+
 		return writer.toString();
 	}
 
@@ -337,11 +345,11 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 		signatureAlgorithm.update(byteArray);
 		byte[] digitalSignature = signatureAlgorithm.sign();
 		String base64EncodedSignature = Base64.encodeBase64String(digitalSignature);
-		
+
 		ERISOAPHeaderSignatureResponse eriSOAPHeaderSignatureResponse = new ERISOAPHeaderSignatureResponse();
 		eriSOAPHeaderSignatureResponse.setCertChain(digitalSignatureWrapper.getBase64EncodedCertChain());
 		eriSOAPHeaderSignatureResponse.setSignature(base64EncodedSignature);
-		
+
 		return eriSOAPHeaderSignatureResponse;
 	}
 
@@ -385,16 +393,16 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 	public final void setKeyStoreProvider(String keyStoreProvider) {
 		this.keyStoreProvider = keyStoreProvider;
 	}
-	
-	
+
+
 	private String encodeX509CertChainToBase64(Certificate[] aCertificationChain)
-            throws CertificateException {
-        List certList = Arrays.asList(aCertificationChain);
-        CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
-        CertPath certPath = certFactory.generateCertPath(certList);
-        byte[] certPathEncoded = certPath.getEncoded("PkiPath");
-        String base64encodedCertChain = Base64.encodeBase64String(certPathEncoded);
-        return base64encodedCertChain;
-    }
-	
+			throws CertificateException {
+		List certList = Arrays.asList(aCertificationChain);
+		CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+		CertPath certPath = certFactory.generateCertPath(certList);
+		byte[] certPathEncoded = certPath.getEncoded("PkiPath");
+		String base64encodedCertChain = Base64.encodeBase64String(certPathEncoded);
+		return base64encodedCertChain;
+	}
+
 }

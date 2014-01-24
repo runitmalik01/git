@@ -3538,38 +3538,52 @@
     </sv:node>
   </sv:node>
   <sv:node sv:name="attachments">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>7ca7b950-552c-4097-a393-16ba2b797379</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+    <sv:value>hst:pages/simplepage.re</sv:value>
+  </sv:property>
+  <sv:node sv:name="main">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>7ca7b950-552c-4097-a393-16ba2b797379</sv:value>
+      <sv:value>57e09e3f-5f52-4893-93db-e1460f81b735</sv:value>
     </sv:property>
-    <sv:property sv:name="hst:referencecomponent" sv:type="String">
-      <sv:value>hst:pages/simplepage.re</sv:value>
+    <sv:property sv:name="hst:template" sv:type="String">
+      <sv:value>standard.main.re</sv:value>
     </sv:property>
-    <sv:node sv:name="main">
+    <sv:node sv:name="content">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>hst:component</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>57e09e3f-5f52-4893-93db-e1460f81b735</sv:value>
+        <sv:value>310c71ef-8fce-4f65-8b6f-ec801b79fe91</sv:value>
       </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>standard.main.re</sv:value>
+      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+        <sv:value>hst:components/Attachments</sv:value>
       </sv:property>
-      <sv:node sv:name="content">
+      <sv:node sv:name="actionpermissionupdate">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hst:component</sv:value>
         </sv:property>
         <sv:property sv:name="jcr:uuid" sv:type="String">
-          <sv:value>310c71ef-8fce-4f65-8b6f-ec801b79fe91</sv:value>
+          <sv:value>94ad30ed-ce3b-44fb-a596-a0a9b8585887</sv:value>
         </sv:property>
-        <sv:property sv:name="hst:referencecomponent" sv:type="String">
-          <sv:value>hst:components/Attachments</sv:value>
+        <sv:property sv:name="hst:componentclassname" sv:type="String">
+          <sv:value>com.mootly.wcm.member.DrivePermissionUpdate</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:template" sv:type="String">
+          <sv:value>actionpermissionupdate</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
   </sv:node>
+</sv:node>
   <sv:node sv:name="rebatesec90">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hst:component</sv:value>

@@ -112,6 +112,7 @@ import com.mootly.wcm.services.DownloadConfirmationRequiredException;
 import com.mootly.wcm.services.ITRScreenXmlValidateServiceImpl;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceFactory;
 import com.mootly.wcm.services.InvalidXMLException;
+import com.mootly.wcm.services.MasterConfigService;
 import com.mootly.wcm.services.PaymentRequiredException;
 import com.mootly.wcm.services.ScreenCalculatorService;
 import com.mootly.wcm.services.ScreenConfigService;
@@ -133,6 +134,7 @@ import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.services.ditws.model.RetrieveRectificationResponse;
 import com.mootly.wcm.services.ditws.model.RetrieveRefundResponse;
+import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
 import com.mootly.wcm.services.efile.EFileResponse;
 import com.mootly.wcm.services.efile.exception.DigtalSignatureAssesseeFailure;
 import com.mootly.wcm.services.efile.exception.DigtalSignatureERIUserFailure;
@@ -163,9 +165,9 @@ public class ITReturnComponent extends BaseComponent {
 	RetrievePANResponse retrievePANResponse = null;
 	Transaction transaction = null;
 	Enquiry enquiry =	null;
-	
-	
-	
+
+
+
 
 	@Override
 	public void init(ServletContext servletContext,
@@ -175,7 +177,7 @@ public class ITReturnComponent extends BaseComponent {
 		super.init(servletContext, componentConfig);
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		itrXmlGeneratorServiceFactory = context.getBean(com.mootly.wcm.services.ITRXmlGeneratorServiceFactory.class);
-		
+
 		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
 		itrValidationChain =  context.getBean(ITRValidatorChain.class);
 		retrievePANInformation = context.getBean(RetrievePANInformation.class);
@@ -183,10 +185,10 @@ public class ITReturnComponent extends BaseComponent {
 		retrieve26ASService = context.getBean(Retrieve26ASInformation.class);
 		transaction = context.getBean(Transaction.class);
 		enquiry =	context.getBean(Enquiry.class);
-		
+
 		retrieveRectificationStatus = context.getBean(RetrieveRectificationStatus.class);
 		retrieveRefundStatus = context.getBean(RetrieveRefundStatus.class);
-		
+
 		addClientDetailsService = context.getBean(AddClientDetails.class);
 	}
 
@@ -214,15 +216,15 @@ public class ITReturnComponent extends BaseComponent {
 	public Enquiry getEnquiry() {
 		return enquiry;
 	}
-	
+
 	public AddClientDetails getAddClientDetailsService() {
 		return addClientDetailsService;
 	}
-	
+
 	public RetrieveRefundStatus getRetrieveRefundStatus() {
 		return retrieveRefundStatus;
 	}
-	
+
 	public RetrieveRectificationStatus getRetrieveRectificationStatus() {
 		return retrieveRectificationStatus;
 	}
@@ -233,46 +235,37 @@ public class ITReturnComponent extends BaseComponent {
 		//Map<String, String> mapOfComponents  = HstServices.getComponentManager().getComponentsOfType(String.class);
 		boolean isFrozen = false;
 		//if (!hasInitComplete) {
+		try {
+			fillDueDate(request,response); //this will fill the due date
+			HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
+			if (hippoBeanValidationResponse != null) {
+				HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
+				if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
+					isFrozen = true;
+					request.setAttribute("freezeIncomeTaxAction", freezeIncomeTaxAction);
+					request.setAttribute("isFrozen", isFrozen);
+					request.setAttribute("ackResponse", hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION) );
+					request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
+					request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
+				}
+			}
+		}			
+		catch (Exception ex) {
+			log.error("Error in initializing component. FATAL",ex);
+			redirectToNotFoundPage(response);
+			return;
+		}
+
+		String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
+		if (isFrozen && getITRInitData(request).pageAction == PAGE_ACTION.EFILE) {
 			try {
-				fillDueDate(request,response); //this will fill the due date
-				HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
-				if (hippoBeanValidationResponse != null) {
-					HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
-					if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
-						isFrozen = true;
-						request.setAttribute("freezeIncomeTaxAction", freezeIncomeTaxAction);
-						request.setAttribute("isFrozen", isFrozen);
-						request.setAttribute("ackResponse", hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION) );
-						request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
-						request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
-					}
-					//check if this action is not restricted
-					if (hippoBeanValidationResponse.getRestrictedActions() != null && getITRInitData(request).getPageAction() != null &&  hippoBeanValidationResponse.getRestrictedActions().contains(getITRInitData(request).getPageAction()) ) {
-						response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
-						return;
-					}
-					if (hippoBeanValidationResponse.getRestrictedComponents() != null &&  hippoBeanValidationResponse.getRestrictedComponents().contains(getClass()) ) {
-						response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
-						return;
-					}
-				}
-			}			
-			catch (Exception ex) {
-				log.error("Error in initializing component. FATAL",ex);
-				redirectToNotFoundPage(response);
-				return;
+				response.sendRedirect(redirectToAfterEFile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
-			if (isFrozen && getITRInitData(request).pageAction == PAGE_ACTION.EFILE) {
-				try {
-					response.sendRedirect(redirectToAfterEFile);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return;
-			}
+			return;
+		}
 		//	hasInitComplete = true;
 		//}
 		if (getITRInitData(request).getPAN() != null && (getITRInitData(request).filingStatus == null || getITRInitData(request).filingStatus.equals(FilingStatus.UNKNOWN))) {
@@ -286,7 +279,7 @@ public class ITReturnComponent extends BaseComponent {
 			response.setRenderPath("jsp/security/invalidoperation.jsp");
 			return;
 		}
-		
+
 		//lets try to load the SCreen Configuration Document for this component
 		String pathToScreenConfig = "configuration/screenconfigs/" + this.getClass().getSimpleName().toLowerCase();
 		ScreenConfigDocument screenConfigDocument = getITRInitData(request).siteContentBaseBean.getBean(pathToScreenConfig, ScreenConfigDocument.class);
@@ -334,7 +327,7 @@ public class ITReturnComponent extends BaseComponent {
 				response.setRenderPath("jsp/common/calculation_response.jsp");
 			}
 		}
-		
+
 
 		//check if invoice refresh is 
 		boolean didGotUpdated = false;
@@ -345,7 +338,7 @@ public class ITReturnComponent extends BaseComponent {
 
 			}
 		}
-		
+
 		if (getClass().isAnnotationPresent(FormFields.class)) {
 			FormFields formFields = this.getClass().getAnnotation(FormFields.class);
 			String[] vendorFields = formFields.fieldNamesVendorOnly();
@@ -412,7 +405,7 @@ public class ITReturnComponent extends BaseComponent {
 					//response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 					//urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
 					//	}
-				
+
 					response.sendRedirect( urlToRedirect );
 					//response.sendRedirect(redirectURL);
 					return;
@@ -598,7 +591,7 @@ public class ITReturnComponent extends BaseComponent {
 		if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.RETRIEVE_ITRV_STATUS) {
 			if (retrieveITRVService != null) {
 				try {
-					
+
 					Session	persistableSession=getPersistableSession(request);
 					WorkflowPersistenceManager wpm = getWorkflowPersistenceManager(persistableSession);
 					ITRVStatus itrvStatus = retrieveITRVService.retrieveITRVStatus(getITRInitData(request).getPAN(), getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(),getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),wpm);
@@ -776,7 +769,7 @@ public class ITReturnComponent extends BaseComponent {
 
 					}
 					log.info("URLToRedirect:"+ urlToRedirect);
-					*/
+					 */
 					//	if (request.getAttribute("selectedItrTab") != null){
 					//		response.setRenderParameter("selectedItrTab", ((ITRTab)request.getAttribute("selectedItrTab")).name());
 					//		urlToRedirect += "?selectedItrTab=" +  ((ITRTab)request.getAttribute("selectedItrTab")).name();
@@ -790,7 +783,7 @@ public class ITReturnComponent extends BaseComponent {
 		}
 	}
 
-	
+
 
 	public String getScriptName(HstRequest request,HstResponse response, FormSaveResult formSaveResult) {
 		// TODO Auto-generated method stub
@@ -814,7 +807,7 @@ public class ITReturnComponent extends BaseComponent {
 			}
 		}
 	}
-	
+
 	protected void sanitize(HstRequest request,HstResponse response,FormMap formMap) {
 		//lets add the username into form map
 		FormField formFieldLoggedInUser = null;
@@ -827,7 +820,7 @@ public class ITReturnComponent extends BaseComponent {
 			}
 		}
 	}
-	
+
 	protected boolean validate(HstRequest request,HstResponse response,FormMap formMap) {
 		//validate required fields first
 		if (this.getClass().isAnnotationPresent(RequiredFields.class)) {
@@ -835,12 +828,12 @@ public class ITReturnComponent extends BaseComponent {
 			String[] fieldNames = requiredFieldsAnnotations.fieldNames();
 			String[] additionalFieldNames = getRequiredFields(request);
 			if (additionalFieldNames != null) {
-				 List<String> both = new ArrayList<String>(fieldNames.length + additionalFieldNames.length);
-				 Collections.addAll(both, fieldNames);
-				 Collections.addAll(both, additionalFieldNames);
-				 fieldNames = both.toArray(new String[both.size()]);
+				List<String> both = new ArrayList<String>(fieldNames.length + additionalFieldNames.length);
+				Collections.addAll(both, fieldNames);
+				Collections.addAll(both, additionalFieldNames);
+				fieldNames = both.toArray(new String[both.size()]);
 			}
-			
+
 			if (fieldNames != null && fieldNames.length > 0 ) {
 				for (String aRequiredField:fieldNames) {
 					if (formMap.getField(aRequiredField) == null) {
@@ -932,10 +925,10 @@ public class ITReturnComponent extends BaseComponent {
 		}
 		//validate last name of Member with PAN 
 		startappvalidserv.validLastName(formMap);
-		
+
 		//additionalv validation
 		additionalValidation(request, response, formMap);
-		
+
 		if (getITRInitData(request).formMap.getMessage() != null && getITRInitData(request).formMap.getMessage().size() > 0) {
 			log.info("size of message"+formMap.getMessage().size());
 			FormUtils.persistFormMap(request, response, formMap, null);
@@ -948,7 +941,7 @@ public class ITReturnComponent extends BaseComponent {
 	}
 
 
-	
+
 
 	protected void fillDueDate(HstRequest request,HstResponse response) {
 		//
@@ -984,7 +977,7 @@ public class ITReturnComponent extends BaseComponent {
 	protected HippoBeanValidationResponse executeValidationChain(HstRequest request,HstResponse response) {
 		//
 		if ( getITRInitData(request).getMemberPersonalInformation() == null) return null;
-		
+
 		Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
 		@SuppressWarnings("unchecked")
 		Enumeration<String> enmAttrNames = request.getAttributeNames();
@@ -995,7 +988,7 @@ public class ITReturnComponent extends BaseComponent {
 				mapOfBeans.put(anObj.getClass().getSimpleName().toLowerCase(), (HippoBean) anObj);
 			}
 		}
-		
+
 		Map<String,Object> additionalData = new HashMap<String,Object>();
 		additionalData.put("webSiteInfo", getITRInitData(request).getWebSiteInfo());
 		HippoBeanValidationResponse hippoBeanValidationResponse = itrValidationChain.execute(getITRInitData(request).getFinancialYear(), getITRInitData(request).pageAction,  mapOfBeans, additionalData , getClass().getAnnotations());
@@ -1017,9 +1010,9 @@ public class ITReturnComponent extends BaseComponent {
 				}
 			}
 		}
-		
+
 		if (hippoBeanValidationResponse != null) request.setAttribute("hippoBeanValidationResponse", hippoBeanValidationResponse);
-		
+
 		if ( hippoBeanValidationResponse != null) {
 			if (hippoBeanValidationResponse.getTotalErrors() > 0 ) {
 				request.setAttribute("hippoBeanValidationResponse_totalErrors", hippoBeanValidationResponse.getTotalErrors() );
@@ -1028,7 +1021,7 @@ public class ITReturnComponent extends BaseComponent {
 				request.setAttribute("hippoBeanValidationResponse_totalWarnings", hippoBeanValidationResponse.getTotalWarnings() );
 			}
 		}
-		
+
 		return hippoBeanValidationResponse;
 	}
 
@@ -1099,7 +1092,7 @@ public class ITReturnComponent extends BaseComponent {
 		boolean savedSuccessfully = false;
 		PAGE_ACTION pageAction = getITRInitData(request).getPageAction();
 		HippoBean childBean = getITRInitData(request).getChildBean();
-		
+
 		//what are we supposed to do??
 		if (pageAction.equals(PAGE_ACTION.EDIT_CHILD) && childBean != null) {
 			//we are updating a child node here
@@ -1310,7 +1303,7 @@ public class ITReturnComponent extends BaseComponent {
 		boolean isPaid = false;
 
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-	
+
 		String ITR = memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		request.setAttribute("ITR", ITR);
 		if (getPublicRequestParameter(request, "show") != null) request.setAttribute("show",getPublicRequestParameter(request, "show"));
@@ -1320,8 +1313,26 @@ public class ITReturnComponent extends BaseComponent {
 		if (itrXmlGeneratorServiceFactory != null) {
 			if (xmlGeneratorService != null) {
 				try {
-					generatedXml = xmlGeneratorService.generateXml(request, response);
-					
+					generatedXml = xmlGeneratorService.generateXml(request, response);					
+					//Changes Added for Signing Digital Signature into XMl File...
+					String jcrPathToMemberDriveNode = memberPersonalInformation.getDigitalSignaturePath();
+					MasterConfigService configService = MasterConfigService.getInstance();
+					if(log.isInfoEnabled()){
+						log.info("Signing the generated XMl with digital signature of Assess:::"+configService.shouldSignedXmlWithDigitalSignature());
+					}
+					if(configService.shouldSignedXmlWithDigitalSignature()){
+						if(StringUtils.isNotBlank(jcrPathToMemberDriveNode)){
+							DigitalSignatureWrapper assessDigitalSignature = getDigitalSignatureService().getDigitalSignatureFromRepository(jcrPathToMemberDriveNode, true);
+							String signedAssessXML = getDigitalSignatureService().signITRByAssesse(generatedXml, assessDigitalSignature);
+							if(StringUtils.isNotBlank(signedAssessXML)){
+								generatedXml = signedAssessXML;	
+							}
+						}else {
+							if(log.isInfoEnabled()){
+								log.info("It's look like that Assess does not upload digital Signaure { } ");
+							}
+						}
+					}
 				}
 				catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -1398,7 +1409,6 @@ public class ITReturnComponent extends BaseComponent {
 		if (!doesASavedFormExists) {
 			FormMap toBeSavedValuesFormMap = new FormMap(request,new String[]{"redirectToOriginalPage","PAN","financialYear","itReturnType","userName","generatedHtmlSummary","originalPageAction","theFolderContainingITRDocuments"});
 
-
 			toBeSavedValuesFormMap.getField("PAN").addValue(getITRInitData(request).getPAN());
 			toBeSavedValuesFormMap.getField("financialYear").addValue(getITRInitData(request).getFinancialYear().name());
 			toBeSavedValuesFormMap.getField("itReturnType").addValue(getITRInitData(request).getITReturnType().name());
@@ -1426,7 +1436,7 @@ public class ITReturnComponent extends BaseComponent {
 		boolean isPaymentRequired = false;
 		isPaid = false;
 		if (! getITRInitData(request).getPageAction().equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
-		
+
 		if (getITRInitData(request).isVendor(request) && (getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY)) ) {
 			isPaymentRequired = false; //TO-DO 
 		}
@@ -1436,11 +1446,11 @@ public class ITReturnComponent extends BaseComponent {
 				MemberPayment memberPayment = (MemberPayment) request.getAttribute("memberpayment");
 				if (memberPayment != null && memberPayment.getPaymentVerificationStatus() != null &&  memberPayment.getPaymentVerificationStatus() == PaymentVerificationStatus.VERIFIED)
 					isPaid = true;
-				*/
+				 */
 				InvoiceDocument invoiceDocument = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());				
 				if (invoiceDocument != null  && invoiceDocument.getAmountDue() != null && invoiceDocument.getAmountDue() == 0 && invoiceDocument.getInvoiceDocumentDetailList() != null && invoiceDocument.getInvoiceDocumentDetailList().size() > 0) {
 					for (InvoiceDocumentDetail invoiceDocumentDetail : invoiceDocument.getInvoiceDocumentDetailList()) {
-						
+
 					}
 					isPaid = true;
 				}
@@ -1531,8 +1541,8 @@ public class ITReturnComponent extends BaseComponent {
 			}
 			break;
 		case EFILE:
-				EFileResponse eFileResponse = eFileITR(request, getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
-				request.setAttribute("eFileResponse",eFileResponse);
+			EFileResponse eFileResponse = eFileITR(request, getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriUserId(), getITRInitData(request).getChannelInfoWrapper().getWebSiteInfo().getEriPassword(), generatedXml);
+			request.setAttribute("eFileResponse",eFileResponse);
 		}
 	}
 
@@ -1689,7 +1699,7 @@ public class ITReturnComponent extends BaseComponent {
 		}
 	}
 
-	
+
 
 	/**
 	 * 
@@ -1750,7 +1760,7 @@ public class ITReturnComponent extends BaseComponent {
 			throw new EFileException(e);
 		}
 	}
-	
+
 	protected HippoBean getSiteContentBaseBeanForReseller(HstRequest request) {
 		// TODO Auto-generated method stub
 		return getITRInitData(request).getSiteContentBaseBeanForReseller(request);
@@ -1759,7 +1769,7 @@ public class ITReturnComponent extends BaseComponent {
 	protected boolean shouldRedirectAfterSuccess(HstRequest request) {
 		return true;
 	}
-	
+
 	protected BeanLifecycle<HippoBean> getChildBeanLifeCycleHandler(HstRequest request) {
 		return null;
 	}
@@ -1767,17 +1777,17 @@ public class ITReturnComponent extends BaseComponent {
 	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler(HstRequest request) {
 		return null;
 	}
-	
+
 	protected String[] getRequiredFields(HstRequest request) {
 		return null;
 	}
-	
+
 	protected boolean additionalValidation(HstRequest request,HstResponse response,FormMap formMap) {
 		return true;
 	}
-	
+
 	protected String urlToRedirectAfterSuccess(HstRequest request,HstResponse response,FormMap formMap) {
 		return null;
 	}
-	
+
 }

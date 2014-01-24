@@ -46,9 +46,10 @@ public class ServiceRequestManager {
 		// TODO Auto-generated constructor stub
 		this.component = new BaseComponent();
 		this.request = request;
-		this.normalisedUserName = MootlyFormUtils.getNormalizedString(request.getUserPrincipal().getName());
 		this.resellerBeanScope = resellerBeanScope;
 		this.isLoggedIn = request.getUserPrincipal() != null ? true : false;
+		String userName = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : null;
+		this.normalisedUserName = MootlyFormUtils.getNormalizedString(userName);
 	}
 
 	public Boolean CanServiceRequestFullfill(Service service,MemberPersonalInformation pi){
@@ -89,11 +90,13 @@ public class ServiceRequestManager {
 
 	public ServiceRequestDocument getSRDocumentToUpdate(String srNameOrsrCodeOrRqNumber) {
 		ServiceRequestDocument requestDocument = null;
-		for(ServiceRequestDocument document:getAllMemberServiceRequestDocument()){
-			if(document.getServiceCode().equalsIgnoreCase(srNameOrsrCodeOrRqNumber) 
-					|| document.getServiceName().equalsIgnoreCase(srNameOrsrCodeOrRqNumber)|| 
-					document.getServiceRequestNumber().compareTo(Long.valueOf(srNameOrsrCodeOrRqNumber)) == 0){
-				requestDocument = document;
+		if(StringUtils.isNotBlank(srNameOrsrCodeOrRqNumber)) {
+			for(ServiceRequestDocument document:getAllMemberServiceRequestDocument()){
+				if(document.getServiceCode().equalsIgnoreCase(srNameOrsrCodeOrRqNumber) 
+						|| document.getServiceName().equalsIgnoreCase(srNameOrsrCodeOrRqNumber)|| 
+						document.getServiceRequestNumber().compareTo(Long.valueOf(srNameOrsrCodeOrRqNumber)) == 0){
+					requestDocument = document;
+				}
 			}
 		}
 		return requestDocument;
@@ -101,28 +104,30 @@ public class ServiceRequestManager {
 	public boolean UdateTheServiceRequestWithMemberDrive(WorkflowPersistenceManager wpm, String subDriveName,String serviceRequestNumber){
 		boolean isServiceDocumentUpdated = false;
 		ServiceRequestDocument requestDocument = getSRDocumentToUpdate(serviceRequestNumber);
-		String requestDocumentPath = requestDocument.getCanonicalPath();
-		List<String> mdCanonicalHandleUUID = new ArrayList<String>();
-		try {
-			if(log.isInfoEnabled()){
-				log.info("Lets see path for request document to update ::" + requestDocumentPath);
-			}
-			ServiceRequestDocument serviceDocumentToUpdate = (ServiceRequestDocument) wpm.getObject(requestDocumentPath);
-			if(serviceDocumentToUpdate != null){
-				for(MemberDriveDocument driveDocument:getAllDocumentForServiceProcess(subDriveName, serviceRequestNumber)){
-					mdCanonicalHandleUUID.add(driveDocument.getCanonicalHandleUUID());
+		if(requestDocument != null){
+			String requestDocumentPath = requestDocument.getCanonicalPath();
+			List<String> mdCanonicalHandleUUID = new ArrayList<String>();
+			try {
+				if(log.isInfoEnabled()){
+					log.info("Lets see path for request document to update ::" + requestDocumentPath);
 				}
+				ServiceRequestDocument serviceDocumentToUpdate = (ServiceRequestDocument) wpm.getObject(requestDocumentPath);
+				if(serviceDocumentToUpdate != null){
+					for(MemberDriveDocument driveDocument:getAllDocumentForServiceProcess(subDriveName, serviceRequestNumber)){
+						mdCanonicalHandleUUID.add(driveDocument.getCanonicalHandleUUID());
+					}
+				}
+				serviceDocumentToUpdate.setMdCanonicalHandleUUID(mdCanonicalHandleUUID);
+				serviceDocumentToUpdate.setDocumentUploaded(true);
+				wpm.update(serviceDocumentToUpdate);
+				isServiceDocumentUpdated = true;
+			} catch (ObjectBeanPersistenceException e) {
+				// TODO Auto-generated catch block
+				log.warn("Error while Updating the Document in Repository",e);
+			} catch (ObjectBeanManagerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			serviceDocumentToUpdate.setMdCanonicalHandleUUID(mdCanonicalHandleUUID);
-			serviceDocumentToUpdate.setDocumentUploaded(true);
-			wpm.update(serviceDocumentToUpdate);
-			isServiceDocumentUpdated = true;
-		} catch (ObjectBeanPersistenceException e) {
-			// TODO Auto-generated catch block
-			log.warn("Error while Updating the Document in Repository",e);
-		} catch (ObjectBeanManagerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return isServiceDocumentUpdated;
 	}
@@ -140,21 +145,23 @@ public class ServiceRequestManager {
 		List<MemberDriveDocument> driveDocuments = new ArrayList<MemberDriveDocument>();
 		HippoBean driveBeanScope;
 		StringBuilder relDriveBeanScopePath = new StringBuilder();
-		if(isLoggedIn){
-			relDriveBeanScopePath.append("members").append('/').append(normalisedUserName).append('/').append("drive");
-		} else {
-			relDriveBeanScopePath.append("drive");
-		}
-		if(StringUtils.isNotBlank(subDriveName)){
-			relDriveBeanScopePath.append('/').append(subDriveName);
-		} 
-		driveBeanScope = resellerBeanScope.getBean(relDriveBeanScopePath.toString());
-		if(driveBeanScope != null){
-			if(driveBeanScope instanceof HippoFolder){
-				for(MemberDriveDocument mdDocument: ((HippoFolder) driveBeanScope).getDocuments(MemberDriveDocument.class)){
-					for(String documentType:getServiceForServiceRequest(serviceRequestNumber).getDocumentNames()){
-						if(documentType.equalsIgnoreCase(mdDocument.getDescription())){
-							driveDocuments.add(mdDocument);
+		if(StringUtils.isNotBlank(serviceRequestNumber)){
+			if(isLoggedIn){
+				relDriveBeanScopePath.append("members").append('/').append(normalisedUserName).append('/').append("drive");
+			} else {
+				relDriveBeanScopePath.append("drive");
+			}
+			if(StringUtils.isNotBlank(subDriveName)){
+				relDriveBeanScopePath.append('/').append(subDriveName);
+			} 
+			driveBeanScope = resellerBeanScope.getBean(relDriveBeanScopePath.toString());
+			if(driveBeanScope != null){
+				if(driveBeanScope instanceof HippoFolder){
+					for(MemberDriveDocument mdDocument: ((HippoFolder) driveBeanScope).getDocuments(MemberDriveDocument.class)){
+						for(String documentType:getServiceForServiceRequest(serviceRequestNumber).getDocumentNames()){
+							if(documentType.equalsIgnoreCase(mdDocument.getDescription())){
+								driveDocuments.add(mdDocument);
+							}
 						}
 					}
 				}

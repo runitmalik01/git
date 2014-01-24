@@ -4043,4 +4043,15 @@
     <sv:value>jsp/news/addNews.jsp</sv:value>
   </sv:property>
 </sv:node>
+<sv:node sv:name="actionpermissionupdate">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>e6f9f351-c423-4d87-81ff-bb0c65bea635</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/drivepermissionupdate.jsp</sv:value>
+  </sv:property>
+</sv:node>
 </sv:node>

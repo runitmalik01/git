@@ -84,7 +84,7 @@ import com.mootly.wcm.utils.MootlyFormUtils;
 		"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes",
 		"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs","flex_string_IFSCCode","flex_string_ITRForm","flex_string_ITRServiceDelivery","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date","ward_circle","Employe_category","returnTypeChoice","revisingWithNoticeSection","isRepresentative","name_Representative","pan_Representative",
 		"address_Representative","isLiable_ManageAcc","isLiable_ForAudit","date_FurnishAuditReport","name_AuditorSign_Report","membershipNo_auditor","name_auditorFirm",
-		"pan_Firm","date_AuditReport","isLiable_FurnishSec92E","trpname","trpnumber","trpreimbursement","isTaxPreparebyTRP"})
+		"pan_Firm","date_AuditReport","isLiable_FurnishSec92E","trpname","trpnumber","trpreimbursement","isTaxPreparebyTRP","sourceIncPackSelectKey","sourceIncPackSelect"})
 @RequiredFields(fieldNames={
 		"pi_last_name","pi_dob","gender",
 		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality","pi_mobile",
@@ -200,14 +200,6 @@ public class StartApplication extends ITReturnComponent {
 				}
 				map.put(aKey, MessageFormat.format(ke,memberName));
 			}
-			/*else {
-					//map.put(aKey, rb.getString(aKey));
-					String ke = rb.getString(aKey);
-					if (log.isInfoEnabled()) {
-						log.info("Now attempting to apply format to " + ke);
-					}
-					map.put(aKey, MessageFormat.format(ke,"the Individual"));
-				}*/
 		}
 		// new map for huf, abhi 14/09/2013
 		Map<String, String> maphuf = new LinkedHashMap<String, String>();
@@ -220,14 +212,6 @@ public class StartApplication extends ITReturnComponent {
 				}
 				maphuf.put(bKey, MessageFormat.format(key,memberName));
 			}
-			/*else {
-					//map.put(aKey, rb.getString(aKey));
-					String ke = rb.getString(aKey);
-					if (log.isInfoEnabled()) {
-						log.info("Now attempting to apply format to " + ke);
-					}
-					map.put(aKey, MessageFormat.format(ke,"the Individual"));
-				}*/
 		}
 		Map<String, String> fetchmap = new LinkedHashMap<String, String>();
 		if (getITRInitData(request).getParentBean() != null) {
@@ -262,6 +246,15 @@ public class StartApplication extends ITReturnComponent {
 		request.setAttribute("map", map);
 		request.setAttribute("maphuf", maphuf);
 		request.setAttribute("ITR1_FORM_SELECTION", request.getParameter("ITR1_FORM_SELECTION"));
+		
+		ResourceBundle incomeSourceBundle = ResourceBundle.getBundle("income_sources_"+assessmentYear);
+		Map<String, String> incomeSourceMap = new LinkedHashMap<String, String>();
+		for(String key:incomeSourceBundle.keySet()){
+			incomeSourceMap.put(key, incomeSourceBundle.getString(key));
+		}
+		JSONObject jsonObjectIncomeSource = new JSONObject(incomeSourceMap);
+		request.setAttribute("incomeSourceMap", incomeSourceMap);
+		request.setAttribute("jsonObjectIncomeSource", jsonObjectIncomeSource);
 
 		//if(shouldRetrievePANInformation() && publicParameterUUID !=null){
 		//	request.setAttribute("retrievePANResponse", retrievePANResponse);
