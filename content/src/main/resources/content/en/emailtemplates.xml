@@ -162,7 +162,7 @@ ${emailSignature}
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>c4f982be-428a-4d31-86e1-29c19e51047a</sv:value>
+      <sv:value>21e5afa8-eb52-41ba-8e89-35cc927ea097</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -187,13 +187,13 @@ ${emailSignature}
       <sv:value>2013-01-03T02:22:18.719+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2014-01-17T16:28:06.173+05:30</sv:value>
+      <sv:value>2014-01-24T13:01:02.932+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2014-01-17T16:28:09.612+05:30</sv:value>
+      <sv:value>2014-01-24T13:01:07.642+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>8ebb2e95-1372-4df4-8a7a-82af158cef8d</sv:value>
@@ -249,7 +249,7 @@ ${memberHostName}/reselleractivation/${resellershipSignupDocument.canonicalUUID}
       <sv:value>reseller_signup</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:to" sv:type="String">
-      <sv:value>resellersignup@wealth4india.com</sv:value>
+      <sv:value>reseller-activation@wealth4india.com</sv:value>
     </sv:property>
     <sv:node sv:name="hippotranslation:translations">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">

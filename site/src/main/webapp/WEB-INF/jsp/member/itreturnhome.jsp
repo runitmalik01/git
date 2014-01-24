@@ -22,16 +22,6 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 	String deliveryEmail = request.getUserPrincipal().getName();
 	 %>
 <div class="page">
-	<c:if test="${isTrialPeriodActive==true}">
-		<div class="alert alert-danger" style="font-size: small;">
-			<c:if test="${daysLeft == 1}">
-			Only ${daysLeft} day is left of your trial period. <a href="${urlToResellerPackage}">  Click Here !!! To upgrade your account.</a> .
-			</c:if>
-			<c:if test ="${daysLeft gt 1}">
-			Only ${daysLeft} days are left of your trial period. <a href="${urlToResellerPackage}"> Click Here !!! To upgrade your account.</a> .
-			</c:if>
-		</div>
-	</c:if>
 	<h4>Prepare Income Tax Return for Individuals and/or HUF</h4>
 	<hst:actionURL var="actionURL"/>
 	<form id="frmdata" method="post" action="${actionURL}">

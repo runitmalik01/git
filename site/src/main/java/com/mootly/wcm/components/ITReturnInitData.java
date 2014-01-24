@@ -122,6 +122,7 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 	String strIsOnVendorPortal;
 	String strIsOnSystemAdminPortal;
 	boolean isVendor;
+	boolean isResellerAdmin;
 	String memberhandleuuid;
 	String memberFolderPath;
 	boolean isReseller = false; //itReturnComponentHelper.isReSeller(request);
@@ -693,6 +694,7 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 		strIsOnVendorPortal = resolvedSiteMapItem.getParameter("isOnVendorPortal");
 		strIsOnSystemAdminPortal = resolvedSiteMapItem.getParameter("strIsOnSystemAdminPortal");
 		isVendor = ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
+		isResellerAdmin = ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_ResellerAdmin") ) ? true : false);
 		memberhandleuuid = resolvedSiteMapItem.getParameter("memberhandleuuid");
 		if (memberhandleuuid != null && !"".equals(memberhandleuuid.trim())) {
 			try {
@@ -884,6 +886,10 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 
 	public boolean isVendor(HstRequest request) {
 		return ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_vendor") ) ? true : false);
+	}
+	
+	public boolean isResellerAdmin(HstRequest request) {
+		return ( ( request.getUserPrincipal() != null && request.isUserInRole("ROLE_ResellerAdmin") ) ? true : false);
 	}
 
 	public boolean isSystemAdmin(HstRequest request) {
