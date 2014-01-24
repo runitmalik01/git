@@ -18,10 +18,14 @@ package com.mootly.wcm.beans;
 
 import java.io.InputStream;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import javax.jcr.Binary;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.Property;
 import javax.jcr.RepositoryException;
+import javax.jcr.Value;
 import javax.jcr.ValueFactory;
 
 import org.apache.jackrabbit.JcrConstants;
@@ -73,6 +77,38 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 		return getBean(getMemberFileName());
 	}
 	public InputStream getMemberFile(){
+		if(memberFileResource == null){
+			//feching the inputstream of saved file so that we can update 
+			try {
+				List<Object> childBeans = getChildBeansByName(MEMBER_DOCS);
+				if(!childBeans.isEmpty()){
+					for(Object object:childBeans){
+						if(object instanceof HippoResource){
+							HippoResource hippoResource = (HippoResource) object;
+							if(hippoResource != null){
+								if(hippoResource.getNode().hasProperty("jcr:data")){
+									Property property = hippoResource.getNode().getProperty("jcr:data");
+									if(property != null){
+										Value value = property.getValue();
+										if(value instanceof Binary){
+											if(value != null){
+												memberFileResource = value.getBinary().getStream();
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			} catch (PathNotFoundException e){
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch(RepositoryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return memberFileResource;
 	}
 	/**
@@ -86,6 +122,7 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	 * @return the contentType
 	 */
 	public String getContentType() {
+		if(contentType == null) contentType = getMemberFileResource().getMimeType();
 		return contentType;
 	}
 	/**
@@ -178,10 +215,13 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 				}
 				javax.jcr.Node resourceNode= node.getNode(MEMBER_DOCS);
 				if(resourceNode!=null){
-					Binary binaryValue = vf.createBinary(bean.getMemberFile());
-					resourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
-					resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, bean.getContentType());
-					resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance(TimeZone.getTimeZone("GMT+05:30")));
+					//If we have input Stream of data to save in repository then we can update that info for HippoResource Node
+					if(bean.getMemberFile() != null){
+						Binary binaryValue = vf.createBinary(bean.getMemberFile());
+						resourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
+						resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, bean.getContentType());
+						resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance(TimeZone.getTimeZone("GMT+05:30")));
+					}
 				}
 			}
 			//here we are adding node directly in document with name of file.We are not using MEMBER_DOCS node to save the binary data.
@@ -199,7 +239,7 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			}*/	
 			node.setProperty(DESCRIPTION, bean.getDescription());
 			node.setProperty(DOCUMENT_PASSWORD, bean.getDocPassword());
-			node.setProperty(DOCUMENT_ADDITIONAL_NOTES, bean.getDocPassword());
+			node.setProperty(DOCUMENT_ADDITIONAL_NOTES, bean.getDocAdditionalNotes());
 			node.setProperty(MEMBER_FILE_NAME, getMemberFileName());
 			node.setProperty(ACCESS_PERMISSION, bean.getAccessPermissionStr());
 		} 
@@ -222,10 +262,10 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			setDocAdditionalNotes(formMap.getField("additionalnotes").getValue());
 		}
 		if(formMap.getField("accesspermission") != null){
-			setDocAdditionalNotes(formMap.getField("accesspermission").getValue());
+			setAccessPermission(formMap.getField("accesspermission").getValue());
 		} else{
 			//set a default permission on  PERMISSION.WRITE.
-			setDocAdditionalNotes(PERMISSION.WRITE.name());
+			setAccessPermission(PERMISSION.WRITE.name());
 		}
 	}
 	@Override

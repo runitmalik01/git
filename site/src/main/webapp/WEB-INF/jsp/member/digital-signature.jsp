@@ -68,7 +68,7 @@
 			</div>
 		</fieldset>
 	</c:if>
-	<c:if test="${not empty digiSign && digiSign eq 'false'}">
+	<c:if test="${not empty digiSign and digiSign eq 'false'}">
 	<fieldset>
 		<legend>Upload your Digital Signature for FY:${memberpersonalinformation.financialYear}</legend>
 		   <!--  <div class="row show-grid">
@@ -114,7 +114,7 @@
 			               <label for="description"><small>Type (Optional)</small></label>
 			         </div>
 			         <div class="rowlabel">
-			                 <select name="description" id="description" class="col-md-8">
+			                 <select name="description" id="description">
 			                      <option value="Digital Signature">Digital Signature</option>
 			                 </select>
 			          </div>				    				   		
@@ -161,6 +161,7 @@
 		</div>
 	</fieldset>
 	</c:if>
+	</form>
 	<fieldset>
 		<legend>Your Digital Signature for Financial Year:${memberpersonalinformation.financialYear}</legend>
 		<div class="row show-grid hide" id="file_process">
@@ -193,16 +194,18 @@
                                   <th>Type</th>
                                   <th align="center">Action</th>
                                   <th>Last Uploaded</th>
+                                  <%-- <c:if test="${isVendor}"><th>Action Permission</th></c:if> --%>
                                </tr>
                            </thead>
                            <tbody>
+                             <c:set value="/${subDriveName}/" var="modsubDriveName"/>
                              <%-- <c:forEach var="file" items="${memberFiles}"> --%>
-                             <c:forEach var="file" items="${listOfAllMemberFiles}">
+                             <c:forEach var="file" items="${listOfAllMemberFiles}">                            
                              <!-- We show only those files which are in digitalsignature subdrive -->
-                             <c:if test="${not empty subDriveName && fn:contains(file.canonicalPath, subDriveName)}">
+                             <c:if test="${not empty subDriveName and fn:contains(file.canonicalPath, modsubDriveName)}">
                                <tr>
                                   <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
-                        	     <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
+                        	     <hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
                                   <td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>                                      
@@ -210,12 +213,13 @@
                                       <i class="glyphicon glyphicon-eye-open glyphicon glyphicon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-default btn-primary">
                                       <i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
-                                      <c:if test="${not empty file.accessPermission && file.accessPermission eq 'WRITE'}">
+                                      <c:if test="${(not empty file.accessPermission and file.accessPermission eq 'WRITE') or isVendor}">
                                          <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
                                          <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>
                                       </c:if>                       
                                   </td>
                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
+                                  <%-- <c:if test="${isVendor}"><td><hst:include ref=""/></td></c:if> --%>
                                 </tr>
                                </c:if>
                               </c:forEach>
@@ -234,7 +238,6 @@
 		</div>
 	</c:if>
 	 --%>
-</form>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function(){

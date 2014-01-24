@@ -76,7 +76,9 @@ public class MemberDrive extends ITReturnComponent {
 				request.setAttribute("srDocument", serviceDocument);
 			}
 		}
-
+		//get the message of update permission from requestContext.
+		request.setAttribute("updatepermission", request.getRequestContext().getAttribute("updatepermission"));
+		
 		String fileuuid=getPublicRequestParameter(request, "delete");
 		if(DeleteMemberDriveFile(request, response, fileuuid)){
 			request.setAttribute("delete", "Success");

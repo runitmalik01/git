@@ -1,3 +1,4 @@
+<%@page import="com.mootly.wcm.model.PERMISSION"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="com.mootly.wcm.components.ITReturnComponentHelper"%>
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
@@ -60,6 +61,7 @@ pageContext.setAttribute("hostname", builder.toString());
 		      <p>All Documents are required* shown in description list of Document.Please select the appropriate document description while upload.</p>  
 		   </div>
 		</c:if>
+		<div class="updatepermission hide alert alert-warning"></div>
 		<c:if test="${not empty msg}">
 			<div class="row">
 			  <div class="col-md-12">
@@ -81,7 +83,7 @@ pageContext.setAttribute("hostname", builder.toString());
 			               <label for="description"><small>Type (Optional)</small></label>
 			         </div>
 			         <div class="rowlabel">
-			                 <select name="description" id="description" class="col-md-8">
+			                 <select name="description" id="description">
 			                      <option value="">-Select-</option>
 			                      <optgroup label="Income from Salary">
 			                      <c:forEach items="${valueList.valueListDocumentDetailList}" var="listItem" varStatus="status">
@@ -162,6 +164,7 @@ pageContext.setAttribute("hostname", builder.toString());
 				 </div>
 		</div>
 	</fieldset>
+	</form>
 	<fieldset>
 		<legend>Your documents for Financial Year:${memberpersonalinformation.financialYear}</legend>
 		<div class="row show-grid hide" id="file_process">
@@ -194,14 +197,16 @@ pageContext.setAttribute("hostname", builder.toString());
                                   <th>Type</th>
                                   <th align="center">Action</th>
                                   <th>Last Uploaded</th>
+                                  <c:if test="${isVendor}"><th>Action Permission</th></c:if>
                                </tr>
                            </thead>
                            <tbody>
                              <%-- <c:forEach var="file" items="${memberFiles}"> --%>
                              <c:forEach var="file" items="${listOfAllMemberFiles}">
+                                <c:set value="${file}" var="memberDriveDocument" scope="request"/>
                                <tr>
                                   <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
-                        	     <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
+                        	     <hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
                                   <td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>                                      
@@ -209,13 +214,20 @@ pageContext.setAttribute("hostname", builder.toString());
                                       <i class="glyphicon glyphicon-eye-open glyphicon glyphicon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-default btn-primary">
                                       <i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
-                                      <c:if test="${not empty file.accessPermission && file.accessPermission eq 'WRITE'}">
+                                       <!-- vendor will have rights to delete.No matter what access permission to that saved file -->
+                                      <c:if test="${(not empty file.accessPermission and file.accessPermission eq 'WRITE') or isVendor}">
                                          <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
                                          <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>
                                       </c:if>                                   
                                   </td>
                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
-                               </tr>
+                                  <!-- Access Permission to change.Only Vendor have rights to change the Access Permission -->
+								<c:if test="${isVendor}">
+									<td><button class="btn btn-warning btn-sm action" title="Assess have ${file.accessPermission} access to ${file.name}." 
+									id="${file.canonicalUUID}_${file.accessPermission}" data-toggle="modal" data-target="#myModal">Update Permission</button>&nbsp;&nbsp;&nbsp;&nbsp;<abbr
+										title="Assess have ${file.accessPermission} access to ${file.name}."><i class="glyphicon glyphicon-info-sign"></i></abbr></td>
+								</c:if>
+							</tr>
                               </c:forEach>
                             </tbody>
                            </table>
@@ -232,13 +244,30 @@ pageContext.setAttribute("hostname", builder.toString());
 		</div>
 	</c:if>
 	 --%>
-</form>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Update Action Permission</h4>
+			</div>
+			<div class="modal-body"><hst:include ref="actionpermissionupdate"/></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+				<button type="submit" id="saveactionpermission" class="btn btn-primary btn-sm">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function(){
 		$('#member_file').bind('change', function(){
 		    $('#member_file_name').text(this.files[0].name);
 		    //$('#file_process').show();		    
+          });
+          $('#saveactionpermission').on('click',function(){
+            $('#permissionUpdate').submit();
           });
 		$('#member_file').popover({"html":true,
 		                 "trigger":"hover",
@@ -273,7 +302,13 @@ pageContext.setAttribute("hostname", builder.toString());
                    } 
           });
 		 });
-		 
+		 <!-- Important for adding changes for action permission by vendor -->
+		 $('.action').on('click',function(){
+		   var values = []; 
+		   values = $(this).attr('id').split("_"); 
+		   $('#memberDriveCanonicalUUID').val(values[0]);
+		   $('#accesspermission').val(values[1]);
+		 });
 		 function uploadDoc(){
 		    $('#memberdrive').submit();
 		    /*
