@@ -361,7 +361,7 @@
       <sv:value>true</sv:value>
     </sv:property>
     <sv:property sv:name="logo" sv:type="String">
-      <sv:value>/content/gallery/logos/w4ilogo_v2.png</sv:value>
+      <sv:value>/content/gallery/logos/etaxfilestation_logo.png</sv:value>
     </sv:property>
     <sv:property sv:name="pageTitlePrefix" sv:type="String">
       <sv:value>Income Tax Return Online, Income Tax eFiling India</sv:value>

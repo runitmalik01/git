@@ -2471,7 +2471,7 @@
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
     <sv:property sv:name="hst:renderpath" sv:type="String">
-      <sv:value>jsp/layout/responsive/footer.jsp</sv:value>
+      <sv:value>jsp/layout/etaxfilestation/footer.jsp</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="standard.main.re">
@@ -2504,7 +2504,7 @@
       <sv:value>07195018-3db9-446d-883c-8d82ca5dd971</sv:value>
     </sv:property>
     <sv:property sv:name="hst:renderpath" sv:type="String">
-      <sv:value>jsp/layout/responsive/header/menu-main.jsp</sv:value>
+      <sv:value>jsp/layout/etaxfilestation/header/menu-main.jsp</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="standard.header.re.menu-top">
@@ -3658,7 +3658,7 @@
       <sv:value>b54ed0b2-9948-4396-a256-bf13be0cfdbd</sv:value>
     </sv:property>
     <sv:property sv:name="hst:renderpath" sv:type="String">
-      <sv:value>jsp/layout/bootstrap_v2/header/menu-main_v2.jsp</sv:value>
+      <sv:value>jsp/layout/etaxfilestation/header/menu-main.jsp</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="standard.main.v2.re">
@@ -3720,7 +3720,7 @@
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hst:containers" sv:type="String"/>
     <sv:property sv:name="hst:renderpath" sv:type="String">
-      <sv:value>jsp/layout/bootstrap_v2/footer.jsp</sv:value>
+      <sv:value>jsp/layout/etaxfilestation/footer.jsp</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="standard.header.v2.logo">

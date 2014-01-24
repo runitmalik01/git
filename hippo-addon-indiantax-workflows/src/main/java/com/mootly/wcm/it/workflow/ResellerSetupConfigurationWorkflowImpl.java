@@ -19,6 +19,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
@@ -90,9 +91,11 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 	@Persistent(column="mootlywcm:numberOfLicensedUsers")
 	String numberOfLicensedUsers;
 	
-
+	private ResourceBundle objValueListBundle = null;
 
 	public ResellerSetupConfigurationWorkflowImpl() throws RemoteException {
+		
+		objValueListBundle =  ResourceBundle.getBundle("reseller_configuration");
 
 	}
 
@@ -102,14 +105,14 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 			if(active){
 				
 				Session rootSession = getWorkflowContext().getInternalWorkflowSession();
-				Node hstHostNode = getWorkflowContext().getInternalWorkflowSession().getNode("/hst:hst/hst:hosts/etaxfilestation-w4india/in/etaxfilestation/hst:root/r");
+				Node hstHostNode = getWorkflowContext().getInternalWorkflowSession().getNode(objValueListBundle.getString("prodCreationPath"));
 				System.out.println("Start of Creation of Channel::");
 
 				if (hstHostNode != null) {	
 					Node resellerHostNode = hstHostNode.addNode(resellerID, "hst:mount");
 					resellerHostNode.setProperty("hst:alias", resellerID);
 					resellerHostNode.setProperty("hst:channelpath", "/hst:hst/hst:channels/"+resellerID);
-					resellerHostNode.setProperty("hst:mountpoint", "/hst:hst/hst:sites/mootlywcm");
+					resellerHostNode.setProperty("hst:mountpoint", objValueListBundle.getString("mountPoint.eTaxFileStation"));
 					resellerHostNode.setProperty("hst:showport", true);
 				}
 
@@ -129,7 +132,7 @@ public class ResellerSetupConfigurationWorkflowImpl extends WorkflowImpl impleme
 				resellerChannelInfoNode.setProperty("eriPassword", eriPassword);
 				resellerChannelInfoNode.setProperty("eriUserId", eriUserId );
 				resellerChannelInfoNode.setProperty("isReseller", isReseller.toString());
-				resellerChannelInfoNode.setProperty("logo", "/content/gallery/logos/w4ilogo_v2.png");
+				resellerChannelInfoNode.setProperty("logo", objValueListBundle.getString("logo.etaxfilestation"));
 				resellerChannelInfoNode.setProperty("pageTitlePrefix", pageTitlePrefix);
 				String payments = "";
 				for(String paymentTypes : paymentAvailableTypes){
