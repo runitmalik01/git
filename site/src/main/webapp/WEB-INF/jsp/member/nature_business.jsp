@@ -17,10 +17,12 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
-
-	<h2 class="title page-title">
-		<strong> <fmt:message key="nature.business.itr4" /></strong>
-	</h2>
+<div class="page-header">
+	<h2 class="title page-title">Nature Of Business</h2>
+	<h4>
+		<small></small>
+	</h4>
+</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
@@ -28,7 +30,7 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 				name="frmNature_business">
 				<fieldset>
 					<legend class="header-color">
-						<small>Enter Details</small>
+						<small><fmt:message key="nature.business.itr4" /></small>
 					</legend>
 					<div class="row show-grid">
 						<div class="col-md-4">

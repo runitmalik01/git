@@ -235,7 +235,7 @@
           <sv:value>396a49a0-fbe9-4d72-b0dd-2465a94da052</sv:value>
         </sv:property>
         <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.components.common.SiteMenu</sv:value>
+          <sv:value>com.mootly.wcm.components.common.ResellerSiteMenu</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
           <sv:value>siteMenu</sv:value>
@@ -9608,7 +9608,7 @@
           <sv:value>387bf432-11d6-4ab6-9eb2-cc9359c0200e</sv:value>
         </sv:property>
         <sv:property sv:name="hst:componentclassname" sv:type="String">
-          <sv:value>com.mootly.wcm.components.common.SiteMenu</sv:value>
+          <sv:value>com.mootly.wcm.components.common.ResellerSiteMenu</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
           <sv:value>siteMenu</sv:value>

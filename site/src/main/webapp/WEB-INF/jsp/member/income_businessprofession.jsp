@@ -3,21 +3,27 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="b_p">
-	<fmt:message key="b_p" />
+	Schedule BP
 </c:set>
 <hippo-gogreen:title title="${b_p}" />
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
-	<h4>
-		<fmt:message key="income.bp.itr4" />
-	</h4>
+	<div class="page-header">
+		<h2 class="title page-title"></h2>
+		<h4>
+			<small>Schedule BP&nbsp;-&nbsp;<fmt:message
+					key="income.bp.itr4" /></small>
+		</h4>
+	</div>
+
 	<form id="frmIncomeBP" action="${actionUrl}" method="post"
 		name="frmIncomeBP">
 		<fieldset>
-			<legend style="color: green; font-weight: bold;">
-				<fmt:message key="income.from.BP.otherthan.speculative" />
+			<legend class="header-color">
+				<small><fmt:message
+						key="income.from.BP.otherthan.speculative" /></small>
 			</legend>
 			<div class="row show-grid">
 				<div class="col-md-8">
@@ -95,8 +101,8 @@
 				</div>
 			</div>
 			<fieldset>
-				<legend style="color: green; font-weight: bold;">
-					<fmt:message key="income.credited.to.PL" />
+				<legend class="header-color">
+					<small><fmt:message key="income.credited.to.PL" /></small>
 				</legend>
 				<div class="row show-grid">
 					<div class="col-md-4">
@@ -148,8 +154,7 @@
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="balance"><small><b><fmt:message
-											key="balance.bp.itr4" />
-								</b> </small> </label>
+											key="balance.bp.itr4" /> </b> </small> </label>
 						</div>
 						<div class="rowlabel">
 							<input id="balance" name="balance" readonly="readonly"
@@ -519,60 +524,60 @@
 					</div>
 				</div>
 			</div>
-			</fieldset>
-			<fieldset>
-				<legend style="color: green; font-weight: bold;">
-					<fmt:message key="deduction.section.35AC" />
-				</legend>
-				<div class="row show-grid">
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="amountDebited_ToProfitLoss"><small><fmt:message
-										key="amountDebited_ToProfitLoss.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="amountDebited_ToProfitLoss"
-								name="amountDebited_ToProfitLoss" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebited_ToProfitLoss}" />" />
-						</div>
+		</fieldset>
+		<fieldset>
+			<legend class="header-color">
+				<small><fmt:message key="deduction.section.35AC" /></small>
+			</legend>
+			<div class="row show-grid">
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="amountDebited_ToProfitLoss"><small><fmt:message
+									key="amountDebited_ToProfitLoss.bp.itr4" /> </small> </label>
 					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="amountAllow_Deduction"><small><fmt:message
-										key="amountAllow_Deduction.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="amountAllow_Deduction" name="amountAllow_Deduction"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountAllow_Deduction}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="excessAmountAllow_Deduction"><small><fmt:message
-										key="excessAmountAllow_Deduction.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="excessAmountAllow_Deduction"
-								name="excessAmountAllow_Deduction" type="text" maxlength="14"
-								readonly="readonly"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.excessAmountAllow_Deduction}" />" />
-						</div>
+					<div class="rowlabel">
+						<input id="amountDebited_ToProfitLoss"
+							name="amountDebited_ToProfitLoss" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountDebited_ToProfitLoss}" />" />
 					</div>
 				</div>
-				<div class="row show-grid">
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="anyOtherAmountAllow_Deduction"><small><fmt:message
-										key="anyOtherAmountAllow_Deduction.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="anyOtherAmountAllow_Deduction"
-								name="anyOtherAmountAllow_Deduction" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.anyOtherAmountAllow_Deduction}" />" />
-						</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="amountAllow_Deduction"><small><fmt:message
+									key="amountAllow_Deduction.bp.itr4" /> </small> </label>
 					</div>
-					<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="amountAllow_Deduction" name="amountAllow_Deduction"
+							type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.amountAllow_Deduction}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="excessAmountAllow_Deduction"><small><fmt:message
+									key="excessAmountAllow_Deduction.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="excessAmountAllow_Deduction"
+							name="excessAmountAllow_Deduction" type="text" maxlength="14"
+							readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.excessAmountAllow_Deduction}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="anyOtherAmountAllow_Deduction"><small><fmt:message
+									key="anyOtherAmountAllow_Deduction.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="anyOtherAmountAllow_Deduction"
+							name="anyOtherAmountAllow_Deduction" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.anyOtherAmountAllow_Deduction}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="total_Deduction"><small><fmt:message
 									key="total_Deduction.bp.itr4" /> </small> </label>
@@ -594,418 +599,432 @@
 							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${PLAftAdjDedBusOthThanSpec}" />" />
 					</div>
 				</div>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend style="color: green; font-weight: bold;">
-					<fmt:message key="profit.gains.of.business" />
-				</legend>
-				<div class="row show-grid">
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44AD"><small><fmt:message
-										key="section44AD.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44AD" name="section44AD" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44AD}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44AE"><small><fmt:message
-										key="section44AD.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44AE" name="section44AE" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44AE}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44AF"><small><fmt:message
-										key="section44AF.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44AF" name="section44AF" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44AF}" />" />
-						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44B"><small><fmt:message
-										key="section44B.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44B" name="section44B" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44B}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44BB"><small><fmt:message
-										key="section44BB.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44BB" name="section44BB" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44BB}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44BBA"><small><fmt:message
-										key="section44BBA.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44BBA" name="section44BBA" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44BBA}" />" />
-						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44BBB"><small><fmt:message
-										key="section44BBB.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44BBB" name="section44BBB" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44BBB}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44D"><small><fmt:message
-										key="section44D.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44D" name="section44D" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44D}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="section44DA"><small><fmt:message
-										key="section44DA.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="section44DA" name="section44DA" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44DA}" />" />
-						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="chapter_XII_G"><small><fmt:message
-										key="chapter_XII_G.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="chapter_XII_G" name="chapter_XII_G" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.chapter_XII_G}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="firstSchedule_ITAct"><small><fmt:message
-										key="firstSchedule_ITAct.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="firstSchedule_ITAct" name="firstSchedule_ITAct"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.firstSchedule_ITAct}" />" />
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="total_Sections"><small><fmt:message
-										key="total_Sections.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="total_Sections" name="total_Sections" type="text"
-								maxlength="14" readonly="readonly"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_Sections}" />" />
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend style="color: green; font-weight: bold;">
-					<fmt:message key="Deduction.under.section" />
-				</legend>
-				<div class="row show-grid">
-					<div class="col-md-6">
-						<div class="rowlabel">
-							<label for="plBefore_DedUs10A"><small><fmt:message
-										key="plBefore_DedUs10A.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="plBefore_DedUs10A" name="plBefore_DedUs10A"
-								type="text" maxlength="14" readonly="readonly"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${ProfitLossBfrDeductUs10S}" />" />
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="rowlabel">
-							<label for="deduction_Sec10A"><small><fmt:message
-										key="deduction_Sec10A.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="deduction_Sec10A" name="deduction_Sec10A" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${deduction_Sec10A}" />" />
-						</div>
-					</div>
-				</div>
-
-				<div class="row show-grid">
-					<div class="col-md-6">
-						<div class="rowlabel">
-							<label for="deduction_Sec10AA"><small><fmt:message
-										key="deduction_Sec10AA.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="deduction_Sec10AA" name="deduction_Sec10AA"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${deduction_Sec10AA}" />" />
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="rowlabel">
-							<label for="deduction_total10"><small><fmt:message
-										key="deduction_total10.bp.itr4" /> </small> </label>
-						</div>
-						<div class="rowlabel">
-							<input id="deduction_total10" name="deduction_total10"
-								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_total10}" />" />
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<div class="row show-grid">
-			<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="netPL_FromBussProf"><small>Net profit or loss from business or profession other than speculative business and specified business
- </small> </label>
-						</div>
-						</div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="netPL_FromBussProf" name="netPL_FromBussProf"
-								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${NetPLAftAdjBusOthThanSpec}" />" />
-						</div>
-					</div>
 			</div>
+		</fieldset>
+		<fieldset>
+			<legend class="header-color">
+				<small><fmt:message key="profit.gains.of.business" /></small>
+			</legend>
+			<div class="row show-grid">
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44AD"><small><fmt:message
+									key="section44AD.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44AD" name="section44AD" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44AD}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44AE"><small><fmt:message
+									key="section44AD.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44AE" name="section44AE" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44AE}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44AF"><small><fmt:message
+									key="section44AF.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44AF" name="section44AF" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44AF}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44B"><small><fmt:message
+									key="section44B.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44B" name="section44B" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44B}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44BB"><small><fmt:message
+									key="section44BB.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44BB" name="section44BB" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44BB}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44BBA"><small><fmt:message
+									key="section44BBA.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44BBA" name="section44BBA" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44BBA}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44BBB"><small><fmt:message
+									key="section44BBB.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44BBB" name="section44BBB" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44BBB}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44D"><small><fmt:message
+									key="section44D.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44D" name="section44D" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44D}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="section44DA"><small><fmt:message
+									key="section44DA.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="section44DA" name="section44DA" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.section44DA}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="chapter_XII_G"><small><fmt:message
+									key="chapter_XII_G.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="chapter_XII_G" name="chapter_XII_G" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.chapter_XII_G}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="firstSchedule_ITAct"><small><fmt:message
+									key="firstSchedule_ITAct.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="firstSchedule_ITAct" name="firstSchedule_ITAct"
+							type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.firstSchedule_ITAct}" />" />
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<label for="total_Sections"><small><fmt:message
+									key="total_Sections.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="total_Sections" name="total_Sections" type="text"
+							maxlength="14" readonly="readonly"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.total_Sections}" />" />
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend class="header-color">
+				<small><fmt:message key="Deduction.under.section" /></small>
+			</legend>
 			<div class="row show-grid">
 				<div class="col-md-6">
 					<div class="rowlabel">
-						<label for="netPL_otherthanSpeculative_SpecifiedBuss"><small><fmt:message
-									key="netPL_otherthanSpeculative_SpecifiedBuss.bp.itr4" /> </small> </label>
+						<label for="plBefore_DedUs10A"><small><fmt:message
+									key="plBefore_DedUs10A.bp.itr4" /> </small> </label>
 					</div>
-				</div>
-				<div class="col-md-3">
 					<div class="rowlabel">
-						<input id="netPL_otherthanSpeculative_SpecifiedBuss"
-							name="netPL_otherthanSpeculative_SpecifiedBuss" type="text"
-							maxlength="14"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPL_otherthanSpeculative_SpecifiedBuss}" />" />
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="rowlabel">
-						<input id="netPL_otherthanSpeculative_SpecifiedBuss1"
-							name="netPL_otherthanSpeculative_SpecifiedBuss1" type="text"
+						<input id="plBefore_DedUs10A" name="plBefore_DedUs10A" type="text"
 							maxlength="14" readonly="readonly"
-							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${NetPLBusOthThanSpec7A7B7C}" />" />
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${ProfitLossBfrDeductUs10S}" />" />
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="rowlabel">
+						<label for="deduction_Sec10A"><small><fmt:message
+									key="deduction_Sec10A.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="deduction_Sec10A" name="deduction_Sec10A" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${deduction_Sec10A}" />" />
 					</div>
 				</div>
 			</div>
-			<fieldset>
-				<legend style="color: green; font-weight: bold;">
-					<fmt:message key="compute.income.speculative.business"></fmt:message>
-				</legend>
-				<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="netPl_FromBP"><small><fmt:message
-										key="netPl_FromBP.bp.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="netPl_FromBP" name="netPl_FromBP" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${netPl_FromBP}" />" />
-						</div>
-					</div>
-</div>
-					<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="addAccordance_28to44DA"><small><fmt:message
-										key="addAccordance_28to44DA.bp.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="addAccordance_28to44DA" name="addAccordance_28to44DA"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.addAccordance_28to44DA}" />" />
-						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="dedAccordance_28to44DA"><small><fmt:message
-										key="dedAccordance_28to44DA.bp.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="dedAccordance_28to44DA" name="dedAccordance_28to44DA"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAccordance_28to44DA}" />" />
-						</div>
-					</div>
-					</div>
-					<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="pl_SpeculativeBuss"><small><fmt:message
-										key="pl_SpeculativeBuss.bp.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="pl_SpeculativeBuss" name="pl_SpeculativeBuss"
-								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${AdjustedPLFrmSpecuBus}" />" />
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend style="color: green; font-weight: bold;">
-					<fmt:message key="compute.business.speculative.business"></fmt:message>
-				</legend>
-				<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="netPLFrom_SPecifiedInc"><small><fmt:message
-										key="netPLFrom_SPecifiedInc.pl.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="netPLFrom_SPecifiedInc" name="netPLFrom_SPecifiedInc"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${netPLFrom_SPecifiedInc}" />" />
-						</div>
-					</div>
-</div>
-					<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="additionAcc28to44D"><small><fmt:message
-										key="additionAcc28to44D.bp.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="additionAcc28to44D" name="additionAcc28to44D"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.additionAcc28to44D}" />" />
-						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="dedAcc28to44DEx35AD"><small><fmt:message
-										key="dedAcc28to44DEx35AD.bp.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="dedAcc28to44DEx35AD" name="dedAcc28to44DEx35AD"
-								type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAcc28to44DEx35AD}" />" />
-						</div>
-					</div></div>
-					<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="pl_SpecifiedBuss"><small><fmt:message
-										key="pl_SpecifiedBuss.pl.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="pl_SpecifiedBuss" name="pl_SpecifiedBuss"
-								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${ProfitLossSpecifiedBusiness}" />" />
-						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="dedAcc35AD"><small><fmt:message
-										key="dedAcc35AD.bp.itr4" /> </small> </label>
-						</div></div>
-						<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="dedAcc35AD" name="dedAcc35AD" type="text"
-								maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAcc35AD}" />" />
-						</div>
-					</div>
-					</div>
-					<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="pl_SpecifiedBussNet"><small><fmt:message
-										key="pl_SpecifiedBussNet.bp.itr4" /> </small> </label>
-						</div></div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="pl_SpecifiedBussNet" name="pl_SpecifiedBussNet"
-								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${PLFrmSpecifiedBus}" />" />
-						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<div class="col-md-8">
-						<div class="rowlabel">
-							<label for="incomeChargeable_PL"><small><fmt:message
-										key="incomeChargeable_PL.bp.itr4" /> </small> </label>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<input id="incomeChargeable_PL" name="incomeChargeable_PL"
-								readonly="readonly" type="text" maxlength="14"
-								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${IncChrgUnHdProftGain}" />" />
-						</div>
-					</div>
-				</div>
-			</fieldset>
+
 			<div class="row show-grid">
-				<div class="col-md-4 col-md-offset-8 decimal">
-					<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
-					<a id="myModalProfitAndLoss" role="button" class="btn btn-default btn-success"
-						style="color: black">Save</a>
+				<div class="col-md-6">
+					<div class="rowlabel">
+						<label for="deduction_Sec10AA"><small><fmt:message
+									key="deduction_Sec10AA.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="deduction_Sec10AA" name="deduction_Sec10AA" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${deduction_Sec10AA}" />" />
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="rowlabel">
+						<label for="deduction_total10"><small><fmt:message
+									key="deduction_total10.bp.itr4" /> </small> </label>
+					</div>
+					<div class="rowlabel">
+						<input id="deduction_total10" name="deduction_total10"
+							readonly="readonly" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.deduction_total10}" />" />
+					</div>
 				</div>
 			</div>
+		</fieldset>
+		<div class="row show-grid">
+			<div class="col-md-8">
+				<div class="rowlabel">
+					<label for="netPL_FromBussProf"><small>Net profit
+							or loss from business or profession other than speculative
+							business and specified business </small> </label>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="rowlabel">
+					<input id="netPL_FromBussProf" name="netPL_FromBussProf"
+						readonly="readonly" type="text" maxlength="14"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${NetPLAftAdjBusOthThanSpec}" />" />
+				</div>
+			</div>
+		</div>
+		<div class="row show-grid">
+			<div class="col-md-6">
+				<div class="rowlabel">
+					<label for="netPL_otherthanSpeculative_SpecifiedBuss"><small><fmt:message
+								key="netPL_otherthanSpeculative_SpecifiedBuss.bp.itr4" /> </small> </label>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="rowlabel">
+					<input id="netPL_otherthanSpeculative_SpecifiedBuss"
+						name="netPL_otherthanSpeculative_SpecifiedBuss" type="text"
+						maxlength="14"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.netPL_otherthanSpeculative_SpecifiedBuss}" />" />
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="rowlabel">
+					<input id="netPL_otherthanSpeculative_SpecifiedBuss1"
+						name="netPL_otherthanSpeculative_SpecifiedBuss1" type="text"
+						maxlength="14" readonly="readonly"
+						value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${NetPLBusOthThanSpec7A7B7C}" />" />
+				</div>
+			</div>
+		</div>
+		<fieldset>
+			<legend class="header-color">
+				<small><fmt:message
+						key="compute.income.speculative.business" /></small>
+			</legend>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="netPl_FromBP"><small><fmt:message
+									key="netPl_FromBP.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="netPl_FromBP" name="netPl_FromBP" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${netPl_FromBP}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="addAccordance_28to44DA"><small><fmt:message
+									key="addAccordance_28to44DA.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="addAccordance_28to44DA" name="addAccordance_28to44DA"
+							type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.addAccordance_28to44DA}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="dedAccordance_28to44DA"><small><fmt:message
+									key="dedAccordance_28to44DA.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="dedAccordance_28to44DA" name="dedAccordance_28to44DA"
+							type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAccordance_28to44DA}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="pl_SpeculativeBuss"><small><fmt:message
+									key="pl_SpeculativeBuss.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="pl_SpeculativeBuss" name="pl_SpeculativeBuss"
+							readonly="readonly" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${AdjustedPLFrmSpecuBus}" />" />
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend class="header-color">
+				<small><fmt:message
+						key="compute.business.speculative.business"></fmt:message></small>
+			</legend>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="netPLFrom_SPecifiedInc"><small><fmt:message
+									key="netPLFrom_SPecifiedInc.pl.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="netPLFrom_SPecifiedInc" name="netPLFrom_SPecifiedInc"
+							type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${netPLFrom_SPecifiedInc}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="additionAcc28to44D"><small><fmt:message
+									key="additionAcc28to44D.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="additionAcc28to44D" name="additionAcc28to44D"
+							type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.additionAcc28to44D}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="dedAcc28to44DEx35AD"><small><fmt:message
+									key="dedAcc28to44DEx35AD.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="dedAcc28to44DEx35AD" name="dedAcc28to44DEx35AD"
+							type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAcc28to44DEx35AD}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="pl_SpecifiedBuss"><small><fmt:message
+									key="pl_SpecifiedBuss.pl.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="pl_SpecifiedBuss" name="pl_SpecifiedBuss"
+							readonly="readonly" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${ProfitLossSpecifiedBusiness}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="dedAcc35AD"><small><fmt:message
+									key="dedAcc35AD.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="dedAcc35AD" name="dedAcc35AD" type="text"
+							maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.dedAcc35AD}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="pl_SpecifiedBussNet"><small><fmt:message
+									key="pl_SpecifiedBussNet.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="pl_SpecifiedBussNet" name="pl_SpecifiedBussNet"
+							readonly="readonly" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${PLFrmSpecifiedBus}" />" />
+					</div>
+				</div>
+			</div>
+			<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="incomeChargeable_PL"><small><fmt:message
+									key="incomeChargeable_PL.bp.itr4" /> </small> </label>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="rowlabel">
+						<input id="incomeChargeable_PL" name="incomeChargeable_PL"
+							readonly="readonly" type="text" maxlength="14"
+							value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${IncChrgUnHdProftGain}" />" />
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		<div class="row show-grid">
+			<div class="col-md-4 col-md-offset-8 decimal">
+				<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
+				<a id="myModalProfitAndLoss" role="button"
+					class="btn btn-default btn-success">Save</a>
+			</div>
+		</div>
 	</form>
 </div>
 

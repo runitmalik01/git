@@ -10,14 +10,19 @@
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
+	<div class="page-header">
+		<h2 class="title page-title">Schedule DCG</h2>
+		<h4>
+			<small><fmt:message key="deemed.capitalgain.itr4" /></small>
+		</h4>
+	</div>
 
-	<h4>
-		<fmt:message key="deemed.capitalgain.itr4" />
-	</h4>
 	<form id="frmDeemed_Capital" action="${actionUrl}" method="post"
 		name="frmDeemed_Capital">
 		<fieldset>
-			<legend style="color: green; font-weight: bold;">Plant and Machinery </legend>
+			<legend class="header-color">
+				<small>Plant and Machinery</small>
+			</legend>
 			<div class="row show-grid">
 				<div class="col-md-4">
 					<div class="rowlabel">
@@ -104,14 +109,14 @@
 						<label for="total"><small>Total</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total" name="total" type="text" maxlength="14" value="${plantMach_Total}"
-							readonly="readonly" />
+						<input id="total" name="total" type="text" maxlength="14"
+							value="${plantMach_Total}" readonly="readonly" />
 					</div>
 				</div>
 			</div>
 		</fieldset>
 		<fieldset>
-			<legend style="color: green; font-weight: bold;">Building</legend>
+			<legend class="header-color"><small>Building</small></legend>
 			<div class="row show-grid">
 				<div class="col-md-4">
 					<div class="rowlabel">
@@ -145,7 +150,7 @@
 
 					</div>
 				</div>
-				
+
 			</div>
 			<div class="row show-grid">
 
@@ -154,8 +159,8 @@
 						<label for="total1"><small>Total</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total1" name="total1" type="text" maxlength="14" value="${build_TotalPer}"
-							readonly="readonly" />
+						<input id="total1" name="total1" type="text" maxlength="14"
+							value="${build_TotalPer}" readonly="readonly" />
 					</div>
 				</div>
 			</div>
@@ -172,7 +177,7 @@
 							readonly="readonly" value="${furniture_Fitting}" />
 					</div>
 				</div>
-			<div class="col-md-3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="intangible"><small>Intangible Assets</small> </label>
 					</div>
@@ -181,7 +186,7 @@
 							maxlength="14" readonly="readonly" value="${intangible}" />
 					</div>
 				</div>
-			<div class="col-md-3">
+				<div class="col-md-3">
 					<div class="rowlabel">
 						<label for="ships"><small>Ships</small> </label>
 					</div>
@@ -195,11 +200,11 @@
 						<label for="total2"><small>Total</small> </label>
 					</div>
 					<div class="rowlabel">
-						<input id="total2" name="total2" type="text" maxlength="14" value="${total_CG}"
-							readonly="readonly" />
+						<input id="total2" name="total2" type="text" maxlength="14"
+							value="${total_CG}" readonly="readonly" />
 					</div>
 				</div>
-		</div>
+			</div>
 		</div>
 	</form>
 </div>
