@@ -25,11 +25,12 @@ pageContext.setAttribute("hostname", builder.toString());
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <w4india:itrmenu/>
-	<h4>Member Drive</h4>
+
+	<h4 class="page-title">Member Drive</h4>
 	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
 	<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
 		<fieldset>
-			<legend>Need help on what to upload? Download these sample templates to help you report your Income Tax Data</legend>
+			<legend class="header-color">Need help on what to upload? Download these sample templates to help you report your Income Tax Data</legend>
 			<div class="row show-grid">
 				<div class="col-md-12">
 					 <div class="rowlabel">

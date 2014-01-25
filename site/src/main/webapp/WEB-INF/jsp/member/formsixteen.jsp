@@ -22,9 +22,9 @@
 		<c:otherwise>
 
 			<h2 class="page-title">Salary Income</h2>
-			<small>Enter details of your employer from Form 16 e.g. PAN,
+			<h4><small>Enter details of your employer from Form 16 e.g. PAN,
 				TAN, Address, etc. These details can be found in your Form-16 issued
-				to you by your employer.</small>
+				to you by your employer.</small></h4>
 
 			<!-- <h2 style="color: black;">Salary Income: Employer Details</h2> -->
 		</c:otherwise>

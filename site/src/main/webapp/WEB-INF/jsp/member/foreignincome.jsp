@@ -2,13 +2,13 @@
 <%@include file="../includes/tags.jspf"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
-<c:set var="tds2">
+<c:set var="foreignincome">
 	<fmt:message key="foreignincome" />
 </c:set>
 <hippo-gogreen:title title="${foreignincome}" />
 <hst:actionURL var="actionUrl" />
 <%
-ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
+	ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
 SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
 request.setAttribute("objHashMapcountry", objHashMapcountry);
 %>
@@ -22,15 +22,24 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</div>
 		</c:forEach>
 	</c:if>
-	<h4>
-		<fmt:message key="foreign.income.itr2" />
-	</h4>
+
+	<div class="page-header">
+		<h2 class="title page-title">Schedule FSI</h2>
+		<h4>
+			<small>Schedule FSI&nbsp;-&nbsp;<fmt:message
+					key="foreign.income.itr2" />
+			</small>
+		</h4>
+	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
 			<form id="frmforeignincome" action="${actionUrl}" method="post"
 				name="frmforeignincome">
-
+				<legend class="header-color">
+					<small><fmt:message
+					key="foreign.income.itr2" /></small>
+				</legend>
 				<div class="row show-grid">
 					<div class="col-md-4">
 						<div class="rowlabel">
@@ -85,17 +94,17 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					</div>
 					<!-- the given below field is  visible in itr4 only -->
 					<c:if test="${ not empty whichItrForm}">
-					 <div class="col-md-4">
-						<div class="rowlabel">
-							<label for="income_business"><small><fmt:message
-										key="foreign.income.business" /> </small> </label>
+						<div class="col-md-4">
+							<div class="rowlabel">
+								<label for="income_business"><small><fmt:message
+											key="foreign.income.business" /> </small> </label>
+							</div>
+							<div class="rowlabel">
+								<input id="income_business" name="income_business" type="text"
+									maxlength="14" class="decimal"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Business}"/></c:if>" />
+							</div>
 						</div>
-						<div class="rowlabel">
-							<input id="income_business" name="income_business" type="text"
-								maxlength="14" class="decimal"
-								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Business}"/></c:if>" />
-						</div>
-					</div>
 					</c:if>
 					<div class="col-md-4">
 						<div class="rowlabel">
@@ -109,7 +118,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 						</div>
 					</div>
 				</div>
-			<div class="row show-grid">
+				<div class="row show-grid">
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_othersources"><small><fmt:message
@@ -121,8 +130,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_Othersources}"/></c:if>" />
 						</div>
 					</div>
-				
-				
+
+
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="income_total"><small><fmt:message
@@ -144,15 +153,15 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								<option value="">-Select-</option>
 								<option value="Yes"
 									<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='Yes'}">selected</c:if>>Yes</option>
-								
+
 								<option value="No"
 									<c:if test="${not empty childBean.isDtaaCountry && childBean.isDtaaCountry =='No'}">selected</c:if>>No</option>
-							
+
 							</select>
 						</div>
 					</div>
-					</div>
-					<div class="row show-grid">
+				</div>
+				<div class="row show-grid">
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="dtaa_CountryIncome"><small><fmt:message
@@ -164,8 +173,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 								value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.dtaa_CountryIncome}"/></c:if>" />
 						</div>
 					</div>
-				
-				
+
+
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="Nodtaa_CountryIncome"><small><fmt:message
@@ -182,8 +191,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 				<input type="hidden" id="country_name" name="country_name">
 				<div class="row show-grid">
 					<div class="col-md-4 col-md-offset-8 decimal">
-						<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
-							id="myModalHrefforeignincome" role="button"
+						<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
+						<a id="myModalHrefforeignincome" role="button"
 							class="btn btn-default btn-success">Save</a>
 					</div>
 				</div>
@@ -193,10 +202,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 		<c:otherwise>
 			<table class="table table-bordered">
 				<tr align="center">
-					<th><b><fmt:message key="foreign.country.name" /> </b>
-					</th>
-					<th><b><fmt:message key="foreign.taxpayer.id" /> </b>
-					</th>
+					<th><b><fmt:message key="foreign.country.name" /> </b></th>
+					<th><b><fmt:message key="foreign.taxpayer.id" /> </b></th>
 
 
 					<th><b><fmt:message key="foreign.income.itr2" /> </b></th>
@@ -206,39 +213,32 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					<c:forEach items="${parentBean.foreignIncomeDetailList}"
 						var="foreignIncome">
 						<tr>
-							<td><c:out value="${foreignIncome.country_Name}" />
-							</td>
-							<td><c:out value="${foreignIncome.taxpayer_ID}" />
-							</td>
-
-							<td><w4india:inr value="${foreignIncome.income_Total}" />
-							</td>
-
-							<td><a class="btn btn-default btn-danger" style="color: black"
+							<td><c:out value="${foreignIncome.country_Name}" /></td>
+							<td><c:out value="${foreignIncome.taxpayer_ID}" /></td>
+							<td><w4india:inr value="${foreignIncome.income_Total}" /></td>
+							<td><a class="btn btn-default btn-danger"								
 								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small><i
-										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;<a
-								class="btn btn-default btn-primary" style="color: black"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-default btn-primary"							
 								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete"
 								data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
-							</td>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+							</a></td>
 						</tr>
-						
 					</c:forEach>
 
 					<tr>
 						<td colspan="2" align="center"><b><fmt:message
-									key="foreign.totalincome.outside" />
-						</b></td>
+									key="foreign.totalincome.outside" /> </b></td>
 						<td><w4india:inr value="${parentBean.total_Amount}" /></td>
 
 					</tr>
 				</c:if>
 			</table>
 			<table>
-		
-				<a href="${scriptName}/foreignincomenew" class="btn btn-default btn-info"
-					style="color: black">Add New</a>
+
+				<a href="${scriptName}/foreignincomenew"
+					class="btn btn-default btn-info"><small><i class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 
 
 			</table>

@@ -23,9 +23,9 @@
 				</c:when>
 				<c:otherwise>
 					<h2 class="page-title">Pension Income</h2>
-					<small>Enter details of your previous employer from Form 16
+					<h4><small>Enter details of your previous employer from Form 16
 						e.g. PAN, TAN, Address, etc. These details can be found in Form-16
-						issued to you by your employer.</small>
+						issued to you by your employer.</small></h4>
 
 				</c:otherwise>
 			</c:choose>

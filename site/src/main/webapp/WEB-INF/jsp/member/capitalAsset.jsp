@@ -27,10 +27,20 @@
 			<c:otherwise></c:otherwise>
 		</c:choose>
 	</h3>
-	<h4>
-		<fmt:message key="Capital.gain.Income.Screen" />
-	</h4>
-
+	<div class="page-header">
+		<h2 class="title page-title">
+			<fmt:message key="Capital.gain.Income.Screen" />
+		</h2>
+		<h4>
+			<small>Schedule CG&nbsp;-&nbsp;A capital gain is a profit that results from a
+				disposition of a capital asset, such as stock, bond or real estate,
+				where the amount realized on the disposition exceeds the purchase
+				price. The gain is the difference between a higher selling price and
+				a lower purchase price.Conversely, a capital loss arises if the
+				proceeds from the sale of a capital asset are less than the purchase
+				price.</small>
+		</h4>
+	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
@@ -38,8 +48,9 @@
 			<form id="capitalassetfrm" action="${actionUrl}" method="post"
 				name="capitalasset">
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Asset
-						Information</legend>
+					<legend class="header-color">
+						<small>Asset Information</small>
+					</legend>
 					<div align="center" style="color: red">Please enter your
 						details</div>
 					<br />
@@ -54,7 +65,8 @@
 							</div>
 
 							<div class="rowlabel">
-								<select id="asset_type" name="asset_type" onChange="hidesst()" class="uprcase">
+								<select id="asset_type" name="asset_type" onChange="hidesst()"
+									class="uprcase">
 									<option value="">-Select-</option>
 									<option value="SHARES"
 										<c:if test="${not empty childBean.assetType && childBean.assetType =='SHARES'}">selected</c:if>>Listed
@@ -139,11 +151,12 @@
 				</fieldset>
 				<fieldset id="fd_set_gain"
 					class="<c:if test="${pageAction == 'NEW_CHILD' }">hide</c:if>">
-					<legend class="hide st" id="sg"
-						style="color: green; font-weight: bold;">Computation
-						(Short Term Gain)</legend>
-					<legend class="hide lt" style="color: green; font-weight: bold;"
-						id="lg">Computation (Long Term Gain)</legend>
+					<legend class="hide st" id="sg" style="color: maroon">
+						<small>Computation (Short Term Gain)</small>
+					</legend>
+					<legend class="hide lt" style="color: maroon;" id="lg">
+						<small>Computation (Long Term Gain)</small>
+					</legend>
 					<c:if test="${status != 'RES'}">
 						<div class="st" id="snri">
 							<h2>
@@ -270,7 +283,7 @@
 						<div class="col-md-9">
 							<div class="rowlabel acq">
 								<label for="costacquisition"><fmt:message
-											key="capital.gain.cost.acquisition" /> </label>
+										key="capital.gain.cost.acquisition" /> </label>
 							</div>
 							<div class="rowlabel hide slmacq ">
 								<label for="costacquisition"><small><fmt:message
@@ -290,12 +303,14 @@
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="cgSlump"> <fmt:message
-										key="capital.gain.slump" /> </label>
+										key="capital.gain.slump" />
+								</label>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<input type="text" name="cgSlump" id="cgSlump" readonly="readonly"
+								<input type="text" name="cgSlump" id="cgSlump"
+									readonly="readonly"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.cgSlump}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 							</div>
@@ -392,12 +407,14 @@
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="netCGSlump"> <fmt:message
-										key="capital.gain.slump.net" /> </label>
+										key="capital.gain.slump.net" />
+								</label>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<input type="text" name="netCGSlump" id="netCGSlump" readonly="readonly"
+								<input type="text" name="netCGSlump" id="netCGSlump"
+									readonly="readonly"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.netCGSlump}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 							</div>
@@ -408,7 +425,8 @@
 							<div class="col-md-9">
 								<div class="rowlabel">
 									<label for="amtdeemedsc"><small> <fmt:message
-												key="capital.amt.deemed.schedule6" /> </small> </label>
+												key="capital.amt.deemed.schedule6" />
+									</small> </label>
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -468,8 +486,8 @@
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">
-						<fmt:message key="capital.gain.acc.message" />
+					<legend class="header-color">
+						<small><fmt:message key="capital.gain.acc.message" /></small>
 					</legend>
 					<div class="row show-grid">
 						<div class="col-md-9">
@@ -513,38 +531,32 @@
 								<td><input type="text" name="upto16st" id="upto16st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto16oth" id="upto16oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							<tr>
 
 								<td>iii- 16/12 to 15/3(iii)</td>
 								<td><input type="text" name="upto16decst" id="upto16decst"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16decSt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto16decoth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16DecOth}"/></c:if>"
-									class="decimal" id="upto16decoth" maxlength="15">
-								</td>
+									class="decimal" id="upto16decoth" maxlength="15"></td>
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31st" id="upto31st"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto31St}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto31oth" id="upto31oth"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto31Oth}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							</tr>
 							<tr>
 								<th width="50%" style="color: black;">(In case of long term
@@ -557,59 +569,51 @@
 								<td><input type="text" name="upto15Lt" id="upto15Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Lt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto15np" id="upto15np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto15Np}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>ii- 16/9 to 15/12(ii)</td>
 								<td><input type="text" name="upto16Lt" id="upto16Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Lt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto16np" id="upto16np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<c:out value="${childBean.upto16Np}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>iii- 16/12 to 15/3(iii)</td>
 								<td><input type="text" name="upto16decLt" id="upto16decLt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto16DecLt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="uptodecnp" id="uptodecnp"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.uptodecNp}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							<tr>
 								<td>iv- 16/3 to 31/3(iv)</td>
 								<td><input type="text" name="upto31Lt" id="upto31Lt"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto31Lt}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 								<td><input type="text" name="upto31np" id="upto31np"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 								<c:out value="${childBean.upto31Np}"/></c:if>"
-									class="decimal" maxlength="15">
-								</td>
+									class="decimal" maxlength="15"></td>
 							</tr>
 						</table>
 					</div>
 				</fieldset>
 				<div class="row show-grid">
 					<div class="col-md-3 col-md-offset-10">
-						<a href="${redirectURLToSamePage}" class="btn btn-default btn-danger"
-							style="color: black">Cancel</a> &nbsp; <a
-							id="myModalHrefcapitalast" role="button" class="btn btn-default btn-success"
-							style="color: black">Save</a>
+						<a href="${redirectURLToSamePage}"
+							class="btn btn-default btn-danger">Cancel</a> &nbsp; <a
+							id="myModalHrefcapitalast" role="button"
+							class="btn btn-default btn-success">Save</a>
 					</div>
 				</div>
 			</form>
@@ -617,61 +621,49 @@
 		<c:otherwise>
 			<table class="table table-bordered">
 				<tr align="center">
-					<th width="10%"><b>Type of Asset </b>
-					</th>
-					<th width="15%"><b>Name of Asset </b>
-					</th>
+					<th width="10%"><b>Type of Asset </b></th>
+					<th width="15%"><b>Name of Asset </b></th>
 					<th width="15%"><b><fmt:message
-								key="capital.gain.cost.acquisition" /> </b>
-					</th>
+								key="capital.gain.cost.acquisition" /> </b></th>
 					<th width="15%"><b><fmt:message
-								key="capital.gain.sale.consideration" /> </b>
-					</th>
-					<th width="12%"><b>Long Term Gain </b>
-					</th>
-					<th width="12%"><b>Short Term Gain </b>
-					</th>
-					<th width="20%"><b>Actions</b>
-					</th>
+								key="capital.gain.sale.consideration" /> </b></th>
+					<th width="12%"><b>Long Term Gain </b></th>
+					<th width="12%"><b>Short Term Gain </b></th>
+					<th width="20%"><b>Actions</b></th>
 				</tr>
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.capitalAssetDetailList}"
 						var="capitalassetdetail">
 						<tr>
 							<td align="right"><c:out
-									value="${capitalassetdetail.assetType}" />
-							</td>
+									value="${capitalassetdetail.assetType}" /></td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.nameAsset}" />
-							</td>
+									value="${capitalassetdetail.nameAsset}" /></td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.costAcquisition}" />
-							</td>
+									value="${capitalassetdetail.costAcquisition}" /></td>
 							<td align="right"><c:out
-									value="${capitalassetdetail.saleConsideration}" />
-							</td>
+									value="${capitalassetdetail.saleConsideration}" /></td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
-									value="${capitalassetdetail.capitalGainTaxLT}" />
-							</td>
+									value="${capitalassetdetail.capitalGainTaxLT}" /></td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
-									value="${capitalassetdetail.capitalGainTaxST}" />
-							</td>
+									value="${capitalassetdetail.capitalGainTaxST}" /></td>
 							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/edit"><small><i
-										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
-								class="btn btn-default btn-danger"
+										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+									&nbsp;&nbsp; </a>&nbsp;&nbsp;<a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${capitalassetdetail.canonicalUUID}"/>/delete"
 								id="delete" data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
-							</td>
+										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+							</a></td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</table>
-			<a href="${redirectURLToSamePage}/new" class="btn btn-default btn-info">Add
-				New</a>
+			<a href="${redirectURLToSamePage}/new"
+				class="btn btn-default btn-info"><small><i
+					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
 </div>
@@ -790,7 +782,7 @@
 				$(".lt").hide();
 				$("#sst").hide();
 				$(".amtdmdsc").show();
-				
+
 			} else {
 				$("#loss").hide();
 				$("#lg").show();
