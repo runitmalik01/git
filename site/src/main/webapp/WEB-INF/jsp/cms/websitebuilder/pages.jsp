@@ -49,7 +49,7 @@
 								     <sup><span class="text-danger"><i class="glyphicon glyphglyphicon glyphicon-asterisk"></i>
 								     <strong>Last Updated</strong></span></sup></c:if></td>
 								<td><c:out value="${fn:length(pageDocument.pageRowDetails)}" /></td>
-								<td><a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
+								<td><a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalHandleUUID}/editpage"
 									class="btn btn-default btn-primary btn-sm"><i class="glyphicon glyphglyphicon glyphicon-edit"></i>&nbsp;<span><strong>Edit</strong></span></a>
 									<a href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/deletepage" data-confirm=""
 									class="btn btn-default btn-danger btn-sm"><i class="glyphicon glyphglyphicon glyphicon-trash"></i>&nbsp;<span><strong>Delete</strong></span></a></td>
@@ -94,7 +94,7 @@
 						<div class="row">
 							<div class="col-md-6"><strong>Grid Row of ${parentBean.name} Page</strong></div>
 							<div class="col-md-2 col-md-offset-4">
-								<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/editrow"
+								<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalHandleUUID}/editrow"
 									class="btn btn-default btn-info btn-xs"><i class="glyphicon glyphglyphicon glyphicon-edit"></i>Edit Row</a> 
 								<a href="${scriptName}/${componentUUID}/editpage/rows/${pageRowDetail.canonicalUUID}/deleterow"
 									class="btn btn-default btn-danger btn-xs" data-confirm=""><i class="glyphicon glyphglyphicon glyphicon-remove-sign"></i>Remove Row</a>
