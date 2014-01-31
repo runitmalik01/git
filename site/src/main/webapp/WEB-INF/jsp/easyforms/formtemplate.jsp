@@ -1,7 +1,7 @@
 
 <%@include file="../includes/tags.jspf"%>
 <c:set var="feedbacktitle">
-	<fmt:message key="easyforms.formtemplate" />
+	Feedback
 </c:set>
 <hippo-gogreen:title title="${feedbacktitle}" />
 
@@ -17,120 +17,114 @@
 				.getName());
 	}
 %>
-<div class="memberfeedback page type-page">
-	<h2 class="title">Feedback</h2>
-	<c:choose>
-		<c:when test="${success eq 'eventsuccess'}">
-			<fmt:message key="easyforms.formtemplate.thankyou.event" />
-		</c:when>
-		<c:when test="${success eq 'dummysuccess'}">
+<div class="page type-page">
+	<div class="page">
+		<h2 class="page-title">Feedback</h2>
+		<c:choose>
+			<c:when test="${success eq 'eventsuccess'}">
+				<fmt:message key="easyforms.formtemplate.thankyou.event" />
+			</c:when>
+			<c:when test="${success eq 'dummysuccess'}">
 
-			<div id="content">
-				<fmt:message key="easyforms.formtemplate1.thankyou.form" />
-			</div>
-		</c:when>
-		<c:otherwise>
-			<c:forEach items="${ef_errors}" var="error">
-				<div class="form-error">
-					<c:out value="${error.message}" />
-				</div>
-			</c:forEach>
-			<form class="form" name="contactus" action="<hst:actionURL />"
-				method="post" id="${form.id}">
-				<p>
-					<label for="username"> <small>Your Name</small>
-					</label> <input id="name" type="text" name="name" required="required"><br>
-					<br>
-				</p>
-				<p>
-					<label for="emailid"><small>E-mail ID</small>
-					</label> <input type="text" id="email" name="email" required="required"><br>
-					<br>
-				</p>
-				<p>
-					<label> <small>Category</small><span style="color: red">*</span></label>
-						<label for="category"><select name="category" id="category" required="required">
-						<option value="">-Select-</option>
-						<option value="am">Accounting Management</option>
-						<option value="nd">Newsletter Delivery</option>
-						<option value="up">Username and Password</option>
-						<option value="ep">Email Preferences</option>
-						<option value="ma">Mailing Address Change</option>
-						<option value="oth">Other</option>
-					</select>
-											
-					</label>			
-				</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>
-					<label> <small>Comments/Questions</small></label>
-					<textarea cols="40" rows="20" name="comments"></textarea>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>
-					<label><small>Resolution</small></label>
-					<textarea cols="40" rows="20" name="resolution"></textarea>
-					<br>
-				</p>
+				<div id="content">
+					<h2 class="alert alert-info">
+						<small> <fmt:message
+								key="easyforms.formtemplate1.thankyou.form" />
+						</small>
+					</h2>
 
-
-				<!-- <div class="row show-grid">
-				<div class="col-md-3">Your Name<span style="color: red">*</span></div>
-				<div class="col-md-14">
-					<input id="name" type="text" name="name" required="required"><br><br>
 				</div>
-			</div>
-			<div class="row show-grid">
-				<div class="col-md-3">E-mail ID<span style="color: red">*</span></div>
-				<div class="col-md-8">
-					<input type="text" id="email" name="email" required="required"><br><br>
-				</div> 
-
-			</div>
-			<div class="row show-grid">
-				<div class="col-md-4">Category<span style="color: red">*</span></div>
-				<div class="col-md-7">
-					<select name="category" id="category" required="required">
-						<option value="">-Select-</option>
-						<option value="am">Accounting Management</option>
-						<option value="nd">Newsletter Delivery</option>
-						<option value="up">Username and Password</option>
-						<option value="ep">Email Preferences</option>
-						<option value="ma">Mailing Address Change</option>
-						<option value="oth">Other</option>
-					</select> <br>
-				</div>
-			</div>
-			
-		<div class="row show-grid">
-				<div class="col-md-3">Comments/Questions</div>
-				<div class="col-md-8">	<textarea cols="40" rows="20" name="comments"></textarea><br>
-				</div>
-			</div>
-			<div class="row show-grid">
-				<div class="col-md-3">Resolution</div>
-				<div class="col-md-8">	<textarea cols="40" rows="20" name="resolution"></textarea><br>
-				</div>
-			</div>-->
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>	
-					
-				<div class="ef-buttons">		
-					<c:forEach var="button" items="${form.buttons}">
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${ef_errors}" var="error">
+					<div class="form-error">
+						<c:out value="${error.message}" />
+					</div>
+				</c:forEach>
+				<form class="form" name="contactus" action="<hst:actionURL />"
+					method="post" id="${form.id}">
+					<fieldset>
+						<legend>
+							<h4 class="header-color">
+								<small> We welcome problem reports, feature ideas and
+									general comments.</small>
+							</h4>
+						</legend>
+						<div class="row show-grid">
+							<div class="col-md-4">
+								<div class="rowlabel">
+									<label for="Name"><small>Your Name<span style="color: red">*</span></small></label>
+								</div>
+								<div class="rowlabel">
+									<input id="name" type="text" name="name" required="required" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="rowlabel">
+									<label for="email"><small>E-mail ID<span style="color: red">*</span></small></label>
+								</div>
+								<div class="rowlabel">
+									<input type="text" id="email" name="email" required="required" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="rowlabel">
+									<label for="Category"><small>Category<span style="color: red">*</span></small></label>
+								</div>
+								<div class="rowlabel">
+									<select name="subject" id="subject" required="required">
+										<option value="">-Select-</option>
+										<option value="ep">Email Preferences</option>
+										<option value="ma">Mailing Address Change</option>
+										<option value="am">Accounting Management</option>
+										<option value="tp">Tax Planning</option>
+										<option value="pay">Payment Issues</option>
+										<option value="taxcomp">Question on Tax Computation</option>
+										<option value="nd">Newsletter Delivery</option>
+										<option value="up">Username and Password</option>
+										<option value="oth">Other</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<div class="row show-grid">
+							<div class="col-md-6">
+								<div class="rowlabel">
+									<label for="comments"><small>Comments/Questions</small></label>
+								</div>
+								<div class="rowlabel">
+									<textarea cols="8" rows="5" name="comments" id="comments"></textarea>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="rowlabel">
+									<label for="resolution"><small>Resolution</small></label>
+								</div>
+								<div class="rowlabel">
+									<textarea cols="9" rows="5" name="resolution" id="resolution"></textarea>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<div class="row show-grid">
+						<div class="col-md-4 col-md-offset-8 decimal">
+							<input type="submit" class="btn btn-default btn-success"
+								value="Save">
+						</div>
+					</div>
+					<%-- <div class="ef-buttons">
+						<c:forEach var="button" items="${form.buttons}">
                 ${button.html}
             </c:forEach>
-				</div>
-			</form>
-		</c:otherwise>
-	</c:choose>
+					</div> --%>
+				</form>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </div>
+
 
 <%--
     HERE WE PRINT JAVASCRIPT CALL WHICH WILL VALIDATE OUR FORM
@@ -156,10 +150,10 @@ ${form.jsCall}
 <%--
     easy forms css
 --%>
-<hst:headContribution keyHint="formCss" category="css">
+<%-- <hst:headContribution keyHint="formCss" category="css">
 	<link rel="stylesheet" href="<hst:link path="/css/easyforms.css"/>"
 		type="text/css" />
-</hst:headContribution>
+</hst:headContribution> --%>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var regemail = '<c:out value = "${regemail}" />';

@@ -28,35 +28,42 @@ import org.hippoecm.hst.content.beans.Node;
 public class ContactUs extends BaseDocument implements ContentNodeBinder {
 	static final public String NAMESPACE = "mootlywcm:ContactUs";
 	static final public String NODE_NAME = "contactus";
-	
+
 	// Declaration of variables.
 	private String userName;
 	private String emailaddress;
 	private String comments;
 	private String subject;
+	private String resolution;
+
 	// To create getter for variables.
 	public String getUserName() {
-        if (userName == null) userName = getProperty("mootlywcm:cu_user_name");
-        return userName;
-    }
-	
+		if (userName == null) userName = getProperty("mootlywcm:cu_user_name");
+		return userName;
+	}
+
 	public String getEmailAddress() {
-    	if (emailaddress == null) emailaddress =  getProperty("mootlywcm:cu_email_address");
-    	return emailaddress;
-    }
+		if (emailaddress == null) emailaddress =  getProperty("mootlywcm:cu_email_address");
+		return emailaddress;
+	}
 	public String getComments() {
-    	if (comments == null) comments =  getProperty("mootlywcm:cu_comments");
-    	return comments;
-    }
+		if (comments == null) comments =  getProperty("mootlywcm:cu_comments");
+		return comments;
+	}
 	public String getSubject() {
-    	if (subject == null) subject =  getProperty("mootlywcm:cu_subject");
-    	return subject;
-    }
+		if (subject == null) subject =  getProperty("mootlywcm:cu_subject");
+		return subject;
+	}
+	public String getResolution(){
+		if (resolution == null) resolution = getProperty("mootlywcm:cu_resolution");
+		return resolution;
+	}
+
 	// To create setter for variables.
 	public final void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
+
 	public final void setEmailAddress(String emailAddress) {
 		this.emailaddress = emailAddress;
 	}
@@ -67,20 +74,27 @@ public class ContactUs extends BaseDocument implements ContentNodeBinder {
 	public final void setSubject(String subject) {
 		this.subject = subject;
 	}
-	
-	
-    
+	public final void setResolution (String resolution){
+		this.resolution = resolution;
+
+	}
+
+
+
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
 		// TODO Auto-generated method stub
 		try {
-			
-			  ContactUs contactus_doc = (ContactUs) content;
+
+			ContactUs contactus_doc = (ContactUs) content;
 			node.setProperty("mootlywcm:cu_user_name",contactus_doc.getUserName());
 			node.setProperty("mootlywcm:cu_email_address",contactus_doc.getEmailAddress());
 			node.setProperty("mootlywcm:cu_comments",contactus_doc.getComments());
 			node.setProperty("mootlywcm:cu_subject",contactus_doc.getSubject());
+			node.setProperty("mootlywcm:cu_resolution",contactus_doc.getResolution());
+
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
