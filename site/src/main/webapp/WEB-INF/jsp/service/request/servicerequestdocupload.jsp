@@ -20,9 +20,9 @@
 				<span class="btn btn-default btn-success fileinput-button"
 					id="remove"> <i
 					class="glyphicon glyphicon-plus glyphicon glyphicon-white"></i> <span>Attach</span>
-					<input type="file" id="member_file" name="member_file" class="member_file"/>
+					<input type="file" id="member_file" name="member_file" />
 				</span>
-				<div id="member_file_name" class="member_file_name"></div>
+				<div id="member_file_name"></div>
 			</div>
 		</div>
 	</div>
@@ -96,8 +96,8 @@
              </c:forEach>
           </c:if>
              if ($("#myModal").length >0) $("#myModal").modal();
-             $('.member_file').bind('change', function(){
-		        $('.member_file_name').text(this.files[0].name);
+             $('#member_file').bind('change', function(){
+		        $('#member_file_name').text(this.files[0].name);
 		        //$('#file_process').show();		    
              });
       $('#ajaxsubmit').on('click',function(){
@@ -150,9 +150,7 @@
 						html = eDiv.html();						
 						var newdiv1 = $('<form class="memberDriveForm" name="memberDriveForm"  id="row_' +  (parseInt(theindx) + 1)  + '"/>');
 						newdiv1.append(html);
-						$(".modal-body").append(newdiv1);
-						$('#row_'+(parseInt(theindx) + 1)).find('.member_file_name').text('');
-						$('#row_'+(parseInt(theindx) + 1)).find('.member_file').replaceWith($('#row_'+(parseInt(theindx) + 1)).find('.member_file').clone());															
+						$(".modal-body").append(newdiv1);																	
 					}
 				}     
 		 });

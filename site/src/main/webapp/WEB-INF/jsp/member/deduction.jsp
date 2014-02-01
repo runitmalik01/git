@@ -16,12 +16,15 @@
 <div class="page">
 	<c:if test="${empty ischildofform16 || ischildofform16 !='true'}"><w4india:itrmenu/></c:if>
 	<div class="alert alert-info" id="chkentry">As some of the deductions are based on your income. Please ensure to fill all your total income before filling up deductions for an accurate summary of your return.</div>
-	<h4>Deductions</h4>
-	<h5><small>List of deductions</small></h5>
+	<div class="page-header">
+	<h2 class="page-title">Chapter VI A Deductions
+	</h2>
+	<h5><small></small></h5>
+	</div>
 		<table class="table table-hover table-bordered">
 			<tr>
 				<th>Deduction Section</th>
-				<th><abbr title="How much money you have invested">Gross Investment (&#8377;)</abbr></th>
+				<th><abbr title="How much money you have invested?">Gross Investment (&#8377;)</abbr></th>
 				<th><abbr title="Maximum Allowed Deduction">Total Deduction (&#8377;)</abbr></th>
 			</tr>
 			<c:forEach items="${deductionSectionMap}" var="deductionSectionMapEntry">

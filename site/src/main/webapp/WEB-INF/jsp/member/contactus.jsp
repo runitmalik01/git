@@ -5,7 +5,8 @@ For <w4india:resellername/> Contact Us
 
 <%@include file="../includes/tags.jspf"%>
 <hst:actionURL var="actionURL" />
-<c:set var="contactus">Contact Us</c:set>
+<c:set var="contactus"></c:set><fmt:message key= "standard.footer.navigation.contactus"></fmt:message>
+<<hippo-gogreen:title title="${contactus}"></hippo-gogreen:title>
 <!--  
 <div itemscope itemtype="http://schema.org/Organization">
   <span itemprop="name">Mootly Software</span>-->
@@ -13,7 +14,6 @@ For <w4india:resellername/> Contact Us
 <h3 class="title text-center text-success">Contact Us</h3>
 
 <table class="table table-bordered table-hover table-
-
 striped">
 	<thead>
 		<tr>

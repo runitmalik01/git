@@ -6,7 +6,7 @@
 
 <hst:actionURL var="actionUrl" />
 <fieldset id="represenative_detail" class="<c:choose> <c:when test="${(parentBean.selectedITRForm == 'ITR4') || (parentBean.selectedITRForm == 'ITR2') || (parentBean.selectedITRForm == 'ITR3')}"> </c:when> <c:otherwise> hide</c:otherwise></c:choose>">
-<legend>Representative Assessee Details</legend>
+<legend class="header-color"><small>Representative Assessee Details</small></legend>
 <div class="row show-grid">
 	<div class="col-md-9">
 				<div class="rowlabel" >

@@ -1,1 +1,12 @@
 .pan {text-transform:uppercase;}
+/* for Header Title and label of fieldset */
+.header-color{
+	color: #800000;
+}
+/* for page-title*/
+.page-title{
+	font-weight: bold;
+	font-size: 1.8em;	
+	text-align: center;
+	
+}

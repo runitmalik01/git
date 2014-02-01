@@ -12,11 +12,11 @@
 <%@ page import="com.mootly.wcm.beans.*"%>
 <%
 	ValueListService objValueListService = ValueListServiceImpl
-			.getInstance();
+	.getInstance();
 SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
 request.setAttribute("objHashMapstates", objHashMapstates);
 	TreeMap objHashMapBoolean = (TreeMap) objValueListService
-			.getBoolean();
+	.getBoolean();
 	request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 %>
 <c:set var="parentBeantitle">
@@ -33,7 +33,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
 				<c:out value="${screenConfigDocument.screenHeading}" />
 			</c:when>
-			<c:otherwise>House Income</c:otherwise>
+			<c:otherwise>
+				<h2 class="page-title">House Income</h2>
+			</c:otherwise>
 		</c:choose>
 	</h3>
 	<c:if test="${not empty formMap}">
@@ -51,7 +53,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			<form id="frmdataHouseIncome" action="${actionUrl}" method="post"
 				name="housefrm">
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Property Details</legend>
+					<legend class="header-color">
+						<small>Property Details</small>
+					</legend>
 					<div class="row show-grid">
 						<div class="col-md-3">
 							<div class="rowlabel">
@@ -77,18 +81,20 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<div class="col-md-3">
 							<div class="rowlabel">
 								<label for="states"><small><fmt:message
-										key="member.salary.state" /></small></label>
+											key="member.salary.state" /></small></label>
 							</div>
 							<div class="rowlabel">
-					<select id="states" name="states" class="uprcase">
-						<option value="">-Select-</option>
-						<c:forEach var="booleanCombo" items="${objHashMapstates}">
-							<option
-								<c:if test="${childBean.states == booleanCombo.key}">selected</c:if>
-								value="${booleanCombo.key}">${booleanCombo.value}</option>
-						</c:forEach>
-						<option <c:if test="${childBean.states == '99'}">selected</c:if> value="99">FOREIGN</option>
-					</select>
+								<select id="states" name="states" class="uprcase">
+									<option value="">-Select-</option>
+									<c:forEach var="booleanCombo" items="${objHashMapstates}">
+										<option
+											<c:if test="${childBean.states == booleanCombo.key}">selected</c:if>
+											value="${booleanCombo.key}">${booleanCombo.value}</option>
+									</c:forEach>
+									<option
+										<c:if test="${childBean.states == '99'}">selected</c:if>
+										value="99">FOREIGN</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-3">
@@ -153,7 +159,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="row show-grid">
 						<div class="col-md-6">
 							<div class="rowlabel">
-								<label for="coowned"><small>Is the property co-owned?</small> </label>
+								<label for="coowned"><small>Is the property
+										co-owned?</small> </label>
 							</div>
 							<div>
 								<select name="coowned" id="coowned" onChange="hidecoOwner()"
@@ -183,9 +190,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</fieldset>
 				<fieldset id="coOwner">
-					<legend style="color: green; font-weight: bold;">
-						<abbr title="Is this property being owned by someone else">Ownership
-							Details</abbr>
+					<legend class="header-color">
+						<small> <abbr
+							title="Is this property being owned by someone else">Ownership
+								Details</abbr></small>
 					</legend>
 
 					<div class="row show-grid">
@@ -330,7 +338,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</fieldset>
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">Property Income Details</legend>
+					<legend class="header-color">
+						<small>Property Income Details</small>
+					</legend>
 					<div class="row show-grid letout_L_v letout_S_h"
 						style="dispaly: none;">
 						<div class="col-md-1 decimal">
@@ -476,14 +486,15 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</fieldset>
 				<c:if test="${ not empty ITR2}">
-				<jsp:include page="houseIncome_add.jsp"/>
+					<jsp:include page="houseIncome_add.jsp" />
 				</c:if>
 				<div class="row show-grid">
 					<div class="col-md-4 col-md-offset-8 decimal">
 						<a
 							href="${scriptName}?selectedItrTab=<%=ITRTab.INCOME_HOUSE_PROPERTY_SINGLE%>"
-							class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp; <a
-							id="myModalHrefHouseIncome" role="button" class="btn btn-default btn-success" style="color: black">Save</a>
+							class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
+							id="myModalHrefHouseIncome" role="button"
+							class="btn btn-default btn-success"">Save</a>
 					</div>
 				</div>
 			</form>
@@ -515,34 +526,39 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</a></td>
 							<td><c:out value="${houseincomedetail.address}" /></td>
 							<td><c:out value="${houseincomedetail.property_share}" /></td>
-							<c:choose><c:when test="${ not empty ITR2}"><td><w4india:inr
-									value="${houseincomedetail.total_houseIncome}" /></td>
-									</c:when><c:otherwise>
+							<c:choose>
+								<c:when test="${ not empty ITR2}">
 									<td><w4india:inr
-									value="${houseincomedetail.income_hproperty}" /></td>
-									</c:otherwise>
-									</c:choose>
+											value="${houseincomedetail.total_houseIncome}" /></td>
+								</c:when>
+								<c:otherwise>
+									<td><w4india:inr
+											value="${houseincomedetail.income_hproperty}" /></td>
+								</c:otherwise>
+							</c:choose>
 							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomeedit"><i
-									class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i><small>Edit</small> </a>&nbsp;&nbsp;<a
-								class="btn btn-default btn-danger"
+									class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i><small>Edit</small>
+							</a>&nbsp;&nbsp;<a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${houseincomedetail.canonicalUUID}"/>/houseincomedelete"
 								data-confirm=""><i
-									class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><small>Delete</small> </a></td>
+									class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><small>Delete</small>
+							</a></td>
 						</tr>
-				</c:forEach>
-	</c:if>
+					</c:forEach>
+				</c:if>
 			</table>
 			<c:if test="${empty NEW_CHILD_DISABLED}">
-				<a href="${scriptName}/houseincomenew" class="btn btn-default btn-info" style="color: black">Add
-					New</a>
+				<a href="${scriptName}/houseincomenew"
+					class="btn btn-default btn-info"><small><i
+						class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 			</c:if>
-			
-			
-			
+
+
+
 		</c:otherwise>
 	</c:choose>
-	
+
 </div>
 <res:client-validation formId="frmdataHouseIncome"
 	screenConfigurationDocumentName="houseincome"
@@ -575,59 +591,58 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <res:calc screenCalc="houseincome" formId="frmdataHouseIncome"></res:calc>
 <script type="text/javascript">
-$(document).ready(function() {
-	 var OnLoadCoowned = $("#coowned").val();
-	 if(OnLoadCoowned=="Yes"){
+	$(document).ready(function() {
+		var OnLoadCoowned = $("#coowned").val();
+		if (OnLoadCoowned == "Yes") {
 			$("#coOwner").show();
 			$("#Property_share").show();
 			$("#percentageshare_label").show();
-		} else{
+		} else {
 			$("#coOwner").hide();
 			$("#Property_share").hide();
 			$("#percentageshare_label").hide();
-			
+
 		}
-	 
-	
-	var OnLoadLetOut = $("#letout").val();
-	if(OnLoadLetOut == "S"){
-		$("#Tenant_pan").hide();
-		$("#Tenant_name").hide();
-		$("#idtenantname").hide();
-		$("#idtenantpan").hide();
-			}else{
+
+		var OnLoadLetOut = $("#letout").val();
+		if (OnLoadLetOut == "S") {
+			$("#Tenant_pan").hide();
+			$("#Tenant_name").hide();
+			$("#idtenantname").hide();
+			$("#idtenantpan").hide();
+		} else {
 			$("#Tenant_pan").show();
 			$("#Tenant_name").show();
 			$("#idtenantname").show();
 			$("#idtenantpan").show();
 		}
 	});
-function hideTanPan(){
-	var e=document.getElementById("letout");
-	var valueLetout = e.options[e.selectedIndex].value;
-		if(valueLetout == "S"){
-					$("#Tenant_pan").hide();
-					$("#Tenant_name").hide();
-					$("#idtenantname").hide();
-					$("#idtenantpan").hide();
-			}else{
-					$("#Tenant_pan").show();
-					$("#Tenant_name").show();
-					$("#idtenantname").show();
-					$("#idtenantpan").show();
-			}
+	function hideTanPan() {
+		var e = document.getElementById("letout");
+		var valueLetout = e.options[e.selectedIndex].value;
+		if (valueLetout == "S") {
+			$("#Tenant_pan").hide();
+			$("#Tenant_name").hide();
+			$("#idtenantname").hide();
+			$("#idtenantpan").hide();
+		} else {
+			$("#Tenant_pan").show();
+			$("#Tenant_name").show();
+			$("#idtenantname").show();
+			$("#idtenantpan").show();
+		}
 	}
-	function hidecoOwner(){  
-		var d=document.getElementById("coowned");
+	function hidecoOwner() {
+		var d = document.getElementById("coowned");
 		var valuePropCoOwned = d.options[d.selectedIndex].value;
-		if(valuePropCoOwned=="Yes"){
+		if (valuePropCoOwned == "Yes") {
 			$("#coOwner").show();
 			$("#Property_share").show();
 			$("#percentageshare_label").show();
-		} else{
+		} else {
 			$("#coOwner").hide();
 			$("#Property_share").hide();
 			$("#percentageshare_label").hide();
 		}
 	}
-	</script>
+</script>

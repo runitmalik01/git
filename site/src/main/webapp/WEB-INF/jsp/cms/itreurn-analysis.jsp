@@ -11,7 +11,7 @@
 		<div id="container"
 			style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 	</div>
-</div>
+</div>${itrFormsList}
 <!-- <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div> -->
 <script type="text/javascript">
 var yearList = []; var noOfITReturn = [];

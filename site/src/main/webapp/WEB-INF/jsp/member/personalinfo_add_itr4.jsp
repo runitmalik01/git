@@ -6,7 +6,7 @@
 
 <hst:actionURL var="actionUrl" />
 <fieldset id="fieldsfor_ITR4" class="<c:if test="${parentBean.selectedITRForm != 'ITR4'}"> hide </c:if>">
-<legend>Audit Information</legend>
+<legend class="header-color"><small>Audit Information</small></legend>
 <div class="row show-grid">
 		<div class="col-md-9">
 				<div class="rowlabel" >

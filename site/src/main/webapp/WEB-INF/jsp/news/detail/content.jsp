@@ -151,6 +151,7 @@
 						<hippo-gogreen:copyright document="${document}" />
 					</div>
 				</div>
+
 				<c:if
 					test="${not empty document.attachments && fn:length(document.attachments) > 0 }">
 					<h5>Attachments</h5>
@@ -161,12 +162,30 @@
 						</c:forEach>
 					</ul>
 				</c:if>
-				<ul id="document-actions">
+				<%-- <ul id="document-actions">
 					<li><a class="comment" href="#comment"><fmt:message
 								key="news.detail.content.comment" /> </a></li>
-				</ul>
+				</ul> --%>
+			</div>
+			<div class="postedComments">
+				<c:if test="${commentBeans != null}">
+				<legend style="color:green; font-weight:bold">
+					<small>Shared Comments</small>
+				</legend>
+					<c:forEach var="commentChild" items="${commentBeans}">
+						<div class="alert alert-info">
+						<ul>
+							<li class="glyphicon glyphicon-user"><strong>&nbsp;<c:out
+										value="${commentChild.name}"></c:out></strong></li><br>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <li
+								class="glyphicon glyphicon-comment">&nbsp;<c:out
+									value="${commentChild.body}"></c:out></li>
+									</ul>
+						</div>
+					</c:forEach>
+				</c:if>
 			</div>
 			<hst:include ref="comments" />
+			
 		</div>
 	</c:otherwise>
 </c:choose>

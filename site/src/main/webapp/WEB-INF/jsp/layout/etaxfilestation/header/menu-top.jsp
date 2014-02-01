@@ -27,26 +27,11 @@
 <hst:link var="signup" path="/signup"/>
 <hst:link var="myaccount" path="/member"/>
 <hst:link var="resellersignup" path="/resellersignup"/>
-
 <%--
 <span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
 <a href="javascript:;" class="simpleCart_checkout">Checkout</a>
  --%>
  
- <%
-
- String resellerId = (String) request.getAttribute("resellerId");
- StringBuffer resellerHostName = new StringBuffer();
- if(resellerId != null && request.isUserInRole("ROLE_ResellerAdmin")){
-		resellerHostName.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort()).append(request.getContextPath());
-		resellerHostName.append("/r/").append(resellerId);	
-		request.setAttribute("resellerHostName", resellerHostName);
- }else{
-	 request.setAttribute("resellerHostName", null);
- }
- 
- %>
-
 <hst:link var="securelink" siteMapItemRefId="secure-connection"></hst:link>
 <c:choose>
 	<c:when test="${loggedin}">			
@@ -57,23 +42,13 @@
                    <li><a href="${changepass}"><i class="glyphicon glyphicon-edit"></i>ChangePassword</a></li>
                    <li><a href="${securelink}?security=true"><i class="glyphicon glyphicon-wrench"></i>Security Setting</a></li>
                    <%
-                   	if (request.isUserInRole("ROLE_ResellerAdmin")) {	                    		
+                   	if (request.isUserInRole("ROLE_vendor")) {	                    		
                    %>
-                   	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="glyphicon glyphicon-home"></i>Admin Home</a></li>
-                   	<c:if test="${resellerHostName != null}">
-                   	<li><a href="${resellerHostName}"><i class ="glyphicon glyphicon-globe"></i><c:out value="${resellerHostName}"></c:out></a></li>
-                   	</c:if>
+                   	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="glyphicon glyphicon-home"></i>Vendor Home</a></li>
                    <% } %>
                </ul>
 			   <button type="submit" class="btn btn-default btn-info"  onclick="javascript:$('#frmLogin').attr('action','${logout}');$('#frmLogin').submit()">Logout</button>
 	</c:when>
 	<c:otherwise>	<!-- Login/Signup (when user is logging first time)-->
-	<c:if test = "${resellerId != null && resellerId == 'etaxfilestation'}">
-	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${resellersignup}');$('#frmLogin').submit()">Apply Here !!!</button>
-	</c:if>
-	<c:if test = "${resellerId != null && resellerId != 'etaxfilestation'}">
-	<button type="submit" class="btn btn-default btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
-	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>
-	</c:if>
-	</c:otherwise>
+	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${resellersignup}');$('#frmLogin').submit()">Apply Here !!!</button></c:otherwise>
 </c:choose>		

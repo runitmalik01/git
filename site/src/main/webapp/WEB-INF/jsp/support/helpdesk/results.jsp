@@ -28,51 +28,6 @@
 </c:choose>
 <c:set var="searchresultstitle"><fmt:message key="search.results.title"/></c:set>
 <hippo-gogreen:title title="${searchresultstitle}"/>
-<hst:link var="newticket" siteMapItemRefId="newticket"></hst:link>
- <div><a href="${newticket}" class="btn btn-default btn-success"> <small><i class="glyphicon  glyphicon glyphicon-white"></i>Create New</small></a> </div>
-
-<table class="table table-hover table-striped table-bordered">
-			<thead>
-				<tr class="success">
-					<th>#</th>
-					<th>Ticket Number</th>
-					<th>Summary</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-			  <c:if test="${not empty documents}">
-					<c:forEach items="${documents.items}" var="helpdesklist" varStatus="ct">
-					<hst:link var="helpdeskDocPath" path="member/helpdesk/${helpdesklist.name}.html"/>
-						<tr class="warning">
-							<td><c:out value="${ct.count}" /></td>
-							<td><c:out value="${helpdesklist.identifier}" /></td>
-							<td><c:out value="${helpdesklist.title}" /></td>
-							<td>							
-							<a class="btn btn-default btn-sm btn-success" href="${helpdeskDocPath}"><small><i
-								class="glyphicon glyphicon-pencil"></i>Edit</small></a>
-								</td>
-						</tr>
-		</c:forEach></c:if>		
-			</tbody>
-		</table> 
-		<c:choose>
-		  <c:when test="${documents.total eq 0}">
-		    <p id="results"><fmt:message key="search.results.noresults"/> '${query}'</p>
-		  </c:when>
-		  <c:otherwise>
-		    <hippo-gogreen:pagination pageableResult="${documents}" queryName="query" queryValue="${query}" />
-		  </c:otherwise>
-		</c:choose> 
-		
-		<form method="POST" action="">
-</form>
-<hst:element var="uiCustom" name="script">
-    <hst:attribute name="type">text/javascript</hst:attribute>
-	function s(act) {
-		$("#")
-	}
-</hst:element>
 <div class="page">
     <c:set var="isFound" value="${tags != null or searchResult.total > 0}"/>
     <c:set var="searched" value="'${fn:escapeXml(tag != null ? tag.label : query)}'"/>
@@ -144,12 +99,12 @@
 		   
 		    <c:choose>
 		      <c:when test="${isFound}">
-		      	<hst:element var="robots_Content"  name="meta">
+		      	<hst:element var="robotsContent"  name="meta">
 					<hst:defineObjects/>
 					<hst:attribute name="name">robots</hst:attribute>
 					<hst:attribute name="content">noindex, follow</hst:attribute>
 				</hst:element>
-				<hst:headContribution category="meta" element="${robots_Content}"></hst:headContribution>
+				<hst:headContribution category="meta" element="${robotsContent}"></hst:headContribution>
 		        <div id="search-results">
 		          <c:forEach items="${searchResult.items}" var="hit">
 		            <hst:link var="link" hippobean="${hit}"/>
@@ -176,11 +131,11 @@
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
 		                </c:when>		                
 		                <c:otherwise>
-		                 <%-- <hst:link var="Link" hippobean="${hit}"/>
-		                  <li class="title"><a href="${fn:escapeXml(Link)}"><c:out value="${hit.title}"/></a></li>
+		                  <hst:link var="link" hippobean="${hit}"/>
+		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
 		                  <c:if test="${not empty hit.summary && hit.summary != ''}">
 		                 	 <li class="text"><c:out value="${hit.summary}"/></li>
-		                  </c:if> --%>
+		                  </c:if>
 		                </c:otherwise>
 		              </c:choose>
 		            </ul>

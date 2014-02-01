@@ -20,13 +20,11 @@
     <!-- <intercept-url pattern="/**" access="ROLE_everybody"/> -->
 	<intercept-url pattern="/member/**" access="ROLE_member"/>
 	<intercept-url pattern="/vendor/**" access="ROLE_vendor"/>
-	<intercept-url pattern="/vendor/**" access="ROLE_ResellerAdmin"/>
 	    
     <!--  Reseller Specific URL Patterns this NEEDs to be looked into -->
     <intercept-url pattern="/r/*/memberLogin*" filters="none"/>
     <intercept-url pattern="/r/*/member/**" access="ROLE_member" />
 	<intercept-url pattern="/r/*/vendor/**" access="ROLE_vendor"/>
-	<intercept-url pattern="/r/*/vendor/**" access="ROLE_ResellerAdmin"/>
 
     <custom-filter position="LOGOUT_FILTER" ref="customLogoutFilter"/>
     <custom-filter position="REMEMBER_ME_FILTER" ref="customRememberMeFilter"/>

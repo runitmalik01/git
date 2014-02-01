@@ -4,12 +4,14 @@
 <hippo-gogreen:title title="Schedule-BL" />
 <w4india:itrmenu />
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<h4>
-	<b><c:out value="${screenConfigDocument.screenHeading}"/></b>
-</h4>
+<div class="page-header">
+	<h2 class="title page-title">
+		<c:out value="${screenConfigDocument.screenHeading}" />
+	</h2>
+</div>
 <c:if test="${not empty screenConfigDocument.screenSubHeading}">
 	<div class="alert alert-info">
-		<c:out value="${screenConfigDocument.screenSubHeading}"/>
+		<c:out value="${screenConfigDocument.screenSubHeading}" />
 	</div>
 </c:if>
 <c:if test="${not empty formMap}">
@@ -20,35 +22,47 @@
 	</c:forEach>
 </c:if>
 <c:if test="${not empty invalidSouceAndAppliFind}">
- <div class="alert alert-danger">
-   <fmt:message key="${invalidSouceAndAppliFind}"/>
- </div>
+	<div class="alert alert-danger">
+		<fmt:message key="${invalidSouceAndAppliFind}" />
+	</div>
 </c:if>
-<form name="schedBalanceSheet" id="schedBalanceSheet" action="${actionUrl}" method="post">
+<form name="schedBalanceSheet" id="schedBalanceSheet"
+	action="${actionUrl}" method="post">
 	<c:if test="${not empty parentBean}">
 		<div class="alert alert-warning">
-			<strong>CareFull! Change of selection can lost data until you don't click on save button.Click on<a href="${scriptName}" class="btn btn-default btn-inverse">Get Saved Data</a>.If lost.</strong>
+			<strong>CareFull! Change of selection can lost data until
+				you don't click on save button.Click on<a href="${scriptName}"
+				class="btn btn-default btn-inverse">Get Saved Data</a>.If lost.
+			</strong>
 		</div>
 	</c:if>
 	<div class="row show-grid">
 		<div class="col-md-6">
 			<div class="rowlabel">
-				<label for="regularAccOrNoCase"><small>Do you maintain regular books of accounts of Business or Profession?</small></label>
+				<label for="regularAccOrNoCase"><small>Do you
+						maintain regular books of accounts of Business or Profession?</small></label>
 			</div>
 		</div>
 		<div class="col-md-4">
 			<div class="rowlabel">
 				<select id="regularAccOrNoCase" name="regularAccOrNoCase">
 					<option value="">Select</option>
-					<option value="Y" <c:if test="${parentBean.regularAccOrNoCase == 'Y'}">selected</c:if>>YES</option>
-					<option value="N" <c:if test="${parentBean.regularAccOrNoCase == 'N'}">selected</c:if>>NO</option>
+					<option value="Y"
+						<c:if test="${parentBean.regularAccOrNoCase == 'Y'}">selected</c:if>>YES</option>
+					<option value="N"
+						<c:if test="${parentBean.regularAccOrNoCase == 'N'}">selected</c:if>>NO</option>
 				</select>
 			</div>
 		</div>
 	</div>
-	<h5 align="center" class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Sources of Funds</h5>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Proprietor's fund</legend>
+	<h5 align="center"
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Sources
+		of Funds</h5>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Proprietor's fund</small>
+		</legend>
 		<div class="col-md-3">
 			<div class="rowlabel">
 				<label for="reavReserve"> <small>Revaluation Reserve</small>
@@ -91,7 +105,8 @@
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="propCapital"> <small>Proprietor's capital</small>
+				<label for="propCapital"> <small>Proprietor's
+						capital</small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -101,20 +116,26 @@
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="grossProprietFund"> <small>Gross Proprietor's Fund</small>
+				<label for="grossProprietFund"> <small>Gross
+						Proprietor's Fund</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="grossProprietFund" name="grossProprietFund" type="text"
-					maxlength="14" class="decimal" value="${parentBean.grossProprietFund }" readonly="readonly"/>
+					maxlength="14" class="decimal"
+					value="${parentBean.grossProprietFund }" readonly="readonly" />
 			</div>
-		</div>		
+		</div>
 	</fieldset>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Loan funds</legend>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Loan funds</small>
+		</legend>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="unsecLoanBank"> <small>Unsecured Loan from Banks</small>
+				<label for="unsecLoanBank"> <small>Unsecured Loan
+						from Banks</small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -124,17 +145,20 @@
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="unsecLoanOther"> <small>Unsecured Loan from Other</small>
+				<label for="unsecLoanOther"> <small>Unsecured Loan
+						from Other</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="unsecLoanOther" name="unsecLoanOther" type="text"
-					maxlength="14" class="decimal" value="${parentBean.unsecLoanOther }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.unsecLoanOther }" />
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="forgnCurrLoan"> <small>Foreign Currency Loans</small>
+				<label for="forgnCurrLoan"> <small>Foreign Currency
+						Loans</small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -144,8 +168,8 @@
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="rupLoanBank"><small>Rupee Loans from Banks</small>
-				</label>
+				<label for="rupLoanBank"><small>Rupee Loans from
+						Banks</small> </label>
 			</div>
 			<div class="rowlabel">
 				<input id="rupLoanBank" name="rupLoanBank" type="text"
@@ -154,7 +178,8 @@
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="rupLoanOther"> <small>Rupee Loan from Other</small>
+				<label for="rupLoanOther"> <small>Rupee Loan from
+						Other</small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -169,20 +194,24 @@
 			</div>
 			<div class="rowlabel">
 				<input id="grossLoanFund" name="grossLoanFund" type="text"
-					maxlength="14" class="decimal" value="${parentBean.grossLoanFund }" readonly="readonly"/>
+					maxlength="14" class="decimal" value="${parentBean.grossLoanFund }"
+					readonly="readonly" />
 			</div>
-		</div>		
+		</div>
 	</fieldset>
-	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+	<div
+		class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<div class="row show-grid">
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="defTaxLiability"> <small>Deferred tax liability</small>
+					<label for="defTaxLiability"> <small>Deferred tax
+							liability</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="defTaxLiability" name="defTaxLiability" type="text"
-						maxlength="14" class="decimal" value="${parentBean.defTaxLiability }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.defTaxLiability }" />
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -192,14 +221,20 @@
 				</div>
 				<div class="rowlabel">
 					<input id="sourcOfFund" name="sourcOfFund" type="text"
-						maxlength="14" class="decimal" value="${parentBean.sourcOfFund }" readonly />
+						maxlength="14" class="decimal" value="${parentBean.sourcOfFund }"
+						readonly />
 				</div>
 			</div>
 		</div>
 	</div>
-	<h5 align="center" class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Application of Funds</h5>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Fixed assets</legend>
+	<h5 align="center"
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">Application
+		of Funds</h5>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Fixed assets</small>
+		</legend>
 		<div class="row show-grid">
 			<div class="col-md-3">
 				<div class="rowlabel">
@@ -229,56 +264,69 @@
 				</div>
 				<div class="rowlabel">
 					<input id="capWorkProgrss" name="capWorkProgrss" type="text"
-						maxlength="14" class="decimal" value="${parentBean.capWorkProgrss }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.capWorkProgrss }" />
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="grossFixedAsset"> <small>Gross Fixed Assets</small>
+					<label for="grossFixedAsset"> <small>Gross Fixed
+							Assets</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="grossFixedAsset" name="grossFixedAsset" type="text"
-						maxlength="14" class="decimal" value="${parentBean.grossFixedAsset }" readonly />
+						maxlength="14" class="decimal"
+						value="${parentBean.grossFixedAsset }" readonly />
 				</div>
 			</div>
 		</div>
 	</fieldset>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Investments</legend>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Investments</small>
+		</legend>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="stInvestEquity"> <small>Short Term Investment Equity Shares</small>
+				<label for="stInvestEquity"> <small>Short Term
+						Investment Equity Shares</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="stInvestEquity" name="stInvestEquity" type="text"
-					maxlength="14" class="decimal" value="${parentBean.stInvestEquity }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.stInvestEquity }" />
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="stInvestPrefShare"> <small>Short Term Investment Preference Shares</small>
+				<label for="stInvestPrefShare"> <small>Short Term
+						Investment Preference Shares</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="stInvestPrefShare" name="stInvestPrefShare" type="text"
-					maxlength="14" class="decimal" value="${parentBean.stInvestPrefShare }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.stInvestPrefShare }" />
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="stInvestDebent"> <small>Short Term Investment Debenture</small>
+				<label for="stInvestDebent"> <small>Short Term
+						Investment Debenture</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="stInvestDebent" name="stInvestDebent" type="text"
-					maxlength="14" class="decimal" value="${parentBean.stInvestDebent }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.stInvestDebent }" />
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="ltInvestQuot"> <small>Long Term Investment Govt and Other -Quoted</small>
+				<label for="ltInvestQuot"> <small>Long Term
+						Investment Govt and Other -Quoted</small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -288,12 +336,14 @@
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="ltInvestUnquot"> <small>Long Term Investment Govt and Other -Unquoted</small>
+				<label for="ltInvestUnquot"> <small>Long Term
+						Investment Govt and Other -Unquoted</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="ltInvestUnquot" name="ltInvestUnquot" type="text"
-					maxlength="14" class="decimal" value="${parentBean.ltInvestUnquot }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.ltInvestUnquot }" />
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -303,12 +353,16 @@
 			</div>
 			<div class="rowlabel">
 				<input id="grossInvest" name="grossInvest" type="text"
-					maxlength="14" class="decimal" value="${parentBean.grossInvest }" readonly />
+					maxlength="14" class="decimal" value="${parentBean.grossInvest }"
+					readonly />
 			</div>
 		</div>
 	</fieldset>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Current assets</legend>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Current assets</small>
+		</legend>
 		<div class="row show-grid">
 			<div class="col-md-4">
 				<div class="rowlabel">
@@ -377,7 +431,8 @@
 		<div class="row show-grid">
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="finishGoods"> <small>Finished Goods/Traded Goods</small>
+					<label for="finishGoods"> <small>Finished
+							Goods/Traded Goods</small>
 					</label>
 				</div>
 				<div class="rowlabel">
@@ -387,31 +442,39 @@
 			</div>
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="otherCurrAsset"> <small>Other Current Assets</small>
+					<label for="otherCurrAsset"> <small>Other Current
+							Assets</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="otherCurrAsset" name="otherCurrAsset" type="text"
-						maxlength="14" class="decimal" value="${parentBean.otherCurrAsset }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.otherCurrAsset }" />
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="grossCurrAssets"> <small>Gross Current Assets</small>
+					<label for="grossCurrAssets"> <small>Gross Current
+							Assets</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="grossCurrAssets" name="grossCurrAssets" type="text"
-						maxlength="14" class="decimal" value="${parentBean.grossCurrAssets }" readonly="readonly" />
+						maxlength="14" class="decimal"
+						value="${parentBean.grossCurrAssets }" readonly="readonly" />
 				</div>
 			</div>
 		</div>
 	</fieldset>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Loans and advances</legend>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Loans and advances</small>
+		</legend>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="advancRecover"> <small>Advances recoverable in cash</small>
+				<label for="advancRecover"> <small>Advances
+						recoverable in cash</small>
 				</label>
 			</div>
 			<div class="rowlabel">
@@ -421,112 +484,138 @@
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="loanAdvanCorpOthr"> <small>Deposits,loans and advances to Corp &amp; others</small>
+				<label for="loanAdvanCorpOthr"> <small>Deposits,loans
+						and advances to Corp &amp; others</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="loanAdvanCorpOthr" name="loanAdvanCorpOthr" type="text"
-					maxlength="14" class="decimal" value="${parentBean.loanAdvanCorpOthr }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.loanAdvanCorpOthr }" />
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="balWthRevenAuth"> <small>Balance with Revenue Authorities</small>
+				<label for="balWthRevenAuth"> <small>Balance with
+						Revenue Authorities</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="balWthRevenAuth" name="balWthRevenAuth" type="text"
-					maxlength="14" class="decimal" value="${parentBean.balWthRevenAuth }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.balWthRevenAuth }" />
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="grossCurrAssLoanAdvan"> <small>Gross Current Assets,Loan &amp;Advances</small>
+				<label for="grossCurrAssLoanAdvan"> <small>Gross
+						Current Assets,Loan &amp;Advances</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="grossCurrAssLoanAdvan" name="grossCurrAssLoanAdvan"
-					type="text" maxlength="14" class="decimal" value="${parentBean.grossCurrAssLoanAdvan }" readonly />
+					type="text" maxlength="14" class="decimal"
+					value="${parentBean.grossCurrAssLoanAdvan }" readonly />
 			</div>
 		</div>
 	</fieldset>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Current liabilities</legend>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Current liabilities</small>
+		</legend>
 		<div class="row show-grid">
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="interestAcuurNtLoan"> <small>Interest Accrued(Not due on Loan)</small>
+					<label for="interestAcuurNtLoan"> <small>Interest
+							Accrued(Not due on Loan)</small>
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="interestAcuurNtLoan" name="interestAcuurNtLoan" type="text" maxlength="14"
-						class="decimal" value="${parentBean.interestAcuurNtLoan }" />
+					<input id="interestAcuurNtLoan" name="interestAcuurNtLoan"
+						type="text" maxlength="14" class="decimal"
+						value="${parentBean.interestAcuurNtLoan }" />
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="interestAcuurOnabove"> <small>Interest Accrued on above</small>
+					<label for="interestAcuurOnabove"> <small>Interest
+							Accrued on above</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="interestAcuurOnabove" name="interestAcuurOnabove"
-						type="text" maxlength="14" class="decimal" value="${parentBean.interestAcuurOnabove }" />
+						type="text" maxlength="14" class="decimal"
+						value="${parentBean.interestAcuurOnabove }" />
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="sundryCreditor"> <small>Sundry Creditors</small>
+					<label for="sundryCreditor"> <small>Sundry
+							Creditors</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="sundryCreditor" name="sundryCreditor" type="text"
-						maxlength="14" class="decimal" value="${parentBean.sundryCreditor }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.sundryCreditor }" />
 				</div>
 			</div>
 		</div>
 		<div class="row show-grid">
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="laibLeaseAsset"> <small>Liability for Leased Assets</small>
+					<label for="laibLeaseAsset"> <small>Liability for
+							Leased Assets</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="laibLeaseAsset" name="laibLeaseAsset" type="text"
-						maxlength="14" class="decimal" value="${parentBean.laibLeaseAsset }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.laibLeaseAsset }" />
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="grossCurrLiability"> <small>Gross Current Liablity</small>
+					<label for="grossCurrLiability"> <small>Gross
+							Current Liablity</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="grossCurrLiability" name="grossCurrLiability"
-						type="text" maxlength="14" class="decimal" value="${parentBean.grossCurrLiability }" readonly />
+						type="text" maxlength="14" class="decimal"
+						value="${parentBean.grossCurrLiability }" readonly />
 				</div>
 			</div>
 		</div>
 	</fieldset>
-	<fieldset class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
-		<legend> Provisions</legend>
+	<fieldset
+		class="regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>Provisions</small>
+		</legend>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="incometaxProvis"> <small>Provision for Income Tax</small>
+				<label for="incometaxProvis"> <small>Provision for
+						Income Tax</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="incometaxProvis" name="incometaxProvis" type="text"
-					maxlength="14" class="decimal" value="${parentBean.incometaxProvis }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.incometaxProvis }" />
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="rowlabel">
-				<label for="wealthTaxProvis"> <small>Provision for Wealth Tax</small>
+				<label for="wealthTaxProvis"> <small>Provision for
+						Wealth Tax</small>
 				</label>
 			</div>
 			<div class="rowlabel">
 				<input id="wealthTaxProvis" name="wealthTaxProvis" type="text"
-					maxlength="14" class="decimal" value="${parentBean.wealthTaxProvis }" />
+					maxlength="14" class="decimal"
+					value="${parentBean.wealthTaxProvis }" />
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -556,49 +645,59 @@
 			</div>
 			<div class="rowlabel">
 				<input id="grossProvision" name="grossProvision" type="text"
-					maxlength="14" class="decimal" value="${parentBean.grossProvision }" readonly />
+					maxlength="14" class="decimal"
+					value="${parentBean.grossProvision }" readonly />
 			</div>
 		</div>
 	</fieldset>
-	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+	<div
+		class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<div class="row show-grid">
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="grossCurrLaibilProvison"> <small>Gross Current liabilities and provisions</small>
+					<label for="grossCurrLaibilProvison"> <small>Gross
+							Current liabilities and provisions</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="grossCurrLaibilProvison" name="grossCurrLaibilProvison"
-						type="text" maxlength="14" class="decimal" value="${parentBean.grossCurrLaibilProvison }" readonly />
+						type="text" maxlength="14" class="decimal"
+						value="${parentBean.grossCurrLaibilProvison }" readonly />
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="rowlabel">
-					<label for="netCurrAssets"> <small>Net Current Assets</small>
+					<label for="netCurrAssets"> <small>Net Current
+							Assets</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="netCurrAssets" name="netCurrAssets" type="text"
-						maxlength="14" class="decimal" value="${parentBean.netCurrAssets }" readonly />
+						maxlength="14" class="decimal"
+						value="${parentBean.netCurrAssets }" readonly />
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
+	<div
+		class="well regularAcc_Y regularAcc_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'N'}">hide</c:when></c:choose>">
 		<div class="row show-grid">
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="miscellanExpend"> <small>Miscellaneous expenditure</small>
+					<label for="miscellanExpend"> <small>Miscellaneous
+							expenditure</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="miscellanExpend" name="miscellanExpend" type="text"
-						maxlength="14" class="decimal" value="${parentBean.miscellanExpend }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.miscellanExpend }" />
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="deftaxAssets"> <small>Deferred tax asset</small>
+					<label for="deftaxAssets"> <small>Deferred tax
+							asset</small>
 					</label>
 				</div>
 				<div class="rowlabel">
@@ -608,28 +707,35 @@
 			</div>
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="profLoassAccn"> <small>Profit and loss account</small>
+					<label for="profLoassAccn"> <small>Profit and loss
+							account</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="profLoassAccn" name="profLoassAccn" type="text"
-						maxlength="14" class="decimal" value="${parentBean.grossAppliFund }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.grossAppliFund }" />
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="grossAppliFund"> <small>Gross Application of Funds</small>
+					<label for="grossAppliFund"> <small>Gross
+							Application of Funds</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="grossAppliFund" name="grossAppliFund" type="text"
-						maxlength="14" class="decimal" value="${parentBean.grossAppliFund }" readonly="readonly"/>
+						maxlength="14" class="decimal"
+						value="${parentBean.grossAppliFund }" readonly="readonly" />
 				</div>
 			</div>
 		</div>
 	</div>
-	<fieldset class="noAccount_Y noAccount_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'Y'}">hide</c:when></c:choose>">
-	 <legend>No Account Case</legend>
+	<fieldset
+		class="noAccount_Y noAccount_N <c:choose><c:when test="${empty parentBean.regularAccOrNoCase || parentBean.regularAccOrNoCase == 'Y'}">hide</c:when></c:choose>">
+		<legend class="header-color">
+			<small>No Account Case</small>
+		</legend>
 		<div class="alert alert-info">In a case where regular books of
 			account of business or profession are not maintained -furnish the
 			following information as on 31st day of March, 2013, in respect of
@@ -637,37 +743,44 @@
 		<div class="row show-grid">
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="totalSundryDebtor"> <small>Amount of total sundry debtors</small>
+					<label for="totalSundryDebtor"> <small>Amount of
+							total sundry debtors</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="totalSundryDebtor" name="totalSundryDebtor" type="text"
-						maxlength="14" class="decimal" value="${parentBean.totalSundryDebtor }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.totalSundryDebtor }" />
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="totalSundryCreditor"> <small>Amount of total sundry creditors</small>
+					<label for="totalSundryCreditor"> <small>Amount of
+							total sundry creditors</small>
 					</label>
 				</div>
 				<div class="rowlabel">
-					<input id="totalSundryCreditor" name="totalSundryCreditor" type="text"
-						maxlength="14" class="decimal" value="${parentBean.totalSundryCreditor }" />
+					<input id="totalSundryCreditor" name="totalSundryCreditor"
+						type="text" maxlength="14" class="decimal"
+						value="${parentBean.totalSundryCreditor }" />
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="totalStockTrade"> <small>Amount of total stock-in-trade</small>
+					<label for="totalStockTrade"> <small>Amount of
+							total stock-in-trade</small>
 					</label>
 				</div>
 				<div class="rowlabel">
 					<input id="totalStockTrade" name="totalStockTrade" type="text"
-						maxlength="14" class="decimal" value="${parentBean.totalStockTrade }" />
+						maxlength="14" class="decimal"
+						value="${parentBean.totalStockTrade }" />
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="rowlabel">
-					<label for="cashBalance"> <small>Amount of the cash balance</small>
+					<label for="cashBalance"> <small>Amount of the cash
+							balance</small>
 					</label>
 				</div>
 				<div class="rowlabel">
@@ -680,16 +793,17 @@
 	<div class="row show-grid">
 		<div class="col-md-4 col-md-offset-8 decimal">
 			<!--<a href="${scriptName}"
-				class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;  --> <a
-				id="myModalScheduleBalSheet" role="button" class="btn btn-default btn-success"
-				style="color: black">Save</a>
+				class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;  -->
+			<a id="myModalScheduleBalSheet" role="button"
+				class="btn btn-default btn-success">Save</a>
 		</div>
 	</div>
 </form>
 
-<res:client-validation screenConfigurationDocumentName="balancesheet" formId="schedBalanceSheet" formSubmitButtonId="myModalScheduleBalSheet"></res:client-validation>
+<res:client-validation screenConfigurationDocumentName="balancesheet"
+	formId="schedBalanceSheet" formSubmitButtonId="myModalScheduleBalSheet"></res:client-validation>
 <res:calc screenCalc="balancesheet" formId="schedBalanceSheet"></res:calc>
-	<hst:element var="uiCustom" name="script">
+<hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
        $(document).ready(function() {
           $('#regularAccOrNoCase').change(function(){
@@ -707,8 +821,9 @@
             $('.regularAcc_Y').show();
             $('.noAccount_Y').hide();
           </c:if>
-          <c:if test="${not empty parentBean}">
-           /* var selectChoice = '<c:out value="${parentBean.regularAccOrNoCase}"/>'; 
+	<c:if test="${not empty parentBean}">
+           /* var selectChoice = '<c:out
+			value="${parentBean.regularAccOrNoCase}" />'; 
            $('#regularAccOrNoCase').change(function(){
             if($(this).val() != selectChoice && $(this).val() != ''){
               $()

@@ -21,8 +21,11 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.TimeZone;
 
 
@@ -32,6 +35,7 @@ import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
+import org.hippoecm.hst.content.beans.query.HstQueryResult;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
@@ -84,22 +88,33 @@ public class Detail extends BaseComponent {
 		int commentCount = 0;
 
 		if (document instanceof NewsItem) {
-			commentsFolder = getSiteContentBaseBean(request).getBean("comments/news");
+			commentsFolder = getSiteContentBaseBeanForReseller(request).getBean("cms/news");
 
 		} else if (document instanceof EventDocument) {
 			commentsFolder = getSiteContentBaseBean(request).getBean("comments/events");
 		}
-
+		List<HippoBean> commentBeans = new ArrayList<HippoBean>();
 		if (commentsFolder != null) {
 			try {
 				HstQuery incomingBeansQuery = ContentBeanUtils.createIncomingBeansQuery((HippoDocumentBean) document, commentsFolder, PATH_DEPTH, getObjectConverter(), Comment.class, false);
 				commentCount = incomingBeansQuery.execute().getSize();
+
+				if(commentCount > 0){
+					final HstQueryResult result = incomingBeansQuery.execute();
+					Iterator<HippoBean> itResults = result.getHippoBeans();
+					for (;itResults.hasNext();) {
+						HippoBean hippoBean = itResults.next();
+						if (hippoBean instanceof HippoDocumentBean) {
+							commentBeans.add(hippoBean);
+						}
+					}
+				}
 			} catch (QueryException e) {
 				log.error(e.getMessage());
 			}
 
 		}
-
+		request.setAttribute("commentBeans", commentBeans);
 		request.setAttribute("commentCount", commentCount);
 	}
 
@@ -120,7 +135,7 @@ public class Detail extends BaseComponent {
 		String newEndDate= request.getParameter("newenddate");
 		String flag = request.getParameter("deleteevent");
 		String newsflag = request.getParameter("deletenews");		
-		
+
 		EventDocument edoc = new EventDocument();	
 		edoc.setTitle(title);
 		edoc.setSummary(summary);
@@ -201,7 +216,7 @@ public class Detail extends BaseComponent {
 			}
 		}
 	}
-	
+
 	// Edit News
 	protected  void editNewNews(HstRequest request,NewsItem nd){
 		Session persistableSession = null;
@@ -235,7 +250,7 @@ public class Detail extends BaseComponent {
 
 	//Delete Events
 	protected  void DeleteEvents(HstRequest request,EventDocument ed) {
-		
+
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 		try {

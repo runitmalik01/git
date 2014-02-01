@@ -19,11 +19,13 @@
 				<li class="active"><c:out value="${document.name}" /></li>
 			</ul>
 			<c:if test="${not empty Success}">
-				<div class="alert alert-success">Your have Successfully applied for ${document.name}.Soon we will contact you.</div>
+				<div class="row show-grid">
+					<div class="alert alert-success">Your have Successfully applied for ${document.name}.Soon we will contact you.</div>
+				</div>
 			</c:if>
 			<!-- content -->
-			<div class="row">
-				<div id="content" class="col-md-12">
+			<div class="row show-grid">
+				<div id="content">
 					<h3 align="center">
 						<c:out value="${document.name}" />
 					</h3>

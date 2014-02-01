@@ -74,7 +74,7 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 	private String strRequestStatus;
 	private Boolean paymentDone;
 	private String invoiceDocumentHandleUUID;
-
+	
 	public Long getServiceRequestNumber() {
 		if(serviceRequestNumber == null) serviceRequestNumber = getProperty("mootlywcm:serviceRequestNumber");
 		return serviceRequestNumber;
@@ -318,28 +318,18 @@ public class ServiceRequestDocument extends BaseDocument implements ContentNodeB
 			javax.jcr.Node serviceNode;
 			if(node.hasNode("mootlywcm:serviceDocument")){
 				serviceNode = node.getNode("mootlywcm:serviceDocument");
+				serviceNode.setProperty(Constants.PROP_HIPPO_DOCBASE, bean.getServiceCanonicalHandleUUID());
 			} else {
 				serviceNode = node.addNode("mootlywcm:serviceDocument", "hippo:mirror");
-			}
-			if(serviceNode != null){
 				serviceNode.setProperty(Constants.PROP_HIPPO_DOCBASE, bean.getServiceCanonicalHandleUUID());
 			}
 			javax.jcr.Node servicerequestInvoice;
 			if(node.hasNode("mootlywcm:requestInvoiceDocument")){
-				log.error("Error in Repository");
 				servicerequestInvoice = node.getNode("mootlywcm:requestInvoiceDocument");
+				servicerequestInvoice.setProperty(Constants.PROP_HIPPO_DOCBASE, bean.getServiceCanonicalHandleUUID());
 			} else {
-				log.error("Error in Repository");
 				servicerequestInvoice = node.addNode("mootlywcm:requestInvoiceDocument", "hippo:mirror");
-			}
-			if(servicerequestInvoice != null){
-				if(StringUtils.isNotBlank(bean.getInvoiceDocumentHandleUUID())){
-					log.error("Error in Repository");
-					servicerequestInvoice.setProperty(Constants.PROP_HIPPO_DOCBASE, bean.getInvoiceDocumentHandleUUID());
-				}else{
-					log.error("Error in Repository");
-					servicerequestInvoice.setProperty(Constants.PROP_HIPPO_DOCBASE, "");	
-				}
+				servicerequestInvoice.setProperty(Constants.PROP_HIPPO_DOCBASE, bean.getInvoiceDocumentHandleUUID());
 			}
 		} 
 		catch (RepositoryException e) {

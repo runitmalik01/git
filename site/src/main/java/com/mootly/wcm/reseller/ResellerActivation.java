@@ -276,12 +276,6 @@ public class ResellerActivation extends BaseComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeServeResource(request, response);
 	}
-	
-	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
-		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-			wf.publish();
-		}
-	}
 
 	public String getIsactive() {
 		return Isactive;

@@ -23,8 +23,12 @@ ${aggIncome }
 			<c:otherwise></c:otherwise>
 		</c:choose>
 	</h3>
-	<h4>Schedule UD</h4>
-
+	<div class="page-header">
+		<h2 class="title page-title">Schedule UD</h2>
+		<h4>
+			<small></small>
+		</h4>
+	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
@@ -32,12 +36,14 @@ ${aggIncome }
 			<form id="UAdepriciation" action="${actionUrl}" method="post"
 				name="UAdepriciation">
 				<fieldset>
-					<legend style="color: green; font-weight: bold;">UnAbsorbed
-						Depreciation Details</legend>
+					<legend class="header-color">
+						<small>Unabsorbed Depreciation Details</small>
+					</legend>
 					<br />
 					<div class="col-md-4">
 						<div class="rowlabel">
-							<label for="assessYear"> <small>Assessment Year</small> </label>
+							<label for="assessYear"> <small>Assessment Year</small>
+							</label>
 						</div>
 						<div class="rowlabel">
 							<input id="assessYear" name="assessYear" maxLength="7"
@@ -49,7 +55,8 @@ ${aggIncome }
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="amtUaDep"> <small>Amount of brought
-									forward unabsorbed depreciation</small> </label>
+									forward unabsorbed depreciation</small>
+							</label>
 						</div>
 						<div class="rowlabel">
 							<input id="amtUaDep" name="amtUaDep" maxLength="14"
@@ -60,8 +67,9 @@ ${aggIncome }
 				</fieldset>
 				<div class="row show-grid">
 					<div class="col-md-3 col-md-offset-10">
-						<a href="${redirectURLToSamePage}" class="btn btn-default btn-danger">Cancel</a>
-						&nbsp; <a id="myModalHrefUADepreciate" role="button"
+						<a href="${redirectURLToSamePage}"
+							class="btn btn-default btn-danger">Cancel</a> &nbsp; <a
+							id="myModalHrefUADepreciate" role="button"
 							class="btn btn-default btn-success">Save</a>
 					</div>
 				</div>
@@ -87,22 +95,20 @@ ${aggIncome }
 							<c:if test="${UD.assYr eq depreciation.assessYear }">
 								<c:forEach var="UUID" items="${depreciation.canonicalUUID}">
 									<tr>
-										<td align="right"><c:out value="${UD.assYr}" />
-										</td>
+										<td align="right"><c:out value="${UD.assYr}" /></td>
 										<td align="right"><c:out value="${UD.amtBFUD}" /></td>
-										<td align="right"><c:out value="${UD.amtDeprSOCY}" />
-										</td>
-										<td align="right"><c:out value="${UD.balCFNY}" />
-										</td>
+										<td align="right"><c:out value="${UD.amtDeprSOCY}" /></td>
+										<td align="right"><c:out value="${UD.balCFNY}" /></td>
 
 										<td><a class="btn btn-default btn-primary"
 											href="${scriptName}/<c:out value="${UUID}"/>/scheduleUDedit"><small><i
-													class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small> &nbsp;&nbsp; </a>&nbsp;&nbsp;<a
+													class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+												&nbsp;&nbsp; </a>&nbsp;&nbsp;<a
 											class="btn btn-default btn-danger"
 											href="${scriptName}/<c:out value="${UUID}"/>/scheduleUDdelete"
 											id="delete" data-confirm=""><small><i
-													class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small> </a>
-										</td>
+													class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+										</a></td>
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -116,7 +122,9 @@ ${aggIncome }
 
 			</table>
 			<a href="${redirectURLToSamePage}/scheduleUDnew"
-				class="btn btn-default btn-info">Add New</a>
+				class="btn btn-default btn-info"><small><i
+					class="glyphicon glyphicon-plus-sign"></i>Add
+					New</small></a>
 		</c:otherwise>
 	</c:choose>
 </div>

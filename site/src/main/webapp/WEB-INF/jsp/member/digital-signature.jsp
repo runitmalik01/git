@@ -11,44 +11,21 @@
 		</div>
 	</c:forEach>
 </c:if>
-<c:choose>
-	<c:when test="${not empty  listOfAllMemberFiles}">
-		<c:forEach var="file" items="${listOfAllMemberFiles}">
-			<!-- We show only those files which are in digitalsignature subdrive -->
-			<c:choose>
-				<c:when test="${not empty subDriveName && fn:contains(file.canonicalPath, subDriveName)}">
-					<c:set value="true" var="digiSign" />
-				</c:when>
-				<c:otherwise>
-					<c:set value="false" var="digiSign" />
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-	</c:when>
-	<c:otherwise>
-		<c:set value="false" var="digiSign" />
-	</c:otherwise>
-</c:choose>
-<%
-	StringBuilder builder = new StringBuilder();
-	builder.append(
-			request.getScheme() + "://" + request.getServerName())
-			.append(":").append(request.getServerPort());
-	HstRequest hstRequest = (HstRequest) request;
-	ITReturnComponentHelper componentHelper = new ITReturnComponentHelper();
-	if (componentHelper.isReSeller(hstRequest)) {
-		if (componentHelper.getResellerId(hstRequest) != null) {
-			builder.append("/r/").append(
-					componentHelper.getResellerId(hstRequest));
-		}
+<%StringBuilder builder=new StringBuilder();
+builder.append(request.getScheme() + "://" +  request.getServerName()).append(":").append(request.getServerPort());
+HstRequest hstRequest = (HstRequest) request;
+ITReturnComponentHelper componentHelper = new ITReturnComponentHelper();
+if(componentHelper.isReSeller(hstRequest)){
+	if(componentHelper.getResellerId(hstRequest) != null){
+		builder.append("/r/").append(componentHelper.getResellerId(hstRequest));
 	}
-	pageContext.setAttribute("hostname", builder.toString());
+}
+pageContext.setAttribute("hostname", builder.toString());
 %>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <w4india:itrmenu/>
 	<h4>Digital Signature</h4>
-	<div class="alert alert-info">You are allowed to upload only one Digital Signature for <c:out value="${memberpersonalinformation.PAN}"/> pan.If you want to change the signature then delete previous then upload new.</div>
 	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
 	<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
 		<fieldset>
@@ -68,7 +45,6 @@
 			</div>
 		</fieldset>
 	</c:if>
-	<c:if test="${not empty digiSign and digiSign eq 'false'}">
 	<fieldset>
 		<legend>Upload your Digital Signature for FY:${memberpersonalinformation.financialYear}</legend>
 		   <!--  <div class="row show-grid">
@@ -85,27 +61,14 @@
 		   </div>
 		</c:if>
 		<c:if test="${not empty msg}">
-			<div class="row">
-			  <div class="col-md-12">
-				<div class="alert alert-success"><c:if test="${not empty digiverified && digiverified eq 'true'}">Upload Digital Signature is valid.&nbsp;</c:if>Your have successfully
-					uploaded file in Member Drive.</div>				
-			   </div>
-			</div>
-		</c:if>
-		<c:if test="${not empty errorList || (not empty digiverified && digiverified eq 'false')}">
-			<div class="row">
-			  <div class="col-md-12">
-				<div class="alert alert-danger">Uploaded digital signature is
-					not valid.May be signature or password is incorrect.Please upload
-					valid Digital Signature.</div>
-			   </div>
+			<div class="row show-grid">
+				<div class="alert alert-success">Your have successfully
+					uploaded file in Member Drive.</div>
 			</div>
 		</c:if>
 		<c:if test="${not empty delete}">
-			<div class="row">
-			  <div class="col-md-12">
+			<div class="row show-grid">
 				<div class="alert alert-info">File has been deleted from Member Drive</div>
-			  </div>
 			</div>
 		</c:if>
 		<div class="row show-grid">
@@ -114,7 +77,7 @@
 			               <label for="description"><small>Type (Optional)</small></label>
 			         </div>
 			         <div class="rowlabel">
-			                 <select name="description" id="description">
+			                 <select name="description" id="description" class="col-md-8">
 			                      <option value="Digital Signature">Digital Signature</option>
 			                 </select>
 			          </div>				    				   		
@@ -160,10 +123,8 @@
 				 </div>
 		</div>
 	</fieldset>
-	</c:if>
-	</form>
 	<fieldset>
-		<legend>Your Digital Signature for Financial Year:${memberpersonalinformation.financialYear}</legend>
+		<legend>Your documents for Financial Year:${memberpersonalinformation.financialYear}</legend>
 		<div class="row show-grid hide" id="file_process">
 		      <div class="well">
 		         <div class="col-md-8">
@@ -183,8 +144,7 @@
 				 </div>
 			  </div>
 			</div>
-		    <div class="row">
-		       <div class="col-md-12">
+		    <div class="row show-grid">
                    <div class="file_name">
                         <table class="table table-hover table-bordered">
                            <thead>
@@ -194,18 +154,14 @@
                                   <th>Type</th>
                                   <th align="center">Action</th>
                                   <th>Last Uploaded</th>
-                                  <%-- <c:if test="${isVendor}"><th>Action Permission</th></c:if> --%>
                                </tr>
                            </thead>
                            <tbody>
-                             <c:set value="/${subDriveName}/" var="modsubDriveName"/>
                              <%-- <c:forEach var="file" items="${memberFiles}"> --%>
-                             <c:forEach var="file" items="${listOfAllMemberFiles}">                            
-                             <!-- We show only those files which are in digitalsignature subdrive -->
-                             <c:if test="${not empty subDriveName and fn:contains(file.canonicalPath, modsubDriveName)}">
+                             <c:forEach var="file" items="${listOfAllMemberFiles}">
                                <tr>
                                   <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
-                        	     <hst:link var="assetLink" hippobean="${file.memberFileResource}"/>
+                        	     <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
                                   <td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>                                      
@@ -213,20 +169,15 @@
                                       <i class="glyphicon glyphicon-eye-open glyphicon glyphicon-white"></i><span>View</span></a>
                                       <a href="${assetLink}" class="btn btn-default btn-primary">
                                       <i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
-                                      <c:if test="${(not empty file.accessPermission and file.accessPermission eq 'WRITE') or isVendor}">
-                                         <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
-                                         <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>
-                                      </c:if>                       
+                                      <a href="${scriptName}?delete=${file.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
+                                      <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>                                   
                                   </td>
                                   <td><fmt:formatDate value="${file.memberFileResource.lastModified.time}" type="date" pattern="MMM d, yyyy"/></td>
-                                  <%-- <c:if test="${isVendor}"><td><hst:include ref=""/></td></c:if> --%>
-                                </tr>
-                               </c:if>
+                               </tr>
                               </c:forEach>
                             </tbody>
                            </table>
                       </div>
-                   </div>
 		      </div>
 	</fieldset>
 	<%--
@@ -238,6 +189,7 @@
 		</div>
 	</c:if>
 	 --%>
+</form>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function(){

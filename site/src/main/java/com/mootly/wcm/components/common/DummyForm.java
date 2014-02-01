@@ -18,6 +18,7 @@
 package com.mootly.wcm.components.common;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import javax.jcr.Session;
@@ -57,13 +58,17 @@ public class DummyForm extends EmailForm {
 		String emailAddress=map.getField("email").getValue().toString();
 		String comments=map.getField("comments").getValue().toString();
 		String subject=map.getField("subject").getValue().toString();
+		String resolution=map.getField("resolution").getValue().toString();
+		System.out.println("value form jsp::"+resolution);
+		
 		//To create document as contact (ContactUs-Bean).
 		ContactUs contact = new  ContactUs();
-		//Create setter the values of required fields.
 		contact.setUserName(userName);
 		contact.setEmailAddress(emailAddress);
 		contact.setComments(comments);
 		contact.setSubject(subject);
+		contact.setResolution(resolution);
+		
 
 		// To fetch the values of fields in Form(ContactUs) through contact document..
 		createContactUsForm(request,contact,emailAddress);
@@ -101,11 +106,15 @@ public class DummyForm extends EmailForm {
 				Contactdocument.setEmailAddress(contact.getEmailAddress());
 				Contactdocument.setComments(contact.getComments());
 				Contactdocument.setSubject(contact.getSubject());
+				Contactdocument.setResolution(contact.getResolution());
+				log.info("helllo::::::"+Contactdocument.getResolution());
+			
 				// update now           `
 				wpm.update(Contactdocument);
 				Map<String,Object> contextMap = new HashMap<String, Object>();
 				// object is being used to fetch emailaddress from repository.
 				contextMap.put("Contactdocument", Contactdocument);
+				contextMap.put("emailSignature", "Thank You<br/>Wealth4India Team");// to putting signature in email template
 				String memberFolderPath=ContentStructure.getMemberContactUs(request);
 				//A node is created with directory member/contactus.
 				String pathToNewNode = wpm.createAndReturn(memberFolderPath +"/contactus", EmailMessage.NAMESPACE, "ack_contact_mail", true);
@@ -129,7 +138,7 @@ public class DummyForm extends EmailForm {
 				}	
 				//It will show the error message.
 				else {
-					emailMessage.setSubject("This is TEST, Welcome to MOOTLY");
+					emailMessage.setSubject("This is Feedback page, Welcome to MOOTLY");
 					emailMessage.setHtmlBody("<B>COOL</B>");
 				}
 				wpm.update(emailMessage);

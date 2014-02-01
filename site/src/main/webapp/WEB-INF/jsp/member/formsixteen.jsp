@@ -20,14 +20,12 @@
 			<c:out value="${screenConfigDocument.screenHeading}" />
 		</c:when>
 		<c:otherwise>
-			<div class="page-header">
-				<h2>
-					<b>Salary Income</b>
-				</h2>
-				<small>Enter details of your employer from Form 16 e.g. PAN,
-					TAN, Address, etc. These details can be found in your Form-16
-					issued to you by your employer.</small>
-			</div>
+
+			<h2 class="page-title">Salary Income</h2>
+			<h4><small>Enter details of your employer from Form 16 e.g. PAN,
+				TAN, Address, etc. These details can be found in your Form-16 issued
+				to you by your employer.</small></h4>
+
 			<!-- <h2 style="color: black;">Salary Income: Employer Details</h2> -->
 		</c:otherwise>
 	</c:choose>
@@ -49,8 +47,9 @@
 					tax deducted at source from income chargeable under the head
 					"Salaries".</p> -->
 				<fieldset>
-					<legend style="font-style: italic; color: blue;">Category
-						Of Employment</legend>
+					<legend class="header-color">
+						<small>Category Of Employment</small>
+					</legend>
 					<div class="row show-grid">
 						<div class="col-md-3">
 							<div class="rowlabel">
@@ -72,8 +71,9 @@
 						</div>
 					</div>
 					<br />
-					<legend style="font-style: italic; color: blue;"> Details
-						Of Employer & Employee</legend>
+					<legend class="header-color">
+						<small>Details Of Employer & Employee</small>
+					</legend>
 					<div class="row show-grid">
 						<div class="col-md-4">
 							<div class="rowlabel">
@@ -323,8 +323,10 @@
 				</table>
   -->
 				<fieldset>
-					<legend style="font-style: italic; color: blue;"> Details
-						of salary paid and any other income and tax deducted</legend>
+					<legend class="header-color">
+						<small>Details of salary paid and any other income and tax
+							deducted</small>
+					</legend>
 					<label><strong>1.</strong> </label> <label> Gross salary</label>
 					<table>
 						<tr>
@@ -363,8 +365,10 @@
 				</fieldset>
 
 				<fieldset>
-					<legend style="font-style: italic; color: blue;">
-						<em>Less:</em> Allowance to the exempt under section 10
+					<legend class="header-color">
+						<small> <em>Less:</em> Allowance to the exempt under
+							section 10
+						</small>
 					</legend>
 
 					<div class="row show-grid">
@@ -441,8 +445,9 @@
 					</div>
 				</fieldset>
 				<fieldset id="deductions">
-					<legend style="font-style: italic; color: blue;">Deductions
-						U/S 16</legend>
+					<legend class="header-color">
+						<small>Deductions U/S 16</small>
+					</legend>
 					<div class="row show-grid">
 						<div class="col-md-4">
 							<div class="rowlabel" id="ent">
@@ -936,7 +941,9 @@
 							value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.relief_1}"/></c:if>"
 							placeholder="Rs.">-->
 				<fieldset>
-					<legend style="font-style: italic; color: blue;">Tax Head</legend>
+					<legend class="header-color">
+						<small>Tax Head</small>
+					</legend>
 					<div class="row show-grid">
 						<div class="col-md-8">
 							<div class="rowlabel">
@@ -1052,10 +1059,11 @@
 						</tr>--%>
 					<div class="row show-grid">
 						<div class="col-md-4 col-md-offset-8 decimal">
-							<a id="myModalHrefFormSixteen" role="button"
+							<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
+								class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
+								id="myModalHrefFormSixteen" role="button"
 								class="btn btn-default btn-success">Save</a>
-							&nbsp;<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
-								class="btn btn-default btn-danger">Cancel</a>
+
 						</div>
 					</div>
 			</form>
@@ -1077,12 +1085,11 @@
 							<td><c:out value="${salaryItemDetail.employee}" /></td>
 							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteenedit"><small><i
-										class="glyphicon glyphicon-pencil"></i>Edit</small>
-							</a>&nbsp;&nbsp;<a class="btn btn-default btn-danger"
+										class="glyphicon glyphicon-pencil"></i>Edit</small> </a>&nbsp;&nbsp;<a
+								class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${salaryItemDetail.canonicalUUID}"/>/formsixteendelete"
 								data-confirm=""><small><i
-										class="glyphicon glyphicon-trash"></i>Delete</small>
-							</a></td>
+										class="glyphicon glyphicon-trash"></i>Delete</small> </a></td>
 						</tr>
 					</c:forEach>
 				</c:if>

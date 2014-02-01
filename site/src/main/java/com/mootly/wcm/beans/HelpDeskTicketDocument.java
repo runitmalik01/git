@@ -1,24 +1,16 @@
 package com.mootly.wcm.beans;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
-import javax.jcr.Binary;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
-import javax.jcr.ValueFactory;
 
-import org.apache.jackrabbit.JcrConstants;
-import org.apache.jackrabbit.value.ValueFactoryImpl;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,52 +33,16 @@ public class HelpDeskTicketDocument extends FlexibleDocument implements ContentN
 	private static final String PROP_PROBLEM_CATEGORY = "mootlywcm:problemCategory";
 	private static final String PROP_ASSESSMENT_YEAR = "mootlywcm:assessmentYear";
 	
-	private String MEMBER_FILE_NAME ="mootlywcm:memberFileName";
 	private static final String PROP_NOTES = "mootlywcm:HelpDeskTicketNote";
-	private String MEMBER_DOCS ="mootlywcm:memberDocs";
-	private InputStream memberFileResource;
-	private String contentType;
-	String memberFileName;
+	
 	String identifier;
 	String title;
 	String problemCategory;
 	String assessmentYear; 
 	String description;
-	String userName;
 	List<HelpDeskTicketNote> notes = null;
 	
-	private boolean markedForDeletion;public HippoResource getMemberFileResource() {
-		return getBean(MEMBER_DOCS);
-	}
-	
-	public HippoResource getMemberFileResourceWithFileName() {
-		return getBean(getMemberFileName());
-	}
-	public InputStream getMemberFile(){
-		return memberFileResource;
-	}
-	/**
-	 * @param memberFileResource the memberFileResource to set
-	 */
-	public void setMemberFile(InputStream memberFileResource) {
-		this.memberFileResource = memberFileResource;
-	}
-	public String getContentType() {
-		return contentType;
-	}
-	/**
-	 * @param contentType the contentType to set
-	 */
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-	public final String getUserName() {
-		if (userName == null) userName = getProperty("mootlywcm:userName");
-		return userName;
-	}
-	public final void setUserName(String userName) {
-		this.userName = userName;
-	}
+	private boolean markedForDeletion;
 	
 	@FormField(name="identifier")
 	@NodeBinder(nodePropertyName=PROP_IDENTIFIER,propertyName="identifier")
@@ -163,15 +119,7 @@ public class HelpDeskTicketDocument extends FlexibleDocument implements ContentN
 	public final void setDescription(String description) {
 		this.description = description;
 	}
-	@FormField(name="memberFileName")
-	public String getMemberFileName() {
-		if(memberFileName == null) memberFileName = getProperty(MEMBER_FILE_NAME);
-		return memberFileName;
-	}
-	@BeanClone
-	public void setMemberFileName(String memberFileName) {
-		this.memberFileName = memberFileName;
-	}
+
 	@Override
 	public boolean bind(Object content, javax.jcr.Node node)
 			throws ContentNodeBindingException {
@@ -179,32 +127,8 @@ public class HelpDeskTicketDocument extends FlexibleDocument implements ContentN
 		super.bindToNode(node);
 		NodeBinderHelper nodeBinderHelper = new NodeBinderHelper();
 		nodeBinderHelper.bindObjectToNode(node, this);
-		HelpDeskTicketDocument helpDeskTicketDocument = (HelpDeskTicketDocument) content;    
 		
-		try {
-			if (log.isInfoEnabled()) {
-				log.info("this is bean File");
-			}
-			ValueFactory vf = ValueFactoryImpl.getInstance();
-			if(node.hasNode(MEMBER_DOCS)){
-				if (log.isInfoEnabled()) {
-					log.info("document contain node");
-				}
-				javax.jcr.Node resourceNode= node.getNode(MEMBER_DOCS);
-				if(resourceNode!=null){
-					Binary binaryValue = vf.createBinary(helpDeskTicketDocument.getMemberFile());
-					resourceNode.setProperty(JcrConstants.JCR_DATA,binaryValue);
-					resourceNode.setProperty(JcrConstants.JCR_MIMETYPE, helpDeskTicketDocument.getContentType());
-					resourceNode.setProperty(JcrConstants.JCR_LASTMODIFIED, Calendar.getInstance(TimeZone.getTimeZone("GMT+05:30")));
-				}
-			} node.setProperty(MEMBER_FILE_NAME, getMemberFileName());
-			node.setProperty("mootlywcm:userName", helpDeskTicketDocument.getUserName());
-			
-		}
-			catch (RepositoryException e) {
-				log.error("Repository Exception",e);
-				throw new ContentNodeBindingException(e);
-			}
+		HelpDeskTicketDocument helpDeskTicketDocument = (HelpDeskTicketDocument) content;
 		try {
 			NodeIterator nodeIterator = node.getNodes(PROP_NOTES);
 			if (nodeIterator != null) {
@@ -220,15 +144,14 @@ public class HelpDeskTicketDocument extends FlexibleDocument implements ContentN
 						helpDeskTicketNote.bindToNode(html); 
 					//}
 				}
-			}
-		}
-		catch (RepositoryException e) {
+			}	
+		}catch (RepositoryException e) {
 			log.error("Repository Exception ",e);
 		}
 			
 		return true;
-			
-}
+	}
+	
 	@Override
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
@@ -260,7 +183,5 @@ public class HelpDeskTicketDocument extends FlexibleDocument implements ContentN
 			addNote(source);
 		}
 	}
-
-	
 	
 }

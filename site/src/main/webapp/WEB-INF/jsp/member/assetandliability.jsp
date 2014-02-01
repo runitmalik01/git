@@ -10,16 +10,22 @@
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
-
-	<h4>
-		<fmt:message key="asset.liability.itr4" />
-	</h4>
+	<div class="page-header">
+		<h2 class="title page-title">Schedule AL</h2>
+		<h4>
+			<small><fmt:message key="asset.liability.itr4" /></small>
+		</h4>
+	</div>
 	<form id="frmAsset_Liability" action="${actionUrl}" method="post"
 		name="frmAsset_Liability">
 		<fieldset>
-			<legend style="color: blue">Particulars of Asset </legend>
+			<legend class="header-color">
+				<small>Particulars of Asset</small>
+			</legend>
 			<fieldset>
-				<legend style="color: green; font-weight: bold;">Immovable Asset</legend>
+				<legend class="header-color">
+					<small>Immovable Asset</small>
+				</legend>
 				<div class="row show-grid">
 					<div class="col-md-8">
 						<div class="rowlabel">
@@ -50,8 +56,10 @@
 				</div>
 			</fieldset>
 			<fieldset>
-				<legend style="color: green; font-weight: bold;">Movable Asset</legend>
-				<h2>Financial Asset</h2>
+				<legend class="header-color">
+					<small>Movable Asset</small>
+				</legend>
+				<h4>Financial Asset</h4>
 
 				<div class="row show-grid">
 					<div class="col-md-1 decimal">
@@ -229,9 +237,9 @@
 		</div>
 		<div class="row show-grid">
 			<div class="col-md-4 col-md-offset-8 decimal">
-				<a href="${scriptName}" class="btn btn-default btn-danger" style="color: black">Cancel</a>&nbsp;
+				<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
 				<a id="myModalAssetAndLiability" role="button"
-					class="btn btn-default btn-success" style="color: black">Save</a>
+					class="btn btn-default btn-success">Save</a>
 			</div>
 		</div>
 	</form>

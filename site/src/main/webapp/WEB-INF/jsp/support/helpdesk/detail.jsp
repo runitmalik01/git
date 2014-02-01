@@ -30,13 +30,13 @@
 </c:if>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
-<form id="frmHelpDesk" name="frmHelpDesk" method="POST" action="${actionUrl}" enctype="multipart/form-data">
+<form id="frmHelpDesk" name="frmHelpDesk" method="POST" action="${actionUrl}">
 	<%-- Help Desk Ticket Id --%>
 	<div class="row show-grid">
 		<div class="col-md-2">Ticket #</div>
 		<div class="col-md-10">
 			<c:choose>
-				<c:when test="${not empty pageAction && pageAction == 'NEW_CHILD' || pageAction == 'NEW' }">			
+				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">			
 				</c:when>
 				<c:otherwise>				
 					${document.identifier}
@@ -49,7 +49,7 @@
 		<div class="col-md-2"><label for="title">Summary</label></div>
 		<div class="col-md-10">
 			<c:choose>
-				<c:when test="${not empty pageAction && pageAction == 'NEW_CHILD' || pageAction == 'NEW' }">		
+				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">		
 					<input id="title" type="text" name="title" value="${document.title}"/>	
 				</c:when>
 				<c:otherwise>				
@@ -63,14 +63,14 @@
 		<div class="col-md-2"><label for="problemCategory">Problem Category</label></div>
 		<div class="col-md-10">
 			<c:choose>
-				<c:when test="${not empty pageAction && pageAction == 'NEW_CHILD' || pageAction == 'NEW' }">
-					<select id="problemCategory" name="problemCategory" value="${document.problemCategory}">
+				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">
+					<select id="problemCategory" name="problemCategory">
 						<option value="itreturn">Income Tax Return (New)</option>
 						<option value="itreturn">Income Tax Return (Existing)</option>
 					</select>
 				</c:when>
 				<c:otherwise>
-					${document.problemCategory}"
+					<c:out value="${document.problemCategory}"/>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -80,8 +80,8 @@
 		<div class="col-md-2"><label for="assessmentYear">Assessment Year</label></div>
 		<div class="col-md-10">
 			<c:choose>
-				<c:when test="${not empty pageAction && pageAction == 'NEW_CHILD' || pageAction == 'NEW' }">
-					<select id="assessmentYear" name="assessmentYear" >
+				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">
+					<select id="assessmentYear" name="assessmentYear">
 						<% 
 							for (FinancialYear financialYear:FinancialYear.values()) {
 								if (financialYear.isActive() && financialYear != FinancialYear.UNKNOWN) {
@@ -103,32 +103,16 @@
 		<div class="col-md-2">Description</div>
 		<div class="col-md-10">
 			<c:choose>
-				<c:when test="${not empty pageAction && pageAction == 'NEW_CHILD' || pageAction == 'NEW' }">		
-					<textarea id="description" name="description" rows="5" >${document.description}</textarea>
+				<c:when test="${not empty pageAction && (pageAction == 'NEW') }">		
+					<textarea id="description" name="description" rows="5"></textarea>
 				</c:when>
 				<c:otherwise>				
-					<c:out value="${document.description}"/>
+					${document.description}
 				</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
-	<div class="row show-grid">
-	 <div class="col-md-3">Attachments</div>
-	 <div class="col-md-10">
-	 <c:choose>
-				<c:when test="${not empty pageAction && pageAction == 'NEW_CHILD' || pageAction == 'NEW' }">
-			        <div class="rowlabel">
-			                  <span class="btn btn-default btn-success fileinput-button" id="remove">
-                                <input type="file" id="member_file" name="member_file" multiple="multiple"/>
-                             </span>
-			             <div id="member_file_name"></div>
-			        </div></c:when>
-				<c:otherwise>				
-					${document.member_file}
-				</c:otherwise>
-			</c:choose>
-			</div>   
-	</div>
+	
 	<c:if test="${not empty pageAction && pageAction == 'NEW_CHILD'}">
 		<div class="row show-grid">
 			<div class="col-md-2">Add a Note</div>
@@ -144,31 +128,9 @@
 		<c:out value="${aNote.note}"/>
 		<hr/>
 	</c:forEach>
-	 <div class="rowlabel">
-						<input type="submit" class="btn btn-default btn-success" value="Save">
-					</div>
 	
+	<a id="hrefSave" role="button" class="btn btn-default orange">Submit</a>
 </form>
-
-<hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
-		$(document).ready(function(){
-		$('#member_file').bind('change', function(){
-		    $('#member_file_name').text(this.files[0].name);
-		    //$('#file_process').show();		    
-          });
-		$('#member_file').popover({"html":true,
-		                 "trigger":"hover",
-		                 delay: { show: 500, hide: 100 },
-		                 content:"Select a File to Upload in Ticket or Drag Here"
-		  });
-		 function uploadDoc(){
-		    $('#memberdrive').submit();
-		    }
-		    </hst:element>
-		    <c:if test="${preview && inlineEditingEnabled}">
-	<jsp:include page="../../inc/inline-editing-editor-form.jsp" />
-</c:if>
 <res:client-validation
 	screenConfigurationDocumentName="helpdeskticket"
 	formId="frmHelpDesk" formSubmitButtonId="hrefSave"/>
