@@ -46375,6 +46375,7 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
 </sv:node>
 
 
+
 <sv:node sv:name="otherincome" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -46393,7 +46394,7 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>2478911d-7b8c-496b-b47e-0e47d4653fdc</sv:value>
+      <sv:value>07e37a38-1910-4e8d-b554-2fcaa362e177</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -46418,13 +46419,13 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
       <sv:value>2013-05-24T02:01:44.056+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-12-21T15:47:15.347+05:30</sv:value>
+      <sv:value>2014-02-01T12:11:06.030+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-12-21T15:47:20.888+05:30</sv:value>
+      <sv:value>2014-02-01T12:11:10.604+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -46489,7 +46490,7 @@ out_Familypension_deduction= 15000;
 }
 
 
-out_totalexpense=(indianCurrencyHelper.RoundTo2Decimals(((Family_pension-0)*.333*100)/100))+(Otherdeduction-0)+(depreciation-0);
+out_totalexpense=(out_Familypension_deduction-0)+(Otherdeduction-0)+(depreciation-0);
 
 out_Taxable_income=((out_Totalint)+(out_TotalOther_income))-out_totalexpense;
 if(out_Taxable_income &lt;0) out_Taxable_income=0;
@@ -46506,6 +46507,7 @@ out_Taxable_income=(out_Taxable_income)+(LotteryOrhorse_income-0)+(out_balance -
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 
