@@ -299,14 +299,7 @@ public class ResellerDetails extends BaseComponent {
 						fullReviewedActionsWorkflow.copy(document,hippoBean.getNode().getName());
 						Object theNewObject = wpm.getObject(folder.getPath() + "/" + hippoBean.getNode().getName());
 						//fullReviewedActionsWorkflow.publish();						
-						wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
-							@Override
-							public void processWorkflow(FullReviewedActionsWorkflow workflow)
-									throws Exception {
-								// TODO Auto-generated method stub
-								workflow.publish();
-							}
-						});
+						wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 						wpm.update(theNewObject);
 						if (log.isInfoEnabled()) {
 							log.info("Successfully copied "+ hippoBean.getPath() + " to " + newFolderPath);
@@ -326,7 +319,7 @@ public class ResellerDetails extends BaseComponent {
 				membershipSignupDocument.setUserName(resellerSignupDocument.getUserName());
 				membershipSignupDocument.setPassword(SecureHashGeneration.passSHAdigest(resellerSignupDocument.getPassword()));
 				membershipSignupDocument.setEmail(resellerSignupDocument.getEmail());
-				membershipSignupDocument.setRoles(new String[]{"VENDOR"});
+				membershipSignupDocument.setRoles(new String[]{"ResellerAdmin"});
 				membershipSignupDocument.setActivationCode(UUID.randomUUID().toString());
 				membershipSignupDocument.setIsActive(true);
 				// update now           `
@@ -406,6 +399,12 @@ public class ResellerDetails extends BaseComponent {
 		super.doBeforeServeResource(request, response);
 	}
 
+	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
+		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
+			wf.publish();
+		}
+	}
+	
 	public String getIsactive() {
 		return Isactive;
 	}

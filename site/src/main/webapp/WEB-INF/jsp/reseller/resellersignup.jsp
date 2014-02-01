@@ -43,11 +43,11 @@
 	             <h3>Thank You</h3>
 		     </c:when>
 		   <c:otherwise>
-		<h3 id="respond1">Signup to <w4india:resellername/></h3>
+		<h3 id="respond1" ><strong>Signup to <w4india:resellername/></strong></h3>
 	    <div class="alert alert-info">It takes just a minute to join us. Please enter the following information to create your account.</div>
 		
 		<fieldset>
-		<legend>Enter your unique Reseller ID</legend>
+		<legend><small>Enter your unique Reseller ID</small></legend>
 		 <div class="row show-grid" >
 		   <div class="col-md-4">
 		      <div class="rowlabel">
@@ -64,7 +64,7 @@
 		</fieldset>
 		
 	   <fieldset>
-		<legend>Access to Panel</legend>
+		<legend><small>Access to Panel</small></legend>
 		 <div class="row show-grid" >
 		   <div class="col-md-4">
 		      <div class="rowlabel">
@@ -127,9 +127,9 @@
 		</fieldset>
        
         <fieldset>
-          <legend>Chartered Accountant Details</legend>
+          <legend><small>Chartered Accountant Details</small></legend>
              <div class="table-responsive">
-               <table class="table table-striped">
+               <table class="table">
                   <tr>
                     <td style="width: 10px;"><input class="checkbox" id="caCheck" name="caCheck" tabindex="7" type="checkbox" value="on"></td>
                       <td><label>Are you a Chartered Accountant Firm? (required)</label></td>
@@ -147,12 +147,21 @@
               </table>
             </div>
         </fieldset>
+        
+       <fieldset>
+             <div class="table-responsive">
+               <table class="table">
+                  <tr>
+                    <td style="width: 10px;"><input class="checkbox" id="signupTerms" name="signupTerms" tabindex="9" type="checkbox" value="on"></td>
+                      <td>
+                       <label for="signupTerms">Yes, I agree to the&nbsp;<a href='<hst:link path="/terms"/>' target="_blank">Terms of Use</a></label>
+				       <label for="signupTerms" class="error" generated="false"><c:if test="${not empty signupTermsError}"><fmt:message key="${signupTermsError}"/></c:if></label>
+		              </td>         
+                   </tr>
+              </table>
+            </div>
+        </fieldset>
 
-		   <p>
-				<input class="checkbox" id="signupTerms" name="signupTerms" tabindex="9" type="checkbox" value="on">
-				<label for="signupTerms">Yes, I agree to the&nbsp;<a href='<hst:link path="/terms"/>' target="_blank">Terms of Use</a></label>
-				<label for="signupTerms" class="error" generated="false"><c:if test="${not empty signupTermsError}"><fmt:message key="${signupTermsError}"/></c:if></label>
-		   </p>
 		   <p>
 		   		<a href="javascript:void(0);" id="hrefSignup" class="btn btn-default btn-warning" tabindex="10">Signup</a>
 		   </p>
