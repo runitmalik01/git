@@ -1,20 +1,3 @@
-<%--
-
-    Copyright (C) 2010 Hippo B.V.
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-            http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
---%>
 <%@page import="org.hippoecm.hst.content.beans.standard.HippoBean"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@page import="org.hippoecm.hst.core.component.HstRequest"%>
@@ -72,13 +55,15 @@ try {
 		</html>
 	</c:when>
 	<c:otherwise>
+	<div class="row" style="margin-top:20px">
+    <div class="col-xs-12 col-sm-8 col-md-12">
 		<div class="memberlogin page type-page">
 				<h4>Login to <w4india:resellername/></h4>				
 				<c:if test="${not empty login_error_key}">
 					<div class="alert alert-danger"><fmt:message key="${login_error_key}"/></div>
 				</c:if>
-				<form action="/site/j_spring_security_check" method="post" id="loginForm">
-				   <p>
+				<form action="/site/j_spring_security_check" method="post" id="loginForm" role="form">
+				  <%--  <p>
 				 	  <label for="username">
 				          <small>Email Address</small>
 				       </label>
@@ -98,13 +83,62 @@ try {
 				   <hst:link var="memberhome" path="/member"/>
 				   <input type="hidden" name="destination" value="${memberhome}"/> 
 				   <%--  multi tenancy the channel UUID --%>
+				   <%-- <c:if test="${not empty mountIdentifier}">
+				   	<input type="hidden" name="c" value="${mountIdentifier}"/>
+				   </c:if> --%>
+				<fieldset>
+					<h2>Please Log In</h2>
+					<hr class="colorgraph">
+					<div>
+					 <label for="username">
+				          <small>Email Address</small>
+				       </label>
+					</div>
+					<div class="form-group">
+						<!-- input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address"> -->
+						<input class="username form-control" name="j_username" id="username" value="${fn:escapeXml(userName)}" size="22" tabindex="1" type="text" maxlength="50" placeholder="Email Address">
+				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.userNameNotFound')}"><label for="userName" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
+					</div>
+					<div>
+					 <label for="password">
+				           <small>Password</small>
+				       </label>
+					</div>
+					<div class="form-group">
+						<!-- input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password"> -->
+						<input name="j_password" id="password" value="" maxlength="20" size="22" tabindex="2" class="form-control" type="password" placeholder="Password">
+				       <c:if test="${not empty login_error_key &&  (login_error_key == 'login.error' || login_error_key == 'login.error.passwordMismatch')}"><label for="password" generated="true" class="error" style=""><fmt:message key="${login_error_key}"/></label></c:if>
+					</div>
+					<!-- <span class="button-checkbox">
+						<button type="button" class="btn" data-color="info">Remember
+							Me</button> <input type="checkbox" name="remember_me" id="remember_me"
+						checked="checked" class="hidden"> 
+					</span> -->
+					<div class="row">
+					   <div class="col-md-4 col-md-offset-8">
+					       <a href="<hst:link siteMapItemRefId="forgotpass"/>" class="btn btn-link pull-right" tabindex="3">Forgot Password?</a>
+					   </div>
+					</div>
+					<hr class="colorgraph">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6">
+							<a href="javascript:void(0)" id="hrefLogin" class="btn btn-lg btn-info btn-block" tabindex="4">Log In</a>
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-6">
+							<a href="<hst:link siteMapItemRefId="signup"/>" class="btn btn-lg btn-warning btn-block">Sign Up</a>
+						</div>
+					</div>
+					<hst:link var="memberhome" path="/member"/>
+				   <input type="hidden" name="destination" value="${memberhome}"/> 
+				   <%--  multi tenancy the channel UUID --%>
 				   <c:if test="${not empty mountIdentifier}">
 				   	<input type="hidden" name="c" value="${mountIdentifier}"/>
 				   </c:if>
-				</form>
+				</fieldset>
+			</form>
 		</div>
-		
-		<res:client-validation screenConfigurationDocumentName="memberlogin" formId="loginForm" formSubmitButtonId="hrefLogin"></res:client-validation>
+		</div>
+		</div>
 	</c:otherwise>
 </c:choose>
 
@@ -118,5 +152,4 @@ try {
 	});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
-
-
+<res:client-validation screenConfigurationDocumentName="memberlogin" formId="loginForm" formSubmitButtonId="hrefLogin"></res:client-validation>

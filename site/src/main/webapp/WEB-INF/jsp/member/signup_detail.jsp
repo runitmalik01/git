@@ -26,18 +26,16 @@
     <fmt:message key="signup.not.allowed"></fmt:message>
 </c:when>
 <c:otherwise>
-
+<div class="row">
+    <div class="col-xs-9 col-sm-8 col-md-9">
 <div class="memberlogin page type-page">
 		<h3 id="respond1">Signup to <w4india:resellername/></h3>
-		
-		<p style="color:blue;" >
-
-
+		<h4><small>
 It takes just a minute to join.
-Please enter the following information to create your account.</p>
+Please enter the following information to create your account.</small></h4>
 		
-		<form action="${actionUrl}" method="post" id="signupForm">
-		   <p>
+		<form action="${actionUrl}" method="post" id="signupForm" role="form">
+		   <%-- <p>
 		 	  <label for="email">
 		          <small>Email Address (required)</small>
 		       </label>
@@ -73,11 +71,73 @@ Please enter the following information to create your account.</p>
 		   <p>
 		   		<a href="javascript:void(0);" id="hrefSignup" class="orange button">Signup</a>
 		   </p>
-		   <hst:link var="memberhome" path="/member"/>
+		   <hst:link var="memberhome" path="/member"/>--%>
 		   <%--<input type="hidden" name="destination" value="${memberhome}"/>  --%>
+		   <h2>Please Sign Up</h2>
+			<hr class="colorgraph">
+			<div>
+			  <label for="email">
+		          <small>Email Address (required)</small>
+		       </label>
+			</div>
+			<div class="form-group">
+				<!-- input type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3"-->
+				<input class="username form-control" name="email" id="email" value="${fn:escapeXml(email)}" size="22" tabindex="1" type="text" maxlength="50">
+		       <label for="email" class="error" generated="false"><c:if test="${not empty emailError}"><fmt:message key="${emailError}"/></c:if></label>
+			</div>
+			<div>
+			  <label for="confirmEmail">
+		          <small>Confirm Email Address (required)</small>
+		       </label>
+			</div>
+			<div class="form-group">
+				<!-- input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4"-->
+				<input class="username form-control" name="confirmEmail" id="confirmEmail" value="" size="22" tabindex="2" type="text" maxlength="50">	
+		       <label for="confirmEmail" class="error" generated="false"><c:if test="${not empty confirmEmailError}"><fmt:message key="${confirmEmailError}"/></c:if></label>
+			</div>
+			<div>
+			  <label for="password">
+		           <small>Password (required)</small>
+		       </label>
+			</div>
+					<div class="form-group">
+						<!-- input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5"-->
+						 <input name="password" id="password" value="" size="22" tabindex="3" type="password" maxlength="20" class="form-control">
+		                 <label for="password" class="error" generated="false"><c:if test="${not empty passwordError}"><fmt:message key="${passwordError}"/></c:if></label>
+					</div>	
+			<div>
+			  <label for="confirmPassword">
+		           <small>Confirm Password (required)</small>
+		       </label>
+			</div>
+					<div class="form-group">
+						<!-- input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6"-->
+						<input name="confirmPassword" id="confirmPassword" value="" size="22" tabindex="4" type="password" maxlength="20" class="form-control">
+		                <label for="confirmPassword" class="error" generated="false"><c:if test="${not empty confirmPasswordError}"><fmt:message key="${confirmPasswordError}"/></c:if></label>
+					</div>
+			<div class="row">
+				<div class="col-xs-3 col-sm-3 col-md-3">
+					<span class="button-checkbox">
+						<button type="button" class="btn" data-color="success" tabindex="5">I Agree</button>
+						<input class="checkbox hidden" id="signupTerms" name="signupTerms" tabindex="5" type="checkbox" value="on">
+						<label for="signupTerms" class="error" generated="false"><c:if test="${not empty signupTermsError}"><fmt:message key="${signupTermsError}"/></c:if></label>
+                        <!-- input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1"-->
+					</span>
+				</div>
+				<div class="col-xs-9 col-sm-9 col-md-9">
+					 By clicking <strong class="label label-primary">Sign Up</strong>, you agree to the <a href="<hst:link path="/terms"/>" target="_blank">Terms and Conditions</a> set out by <w4india:resellername/>, including our Cookie Use.
+				</div>
+			</div>
+			
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-6 col-md-6"><a href="javascript:void(0);" id="hrefSignup" class="btn btn-warning btn-block btn-lg" tabindex="6">Sign Up</a></div>
+				<div class="col-xs-6 col-md-6"><a href="<hst:link siteMapItemRefId="memberlogin"/>" class="btn btn-info btn-block btn-lg">Log In</a></div>
+			</div>
 		</form>
 </div>
-
+</div>
+</div>
 </c:otherwise>
 </c:choose>
 
