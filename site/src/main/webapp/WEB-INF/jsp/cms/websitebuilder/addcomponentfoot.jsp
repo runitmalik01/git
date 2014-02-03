@@ -6,7 +6,7 @@
 <div class="row">
 	<div class="col-md-3 col-md-offset-3">
 		<div class="input-group bk">
-			<input type="text" class="form-control input-sm" name="bkcomponentName" id="bkcomponentName" title="Name of Block Component"
+			<input type="text" class="form-control" name="bkcomponentName" id="bkcomponentName" title="Name of Block Component"
 				placeholder="Add New Block Component"><label for="email" class="error" generated="false"></label>
 			<div class="input-group-btn">
 				<a href="${websitebuilderlink}/blocks.html/newblock" class="btn btn-success btn-sm" id="bkaddcomponent"><i
@@ -16,7 +16,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="input-group pg">
-			<input type="text" class="form-control input-sm" name="pgcomponentName" id="pgcomponentName"
+			<input type="text" class="form-control" name="pgcomponentName" id="pgcomponentName"
 				title="Name of Page Component" placeholder="Add New Page Component"><label for="email" class="error" generated="false"></label>
 			<div class="input-group-btn">
 				<a href="${websitebuilderlink}/pagess.html/newpage" class="btn btn-success btn-sm" id="pgaddcomponent"><i

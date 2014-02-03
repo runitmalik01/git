@@ -57,7 +57,7 @@
 	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/>
     <hst:headContributions categoryIncludes="css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/dropdown-submenu.css"></hst:link>"/>
-    
+    <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/boostrap_login-signup.css"></hst:link>"/>
     <hst:headContributions categoryIncludes="jsHead"/>    
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
@@ -69,8 +69,9 @@
 
     <hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
     <script src="${jqueryWaterMark}"></script>
-
-
+    
+    <hst:link var="boostcheckboxjs" path="/js/boostrap_checkbox.js"/>
+    <script src="${boostcheckboxjs}"></script>
 
 	<hst:link var="responsive_modernizr" path="/js/responsive-modernizr.js"/>
 	<script type='text/javascript' src='${responsive_modernizr}'></script>
