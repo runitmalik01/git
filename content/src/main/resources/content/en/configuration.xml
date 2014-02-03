@@ -16074,7 +16074,7 @@ acknowledgement&lt;/p&gt;
     <!--  screen configuaration for itr4 -->
     <!--  businessnature -->
 
-<sv:node sv:name="businessnature">
+<sv:node sv:name="businessnature" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -16105,7 +16105,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>bc14b57d-c642-43c8-aa02-832c9ffd8ae0</sv:value>
+      <sv:value>618885bf-ffc5-4758-bd0f-47d2dc6ed49c</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -16130,13 +16130,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-07-02T15:49:27.453+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-30T14:53:39.099+05:30</sv:value>
+      <sv:value>2014-02-03T16:22:13.132+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-30T14:53:44.014+05:30</sv:value>
+      <sv:value>2014-02-03T16:22:22.344+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>ef8d1da1-16ca-46fc-9d81-1247452d919f</sv:value>
@@ -16273,7 +16273,7 @@ acknowledgement&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-        <sv:value>true</sv:value>
+        <sv:value>false</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
         <sv:value>false</sv:value>
