@@ -251,6 +251,10 @@
 			if(!formValid){
 			  return;
 			}
+			// disable button bcs it has already clicked once
+			if(formValid){
+			$("#ajaxsubmit").attr("disabled",true);
+			}
 	  for (var i=0;i< allForms.length; i++ ) {
             var theData = $(allForms[i]).serialize();
 				$.ajax('<hst:actionURL></hst:actionURL>',
