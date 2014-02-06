@@ -824,8 +824,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				<div class="col-md-4">
 					<div class="rowlabel">
 						<small><label for="<c:out value="${bnkcode}"/>"> <c:out
-									value="${label}" />
-						</label>
+									value="${label}" /> 
+						</label><label><small><w4india:ifsc-code
+											ifscCodeId="ifscCode" /></small></label>
 						</small>
 					</div>
 					<div class="rowlabel">
