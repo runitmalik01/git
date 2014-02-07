@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.FormSixteenDocument;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.components.ITReturnScreen;
 import com.mootly.wcm.model.FinancialYear;
@@ -18,7 +19,7 @@ import com.mootly.wcm.validation.HippoBeanValidator;
 
 public class ValidateForm16Document implements HippoBeanValidator{
 	Logger logger = LoggerFactory.getLogger(ValidateForm16Document.class);
-	
+
 	@Override
 	public boolean validate(FinancialYear financialYear, ITReturnScreen.PAGE_ACTION pageAction, Map<String,HippoBean> mapOfBeans,Map<String,Object> additionalData,Annotation[] annotations, HippoBeanValidationResponse response) {
 		// TODO Auto-generated method stub
@@ -26,6 +27,8 @@ public class ValidateForm16Document implements HippoBeanValidator{
 		try {
 			if (response == null) response = new HippoBeanValidationResponse();
 			FormSixteenDocument formSixteenDocument = (FormSixteenDocument) mapOfBeans.get(FormSixteenDocument.class.getSimpleName().toLowerCase());
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) mapOfBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 			if (formSixteenDocument != null) {
 				List<FormSixteenDetail> formSixteenDetails =  formSixteenDocument.getFormSixteenDetailList();
 				if ( formSixteenDetails != null && formSixteenDetails.size() > 0) {
@@ -34,21 +37,23 @@ public class ValidateForm16Document implements HippoBeanValidator{
 							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.employeeCategory");
 							response.addError(hippoBeanValidationError);
 						}
-						if ( formSixteenDetail.getAddressdetail() ==  null || "".equals(formSixteenDetail.getAddressdetail()) ) {
-							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.addressdetail");
-							response.addError(hippoBeanValidationError);
-						}
-						if ( formSixteenDetail.getCity() ==  null || "".equals(formSixteenDetail.getCity()) ) {
-							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.city");
-							response.addError(hippoBeanValidationError);
-						}
-						if ( formSixteenDetail.getState() ==  null || "".equals(formSixteenDetail.getState()) ) {
-							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.state");
-							response.addError(hippoBeanValidationError);
-						}
-						if ( formSixteenDetail.getPin() ==  null || "".equals(formSixteenDetail.getPin()) ) {
-							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.pin");
-							response.addError(hippoBeanValidationError);
+						if(!itrSelection.equals("ITR1")){
+							if ( formSixteenDetail.getAddressdetail() ==  null || "".equals(formSixteenDetail.getAddressdetail()) ) {
+								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.addressdetail");
+								response.addError(hippoBeanValidationError);
+							}
+							if ( formSixteenDetail.getCity() ==  null || "".equals(formSixteenDetail.getCity()) ) {
+								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.city");
+								response.addError(hippoBeanValidationError);
+							}
+							if ( formSixteenDetail.getState() ==  null || "".equals(formSixteenDetail.getState()) ) {
+								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.state");
+								response.addError(hippoBeanValidationError);
+							}
+							if ( formSixteenDetail.getPin() ==  null || "".equals(formSixteenDetail.getPin()) ) {
+								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.pin");
+								response.addError(hippoBeanValidationError);
+							}
 						}
 					}
 				}
@@ -68,13 +73,13 @@ public class ValidateForm16Document implements HippoBeanValidator{
 					warning.setMessageArgs(new String[]{FilingSection.AfterDueDate_139_4.getDesc(),FilingSection.BeforeDueDate_139_1.getDesc()});
 					response.addWarning(warning);
 				}
-				*/
+				 */
 			}
-			
+
 		}catch (Exception ex) {
 			logger.warn("WARN",ex);
 		}
 		return false;
 	}
-	
+
 }

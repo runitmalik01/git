@@ -10,3 +10,22 @@
 	text-align: center;
 	
 }
+/* for Summary Page*/
+
+.hero-widget { text-align: center; padding-top: 20px; padding-bottom: 20px; }
+.hero-widget .icon { display: block; font-size: 20px; line-height: 20px; margin-bottom: 10px; text-align: center; }
+.hero-widget var { display: block; height: 64px; font-size: 64px; line-height: 64px; font-style: normal; }
+.hero-widget label { font-size: 10px; }
+.hero-widget .options { margin-top: 5px; }
+
+.summary-text-color{
+	color: black;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.summary-href-color{
+	color: black;
+	font-weight: bold;
+	font-size: 1.1em;
+}

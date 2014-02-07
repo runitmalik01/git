@@ -1,16 +1,18 @@
 package com.mootly.wcm.member;
 
-
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.apache.commons.lang.StringUtils;
 import com.mootly.wcm.annotations.ChildBean;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.ForeignBankAccountDocument;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.compound.ForeignBankAccountDetail;
 import com.mootly.wcm.components.ITReturnComponent;
 
@@ -34,8 +36,10 @@ public class ForeignBankDetail extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("this is do before render of foreign asset");
 		}
+		request.setAttribute("checkForNRI", request.getParameter("invalid.user"));
 
 	}
+	
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
@@ -45,8 +49,27 @@ public class ForeignBankDetail extends ITReturnComponent {
 		if(log.isInfoEnabled()){
 			log.info("this is do Action of foreign asset");
 		}
-
-	} }
+	} 
+	
+	//Check for NRI
+	@Override
+	public boolean validate(HstRequest request, HstResponse response,
+			FormMap formMap) {
+		// TODO Auto-generated method stub
+		if(super.validate(request, response, formMap)){
+			boolean hasAValidUser = true;
+			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+			if(memberPersonalInformation != null){
+				if(StringUtils.isNotBlank(memberPersonalInformation.getResidentCategory()) && memberPersonalInformation.getResidentCategory().equals("NRI")){
+					hasAValidUser = false;
+					response.setRenderParameter("invalid.user", "nri.not.allowed");
+					return hasAValidUser;
+				}
+			}
+		}
+		return super.validate(request, response, formMap);
+	}
+}
 
 
 
