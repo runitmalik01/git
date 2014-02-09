@@ -35,6 +35,12 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 		</h4>
 	</div>
 	<h4></h4>
+	<c:if test="${not empty checkForNRI}">
+	    <div class="alert alert-danger alert-dismissable">
+	        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			     <fmt:message key="${checkForNRI}" />
+	    </div>
+	</c:if>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
