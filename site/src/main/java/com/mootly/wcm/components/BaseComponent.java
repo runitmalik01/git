@@ -247,6 +247,7 @@ public class BaseComponent extends BaseHstComponent {
 			//}
 			finalVelocityContext.put("memberHostName", sbHostName.toString());
 			finalVelocityContext.put("resellerHostName", resellerHostName.toString());
+			if ( getITRInitData(request) != null &&  getITRInitData(request).getUserName() != null) finalVelocityContext.put("userName", getITRInitData(request).getUserName()); //https://github.com/mootlyinc/etaxfilestation/issues/64
     		
     		String htmlBody = VelocityUtils.parseVelocity(emailTemplate.getHtmlBody(), finalVelocityContext);
 			//String plainBody = VelocityUtils.parseVelocity(emailTemplate.getPlainBody(), velocityContext);
