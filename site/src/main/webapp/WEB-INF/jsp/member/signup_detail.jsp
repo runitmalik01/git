@@ -27,7 +27,6 @@
 </c:when>
 <c:otherwise>
 <div class="row">
-    <div class="col-xs-9 col-sm-8 col-md-9">
 <div class="memberlogin page type-page">
 		<h3 id="respond1">Signup to <w4india:resellername/></h3>
 		<h4><small>
@@ -135,7 +134,6 @@ Please enter the following information to create your account.</small></h4>
 				<div class="col-xs-6 col-md-6"><a href="<hst:link siteMapItemRefId="memberlogin"/>" class="btn btn-info btn-block btn-lg">Log In</a></div>
 			</div>
 		</form>
-</div>
 </div>
 </div>
 </c:otherwise>

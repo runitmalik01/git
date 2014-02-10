@@ -63,8 +63,8 @@
 
    <beans:bean id="successHandler"
            class="org.onehippo.forge.security.support.springsecurity.authentication.MootlySimpleUrlAuthenticationSuccessHandler">
-        <!-- changes defaulturl from /member/itreturn to current by priyank -->
-        <beans:property name="defaultTargetUrl" value="/member/itreturn/member-security.html"/>
+        <!-- changes defaulturl from /member/itreturn to current by priyank rolling it back /member/itreturn/member-security.html -->
+        <beans:property name="defaultTargetUrl" value="/member/itreturn"/>
    </beans:bean>
 
    <beans:bean id="failureHandler"

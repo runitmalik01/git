@@ -102,7 +102,11 @@ public class BaseComponent extends BaseHstComponent {
 		HstLink link = request.getRequestContext().getHstLinkCreator().createByRefId("reseller-package", request.getRequestContext().getResolvedMount().getMount());
 		setLogo(request, response);
 		
-	        
+	    String widgetsCssClass = getParameter("widgetsCssClass", request);
+	    if (widgetsCssClass != null) request.setAttribute("widgetsCssClass", widgetsCssClass);
+	    
+	    String contentCssClass = getParameter("contentCssClass", request);
+	    if (contentCssClass != null) request.setAttribute("contentCssClass", contentCssClass);
 	        
 		// Check for Trial period
 	/*	if(isVendor && request.getUserPrincipal() != null && !(resellerId.equals("w4india"))){

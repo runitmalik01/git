@@ -55,9 +55,7 @@ try {
 		</html>
 	</c:when>
 	<c:otherwise>
-	<div class="row" style="margin-top:20px">
-    <div class="col-xs-12 col-sm-8 col-md-12">
-		<div class="memberlogin page type-page">
+		<div class="row">
 				<h4>Login to <w4india:resellername/></h4>				
 				<c:if test="${not empty login_error_key}">
 					<div class="alert alert-danger"><fmt:message key="${login_error_key}"/></div>
@@ -136,8 +134,6 @@ try {
 				   </c:if>
 				</fieldset>
 			</form>
-		</div>
-		</div>
 		</div>
 	</c:otherwise>
 </c:choose>
