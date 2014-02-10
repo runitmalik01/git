@@ -260,6 +260,7 @@
 			});
 
 			$('#deductionSave').click(function() {
+			
 				$('#frmDeduction').submit();
 			});
 
@@ -286,11 +287,14 @@
 			//allForms.validate();
 			allForms.each ( function(index,value) {
 				$(value).validate();
-				
 				if (!$(value).valid()) {
-				
 					return false;
 				}
+				// disable button bcs it has already clicked once
+				if($(value).valid()){
+				$("#deductionSaveAJAX").attr("disabled",true);
+				} 
+				
 	//	}); instead of ending this method here end it later
 			$(".progress").show();
 			$(".progress").addClass('active');
@@ -308,6 +312,7 @@
 					}) ;					
 			}
 			$(".progress").removeClass('active');
+			
 			window.location.href = '../../chapterVIdeductions.html';
 				});// it is right place to end method
 		}
