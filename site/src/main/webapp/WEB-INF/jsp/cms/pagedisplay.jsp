@@ -24,7 +24,8 @@
 	</c:choose>
 </c:if>
 <c:if test="${not empty pageDisplayView}">
-	<c:if test="${not empty pageDisplayView.title && pageDisplayView.title != ''}">
+	<hippo-gogreen:seoheader title="${pageDisplayView.title}" keywords="${pageDisplayView.keywords}" description="${pageDisplayView.description}" />
+	<c:if test="${not empty pageDisplayView.title && pageDisplayView.title != '' && not pageDisplayView.hideTitle}">
 		<div class="container">
 	        <div class="page-header">
 	          <h1><c:out value="${pageDisplayView.title}"/></h1>

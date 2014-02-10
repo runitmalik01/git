@@ -13,7 +13,6 @@ import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
-import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -233,7 +232,7 @@ public final class ITReturnComponentHelper {
 				TxnEnquiryResponse theEnquiryOutput = null;
 				if (invoicePaymentDetail.getPaymentType() == PaymentType.NET_BANKING) {
 					theEnquiryOutput = enquiry.doEnquiry(invoicePaymentDetail.getPaymentTransactionId());
-				} else {
+				} else if ( invoicePaymentDetail.getCanonicalHandleUUID() != null && (invoicePaymentDetail.getPaymentVerificationStatus() == null || invoicePaymentDetail.getPaymentVerificationStatus() != PaymentVerificationStatus.VERIFIED) ){
 					try {
 						theEnquiryOutput = enquiry.doEnquiryForCreditAndDebitCard(invoicePaymentDetail.getPaymentTransactionId());
 					}catch (Exception e) {

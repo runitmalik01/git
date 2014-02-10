@@ -55,6 +55,11 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
 
 	String title;
 	List<HippoBean> blocks;
+	
+	Boolean hideTitle;
+	String keywords;
+	String description;
+	String robots;
 
 	private List<PageRowDetail> pageRowDetails;
 
@@ -63,9 +68,45 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
 		if (title == null) title = getProperty("mootlywcm:title");
 		return title;
 	}
+	
+	public Boolean getHideTitle() {
+		if (hideTitle == null) hideTitle = getProperty("mootlywcm:hideTitle");
+		return hideTitle;
+	}
+
+	public String getKeywords() {
+		if (keywords == null) keywords = getProperty("mootlywcm:keywords");
+		return keywords;
+	}
+
+	public String getDescription() {
+		if (description == null) description = getProperty("mootlywcm:description");
+		return description;
+	}
+
+	public String getRobots() {
+		if (robots == null) robots = getProperty("mootlywcm:robots");
+		return robots;
+	}
 
 	public final void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public void setHideTitle(Boolean hideTitle) {
+		this.hideTitle = hideTitle;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setRobots(String robots) {
+		this.robots = robots;
 	}
 
 	public List<HippoBean> getBlocks() {
@@ -78,7 +119,6 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
 	private void loadBlocks() {
 		blocks = new ArrayList<HippoBean>();
 		List<HippoBean> hippoBeans = getChildBeansByName("mootlywcm:blocks");
-		log.info("Testing");
 		if (hippoBeans != null) {
 			for (HippoBean hippoBean : hippoBeans) {
 				if (hippoBean instanceof HippoMirror) {
@@ -165,7 +205,6 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				PageRowDetail destination =(PageRowDetail) o;
 				PageRowDetail source  = (PageRowDetail) child;
 				destination.cloneBean(source);
@@ -183,7 +222,6 @@ public class PageDocument extends FlexibleDocument implements ContentNodeBinder,
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				PageRowDetail destination =(PageRowDetail) o;
 				PageRowDetail source  = (PageRowDetail) child;
 				destination.setMarkedForDeletion(true);

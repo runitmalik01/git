@@ -130,12 +130,11 @@ bestplan {
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="glyphicon glyphicon-bar"></span> <span class="glyphicon glyphicon-bar"></span> <span
-					class="glyphicon glyphicon-bar"></span>
-			</button>
-			<!-- logo -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-nav">
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>
+          		</button>
 			<hst:include ref="logo" />
 		</div>
 		<!-- menu top-->

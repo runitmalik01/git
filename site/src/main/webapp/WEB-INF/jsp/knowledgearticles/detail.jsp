@@ -38,7 +38,7 @@
 	<form name="frmKB" id="frmKB" action="<hst:actionURL/>" method="post">
 	
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW'}">
+			<c:when test="${not empty pageAction && (pageAction == 'EDIT' || pageAction == 'NEW')}">
 				 <h3>Title</h3>
 				 <input type="text" name="title" value="${document.title}"/>
 			</c:when>
@@ -48,7 +48,7 @@
 		</c:choose>
 		
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW'} ">
+			<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' )} ">
 				 <h3>Summary</h3>
 				 <input type="text" name="summary" value="${document.summary}"/>
 			</c:when>
@@ -58,7 +58,7 @@
 		</c:choose>
 		
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW' }">
+			<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' ) }">
 				<h3>Description</h3>
 				<textarea name="description" id="description" rows="20">
 					<c:out value="${document.description.content}" escapeXml="false"/>
@@ -74,7 +74,7 @@
 		</c:choose>	
 		
 		<c:choose>
-			<c:when test="${not empty pageAction && pageAction == 'EDIT' || pageAction == 'NEW'}">
+			<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' )}">
 				<a href="javascript:$('#frmKB').submit();" id="hrefSave" class="btn btn-default btn-success">Save</a>
 			</c:when>
 		</c:choose>	

@@ -366,7 +366,7 @@ public class InvoicePayment extends ITReturnComponent {
 					);
 
 
-
+			/*
 			oBTA.setAddressDetails(
 					memberPersonalInformation.getCanonicalHandleUUID()
 					,memberPersonalInformation.getName()
@@ -379,8 +379,8 @@ public class InvoicePayment extends ITReturnComponent {
 					,"IND"
 					,memberPersonalInformation.getEmail()
 					);
-
-
+			*/
+			/*
 			oSTA.setAddressDetails(
 					memberPersonalInformation.getFlatDoorBuilding()
 					,memberPersonalInformation.getAreaLocality()
@@ -391,7 +391,7 @@ public class InvoicePayment extends ITReturnComponent {
 					,"IND"
 					,memberPersonalInformation.getEmail()
 					);
-
+			*/
 			oMPI.setMPIRequestDetails(
 					invDoc.getAmountDue().toString()	 //mstrPurchaseAmount
 					,"INR" + invDoc.getAmountDue().toString()	//mstrDisplayAmount
@@ -406,7 +406,7 @@ public class InvoicePayment extends ITReturnComponent {
 					,request.getHeader("accept") //,"image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, application/x-shockwave-flash, */*" //mstrAcceptHdr
 					,request.getHeader("user-agent") //"Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)" //mstrAgentHdr
 					); 
-
+			/*
 			oHomeAddress.setAddressDetails(
 					memberPersonalInformation.getFlatDoorBuilding()
 					,memberPersonalInformation.getAreaLocality()
@@ -428,7 +428,7 @@ public class InvoicePayment extends ITReturnComponent {
 					,"IND"
 					,memberPersonalInformation.getEmail()
 					);
-
+			*/
 			oCustomer.setCustomerDetails(
 					memberPersonalInformation.getFirstName(), // first name 
 					memberPersonalInformation.getLastName(), //last name

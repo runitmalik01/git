@@ -56,6 +56,11 @@ public final class PageDisplay extends BaseComponent {
 			PageDisplayView pageDisplayView = new PageDisplayView();
 			pageDisplayView.setTitle(pageDocument.getTitle());
 			
+			pageDisplayView.setHideTitle(pageDocument.getHideTitle());
+			pageDisplayView.setDescription(pageDocument.getDescription());
+			pageDisplayView.setKeywords(pageDocument.getKeywords());
+			pageDisplayView.setRobots(pageDocument.getRobots());
+			
 			List<PageRowDetail> pageRowDetails = pageDocument.getPageRowDetails();
 			if (pageRowDetails != null && pageRowDetails.size() > 0) {
 				for (PageRowDetail pageRowDetail:pageRowDetails) {							

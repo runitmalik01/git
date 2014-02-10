@@ -9432,7 +9432,7 @@
          </v:ClientInfo>
       </v:getTDSDetails>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/tds/v_1_0/GetTDSPort/GetTDSRequest"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://mootly-amit:8088/mockGetTDSPortSoap11</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ditws/tds/v_1_0">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://incometaxindiaefiling.gov.in/ditws/tds/v_1_0/GetTDSPort/GetTDSRequest"/></con:call><con:call name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://incometaxindiaefiling.gov.in/e-FilingWS/ditws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v="http://incometaxindiaefiling.gov.in/ditws/tds/v_1_0">
    <soapenv:Header/>
    <soapenv:Body>
       <v:getTDSDetails>
@@ -9441,8 +9441,8 @@
             <v:password>%cdvps0756d%</v:password>
          </v:LoginInfo>
          <v:ClientInfo>
-            <v:pan>CDVPS0756D</v:pan>
-            <v:dob>1989-12-04</v:dob>
+            <v:pan>aahpp2080n</v:pan>
+            <v:dob>1950-04-26</v:dob>
             <v:assessmentYear>2013-14</v:assessmentYear>
          </v:ClientInfo>
       </v:getTDSDetails>
