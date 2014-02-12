@@ -17,10 +17,9 @@
 	</c:choose>
 </h3>
 <c:if test="${not empty message}">
-	<h4 style="font-style: italic; color: maroon;">
-		<c:out
-			value="Your details has been successfully imported into your return"></c:out>
-	</h4>
+    <div class="alert alert-success">
+		<c:out value="Your details has been successfully imported into your return"></c:out>
+	</div>
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">
 			<fmt:message key="${item.value}" />
@@ -187,8 +186,8 @@
 			</c:if>
 		</tbody>
 	</table>
-	<c:if test="${totalToBeImported > 0}">
 		<form id="tdsfromdit" action="${actionUrl}" method="post" name="tdsfromdit">
+		<c:if test="${totalToBeImported > 0}">
 			<div class="row show-grid">
 				<div class="col-md-3 col-md-offset-10">
 					<a href="${redirectURLToSamePage}" class="btn btn-info">Cancel</a>
@@ -196,8 +195,15 @@
 					<%--<input type="submit" value="Import" class="button default"> --%>
 				</div>
 			</div>
+			</c:if>
+			<c:if test="${not empty totalToBeImported && totalToBeImported == 0}">
+			<div class="row show-grid">
+			<div class="col-md-4 col-md-offset-8 decimal">
+				<a href="servicerequest-itr-summary.html" class="btn btn-default btn-success">Proceed</a>
+			</div>
+			</div>
+			</c:if>
 		</form>
-	</c:if>
   </c:when>
   <c:otherwise>
   <div class="alert alert-info">
