@@ -116,7 +116,7 @@
           <verbose>true</verbose>
           <enhancerName>ASM</enhancerName>
           <props>jdo.properties</props>
-          <persistenceUnitName>mootlysaveitrform</persistenceUnitName>
+          <!-- <persistenceUnitName>mootlysaveitrform</persistenceUnitName>  -->
         </configuration>
         <executions>
           <execution>
