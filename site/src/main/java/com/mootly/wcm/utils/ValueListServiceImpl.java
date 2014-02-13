@@ -742,6 +742,8 @@ public final class ValueListServiceImpl implements ValueListService{
 		treeMapBusinessCode.put("0202", objvalueListBusinessCode.getString("valueList.0202"));
 		treeMapBusinessCode.put("0203", objvalueListBusinessCode.getString("valueList.0203"));
 		treeMapBusinessCode.put("0204", objvalueListBusinessCode.getString("valueList.0204"));
+		
+		treeMapBusinessCode.put("0301", objvalueListBusinessCode.getString("valueList.0301"));
 
 		treeMapBusinessCode.put("0401", objvalueListBusinessCode.getString("valueList.0401"));
 		treeMapBusinessCode.put("0402", objvalueListBusinessCode.getString("valueList.0402"));

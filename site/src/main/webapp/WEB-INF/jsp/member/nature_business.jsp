@@ -7,12 +7,6 @@
 </c:set>
 <hippo-gogreen:title title="${nat_bus}" />
 <hst:actionURL var="actionUrl" />
-<%
-	ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
-TreeMap<String,String> objHashMapBusinessCode=ObjValueListService.getBusinessCode();
-
-request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
-%>
 
 <div class="page type-page">
 	<w4india:itrmenu />
@@ -41,10 +35,14 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 							<div class="rowlabel">
 								<select id="business_code" name="business_code" class="uprcase">
 									<option value="">-Select-</option>
-									<c:forEach var="businessCode" items="${objHashMapBusinessCode}">
-										<option
-											<c:if test="${childBean.business_Code == businessCode.key}">selected</c:if>
-											value="${businessCode.key}">${businessCode.value}</option>
+									<c:forEach var="catBusinessCode" items="${catBusinessCode}">
+									 <optgroup label="${catBusinessCode.key}">
+									 <c:forEach var="subCatBussCode" items="${catBusinessCode.value}">
+									 	<option
+											<c:if test="${childBean.business_Code == subCatBussCode.key}">selected</c:if>
+											value="${subCatBussCode.key}">${subCatBussCode.value}</option>
+									 </c:forEach>
+									 </optgroup>
 									</c:forEach>
 								</select>
 							</div>
@@ -87,15 +85,15 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 					<c:forEach items="${parentBean.natureBusinessDetailList}"
 						var="businessDetail">
 						<tr>
-							<td class="uprcase"><c:forEach
-									items="${objHashMapBusinessCode}" var="businessmap">
-									<c:if test="${businessmap.key == businessDetail.business_Code}">
-										<c:out value="${businessmap.value}" />
-									</c:if>
-								</c:forEach></td>
-							<td><c:out
-									value="${businessDetail.tradeName_Proprietorship}" /></td>
-
+							<td class="uprcase">
+								<c:forEach var="catBusinessCode" items="${catBusinessCode}">
+									 <c:forEach var="subCatBussCode" items="${catBusinessCode.value}">
+										<c:if test="${businessDetail.business_Code == subCatBussCode.key}"><c:out value="${subCatBussCode.value}"></c:out></c:if>
+									 </c:forEach>
+								</c:forEach>				
+							</td>
+							<td>
+							<c:out value="${businessDetail.tradeName_Proprietorship}" /></td>
 							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${businessDetail.canonicalUUID}"/>/businessnatureedit"><small><i
 										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
@@ -118,37 +116,7 @@ request.setAttribute("objHashMapBusinessCode", objHashMapBusinessCode);
 		</c:otherwise>
 	</c:choose>
 </div>
-<script type="text/javascript">
-	$('#business_code')
-			.ready(
-					function() {
-						if ($("#business_code").val() != null) {
-							<c:forEach var="businessCode" items="${objHashMapBusinessCode}">
-							if ($("#business_name").val() == '<c:out value="${businessCode.key}"/>') {
-								$("#business_code")
-										.val(
-												'<c:out value="${businessCode.value}"/>');
-							}
-							</c:forEach>
 
-						}
-					});
-
-	$("#business_code")
-			.change(
-					function() {
-						if ($("#business_code").val() != null) {
-							<c:forEach var="businessCode" items="${objHashMapBusinessCode}">
-							if ($("#business_code").val() == '<c:out value="${businessCode.key}"/>') {
-								$("#business_name")
-										.val(
-												'<c:out value="${businessCode.value}"/>');
-							}
-							</c:forEach>
-
-						}
-					});
-</script>
 <res:client-validation formId="frmNature_business"
 	screenConfigurationDocumentName="businessnature"
 	formSubmitButtonId="myModalHrefBusinessNature" />

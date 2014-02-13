@@ -60,7 +60,7 @@ public class ForeignBankDetail extends ITReturnComponent {
 			boolean hasAValidUser = true;
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 			if(memberPersonalInformation != null){
-				if(StringUtils.isNotBlank(memberPersonalInformation.getResidentCategory()) && memberPersonalInformation.getResidentCategory().equals("NRI")){
+				if(StringUtils.isNotBlank(memberPersonalInformation.getResidentCategory()) && !memberPersonalInformation.getResidentCategory().equals("RES")){
 					hasAValidUser = false;
 					response.setRenderParameter("invalid.user", "nri.not.allowed");
 					return hasAValidUser;

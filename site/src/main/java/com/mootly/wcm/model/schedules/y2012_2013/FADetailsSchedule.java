@@ -10,11 +10,16 @@ import in.gov.incometaxindiaefiling.y2012_2013.ITR;
 import in.gov.incometaxindiaefiling.y2012_2013.ScheduleFA;
 
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.DetailOfTrustDocument;
 import com.mootly.wcm.beans.FinancialInterestDocument;
 import com.mootly.wcm.beans.ForeignBankAccountDocument;
 import com.mootly.wcm.beans.ImmovablePropertyDocument;
+import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.NatureInvestmentDocument;
 import com.mootly.wcm.beans.SigningAuthorityAccountsDocument;
 import com.mootly.wcm.beans.compound.DetailOfTrustDetail;
@@ -23,6 +28,7 @@ import com.mootly.wcm.beans.compound.ForeignBankAccountDetail;
 import com.mootly.wcm.beans.compound.ImmovablePropertyDetail;
 import com.mootly.wcm.beans.compound.NatureInvestmentDetail;
 import com.mootly.wcm.beans.compound.SigningAuthorityAccountsDetail;
+import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 /*
  * author:- Pankaj Singh
@@ -47,24 +53,29 @@ public class FADetailsSchedule {
 		this.financialInterestDocument=financialInterestDocument;
 
 	}
-	public ScheduleFA getScheduleFA (ITR itr){
+	public ScheduleFA getScheduleFA (ITR itr, FinancialYear financialYear, Map<String,HippoBean> inputBeans){
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleFA scheduleFA = new ScheduleFA();
 		boolean hasValidFA = false;
-		if(foreignBankAccountDocument!=null){
-			List<ForeignBankAccountDetail> foreignBankAccountDetails =  foreignBankAccountDocument.getForeignBankAccountDetailList();
-			if ( foreignBankAccountDetails != null && foreignBankAccountDetails.size() > 0 ){
-				for(ForeignBankAccountDetail foreignBankAccountDetail:foreignBankAccountDetails){
-					DetailsForiegnBank detailsForiegnBank = new DetailsForiegnBank();
-					detailsForiegnBank.setCountryCode(foreignBankAccountDetail.getCountry_Code());
-					detailsForiegnBank.setCountryName(foreignBankAccountDetail.getCountry_Name());
-					detailsForiegnBank.setBankname(foreignBankAccountDetail.getName_Bank());
-					detailsForiegnBank.setAddressOfBank(foreignBankAccountDetail.getAddress_Bank());
-					detailsForiegnBank.setNameAsInAccount(foreignBankAccountDetail.getName_Account());
-					detailsForiegnBank.setPeakBalanceDuringYear(indianCurrencyHelper.bigIntegerRound(foreignBankAccountDetail.getPeak_Balance()));
-					detailsForiegnBank.setForeignAccountNumber(foreignBankAccountDetail.getAccount_No());
-					scheduleFA.getDetailsForiegnBank().add(detailsForiegnBank);
-					if(!hasValidFA) hasValidFA = true;
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		if(memberPersonalInformation != null){
+			if(StringUtils.isNotBlank(memberPersonalInformation.getResidentCategory()) && memberPersonalInformation.getResidentCategory().equals("RES")){
+				if(foreignBankAccountDocument!=null){
+					List<ForeignBankAccountDetail> foreignBankAccountDetails =  foreignBankAccountDocument.getForeignBankAccountDetailList();
+					if ( foreignBankAccountDetails != null && foreignBankAccountDetails.size() > 0 ){
+						for(ForeignBankAccountDetail foreignBankAccountDetail:foreignBankAccountDetails){
+							DetailsForiegnBank detailsForiegnBank = new DetailsForiegnBank();
+							detailsForiegnBank.setCountryCode(foreignBankAccountDetail.getCountry_Code());
+							detailsForiegnBank.setCountryName(foreignBankAccountDetail.getCountry_Name());
+							detailsForiegnBank.setBankname(foreignBankAccountDetail.getName_Bank());
+							detailsForiegnBank.setAddressOfBank(foreignBankAccountDetail.getAddress_Bank());
+							detailsForiegnBank.setNameAsInAccount(foreignBankAccountDetail.getName_Account());
+							detailsForiegnBank.setPeakBalanceDuringYear(indianCurrencyHelper.bigIntegerRound(foreignBankAccountDetail.getPeak_Balance()));
+							detailsForiegnBank.setForeignAccountNumber(foreignBankAccountDetail.getAccount_No());
+							scheduleFA.getDetailsForiegnBank().add(detailsForiegnBank);
+							if(!hasValidFA) hasValidFA = true;
+						}
+					}
 				}
 			}
 		}

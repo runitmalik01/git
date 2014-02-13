@@ -298,7 +298,7 @@ public class PartB_TTI {
 
 		FADetailsSchedule fADetailsSchedule = new FADetailsSchedule(immovablePropertyDocument, natureInvestmentDocument, signingAuthorityAccountsDocument,
 				detailOfTrustDocument, foreignBankAccountDocument, financialInterestDocument);
-		ScheduleFA scheduleFA = fADetailsSchedule.getScheduleFA(itr);
+		ScheduleFA scheduleFA = fADetailsSchedule.getScheduleFA(itr, financialYear, inputBeans);
 		if(scheduleFA != null){
 			partBTTI.setAssetOutIndiaFlag("YES");
 		}else
