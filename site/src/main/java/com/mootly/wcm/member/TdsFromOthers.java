@@ -1,7 +1,5 @@
 package com.mootly.wcm.member;
 
-
-import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -19,84 +17,81 @@ import com.mootly.wcm.model.FinancialYear;
 /*
  * Author:Pankaj Singh
  * Date:13/3/2013
- * Description:It will taje value from Tdsfromsalary.jsp and pass it to bean
+ * Description:It will take value from Tdsfromsalary.jsp and pass it to bean
  */
-@PrimaryBean(primaryBeanClass=TdsFromothersDocument.class)
-@ChildBean(childBeanClass=TdsOthersDetail.class)
-
-@FormFields(fieldNames={"tan_deductortdsoth","name_deductortdsoth","tds_certificatetdsoth","financial_yeartdsoth","total_taxdeductedtdsoth","amounttdsoth"})
-
+@PrimaryBean(primaryBeanClass = TdsFromothersDocument.class)
+@ChildBean(childBeanClass = TdsOthersDetail.class)
+@FormFields(fieldNames = { "tan_deductortdsoth", "name_deductortdsoth",
+@FormFields(fieldNames={"tan_deductortdsoth","name_deductortdsoth","tds_certificatetdsoth","financial_yeartdsoth","total_taxdeductedtdsoth","amounttdsoth","isImportedFromDIT"})
+		"total_taxdeductedtdsoth", "amounttdsoth", "isImportedFromDIT" })
 public class TdsFromOthers extends ITReturnComponent {
-	
-	private static final Logger log = LoggerFactory.getLogger(TdsFromSalary.class);
+
+	private static final Logger log = LoggerFactory
+			.getLogger(TdsFromSalary.class);
+
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		if(log.isInfoEnabled()){
+		if (log.isInfoEnabled()) {
 			log.info("this is do before render of tds from salary");
 		}
 		request.setAttribute("putSameChar", request.getParameter("putSameChar"));
-		
+
 		request.getAttribute("financialYear");
-		int eight=FinancialYear.TwentyEight.getStartYear();
+		int eight = FinancialYear.TwentyEight.getStartYear();
 		request.setAttribute("eight", eight);
-		int nine=FinancialYear.TwentyNine.getStartYear();
+		int nine = FinancialYear.TwentyNine.getStartYear();
 		request.setAttribute("nine", nine);
-		int ten=FinancialYear.TwentyTen.getStartYear();
+		int ten = FinancialYear.TwentyTen.getStartYear();
 		request.setAttribute("ten", ten);
-		int eleven=FinancialYear.TwentyEleven.getStartYear();
+		int eleven = FinancialYear.TwentyEleven.getStartYear();
 		request.setAttribute("eleven", eleven);
-		int twelve=FinancialYear.TwentyTweleve.getStartYear();
+		int twelve = FinancialYear.TwentyTweleve.getStartYear();
 		request.setAttribute("twelve", twelve);
-		int thirteen=FinancialYear.TwentyThirteen.getStartYear();
+		int thirteen = FinancialYear.TwentyThirteen.getStartYear();
 		request.setAttribute("thirteen", thirteen);
-		int forteen=FinancialYear.TwentyForteen.getStartYear();
+		int forteen = FinancialYear.TwentyForteen.getStartYear();
 		request.setAttribute("forteen", forteen);
-		int fifteen=FinancialYear.TwentyFifteen.getStartYear();
+		int fifteen = FinancialYear.TwentyFifteen.getStartYear();
 		request.setAttribute("fifteen", fifteen);
-		
-		if(log.isInfoEnabled()){
-			log.info("checking financial ye"+fifteen);
+
+		if (log.isInfoEnabled()) {
+			log.info("checking financial ye" + fifteen);
 		}
 	}
+
 	@Override
 	public void doAction(HstRequest request, HstResponse response)
 			throws HstComponentException {
-		
+
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		
-		if(log.isInfoEnabled()){
+
+		if (log.isInfoEnabled()) {
 			log.info("this is do Action of tds from salary");
 		}
-		
-	}
-	
 
-	@Override
-	public boolean validate(HstRequest request, HstResponse response, FormMap formMap){
-		if(super.validate(request, response, formMap)){
-			String tanNo= formMap.getField("tan_deductortdsoth").getValue();
-			log.info("tanNo"+tanNo+"KKKKK"+tanNo.charAt(3));
-			String nameDeductor = formMap.getField("name_deductortdsoth").getValue();
-			log.info("nameDeductor"+nameDeductor);
-			if(tanNo.charAt(3) != nameDeductor.charAt(0)){
-				formMap.addMessage("charMatches", "FourthcharPan.is.FirstCharDeductor");
-				response.setRenderParameter("putSameChar", "FourthcharPan.is.FirstCharDeductor");
-				
-				return false;
-			}
-		}
-		
-		return super.validate(request, response, formMap);
-			
-		
 	}
-	
-	
-	
+
+	// this method has validation for Tan name and pan . Right now I don't need
+	// it
+	/*
+	 * @Override public boolean validate(HstRequest request, HstResponse
+	 * response, FormMap formMap) { if (super.validate(request, response,
+	 * formMap)) { String tanNo =
+	 * formMap.getField("tan_deductortdsoth").getValue(); log.info("tanNo" +
+	 * tanNo + "KKKKK" + tanNo.charAt(3)); String nameDeductor =
+	 * formMap.getField("name_deductortdsoth") .getValue();
+	 * log.info("nameDeductor" + nameDeductor); if (tanNo.charAt(3) !=
+	 * nameDeductor.charAt(0)) { formMap.addMessage("charMatches",
+	 * "FourthcharPan.is.FirstCharDeductor");
+	 * response.setRenderParameter("putSameChar",
+	 * "FourthcharPan.is.FirstCharDeductor");
+	 * 
+	 * return false; } }
+	 * 
+	 * return super.validate(request, response, formMap);
+	 * 
+	 * }
+	 */
 }
-	
-	
-	
-
