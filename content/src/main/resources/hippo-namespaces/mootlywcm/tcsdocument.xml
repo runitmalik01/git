@@ -29,7 +29,7 @@
         <sv:value>hippo:harddocument</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>c34f82ef-1c1f-4499-b556-413f14ba2647</sv:value>
+        <sv:value>9ba10ff5-faa5-415c-9e95-89d310cacb16</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hipposysedit:node" sv:type="Boolean">
@@ -103,7 +103,7 @@
         <sv:value>hippotranslation:translated</sv:value>
       </sv:property>
       <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>e23fed9b-6ed8-4a25-a3d1-79ca0367d521</sv:value>
+        <sv:value>bddc9045-c69f-4c90-9fbd-1dcd8df5bb64</sv:value>
       </sv:property>
       <sv:property sv:name="hippo:related___pathreference" sv:type="String"/>
       <sv:property sv:name="hippostd:holder" sv:type="String">
@@ -139,23 +139,6 @@
       <sv:node sv:name="hippotranslation:translations">
         <sv:property sv:name="jcr:primaryType" sv:type="Name">
           <sv:value>hippotranslation:translations</sv:value>
-        </sv:property>
-      </sv:node>
-      <sv:node sv:name="mootlywcm:tcsdetail">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mootlywcm:tcsdetail</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:name" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:tan" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:taxcredit" sv:type="Double">
-          <sv:value>0.0</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:totaltax" sv:type="Double">
-          <sv:value>0.0</sv:value>
         </sv:property>
       </sv:node>
     </sv:node>
