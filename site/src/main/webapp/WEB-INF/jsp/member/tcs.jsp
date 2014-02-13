@@ -129,7 +129,7 @@
 
 					</c:forEach>
 					<tr align="center">
-						<td colspan="2">Total Amount Claimed</td>
+						<td colspan="3">Total Amount Claimed</td>
 						<td align="right"><w4india:inr value="${parentBean.total}" />
 						</td>
 				</c:if>
