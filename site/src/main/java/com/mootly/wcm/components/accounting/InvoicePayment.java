@@ -392,20 +392,21 @@ public class InvoicePayment extends ITReturnComponent {
 					,memberPersonalInformation.getEmail()
 					);
 			*/
-			oMPI.setMPIRequestDetails(
-					invDoc.getAmountDue().toString()	 //mstrPurchaseAmount
-					,"INR" + invDoc.getAmountDue().toString()	//mstrDisplayAmount
-					,"1", //mstrCurrencyVal
-					"1" //mstrExponent
-					,"eFile ITReturn" //mstrOrderDesc
-					,"0" //mstrRecurFreq
-					,"0" //mstrRecurEnd
-					,"0" //mstrInstallment
-					,"0" //mstrDeviceCategory
-					,"" //mstrWhatIUse
-					,request.getHeader("accept") //,"image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, application/x-shockwave-flash, */*" //mstrAcceptHdr
-					,request.getHeader("user-agent") //"Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)" //mstrAgentHdr
-					); 
+			
+//			oMPI.setMPIRequestDetails(
+//					invDoc.getAmountDue().toString()	 //mstrPurchaseAmount
+//					,"INR" + invDoc.getAmountDue().toString()	//mstrDisplayAmount
+//					,"1", //mstrCurrencyVal
+//					"1" //mstrExponent
+//					,"eFile ITReturn" //mstrOrderDesc
+//					,"0" //mstrRecurFreq
+//					,"0" //mstrRecurEnd
+//					,"0" //mstrInstallment
+//					,"0" //mstrDeviceCategory
+//					,"" //mstrWhatIUse
+//					,request.getHeader("accept") //,"image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, application/x-shockwave-flash, */*" //mstrAcceptHdr
+//					,request.getHeader("user-agent") //"Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)" //mstrAgentHdr
+//					); 
 			/*
 			oHomeAddress.setAddressDetails(
 					memberPersonalInformation.getFlatDoorBuilding()
