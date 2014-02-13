@@ -220,7 +220,7 @@ public class ITR2XmlGeneratorService  {
 
 		FADetailsSchedule fADetailsSchedule = new FADetailsSchedule(immovablePropertyDocument,natureInvestmentDocument,
 				signingAuthorityAccountsDocument,detailOfTrustDocument,foreignBankAccountDocument,financialInterestDocument);
-		itr2.setScheduleFA(fADetailsSchedule.getScheduleFA(itr));
+		itr2.setScheduleFA(fADetailsSchedule.getScheduleFA(itr, financialYear, inputBeans));
 
 		ScheduleFiveA scheduleFiveA = new ScheduleFiveA(scheduleFiveADocument);
 		itr2.setSchedule5A(scheduleFiveA.getScheduleFiveA(itr));

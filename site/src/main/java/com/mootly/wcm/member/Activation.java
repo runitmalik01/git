@@ -37,7 +37,7 @@ public class Activation extends BaseComponent {
 		String activationCode = request.getRequestContext().getResolvedSiteMapItem().getParameter("activationCode");
 		if (activationCode == null || activationCode.trim().equals("")) {
 			log.warn("This is crazy. Activation code is null");
-			request.setAttribute("isError", "true");
+			request.setAttribute("isEmpty", "true");
 			request.setAttribute("errorCode", "error.activationcode.missing");
 			return;
 		}

@@ -27,7 +27,7 @@ try {
 				errorKey = "login.error";
 			}
 			session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-			pageContext.setAttribute("login_error_key", errorKey);	
+			pageContext.setAttribute("login_error_key", errorKey);		
 		}
 	}
 } catch (Exception ex) {
@@ -39,6 +39,7 @@ try {
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
 <hst:link var="j_spring_security_check" path="/j_spring_security_check"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
+
 <c:if test="${ not empty errormsg}">
 		<div class="alert alert-success"><c:out value="${errormsg}"/></div>
 		</c:if>	
@@ -112,11 +113,6 @@ try {
 							Me</button> <input type="checkbox" name="remember_me" id="remember_me"
 						checked="checked" class="hidden"> 
 					</span> -->
-					<div class="row">
-					   <div class="col-md-4 col-md-offset-8">
-					       <a href="<hst:link siteMapItemRefId="forgotpass"/>" class="btn btn-link pull-right" tabindex="3">Forgot Password?</a>
-					   </div>
-					</div>
 					<hr class="colorgraph">
 					<div class="row">
 						<div class="col-xs-6 col-sm-6 col-md-6">
@@ -145,6 +141,23 @@ try {
 			$("#username").val($("#username").val().toLowerCase());
 			return true;
 		});
+		$('#loginForm').validate({
+				rules: {
+					username: {
+						required: true,
+						minlength: 2,
+						email:true
+					}
+					password: {
+						required: true,
+						minlength: 2
+					}
+				},				
+				messages: {
+					username: "Please enter a username.",
+					password: "Please enter a password."
+				}
+			});
 	});
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
