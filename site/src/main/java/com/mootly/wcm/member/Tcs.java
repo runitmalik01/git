@@ -31,7 +31,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 @AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
 @RequiredBeans(requiredBeans={MemberPersonalInformation.class})
 @RequiredFields(fieldNames={"tan","name","totaltax"})
-@FormFields(fieldNames={"tan","name","totaltax","taxCredited"})
+@FormFields(fieldNames={"tan","name","totaltax","taxCredited","isImportedFromDIT"})
 @DataTypeValidationFields(fieldNames={
 		"tan",
 		"totaltax","amtCredited"

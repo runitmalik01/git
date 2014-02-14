@@ -31,7 +31,7 @@ import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
  */
 @PrimaryBean(primaryBeanClass=SelfAssesmetTaxDocument.class)
 @ChildBean(childBeanClass=SelfAssesmentTaxDetail.class)
-@FormFields(fieldNames={"bsr_codeself","date_creditself","Serial_challanself","amountself"})
+@FormFields(fieldNames={"bsr_codeself","date_creditself","Serial_challanself","amountself","isImportedFromDIT"})
 @RequiredFields(fieldNames={"bsr_codeself","date_creditself","Serial_challanself","amountself"})
 @DataTypeValidationFields(fieldNames={
 		"bsr_codeself",

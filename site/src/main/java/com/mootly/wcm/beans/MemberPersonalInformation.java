@@ -900,7 +900,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		this.name_AuditorSign_Report = name_AuditorSign_Report;
 	}
 	public final void setMembershipNo_auditor(String membershipNo_auditor) {
-		String modify_membershipNo_auditor = ModifyMembershipNo_Auditor(membershipNo_auditor);
+		String modify_membershipNo_auditor = formatMemberShipNumber(membershipNo_auditor);
 		this.membershipNo_auditor = modify_membershipNo_auditor;
 	}
 	public final void setName_auditorFirm(String name_auditorFirm) {
@@ -1470,18 +1470,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	}
 	
 	// this method will convert membership no of auditor to 6 always
-	private  String ModifyMembershipNo_Auditor(String memberShipNo) {
-		int length = memberShipNo.length();
-		char charArray[] = memberShipNo.toCharArray();
-		StringBuffer bf = new StringBuffer();
-
-		for (int i = 0; i < 6 - length; i++) {
-			StringBuffer bfZero = new StringBuffer("0");
-			bf = bfZero.append(memberShipNo);
-			memberShipNo = bf.toString();
-
+	private  String formatMemberShipNumber(String memberShipNo) {
+		if (memberShipNo != null && !"".equals(memberShipNo.trim()) ) {
+			String outputStr = String.format("%6s", memberShipNo.trim()).replace(' ', '0');
+			return outputStr;
 		}
-
-		return bf.toString();
+		return null;
 	}
 }
