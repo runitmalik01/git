@@ -900,7 +900,8 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		this.name_AuditorSign_Report = name_AuditorSign_Report;
 	}
 	public final void setMembershipNo_auditor(String membershipNo_auditor) {
-		this.membershipNo_auditor = membershipNo_auditor;
+		String modify_membershipNo_auditor = ModifyMembershipNo_Auditor(membershipNo_auditor);
+		this.membershipNo_auditor = modify_membershipNo_auditor;
 	}
 	public final void setName_auditorFirm(String name_auditorFirm) {
 		this.name_auditorFirm = name_auditorFirm;
@@ -1466,5 +1467,21 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 	public void setDigitalSignatureHandleUUID(String digitalSignatureHandleUUID) {
 		this.digitalSignatureHandleUUID = digitalSignatureHandleUUID;
+	}
+	
+	// this method will convert membership no of auditor to 6 always
+	private  String ModifyMembershipNo_Auditor(String memberShipNo) {
+		int length = memberShipNo.length();
+		char charArray[] = memberShipNo.toCharArray();
+		StringBuffer bf = new StringBuffer();
+
+		for (int i = 0; i < 6 - length; i++) {
+			StringBuffer bfZero = new StringBuffer("0");
+			bf = bfZero.append(memberShipNo);
+			memberShipNo = bf.toString();
+
+		}
+
+		return bf.toString();
 	}
 }
