@@ -182,7 +182,7 @@
 		   	 return this.optional(element) || /^[a-zA-Z0-9]{0,16}?$/i.test(value);
 		}, "Tax Identification Number is invalid");
 		$.validator.addMethod("MembershipNo", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);
+			return this.optional(element) || /^[0-9]{0,6}?$/i.test(value);
 		}, "Membership No. of Auditor is not valid");
 		$.validator.addMethod("amountNeg", function(value, element) {
 		   	 return this.optional(element) || /^-?[0-9]+\.?[0-9]{0,2}?$/i.test(value);

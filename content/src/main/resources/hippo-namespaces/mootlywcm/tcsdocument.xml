@@ -141,23 +141,6 @@
           <sv:value>hippotranslation:translations</sv:value>
         </sv:property>
       </sv:node>
-      <sv:node sv:name="mootlywcm:tcsdetail">
-        <sv:property sv:name="jcr:primaryType" sv:type="Name">
-          <sv:value>mootlywcm:tcsdetail</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:name" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:tan" sv:type="String">
-          <sv:value/>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:taxcredit" sv:type="Double">
-          <sv:value>0.0</sv:value>
-        </sv:property>
-        <sv:property sv:name="mootlywcm:totaltax" sv:type="Double">
-          <sv:value>0.0</sv:value>
-        </sv:property>
-      </sv:node>
     </sv:node>
   </sv:node>
   <sv:node sv:name="editor:templates">
