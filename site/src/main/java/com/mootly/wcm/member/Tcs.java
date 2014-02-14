@@ -26,20 +26,27 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.compound.TcsDetail;
 import com.mootly.wcm.components.ITReturnComponent;
+@PrimaryBean(primaryBeanClass=TcsDocument.class)
+@ChildBean(childBeanClass=TcsDetail.class)
+@AdditionalBeans(additionalBeansToLoad=MemberPersonalInformation.class)
+@RequiredBeans(requiredBeans={MemberPersonalInformation.class})
+@RequiredFields(fieldNames={"tan","name","totaltax"})
+@FormFields(fieldNames={"tan","name","totaltax","taxCredited"})
+@DataTypeValidationFields(fieldNames={
+		"tan",
+		"totaltax","amtCredited"
 
-@PrimaryBean(primaryBeanClass = TcsDocument.class)
-@ChildBean(childBeanClass = TcsDetail.class)
-@AdditionalBeans(additionalBeansToLoad = MemberPersonalInformation.class)
-@RequiredBeans(requiredBeans = { MemberPersonalInformation.class })
-@RequiredFields(fieldNames = { "tan", "name", "totaltax" })
-@FormFields(fieldNames = { "tan", "name", "totaltax", "taxCredited",
-		"isImportedFromDIT" })
-@DataTypeValidationFields(fieldNames = { "tan", "totaltax", "amtCredited"
+},
+dataTypes= {
+		DataTypeValidationType.TAN, //Gross_salary
+		DataTypeValidationType.DECIMAL,
+		DataTypeValidationType.DECIMAL,
 
-}, dataTypes = { DataTypeValidationType.TAN, // Gross_salary
-		DataTypeValidationType.DECIMAL, DataTypeValidationType.DECIMAL,
+}
+		)
 
-})
+
+
 public class Tcs extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(Tcs.class);
@@ -49,8 +56,7 @@ public class Tcs extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
 
-		// String date1= ContentStructure.getMemberAssetDocPath(, filing_year,
-		// getUserName());
+		//String date1= ContentStructure.getMemberAssetDocPath(, filing_year, getUserName());
 
 	}
 
