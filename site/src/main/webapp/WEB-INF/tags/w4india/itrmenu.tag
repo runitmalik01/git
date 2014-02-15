@@ -239,16 +239,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 		 }
 	}
 } %>
-  	<c:if test="${isTrialPeriodActive==true}">
-		<div class="alert alert-danger" style="font-size: small;">
-			<c:if test="${daysLeft == 1}">
-			Only ${daysLeft} day is left of your trial period. <a href="${urlToResellerPackage}">  Click Here !!! To upgrade your account.</a> .
-			</c:if>
-			<c:if test ="${daysLeft gt 1}">
-			Only ${daysLeft} days are left of your trial period. <a href="${urlToResellerPackage}"> Click Here !!! To upgrade your account.</a> .
-			</c:if>
-		</div>
-	</c:if>
+
 	<div class="navbar navbar-inverse">
 		<div class="navbar-header main-nav-header">
 			<a

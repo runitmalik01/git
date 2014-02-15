@@ -326,6 +326,8 @@ orderable
 
 [mootlywcm:resellersignupdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
 
+[mootlywcm:twentysixassecquesdocument] > hippostd:relaxed, mootlywcm:basedocument orderable
+
 [mootlywcm:securitiesdetail] > hippo:compound, hippostd:relaxed orderable
 
 
