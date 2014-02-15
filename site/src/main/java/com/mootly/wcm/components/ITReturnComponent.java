@@ -98,6 +98,7 @@ import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScreenCalculation;
 import com.mootly.wcm.beans.ScreenConfigDocument;
+import com.mootly.wcm.beans.TwentySixASSecQuesDocument;
 import com.mootly.wcm.beans.compound.InvoiceDocumentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
@@ -262,7 +263,7 @@ public class ITReturnComponent extends BaseComponent {
 				redirectToNotFoundPage(response);
 				return;
 			}
-			
+		
 			String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 			if (isFrozen && getITRInitData(request).pageAction == PAGE_ACTION.EFILE) {
 				try {
@@ -691,6 +692,19 @@ public class ITReturnComponent extends BaseComponent {
 				response.setRenderPath("jsp/common/json_output.jsp");
 			}
 		}
+		//Check of 26AS security Question
+		if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.SYNC_TDS_FROM_DIT){
+			TwentySixASSecQuesDocument twentySixASSecQuesDocument= (TwentySixASSecQuesDocument) request.getAttribute("twentysixassecquesdocument");
+			if(twentySixASSecQuesDocument == null || (twentySixASSecQuesDocument != null && twentySixASSecQuesDocument.getSecurityCheck()==false)){
+				String urlToSecQues = getRedirectURLForSiteMapItem(request, response, null, "servicerequest-itr-sync-tds-security", getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
+				try {
+					response.sendRedirect(urlToSecQues);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
@@ -742,7 +756,7 @@ public class ITReturnComponent extends BaseComponent {
 			}
 			boolean saveResult = save(request,getITRInitData(request).formMap);
 			if (!saveResult) return;
-			afterSave(request,getITRInitData(request).formMap,getITRInitData(request).pageAction);
+			afterSave(request,response,getITRInitData(request).formMap,getITRInitData(request).pageAction);
 			try {
 				if (getITRInitData(request).formMap.getMessage() != null && getITRInitData(request).formMap.getMessage().size() > 0 ) {
 					String urlToRedirect = getITRInitData(request).getScriptName(); //getRedirectURL(request,response,FormSaveResult.FAILURE) ;
@@ -1228,7 +1242,7 @@ public class ITReturnComponent extends BaseComponent {
 		return true;
 	}
 
-	public void afterSave(HstRequest request,FormMap map, PAGE_ACTION pageAction) {
+	public void afterSave(HstRequest request,HstResponse response, FormMap map, PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
 
 	}

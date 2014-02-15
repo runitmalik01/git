@@ -5656,6 +5656,35 @@
             <sv:value>ROLE_vendor</sv:value>
           </sv:property>
         </sv:node>
+        <!--start of 26AS security question-->
+
+<sv:node sv:name="servicerequest-itr-sync-tds-security.html">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>02c65424-287a-4c53-8aaf-9055fce746ac</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+    <sv:value>hst:pages/sync-tds-security</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+    <sv:value>mainSiteMapItemRefId</sv:value>
+    <sv:value>action</sv:value>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+    <sv:value>servicerequest-itr-sync-tds-security</sv:value>
+    <sv:value>EDIT</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:refId" sv:type="String">
+    <sv:value>servicerequest-itr-sync-tds-security</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+    <sv:value>members</sv:value>
+  </sv:property>
+</sv:node>
+
+        <!-- end-->
         <sv:node sv:name="efile-confirmation.html">
           <sv:property sv:name="jcr:primaryType" sv:type="Name">
             <sv:value>hst:sitemapitem</sv:value>

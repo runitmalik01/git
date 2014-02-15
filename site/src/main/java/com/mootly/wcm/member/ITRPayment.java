@@ -62,12 +62,12 @@ public class ITRPayment extends ITReturnComponent {
 	}
 	
 	@Override
-	public void afterSave(HstRequest request,FormMap formMap,PAGE_ACTION pageAction) {
+	public void afterSave(HstRequest request, HstResponse response, FormMap formMap,PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
 		//send an email 
 		//send an email right here to our administrators and tell them about an availability
 		//String[] to = new String[] {"info@wealth4india.com","amit@mootly.com"};
-		super.afterSave(request,formMap,pageAction);
+		super.afterSave(request,response,formMap,pageAction);
 		Map<String,Object> velocityContext = new HashMap<String, Object>();
 		velocityContext.put("userName",getITRInitData(request).getUserName());
 		velocityContext.put("userNameNormalized",getITRInitData(request).getUserNameNormalized());

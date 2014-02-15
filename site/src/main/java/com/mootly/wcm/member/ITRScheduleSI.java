@@ -96,11 +96,11 @@ public class ITRScheduleSI extends ITReturnComponent {
 	}
 
 	@Override
-	public void afterSave(HstRequest request, FormMap map,
+	public void afterSave(HstRequest request, HstResponse response, FormMap map,
 			PAGE_ACTION pageAction) {
 		// TODO Auto-generated method stub
 		Map<String,String[]> requestParameterMap=new HashMap<String,String[]>();
-		super.afterSave(request, map, pageAction);
+		super.afterSave(request,response, map, pageAction);
 		Session persistableSession = null;
 		FinancialYear fy=(FinancialYear)request.getAttribute("financialYear");
 		Map<String, HippoBean> inputBean = new HashMap<String, HippoBean>();

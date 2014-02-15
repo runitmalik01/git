@@ -13,7 +13,7 @@
                     Oops!</h1>
                 <div class="error-details">
                      <c:if test="${not empty isError}">
-                     You have already activated your account. Please Signup with your given ID and Password.
+                     You have already activated your account. Please Login with your given ID and Password.
                     </c:if>
                 </div>
                 <div class="error-actions">

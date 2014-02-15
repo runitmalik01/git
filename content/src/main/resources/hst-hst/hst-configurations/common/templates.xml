@@ -4043,6 +4043,20 @@
     <sv:value>jsp/news/addNews.jsp</sv:value>
   </sv:property>
 </sv:node>
+<!-- start of 26AS -->
+<sv:node sv:name="sync.tds.security">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:template</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>bc9bb07d-68b8-4fc3-b49b-31d568a9aa63</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:renderpath" sv:type="String">
+    <sv:value>jsp/member/syncTDSsecurity.jsp</sv:value>
+  </sv:property>
+</sv:node>
+
+<!-- End -->
 <sv:node sv:name="actionpermissionupdate">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hst:template</sv:value>

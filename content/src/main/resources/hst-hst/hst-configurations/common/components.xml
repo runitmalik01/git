@@ -2299,6 +2299,22 @@
     <sv:value>member.digital-signature</sv:value>
   </sv:property>
 </sv:node>
+<!-- start of 26 AS -->
+<sv:node sv:name="sync-tds-security">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:component</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>caae5b78-41ba-4946-a3a5-c0412e75eaac</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:componentclassname" sv:type="String">
+    <sv:value>com.mootly.wcm.member.SyncTDSSecurity</sv:value>
+  </sv:property>
+  <sv:property sv:name="hst:template" sv:type="String">
+    <sv:value>sync.tds.security</sv:value>
+  </sv:property>
+</sv:node>
+<!-- End -->
 	<!-- new component -->
 	<sv:node sv:name="efile-incometax-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
