@@ -1751,35 +1751,78 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
-    <sv:node sv:name="mootlywcm:screenfieldconfig">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mootlywcm:screenfieldconfig</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>Letable_value</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>Letable_value</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-        <sv:value>false</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
-        <sv:value/>
-      </sv:property>
-    </sv:node>
+    <!-- Tut for Lettable Amount -->
+   
+<sv:node sv:name="mootlywcm:screenfieldconfig">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mootlywcm:screenfieldconfig</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+    <sv:value>amount</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+    <sv:value>Letable_value</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+    <sv:value>Letable_value</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+    <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Fill only your share of income, mention at least one partner details who has
+share in property.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:href" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+    <sv:value/>
+  </sv:property>
+</sv:node>
+    
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
@@ -1896,35 +1939,77 @@ serving since beginning then select first day of financial year.&lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
-    <sv:node sv:name="mootlywcm:screenfieldconfig">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>mootlywcm:screenfieldconfig</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>amount</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>Interest_borrowed</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
-        <sv:value>Interest_borrowed</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
-        <sv:value>false</sv:value>
-      </sv:property>
-      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
-        <sv:value/>
-      </sv:property>
-      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
-        <sv:value/>
-      </sv:property>
-    </sv:node>
+   <!-- Tut for Interest Payable -->
+   
+<sv:node sv:name="mootlywcm:screenfieldconfig">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mootlywcm:screenfieldconfig</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+    <sv:value>amount</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+    <sv:value>Interest_borrowed</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+    <sv:value>Interest_borrowed</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+    <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt;Fill your share of Interest Payable for the share of property you held.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:href" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+    <sv:value/>
+  </sv:property>
+</sv:node>
+   
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
@@ -10262,7 +10347,7 @@ acknowledgement&lt;/p&gt;
 </sv:node>
 
 <!--capital asset-->
-<sv:node sv:name="capitalasset">
+<sv:node sv:name="capitalasset" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -10293,7 +10378,7 @@ acknowledgement&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>98517896-2c8f-4917-beb4-201fdd2adfa3</sv:value>
+      <sv:value>50c69257-5365-43e8-ad77-dd2dac272300</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -10318,13 +10403,13 @@ acknowledgement&lt;/p&gt;
       <sv:value>2013-04-24T08:26:03.045+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-10-04T14:37:22.849+05:30</sv:value>
+      <sv:value>2014-02-15T16:46:13.654+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-10-04T14:37:38.378+05:30</sv:value>
+      <sv:value>2014-02-15T16:46:23.814+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>6033fcc0-4115-4cdc-aa25-8f4b5a95e2ff</sv:value>
@@ -11191,7 +11276,18 @@ acknowledgement&lt;/p&gt;
         <sv:value>accural_info</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
-        <sv:value/>
+        <sv:value>&lt;html&gt;
+&lt;body&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt;Details of amount received on each quarter applicable (Received in Part
+Payment or lump sum).&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
         <sv:value/>
@@ -12407,6 +12503,7 @@ acknowledgement&lt;/p&gt;
     </sv:node>
   </sv:node>
 </sv:node>
+
 
 
 
