@@ -12,7 +12,7 @@
 		<p>
 			<strong><w4india:resellername/> cares about your security and we take all necessary measures to make sure your information is secured and safe.</strong>
 		</p>
-		<p>In order to import your 26AS details please answer the following questions.</p>
+		<p>In order to import your 26AS details please enter your Security Question and Answer.</p>
 	</div>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -31,10 +31,27 @@
 		<fieldset>		
 			<legend>
 				<strong><i class="glyphicon glyphicon-lock"></i>Security Questions Panel &nbsp;&nbsp;&nbsp;&nbsp;</strong>
-				<c:if test="${not empty totAttemptsLeft}">
-				<small><i class=" glyphicon glyphicon-warning-sign"></i><span style="color: maroon;"> You have <c:out value="${totAttemptsLeft}"></c:out> attempts now.</span></small>
-				</c:if>
 			</legend>
+					   <c:if test="${not empty parentBean}">
+	   		<table class="table table-hover table-striped table-bordered">
+			<thead>
+				<tr class="success">
+					<th><i class=" glyphicon glyphicon-ok-circle"></i>Security Question</th>
+					<th><i class="glyphicon glyphicon-adjust"></i>Answer</th>
+					<th><i class="glyphicon glyphicon-adjust"></i>Status</th>
+					<th><i class="glyphicon glyphicon-adjust"></i>Attempts Left</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="warning">
+					<td><c:out value="${parentBean.securityQuestion}" /></td>
+					<td><c:out value="${parentBean.securityAnswer}" /></td>
+					<td><i class="glyphicon glyphicon-ban-circle"></i><c:if test="${parentBean.securityCheck == false}">&nbsp;<c:out value="Wrong Answer" /></c:if></td>
+				    <td><c:out value="${totAttemptsLeft}" /></td>
+				</tr>
+			</tbody>
+		</table>
+	   </c:if>
 			<div class="show-grid row">
 				<div class="col-md-6">
 					<div class="rowlabel">
@@ -59,12 +76,15 @@
 						<input id="securityAnswer" name="securityAnswer" value="" type="text" />
 					</div>
 				</div>
+				<div class="col-md-3s">
+					<div class="rowlabel">
+						<label for="securityAnswer"><small>Click here</small></label>
+					</div>
+					<div class="rowlabel">
+						<a id="myModelSecQuesFrm" role="button" class="btn btn-default btn-success">Continue</a>	
+					</div>
+				</div>
 			</div>
-			<div class="row show-grid">
-			 <div class="col-md-4 col-md-offset-8 decimal">
-				<a id="myModelSecQuesFrm" role="button" class="btn btn-default btn-success">Proceed</a>	
-			</div>
-		 </div>	
 	   </fieldset>
 	</div>
  </form>
