@@ -618,7 +618,7 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 
 		onBeforeRender(request);
 
-		if (pageAction.equals(ITReturnScreen.PAGE_ACTION.EDIT_CHILD) || pageAction.equals(ITReturnScreen.PAGE_ACTION.DELETE_CHILD) && parentBean != null) {
+		if (pageAction != null && (pageAction.equals(ITReturnScreen.PAGE_ACTION.EDIT_CHILD) || pageAction.equals(ITReturnScreen.PAGE_ACTION.DELETE_CHILD)) && parentBean != null) {
 			//find the object by uuid
 			uuid = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid");
 			if (log.isInfoEnabled()) {
