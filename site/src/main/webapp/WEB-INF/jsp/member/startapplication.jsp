@@ -1171,7 +1171,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	// This is the check for audit filds 
 	var AY='<c:out value="${assessmentYear}"/>'.split("-", 4);
 	itrFinYrMin="01/04/"+AY[0];
+	itrPrYr = parseInt(AY[0])-1;
+	itrPrvFinYrMin = "01/04/"+itrPrYr;
+	$( ".dateAuditReport" ).datepicker( "option", "minDate", itrPrvFinYrMin );
 	$( ".auditdateCal" ).datepicker( "option", "minDate", itrFinYrMin );
+	
 	
 	// this code is for itr2 when pan is HUF
  	 /*var packageName = $('#flex_string_ITRForm').val();
