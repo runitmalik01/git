@@ -29,7 +29,7 @@ import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 @ChildBean(childBeanClass=ScheduleDOADetails.class)
 @FormFields(fieldNames={"rates","valFirstDayPrevYr","periodMore180Day","prevYrConsider","amtDepreciationFullRate","periodLess180Day","considerOrRealDuringYr",
 		"halfRateDepreciation","considerOrRealDuringYr","amtDepreciationHalfRate","depreciationFullRate","depreciationHalfRate","addDepreciatMore180Day","addDepreciatLess180Day",
-		"totalDepreciation","expense_TransferAsset","capitalGain_LossSec50","valLastDayPrevYr","type_Asset"})
+		"totalDepreciation","expense_TransferAsset","capitalGain_LossSec50","valLastDayPrevYr","type_Asset","isBlockExhist"})
 
 public class SchedDOA extends ITReturnComponent {
 

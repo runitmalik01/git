@@ -318,6 +318,23 @@
 						</div>
 					</div>
 				</div>
+					<div class="row show-grid">
+				<div class="col-md-8">
+					<div class="rowlabel">
+						<label for="isBlockExhist"><small>Is property exhist </small> </label>
+					</div></div>
+					<div class="col-md-4">
+					<div class="rowlabel">
+						<select id="isBlockExhist" name="isBlockExhist">
+						<option value="">-Select-</option>
+								<option value="Yes"
+									<c:if test="${not empty childBean.isBlockExhist && childBean.isBlockExhist =='Yes'}">selected</c:if>>Yes</option>
+								<option value="No"
+									<c:if test="${not empty childBean.isBlockExhist && childBean.isBlockExhist =='No'}">selected</c:if>>No</option>
+						</select>
+					</div>
+				</div>
+		</div>
 				<div class="row show-grid">
 					<div class="col-md-4 col-md-offset-8 decimal">
 						<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;

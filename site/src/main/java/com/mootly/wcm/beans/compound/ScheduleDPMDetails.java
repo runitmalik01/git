@@ -37,6 +37,7 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 	private Double capitalGain_LossSec50;
 	private Double valLastDayPrevYr;
 	private boolean markedForDeletion;
+	private String isBlockExhist;
 	
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
@@ -193,6 +194,15 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 		if(valLastDayPrevYr == null) valLastDayPrevYr = getProperty("mootlywcm:valLastDayPrevYr");
 		return valLastDayPrevYr;
 	}
+	public String getIsBlockExhist() {
+		if (isBlockExhist == null)
+			isBlockExhist = getProperty("mootlywcm:isBlockExhist");
+		return isBlockExhist;
+	}
+	public void setIsBlockExhist(String isBlockExhist) {
+		this.isBlockExhist = isBlockExhist;
+	}
+
 
 	public void setValLastDayPrevYr(Double valLastDayPrevYr) {
 		this.valLastDayPrevYr = valLastDayPrevYr;
@@ -221,6 +231,7 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 				node.setProperty("mootlywcm:capitalGain_LossSec50", getCapitalGain_LossSec50());
 				node.setProperty("mootlywcm:valLastDayPrevYr", getValLastDayPrevYr());
 			//	node.setProperty("mootlywcm:addDepreciatLess180Day", getAddDepreciatLess180Day());
+				node.setProperty("mootlywcm:isBlockExhist", getIsBlockExhist());
 			
 
 		} catch (RepositoryException rex) {
@@ -332,13 +343,11 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 			setAddDepreciatMore180Day(val_addDepreciatMore180Day);
 		}
 		if (formMap.getField("addDepreciatLess180Day").getValue().isEmpty()){
-			log.info("value is null");
 			setAddDepreciatLess180Day(defValueifNull);
 		}
 		else{
 			String addDepreciatLess180DayStr=formMap.getField("addDepreciatLess180Day").getValue();
 			double val_addDepreciatLess180Day= Double.parseDouble(addDepreciatLess180DayStr);
-			log.info("GGGGGGGGGGGGGGGGGGGGGGGGGG"+val_addDepreciatLess180Day);
 			setAddDepreciatLess180Day(val_addDepreciatLess180Day);
 		}
 		
@@ -376,6 +385,11 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 			double val_valLastDayPrevYr= Double.parseDouble(valLastDayPrevYrStr);
 			setValLastDayPrevYr(val_valLastDayPrevYr);
 		}
+		if (formMap.getField("isBlockExhist").getValue().isEmpty()) {
+			setIsBlockExhist("");
+		} else {
+			setIsBlockExhist(formMap.getField("isBlockExhist").getValue());
+		}
 }
 
 	@Override
@@ -401,6 +415,7 @@ public class ScheduleDPMDetails extends HippoItem implements FormMapFiller {
 		setExpense_TransferAsset(objScheduleDPMDetails.getExpense_TransferAsset());
 		setCapitalGain_LossSec50(objScheduleDPMDetails.getCapitalGain_LossSec50());
 		setValLastDayPrevYr(objScheduleDPMDetails.getValLastDayPrevYr());
+		setIsBlockExhist(objScheduleDPMDetails.getIsBlockExhist());
 		
 		
 	}
