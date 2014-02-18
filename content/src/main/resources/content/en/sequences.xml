@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sv:node sv:name="sequences" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+<?xml version="1.0" encoding="UTF-8"?><sv:node xmlns:sv="http://www.jcp.org/jcr/sv/1.0" sv:name="sequences">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>nt:unstructured</sv:value>
   </sv:property>
@@ -10,66 +9,66 @@
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:document</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
       <sv:value>mootlywcm:sequence</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:nextId" sv:type="Long">
-      <sv:value>429</sv:value>
+      <sv:value>482</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="invoiceSequence">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:document</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
       <sv:value>mootlywcm:sequence</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:nextId" sv:type="Long">
-      <sv:value>20059</sv:value>
+      <sv:value>20112</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="paymentIdSequence">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:document</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
       <sv:value>mootlywcm:sequence</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:nextId" sv:type="Long">
-      <sv:value>20056</sv:value>
+      <sv:value>20111</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="documentSequence">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:document</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
       <sv:value>mootlywcm:sequence</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:nextId" sv:type="Long">
-      <sv:value>2037</sv:value>
+      <sv:value>2087</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="serviceRequest">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:document</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
       <sv:value>mootlywcm:sequence</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:nextId" sv:type="Long">
-      <sv:value>10020</sv:value>
+      <sv:value>10070</sv:value>
     </sv:property>
   </sv:node>
   <sv:node sv:name="ticketSequence">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippo:document</sv:value>
     </sv:property>
-    <sv:property sv:multiple="true" sv:name="jcr:mixinTypes" sv:type="Name">
+    <sv:property sv:name="jcr:mixinTypes" sv:type="Name" sv:multiple="true">
       <sv:value>mootlywcm:sequence</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:nextId" sv:type="Long">
-      <sv:value>20030</sv:value>
+      <sv:value>20050</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
