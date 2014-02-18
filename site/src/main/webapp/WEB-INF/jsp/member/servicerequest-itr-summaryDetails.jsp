@@ -3,7 +3,7 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <div class="page">
-	<%-- <w4india:itrmenu /> --%>
+	<w4india:itrmenu />
 	<fieldset>
 		<table class="table table-striped table table-condensed"
 			style="border-color: gray;">
