@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -102,15 +103,23 @@ public class SyncTDSSecurity extends ITReturnComponent {
 			int totAttemptsLeft = parentBean.getTotalAttemptsLeft().intValue();
 			request.setAttribute("totAttemptsLeft", totAttemptsLeft);
 			if(parentBean.getTotalAttemptsLeft() == 0d && parentBean.getSecurityCheck() == false){
-				MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-				Map<String,Object> contextMap = new HashMap<String, Object>();
-				contextMap.put("pan", memberPersonalInformation.getPAN());
-				contextMap.put("mobile", memberPersonalInformation.getMobile());
-				contextMap.put("userName", getITRInitData(request).getUserName());
-				contextMap.put("emailID", memberPersonalInformation.getEmail());
-				sendEmail(request, null, null, "", "twentysixas_security", contextMap);
-				response.setRenderPath("jsp/errorpages/attemptsOver.jsp");
-				return;
+				Calendar lastModDate = parentBean.getLastModificationDate();
+				lastModDate.add(Calendar.HOUR, 1);
+				Date extLastModTime = lastModDate.getTime();			
+				Date currentTime = GregorianCalendar.getInstance().getTime();
+				if(currentTime.after(extLastModTime)){
+					deleteDoc(request, response);
+				}else{			
+					MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+					Map<String,Object> contextMap = new HashMap<String, Object>();
+					contextMap.put("pan", memberPersonalInformation.getPAN());
+					contextMap.put("mobile", memberPersonalInformation.getMobile());
+					contextMap.put("userName", getITRInitData(request).getUserName());
+					contextMap.put("emailID", memberPersonalInformation.getEmail());
+					sendEmail(request, null, null, "", "twentysixas_security", contextMap);
+					response.setRenderPath("jsp/errorpages/attemptsOver.jsp");
+					return;
+				}
 			}
 		}
 
@@ -251,8 +260,8 @@ public class SyncTDSSecurity extends ITReturnComponent {
 			}
 		}
 		if(!hasValidAnswer){
-			String urlToImport26AS = getTargerPath(request, "servicerequest-itr-sync-tds-security.html");
-			String urlWithParam = urlToImport26AS+"?error=error.wrong.ans";
+			String urlToTDSSecurity = getTargerPath(request, "servicerequest-itr-sync-tds-security.html");
+			String urlWithParam = urlToTDSSecurity+"?error=error.wrong.ans";
 			updateDoc(request, hasValidAnswer);
 			try {
 				response.sendRedirect(urlWithParam);
@@ -280,7 +289,7 @@ public class SyncTDSSecurity extends ITReturnComponent {
 	/**
 	 * This method is used to put a check if security question is correct
 	 * 
-	 * @param request
+	 * @param request, response, boolean
 	 */
 	public void updateDoc(HstRequest request, Boolean hasValidAns){
 
@@ -313,6 +322,38 @@ public class SyncTDSSecurity extends ITReturnComponent {
 			// TODO Auto-generated catch block
 			log.error("Error while get the object at path"+path,e);
 		} 
+	}
+	/**
+	 * This method is used to delete the document 
+	 * 
+	 * @param request, response
+	 */
+	public void deleteDoc(HstRequest request, HstResponse response){
+
+		String path = null;
+		Session persistenceSession;
+		try {
+			persistenceSession = getPersistableSession(request);
+			WorkflowPersistenceManager wpm=getWorkflowPersistenceManager(persistenceSession);
+			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
+			path=getITRInitData(request).getAbsoluteBasePathToReturnDocuments()+"/"+TwentySixASSecQuesDocument.class.getSimpleName().toLowerCase();
+			TwentySixASSecQuesDocument twentySixASSecQuesDocument = (TwentySixASSecQuesDocument) wpm.getObject(path);
+			wpm.remove(twentySixASSecQuesDocument);
+			String urlToTDSSecurity = getTargerPath(request, "servicerequest-itr-sync-tds-security.html");
+			response.sendRedirect(urlToTDSSecurity);
+		} catch (RepositoryException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while get Persistable Session of JCR Repository",e);
+		} catch (ObjectBeanPersistenceException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while updating Document",e);
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			log.error("Error while get the object at path"+path,e);
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
