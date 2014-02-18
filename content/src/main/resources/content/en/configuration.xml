@@ -6192,7 +6192,7 @@ or by both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
-        <sv:value>auditdateCal</sv:value>
+        <sv:value>dateAuditReport</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
         <sv:value>date_AuditReport</sv:value>
@@ -32874,6 +32874,7 @@ Payment or lump sum).&lt;/p&gt;
 
 <!-- /income from business -->
 <!-- schedule DPM -->
+
 <sv:node sv:name="scheduledpm" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -32893,7 +32894,7 @@ Payment or lump sum).&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>906479f7-faec-40ac-be58-6d2aa60ebc7c</sv:value>
+      <sv:value>cad5d99e-3b96-4773-a7a1-7dda84e792f2</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -32918,13 +32919,13 @@ Payment or lump sum).&lt;/p&gt;
       <sv:value>2013-09-16T15:20:13.004+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-23T14:41:06.562+05:30</sv:value>
+      <sv:value>2014-02-17T17:50:51.212+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-23T14:41:12.558+05:30</sv:value>
+      <sv:value>2014-02-17T17:51:00.871+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>b4727284-958d-4b39-aad6-3d238b8eed2a</sv:value>
@@ -33448,10 +33449,74 @@ Payment or lump sum).&lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>isBlockExhist</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>isBlockExhist</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
   </sv:node>
 </sv:node>
+
 <!-- /schedule DPM --> -->
 <!--  schedule DOA -->
+
 <sv:node sv:name="scheduledoa" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -33471,7 +33536,7 @@ Payment or lump sum).&lt;/p&gt;
       <sv:value>hippotranslation:translated</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>e80519c3-1bca-4f63-8653-00eb700f83e9</sv:value>
+      <sv:value>1c21c4b1-02a8-42e2-a14d-78af1fefd394</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -33496,13 +33561,13 @@ Payment or lump sum).&lt;/p&gt;
       <sv:value>2013-09-17T10:47:47.608+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-23T15:48:18.138+05:30</sv:value>
+      <sv:value>2014-02-17T17:51:30.393+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-23T15:48:22.875+05:30</sv:value>
+      <sv:value>2014-02-17T17:51:35.729+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippotranslation:id" sv:type="String">
       <sv:value>884cd493-82e3-4b13-b572-496976680f4c</sv:value>
@@ -34212,8 +34277,71 @@ Payment or lump sum).&lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
+    <sv:node sv:name="mootlywcm:screenfieldconfig">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>mootlywcm:screenfieldconfig</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+        <sv:value>isBlockExhist</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+        <sv:value>isBlockExhist</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:href" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+        <sv:value>true</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+        <sv:value>false</sv:value>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+        <sv:value/>
+      </sv:property>
+      <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+        <sv:value/>
+      </sv:property>
+    </sv:node>
   </sv:node>
 </sv:node>
+
 
 
 <!-- /schedule DOA -->
@@ -48664,6 +48792,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 
 <!-- /schedule BP -->
 <!-- schedule DPM  calculation-->
+
 <sv:node sv:name="scheduledpm" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -48694,7 +48823,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>7e5abd6c-6f6c-4559-88b0-1461fcc77609</sv:value>
+      <sv:value>b9cfed8a-75c0-4481-9e26-ba02ab2b2b6a</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -48719,13 +48848,13 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-12-12T23:54:37.767+05:30</sv:value>
+      <sv:value>2014-02-17T18:12:17.118+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-12-12T23:54:47.126+05:30</sv:value>
+      <sv:value>2014-02-17T18:12:20.646+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -48742,6 +48871,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>addDepreciatMore180Day</sv:value>
       <sv:value>addDepreciatLess180Day</sv:value>
       <sv:value>expense_TransferAsset</sv:value>
+      <sv:value>isBlockExhist</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/***
@@ -48751,6 +48881,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 * **/
 var val_FullRate = rates;
 var val_HalfRate = (val_FullRate ) / 2;
+var capitalGain=0;
 
 out_amtDepreciationFullRate = ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
 var diffAmtPrYr = (((valFirstDayPrevYr-0)+(periodMore180Day-0))-(prevYrConsider-0 ));
@@ -48767,8 +48898,16 @@ var B = (periodLess180Day -0)-(considerOrRealDuringYr -0);
 out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100);
 out_depreciationHalfRate = Math.round((out_amtDepreciationHalfRate *val_HalfRate )/100);
 out_totalDepreciation = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
-out_capitalGain_LossSec50 = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));
-
+capitalGain = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));  
+if(isBlockExhist == 'No'){ 
+out_capitalGain_LossSec50 = capitalGain ; 
+}else{ 
+if(capitalGain &gt;= 0){ 
+out_capitalGain_LossSec50 = capitalGain 
+}else{ 
+out_capitalGain_LossSec50 =0; 
+} 
+} 
 out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
@@ -48776,6 +48915,7 @@ out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_to
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 
@@ -49278,6 +49418,7 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
 
 
 
+
 <sv:node sv:name="scheduledoa" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -49308,7 +49449,7 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>93905f00-837f-4ba5-8be3-f93b6fdaa728</sv:value>
+      <sv:value>0c2970ec-5b93-4114-9222-1acf88d440d9</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -49333,13 +49474,13 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-12-12T23:51:54.920+05:30</sv:value>
+      <sv:value>2014-02-17T18:47:35.546+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-12-12T23:51:57.876+05:30</sv:value>
+      <sv:value>2014-02-17T18:47:38.447+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -49356,6 +49497,7 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
       <sv:value>addDepreciatMore180Day</sv:value>
       <sv:value>addDepreciatLess180Day</sv:value>
       <sv:value>expense_TransferAsset</sv:value>
+      <sv:value>isBlockExhist</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/***
@@ -49365,6 +49507,7 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
 * **/
 var val_FullRate = rates;
 var val_HalfRate = (val_FullRate ) / 2;
+var capitalGain  = 0;
 
 out_amtDepreciationFullRate = ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) &gt;0 ? ((valFirstDayPrevYr-0) + (periodMore180Day-0) -(prevYrConsider -0)) : 0;
 var diffAmtPrYr = (((valFirstDayPrevYr-0)+(periodMore180Day-0))-(prevYrConsider-0 ));
@@ -49381,8 +49524,16 @@ var B = (periodLess180Day -0)-(considerOrRealDuringYr -0);
 out_depreciationFullRate = Math.round((out_amtDepreciationFullRate *val_FullRate )/100);
 out_depreciationHalfRate = Math.round((out_amtDepreciationHalfRate *val_HalfRate )/100);
 out_totalDepreciation = out_depreciationFullRate + out_depreciationHalfRate +(addDepreciatMore180Day-0) +(addDepreciatLess180Day-0);
-out_capitalGain_LossSec50 = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));
-
+capitalGain = ((prevYrConsider-0)+(considerOrRealDuringYr-0))-((valFirstDayPrevYr-0)+(periodMore180Day-0)+(periodLess180Day-0)+(expense_TransferAsset-0));
+if(isBlockExhist == 'No'){ 
+out_capitalGain_LossSec50 = capitalGain ; 
+}else{ 
+if(capitalGain &gt;= 0){ 
+out_capitalGain_LossSec50 = capitalGain 
+}else{ 
+out_capitalGain_LossSec50 =0; 
+} 
+} 
 out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
@@ -49390,6 +49541,7 @@ out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_to
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 

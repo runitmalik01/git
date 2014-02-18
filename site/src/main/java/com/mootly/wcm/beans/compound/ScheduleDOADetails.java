@@ -36,6 +36,7 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 	private Double expense_TransferAsset;
 	private Double capitalGain_LossSec50;
 	private Double valLastDayPrevYr;
+	private String isBlockExhist;
 	private boolean markedForDeletion;
 	
 	public final boolean isMarkedForDeletion() {
@@ -50,6 +51,14 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 	}
 	public void setType_Asset(String type_Asset){
 		this.type_Asset = type_Asset;
+	}
+	public String getIsBlockExhist() {
+		if (isBlockExhist == null)
+			isBlockExhist = getProperty("mootlywcm:isBlockExhist");
+		return isBlockExhist;
+	}
+	public void setIsBlockExhist(String isBlockExhist) {
+		this.isBlockExhist = isBlockExhist;
 	}
 	public String getRates() {
 		if(rates == null) rates = getProperty("mootlywcm:rates");
@@ -227,6 +236,7 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 				node.setProperty("mootlywcm:capitalGain_LossSec50", getCapitalGain_LossSec50());
 				node.setProperty("mootlywcm:valLastDayPrevYr", getValLastDayPrevYr());
 				node.setProperty("mootlywcm:addDepreciatLess180Day", getAddDepreciatLess180Day());
+				node.setProperty("mootlywcm:isBlockExhist", getIsBlockExhist());
 			
 
 		} catch (RepositoryException rex) {
@@ -383,6 +393,12 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 			double val_valLastDayPrevYr= Double.parseDouble(valLastDayPrevYrStr);
 			setValLastDayPrevYr(val_valLastDayPrevYr);
 		}
+		
+		if (formMap.getField("isBlockExhist").getValue().isEmpty()) {
+			setIsBlockExhist("");
+		} else {
+			setIsBlockExhist(formMap.getField("isBlockExhist").getValue());
+		}
 }
 
 	@Override
@@ -408,6 +424,7 @@ public class ScheduleDOADetails extends HippoItem implements FormMapFiller {
 		setExpense_TransferAsset(objScheduleDPMDetails.getExpense_TransferAsset());
 		setCapitalGain_LossSec50(objScheduleDPMDetails.getCapitalGain_LossSec50());
 		setValLastDayPrevYr(objScheduleDPMDetails.getValLastDayPrevYr());
+		setIsBlockExhist(objScheduleDPMDetails.getIsBlockExhist());
 		
 		
 	}

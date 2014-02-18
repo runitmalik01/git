@@ -110,6 +110,16 @@
 								 fObj.keypress(function(e) {
            								 e.preventDefault();
     									});
+    					case "dateAuditReport":
+								fObj.datepicker({
+									changeMonth : true,
+									changeYear : true,
+                                    showAnim: "fadeIn",
+
+								}).addClass("dateAuditReport");
+								 fObj.keypress(function(e) {
+           								 e.preventDefault();
+    									});
     					case "indiandateLosses":
 								fObj.datepicker({
 									changeMonth : true,

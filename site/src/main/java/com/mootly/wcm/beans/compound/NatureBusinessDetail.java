@@ -47,6 +47,9 @@ public class NatureBusinessDetail extends HippoItem implements FormMapFiller {
 	private String business_name ;
 	private String business_code ;
 	private String tradeName_Proprietorship;
+	private String tradeName_ProprietorshipSec;
+	private String tradeName_ProprietorshipLast;
+	
 
 	private String personalInfoUuid;
 	private boolean markedForDeletion;
@@ -69,6 +72,17 @@ public class NatureBusinessDetail extends HippoItem implements FormMapFiller {
     	if (tradeName_Proprietorship == null) tradeName_Proprietorship = getProperty("mootlywcm:tradeName_Proprietorship");
     	return tradeName_Proprietorship;
     }
+	public String getTradeName_ProprietorshipSec() {
+		if (tradeName_ProprietorshipSec == null)
+			tradeName_ProprietorshipSec = getProperty("mootlywcm:tradeName_ProprietorshipSec");
+		return tradeName_ProprietorshipSec;
+	}
+
+	public String getTradeName_ProprietorshipLast() {
+		if (tradeName_ProprietorshipLast == null)
+			tradeName_ProprietorshipLast = getProperty("mootlywcm:tradeName_ProprietorshipLast");
+		return tradeName_ProprietorshipLast;
+	}
    
    public final void setBusiness_Name(String business_name){
 	   this.business_name=business_name;
@@ -79,6 +93,15 @@ public class NatureBusinessDetail extends HippoItem implements FormMapFiller {
 	}
 	public final void setTradeName_Proprietorship(String tradeName_Proprietorship) {
 		this.tradeName_Proprietorship = tradeName_Proprietorship;
+	}
+	public final void setTradeName_ProprietorshipSec(
+			String tradeName_ProprietorshipSec) {
+		this.tradeName_ProprietorshipSec = tradeName_ProprietorshipSec;
+	}
+
+	public final void setTradeName_ProprietorshipLast(
+			String tradeName_ProprietorshipLast) {
+		this.tradeName_ProprietorshipLast = tradeName_ProprietorshipLast;
 	}
 	
 	
@@ -111,6 +134,10 @@ public class NatureBusinessDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:business_name", getBusiness_Name());
 			node.setProperty("mootlywcm:business_code",getBusiness_Code());
 			node.setProperty("mootlywcm:tradeName_Proprietorship",getTradeName_Proprietorship());
+			node.setProperty("mootlywcm:tradeName_ProprietorshipSec",
+					getTradeName_ProprietorshipSec());
+			node.setProperty("mootlywcm:tradeName_ProprietorshipLast",
+					getTradeName_ProprietorshipLast());
 			
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
@@ -134,6 +161,14 @@ public class NatureBusinessDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("tradeName_Proprietorship") != null) {
 			setTradeName_Proprietorship(formMap.getField("tradeName_Proprietorship").getValue());
 		}
+		if (formMap.getField("tradeName_ProprietorshipSec") != null) {
+			setTradeName_ProprietorshipSec(formMap.getField(
+					"tradeName_ProprietorshipSec").getValue());
+		}
+		if (formMap.getField("tradeName_ProprietorshipLast") != null) {
+			setTradeName_ProprietorshipLast(formMap.getField(
+					"tradeName_ProprietorshipLast").getValue());
+		}
 		
 	}
 		
@@ -143,6 +178,10 @@ public class NatureBusinessDetail extends HippoItem implements FormMapFiller {
 		setBusiness_Name(objNatureBusiness.getBusiness_Name());
 		setbusiness_Code(objNatureBusiness.getBusiness_Code());
 		setTradeName_Proprietorship(objNatureBusiness.getTradeName_Proprietorship());
+		setTradeName_ProprietorshipSec(objNatureBusiness
+				.getTradeName_ProprietorshipSec());
+		setTradeName_ProprietorshipLast(objNatureBusiness
+				.getTradeName_ProprietorshipLast());
 		
 		
 		

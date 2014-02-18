@@ -1,7 +1,6 @@
 package com.mootly.wcm.member;
 
 
-import java.util.Map;
 import java.util.TreeMap;
 
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -26,7 +25,7 @@ import com.mootly.wcm.utils.ValueListServiceImpl;
  */
 @PrimaryBean(primaryBeanClass=NatureBusinessDocument.class)
 @ChildBean(childBeanClass=NatureBusinessDetail.class)
-@FormFields(fieldNames={"business_name","business_code","tradeName_Proprietorship"})
+@FormFields(fieldNames={"business_name","business_code","tradeName_Proprietorship","tradeName_ProprietorshipSec","tradeName_ProprietorshipLast"})
 
 public class NatureBusiness extends ITReturnComponent {
 

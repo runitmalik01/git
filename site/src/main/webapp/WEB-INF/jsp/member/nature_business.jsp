@@ -59,6 +59,30 @@
 							</div>
 						</div>
 					</div>
+					<div class="row show-grid">
+					<div class="col-md-4">
+						<div class="rowlabel">
+							<label for="tradeName_ProprietorshipSec"><small><fmt:message
+										key="tradeName.Proprietorship.itr4" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<input id="tradeName_ProprietorshipSec" class="uprcase" maxlength="125"
+								name="tradeName_ProprietorshipSec" type="text" value="${childBean.tradeName_ProprietorshipSec}" />
+						</div>
+					</div>
+				
+				
+					<div class="col-md-4">
+						<div class="rowlabel">
+							<label for="tradeName_ProprietorshipLast"><small><fmt:message
+										key="tradeName.Proprietorship.itr4" /> </small> </label>
+						</div>
+						<div class="rowlabel">
+							<input id="tradeName_ProprietorshipLast" class="uprcase" maxlength="125"
+								name="tradeName_ProprietorshipLast" type="text" value="${childBean.tradeName_ProprietorshipLast}" />
+						</div>
+					</div>
+				</div>
 				</fieldset>
 
 				<div class="row show-grid">
