@@ -18,6 +18,8 @@ package com.mootly.wcm.components;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.configuration.hosting.Mount;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -66,7 +68,7 @@ public final class ComponentUtil {
         return defaultValue;
     }
     
-    public static void doRedirectionOnWrongLandingMount(HstRequest request, HstResponse response) {
+    public static void doRedirectionOnWrongLandingMount(HstRequest request, HstResponse response,String resellerId) {
         HstRequestContext requestContext = request.getRequestContext();
         
         if (requestContext.getAttribute(REDIRECTION_ON_WRONG_LANDING_MOUNT_DONE_ATTR) != null) {
@@ -94,6 +96,9 @@ public final class ComponentUtil {
             }
             sendRedirectToMount(request, response, DEFAULT_MOUNT_ALIAS_MOBILE);
         }
+        else if (resellerId != null && !resolvedMount.getMount().getAlias().equals(resellerId)) {
+        	sendRedirectToMount(request, response, resellerId);
+        }
     }
     
     public static void sendRedirectToMount(HstRequest request, HstResponse response, String alias) {
@@ -111,7 +116,8 @@ public final class ComponentUtil {
         }
         
         HstLinkCreator linkCreator = requestContext.getHstLinkCreator();
-        HstLink link = linkCreator.create("/", mount);
+        String pathInfo = requestContext.getResolvedSiteMapItem().getPathInfo();
+        HstLink link = linkCreator.create(pathInfo, mount);
         
         if (link == null) {
             log.warn("Cannot create a link with the mount aliased '{}'. Redirection is skipped.", alias);
@@ -125,11 +131,10 @@ public final class ComponentUtil {
             return;
         }
         
-        try {
-            response.sendRedirect(urlString);
-        } catch (IOException e) {
-            log.warn("IO Exception during sendRedirect. " + e);
-        }
+    	response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+    	response.setHeader( "Location", urlString);
+    	response.setHeader( "Connection", "close" );
+            //response.sendRedirect(urlString);
     }
 
 }

@@ -95,7 +95,7 @@ public class BaseComponent extends BaseHstComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
         getITRInitData(request);
-        ComponentUtil.doRedirectionOnWrongLandingMount(request, response);
+        ComponentUtil.doRedirectionOnWrongLandingMount(request, response,getITRInitData(request).getResellerId());
         
       
    

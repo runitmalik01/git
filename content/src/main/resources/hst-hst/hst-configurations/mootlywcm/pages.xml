@@ -1353,8 +1353,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+        <sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -2104,8 +2104,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+        <sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -2458,8 +2458,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+        <sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -2549,8 +2549,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+        <sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -3113,8 +3113,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+        <sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -3226,8 +3226,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+        <sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -3339,8 +3339,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+		<sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -3518,8 +3518,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+		<sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -6409,8 +6409,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+		<sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -6563,8 +6563,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+		<sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -7748,8 +7748,8 @@
         <sv:value>widgets1CssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+		<sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -7806,8 +7806,8 @@
         <sv:value>widgetsCssClass</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+		<sv:value>col-md-4</sv:value>
       </sv:property>
       <sv:property sv:name="hst:template" sv:type="String">
         <sv:value>standard.main.re</sv:value>
@@ -9979,8 +9979,8 @@
         <sv:value>classspan4</sv:value>
       </sv:property>
       <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-        <sv:value>grid col-620</sv:value>
-        <sv:value>grid col-300 fit</sv:value>
+        <sv:value>col-md-8</sv:value>
+		<sv:value>col-md-4</sv:value>
         <sv:value>false</sv:value>
         <sv:value>left</sv:value>
         <sv:value>content</sv:value>
