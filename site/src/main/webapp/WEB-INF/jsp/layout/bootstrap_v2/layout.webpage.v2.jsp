@@ -30,37 +30,25 @@
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <c:set var="lang" value="${pageContext.request.locale.language}"/>
 <head>
-    <hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
-    <meta name="DC.keywords" content="<fmt:message key="layout.webpage.metadckeywords"/>" />
-    <meta name="description" content="<fmt:message key="layout.webpage.metadescription"/>" />
-    <meta name="DC.type" content="webpagina" scheme="THC.type" />
-    <meta name="DCTERMS.issued" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" />
-    <meta name="DCTERMS.available" content="2009-07-09T10:31" scheme="DCTERMS.W3CDTF" />
-    <meta name="DC.title" content="<fmt:message key="layout.webpage.metadctitle"/>" />
-    <meta name="DC.language" content="en" scheme="DCTERMS.RFC3066" />
+	<hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-	<%-- <meta name='robots' content='noindex,nofollow' /> --%>	
-	<hst:link var="stylecss" path="/css/bootstrap_v2/bootstrap.flat.min.css"/>
+	<%-- <meta name='robots' content='noindex,nofollow' /> --%>		
+	<hst:link var="stylecss" path="/css/style-stripped.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${stylecss}"/>
-    <hst:link var="w4indiacss" path="/css/bootstrap_v2/wealth4india.css"/>
+    <hst:link var="w4indiacss" path="/css/w4india.css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="${w4indiacss}"/>
-    <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script type='text/javascript' src='<hst:link path="/js/bootstrap_v2/bootstrap.min.js"></hst:link>'></script>
-	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.css"></hst:link>'/>
+    <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap-responsive.css"></hst:link>'/>
+    <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootstrap.flat.min.css"></hst:link>'/>    
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
-	<hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
-    <script src="${jqueryWaterMark}"></script>
-
-	<hst:link var="jquery_validate_min" path="/js/jquery.validate.min.js"/>
-	<script type='text/javascript' src='${jquery_validate_min}'></script>
-	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
-	<hst:headContributions categoryIncludes="jsExternal"/>
-	<script src="//code.highcharts.com/highcharts.js"></script>
-    <script src="//code.highcharts.com/modules/exporting.js"></script>
+	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/bootplus.css"></hst:link>'/> -->
+	<!-- <link rel="stylesheet" media="screen" type="text/css" href='<hst:link path="/css/font-awesome-min.css"></hst:link>'/> -->
+	<link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/author.css"></hst:link>"/>
+    <hst:headContributions categoryIncludes="css"/>
+    <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/dropdown-submenu.css"></hst:link>"/>
+    <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/boostrap_login-signup.css"></hst:link>"/>
+    <hst:headContributions categoryIncludes="jsHead"/>    
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
 
@@ -80,110 +68,7 @@
 	<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
 	</div>
 	<hst:include ref="footer"/>
-	
-	<script>
-		$.datepicker.setDefaults({
-		  /*showOn: "both",*/
-		  /*buttonImageOnly: true,
-          buttonImage: "<hst:link path="/img/calendar.gif"/>",*/
-		  /*buttonText: "Calendar",*/
-	      dateFormat: "dd/mm/yy"
-		});
-		$.datepicker.setDefaults( $.datepicker.regional[ "fr" ] );
-		$.validator.addMethod("pan", function(value, element) {
-		   	 return this.optional(element) || /^[a-zA-Z]{3}[p|P|c|C|h|H|f|F|a|A|t|T|b|B|l|L|j|J|g|G][a-zA-Z]\d{4}[a-zA-Z]{1}?$/i.test(value);
-		}, "PAN is invalid.");
-		$.validator.addMethod("amount", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]+\.?[0-9]{0,2}?$/i.test(value);
-		}, "AMOUNT is invalid.");
-		$.validator.addMethod("percentage", function(value, element) {
-		   	 return this.optional(element) || /^(100(\.00?)?|[1-9]?\d(\.\d\d?)?)?$/i.test(value);
-		}, "Percentage is invalid.");
-		$.validator.addMethod("max", function(value, element) {
-		   	 return this.optional(element) || /^([0-9]+\.?[0-9]{0,2}){0,14}?$/i.test(value);
-		}, "Max length allowed is 14.");
-		$.validator.addMethod("pin", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);
-		}, "PIN Code is invalid");
-		$.validator.addMethod("std", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{1,5}?$/i.test(value);
-		}, "STD Code is invalid");
-		$.validator.addMethod("mobile", function(value, element) {
-		   	 return this.optional(element) || /^[1-9]{1}[0-9]{9}?$/i.test(value);
-		}, "Mobile No is invalid");
-		$.validator.addMethod("email", function(value, element) {
-		   	 return this.optional(element) || /^([\.a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(([a-zA-Z0-9_\-])*\.([a-zA-Z0-9_\-])+)+?$/i.test(value);
-		}, "Email-ID is invalid");
-		$.validator.addMethod("accountno", function(value, element) {
-		   	 return this.optional(element) || /^[0-9A-Za-z]{10,}$/i.test(value);
-		}, "Account No is invalid");
-		$.validator.addMethod("micr", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{9}?$/i.test(value);
-		}, "MICR Code is invalid");
-		$.validator.addMethod("ifsc", function(value, element) {
-		   	 return this.optional(element) || /^[a-zA-Z0-9]{4}[0]{1}[a-zA-Z0-9]{6}?$/i.test(value);
-		}, "IFSC Code is invalid");
-		$.validator.addMethod("tan", function(value, element) {
-		   	 return this.optional(element) || /^[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}?$/i.test(value);
-		}, "TAN is invalid");
-		$.validator.addMethod("bsr", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{7}?$/i.test(value);
-		}, "BSR Code is invalid");
-		$.validator.addMethod("serial", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{0,5}?$/i.test(value);
-		}, "Challan Serial No is invalid");
-		$.validator.addMethod("tdscertificate", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{0,8}?$/i.test(value);
-		}, "TDS Certificate No is invalid");
-		$.validator.addMethod("ackno", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{15}?$/i.test(value);
-		}, "Ack No is invalid");
-		$.validator.addMethod("indiandate", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
-		}, "Date Format is invalid");
-		$.validator.addMethod("indiandateAdvance", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
-		}, "Date Format is invalid");
-		$.validator.addMethod("indiandateSelfAssesment", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
-		}, "Date Format is invalid");
-		$.validator.addMethod("indiandateLosses", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
-		}, "Date Format is invalid");
-		$.validator.addMethod("auditdateCal", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
-		}, "Date Format is invalid");
-		$.validator.addMethod("chequeNo", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);
-		}, "Cheque Number is invalid");
-		$.validator.addMethod("TrabsitionNo", function(value, element) {
-		   	 return this.optional(element) || /^[a-zA-Z0-9]{0,20}?$/i.test(value);
-		}, "Transition/UTR Number is invalid");
-		$.validator.addMethod("TaxIdNo", function(value, element) {
-		   	 return this.optional(element) || /^[a-zA-Z0-9]{0,16}?$/i.test(value);
-		}, "Tax Identification Number is invalid");
-		$.validator.addMethod("MembershipNo", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{6}?$/i.test(value);
-		}, "Membership No. of Auditor is not valid");
-		$.validator.addMethod("amountNeg", function(value, element) {
-		   	 return this.optional(element) || /^-?[0-9]+\.?[0-9]{0,2}?$/i.test(value);
-		}, "AMOUNT is invalid.");
-		$.validator.addMethod("cvvNumber", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{3}?$/i.test(value);
-		}, "CVV is invalid.");
-		$.validator.addMethod("cardNumber", function(value, element) {
-		   	 return this.optional(element) || /^[0-9]{16}?$/i.test(value);
-		}, "Card Number is invalid.");
-		$(".uprcase").each(function(){
-	          this.style.textTransform = 'uppercase';
-	       })
-	       .change(function(){
-	          this.value = this.value.toUpperCase();
-	       });		
-		
-		
-
-	</script>	
+	<script type="text/javascript"  src='<hst:link path="/js/w4india-validations.js"/>'></script>
 	<script type="text/javascript">
 	 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
