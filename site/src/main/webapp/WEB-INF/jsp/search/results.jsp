@@ -37,6 +37,13 @@
 <div class="page">
     <c:set var="isFound" value="${tags != null or searchResult.total > 0}"/>
     <c:set var="searched" value="'${fn:escapeXml(tag != null ? tag.label : query)}'"/>
+    <c:if test="${not empty shouldShowNotFoundError && shouldShowNotFoundError == 'true' }">
+    		<div class="alert alert-info">We're sorry! This page is not available. Please visit the  <a href="<hst:link siteMapItemRefId="home"/>">homepage</a>
+	    		<c:if test="${isFound}">
+	    			or check the search results generated based on your query.
+	    		</c:if>
+    		</div>
+    </c:if>
 	<c:choose>
 		<c:when test="${empty firstBean || isFound}">
 			<hst:element var="robotsContent"  name="meta">

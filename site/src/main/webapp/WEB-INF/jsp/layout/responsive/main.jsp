@@ -31,7 +31,6 @@
 	}
 	System.out.println("template:"+ request.getAttribute("template"));
 --%>
-
 <c:choose>
 	<c:when test="${not empty widgetsCssClass}">
 			<div class="container">

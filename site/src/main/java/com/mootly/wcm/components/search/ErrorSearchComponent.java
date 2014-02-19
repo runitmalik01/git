@@ -16,6 +16,8 @@
 
 package com.mootly.wcm.components.search;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
@@ -27,10 +29,11 @@ public class ErrorSearchComponent extends AbstractSearchComponent {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-
+        
         // set 404 status
         //lets defer the status until we are sure if there were no docs
-       
+       response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+       request.setAttribute("shouldShowNotFoundError", "true");
 
         // find url that exists in the sitemap
         String workingPath = getWorkingUrl(request);
@@ -48,7 +51,7 @@ public class ErrorSearchComponent extends AbstractSearchComponent {
         searchDocuments(request, query);
         
         if (request.getAttribute("firstBean") == null) {
-        	 response.setStatus(HstResponse.SC_NOT_FOUND);
+        	 //response.setStatus(HstResponse.SC_NOT_FOUND);
         	 request.setAttribute("pagenotfound", true);
         }
 
