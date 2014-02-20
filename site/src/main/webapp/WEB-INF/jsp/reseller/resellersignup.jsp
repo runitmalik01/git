@@ -43,9 +43,9 @@
 	             <h3>Thank You</h3>
 		     </c:when>
 		   <c:otherwise>
-		<h3 id="respond1">Signup to <w4india:resellername/></h3>
-	    <div class="alert alert-info">It takes just a minute to join us. Please enter the following information to create your account.</div>
-		
+		<h3>Signup to <w4india:resellername/></h3>
+		<h4><small>It takes just a minute to join. Please enter the following information to create your account.</small></h4>
+		<hr class="colorgraph">
 		<fieldset>
 		<legend>Enter your unique Reseller ID</legend>
 		 <div class="row show-grid" >
@@ -128,36 +128,52 @@
        
         <fieldset>
           <legend>Chartered Accountant Details</legend>
-             <div class="table-responsive">
-               <table class="table table-striped">
-                  <tr>
-                    <td style="width: 10px;"><input class="checkbox" id="caCheck" name="caCheck" tabindex="7" type="checkbox" value="on"></td>
-                      <td><label>Are you a Chartered Accountant Firm? (required)</label></td>
-                         <td id="firmNo" class="hide">
-                            <div class="col-md-8">
-		                      <div class="rowlabel">
-                                <label><small>Chartered Accountant Firm Number (required)</small></label>
-                              </div>
-		                   <div class="rowlabel">
-                             <input name="caFirmno" id="caFirmno" value="${fn:escapeXml(resellerID)}" size="22" tabindex="8" type="text">
-                          </div>
-                         </div>
-                        </td>          
-                   </tr>
-              </table>
-            </div>
+            <div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6">
+				<div class="rowlabel">
+                         <label for="caCheck"><small></small></label>
+                     </div>
+                 <div class="rowlabel">
+					<span class="button-checkbox">
+						<button type="button" class="btn" data-color="success" tabindex="7" id="caCheckBtn" name="caCheckBtn">Are you a Chartered Accountant Firm? (required)</button>
+						<input class="checkbox hidden" id="caCheck" name="caCheck" tabindex="7" type="checkbox" value="on">
+					 <label for="caFirmno" class="error" generated="false"><c:if test="${not empty caFirmnoError}"><fmt:message key="${caFirmnoError}"/></c:if></label>
+					</span>
+			     </div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 hide" id="caFirmNo">
+					<div class="rowlabel">
+                         <label><small>Chartered Accountant Firm Number (required)</small></label>
+                     </div>
+		             <div class="rowlabel">
+                           <input name="caFirmno" id="caFirmno" value="${fn:escapeXml(caFirmno)}" size="22" tabindex="8" type="text">
+                           <label for="caFirmno" class="error" generated="false"><c:if test="${not empty caFirmnoError}"><fmt:message key="${caFirmnoError}"/></c:if></label>
+                    </div>
+				</div>
+			</div>
         </fieldset>
-
-		   <p>
-				<input class="checkbox" id="signupTerms" name="signupTerms" tabindex="9" type="checkbox" value="on">
-				<label for="signupTerms">Yes, I agree to the&nbsp;<a href='<hst:link path="/terms"/>' target="_blank">Terms of Use</a></label>
-				<label for="signupTerms" class="error" generated="false"><c:if test="${not empty signupTermsError}"><fmt:message key="${signupTermsError}"/></c:if></label>
-		   </p>
-		   <p>
-		   		<a href="javascript:void(0);" id="hrefSignup" class="btn btn-default btn-warning" tabindex="10">Signup</a>
-		   </p>
-		   <hst:link var="memberhome" path="/member"/>
-		   <%--<input type="hidden" name="destination" value="${memberhome}"/>  --%>
+        <br>
+        	<div class="row">
+				<div class="col-xs-1 col-sm-1 col-md-1">
+					<span class="button-checkbox">
+						<button type="button" class="btn" data-color="success" tabindex="9">I Agree</button>
+						<input class="checkbox hidden" id="signupTerms" name="signupTerms" tabindex="9" type="checkbox">
+					</span>
+				</div>
+				<div class="col-xs-9 col-sm-9 col-md-9">
+					 By clicking <strong class="label label-primary">Sign Up</strong>, you agree to the <a href="<hst:link path="/terms"/>" target="_blank">Terms and Conditions</a> set out by <w4india:resellername/>, including our Cookie Use.
+				</div>
+			</div>
+		   <hr class="colorgraph">
+		   <div class="row">
+		      <div class="col-xs-6 col-md-6">
+		   		<a href="javascript:void(0);" id="hrefSignup" class="btn btn-success btn-block btn-lg" tabindex="10">Signup</a>
+		   	   </div>
+		   	   <div class="col-xs-6 col-md-6">
+		   	   <hst:link var="home" path="/"/>
+		   		<a href="${home}" class="btn btn-warning btn-block btn-lg" tabindex="11">Cancel</a>
+		   	   </div>
+		   	</div>
 		   </c:otherwise>
 		   </c:choose>
 		</form>
@@ -167,11 +183,13 @@
     <hst:attribute name="type">text/javascript</hst:attribute>
     
     $("#caCheck").change(function(){
-       if ($('#caCheck').is(":checked")){
-          $("#firmNo").show();
-       }else{
-         $("#firmNo").hide();
-      }
+     if($('#caCheck').is(':checked')){
+      $("#caFirmNo").show();
+      $("#caFirmno").val('');
+     }else{
+      $("#caFirmNo").hide();
+      $("#caFirmno").val('');
+    }
     });
     
 		$(document).ready(function() {			
@@ -217,6 +235,9 @@
 					caCheck:{
 					required: true
 					},
+					caCheckBtn:{
+					required: true
+					},
 					caFirmno:{
 					required: true
 					}
@@ -230,6 +251,7 @@
 					resellerID: "Reseller ID is required.",
 					phoneCustomerService: "Please enter a valid contact no.",
 					caCheck: "This field is required.",
+					caCheckBtn: "This field is required.",
 					caFirmno: "This field is required."
 				}
 			});

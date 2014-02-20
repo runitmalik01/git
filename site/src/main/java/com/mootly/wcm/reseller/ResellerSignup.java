@@ -67,10 +67,9 @@ public class ResellerSignup extends BaseComponent {
 				else if (anError.startsWith("signup.confirmEmail.")) request.setAttribute("confirmEmailError",anError);
 				else if (anError.startsWith("signup.password.")) request.setAttribute("passwordError",anError);
 				else if (anError.startsWith("signup.confirm_password.")) request.setAttribute("confirmPasswordError",anError);
-				else if (anError.startsWith("signup.terms.")) request.setAttribute("signupTermsError",anError);
 				else if (anError.startsWith("signup.resellerID.")) request.setAttribute("resellerIDError",anError);
 				else if (anError.startsWith("signup.phoneCustomerService.")) request.setAttribute("phoneCustomerServiceError",anError);
-				else if (anError.startsWith("signup.caFirmno.")) request.setAttribute("caFirmno",anError);
+				else if (anError.startsWith("signup.caFirmno.")) request.setAttribute("caFirmnoError",anError);
 			}
 		}
 
@@ -126,11 +125,6 @@ public class ResellerSignup extends BaseComponent {
 		if (StringUtils.isEmpty(caFirmno)) {
 			errors.add("signup.caFirmno.error.required");
 		}
-
-		if (StringUtils.isEmpty(signupTerms)) {
-			errors.add("signup.terms.error.required");
-		}
-
 
 		if (StringUtils.isEmpty(confirmPassword)) {
 			errors.add("signup.confirm_password.error.required");
