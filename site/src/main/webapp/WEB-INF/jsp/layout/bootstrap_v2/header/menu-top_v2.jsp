@@ -47,10 +47,10 @@
                    	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="glyphicon glyphicon-home"></i>Vendor Home</a></li>
                    <% } %>
                </ul>
-			   <button type="submit" class="btn btn-default btn-info"  onclick="javascript:$('#frmLogin').attr('action','${logout}');$('#frmLogin').submit()">Logout</button>
+			   <a href="<hst:link path="/j_spring_security_logout"/>" class="btn btn-lg btn-info btn-block" style="display:inline" tabindex="4">Logout</a>
 	</c:when>
 	<c:otherwise>	<!-- Login/Signup (when user is logging first time)-->
-	<button type="submit" class="btn btn-default btn-info" onclick="javascript:$('#frmLogin').attr('action','${login}');$('#frmLogin').submit()">Login</button>
-	<button type="submit" class="btn btn-default btn-warning" onclick="javascript:$('#frmLogin').attr('action','${signup}');$('#frmLogin').submit()">Signup</button>					
+		<a href="<hst:link path="/memberLogin"/>" class="btn btn-lg btn-info btn-block" style="display:inline" tabindex="4">Log In</a>
+		<a href="<hst:link path="/signup"/>" class="btn btn-lg btn-warning btn-block" tabindex="4" style="display:inline">Signup</a>
 	</c:otherwise>
 </c:choose>		
