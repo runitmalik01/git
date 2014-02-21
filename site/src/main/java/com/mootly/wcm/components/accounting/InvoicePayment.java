@@ -76,6 +76,20 @@ public class InvoicePayment extends ITReturnComponent {
 			isGatewayForm = true;		
 		}
 		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
+		if (paymentTypeStr == null) {
+			PAGE_ACTION pageAction  = getITRInitData(request).getPageAction();
+			if (pageAction == PAGE_ACTION.EDIT_CHILD ) {
+				HippoBean theChildBean = getITRInitData(request).getChildBean();
+				if (theChildBean != null && theChildBean instanceof InvoicePaymentDetail) {
+					InvoicePaymentDetail invoicePaymentDetail = (InvoicePaymentDetail) getITRInitData(request).getChildBean();
+					PaymentType paymentType2 = invoicePaymentDetail.getPaymentType();
+					paymentTypeStr = paymentType2.name();
+				}
+				if (log.isInfoEnabled()) {
+					log.info("theChildBean is " + theChildBean);
+				}
+			}
+		}
 		if (paymentTypeStr != null) {
 			paymentType = PaymentType.valueOf(paymentTypeStr);
 			if (paymentType == null ||  !getITRInitData(request).getChannelInfoWrapper().availablePaymentTypes().contains(paymentType)) {
@@ -94,6 +108,7 @@ public class InvoicePayment extends ITReturnComponent {
 				}
 			}
 		}		
+
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);	
 		if (isGatewayForm) {
@@ -544,8 +559,22 @@ public class InvoicePayment extends ITReturnComponent {
 	}
 
 	private PaymentType getPaymentType(HstRequest request,boolean isGatewayForm) {
-		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
 		PaymentType paymentType = null;
+		String paymentTypeStr = request.getRequestContext().getResolvedSiteMapItem().getParameter("paymentType");
+		if (paymentTypeStr == null) {
+			PAGE_ACTION pageAction  = getITRInitData(request).getPageAction();
+			if (pageAction == PAGE_ACTION.EDIT_CHILD ) {
+				HippoBean theChildBean = getITRInitData(request).getChildBean();
+				if (theChildBean != null && theChildBean instanceof InvoicePaymentDetail) {
+					InvoicePaymentDetail invoicePaymentDetail = (InvoicePaymentDetail) getITRInitData(request).getChildBean();
+					PaymentType paymentType2 = invoicePaymentDetail.getPaymentType();
+					paymentTypeStr = paymentType2.name();
+				}
+				if (log.isInfoEnabled()) {
+					log.info("theChildBean is " + theChildBean);
+				}
+			}
+		}
 		if (isGatewayForm && paymentTypeStr == null) {
 			paymentTypeStr = getPublicRequestParameter(request,"paymentType");
 		}
