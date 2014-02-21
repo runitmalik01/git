@@ -69,8 +69,10 @@ public class MemberDrive extends ITReturnComponent {
 		}
 		
 		String fileuuid=getPublicRequestParameter(request, "delete");
-		if(DeleteMemberDriveFile(request, response, fileuuid)){
-			request.setAttribute("delete", "Success");
+		if(fileuuid != null){
+			if(DeleteMemberDriveFile(request, response, fileuuid)){
+				request.setAttribute("delete", "Success");
+			}	
 		}
 		if(getMemberDriveFileResource(request, response)!=null){
 			request.setAttribute("memberFiles", getMemberDriveFileResource(request, response));

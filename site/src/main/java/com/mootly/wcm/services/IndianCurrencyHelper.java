@@ -17,6 +17,7 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.james.mime4j.field.datetime.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -190,7 +191,7 @@ public final class IndianCurrencyHelper {
 			}if(!comapreResult) {
 				double year1= Double.parseDouble(year);
 				double yearnew = (year1-1.0d);
-				 int ss = (int)yearnew;
+				int ss = (int)yearnew;
 				return Double.parseDouble(rb.getString("valueList."+ss+".cii"));
 			}
 		}
@@ -243,7 +244,7 @@ public final class IndianCurrencyHelper {
 
 
 
-/*	public int IsDateBetween(String dd, String Ndate, String Odate) {
+	/*	public int IsDateBetween(String dd, String Ndate, String Odate) {
 		log.info("inside case"+dd);
 		long from=Date.parse(Ndate);  // From some date
 		log.info("from"+from);
@@ -304,19 +305,26 @@ public final class IndianCurrencyHelper {
 	 * @author Dhananjay
 	 * */
 
-	public Integer getDiffInMonths(Date sdate, Date edate){
+	public Integer getDiffInMonths(Date dueDate, Date currentDate){
 
-		Calendar sdateCal = Calendar.getInstance();
-		Calendar edateCal = Calendar.getInstance();
-		sdateCal.setTime(sdate);
-		edateCal.setTime(edate);
-		int difInMonths = edateCal.get(Calendar.MONTH) - sdateCal.get(Calendar.MONTH);
+		int difInMonths = 0;
+		Calendar dueDateCal = Calendar.getInstance();
+		Calendar currentDateCal = Calendar.getInstance();
+		dueDateCal.setTime(dueDate);
+		currentDateCal.setTime(currentDate);
+		int dueDateMonthNo = dueDateCal.get(Calendar.MONTH);
+		int currentDateMonthNo = currentDateCal.get(Calendar.MONTH);
+		int difInYears = currentDateCal.get(Calendar.YEAR) - dueDateCal.get(Calendar.YEAR);
+		if(difInYears > 0){
+			difInYears = difInYears*12;
+			currentDateMonthNo = currentDateCal.get(Calendar.MONTH) + difInYears;
+		}
+		difInMonths = currentDateMonthNo - dueDateMonthNo;
 		if(difInMonths < 0){
 			difInMonths = 0;
 		}
-
+		
 		return difInMonths;
-
 	}
 
 }
