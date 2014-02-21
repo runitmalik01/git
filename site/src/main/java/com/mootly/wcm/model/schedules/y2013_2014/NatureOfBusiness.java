@@ -7,6 +7,8 @@ import in.gov.incometaxindiaefiling.y2013_2014.NatOfBus.Business.Trade;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.mootly.wcm.beans.NatureBusinessDocument;
 import com.mootly.wcm.beans.compound.NatureBusinessDetail;
 
@@ -31,6 +33,12 @@ public class NatureOfBusiness {
 					business.setCode(natureBusinessDetail.getBusiness_Code());
 					Trade trade = new Trade();
 					trade.getTradeName().add(natureBusinessDetail.getTradeName_Proprietorship());
+					if(StringUtils.isNotBlank(natureBusinessDetail.getTradeName_ProprietorshipSec())){
+						trade.getTradeName().add(natureBusinessDetail.getTradeName_ProprietorshipSec());
+					}
+					if(StringUtils.isNotBlank(natureBusinessDetail.getTradeName_ProprietorshipLast())){
+						trade.getTradeName().add(natureBusinessDetail.getTradeName_ProprietorshipLast());
+					}
 					business.setTrade(trade);
 					natOfBus.getBusiness().add(business);
 					if(!hasAValidNatBus) hasAValidNatBus = true;
