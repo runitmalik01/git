@@ -69,6 +69,9 @@
 		$.validator.addMethod("auditdateCal", function(value, element) {
 		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date Format is invalid");
+		$.validator.addMethod("dateAuditReport", function(value, element) {
+			return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
+		}, "Date Format is invalid");
 		$.validator.addMethod("currentDateCal", function(value, element) {
 		   	 return this.optional(element) || /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}?$/i.test(value);
 		}, "Date Format is invalid");

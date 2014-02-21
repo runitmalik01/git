@@ -44,7 +44,9 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="vendor_verification.jsp"/>
+	<c:if test="${empty allReadOnly && not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+		<jsp:include page="vendor_verification.jsp"/>
+	</c:if>
 	<div class="control-group" align="right">
 				<div class="controls">
 					<button class="btn btn-default btn-success" type="submit" id="payment_submit">Pay Now</button>
