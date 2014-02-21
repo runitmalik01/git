@@ -1,7 +1,5 @@
 <%@include file="../../includes/tags.jspf" %>
-<c:forEach items="${parentBean.invoicePaymentDetailList}" var="paymentdetail">
-						   <c:if test="${uuid == paymentdetail.canonicalUUID}"><c:set value="${paymentdetail}" var="tarPaymentDetail"></c:set></c:if>
-						</c:forEach>
+
 <c:set var="allReadOnly" value=""/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
@@ -19,7 +17,7 @@
 				<label for="checkNo"><small>Cheque No.</small> </label>
 			</div>
 			<div class="rowlabel">
-				<input type="text" id="checkNo" name="checkNo" value="${tarPaymentDetail.checkNo}" <c:out value="${allReadOnly}"/> />
+				<input type="text" id="checkNo" name="checkNo" value="<c:if test="${not empty childBean}">${childBean.checkNo}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -27,7 +25,7 @@
 				<label for="checkDate"><small>Dated(dd/mm/yyyy)</small> </label>
 			</div>
 			<div class="rowlabel">
-				<input type="text" id="checkDate" name="checkDate" value="${tarPaymentDetail.checkDateStr}" <c:out value="${allReadOnly}"/> />
+				<input type="text" id="checkDate" name="checkDate" value="<c:if test="${not empty childBean && not empty childBean.checkDate}">${childBean.checkDate}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -37,7 +35,7 @@
 			<div class="rowlabel">
 				<%-- <input type="text" id="paymentAmount" name="paymentAmount" value="${tarPaymentDetail.paymentAmount}" <c:out value="${allReadOnly}"/> />
 				<w4india:inr value="${totalCost}" /> --%>
-				<input type="text" id="checkAmount" name="checkAmount" value="${tarPaymentDetail.checkAmount}" <c:out value="${allReadOnly}"/> />
+				<input type="text" id="checkAmount" name="checkAmount" value="<c:if test="${not empty childBean}">${childBean.checkAmount}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>
 	</div>
@@ -46,7 +44,7 @@
 			<div class="rowlabel"><label for="checkBank"><small>Drawn On Bank</small> </label></div>				
 			<div class="rowlabel">
 				<input type="text" id="checkBank" name="checkBank"
-					value="${tarPaymentDetail.checkBank}" <c:out value="${allReadOnly}"/> />
+					value="<c:if test="${not empty childBean}">${childBean.checkBank}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>				
 		</div>			
 		<div class="col-md-2">
@@ -57,18 +55,21 @@
 			<div class="rowlabel"><label for="checkBranch"><small>Branch</small> </label></div>		
 			<div class="rowlabel">
 				<input type="text" id="checkBranch" name="checkBranch"
-					value="${tarPaymentDetail.checkBranch}" <c:out value="${allReadOnly}"/> />
+					value="<c:if test="${not empty childBean}">${childBean.checkBranch}</c:if>" <c:out value="${allReadOnly}"/> />
 			</div>
 		</div>			
 		<div class="col-md-4">
 			<div class="rowlabel"><label for="checkLocation"><small>Location</small> </label></div>		
 			<div class="rowlabel">
 				<input type="text" id="checkLocation" name="checkLocation"
-					value="${tarPaymentDetail.checkLocation}"
+					value="<c:if test="${not empty childBean}">${childBean.checkLocation}</c:if>"
 					<c:out value="${allReadOnly}"/> />
 			</div>					
 		</div>			
 	</div>
+	<c:if test="${empty allReadOnly && not empty strIsOnVendorPortal && strIsOnVendorPortal =='true' && isVendor =='true'}">
+		<jsp:include page="vendor_verification.jsp"/>
+	</c:if>
 	<c:if test="${empty allReadOnly}">
 		<div class="control-group" align="right">
 				<div class="controls">

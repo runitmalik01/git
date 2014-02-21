@@ -986,6 +986,7 @@
 			$('#accural_gain').hide();
 		}
 	});
+	/*
 	$("#costacquisition").on(
 			'change',
 			function() {
@@ -995,4 +996,5 @@
 							'#date_sale').val();
 				}
 			});
+	*/
 </script>
