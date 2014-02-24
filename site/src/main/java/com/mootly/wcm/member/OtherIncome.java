@@ -33,6 +33,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		"TotalOther_income","Familypension_deduction","Otherdeduction","depreciation",
 		"totalexpense","Dividends_uti","Interest_income","Dividends_mutualfund","Agriculture_income",
 		"Dividends_indian_companies","Otherincome","Total_taxfree_income","Taxable_income","Receipts","dedus57","balance","LotteryOrhorse_income","profit_FirmAOP_BOI"})
+/*
 @DataTypeValidationFields(fieldNames={
 		"Gov_income","Kissan","Bank_detail_fdr","Bank_detail_saving","Indira","intnsc","Otherint",
 		"Totalint","Family_pension","Dividends","Income_rent_machine","Income_other","Deduction_57",
@@ -69,7 +70,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 		DataTypeValidationType.DECIMAL
 }
 		)
-
+*/
 public class OtherIncome extends ITReturnComponent {
 	private static final Logger log = LoggerFactory.getLogger(OtherIncome.class);
 	private static String eRROR_MAX_ALLOWED=null; 

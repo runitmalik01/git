@@ -6,6 +6,8 @@ import in.gov.incometaxindiaefiling.y2012_2013.ScheduleEI;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.mootly.wcm.beans.CapitalAssetDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.OtherSourcesDocument;
@@ -55,7 +57,11 @@ public class ExemptIncomeSchedule {
 		if(itrSelection.equals("ITR3") || itrSelection.equals("ITR4")){
 			/*scheduleEI.setShareOfProfitFirmAOP(new BigInteger("0"));*/
 			if(otherSourcesDocument != null){
-				scheduleEI.setShareOfProfitFirmAOP(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getProfit_FirmAOP_BOI()));
+				if(otherSourcesDocument.getProfit_FirmAOP_BOI()!=null){
+					scheduleEI.setShareOfProfitFirmAOP(indianCurrencyHelper.bigIntegerRound(otherSourcesDocument.getProfit_FirmAOP_BOI()));	
+				}else{
+					scheduleEI.setShareOfProfitFirmAOP(new BigInteger("0"));
+				}
 			}else scheduleEI.setShareOfProfitFirmAOP(new BigInteger("0"));
 			scheduleEI.setTotalExemptInc(scheduleEI.getInterestInc().add(scheduleEI.getDividendInc()).add(scheduleEI.getNetAgriIncOrOthrIncRule7())
 					.add(scheduleEI.getOthers()).add(scheduleEI.getLTCGWhereSTTPaid()).add(scheduleEI.getShareOfProfitFirmAOP()));
