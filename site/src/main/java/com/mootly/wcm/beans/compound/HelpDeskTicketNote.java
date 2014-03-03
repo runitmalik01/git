@@ -49,22 +49,66 @@ import com.mootly.wcm.utils.NodeBinderHelper;
 public class HelpDeskTicketNote extends FlexibleDocument implements FormMapFiller {
 	static final public String NODE_NAME = HelpDeskTicketNote.class.getName().toLowerCase();
 	private final static Logger log = LoggerFactory.getLogger(HelpDeskTicketNote.class); 
-
+	
+	final String PROP_Q = "mootlywcm:question";
+	final String PROP_A = "mootlywcm:answer";
 	final String PROP_NOTE = "mootlywcm:note";
+	final String PROP_SCRIPT_NAME = "mootlywcm:scriptName";
+	final String PROP_FILE_NAME = "mootlywcm:fileName";
 	final String PROP_UPDATER_TYPE = "mootlywcm:updaterType";
 	
-	String note;
-	String strUpdaterType;
-	UserType updaterType;
+	final String PROP_ANSWERED = "mootlywcm:answered";
+	final String PROP_IS_QA = "mootlywcm:isqa";
+	final String PROP_READ = "mootlywcm:read";
+	
+	private String question;
+	private String answer;
+	private String note;
+	private String fileName;
+	private String scriptName;
+	private String strUpdaterType;
+	private UserType updaterType;
+	
+	private Boolean answered;
+	private Boolean isqa;
+	private Boolean read;
 	
 	
 	private boolean markedForDeletion;
+	
+	@FormField(name="question")
+	@NodeBinder(nodePropertyName=PROP_Q,propertyName="question")
+	public String getQuestion() {
+		if (question == null) question = getProperty(PROP_Q);
+		return question;
+	}
+	
+	@FormField(name="answer")
+	@NodeBinder(nodePropertyName=PROP_A,propertyName="answer")
+	public String getAnswer() {
+		if (answer == null) answer = getProperty(PROP_A);
+		return answer;
+	}
+	
+	@FormField(name="fileName")
+	@NodeBinder(nodePropertyName=PROP_FILE_NAME,propertyName="fileName")
+	public String getFileName() {
+		if (fileName == null) fileName = getProperty(PROP_FILE_NAME);
+		return fileName;
+	}
 	
 	@FormField(name="note")
 	@NodeBinder(nodePropertyName=PROP_NOTE,propertyName="note")
 	public final String getNote() {
 		if (note == null) note = getProperty(PROP_NOTE);
 		return note;
+	}
+	
+	@FormField(name="scriptName")
+	@NodeBinder(nodePropertyName=PROP_SCRIPT_NAME,propertyName="scriptName")
+	public final String getScriptName() {
+		if (scriptName == null) scriptName = getProperty(PROP_SCRIPT_NAME);
+		return scriptName;
 	}
 	
 	@FormField(name="strUpdaterType")
@@ -81,14 +125,38 @@ public class HelpDeskTicketNote extends FlexibleDocument implements FormMapFille
 		}
 		return updaterType;
 	}
+	
+	@FormField(name="answered",convert=Boolean.class)
+	@NodeBinder(nodePropertyName=PROP_ANSWERED,propertyName="answered")
+	public Boolean getAnswered() {
+		if (answered == null) answered = getProperty(PROP_ANSWERED);
+		return answered;
+	}
 
+	@FormField(name="isqa",convert=Boolean.class)
+	@NodeBinder(nodePropertyName=PROP_IS_QA,propertyName="isqa")
+	public Boolean getIsqa() {
+		if (isqa == null) isqa = getProperty(PROP_IS_QA);
+		return isqa;
+	}
+
+	@FormField(name="read",convert=Boolean.class)
+	@NodeBinder(nodePropertyName=PROP_READ,propertyName="read")
+	public Boolean getRead() {
+		if (read == null) read = getProperty(PROP_READ);
+		return read;
+	}
 
 	@BeanClone
 	public final void setNote(String note) {
 		this.note = note;
 	}
 	
-	
+	@BeanClone
+	public void setScriptName(String scriptName) {
+		this.scriptName = scriptName;
+	}
+
 	public final void setUpdaterType(UserType updaterType) {
 		this.updaterType = updaterType;
 		if (updaterType == null) {
@@ -109,7 +177,36 @@ public class HelpDeskTicketNote extends FlexibleDocument implements FormMapFille
 			this.updaterType = UserType.valueOf(strUpdaterType);
 		}
 	}
+	
+	@BeanClone
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	
+	@BeanClone
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	
+	@BeanClone
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
+	@BeanClone
+	public void setAnswered(Boolean answered) {
+		this.answered = answered;
+	}
 
+	@BeanClone
+	public void setIsqa(Boolean isqa) {
+		this.isqa = isqa;
+	}
+
+	@BeanClone
+	public void setRead(Boolean read) {
+		this.read = read;
+	}
 
 	public boolean bindToNode(javax.jcr.Node node) throws ContentNodeBindingException {
 		// TODO Auto-generated method stub

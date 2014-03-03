@@ -18,29 +18,14 @@
 			InflationIndex.values());
 %>
 <div class="page">
-	<h3 id="respond1">
-		<c:choose>
-			<c:when
-				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
-				<c:out value="${screenConfigDocument.screenHeading}" />
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-	</h3>
-	<div class="page-header">
-		<h2 class="title page-title">
-			<fmt:message key="Capital.gain.Income.Screen" />
-		</h2>
-		<h4>
-			<small>Schedule CG&nbsp;-&nbsp;A capital gain is a profit that results from a
+	<fmt:message key="Capital.gain.Income.Screen" var="title"/>
+	<w4india:titleandnav title="${title}" subTitle="Schedule CG&nbsp;-&nbsp;A capital gain is a profit that results from a
 				disposition of a capital asset, such as stock, bond or real estate,
 				where the amount realized on the disposition exceeds the purchase
 				price. The gain is the difference between a higher selling price and
 				a lower purchase price.Conversely, a capital loss arises if the
 				proceeds from the sale of a capital asset are less than the purchase
-				price.</small>
-		</h4>
-	</div>
+				price."></w4india:titleandnav>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

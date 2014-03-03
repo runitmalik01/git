@@ -3,6 +3,7 @@
 <hst:link var="memberDriveComp" siteMapItemRefId="itr-schedule-amtc"></hst:link>
 <hippo-gogreen:title title="Schedule AMTC" />
 <w4india:itrmenu />
+<w4india:titleandnav title="Schedule AMTC" subTitle="Schedule AMTC(Alternative Minimum Tax Credit)"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -11,13 +12,6 @@
 		</div>
 	</c:forEach>
 </c:if>
-<div class="page-header">
-	<h2 class="title page-title">Schedule AMTC</h2>
-	<h4>
-		<small>Schedule AMTC(Alternative Minimum Tax Credit)</small>
-	</h4>
-</div>
-
 <c:if test="${not empty exceedErrorGrossTurnOver}">
 	<div class="alert alert-danger">
 		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a

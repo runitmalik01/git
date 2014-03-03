@@ -1176,6 +1176,7 @@ h6 {
 
 /* =Margins & Paddings
 -------------------------------------------------------------- */
+/*
 p, 
 hr, 
 dl, 
@@ -1186,7 +1187,7 @@ address,
 blockquote {
 	margin: 1.6em 0;
 }
-
+*/
 th, td {
 	padding: .8em;
 }

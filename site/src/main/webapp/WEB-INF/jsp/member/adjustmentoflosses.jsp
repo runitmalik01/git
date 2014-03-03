@@ -26,26 +26,13 @@
 			.getBoolean();
 	request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 %>
-
+<fmt:message key="member.adjustment.content.title" var="adjustmentoflossestitle" />
 <w4india:itrmenu></w4india:itrmenu>
-
+<w4india:titleandnav title="${adjustmentoflossestitle}" />
 <!-- used to set title  -->
-
-<c:set var="adjustmentoflossestitle">
-	<fmt:message key="member.adjustment.content.title" />
-</c:set>
-
 <hippo-gogreen:title title="${adjustmentoflossestitle}" />
-
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:link var="mainSiteMapRefId" />
-
-<div class="page-header">
-	<h2 class="title page-title">Losses</h2>
-	<!-- <h4>
-		<small>Description</small>
-	</h4> -->
-</div>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">

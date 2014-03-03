@@ -7,39 +7,34 @@
 	<fmt:message key="member.login.title" />
 </c:set>
 <hippo-gogreen:title title="${memberlogintitle}" />
-<%
-String errorKey = "login.error";
-try {
-	if (request.getSession() != null) {
-		org.springframework.security.authentication.AuthenticationServiceException authenticationException = (org.springframework.security.authentication.AuthenticationServiceException) request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-		if (authenticationException != null) {
-			String msg = authenticationException.getMessage();
-			if (msg != null && msg.equals("user.not.found")) {
-				errorKey = "login.error.userNameNotFound";
-			}
-			else if (msg != null && msg.equals("password.mismatch")) {
-				errorKey = "login.error.passwordMismatch";
-			}
-			else if (msg != null && msg.equals("user.account.inactive")) {
-				errorKey = "login.error.inactiveuser";
-			}	
-			else {
-				errorKey = "login.error";
-			}
-			session.removeAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-			pageContext.setAttribute("login_error_key", errorKey);		
-		}
-	}
-} catch (Exception ex) {
-	
-}
-				
-%>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
 <hst:link var="j_spring_security_check" path="/j_spring_security_check"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-
+<%--
+	Enumeration enmAttr = request.getSession().getAttributeNames();
+	while (enmAttr.hasMoreElements()) {
+		String key = (String) enmAttr.nextElement();
+		out.println(key + ":" + request.getSession().getAttribute(key).getClass().getName());
+	}
+--%>
+<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+	<c:choose>
+		<c:when test="${ SPRING_SECURITY_LAST_EXCEPTION.message == 'user.not.found' }">
+			<c:set var="login_error_key" value="login.error.userNameNotFound"/>
+		</c:when>
+		<c:when test="${ SPRING_SECURITY_LAST_EXCEPTION.message == 'password.mismatch' }">
+			<c:set var="login_error_key" value="login.error.passwordMismatch"/>
+		</c:when>
+		<c:when test="${ SPRING_SECURITY_LAST_EXCEPTION.message == 'user.account.inactive' }">
+			<c:set var="login_error_key" value="login.error.inactiveuser"/>
+		</c:when>
+		<c:otherwise>
+			<c:set var="login_error_key" value="login.error"/>
+		</c:otherwise>
+	</c:choose>
+	<c:remove var = "SPRING_SECURITY_LAST_EXCEPTION" scope = "session" />
+</c:if>
 <c:if test="${ not empty errormsg}">
 		<div class="alert alert-success"><c:out value="${errormsg}"/></div>
 		</c:if>	
@@ -57,7 +52,7 @@ try {
 	</c:when>
 	<c:otherwise>
 		<div class="row">
-				<h4>Login to <w4india:resellername/></h4>				
+				<h1>Login to <w4india:resellername/></h1>				
 				<c:if test="${not empty login_error_key}">
 					<div class="alert alert-danger"><fmt:message key="${login_error_key}"/></div>
 				</c:if>
@@ -86,7 +81,7 @@ try {
 				   	<input type="hidden" name="c" value="${mountIdentifier}"/>
 				   </c:if> --%>
 				<fieldset>
-					<h2>Please Log In</h2>
+					<%--<h2>Please Log In</h2> --%>
 					<hr class="colorgraph">
 					<div>
 					 <label for="username">

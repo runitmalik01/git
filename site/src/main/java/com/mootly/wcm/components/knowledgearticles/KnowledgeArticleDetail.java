@@ -16,23 +16,23 @@
 
 package com.mootly.wcm.components.knowledgearticles;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import javax.jcr.ItemNotFoundException;
+import javax.jcr.LoginException;
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
-import org.hippoecm.hst.configuration.sitemap.HstSiteMapItem;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -42,13 +42,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.KnowledgeArticle;
-import com.mootly.wcm.beans.Review;
 import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
-import com.mootly.wcm.member.Member;
 import com.mootly.wcm.member.MemberSecurity;
-import com.mootly.wcm.services.FormMapHelper;
-import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 
 @ParametersInfo(type = KnowledgeArticleDetailParamInfo.class)
@@ -65,12 +61,44 @@ public class KnowledgeArticleDetail extends BaseComponent {
 	private static final String RefID = "knowledgeportal"; 
 	
 	FormMap parentBeanMap = null;
-	PAGE_ACTION pageAction = null;
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
-		init(request);
-		HippoBean document = getContentBeanFromPath(request);
+		PAGE_ACTION pageAction = getPageAction(request);
+		HippoBean scope = getSiteContentBaseBeanForReseller(request);
+		String relativeContentPath = request.getRequestContext().getResolvedSiteMapItem().getRelativeContentPath();
+		relativeContentPath = sanitizeRelativeContentPath(request, relativeContentPath);
+		HippoBean document = null;
+		if (pageAction == PAGE_ACTION.EDIT || pageAction == PAGE_ACTION.DELETE) { //getContentBean(request);
+			String uuid = getUUID(request);
+			try {
+				Node theNode = request.getRequestContext().getSession().getNodeByIdentifier(uuid);
+				String parentPath = scope.getCanonicalPath();
+				String theNodePath = theNode.getPath();
+				if (theNodePath.startsWith(parentPath)) {
+					String relPath = theNodePath.substring(parentPath.length()+1); //+1 to remove the trailing slash
+					document = scope.getBean(relPath);
+				}
+			} catch (ItemNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				redirectToNotFoundPage(response);
+				return;
+			} catch (LoginException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				redirectToNotFoundPage(response);
+				return;
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				redirectToNotFoundPage(response);
+				return;
+			}
+		}
+		else {
+			document = scope.getBean(relativeContentPath); 
+		}
 		if (document == null && pageAction !=  PAGE_ACTION.NEW) {
 			redirectToNotFoundPage(response);
 			return;
@@ -106,11 +134,41 @@ public class KnowledgeArticleDetail extends BaseComponent {
 	@Override
 	public void doAction(HstRequest request, HstResponse response) {
 		//String aa = hstSiteMapItem.getLocalParameter("node-name");
-		init(request);
+		PAGE_ACTION pageAction = getPageAction(request);
 		if (!(validate(request, response))) {
 			return;
 		}
-		HippoBean document  = getContentBeanFromPath(request);
+		HippoBean scope = getSiteContentBaseBeanForReseller(request);
+		String relativeContentPath = request.getRequestContext().getResolvedSiteMapItem().getRelativeContentPath();
+		relativeContentPath = sanitizeRelativeContentPath(request, relativeContentPath);
+		HippoBean document = null;
+		if (pageAction == PAGE_ACTION.EDIT || pageAction == PAGE_ACTION.DELETE) { //getContentBean(request);
+			String uuid = getUUID(request);
+			try {
+				Node theNode = request.getRequestContext().getSession().getNodeByIdentifier(uuid);
+				String parentPath = scope.getCanonicalPath();
+				String theNodePath = theNode.getPath();
+				if (theNodePath.startsWith(parentPath)) {
+					String relPath = theNodePath.substring(parentPath.length()+1); //+1 to remove the trailing slash
+					document = scope.getBean(relPath);
+				}
+			} catch (ItemNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				redirectToNotFoundPage(response);
+				return;
+			} catch (LoginException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				redirectToNotFoundPage(response);
+				return;
+			} catch (RepositoryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				redirectToNotFoundPage(response);
+				return;
+			}
+		}
 		
 		if (document == null && pageAction !=  PAGE_ACTION.NEW) {
 			redirectToNotFoundPage(response);
@@ -143,6 +201,7 @@ public class KnowledgeArticleDetail extends BaseComponent {
 		}
 	}
 	
+	/*
 	protected HippoBean getContentBeanFromPath(HstRequest request) {
 		String nodeName = request.getRequestContext().getResolvedSiteMapItem().getParameter("node-name");
 		String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getParameter("scopeRelativePath");
@@ -167,21 +226,29 @@ public class KnowledgeArticleDetail extends BaseComponent {
 		}
 		return document;
 	}
+	*/
 	
 	
-	protected void init(HstRequest request) {
+	protected PAGE_ACTION getPageAction(HstRequest request) {
 		String action = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
+		PAGE_ACTION pageAction = null;
 		if (action != null) {
 			pageAction = PAGE_ACTION.valueOf(action);
 			request.setAttribute("pageAction", pageAction);
 		}else{
 			pageAction = PAGE_ACTION.DEFAULT;
 		}
+		return pageAction;
+	}
+	
+	protected String getUUID(HstRequest request) {
+		String uuid = request.getRequestContext().getResolvedSiteMapItem().getParameter("uuid");
+		return uuid;
 	}
 	
 	protected boolean validate(HstRequest request, HstResponse response) {
 		parentBeanMap = new FormMap(request, new String[]{"title","summary","description"});
-		
+		PAGE_ACTION pageAction = getPageAction(request);
 		if ( pageAction != null ){
 			switch (pageAction) {
 			case EDIT:
@@ -278,10 +345,6 @@ public class KnowledgeArticleDetail extends BaseComponent {
 
 		request.setAttribute("payload", "{\"success\": " + succeeded + ", \"message\": \"" + errorMessage + "\"}");
 	}
-
-	private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
-		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-			wf.requestPublication();
-		}
-	}
+	
+	
 }

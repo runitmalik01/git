@@ -9,16 +9,10 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
-	<hst:link var="mainSiteMapRefId" />
-	<div class="page-header">
-		<h2 class="title page-title">Profit & Loss Account</h2>
-		<h4>
-			<small>Part PL&nbsp;- &nbsp;You were not required to maintain
+	<w4india:titleandnav title="Profit & Loss Account" subTitle="Part PL&nbsp;- &nbsp;You were not required to maintain
 				accounts of the business or profession, please select 'No account
-				case'.</small>
-		</h4>
-	</div>
-	<h4></h4>
+				case'."/>
+	<hst:link var="mainSiteMapRefId" />
 	<form id="frmProfitAndLoss" action="${actionUrl}" method="post"
 		name="frmProfitAndLoss">
 		<legend class="header-color">

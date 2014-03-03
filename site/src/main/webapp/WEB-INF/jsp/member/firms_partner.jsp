@@ -10,6 +10,11 @@ Partnership In Firms
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule IF" subTitle="This Schedule has to be filled
+				for each firm in which you are partner,amount of share in the profit
+				of the firm and amount of capital balance (including the capital on
+				which you are entitled for an interest) in the firm in which you are
+				partner."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty InCorrectPan}">
 		<div class="alert alert-danger">
@@ -18,16 +23,6 @@ Partnership In Firms
 			</fmt:message>
 		</div>
 	</c:if>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule IF</h2>
-		<h4>
-			<small>Schedule IF&nbsp;-&nbsp;This Schedule has to be filled
-				for each firm in which you are partner,amount of share in the profit
-				of the firm and amount of capital balance (including the capital on
-				which you are entitled for an interest) in the firm in which you are
-				partner.</small>
-		</h4>
-	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

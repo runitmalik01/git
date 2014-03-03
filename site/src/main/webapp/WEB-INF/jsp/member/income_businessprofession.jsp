@@ -9,15 +9,9 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<fmt:message key="income.bp.itr4" var="subTitle"/>
+	<w4india:titleandnav title="Schedule BP" subTitle="Schedule BP&nbsp;-&nbsp;${subTitle}"/>
 	<hst:link var="mainSiteMapRefId" />
-	<div class="page-header">
-		<h2 class="title page-title"></h2>
-		<h4>
-			<small>Schedule BP&nbsp;-&nbsp;<fmt:message
-					key="income.bp.itr4" /></small>
-		</h4>
-	</div>
-
 	<form id="frmIncomeBP" action="${actionUrl}" method="post"
 		name="frmIncomeBP">
 		<fieldset>

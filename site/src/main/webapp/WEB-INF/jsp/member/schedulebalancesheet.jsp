@@ -3,17 +3,8 @@
 <hst:link var="memberDriveComp" siteMapItemRefId="balancesheet"></hst:link>
 <hippo-gogreen:title title="Schedule-BL" />
 <w4india:itrmenu />
+<w4india:titleandnav title="${screenConfigDocument.screenHeading}" subTitle="${screenConfigDocument.screenSubHeading}"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<div class="page-header">
-	<h2 class="title page-title">
-		<c:out value="${screenConfigDocument.screenHeading}" />
-	</h2>
-</div>
-<c:if test="${not empty screenConfigDocument.screenSubHeading}">
-	<div class="alert alert-info">
-		<c:out value="${screenConfigDocument.screenSubHeading}" />
-	</div>
-</c:if>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">

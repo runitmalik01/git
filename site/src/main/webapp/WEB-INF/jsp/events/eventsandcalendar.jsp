@@ -34,6 +34,12 @@
 				<c:forEach var="document" items="${documents.items}">			
 				<ul class="event-item<c:if test="${preview}"> editable</c:if>">
 					<hst:link var="link" hippobean="${document}" />
+					<c:if test="${fn:contains(link,'/documents/')}">
+			          	<c:set var="linkURL" value="/${fn:substringAfter(link,'/documents/')}"/>
+			          	<hst:link var="link" path="${linkURL}"/>
+			         </c:if>
+			        <hst:link var="editLink" path="${fn:replace(linkURL,'.html','.edit')}"/>
+			        <hst:link var="deleteLink" path="${fn:replace(linkURL,'.html','.del')}"/>
 					<li class="title"><hst:cmseditlink hippobean="${document}"
 							var="cmsEditLink" /><a href="${link}"><c:out
 								value="${document.title}" /> </a></li>
@@ -46,10 +52,10 @@
 					<li class="text"><c:out value="${document.summary}" /></li>
 					<c:if test="${isVendor eq 'true' }">
 						<a class="btn btn-default btn-sm btn-success"
-							href="${link}?edit=editEvent"><small><i
+							href="${editLink}"><small><i
 								class="glyphicon glyphicon-pencil"></i>Edit</small></a> &nbsp;&nbsp;&nbsp;<a
 							class="btn btn-default btn-sm btn-danger"
-							href="${link}?delete=deleteLink"><small><i
+							href="${deleteLink}"><small><i
 								class="glyphicon glyphicon-trash"></i>Delete</small></a>
 					</c:if>
 				</ul>

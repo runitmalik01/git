@@ -5,7 +5,7 @@
 <hippo-gogreen:title title="${Schedule10A}" />
 <hst:actionURL var="actionUrl"></hst:actionURL> 
 <w4india:itrmenu/>
-<c:out value="${ipAddress}"/>
+<w4india:titleandnav title="ITR Schedule 10A/10AA"/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">

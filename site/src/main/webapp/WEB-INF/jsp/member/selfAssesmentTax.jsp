@@ -1,5 +1,5 @@
-<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
+<%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@page import="com.mootly.wcm.services.ScreenConfigService"%>
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
@@ -19,14 +19,9 @@
 </c:if>
 
 <hst:actionURL var="actionUrl" />
-<div class="page-header">
-	<h2 class="title page-title">Self Assessment Tax</h2>
-	<h4>
-		<small>Self Assessment tax means any balance tax paid by the
+<w4india:titleandnav title="Self Assessment Tax" subTitle="Self Assessment tax means any balance tax paid by the
 			assessee on the assessed income after deducting TDS and Advance tax
-			before filing the Return of income.</small>
-	</h4>
-</div>
+			before filing the Return of income."></w4india:titleandnav>
 <c:choose>
 	<c:when
 		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

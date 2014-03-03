@@ -42,7 +42,26 @@ public class HelpDeskTicketDocument extends FlexibleDocument implements ContentN
 	String description;
 	List<HelpDeskTicketNote> notes = null;
 	
+	int totalUnReadAnswers;
+	
 	private boolean markedForDeletion;
+	
+	public int getTotalUnReadAnswers() {
+		getNotes();
+		totalUnReadAnswers = 0;
+		if (notes != null && notes.size() > 0 ) {
+			for (HelpDeskTicketNote helpDeskTicketNote:notes) {
+				boolean isqa = ( helpDeskTicketNote.getIsqa() == null ? false : helpDeskTicketNote.getIsqa() );
+				boolean answered = ( helpDeskTicketNote.getAnswered() == null ?  false : helpDeskTicketNote.getAnswered() );
+				boolean read = ( helpDeskTicketNote.getRead() == null ?  false : helpDeskTicketNote.getRead() );
+				if (isqa && answered && !read) {
+					totalUnReadAnswers++;
+				}
+			}
+		}
+		
+		return totalUnReadAnswers;
+	}
 	
 	@FormField(name="identifier")
 	@NodeBinder(nodePropertyName=PROP_IDENTIFIER,propertyName="identifier")

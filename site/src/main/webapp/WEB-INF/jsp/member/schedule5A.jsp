@@ -9,17 +9,11 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
-	<hst:link var="mainSiteMapRefId" />
-	<div class="page-header">
-		<h2 class="title page-title">Schedule 5A</h2>
-		<h4>
-			<small>Schedule 5A&nbsp;- &nbsp;This Schedule is to be filled
+	<w4india:titleandnav title="Schedule 5A" subTitle="Schedule 5A&nbsp;- &nbsp;This Schedule is to be filled
 				in case of assessee governed by Portuguese Civil Code. The share of
 				income of the spouse,should be filled in this schedule and the same
-				should form part of the return of income of the spouse. </small>
-		</h4>
-	</div>
-
+				should form part of the return of income of the spouse."/>
+	<hst:link var="mainSiteMapRefId" />
 	<hst:link var="gotoPersonalInfo" siteMapItemRefId="servicerequest-itr">
 	</hst:link>
 	<fmt:message key="schedule5a.isportugese.civil.itr2" />

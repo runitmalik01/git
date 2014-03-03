@@ -15,6 +15,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule FA-C" subTitle="Schedule FA-C&nbsp;-&nbsp;The total investment at cost in
+				immovable property held during the year after converting it into
+				Indian currency."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -23,16 +26,6 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</div>
 		</c:forEach>
 	</c:if>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule FA-C</h2>
-		<h4>
-			<small>Schedule FA-C&nbsp;-&nbsp;The total investment at cost in
-				immovable property held during the year after converting it into
-				Indian currency.</small>
-		</h4>
-	</div>
-
-	<h4></h4>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

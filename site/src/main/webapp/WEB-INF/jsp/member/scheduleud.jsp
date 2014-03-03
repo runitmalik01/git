@@ -14,21 +14,7 @@
 ${aggIncome }
 
 <div class="page">
-	<h3 id="respond1">
-		<c:choose>
-			<c:when
-				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
-				<c:out value="${screenConfigDocument.screenHeading}" />
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-	</h3>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule UD</h2>
-		<h4>
-			<small></small>
-		</h4>
-	</div>
+	<w4india:titleandnav title="Schedule UD"></w4india:titleandnav>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

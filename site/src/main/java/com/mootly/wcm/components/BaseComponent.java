@@ -407,4 +407,16 @@ public class BaseComponent extends BaseHstComponent {
 		return itReturnInitData;
 	}
 	
+	/**
+	 * Sanitize the relativeContentPath
+	 * If it starts with resellers/<<resellerid>>/documents then change it to documents/
+	 */
+	protected String sanitizeRelativeContentPath(HstRequest request, String relativeContentPath) {
+		String prefix  = "resellers/" + getITRInitData(request).getResellerId() + "/";
+		if (relativeContentPath != null && relativeContentPath.startsWith(prefix)) {
+			relativeContentPath = relativeContentPath.substring(prefix.length());
+		}
+		return relativeContentPath;
+	}
+	
 }

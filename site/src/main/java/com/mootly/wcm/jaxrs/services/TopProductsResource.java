@@ -19,6 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.PathNotFoundException;
+import javax.jcr.Property;
+import javax.jcr.PropertyIterator;
+import javax.jcr.RepositoryException;
+import javax.jcr.Value;
+import javax.jcr.ValueFormatException;
+import javax.jcr.query.Query;
+import javax.jcr.query.QueryManager;
+import javax.jcr.query.QueryResult;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.DefaultValue;
@@ -41,7 +51,9 @@ import org.hippoecm.hst.util.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.beans.HippoLogItem;
 import com.mootly.wcm.beans.Product;
+import com.mootly.wcm.jaxrs.model.HippoLogItemRepresentation;
 import com.mootly.wcm.jaxrs.model.ProductLinkRepresentation;
 
 /**
@@ -54,44 +66,59 @@ public class TopProductsResource extends AbstractResource {
     
     @GET
     @Path("/")
-    public List<ProductLinkRepresentation> getProductResources(@Context HttpServletRequest servletRequest, @Context HttpServletResponse servletResponse, @Context UriInfo uriInfo,
+    public List<HippoLogItemRepresentation> getProductResources(@Context HttpServletRequest servletRequest, @Context HttpServletResponse servletResponse, @Context UriInfo uriInfo,
             @QueryParam("sortby") @DefaultValue("mootlywcm:rating") String sortBy, 
             @QueryParam("sortdir") @DefaultValue("descending") String sortDirection,
             @QueryParam("max") @DefaultValue("10") String maxParam) {
         
-        List<ProductLinkRepresentation> productRepList = new ArrayList<ProductLinkRepresentation>();
+        List<HippoLogItemRepresentation> productRepList = new ArrayList<HippoLogItemRepresentation>();
         HstRequestContext requestContext = getRequestContext(servletRequest);
         
         try {
             String mountContentPath = requestContext.getResolvedMount().getMount().getContentPath();
-            Node mountContentNode = requestContext.getSession().getRootNode().getNode(PathUtils.normalizePath(mountContentPath));
-            
+            Node mountContentNode = requestContext.getSession().getRootNode().getNode("hippo:log");//.getNode(PathUtils.normalizePath(mountContentPath));
             HstQueryManager manager = getHstQueryManager(requestContext.getSession(), requestContext);
-            HstQuery hstQuery = manager.createQuery(mountContentNode, Product.class, true);
             
-            if (!StringUtils.isBlank(sortBy)) {
-                if (StringUtils.equals("descending", sortDirection)) {
-                    hstQuery.addOrderByDescending(sortBy);
-                } else {
-                    hstQuery.addOrderByAscending(sortBy);
-                }
-            }
-            
-            hstQuery.setLimit(NumberUtils.toInt(maxParam, 10));
-            
-            HstQueryResult result = hstQuery.execute();
-            HippoBeanIterator iterator = result.getHippoBeans();
-
-            while (iterator.hasNext()) {
-                Product productBean = (Product) iterator.nextHippoBean();
-                
-                if (productBean != null) {
-                    ProductLinkRepresentation productRep = new ProductLinkRepresentation(requestContext).represent(productBean);
-                    productRep.addLink(getNodeLink(requestContext, productBean));
-                    productRep.addLink(getSiteLink(requestContext, productBean));
-                    productRepList.add(productRep);
-                }
-            }
+            HstQuery hstQuery = manager.createQuery(mountContentNode, "hippolog:item");
+            String QUERY = "//element(*,hippolog:item)";
+            String LANGUAGE = Query.XPATH;
+            QueryManager queryManager = requestContext.getSession().getWorkspace().getQueryManager();
+            Query query = queryManager.createQuery(QUERY, LANGUAGE);
+            QueryResult queryResult = query.execute();
+            NodeIterator nodeIterator = queryResult.getNodes();
+			
+			while ( nodeIterator.hasNext() ) {
+			    javax.jcr.Node node = nodeIterator.nextNode();
+			    System.out.println(node.getIdentifier());
+			    
+			    HippoLogItemRepresentation productRep = new HippoLogItemRepresentation(requestContext);
+			    
+			    productRep.setEventUser( getPropertyValue(node, "hippolog:eventUser") );
+			    productRep.setEventClass(getPropertyValue(node, "hippolog:eventClass") );
+			    productRep.setEventReturnValue( getPropertyValue(node, "hippolog:eventReturnValue") );
+			    productRep.setEventReturnType( getPropertyValue(node, "hippolog:eventReturnType") );
+			    productRep.setEventDocument( getPropertyValue(node, "hippolog:eventDocument") );
+			    productRep.setEventMethod( getPropertyValue(node, "hippolog:eventMethod") );
+			    productRep.setTimestamp( getPropertyValue(node, "hippolog:timestamp") );
+			    
+			    
+			    if ( node.hasProperty("hippolog:eventArguments") ) {
+			    	Property property = node.getProperty("hippolog:eventArguments");
+			    	List<String> vals = new ArrayList<String>();
+			    	if (property.isMultiple()) {
+			    		for ( Value aValue: property.getValues() ) {
+			    			vals.add( aValue.getString() );
+			    		}
+			    	}else {
+			    		vals.add (property.getString());
+			    	}
+			    	productRep.setEventArguments(vals);
+			    }
+			    
+			    productRepList.add(productRep);
+			    
+			}
+			
         } catch (Exception e) {
             if (log.isDebugEnabled()) {
                 log.warn("Failed to retrieve top products.", e);
@@ -103,6 +130,13 @@ public class TopProductsResource extends AbstractResource {
         }
         
         return productRepList;
+    }
+    
+    protected String getPropertyValue(Node node,String propertyName) throws ValueFormatException, IllegalStateException, PathNotFoundException, RepositoryException {
+    	if (node != null && node.hasProperty(propertyName)) {
+    		return node.getProperty(propertyName).getValue().getString();
+    	}
+    	return null;
     }
 
 }

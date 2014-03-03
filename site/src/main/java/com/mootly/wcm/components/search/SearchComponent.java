@@ -35,8 +35,8 @@ public class SearchComponent extends AbstractSearchComponent {
         	paramShowTaggedDocuments = Boolean.valueOf(strShowTaggedDocuments);
         }
         if (!showTaggedDocuments(request) && !showFacetedDocuments(request)) {
-            String query = getQuery(request);
-                searchDocuments(request, query);
-            }
+	        String query = getQuery(request);
+	            searchDocuments(request, query);
+	        }
     }
 }

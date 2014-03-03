@@ -16,23 +16,16 @@
 
 package com.mootly.wcm.components;
 
-import java.io.IOException;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.TimeZone;
-
 
 import javax.jcr.Session;
 
-import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
+import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.component.support.forms.FormUtils;
+import org.hippoecm.hst.component.support.forms.StoreFormResult;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
@@ -40,19 +33,18 @@ import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
-import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.util.ContentBeanUtils;
-import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.Comment;
-import com.mootly.wcm.beans.Document;
 import com.mootly.wcm.beans.EventDocument;
 import com.mootly.wcm.beans.NewsItem;
-import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.member.MemberSecurity;
+import com.mootly.wcm.utils.GoGreenUtil;
 
 public class Detail extends BaseComponent {
 
@@ -61,24 +53,53 @@ public class Detail extends BaseComponent {
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
-
+		FormMap parentBeanMap = null;
+		PAGE_ACTION pageAction = null;
+		pageAction = init(request);
+		
 		super.doBeforeRender(request, response);
-
-		HippoBean document = getContentBean(request);
-		String editlink=getPublicRequestParameter(request,"edit");
-		String deletelink=getPublicRequestParameter(request,"delete");
-		String newsEditlink=getPublicRequestParameter(request,"newsEdit");
-		String newsDeletelink=getPublicRequestParameter(request,"newsDelete");
-		if(null!=editlink){
-			request.setAttribute("editlink", editlink);}
-		if(null!=deletelink){
-			request.setAttribute("deletelink", deletelink);}
-		if(null!=newsEditlink){
-			request.setAttribute("newsEditlink", newsEditlink);}
-		if(null!=newsDeletelink){
-			request.setAttribute("newsDeletelink", newsDeletelink);}
-
-		if (document == null) { 
+		HippoBean scope = getSiteContentBaseBeanForReseller(request);
+		String relativeContentPath = request.getRequestContext().getResolvedSiteMapItem().getRelativeContentPath();
+		relativeContentPath = sanitizeRelativeContentPath(request, relativeContentPath);
+		HippoDocumentBean document = scope.getBean(relativeContentPath); //getContentBean(request);
+		String baseAbsolutePathToContentBean = getSiteContentBaseBeanForReseller(request).getCanonicalPath();
+		String baseAbsolutePathToReturnDocuments = baseAbsolutePathToContentBean;
+		String parentBeanNameSpace = null;
+		String RefID = "";
+		
+		if (document != null && (document instanceof NewsItem || document instanceof EventDocument)) {
+			if (document instanceof NewsItem) {
+				parentBeanNameSpace = "mootlywcm:newsitem";
+				RefID = "news";
+			}
+			else if (document instanceof EventDocument) {
+				baseAbsolutePathToReturnDocuments =  baseAbsolutePathToContentBean+ "/documents/events";
+				parentBeanNameSpace = "mootlywcm:event";
+				RefID = "events";
+			}
+			if(pageAction == PAGE_ACTION.DELETE){
+				Session persistableSession = null;
+				WorkflowPersistenceManager wpm;
+				try {
+					persistableSession = getPersistableSession(request);
+					wpm = getWorkflowPersistenceManager(persistableSession);
+					String parentBeanAbsolutePath = (document != null ?  document.getCanonicalHandlePath() : null);
+					String title = GoGreenUtil.getEscapedParameter(request, "title");
+					String parentBeanNodeName = (document != null ?  document.getName() : title); //TODO escape it for node name
+						getItReturnComponentHelper().deleteSingleDocument(parentBeanMap, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, persistableSession, wpm);
+					String targetPath= MemberSecurity.getTargerPath(request, RefID); 
+					response.sendRedirect(targetPath);
+				} catch (Exception e) {
+					log.warn("Failed to create /update KB", e);
+				} finally {
+					if (persistableSession != null) {
+						persistableSession.logout();
+					}
+				}
+			}
+		}
+			
+		if (document == null && pageAction != PAGE_ACTION.NEW) { 
 			redirectToNotFoundPage(response);
 			return;
 		}
@@ -87,12 +108,13 @@ public class Detail extends BaseComponent {
 		HippoFolder commentsFolder = null;
 		int commentCount = 0;
 
-		if (document instanceof NewsItem) {
-			commentsFolder = getSiteContentBaseBeanForReseller(request).getBean("cms/news");
+		if (document != null && document instanceof NewsItem) {
+			commentsFolder = getSiteContentBaseBeanForReseller(request).getBean("documents/news");
 
-		} else if (document instanceof EventDocument) {
+		} else if (document != null && document instanceof EventDocument) {
 			commentsFolder = getSiteContentBaseBean(request).getBean("comments/events");
 		}
+		
 		List<HippoBean> commentBeans = new ArrayList<HippoBean>();
 		if (commentsFolder != null) {
 			try {
@@ -120,257 +142,119 @@ public class Detail extends BaseComponent {
 
 	@Override
 	public void doAction(HstRequest request, HstResponse response) {
-		String edit=getPublicRequestParameter(request, "edit");
-		String delete=getPublicRequestParameter(request, "delete");
-		String newsEdit=getPublicRequestParameter(request, "newsEdit");
-		String newsDelete=getPublicRequestParameter(request, "newsDelete");
-		if(log.isInfoEnabled())
-		{
-			log.info("delete link"+delete);
+		String RefID = "knowledgeportal"; 
+		PAGE_ACTION pageAction = null;
+		//String aa = hstSiteMapItem.getLocalParameter("node-name");
+		pageAction = init(request);
+		if (!(validate(request, response))) {
+			return;
 		}
-		String title = request.getParameter("title");
-		String summary = request.getParameter("summary");
-		String description = request.getParameter("description");
-		String newStartDate = request.getParameter("newstartdate");
-		String newEndDate= request.getParameter("newenddate");
-		String flag = request.getParameter("deleteevent");
-		String newsflag = request.getParameter("deletenews");		
-
-		EventDocument edoc = new EventDocument();	
-		edoc.setTitle(title);
-		edoc.setSummary(summary);
-		edoc.setDescriptionContent(description);
-		edoc.setNewStartDate(newStartDate);
-		edoc.setNewEndDate(newEndDate);
-		NewsItem ndoc = new NewsItem();
-		ndoc.setTitle(title);
-		ndoc.setSummary(summary);
-		ndoc.setDescriptionContent(description);
-		if(null!=edit){
-			editNewEvents(request,edoc);
-			try {
-				response.sendRedirect("/site/r/"+ getITRInitData(request).getResellerId() +"/events");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		FormMap parentBeanMap = new FormMap(request, new String[]{"title","summary","description"});
+		HippoBean scope = getSiteContentBaseBeanForReseller(request);
+		String relativeContentPath = request.getRequestContext().getResolvedSiteMapItem().getRelativeContentPath();
+		relativeContentPath = sanitizeRelativeContentPath(request, relativeContentPath);
+		HippoDocumentBean document = scope.getBean(relativeContentPath); //getContentBean(request);
+		
+		if (document == null && pageAction !=  PAGE_ACTION.NEW) {
+			redirectToNotFoundPage(response);
+			return;
 		}
-		if(null!=newsEdit){
-			editNewNews(request,ndoc);
-			try {
-				response.sendRedirect("/site/r/"+ getITRInitData(request).getResellerId()+"/news");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		
+		String baseAbsolutePathToContentBean = getSiteContentBaseBeanForReseller(request).getCanonicalPath();
+		String baseAbsolutePathToReturnDocuments = baseAbsolutePathToContentBean;
+		String parentBeanNameSpace = null;
+		
+		
+		
+		if ( (document != null && document instanceof NewsItem ) || (document == null && relativeContentPath.contains("news")) ) {
+			baseAbsolutePathToReturnDocuments =  baseAbsolutePathToContentBean+ "/documents/news";
+			parentBeanNameSpace = "mootlywcm:newsitem";
+			RefID = "news";
 		}
-		if(flag != null && !flag.isEmpty() ){
-			if(flag.equalsIgnoreCase("yes")){
-				DeleteEvents(request,edoc);
-			}	
-			try {
-				response.sendRedirect("/site/r/"+ getITRInitData(request).getResellerId()+"/events");
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		else if ( (document != null && document instanceof EventDocument) || (document == null && relativeContentPath.contains("events"))) {
+			baseAbsolutePathToReturnDocuments =  baseAbsolutePathToContentBean+ "/documents/events";
+			parentBeanNameSpace = "mootlywcm:event";
+			RefID = "events";
 		}
-
-		if(newsflag != null && !newsflag.isEmpty()){
-			if(newsflag.equalsIgnoreCase("yes")){
-				DeleteNews(request,ndoc);				
-			}	
-			try {
-				response.sendRedirect("/site/r/"+getITRInitData(request).getResellerId()+"/news");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		
+		/*
+		if (document != null && document instanceof FormMapFiller) {
+			FormMapFiller formMapFiller = (FormMapFiller) document;
+			formMapFiller.fill(parentBeanMap);
 		}
-	}
-
-	// Edit Events
-	protected  void editNewEvents(HstRequest request,EventDocument ed) {
+		*/
+		
 		Session persistableSession = null;
 		WorkflowPersistenceManager wpm;
 
 		try {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			HippoBean document = (HippoBean) getContentBean(request);
-			String memberFolderPath= document.getCanonicalPath();
-			EventDocument objEventDocument =  (EventDocument) wpm.getObject(memberFolderPath);
-			// update content properties
-			if (objEventDocument != null) {
-				objEventDocument.setTitle(ed.getTitle());
-				objEventDocument.setSummary(ed.getSummary());
-				objEventDocument.setDescriptionContent(ed.getDescriptionContent());
-				objEventDocument.setNewStartDate(ed.getNewStartDate());
-				objEventDocument.setNewEndDate(ed.getNewEndDate());		
-				wpm.update(objEventDocument);
-				wpm.save();
+			
+			String parentBeanAbsolutePath = (document != null ?  document.getCanonicalHandlePath() : null);
+			String title = GoGreenUtil.getEscapedParameter(request, "title");
+			String parentBeanNodeName = (document != null ?  document.getName() : title); //TODO escape it for node name
+			if(pageAction == PAGE_ACTION.NEW || pageAction == PAGE_ACTION.EDIT){
+				getItReturnComponentHelper().saveSingleDocument(parentBeanMap, null, baseAbsolutePathToReturnDocuments, parentBeanAbsolutePath, parentBeanNameSpace, parentBeanNodeName, persistableSession, wpm);
 			}
+			
+			String targetPath= MemberSecurity.getTargerPath(request, RefID); 
+			response.sendRedirect(targetPath);
 		} catch (Exception e) {
-			log.warn("Failed to EDIT eventsdocument ", e);
+			log.warn("Failed to create /update KB", e);
 		} finally {
 			if (persistableSession != null) {
 				persistableSession.logout();
 			}
 		}
 	}
-
-	// Edit News
-	protected  void editNewNews(HstRequest request,NewsItem nd){
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
-		try {		
-			persistableSession = getPersistableSession(request);
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			HippoBean document = (HippoBean) getContentBean(request);
-			String memberFolderPath= document.getCanonicalPath();		
-			Object object =  wpm.getObject(memberFolderPath);
-			// update content properties
-			if (object != null) {
-				if(object instanceof NewsItem){
-					NewsItem objNewsItem = (NewsItem) object;
-					objNewsItem.setTitle(nd.getTitle());
-					objNewsItem.setSummary(nd.getSummary());
-					objNewsItem.setDescriptionContent(nd.getDescriptionContent()); 
-					wpm.update(objNewsItem);
-					wpm.save();
-				}
-			}
-		} catch (Exception e) {
-			log.warn("Failed to EDIT newsdocument ", e);
-		} finally {
-			if (persistableSession != null) {
-				persistableSession.logout();
+	
+	protected PAGE_ACTION init(HstRequest request) {
+		String action = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
+		PAGE_ACTION pageAction;
+		if (action != null) {
+			pageAction = PAGE_ACTION.valueOf(action);
+			request.setAttribute("pageAction", pageAction);
+		}else{
+			pageAction = PAGE_ACTION.DEFAULT;
+		}
+		return pageAction;
+	}
+	
+	protected boolean validate(HstRequest request, HstResponse response) {
+		FormMap parentBeanMap = null;
+		PAGE_ACTION pageAction = null;
+		
+		parentBeanMap = new FormMap(request, new String[]{"title","summary","description"});
+		
+		if ( pageAction != null ){
+			switch (pageAction) {
+			case EDIT:
+				break;
 			}
 		}
-	}
 
-	//Delete Events
-	protected  void DeleteEvents(HstRequest request,EventDocument ed) {
+		String title = GoGreenUtil.getEscapedParameter(request, "title");
+		//String summary = GoGreenUtil.getEscapedParameter(request, "summary");
 
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
-		try {
-			HippoBean document = (HippoBean) getContentBean(request);
-			String memberFolderPath= document.getCanonicalPath();
-			persistableSession = request.getRequestContext().getSession();
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
-				public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-					FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
-					fraw.delete();
-				}
-			});
-			EventDocument objEventDocument =  (EventDocument) wpm.getObject(memberFolderPath);
-			if (objEventDocument != null) {
-				log.warn("Are you sure want to DELETE event?");
-				wpm.remove(objEventDocument);
-			}
-		} catch (Exception e) {
-			log.warn("Failed to DELETE event ", e);
-		} finally {
-			if (persistableSession != null) {
-			}
+		List<String> errors = new ArrayList<String>();
+
+		if (StringUtils.isEmpty(title)) {
+			errors.add("invalid.name-label");
 		}
-	}
-	//Delete News
-	protected  void DeleteNews(HstRequest request,NewsItem nd) {
-		// TODO Auto-generated method stub
-		Session persistableSession = null;
-		WorkflowPersistenceManager wpm;
-		try {
-			HippoBean document = (HippoBean) getContentBean(request);
-			String memberFolderPath= document.getCanonicalPath();
-			persistableSession = request.getRequestContext().getSession();
-			wpm = getWorkflowPersistenceManager(persistableSession);
-			wpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
-				public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-					FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
-					fraw.delete();
-				}
-			});
-			NewsItem objNewsItemDocument =  (NewsItem) wpm.getObject(memberFolderPath);
-			if (objNewsItemDocument != null) {
-				log.warn("Are you sure want to DELETE news ?");
-				wpm.remove(objNewsItemDocument);				
-			}
-		} catch (Exception e) {
-			log.warn("Failed to DELETE news ", e);
-		} finally {
-			if (persistableSession != null) {
-			}
+		/*
+		if (StringUtils.isEmpty(summary)) {
+			errors.add("invalid.comment-label");
 		}
-	}
-
-
-
-	@Override
-	public void doBeforeServeResource(HstRequest request, HstResponse response) throws HstComponentException {
-		super.doBeforeServeResource(request, response);
-
-		boolean succeeded = true;
-		String errorMessage = "";
-		String workflowAction = request.getParameter("workflowAction");
-		String field = request.getParameter("field");
-
-		final boolean requestPublication = "requestPublication".equals(workflowAction);
-		final boolean saveDocument = ("save".equals(workflowAction) || requestPublication);
-
-		if (saveDocument || requestPublication) {
-			String documentPath = getContentBean(request).getPath();
-			Session persistableSession = null;
-			WorkflowPersistenceManager cpm = null;
-
-			try {
-				//NOTE: Don't need to use writable session here; use subject based session instead.
-				//persistableSession = getPersistableSession(request);
-				persistableSession = request.getRequestContext().getSession();
-
-				cpm = getWorkflowPersistenceManager(persistableSession);
-				cpm.setWorkflowCallbackHandler(new WorkflowCallbackHandler<FullReviewedActionsWorkflow>() {
-					public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-						if (requestPublication) {
-							FullReviewedActionsWorkflow fraw = (FullReviewedActionsWorkflow) wf;
-							fraw.requestPublication();
-						}
-					}
-				});
-
-				Document document = (Document) cpm.getObject(documentPath);
-				if (saveDocument) {
-					String content = request.getParameter("editor");
-					if ("mootlywcm:summary".equals(field)) {
-						document.setSummary(content);
-					} else if ("mootlywcm:description".equals(field)) {
-						document.setDescriptionContent(content);
-					}
-				}
-				// update now
-				cpm.update(document);
-
-				cpm.save();
-			} catch (Exception e) {
-				log.warn("Failed to create a comment: ", e);
-
-				if (cpm != null) {
-					try {
-						cpm.refresh();
-					} catch (ObjectBeanPersistenceException e1) {
-						log.warn("Failed to refresh: ", e);
-					}
-				}
-			}
-			// NOTE: no need to close the persistable session here because subject based session was retrieved from rc.
+		*/
+		if (errors.size() > 0) {
+			StoreFormResult sfr = new StoreFormResult();
+			FormUtils.persistFormMap(request, response, parentBeanMap, sfr);
+			response.setRenderParameter("uuid", sfr.getUuid());
+			return false;
 		}
-		request.setAttribute("payload", "{\"success\": " + succeeded + ", \"message\": \"" + errorMessage + "\"}");
+		return true;
 	}
-	private static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
-		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
-			wf.publish();
+	
 
-		}
-	}
 }

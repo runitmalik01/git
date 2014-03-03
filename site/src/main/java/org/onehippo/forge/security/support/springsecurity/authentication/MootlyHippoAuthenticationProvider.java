@@ -131,10 +131,10 @@ public class MootlyHippoAuthenticationProvider extends AbstractUserDetailsAuthen
 			loadedUser = getHippoUserDetailsService().loadUserByUsernameAndPassword(username, password,mountIdentifier);
 		}catch (UsernameNotFoundException usernameNotFoundException) {
 			if (usernameNotFoundException.getMessage() != null && usernameNotFoundException.getMessage().equals("password.mismatch")) {
-				new MootlyAuthenticationException(usernameNotFoundException.getMessage(), hippoMountDetail);
+				throw new MootlyAuthenticationException(usernameNotFoundException.getMessage(), hippoMountDetail);
 			}
 			else {
-				new MootlyAuthenticationException(usernameNotFoundException.getMessage(), hippoMountDetail);
+				throw new MootlyAuthenticationException(usernameNotFoundException.getMessage(), hippoMountDetail);
 			}
 		}
 		catch (DataAccessException repositoryProblem) {

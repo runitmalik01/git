@@ -49,7 +49,6 @@ import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.Comment;
 import com.mootly.wcm.beans.NewsItem;
-import com.mootly.wcm.components.BaseComponent;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.TagComponent;
 import com.mootly.wcm.utils.Constants;
@@ -96,9 +95,9 @@ public class NewsOverview extends TagComponent {
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		super.doBeforeRender(request, response);
 		
-		final HippoBean scope = getContentBean(request);
-		HippoBean contentBean = getSiteContentBaseBean(request).getBean("news/facetednews");
-		log.info("path of contentBean of News:::"+contentBean);
+		final HippoBean scope = getSiteContentBaseBeanForReseller(request);
+		//HippoBean contentBean = getSiteContentBaseBeanForReseller(request).getBean("documents/news/facetednews");
+		//log.info("path of contentBean of News:::"+contentBean);
 			
 		if (scope == null) {
 			ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();

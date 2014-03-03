@@ -15,13 +15,9 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<fmt:message key="quantitative.details.itr4" var="subTitle"/>
+	<w4india:titleandnav title="Quantitative Details -Trade" subTitle="${subTitle}"/>
 	<hst:link var="mainSiteMapRefId" />
-	<div class="page-header">
-		<h2 class="title page-title">Quantitative Details -Trade</h2>
-		<h4>
-			<small><fmt:message key="quantitative.details.itr4" /></small>
-		</h4>
-	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

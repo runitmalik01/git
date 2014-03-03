@@ -388,6 +388,11 @@
     <error-code>403</error-code>
     <location>/WEB-INF/jsp/errorpages/ErrorPage403.jsp</location>
   </error-page>
-
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/errorpages/ErrorPage404.jsp</location>
+  </error-page>
+  
 </web-app>
 

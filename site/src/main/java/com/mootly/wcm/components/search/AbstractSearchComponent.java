@@ -90,10 +90,16 @@ public class AbstractSearchComponent extends TagComponent {
             // we only want subtypes of mootlywcm:document.
             // TODO: replace this by limiting the search tag sources to 
             // mootlywcm:documents once the tagcloud plugin supports this.
+        	HippoBean scope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
             List<HippoBean> taggedDocuments = new ArrayList<HippoBean>();
             for (HippoBean bean : taggedBeans) {
                 if (bean instanceof Document || bean instanceof SimpleDocument) {
-                    taggedDocuments.add(bean);
+                	if (bean.getCanonicalPath().startsWith(scope.getCanonicalPath())) {
+                		taggedDocuments.add(bean);
+                	}
+                	else{
+                		log.info(bean.getCanonicalPath() + " does not start with " + scope.getCanonicalPath());
+                	}
                 }
             }
 
@@ -115,10 +121,18 @@ public class AbstractSearchComponent extends TagComponent {
         request.setAttribute("query", StringEscapeUtils.escapeHtml(parsedQuery));
         HippoBean scope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
         
-        String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("scopeRelativePath");
+        String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getParameter("scopeRelativePath");
         if (scopeRelativePath != null) {
         	scope =  scope.getBean(scopeRelativePath);
         }
+        else {
+        	scope =  scope.getBean("documents");
+        }
+        
+        String screenHead = request.getRequestContext().getResolvedSiteMapItem().getParameter("screen.head");
+        String screenSubHead = request.getRequestContext().getResolvedSiteMapItem().getParameter("screen.subHead");
+        if (screenHead != null) request.setAttribute("screenHead",screenHead);
+        if (screenSubHead != null) request.setAttribute("screenSubHead",screenSubHead);
         
         if (scope == null) {
             log.error("Scope for search is null");
@@ -205,10 +219,35 @@ public class AbstractSearchComponent extends TagComponent {
     }
 
     protected boolean showFacetedDocuments(HstRequest request) {
-        HippoBean bean = getContentBean(request);
+    	  String screenHead = request.getRequestContext().getResolvedSiteMapItem().getParameter("screen.head");
+          String screenSubHead = request.getRequestContext().getResolvedSiteMapItem().getParameter("screen.subHead");
+          if (screenHead != null) request.setAttribute("screenHead",screenHead);
+          if (screenSubHead != null) request.setAttribute("screenSubHead",screenSubHead);
+          
+          String showContent = request.getRequestContext().getResolvedSiteMapItem().getParameter("showContent");
+          if (showContent != null) request.setAttribute("showContent",showContent);
+          
+        HippoBean bean = null; //getContentBean(request);
+        HippoBean scope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
+        
+        String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getParameter("scopeRelativePath");
+        if (scopeRelativePath != null) {
+        	scope =  scope.getBean(scopeRelativePath);
+        }
+        String pathToContentBean = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("pathToContentBean");
+        if (pathToContentBean != null) {
+        	bean = scope.getBean(pathToContentBean);
+        }
         if (bean instanceof HippoFacetChildNavigationBean) {
             String query = SearchInputParsingUtils.parse(getQuery(request), false);
-            HippoFacetNavigationBean facetBean = BeanUtils.getFacetNavigationBean(request, query, objectConverter);
+            HippoFacetNavigationBean facetBean = null;//BeanUtils.getFacetNavigationBean(request, query, objectConverter);
+            if (scopeRelativePath != null) {
+            	String theRelativePath =  (scope.getCanonicalPath() + "/" + scopeRelativePath).substring(getSiteContentBaseBean(request).getCanonicalPath().length()-1);
+            	String resolvedContentPath = scopeRelativePath + "/searchfacets";
+            	
+            	facetBean = BeanUtils.getFacetNavigationBean(request, "resellers/" + getITRInitData(request).getResellerId() + "/" + scopeRelativePath  + "/" + pathToContentBean, query, objectConverter);
+            }
+            
             HippoDocumentIterator<HippoBean> facetIt = facetBean.getResultSet().getDocumentIterator(HippoBean.class);
             int facetCount = facetBean.getCount().intValue();
             int pageSize = getPageSize(request);

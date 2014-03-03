@@ -41,7 +41,7 @@ import com.mootly.wcm.DocumentTypes;
     @FieldGroup(
             titleKey = "fields.channel.eri",
             value = { 
-			"eriEnabled","eriUserId","eriPassword","eriSignature","eriCertChain","eriEnable26ASImport"}
+			"eriEnabled","eriUserId","eriPassword","eriSignature","eriCertChain","eriEnable26ASImport","allowUnverifiedUsers"}
     ),
 	@FieldGroup(
             titleKey = "fields.channel.payment",
@@ -124,6 +124,8 @@ public interface WebsiteInfo extends ChannelInfo {
     @Parameter(name = "eriEnable26ASImport", defaultValue = "false", required = false)
     String getEriEnable26ASImport();
     
+    @Parameter(name = "allowUnverifiedUsers", defaultValue = "false", required = false)
+    String getAllowUnverifiedUsers();
     
     @Parameter(name = "paymentEnabled", defaultValue = "true", required = true)
     String getPaymentEnabled();

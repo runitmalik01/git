@@ -18,9 +18,9 @@ package com.mootly.wcm.beans;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocument;
@@ -29,13 +29,16 @@ import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import com.mootly.wcm.beans.compound.Address;
 import com.mootly.wcm.beans.compound.ImageSet;
 import com.mootly.wcm.beans.compound.ImageSetLink;
+import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.utils.Constants;
 
 @Node(jcrType = "mootlywcm:event")
-public class EventDocument extends Document {
+public class EventDocument extends Document implements FormMapFiller {
 	static final public String NAMESPACE = "mootlywcm:event";
     private List<ImageSet> images;
-	private Date date;
+    
+	private Calendar date;
+	private Calendar endDate;
 
     public List<ImageSet> getImages() {
         initImages();
@@ -62,22 +65,26 @@ public class EventDocument extends Document {
             }
         }
     }
-
+    
     public Calendar getDate() {
-        return getProperty(Constants.PROP_DATE);
+    	if (date == null) date =  getProperty(Constants.PROP_DATE);
+        return date;
     }
-    public Date setDate( Date dt) {
-    	 return this.date = dt;
+    
+    
+    public void setDate( Calendar dt) {
+    	this.date = dt;
     }
-
 
     public Calendar getEndDate() {
         return getProperty(Constants.PROP_ENDDATE);
     }
-
+    
+    
     public Address getLocation() {
         return getBean(Constants.PROP_LOCATION);
     }
+    
     public Address setLocation() {
         return getBean(Constants.PROP_LOCATION);
     }
@@ -92,6 +99,12 @@ public class EventDocument extends Document {
             }
         }
         return null;
+    }
+    
+    @Override
+    public void fill(FormMap formMap) {
+    	// TODO Auto-generated method stub
+    	super.fill(formMap);
     }
 
 }

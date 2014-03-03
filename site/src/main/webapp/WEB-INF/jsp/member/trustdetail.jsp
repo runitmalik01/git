@@ -15,6 +15,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule FA-F" subTitle="Schedule FA-(F)&nbsp;-&nbsp;The details of trusts
+				under the laws of a country outside India in which you are a trustee
+				has to be filled up."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -23,14 +26,6 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</div>
 		</c:forEach>
 	</c:if>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule FA-F</h2>
-		<h4>
-			<small>Schedule FA-(F)&nbsp;-&nbsp;The details of trusts
-				under the laws of a country outside India in which you are a trustee
-				has to be filled up.</small>
-		</h4>
-	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
