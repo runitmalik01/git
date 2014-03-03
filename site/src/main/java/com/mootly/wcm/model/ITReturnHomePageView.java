@@ -1,5 +1,7 @@
 package com.mootly.wcm.model;
 
+import com.mootly.wcm.validation.HippoBeanValidationGeneric;
+
 
 public class ITReturnHomePageView {
 	
@@ -212,6 +214,53 @@ public class ITReturnHomePageView {
 		this.theParentFolder = theParentFolder;
 	}
 
+	public HippoBeanValidationGeneric getFreezeIncomeTaxAction() {
+		return freezeIncomeTaxAction;
+	}
+
+	public void setFreezeIncomeTaxAction(
+			HippoBeanValidationGeneric freezeIncomeTaxAction) {
+		this.freezeIncomeTaxAction = freezeIncomeTaxAction;
+	}
+
+	public boolean isFrozen() {
+		return isFrozen;
+	}
+
+	public void setFrozen(boolean isFrozen) {
+		this.isFrozen = isFrozen;
+	}
+
+	public String getAckResponse() {
+		return ackResponse;
+	}
+
+	public void setAckResponse(String ackResponse) {
+		this.ackResponse = ackResponse;
+	}
+
+	public String getTokenNumber() {
+		return tokenNumber;
+	}
+
+	public void setTokenNumber(String tokenNumber) {
+		this.tokenNumber = tokenNumber;
+	}
+
+	public String geteFileDateTime() {
+		return eFileDateTime;
+	}
+
+	public void seteFileDateTime(String eFileDateTime) {
+		this.eFileDateTime = eFileDateTime;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+
 
 
 	String pan;
@@ -246,5 +295,13 @@ public class ITReturnHomePageView {
 	
 	private String paymentStatus;
 	private String paymentType;
+	
+	HippoBeanValidationGeneric freezeIncomeTaxAction;
+	boolean isFrozen;
+	String ackResponse;
+	String tokenNumber;
+	String eFileDateTime;
+	
+	
 	
 }

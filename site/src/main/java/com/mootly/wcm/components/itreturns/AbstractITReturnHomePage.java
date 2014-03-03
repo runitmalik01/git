@@ -12,10 +12,12 @@ package com.mootly.wcm.components.itreturns;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jcr.Session;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,11 +27,14 @@ import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoDocument;
+import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentIterator;
 import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
 import org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean;
@@ -45,6 +50,8 @@ import org.hippoecm.hst.util.SearchInputParsingUtils;
 import org.hippoecm.hst.utils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.DataTypeValidationType;
@@ -54,8 +61,10 @@ import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Product;
 import com.mootly.wcm.beans.ValueListDocument;
+import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -74,6 +83,12 @@ import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric;
+import com.mootly.wcm.validation.HippoBeanValidationResponse;
+import com.mootly.wcm.validation.HippoBeanValidator;
+import com.mootly.wcm.validation.RepositoryUpdateRequest;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric.ACTION;
+import com.mootly.wcm.validation.HippoBeanValidationGeneric.TYPE;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 @FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"})
 @RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"})
@@ -88,6 +103,8 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 	private static final String DEFAULT_ORDER_BY = "hippostdpubwf:lastModificationDate";
 
 	private static final Logger log = LoggerFactory.getLogger(AbstractITReturnHomePage.class);
+	
+	HippoBeanValidator eFileStatusValidator = null;
 
 	@Override
 	public void init(ServletContext servletContext,
@@ -95,6 +112,8 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 					throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.init(servletContext, componentConfig);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		eFileStatusValidator = (HippoBeanValidator) context.getBean("validateEfileStatus");
 	}
 	
 	@Override
@@ -168,15 +187,17 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			for (Object o:pages.getItems()) {
 				try {
 					MemberPersonalInformation m = (MemberPersonalInformation) o;
+					ITReturnHomePageView itReturnHomePageView = initHomePageView(request, m);
 					HippoFolder theParentofPersonalInfo=(HippoFolder) m.getParentBean();
+					
 					MemberPayment memberPaymentDocs = theParentofPersonalInfo.getBean("memberpayment", MemberPayment.class);
 					if(PAYMENT_QUERY!=null && getITRInitData(request).isOnVendorPortal()){
 						FreeTextSearchSreviceImpl freeTextSearchSreviceImpl = new FreeTextSearchSreviceImpl();
 						if(freeTextSearchSreviceImpl.getFreeTextResultOnMember(m, PAYMENT_QUERY, memberPaymentDocs)){
-							listOfITReturnHomePageView.add(createITReturnPageView(m, request));
+							listOfITReturnHomePageView.add(itReturnHomePageView);
 						}
 					}else{
-						listOfITReturnHomePageView.add(createITReturnPageView(m, request));
+						listOfITReturnHomePageView.add(itReturnHomePageView);
 					}
 				}catch (Exception ex) {
 					log.warn("Error",ex);
@@ -191,9 +212,10 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 				if(Repages!=null){
 					for (Object o:Repages.getItems()) {
 						MemberPersonalInformation m = (MemberPersonalInformation) o;
+						ITReturnHomePageView itReturnHomePageView = initHomePageView(request, m);
 						FreeTextSearchSreviceImpl freeTextSearchSreviceImpl = new FreeTextSearchSreviceImpl();
 						if(freeTextSearchSreviceImpl.getFreeTextResultOnMember(m, PAYMENT_QUERY, m)){
-							listOfITReturnHomePageView.add(createITReturnPageView(m, request));
+							listOfITReturnHomePageView.add(itReturnHomePageView);
 						}
 					}
 				}
@@ -476,5 +498,44 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		resultOFHstQuery.put("pages", pages);
 		resultOFHstQuery.put("resultCount", resultCount);
 		return resultOFHstQuery;
+	}
+	
+	protected ITReturnHomePageView initHomePageView(HstRequest request,MemberPersonalInformation m) {
+		ITReturnHomePageView itReturnHomePageView = createITReturnPageView(m, request);
+		HippoFolder theParentofPersonalInfo=(HippoFolder) m.getParentBean();
+		List<HippoDocumentBean> listHippoDocumentBean = theParentofPersonalInfo.getChildBeans(HippoDocumentBean.class); //getITRInitData(request).loadAllBeansUnderTheFolder(request, theParentofPersonalInfo.getParentBean().getCanonicalPath(), null, null);
+		Map<String,HippoBean> mapOfBeans = new HashMap<String, HippoBean>();
+		if ( eFileStatusValidator != null && listHippoDocumentBean != null && listHippoDocumentBean.size() > 0) {
+			for (HippoDocumentBean hippoDocumentBean:listHippoDocumentBean) {
+				mapOfBeans.put(hippoDocumentBean.getClass().getSimpleName().toLowerCase(),hippoDocumentBean);
+			}
+			Map<String,Object> additionalData = new HashMap<String,Object>();
+			additionalData.put("webSiteInfo", getITRInitData(request).getWebSiteInfo());
+			HippoBeanValidationResponse hippoBeanValidationResponse = getItrValidationChain().execute(getITRInitData(request).getFinancialYear(), getITRInitData(request).getPageAction(),  mapOfBeans, additionalData , getClass().getAnnotations());
+			boolean isFrozen = false;
+			if (hippoBeanValidationResponse != null) {
+				HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
+				if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
+					isFrozen = true;
+					itReturnHomePageView.setFreezeIncomeTaxAction(freezeIncomeTaxAction);
+					itReturnHomePageView.setFrozen(isFrozen);
+					HippoBeanValidationGeneric ackResponseBean = hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION);
+					if (ackResponseBean != null) itReturnHomePageView.setAckResponse(ackResponseBean.getMessage());
+					
+					HippoBeanValidationGeneric tokenNumberBean = hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION);
+					if (tokenNumberBean != null) itReturnHomePageView.setTokenNumber(tokenNumberBean.getMessage());
+					
+					HippoBeanValidationGeneric eFileDateTimeBean = hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION);
+					if (eFileDateTimeBean != null) itReturnHomePageView.seteFileDateTime(eFileDateTimeBean.getMessage());
+					
+					//request.setAttribute("freezeIncomeTaxAction", freezeIncomeTaxAction);
+					//request.setAttribute("isFrozen", isFrozen);
+					//request.setAttribute("ackResponse", hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION) );
+					//request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
+					//request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
+				}
+			}
+		}
+		return itReturnHomePageView;
 	}
 }

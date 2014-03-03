@@ -23,7 +23,7 @@
 </ol>
 
 <c:choose>
-	<c:when test="${not empty newsEditlink }">
+	<c:when test="${not empty pageAction && pageAction == 'EDIT' }">
 		<form id="news" action="${actionUrl}" name="news" method="post">
 			<fieldset>
 				<legend>Edit your News</legend>

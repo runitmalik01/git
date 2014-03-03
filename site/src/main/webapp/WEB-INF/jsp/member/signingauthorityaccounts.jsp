@@ -9,6 +9,11 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule FA-E" subTitle="Schedule FA-(E)&nbsp;-&nbsp;The details of investment
+				in the accounts in which you have signing authority and which has
+				not been included in any other part of Schedule FA & filled up
+				investment held during the year after converting it into Indian
+				currency. "></w4india:titleandnav>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -17,16 +22,6 @@
 			</div>
 		</c:forEach>
 	</c:if>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule FA-E</h2>
-		<h4>
-			<small>Schedule FA-(E)&nbsp;-&nbsp;The details of investment
-				in the accounts in which you have signing authority and which has
-				not been included in any other part of Schedule FA & filled up
-				investment held during the year after converting it into Indian
-				currency. </small>
-		</h4>
-	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

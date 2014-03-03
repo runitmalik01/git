@@ -32,15 +32,16 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 			</c:if>
 		</div>
 	</c:if>
-	<h4>Prepare Income Tax Return for Individuals and/or HUF</h4>
+	<%--<h4>Prepare Income Tax Return for Individuals and/or HUF</h4> --%>
 	<hst:actionURL var="actionURL"/>
+	<h3><fmt:message key="member.homepage.fillform"/></h3>
 	<form id="frmdata" method="post" action="${actionURL}">
      <div id="error" class="alert alert-danger" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
      <div id="strictmsg" class="alert hide">Please enter PAN number for Individual or HUF</div>
 	 <div id="ditPanInvalid" class="alert alert-danger <c:if test="${empty noPanMatchFound}">hide</c:if>"><strong><fmt:message key="err.match.pan.dit"/></strong></div>
 	 <div id="lastNameInvalid" class="alert alert-danger hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
 		<fieldset>
-			<legend><fmt:message key="member.homepage.fillform"/> </legend>
+			
 			<div class="row show-grid">
 		          <div class="col-md-2">
 		          	<div class="rowlabel"><label for="pan"><small>PAN</small></label></div>

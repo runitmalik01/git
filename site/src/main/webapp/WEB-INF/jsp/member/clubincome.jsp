@@ -23,20 +23,12 @@
 		TreeMap objTreeMapRelation = objValueListservice.getRelationship();
 		request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 	%>
-
-	<div class="page-header">
-		<h2 class="title page-title">
-			<fmt:message key="member.clubincome.itr2" />
-		</h2>
-		<h4>
-			<small>Schedule SPI&nbsp;-&nbsp;All income which arises to
+	<fmt:message key="member.clubincome.itr2" var="title" />
+	<w4india:titleandnav title="${title}" subTitle="Schedule SPI&nbsp;-&nbsp;All income which arises to
 				spouse,minor child directly or indirectly by way of salary,
 				commission etc. by virtue of any employment or otherwise from a
 				concern in which assessee has substantial interest shall be included
-				in assesses total income. </small>
-		</h4>
-	</div>
-	<h4></h4>
+				in assesses total income."/>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

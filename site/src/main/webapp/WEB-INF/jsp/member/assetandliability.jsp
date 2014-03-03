@@ -9,13 +9,9 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<fmt:message key="asset.liability.itr4" var="subTitle" />
+	<w4india:titleandnav title="Schedule AL" subTitle="${subTitle}"/>
 	<hst:link var="mainSiteMapRefId" />
-	<div class="page-header">
-		<h2 class="title page-title">Schedule AL</h2>
-		<h4>
-			<small><fmt:message key="asset.liability.itr4" /></small>
-		</h4>
-	</div>
 	<form id="frmAsset_Liability" action="${actionUrl}" method="post"
 		name="frmAsset_Liability">
 		<fieldset>

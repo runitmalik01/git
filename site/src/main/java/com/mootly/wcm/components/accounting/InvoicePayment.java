@@ -38,6 +38,7 @@ import com.mootly.wcm.beans.events.InvoicePaymentDetailBeanHandler;
 import com.mootly.wcm.channels.ChannelInfoWrapper;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponent;
+import com.mootly.wcm.components.ITReturnInitData;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.model.PaymentType;
@@ -356,14 +357,18 @@ public class InvoicePayment extends ITReturnComponent {
 			com.opus.epg.sfa.java.Address oHomeAddress =new com.opus.epg.sfa.java.Address();
 			com.opus.epg.sfa.java.Address oOfficeAddress =new com.opus.epg.sfa.java.Address();
 			com.opus.epg.sfa.java.AirLineTransaction oAirLineTrans= new com.opus.epg.sfa.java.AirLineTransaction();
-
-
+			
+			ITReturnInitData itrInitData = getITRInitData(request);
+			String reserve1 = itrInitData.getTheFolderContainingITRDocuments();
+			String reserve2 = itrInitData.getUserName() + "-" + itrInitData.getPAN();
+			String reserve3 = memberPersonalInformation.getSelectedITRForm().getDisplayName() + "-" + memberPersonalInformation.getReturnType() + "-" +  memberPersonalInformation.getReturnSection();
+			
 			oMerchant.setMerchantDetails(
-					getTransaction().getPaysealMerchantId()
+					 getTransaction().getPaysealMerchantId()
 					,getTransaction().getPaysealMerchantId()
 					,getTransaction().getPaysealMerchantId()
 					,request.getRemoteAddr()
-					, strTransactionId
+					,strTransactionId
 					,strTransactionId
 					//, "http://10.10.10.6/RailwayTicketing/PGResponse.asp"
 					,returnUrl
@@ -373,10 +378,10 @@ public class InvoicePayment extends ITReturnComponent {
 					,"req.Sale"
 					, invDoc.getAmountDue().toString()	
 					, IndianGregorianCalendar.getCurrentDateInIndiaAsDate().getTimeZone().getID()
-					, "JAVA"
-					, "true"
-					, "JAVA"
-					, "JAVA"
+					, reserve1
+					, reserve2
+					, reserve3
+					, reserve3
 					, "JAVA"
 					);
 

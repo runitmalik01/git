@@ -10,12 +10,8 @@
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
-	<div class="page-header">
-		<h2 class="title page-title">Schedule DCG</h2>
-		<h4>
-			<small><fmt:message key="deemed.capitalgain.itr4" /></small>
-		</h4>
-	</div>
+	<fmt:message key="deemed.capitalgain.itr4" var="subTitle"/>
+	<w4india:titleandnav title="Schedule DCG" subTitle="${subTitle}"></w4india:titleandnav>
 
 	<form id="frmDeemed_Capital" action="${actionUrl}" method="post"
 		name="frmDeemed_Capital">

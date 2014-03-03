@@ -9,6 +9,12 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule FA-B" subTitle="Schedule FA-(B)&nbsp;-&nbsp;The resident assessee is
+				the owner of record or holder of legal title of any financial
+				account,irrespective of whether he is the beneficiary or not or if
+				the owner of record or holder of title as an agent, nominee,
+				attorney, a corporation, a trust. Investment has to be filled up
+				after converting it into Indian currency."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -22,18 +28,6 @@
 		SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
 		request.setAttribute("objHashMapcountry", objHashMapcountry);
 	%>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule FA-B</h2>
-		<h4>
-			<small>Schedule FA-(B)&nbsp;-&nbsp;The resident assessee is
-				the owner of record or holder of legal title of any financial
-				account,irrespective of whether he is the beneficiary or not or if
-				the owner of record or holder of title as an agent, nominee,
-				attorney, a corporation, a trust. Investment has to be filled up
-				after converting it into Indian currency.</small>
-		</h4>
-	</div>
-
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

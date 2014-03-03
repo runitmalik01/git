@@ -28,9 +28,18 @@
     </c:if>
 </c:if>
 <c:if test="${isVendor == 'true'}">
-	<c:if test="${not empty nodeName}">
-		<a class="btn btn-default btn-primary" href='<hst:link path="/knowledgeportal/knowledgearticle/edit/${nodeName}.html"/>'><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small></a>
-		<a class="btn btn-default btn-danger" href='<hst:link path="/knowledgeportal/knowledgearticle/delete/${nodeName}.html"/>'><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a>
+	<c:if test="${not empty document}">
+		<hst:link hippobean="${document}" var="link"/>
+		<%--
+		<c:if test="${fn:contains(link,'/documents/')}">
+          	<c:set var="linkURL" value="/${fn:substringAfter(link,'/documents/')}"/>
+          	
+        </c:if>
+         --%>
+        <hst:link var="editLink" path="/knowledgearticles/edit/${document.canonicalUUID}"/>
+        <hst:link var="deleteLink" path="/knowledgearticles/del/${document.canonicalUUID}"/>
+		<a class="btn btn-default btn-primary" href='${editLink}'><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small></a>
+		<a class="btn btn-default btn-danger" href='${deleteLink}'><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a>
 		
 	</c:if>
 </c:if>
@@ -43,7 +52,7 @@
 				 <input type="text" name="title" value="${document.title}"/>
 			</c:when>
 			<c:otherwise>
-				<h4><c:out value="${document.title}"/></h4>	
+				<h1><c:out value="${document.title}"/></h1>	
 			</c:otherwise>
 		</c:choose>
 		

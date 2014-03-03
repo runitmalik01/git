@@ -8,15 +8,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum ITRForm {
 	@XmlEnumValue(value = "ITR1")
-	ITR1("ITR-1",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},1),
+	ITR1("ITR-1",new ITRServiceDelivery[] {ITRServiceDelivery.DIY},1),
 	@XmlEnumValue(value = "ITR2")
-	ITR2("ITR-2",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},2),
+	ITR2("ITR-2",new ITRServiceDelivery[] {ITRServiceDelivery.DIY},2),
 	@XmlEnumValue(value = "ITR3")
-	ITR3("ITR-3",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},3),
+	ITR3("ITR-3",new ITRServiceDelivery[] {ITRServiceDelivery.DIY},3),
 	@XmlEnumValue(value = "ITR4")
-	ITR4("ITR-4",new ITRServiceDelivery[] {ITRServiceDelivery.DIY,ITRServiceDelivery.Assisted},4),
+	ITR4("ITR-4",new ITRServiceDelivery[] {ITRServiceDelivery.DIY},4),
 	@XmlEnumValue(value = "ITR5")
-	ITR4S("ITR-4S",new ITRServiceDelivery[] {ITRServiceDelivery.DIY, ITRServiceDelivery.Assisted},5),
+	ITR4S("ITR-4S",new ITRServiceDelivery[] {ITRServiceDelivery.DIY},5),
 	@XmlEnumValue(value = "ITR6")
 	ITR5("ITR-5",new ITRServiceDelivery[] {ITRServiceDelivery.Assisted},6),
 	@XmlEnumValue(value = "ITR7")

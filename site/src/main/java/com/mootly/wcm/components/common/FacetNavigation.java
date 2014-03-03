@@ -17,6 +17,7 @@
 package com.mootly.wcm.components.common;
 
 import org.apache.cxf.common.util.StringUtils;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
 import org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -29,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.components.BaseComponent;
+import com.mootly.wcm.components.ITReturnInitData;
 
 public class FacetNavigation extends BaseComponent {
 
@@ -37,7 +39,8 @@ public class FacetNavigation extends BaseComponent {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-
+        ITReturnInitData itReturnInitData = getITRInitData(request);
+        HippoBean scope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
         String query = this.getPublicRequestParameter(request, "query");
         if (query != null) {
             query = SearchInputParsingUtils.parse(query, false);
@@ -48,23 +51,28 @@ public class FacetNavigation extends BaseComponent {
         if (order != null) {
             request.setAttribute("order", order);
         }
-
+       
         ResolvedSiteMapItem resolvedSiteMapItem = request.getRequestContext().getResolvedSiteMapItem();
         String resolvedContentPath = PathUtils.normalizePath(resolvedSiteMapItem.getRelativeContentPath());
         HippoFacetChildNavigationBean resolvedContentBean = null;
         
-        // when the resolved sitemap item is /search, resolved content path can be null...
-        if (!StringUtils.isEmpty(resolvedContentPath)) {
-            resolvedContentBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(resolvedContentPath, HippoFacetChildNavigationBean.class);
-        }
-        
         HippoFacetNavigationBean facNavBean = null;
+        
+        String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getParameter("scopeRelativePath");
+        if (scopeRelativePath != null) {
+        	String theRelativePath =  (scope.getCanonicalPath() + "/" + scopeRelativePath).substring(getSiteContentBaseBean(request).getCanonicalPath().length()-1);
+        	resolvedContentPath = scopeRelativePath + "/searchfacets";
+        	
+        	facNavBean = BeanUtils.getFacetNavigationBean(request, "resellers/" + itReturnInitData.getResellerId() + "/" + scopeRelativePath  + "/searchfacets", query, objectConverter);
+        }
+        // when the resolved sitemap item is /search, resolved content path can be null...
+        ///content/documents/mootlywcm/resellers/w4india/documents/knowledgearticles/searchfacets
 
-        if (resolvedContentBean != null) {
-            // the content bean of the resolved sitemap item already points to a facet child navigation;
-            // perform a text search within that facet.
-            facNavBean = BeanUtils.getFacetNavigationBean(request, resolvedContentPath, query, objectConverter);
-        } else {
+        if (!StringUtils.isEmpty(resolvedContentPath)) {
+            //resolvedContentBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean("documents/knowledgearticles/searchfacets", HippoFacetChildNavigationBean.class);
+        }
+
+        if (facNavBean == null) {
             // perform a free text search within the facet indicated by the component parameter 'facetnav.location'
             String facetedNavLocation = getParameter("facetnav.location", request);
             if (facetedNavLocation == null) {

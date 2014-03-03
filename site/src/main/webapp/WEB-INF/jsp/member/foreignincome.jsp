@@ -14,6 +14,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 %>
 <div class="page type-page">
 	<w4india:itrmenu />
+	<fmt:message key="foreign.income.itr2" var="scheduleFSI"/>
+	<w4india:titleandnav title="Schedule FSI" subTitle="Schedule FSI&nbsp;-&nbsp;${scheduleFSI}"/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -23,14 +25,6 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 		</c:forEach>
 	</c:if>
 
-	<div class="page-header">
-		<h2 class="title page-title">Schedule FSI</h2>
-		<h4>
-			<small>Schedule FSI&nbsp;-&nbsp;<fmt:message
-					key="foreign.income.itr2" />
-			</small>
-		</h4>
-	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

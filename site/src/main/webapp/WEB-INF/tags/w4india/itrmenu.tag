@@ -56,11 +56,13 @@ String theResolvedPathInfoFileName = theFileNameParts[theFileNameParts.length - 
 boolean didWeFindTheResolvedMapItemInMenu = false;
 if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/member-start-application")) {
 	request.setAttribute("nomenu", "true");
+	request.setAttribute("sideBarMainClass","col-md-12");
 	noMenu = true;
 	memberPersonalInformation = (MemberPersonalInformation) request.getAttribute("parentBean");
 	if (memberPersonalInformation != null) {
 		if (memberPersonalInformation.getNode() != null) {
 			request.setAttribute("nomenu", "false");
+			request.setAttribute("sideBarMainClass","col-md-10");
 			noMenu = false;
 		}
 	}
@@ -97,6 +99,7 @@ boolean isDIY = false;
 if (itrForm != null) {
 	hasDIY = itrForm.getHasDIY();
 }
+
 if (itrServiceDelivery != null && itrServiceDelivery == ITRServiceDelivery.DIY) {
 	isDIY = true;
 }
@@ -105,8 +108,10 @@ else {
 }
 request.setAttribute("hasDIY", hasDIY);
 request.setAttribute("isDIY", isDIY);
+//HARD CODING 
+hasDIY = true;
 if (itrForm != null) {
-	request.setAttribute("hasDIY",String.valueOf(itrForm.getHasDIY()));
+	request.setAttribute("hasDIY",String.valueOf(hasDIY));
 }
 //out.println(noMenu);
 //out.println(propertyToCheck);
@@ -143,24 +148,28 @@ if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) !=
 
 ChannelInfoWrapper channelInfoWrapper = (ChannelInfoWrapper) request.getAttribute("channelInfoWrapper");
 boolean isEriEnabled = false;
-boolean showImportTDSButton = false;
-
+boolean showImportTDSButton = true;
+boolean showImportTDSAlert = false;
+boolean is26ASImportEnabled = false;
 //if DIT is enabled and user has not chosen for 26AS import show the button
 if (!isFrozen && channelInfoWrapper != null) {
 	isEriEnabled = channelInfoWrapper.getIsEriEnabled();
-	if (isEriEnabled && memberPersonalInformation != null) {
+	is26ASImportEnabled = channelInfoWrapper.getIs26ASImportEnabled();
+	if (isEriEnabled && is26ASImportEnabled && memberPersonalInformation != null) {
 		DITResponseDocument ditResponseDocument = (DITResponseDocument) request.getAttribute(DITResponseDocument.class.getSimpleName().toLowerCase());
 		if ( ditResponseDocument != null ){
 			Integer totalGetTDSDetail = ditResponseDocument.getTotalCountOfOperation("getTDSDetails");
 			if (totalGetTDSDetail == null || totalGetTDSDetail == 0) {
-				showImportTDSButton = true;
+				showImportTDSAlert = true;
 			}
 		}
 		else {
-			showImportTDSButton = true;
+			showImportTDSAlert = true;
 		}
 	}
+	showImportTDSButton = is26ASImportEnabled;
 }
+request.setAttribute("showImportTDSAlert",showImportTDSAlert);
 request.setAttribute("showImportTDSButton",showImportTDSButton);
 
 boolean isDITVerified = false;
@@ -183,6 +192,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 		this.didWeFindTheResolvedMapItemInMenu = didWeFindTheResolvedMapItemInMenu;
 	}
 	public List<HstSiteMenuItem> getListOfSortedMenutItems(HstSiteMenuItem itrSiteMenuItem){
+		
 		if (itrSiteMenuItem != null && itrSiteMenuItem.getChildMenuItems() != null && propertyToCheck != null) {
 			List<HstSiteMenuItem> listOfChildMenuItems = itrSiteMenuItem.getChildMenuItems();
 			List<HstSiteMenuItem> onlyEnabledForThisITRForm = new ArrayList<HstSiteMenuItem>();
@@ -198,6 +208,8 @@ request.setAttribute("isDITVerified",isDITVerified);
 		}
 		return null;
 	} 
+	
+
 	public void getMenuItemsAttributes(HttpServletRequest request,HstSiteMenuItem anItem){
 		 Boolean shouldPutDivider = null;
 		 Boolean isAPackage = null;
@@ -238,7 +250,11 @@ request.setAttribute("isDITVerified",isDITVerified);
 		 	}
 		 }
 	}
-} %>
+} 
+
+Map<String,String> nextPrevLinks = new LinkedHashMap<String,String>();
+request.setAttribute("nextPrevLinks",nextPrevLinks);
+%>
 
 	<div class="navbar navbar-inverse">
 		<div class="navbar-header main-nav-header">
@@ -271,7 +287,18 @@ request.setAttribute("isDITVerified",isDITVerified);
 										<%
               					HstSiteMenuItem itrSiteMenuItem = (HstSiteMenuItem) request.getAttribute("itrSiteMenuItem");
               					EvaluateMenusList evaluateMenusList = new EvaluateMenusList(propertyToCheck,hasDIY,theResolvedPathInfoFileName,didWeFindTheResolvedMapItemInMenu);	                						
-              					request.setAttribute("listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));	                					
+              					
+              					for (HstSiteMenuItem anItem: evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem)) {
+              						String theURL = anItem.getLocalParameter("theURL");
+              						if (theURL != null) {
+              							String[] partsOfURL = theURL.split("[//]");
+              							String key = partsOfURL[partsOfURL.length-1];
+              							nextPrevLinks.put(key,anItem.getName());
+              							System.out.println(anItem.getName() + ":" +  key);
+              							//System.out.println(key);
+              						}
+              					}
+								request.setAttribute("listOfChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(itrSiteMenuItem));	                					
               				%>
 										<c:forEach items="${listOfChildMenuItems}" var="childMenuItem">
 											<c:set var="childMenuItemReq" scope="request"
@@ -297,6 +324,15 @@ request.setAttribute("isDITVerified",isDITVerified);
 															<ul class="dropdown-menu">
 																<%	                  						
               							     HstSiteMenuItem childMenuItem = (HstSiteMenuItem) request.getAttribute("childMenuItem");
+											 for (HstSiteMenuItem anItem2: evaluateMenusList.getListOfSortedMenutItems(childMenuItem)) {
+			              						String theURL = anItem2.getLocalParameter("theURL");
+			              						if (theURL != null) {
+			              							String[] partsOfURL = theURL.split("[//]");
+			              							String key = partsOfURL[partsOfURL.length-1];
+			              							nextPrevLinks.put(key,anItem2.getName());
+			              							System.out.println(anItem2.getName() + ":" +  key);
+			              						}
+			              					 }
               					             request.setAttribute("listOfSubChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(childMenuItem));	                					
               				                 %>
 																<c:forEach items="${listOfSubChildMenuItems}"
@@ -392,9 +428,11 @@ request.setAttribute("isDITVerified",isDITVerified);
 							data-toggle="dropdown">Actions<b class="caret"></b>
 						</a>
 							<ul class="dropdown-menu">
-								<li><a
-									href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Import 26AS</a>
-								</li>
+								<c:if test="${not empty showImportTDSButton && showImportTDSButton == 'true'}">
+									<li><a
+										href="${scriptName}/../servicerequest-itr-sync-tds-from-dit.html">Import 26AS</a>
+									</li>
+								</c:if>
 								<li><a
 									href="${scriptName}/../servicerequest-refund-status.html">Refund Status</a>
 								</li>
@@ -469,7 +507,7 @@ request.setAttribute("isDITVerified",isDITVerified);
 	</c:choose>
 </c:if>
 <c:if
-	test="${showImportTDSButton == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
+	test="${showImportTDSAlert == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
 	<div class="alert alert-success">
 		<button type="button" class="close" id='dismissImport'
 			data-dismiss="alert">&times;</button>
@@ -601,6 +639,7 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 	}
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
+<%--
 <c:if test="${showImportTDSButton == 'true' && isDITVerified == 'true'}">
 	<div id="modalForImport" class="modal hide fade" tabindex="-1"
 		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -630,6 +669,7 @@ class MenuComparator implements Comparator<HstSiteMenuItem> {
 	</hst:element>
 	<hst:headContribution element="${uiCustom}" category="jsInternal" />
 </c:if>
+ --%>
 <%-- no need for a shopping cart for now --%>
 <%--
 <hst:element var="uiCustom" name="script">

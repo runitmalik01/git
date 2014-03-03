@@ -10,6 +10,8 @@
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
+	<fmt:message key="member.tds.from.others" var="subTitle"/>
+	<w4india:titleandnav title="Tax Deducted at Other Source" subTitle="${subTitle}"/>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
 			<div class="alert alert-danger">
@@ -22,13 +24,6 @@
 			<fmt:message key="eneter.validPan.ORvalidName"></fmt:message>
 		</div>
 	</c:if>
-	<div class="page-header">
-		<h2 class="page-title">Tax Deducted at Other Source</h2>
-	</div>
-	<h4>
-		<small> <fmt:message key="member.tds.from.others" /></small>
-	</h4>
-
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

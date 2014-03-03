@@ -9,6 +9,10 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule FA-D" subTitle="Schedule FA-(D)&nbsp;-&nbsp;Investments in the nature
+				of investment and not in the nature of stock-in-trade or assets used
+				for the purpose of business are required to be reported and filled
+				up investment after converting it into Indian currency."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -22,15 +26,6 @@
 		SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
 		request.setAttribute("objHashMapcountry", objHashMapcountry);
 	%>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule FA-D</h2>
-		<h4>
-			<small>Schedule FA-(D)&nbsp;-&nbsp;Investments in the nature
-				of investment and not in the nature of stock-in-trade or assets used
-				for the purpose of business are required to be reported and filled
-				up investment after converting it into Indian currency.</small>
-		</h4>
-	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

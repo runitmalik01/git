@@ -30,6 +30,19 @@ public final class ChannelInfoWrapper {
 		return Boolean.valueOf(strEriEnabled);
 	}
 	
+	
+	public boolean getIs26ASImportEnabled() {
+		String strEriEnable26ASImport = webSiteInfo.getEriEnable26ASImport();
+		if (strEriEnable26ASImport == null) {
+			return false;
+		}
+		else {
+			return Boolean.valueOf(strEriEnable26ASImport);
+		}
+	}
+	
+	
+	
 	public String getStartDate(){
 		String startDate = webSiteInfo.getStartDate();
 		return startDate;

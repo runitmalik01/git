@@ -35,6 +35,12 @@
 	<c:forEach items="${news.items}" var="newsitem" varStatus="status">
 		<c:if test="${preview}">editable</c:if>
 		<hst:link var="link" hippobean="${newsitem}" />
+		<c:if test="${fn:contains(link,'/documents/')}">
+          	<c:set var="linkURL" value="/${fn:substringAfter(link,'/documents/')}"/>
+          	<hst:link var="link" path="${linkURL}"/>
+         </c:if>
+        <hst:link var="editLink" path="${fn:replace(linkURL,'.html','.edit')}"/>
+        <hst:link var="deleteLink" path="${fn:replace(linkURL,'.html','.del')}"/>
 		<ul class="image">
 			<c:if test="${newsitem.firstImage != null}">
 				<hst:link var="src"
@@ -56,10 +62,10 @@
 		<ul class="comments">
 			<c:if test="${isVendor eq 'true' }">
 				<a class="btn btn-default btn-sm btn-success"
-					href="${link}?newsEdit=newsEditlink"><small><i
+					href="${editLink}"><small><i
 						class="glyphicon glyphicon-pencil"></i>Edit</small></a> &nbsp;&nbsp;&nbsp;<a
 					class="btn btn-default btn-sm btn-danger"
-					href="${link}?newsDelete=newsDeletelink"><small><i
+					href="${deleteLink}"><small><i
 						class="glyphicon glyphicon-trash"></i>Delete</small></a>
 			</c:if>
 			&nbsp;&nbsp;&nbsp;

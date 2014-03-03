@@ -10,6 +10,10 @@ Schedule SI
 <hippo-gogreen:title title="${ScheduleSI}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <w4india:itrmenu />
+<w4india:titleandnav title="Income Tax at Special Rates" subTitle="Schedule SI&nbsp;-&nbsp;Income that is taxable at a
+			flat rate as perscribed by the Income Tax Department and not under
+			slab rate. For Eg. Income from Long and Short Etrm Capital gains,
+			Winning from Lotteries, crosswords puzzles and races."/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">
@@ -18,16 +22,6 @@ Schedule SI
 	</c:forEach>
 </c:if>
 <hst:link var="siLink" siteMapItemRefId="itr-schedule-si"></hst:link>
-
-<div class="page-header">
-	<h2 class="title page-title">Income Tax at Special Rates</h2>
-	<h4>
-		<small>Schedule SI&nbsp;-&nbsp;Income that is taxable at a
-			flat rate as perscribed by the Income Tax Department and not under
-			slab rate. For Eg. Income from Long and Short Etrm Capital gains,
-			Winning from Lotteries, crosswords puzzles and races.</small>
-	</h4>
-</div>
 <fieldset>
 	<legend class="header-color">
 		<small>Enter Details</small>

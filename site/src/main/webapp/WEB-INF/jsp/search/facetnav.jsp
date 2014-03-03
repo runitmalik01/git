@@ -16,14 +16,14 @@
 
 --%>
 
+<%@page import="org.hippoecm.hst.core.component.HstRequest"%>
 <%@include file="../includes/tags.jspf" %>
-
+<hst:defineObjects/>
 <fmt:setBundle basename="typenames" var="types"/>
 <ul class="box-general" id="filter">
   <li class="title"><fmt:message key="search.facetnav.title"/></li>
   <li class="text">
     <ul>
-
       <hst:link var="searchLink" siteMapItemRefId="search"/>
       <li class="filter-by"><fmt:message key="search.facetnav.freetext"/>
         <c:set var="formId"><hst:namespace/>facetnavsearch</c:set>
@@ -46,6 +46,7 @@
               </li>
             </c:when>
             <c:when test="${facet.childCountsCombined eq 0}">
+            	
             </c:when>
             <c:otherwise>
               <li class="filter-by"><c:out value="${facet.name}"/>:
@@ -69,6 +70,18 @@
                         <c:when test="${item.leaf and item.count eq 0}">
                         </c:when>
                         <c:otherwise>
+                        	<c:set var="facetLink" value="${hstRequest.requestContext.resolvedSiteMapItem.pathInfo}" />
+                        	<%--
+                        	<c:choose>
+	                          <c:when test="${not fn:contains(facetLink,'faceted')}">
+	                         	 <c:set var="facetLink" value="${facetLink}/faceted/${facet.name}/${item.name}" />
+	                          </c:when>
+	                          <c:otherwise>
+	                          		<c:set var="facetLink" value="${facetLink}/../../${facet.name}/${item.name}" />
+	                          </c:otherwise>
+                          </c:choose>
+                           --%>
+                          <hst:link var="link" path="${facetLink}" navigationStateful="true" />
                           <hst:link var="link" hippobean="${item}" navigationStateful="true"/>
                           <li>
                             <a href="${link}">

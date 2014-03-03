@@ -29,7 +29,7 @@
 		&gt;</li>
 </ol>
 <c:choose>
-	<c:when test="${not empty editlink }">
+	<c:when test="${not empty pageAction && (pageAction == 'EDIT' || pageAction == 'NEW')}">
 		<form id="events" action="${actionUrl}" name="events" method="post">
 			<fieldset>
 				<legend>Edit Your own Events</legend>
@@ -62,7 +62,7 @@
 							<label for="newstartdate"> Start Date </label>
 						</div>
 						<div class="rowlabel">
-							<input type="text" id="newstartdate" name="newstartdate"
+							<input type="text" id="eventstartdate" name="eventstartdate"
 								value="${document.newStartDate}" />
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 							<label for="newenddate"> End Date </label>
 						</div>
 						<div class="rowlabel">
-							<input type="text" id="newenddate" name="newenddate"
+							<input type="text" id="eventenddate" name="eventenddate"
 								value="${document.newEndDate}" />
 						</div>
 					</div>

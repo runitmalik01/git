@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoAssetBean;
@@ -35,7 +36,7 @@ import com.mootly.wcm.utils.Constants;
 //@Node(jcrType=Constants.NT_NEWSITEM)
 @Node(jcrType = "mootlywcm:newsitem")
 
-public class NewsItem extends Document{
+public class NewsItem extends Document  implements FormMapFiller{
 	static final public String NAMESPACE = "mootlywcm:newsitem";
     private List<ImageSet> images;
     private List<HippoAssetBean> attachments;
@@ -99,5 +100,11 @@ public class NewsItem extends Document{
     		throws ContentNodeBindingException {
     	// TODO Auto-generated method stub
     	return super.bind(content, node);
+    }
+    
+    @Override
+    public void fill(FormMap formMap) {
+    	// TODO Auto-generated method stub
+    	super.fill(formMap);
     }
 }

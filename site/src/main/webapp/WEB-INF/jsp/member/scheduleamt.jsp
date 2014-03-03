@@ -11,13 +11,7 @@
 		</div>
 	</c:forEach>
 </c:if>
-<div class="page-header">
-	<h2 class="title page-title">Schedule AMT</h2>
-	<h4>
-		<small>Schedule AMT(Alternative Minimum Tax)</small>
-	</h4>
-</div>
-
+<w4india:titleandnav title="Schedule AMT" subTitle="Schedule AMT(Alternative Minimum Tax)"/>
 <c:if test="${not empty exceedErrorGrossTurnOver}">
 	<div class="alert alert-danger">
 		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a

@@ -7,16 +7,10 @@
 </c:set>
 <hippo-gogreen:title title="${nat_bus}" />
 <hst:actionURL var="actionUrl" />
-
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Nature Of Business"/>
 	<hst:link var="mainSiteMapRefId" />
-<div class="page-header">
-	<h2 class="title page-title">Nature Of Business</h2>
-	<h4>
-		<small></small>
-	</h4>
-</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

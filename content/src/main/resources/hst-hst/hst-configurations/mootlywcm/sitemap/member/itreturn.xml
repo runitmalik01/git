@@ -5733,6 +5733,40 @@
             <sv:value>members</sv:value>
           </sv:property>
         </sv:node>
+        <sv:node sv:name="questionandanswers.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemapitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>fc4cf9f8-cfec-4a77-b213-5e4a198d09b2</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		    <sv:value>hst:pages/questionandanswers-detail</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+		    <sv:value>scopeRelativePath</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+		    <sv:value>support/helpdesk/tickets</sv:value>
+		  </sv:property>
+		  <sv:node sv:name="new-ajax">
+		    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		      <sv:value>hst:sitemapitem</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="jcr:uuid" sv:type="String">
+		      <sv:value>d8d0db0c-6ddb-46e2-8395-aa079c23faa5</sv:value>
+		    </sv:property>
+		    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		      <sv:value>hst:pages/questionandanswers-detail-ajax</sv:value>
+		    </sv:property>
+		    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+		      <sv:value>action</sv:value>
+		    </sv:property>
+		    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+		      <sv:value>NEW_CHILD</sv:value>
+		    </sv:property>
+		  </sv:node>
+		</sv:node>
       </sv:node>
     </sv:node>
   </sv:node>

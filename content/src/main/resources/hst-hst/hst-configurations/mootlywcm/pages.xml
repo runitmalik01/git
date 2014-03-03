@@ -11035,52 +11035,110 @@
 	  </sv:node>
 	</sv:node>
 	<!-- Add newNews -->
-<sv:node sv:name="news" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-  <sv:property sv:name="jcr:primaryType" sv:type="Name">
-    <sv:value>hst:component</sv:value>
-  </sv:property>
-  <sv:property sv:name="jcr:uuid" sv:type="String">
-    <sv:value>b253bd83-49bd-4753-9ff6-91ae2ef32375</sv:value>
-  </sv:property>
-  <sv:property sv:name="hst:referencecomponent" sv:type="String">
-    <sv:value>hst:pages/simplepage.re</sv:value>
-  </sv:property>
-  <sv:node sv:name="main">
-    <sv:property sv:name="jcr:primaryType" sv:type="Name">
-      <sv:value>hst:component</sv:value>
-    </sv:property>
-    <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>586a2b10-cbf8-4f70-8d38-438401dd3888</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
-      <sv:value>hasGrid</sv:value>
-      <sv:value>span4</sv:value>
-      <sv:value>span8</sv:value>
-      <sv:value>spanOrder</sv:value>
-    </sv:property>
-    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
-      <sv:value>true</sv:value>
-      <sv:value>right</sv:value>
-      <sv:value>content</sv:value>
-      <sv:value>span8,span4</sv:value>
-    </sv:property>
-    <sv:property sv:name="hst:template" sv:type="String">
-      <sv:value>standard.main.re</sv:value>
-    </sv:property>
-    <sv:node sv:name="content">
-      <sv:property sv:name="jcr:primaryType" sv:type="Name">
-        <sv:value>hst:component</sv:value>
-      </sv:property>
-      <sv:property sv:name="jcr:uuid" sv:type="String">
-        <sv:value>8c93afe4-b7a7-41bf-8414-01f668302fc6</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:componentclassname" sv:type="String">
-        <sv:value>com.mootly.wcm.components.news.NewNews</sv:value>
-      </sv:property>
-      <sv:property sv:name="hst:template" sv:type="String">
-        <sv:value>newnews</sv:value>
-      </sv:property>
-    </sv:node>
-  </sv:node>
-</sv:node><!-- newNews -->
+	<sv:node sv:name="news" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>b253bd83-49bd-4753-9ff6-91ae2ef32375</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>586a2b10-cbf8-4f70-8d38-438401dd3888</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>hasGrid</sv:value>
+	      <sv:value>span4</sv:value>
+	      <sv:value>span8</sv:value>
+	      <sv:value>spanOrder</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>true</sv:value>
+	      <sv:value>right</sv:value>
+	      <sv:value>content</sv:value>
+	      <sv:value>span8,span4</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>8c93afe4-b7a7-41bf-8414-01f668302fc6</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:componentclassname" sv:type="String">
+	        <sv:value>com.mootly.wcm.components.news.NewNews</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:template" sv:type="String">
+	        <sv:value>newnews</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node><!-- newNews -->
+	<sv:node sv:name="questionandanswers-detail-ajax" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>d23eaa0b-9bc1-4cf3-949c-3f1083706570</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:components/questionandanswers</sv:value>
+	  </sv:property>
+	</sv:node>
+	<!-- new -->
+	<sv:node sv:name="questionandanswers-detail" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>ba61b0a4-16d5-4c4b-a9b6-dbad1e2149e4</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	    <sv:value>hst:pages/simplepage.re</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="main">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:component</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>fbccf987-dd1d-4db7-abc3-502656521430</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>hasGrid</sv:value>
+	      <sv:value>span4</sv:value>
+	      <sv:value>span8</sv:value>
+	      <sv:value>spanOrder</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>true</sv:value>
+	      <sv:value>right</sv:value>
+	      <sv:value>content</sv:value>
+	      <sv:value>span8,span4</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:template" sv:type="String">
+	      <sv:value>standard.main.re</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="content">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:component</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>6e14e314-a9a4-41f9-b18f-8468a53068bd</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:referencecomponent" sv:type="String">
+	        <sv:value>hst:components/questionandanswers</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	</sv:node>
+	<!-- /new -->
 </sv:node>

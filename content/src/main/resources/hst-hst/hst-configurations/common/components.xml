@@ -2315,8 +2315,8 @@
   </sv:property>
 </sv:node>
 <!-- End -->
-	<!-- new component -->
-	<sv:node sv:name="efile-incometax-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+<!-- new component -->
+ <sv:node sv:name="efile-incometax-confirmation" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hst:component</sv:value>
 	  </sv:property>
@@ -2328,6 +2328,20 @@
 	  </sv:property>
 	  <sv:property sv:name="hst:template" sv:type="String">
 	    <sv:value>efile-incometax-confirmation</sv:value>
+	  </sv:property>
+  </sv:node>
+	<sv:node sv:name="questionandanswers" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>53547b60-fa0a-444d-8c6a-c12d99f5aad2</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.support.helpdesk.QuestionAndAnswers</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>questionandanswers-detail-content</sv:value>
 	  </sv:property>
 	</sv:node>
 </sv:node>

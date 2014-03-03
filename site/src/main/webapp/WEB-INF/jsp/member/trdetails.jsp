@@ -9,6 +9,12 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<fmt:message
+					key="tr.details.itr2" var="subTitle"/>
+	<w4india:titleandnav title="Relief under Section 90/90A/91" subTitle="Schedule TR&nbsp;-&nbsp;${subTitle}&nbsp;i.e details of tax paid outside
+				India on the income declared in Schedule FSI, Tax Payer
+				Identification Number (TIN) of the assessee in the country where tax
+				has been paid is to be filled up."/>
 	<hst:link var="mainSiteMapRefId" />
 	<%
 		ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
@@ -22,19 +28,6 @@
 			</div>
 		</c:forEach>
 	</c:if>
-
-	<div class="page-header">
-		<h2 class="title page-title">Relief under Section 90/90A/91</h2>
-		<h4>
-			<small>Schedule TR&nbsp;-&nbsp;<fmt:message
-					key="tr.details.itr2" />&nbsp;i.e details of tax paid outside
-				India on the income declared in Schedule FSI, Tax Payer
-				Identification Number (TIN) of the assessee in the country where tax
-				has been paid is to be filled up.
-			</small>
-		</h4>
-	</div>
-
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

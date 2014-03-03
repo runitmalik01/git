@@ -14,6 +14,12 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 %>
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule FA-A" subTitle="This schedule is to be filled up by assessee who is <strong>resident</strong>
+				not be filled up by <strong>'not ordinarily resident'</strong>
+				or <strong>'non-resident'</strong>. Mention the details of foreign
+				bank accounts, financial interest in any entityin Indian currency
+				and account located outside India in which the assessee has signing
+				authority."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -22,19 +28,6 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 			</div>
 		</c:forEach>
 	</c:if>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule FA-A</h2>
-		<h4>
-			<small>This schedule is to be filled up by assessee who is <strong>resident</strong>
-				not be filled up by <strong>'not ordinarily resident'</strong>
-				or <strong>'non-resident'</strong>. Mention the details of foreign
-				bank accounts, financial interest in any entityin Indian currency
-				and account located outside India in which the assessee has signing
-				authority.
-			</small>
-		</h4>
-	</div>
-	<h4></h4>
 	<c:if test="${not empty checkForNRI}">
 	    <div class="alert alert-danger alert-dismissable">
 	        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

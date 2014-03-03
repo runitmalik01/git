@@ -10,6 +10,7 @@
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule DPM"></w4india:titleandnav>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -23,12 +24,6 @@
 			<fmt:message key="${stopPuttingSameRate}" />
 		</div>
 	</c:if>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule DPM</h2>
-		<h4>
-			<small></small>
-		</h4>
-	</div>
 
 	<c:choose>
 		<c:when

@@ -8,24 +8,10 @@
 	<fmt:message key="member.scheduledep.title" />
 </c:set>
 <w4india:itrmenu></w4india:itrmenu>
+<w4india:titleandnav title="Schedule DEP" subTitle="Schedule Depreciation"></w4india:titleandnav>
 <hippo-gogreen:title title="${scheduledep}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
-	<h3 id="respond1">
-		<c:choose>
-			<c:when
-				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
-				<c:out value="${screenConfigDocument.screenHeading}" />
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-	</h3>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule DEP</h2>
-		<h4>
-			<small></small>
-		</h4>
-	</div>
 	<fieldset>
 		<legend class="header-color">
 			<small><fmt:message key="member.scheduledep.summary" /></small>

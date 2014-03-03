@@ -236,10 +236,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				return itrServiceDelivery;
 			}catch (IllegalArgumentException e) {
 				log.warn("There was an error parsing the value",e);
-				return null;
+				return ITRServiceDelivery.DIY;
 			}
 		}
-		return null;
+		return ITRServiceDelivery.DIY;
 	}
 
 	public String getTaxStatus() {

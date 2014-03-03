@@ -11,24 +11,12 @@
 <hippo-gogreen:title title="${tcstitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
-	<h3 id="respond1">
-		<c:choose>
-			<c:when
-				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
-				<c:out value="${screenConfigDocument.screenHeading}" />
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-	</h3>
-	<h2 class="page-title">Tax Collected at Source</h2>
-	<h4>
-		<small>Schedule TCS&nbsp;-&nbsp;It is income tax collected by
+	<w4india:titleandnav title="Tax Collected at Source" subTitle="Schedule TCS&nbsp;-&nbsp;It is income tax collected by
 			seller in India from payer on sale of certain items in section
 			206C.The seller has to collect tax at specified rates from the payer
 			who has purchased these items as Alcoholic liquor for human
 			consumption,Tendu leaves,Timber obtained under a forest lease,Scrap
-			Minerals being coal or lignite or iron ore Scrap Batteries.</small>
-	</h4>
+			Minerals being coal or lignite or iron ore Scrap Batteries."></w4india:titleandnav>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

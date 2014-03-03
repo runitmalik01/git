@@ -9,6 +9,10 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<w4india:titleandnav title="Schedule BP" subTitle="The details of the salary,
+				bonus, commission, remuneration or interest received by you from the
+				firms in which you are partner (filled in Schedule-IF are to be
+				filled here)."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty InCorrectPan}">
 		<div class="alert alert-danger">
@@ -24,15 +28,6 @@
 			<fmt:message key="${ITR1_FIRM_PAN}" />
 		</div>
 	</c:if>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule BP</h2>
-		<h4>
-			<small>Schedule BP&nbsp;-&nbsp;The details of the salary,
-				bonus, commission, remuneration or interest received by you from the
-				firms in which you are partner (filled in Schedule-IF are to be
-				filled here).</small>
-		</h4>
-	</div>
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

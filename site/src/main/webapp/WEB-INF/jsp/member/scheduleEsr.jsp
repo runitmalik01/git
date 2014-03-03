@@ -9,31 +9,14 @@
 </c:set>
 <hippo-gogreen:title title="${scheduleesr}" />
 <w4india:itrmenu></w4india:itrmenu>
-
-<hst:actionURL var="actionUrl"></hst:actionURL>
-<div class="page">
-	<h3 id="respond1">
-		<c:choose>
-			<c:when
-				test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
-				<c:out value="${screenConfigDocument.screenHeading}" />
-			</c:when>
-			<c:otherwise></c:otherwise>
-		</c:choose>
-	</h3>
-	<div class="page-header">
-		<h2 class="title page-title">Schedule ESR</h2>
-		<h4>
-			<small>Schedule ESR (Expenditure on Scientific
+<w4india:titleandnav title="Schedule ESR" subTitle="Schedule ESR (Expenditure on Scientific
 				Research)&nbsp;-&nbsp; Details of deduction on amounts of expenses
 				of the nature by section 35 which are, if, debited to profit and loss account.
 				Please note that no deduction for depreciation is available in
 				respect of capital asset for which deduction under section 35(1)(iv)
-				has been claimed.</small>
-		</h4>
-	</div>
-
-
+				has been claimed."/>
+<hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="page">
 	<form id="scheduleESR" action="${actionUrl}" method="post"
 		name="scheduleESR">
 		<fieldset>

@@ -112,6 +112,7 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 	String clientSideValidationJSON;
 	///Name of the HTML File and the depth its in
 	String scriptName;
+	String fileName;
 	Map<String,HippoBean> mapOfAllBeans = new HashMap<String, HippoBean>();
 	MemberPersonalInformation memberPersonalInformation;
 	DITResponseDocument ditResponseDocument;
@@ -276,6 +277,9 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 
 		if (scriptName != null) {
 			request.setAttribute("scriptName",scriptName);
+		}
+		if (fileName != null) {
+			request.setAttribute("fileName",fileName);
 		}
 
 		if (redirectURLToSamePage != null) request.setAttribute("redirectURLToSamePage", redirectURLToSamePage);
@@ -450,6 +454,12 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 
 		member = itReturnComponentHelper.getMember(request);
 		scriptName = itReturnComponentHelper.getScriptName(request, (String) request.getAttribute("selectedItrTab"), getPublicRequestParameter(request, "selectedItrTab"));
+		//now determine the fileName which is the last part of the URL and will end with .html if it doesn't we don't bother and let fileName be empty
+		if (scriptName != null && scriptName.endsWith(".html")) {
+			String[] partsOfScriptName = scriptName.split("[/]");
+			fileName = partsOfScriptName[partsOfScriptName.length - 1];
+		}
+		
 		String strFinancialYear = itReturnComponentHelper.getStrFinancialYear(request);  //request.getRequestContext().getResolvedSiteMapItem().getParameter("financialYear");
 		financialYear =  itReturnComponentHelper.getFinancialYear(strFinancialYear, request); //FinancialYear.getByDisplayName(strFinancialYear);
 		assessmentYear = itReturnComponentHelper.getAssessmentYear(financialYear);

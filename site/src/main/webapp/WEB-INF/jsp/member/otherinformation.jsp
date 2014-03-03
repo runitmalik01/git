@@ -12,17 +12,8 @@
 
 <hst:actionURL var="actionUrl" />
 <hst:link var="mainSiteMapRefId" />
-
-<div class="page-header">
-	<h2 class="title page-title">
-		<fmt:message key="itr4.other.information" />
-	</h2>
-	<h4>
-		<small>Schedule OI&nbsp;-&nbsp;(optional in a case not liable for audit under section 44AB)</small>
-	</h4>
-</div>
-<h4></h4>
-
+<fmt:message key="itr4.other.information" var="title" />
+<w4india:titleandnav title="${title}" subTitle="Schedule OI&nbsp;-&nbsp;(optional in a case not liable for audit under section 44AB)"/>
 <div class="page type-page">
 	<form id="frmOtherInformation" action="${actionUrl}" method="post"
 		name="frmOtherInformation">

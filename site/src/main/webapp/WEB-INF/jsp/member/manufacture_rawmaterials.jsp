@@ -12,16 +12,12 @@
 TreeMap<String,String> objHashMapQuantUnitCode = objValueListService.getQuantitativeCode();
 request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 %>
-
+<w4india:itrmenu />
+<hst:link var="mainSiteMapRefId" />
+<fmt:message key="quantitative.details.itr4" var="subTitle"/>
+<w4india:titleandnav title="Quantitative Details-Raw Material" subTitle="${subTitle}"/>
 <div class="page type-page">
-	<w4india:itrmenu />
-	<hst:link var="mainSiteMapRefId" />
-	<div class="page-header">
-		<h2 class="title page-title">Quantitative Details-Raw Material</h2>
-		<h4>
-			<small><fmt:message key="quantitative.details.itr4" /></small>
-		</h4>
-	</div>
+	
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">

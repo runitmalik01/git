@@ -27,7 +27,14 @@
 		<hst:link var="homeLink" siteMapItemRefId="home"></hst:link>
 	</c:otherwise>
 </c:choose>
-<c:set var="searchresultstitle"><fmt:message key="search.results.title"/></c:set>
+<c:choose>
+	<c:when test="${not empty screenHead}">
+		<fmt:message key="${screenHead}" var="searchresultstitle"/>
+	</c:when>
+	<c:otherwise>
+		<fmt:message key="search.results.title" var="searchresultstitle"/>
+	</c:otherwise>
+</c:choose>
 <hippo-gogreen:title title="${searchresultstitle}"/>
  <!-- the following is only for vendor to add new event -->
  <c:if test="${isVendor == 'true'}">
@@ -80,12 +87,12 @@
 				</c:when>
 				<%-- When a search is done, but no results where found --%>
 		      <c:when test="${not isFound}">
-		        <h2><fmt:message key="search.results.title"/></h2>
+		        <h1><c:out value="${searchresultstitle}"/></h1>
 		        <p id="results"><fmt:message key="search.results.noresults"/> '${searched}'</p>
 		      </c:when>
 		      <%-- When a search is done and there is a result --%>
 		      <c:otherwise>
-		        <h2><fmt:message key="search.results.title"/></h2>
+		        <h1><c:out value="${searchresultstitle}"/></h1>
 		        <p id="results">
 		          <c:choose>
 		            <c:when test="${empty query}">
@@ -121,7 +128,10 @@
 		        <div id="search-results">
 		          <c:forEach items="${searchResult.items}" var="hit">
 		            <hst:link var="link" hippobean="${hit}"/>
-		            
+		            <c:if test="${fn:contains(link,'/documents/')}">
+		            	<c:set var="linkURL" value="/${fn:substringAfter(link,'/documents/')}"/>
+		            	<hst:link var="link" path="${linkURL}"/>
+		            </c:if>
 		            <c:set var="theNode" value="${hit.node}"/>
 		            <% 
 		            	Node theNode = (Node) pageContext.getAttribute("theNode");
@@ -129,7 +139,7 @@
 		            	pageContext.setAttribute("isIdentifiable",isIdentifiable);
 		            %>
 		            <c:set var="hitClassName" value="${hit['class'].simpleName}"/>
-		            <ul class="search-result">
+		            <ul class="search-result" style="list-style: none">
 		              <c:choose>
 		                <c:when test="${hitClassName eq 'HippoAsset'}">
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.name}"/></a></li>
@@ -141,7 +151,17 @@
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.name}"/></a></li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'KnowledgeArticle'}">		                  
-		                  <li class="title"><a href="knowledgeportal/knowledgearticle/view<c:out value="${fn:replace(hit.path,theScopeBean.path,'')}"/>.html"><c:out value="${hit.title}"/></a></li>
+		                  <li>
+		                  	<c:choose>
+		                  	<c:when test="${not empty showContent && showContent =='true' }">
+		                  		<h2><a href="${link}"><c:out value="${hit.title}"/></a></h2>
+		                  		<c:out value="${hit.description.content}" escapeXml="false"/>
+		                  	</c:when>
+		                  	<c:otherwise>
+		                  		<a href="${link}"><c:out value="${hit.title}"/></a>
+		                  	</c:otherwise>
+		                  	</c:choose>
+		                  </li>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'HelpDeskTicketDocument'}">
 		                  <li class="title"><a href="helpdesk/${hit.name}.html"><c:out value="${hit.title}"/> (<c:out value="${document.identifier}"/>)</a></li>
@@ -150,7 +170,7 @@
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
 		                </c:when>		                
 		                <c:otherwise>
-		                  <hst:link var="link" hippobean="${hit}"/>
+		                  <hst:link var="link2" hippobean="${hit}"/>
 		                  <li class="title"><a href="${fn:escapeXml(link)}"><c:out value="${hit.title}"/></a></li>
 		                  <%--
 		                  <c:if test="${not empty hit.summary && hit.summary != ''}">
@@ -209,6 +229,7 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+<%--
 <hst:element var="cssCustom" name="style">
     <hst:attribute name="type">text/css</hst:attribute>
     .page #results { margin: 15px 0; }
@@ -219,3 +240,4 @@
 	.center {text-align: center; margin-left: auto; margin-right: auto; margin-bottom: auto; margin-top: auto;}
 </hst:element>
 <hst:headContribution element="${cssCustom}" category="css"/>
+ --%>
