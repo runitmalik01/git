@@ -274,7 +274,8 @@ public class ITReturnComponent extends BaseComponent {
 		String redirectURL = null;
 		boolean isDITVerified = false;
 		String currentRefId = request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getRefId();
-		if ( (currentRefId != null && !currentRefId.equals("servicerequest-itr") ) && !getITRInitData(request).isOnVendorPortal()) {
+		String memberService = request.getRequestContext().getResolvedSiteMapItem().getParameter("memberService");
+		if ( memberService != null && "itreturn".equals(memberService) && (currentRefId != null && !currentRefId.equals("servicerequest-itr") ) && !getITRInitData(request).isOnVendorPortal()) {
 			redirectURL = getRedirectURLForSiteMapItem(request,response,null,"servicerequest-itr",getITRInitData(request).getFinancialYear(),getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 			WebsiteInfo webSiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
 			if ( webSiteInfo != null && webSiteInfo.getAllowUnverifiedUsers() != null && "false".equals(webSiteInfo.getAllowUnverifiedUsers())) {

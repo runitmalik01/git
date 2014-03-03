@@ -13,12 +13,14 @@
     <sv:value>mainSiteMapItemRefId</sv:value>
     <sv:value>shouldRetrievePANInformation</sv:value>
     <sv:value>shouldValidatePANWithDIT</sv:value>
+    <sv:value>memberService</sv:value>
   </sv:property>
   <sv:property sv:name="hst:parametervalues" sv:type="String" sv:multiple="true">
     <sv:value>packageselector</sv:value>
     <sv:value>itreturnhome</sv:value>
     <sv:value>false</sv:value>
     <sv:value>false</sv:value>
+    <sv:value>itreturn</sv:value>
   </sv:property>
   <sv:property sv:name="hst:refId" sv:type="String">
     <sv:value>itreturnhome</sv:value>
