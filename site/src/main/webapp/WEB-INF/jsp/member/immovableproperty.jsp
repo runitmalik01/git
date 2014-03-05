@@ -103,13 +103,13 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							<td><c:out value="${immProp.country_Name}" /></td>
 							<td><c:out value="${immProp.address_Property}" /></td>
 							<td><c:out value="${immProp.total_Investment}" /></td>
-							<td><a class="btn btn-default btn-danger"
+							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertyedit"><small><i
-										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
-									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-default btn-primary"
+										class="glyphicon glyphicon-pencil"></i>Edit</small>
+									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${immProp.canonicalUUID}"/>/immovablepropertydelete"
 								data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+										class="glyphicon glyphicon-trash"></i>Delete</small>
 							</a></td>
 						</tr>
 

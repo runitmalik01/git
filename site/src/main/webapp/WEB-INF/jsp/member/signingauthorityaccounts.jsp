@@ -123,11 +123,12 @@
 
 							<td><w4india:inr value="${foreignbank.peak_Balance}" /></td>
 							<td><a class="btn btn-default btn-primary"
-								href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/signingauthorityaccountsedit"><small>Edit</small>
+								href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/signingauthorityaccountsedit"><small><i
+										class="glyphicon glyphicon-pencil"></i>Edit</small>
 									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${foreignbank.canonicalUUID}"/>/signingauthorityaccountsdelete"
 								data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+										class="glyphicon glyphicon-trash"></i>Delete</small>
 							</a></td>
 						</tr>
 						</tr>
