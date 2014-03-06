@@ -51,7 +51,8 @@
     <hst:headContributions categoryIncludes="jsHead"/>    
 </head>
 <body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
-
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
 	<div id="wrap"> 
 	<hst:include ref="header"/>
 	<c:if test="${not empty isError && error.key == 'true' && loggedin == 'true'}">
