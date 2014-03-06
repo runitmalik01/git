@@ -12,7 +12,6 @@
 			style="min-width: 300px; height: 400px; margin: 0 auto"></div>
 	</div>
 </div>
-<!-- <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div> -->
 <script type="text/javascript">
 var yearList = []; var noOfITReturn = [];
 <c:forEach items="${fyList}" var="fy">
@@ -21,66 +20,68 @@ yearList.push('<c:out value="${fy}"/>');
 <c:forEach items="${fyBasedNoOfReturns}" var="nr"> 
 noOfITReturn.push(<c:out value="${nr}"/>);
 </c:forEach>
-$(function () {
-    $('#container1').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Filed IT-Return on <w4india:resellername/>'
-        },
-        xAxis: {
-            categories: yearList,
-            title: {
-                text: 'Financial Year'
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Total Number of IT-Returns'
-            },
-            stackLabels: {
-                enabled: true,
-                style: {
-                    fontWeight: 'bold',
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                }
-            }
-        },
-        legend: {
-            align: 'right',
-            x: -70,
-            verticalAlign: 'top',
-            y: 20,
-            floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadow: false
-        },
-        tooltip: {
-            formatter: function() {
-                return '<b>'+ this.x +'</b><br/>'+
-                    this.series.name +': '+ this.y +'<br/>'+
-                    'Total: '+ this.point.stackTotal;
-            }
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                }
-            }
-        },
-        series: [{
-        	name: 'IT-Returns',
-            data: noOfITReturn//'<c:out value="${fyBasedNoOfReturns}"/>'
-        }]
-    });
-});
+$( document ).ready(
+		function () {
+		    $('#container1').highcharts({
+		        chart: {
+		            type: 'column'
+		        },
+		        title: {
+		            text: 'Filed IT-Return on <w4india:resellername/>'
+		        },
+		        xAxis: {
+		            categories: yearList,
+		            title: {
+		                text: 'Financial Year'
+		            }
+		        },
+		        yAxis: {
+		            min: 0,
+		            title: {
+		                text: 'Total Number of IT-Returns'
+		            },
+		            stackLabels: {
+		                enabled: true,
+		                style: {
+		                    fontWeight: 'bold',
+		                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+		                }
+		            }
+		        },
+		        legend: {
+		            align: 'right',
+		            x: -70,
+		            verticalAlign: 'top',
+		            y: 20,
+		            floating: true,
+		            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+		            borderColor: '#CCC',
+		            borderWidth: 1,
+		            shadow: false
+		        },
+		        tooltip: {
+		            formatter: function() {
+		                return '<b>'+ this.x +'</b><br/>'+
+		                    this.series.name +': '+ this.y +'<br/>'+
+		                    'Total: '+ this.point.stackTotal;
+		            }
+		        },
+		        plotOptions: {
+		            column: {
+		                stacking: 'normal',
+		                dataLabels: {
+		                    enabled: true,
+		                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+		                }
+		            }
+		        },
+		        series: [{
+		        	name: 'IT-Returns',
+		            data: noOfITReturn//'<c:out value="${fyBasedNoOfReturns}"/>'
+		        }]
+		    });
+		}
+	);
 var itrFormsArray = [];
 <c:forEach items="${itrFormsList}" var="itrForm">
  var itrForm = [];
@@ -93,7 +94,8 @@ var itrFormsArray = [];
    </c:forEach> 
    itrFormsArray.push(itrForm);
 </c:forEach>
-	$(function() {
+$( document ).ready(
+	function() {
 		$('#container').highcharts(
 						{
 							chart : {
@@ -125,7 +127,8 @@ var itrFormsArray = [];
 								data :   itrFormsArray
 							} ]
 						});
-	});
+	}
+);
 </script>
 <script type="text/javascript" src="<hst:link path="js/highchart/themes/gray.js"/>"></script>
 <script src="//code.highcharts.com/highcharts.js"></script>
