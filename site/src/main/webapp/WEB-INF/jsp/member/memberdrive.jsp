@@ -197,7 +197,7 @@ pageContext.setAttribute("hostname", builder.toString());
                              <c:forEach var="file" items="${memberFiles}">
                                <tr>
                                   <td><span class="add-on"><i class="glyphicon glyphicon-file"></i></span></td>
-                        	     <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
+                        	      <hst:link var="assetLink" hippobean="${file.memberFileResourceWithFileName}"/>
                                   <td><c:out value="${file.name}"/></td> 
                                   <td>${file.description}</td>
                                   <td><c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>                                      

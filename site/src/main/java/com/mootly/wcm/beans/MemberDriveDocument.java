@@ -88,7 +88,7 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	}
 	
 	public HippoResource getMemberFileResourceWithFileName() {
-		return getBean(getMemberFileName());
+		return getBean(MEMBER_DOCS);
 	}
 	public InputStream getMemberFile(){
 		return memberFileResource;

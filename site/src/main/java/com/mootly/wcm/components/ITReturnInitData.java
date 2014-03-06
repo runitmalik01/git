@@ -81,6 +81,8 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 	//ITReturn Specific
 	String baseRelPathToReturnDocuments;
 	String baseAbsolutePathToReturnDocuments;
+	String baseRelPathToMemberDriveDocuments;
+	String baseAbsolutePathToMemberDriveDocuments;
 	String assessmentYear;
 	FinancialYear financialYear;
 	ITReturnType itReturnType = ITReturnType.ORIGINAL;
@@ -423,6 +425,16 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 		// TODO Auto-generated method stub
 		return baseRelPathToReturnDocuments;
 	}
+	
+	public String getAbsoluteBasePathToMemberDriveDocuments()			 {
+		// TODO Auto-generated method stub
+		return baseAbsolutePathToMemberDriveDocuments;
+	}
+
+	public String getRelBasePathToMemberDriveDocuments()			{
+		// TODO Auto-generated method stub
+		return baseRelPathToMemberDriveDocuments;
+	}
 
 	@Override
 	public DateFormat getDateFormatter() {
@@ -539,7 +551,10 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 		baseRelPathToReturnDocuments = itReturnComponentHelper.getBaseRelPathToReturnDocuments(getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);  //"members/" + getMemberFolderPath(request) + "/pans/" + getPAN() + "/" + getFinancialYear() + "/" + theFolderContainingITRDocuments; // getITReturnType();
 		hippoBeanBaseITReturnDocuments = siteContentBaseBean.getBean(baseRelPathToReturnDocuments);
 		baseAbsolutePathToReturnDocuments =  canonicalBasePathForWrite + "/" + baseRelPathToReturnDocuments; //itReturnComponentHelper.getBaseAbsolutePathToReturnDocuments(request, baseRelPathToReturnDocuments); //request.getRequestContext().getResolvedMount().getMount().getCanonicalContentPath() + "/" + baseRelPathToReturnDocuments;
-
+		
+		baseRelPathToMemberDriveDocuments = itReturnComponentHelper.getBaseRelPathToCategory("drive",getMemberFolderPath(request), getPAN(), getFinancialYear(), theFolderContainingITRDocuments);
+		baseAbsolutePathToMemberDriveDocuments =  canonicalBasePathForWrite + "/" + baseRelPathToMemberDriveDocuments;
+		
 		//if (hippoBeanBaseITReturnDocuments != null) {
 		//	baseAbsolutePathToReturnDocuments = hippoBeanBaseITReturnDocuments.getPath();
 		//}
