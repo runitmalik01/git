@@ -9,10 +9,11 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
-	<w4india:titleandnav title="Schedule FA-D" subTitle="Schedule FA-(D)&nbsp;-&nbsp;Investments in the nature
+	<w4india:titleandnav title="Schedule FA-D"
+		subTitle="Schedule FA-(D)&nbsp;-&nbsp;Investments in the nature
 				of investment and not in the nature of stock-in-trade or assets used
 				for the purpose of business are required to be reported and filled
-				up investment after converting it into Indian currency."/>
+				up investment after converting it into Indian currency." />
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -107,14 +108,13 @@
 							<td><c:out value="${natureInvest.nature_Asset}" /></td>
 							<td><c:out value="${natureInvest.total_Investment}" /></td>
 
-							<td><a class="btn btn-default btn-danger"
+							<td><a class="btn btn-default btn-primary"
 								href="${scriptName}/<c:out value="${natureInvest.canonicalUUID}"/>/natureinvestmentedit"><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Edit</small>
-									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-default btn-primary"
+										class="glyphicon glyphicon-pencil"></i>Edit</small> &nbsp;&nbsp; </a> <a
+								class="btn btn-default btn-danger"
 								href="${scriptName}/<c:out value="${natureInvest.canonicalUUID}"/>/natureinvestmentdelete"
 								data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
-							</a></td>
+										class="glyphicon glyphicon-trash"></i>Delete</small> </a></td>
 						</tr>
 						</tr>
 					</c:forEach>

@@ -159,7 +159,7 @@
 												</div>
 												<div class="rowlabel">
 													<input id="Name_employee" type="text" name="Name_employee"
-														maxlength="25" class="uprcase"
+														maxlength="125" class="uprcase"
 														value="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.name_employee}"/></c:when><c:otherwise><c:out value="${memberpersonalinformation.name}"/></c:otherwise></c:choose>"
 														readonly="readonly" />
 												</div>

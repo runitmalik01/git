@@ -210,13 +210,13 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 							<td><c:out value="${foreignIncome.country_Name}" /></td>
 							<td><c:out value="${foreignIncome.taxpayer_ID}" /></td>
 							<td><w4india:inr value="${foreignIncome.income_Total}" /></td>
-							<td><a class="btn btn-default btn-danger"								
+							<td><a class="btn btn-default btn-primary"								
 								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomeedit"><small><i
-										class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
-									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-default btn-primary"							
+										class="glyphicon glyphicon-pencil"></i>Edit</small>
+									&nbsp;&nbsp; </a>&nbsp;<a class="btn btn-default btn-danger"							
 								href="${scriptName}/<c:out value="${foreignIncome.canonicalUUID}"/>/foreignincomedelete"
 								data-confirm=""><small><i
-										class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small>
+										class="glyphicon glyphicon-trash"></i>Delete</small>
 							</a></td>
 						</tr>
 					</c:forEach>
