@@ -30,6 +30,7 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.channels.WebsiteInfo;
 import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.model.ITReturnType;
+import com.mootly.wcm.services.ds.DigitalSignatureService;
 import com.mootly.wcm.utils.ContentStructure;
 import com.mootly.wcm.utils.VelocityUtils;
 
@@ -37,11 +38,11 @@ import com.mootly.wcm.utils.VelocityUtils;
 public class MemberDriveHandler {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDriveHandler.class);
-	private static final String MEMBER_DRIVE_FOLDER_NAME="members";
-	private static final long MEMBER_FILE_SIZE= 1024 * 1024;
-	private static final String FILE_DATA="fileData";
-	private static final String CONTENT_TYPE="ContentType";
-	private static final String FILE_NAME="fileName";
+	public static final String MEMBER_DRIVE_FOLDER_NAME="members";
+	public static final long MEMBER_FILE_SIZE= 1024 * 1024;
+	public static final String FILE_DATA="fileData";
+	public static final String CONTENT_TYPE="ContentType";
+	public static final String FILE_NAME="fileName";
 
 	HstRequest request;
 	FormMap formMap;
@@ -54,10 +55,10 @@ public class MemberDriveHandler {
 	String resellerID;
 	MemberPersonalInformation memberPersonalInformation;
 	//HippoBean siteResellerBeanScope;
-
-	public MemberDriveHandler(HstRequest request) {
+	
+	public MemberDriveHandler(final HstRequest request) {
 		// TODO Auto-generated constructor stub
-		this(request,new FormMap(request, MemberDriveHandler.class.getAnnotation(FormFields.class).fieldNames()));			
+		this(request,new FormMap(request, MemberDriveHandler.class.getAnnotation(FormFields.class).fieldNames()));	
 	}
 	
 	public MemberDriveHandler(HstRequest request,FormMap formMap) {
@@ -81,37 +82,6 @@ public class MemberDriveHandler {
 	}
 	/**
 	 * This method is being used to save the any file uploaded by user in {@link MemberDriveDocument} with name of file Name.<br/>
-	 * You can give your location of to save the file in {@link HippoFolder} of Name "Drive" then followed by SubDriveName
-	 * 
-	 * @param basePathForMemberFile Provide the base path where you want to save the File.<br/>&nbsp;&nbsp; <b>If this Parameter will be null then Method will create the path to save File in Members of Reseller</b>
-	 * @param SubDriveName Provide name of SubDrive in Drive {@link HippoFolder}<br/>&nbsp;&nbsp;<b>This could be null then it will save the file in ITRetunDocument Structure e.g. "pan/financialYear/returnType"</b>
-	 * @param wpm {@link WorkflowPersistenceManager}
-	 * @param sendEmailToVendor 
-	 * 
-	 * */
-	@SuppressWarnings("unchecked")
-	public boolean SaveFileInMemberDrive(String basePathForMemberFile,String SubDriveName,WorkflowPersistenceManager wpm,boolean sendEmailToVendor){
-		boolean successInSaveFile = false;
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-		if (isMultipart) {
-			try {
-				ServletFileUpload fileUpload = new ServletFileUpload(new DiskFileItemFactory());
-				String str_max_size = request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize");
-				if(str_max_size != null){
-					long maxsize = Long.parseLong(request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize"));
-					fileUpload.setSizeMax(MEMBER_FILE_SIZE * maxsize);
-				}
-				List<FileItem> items = fileUpload.parseRequest(request);
-				successInSaveFile = SaveFileInMemberDrive(basePathForMemberFile, SubDriveName, items, wpm, sendEmailToVendor);				
-			} catch (FileUploadException e) {
-				// TODO Auto-generated catch block
-				log.error("Error while Parsing the request of MultiPart Type",e);
-			}
-		}
-		return successInSaveFile;
-	}
-	/**
-	 * This method is being used to save the any file uploaded by user in {@link MemberDriveDocument} with name of file Name.<br/>
 	 * Important -- Use this method id you already Parsed the request.
 	 * 
 	 * @param basePathForMemberFile Provide the base path where you want to save the File.<br/>&nbsp;&nbsp; <b>If this Parameter will be null then Method will create the path to save File in Members of Reseller</b>
@@ -120,7 +90,7 @@ public class MemberDriveHandler {
 	 * @param sendEmailToVendor 
 	 * 
 	 * */
-	public boolean SaveFileInMemberDrive(String basePathForMemberFile,String SubDriveName,List<FileItem> items,WorkflowPersistenceManager wpm,boolean sendEmailToVendor){
+	public boolean SaveFileInMemberDrive(String basePathForMemberFile,String SubDriveName,WorkflowPersistenceManager wpm,boolean sendEmailToVendor,byte[] data,String fileName,String contentType){
 		boolean successInSaveFile = false;
 		String primaryPath = null;
 		String memberDriveDocPath = null;
@@ -129,38 +99,30 @@ public class MemberDriveHandler {
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		if (isMultipart) {
 			try {
-				Iterator<FileItem> iter = items.iterator();				
-				while (iter.hasNext()) {
-					FileItem item = iter.next();
-					if (item.isFormField()) {
-						if(formMap.getField(item.getFieldName())!=null) {
-							formMap.getField(item.getFieldName()).addValue(item.getString());
-						}
-					} else {
-						InputStream inputStream = item.getInputStream();							
-						byte[] data = IOUtils.toByteArray(inputStream);
-						files.put(FILE_DATA, data);
-						fileDetails.put(FILE_NAME, item.getName());
-						fileDetails.put(CONTENT_TYPE, item.getContentType());
-					}
+				if (data == null) return false;
+				if (SubDriveName != null && "digitalsignature".equals(SubDriveName)) {
+					//primaryPath = getMemberDriveDocPathHandler(basePathForMemberFile, SubDriveName); 
+					primaryPath = basePathForMemberFile;
 				}
-				primaryPath = getMemberDriveDocPathHandler(basePathForMemberFile, SubDriveName); 
+				else {
+					primaryPath = getMemberDriveDocPathHandler(basePathForMemberFile, SubDriveName); 
+				}
 				if(log.isInfoEnabled()){
 					log.info("Lets analyse primaryPath for Save of uploaded File:::"+primaryPath);
 				}
-				memberDriveDocPath = wpm.createAndReturn(primaryPath, MemberDriveDocument.NAMESPACE, fileDetails.get(FILE_NAME), true);
+				if (SubDriveName != null && SubDriveName.equals("digitalsignature")) {
+					fileName = "digitalsignature";
+				}
+				memberDriveDocPath = wpm.createAndReturn(primaryPath, MemberDriveDocument.NAMESPACE, fileName , true);
 				MemberDriveDocument memberDriveDoc = (MemberDriveDocument) wpm.getObject(memberDriveDocPath);
 				if(memberDriveDoc != null){
-					memberDriveDoc.setMemberFile(new ByteArrayInputStream(files.get(FILE_DATA)));
-					memberDriveDoc.setContentType(fileDetails.get(CONTENT_TYPE));
-					memberDriveDoc.setMemberFileName(fileDetails.get(FILE_NAME));
+					memberDriveDoc.setMemberFile(new ByteArrayInputStream(data));
+					memberDriveDoc.setContentType(contentType);
+					memberDriveDoc.setMemberFileName(fileName);
 					memberDriveDoc.fill(formMap);
 					wpm.update(memberDriveDoc);
 					successInSaveFile = true;
 				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				log.error("Error while get input of File Item",e);
 			} catch (ObjectBeanManagerException e) {
 				// TODO Auto-generated catch block
 				log.error("Error to Save MemberDrive Doc at " +memberDriveDocPath + " path!!"+e);

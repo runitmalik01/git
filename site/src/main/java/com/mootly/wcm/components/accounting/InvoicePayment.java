@@ -207,9 +207,6 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 
 
-		InvoiceDocument invoiceDocument  = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
-		theTransactionId = invoiceDocument.getInvoiceNumber() + "-" + getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_PAYMENT);
-		//we want to 
 
 		paymentType = getPaymentType(request,isGatewayForm);
 		if (paymentType != null) {
@@ -223,6 +220,11 @@ public class InvoicePayment extends ITReturnComponent {
 		else {
 			return;
 		}
+		
+
+		InvoiceDocument invoiceDocument  = (InvoiceDocument) request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase());
+		theTransactionId = invoiceDocument.getInvoiceNumber() + "-" + getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_PAYMENT);
+		//we want to 
 		request.setAttribute("type", "payment");
 		request.setAttribute("paymentType", paymentType);
 		//this is where we create the handler first
@@ -270,6 +272,10 @@ public class InvoicePayment extends ITReturnComponent {
 		}
 		// TODO Auto-generated method stub
 		if (paymentRedirectURL != null ) {
+			InvoicePaymentDetailBeanHandler invoicePaymentDetailBeanHandler = (InvoicePaymentDetailBeanHandler) request.getAttribute("invoicePaymentDetailBeanHandler");
+			if ( invoicePaymentDetailBeanHandler != null ){
+				//the transaction id must BE a valid ID otherwise we should not transfer
+			}
 			return paymentRedirectURL;
 		}
 		else {
@@ -280,8 +286,12 @@ public class InvoicePayment extends ITReturnComponent {
 	@Override
 	protected boolean additionalValidation(HstRequest request, HstResponse response, FormMap formMap) {
 		// TODO Auto-generated method stub
-		String returnUrl = getRedirectURLForSiteMapItem(request, response, null, "memberinvoice", getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
-		String notifyUrl = getRedirectURLForSiteMapItem(request, response, null,"memberinvoice", getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
+		String refIdToRedirect = "memberinvoice";
+		if (getITRInitData(request).isOnVendorPortal() && getITRInitData(request).isVendor(request)) {
+			refIdToRedirect="vendor-memberinvoice";
+		}
+		String returnUrl = getRedirectURLForSiteMapItem(request, response, null, refIdToRedirect, getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
+		String notifyUrl = getRedirectURLForSiteMapItem(request, response, null,refIdToRedirect, getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) request.getAttribute(MemberPersonalInformation.class.getSimpleName().toLowerCase());
 		PaymentType paymentType = getPaymentType(request,((InvoicePaymentDetailBeanHandler) getChildBeanLifeCycleHandler(request)).isGatewayForm());
 		if (paymentType == null) return false;
@@ -334,7 +344,8 @@ public class InvoicePayment extends ITReturnComponent {
 			//String cardNumber = getITRInitData(request).getFormMap().getField("cardNumber").getValue();
 			//String cardType = getITRInitData(request).getFormMap().getField("cardType").getValue();
 			String strTransactionId = ((InvoicePaymentDetailBeanHandler) getChildBeanLifeCycleHandler(request)).getStrPaymentTransactionId();
-
+			//we need to ensure that it never comes HERE unless a record is created otherwise we are running into serious issues
+			//this must exist in the InvoiceDocument as a valid PaymentID
 
 			com.opus.epg.sfa.java.BillToAddress oBTA 	= new com.opus.epg.sfa.java.BillToAddress();
 			com.opus.epg.sfa.java.ShipToAddress oSTA 	= new com.opus.epg.sfa.java.ShipToAddress();

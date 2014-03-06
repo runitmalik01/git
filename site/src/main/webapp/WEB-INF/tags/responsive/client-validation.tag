@@ -251,12 +251,12 @@
 				});
 				<c:if test="${not empty formSubmitButtonId}">
 					$('#<c:out value="${formSubmitButtonId}"/>').click(function() {
-					if(flagforPanAndTan && strictAddpan){
+						//if(flagforPanAndTan && strictAddpan){
 		 				 $('#<c:out value="${formId}"/>').submit();
-		 				 }
+		 				//}
 					});
                  </c:if>
-				$('.tan').attr("style","text-transform: uppercase;");
+				//$('.tan').attr("style","text-transform: uppercase;");
 			});
 
   $('#Stateslry').change(function(){

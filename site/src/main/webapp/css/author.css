@@ -176,3 +176,11 @@ h3{font-size:12px;}
 .homepackage .textwidget div {height:300px;}
 .homepackage button {font-size:11px}
 .homepackage {font-size:12px}
+
+
+.addToAny {
+	height: 20px;
+	padding: 10px 0 0 2px;
+	border-top: 1px solid #cccccc;
+	background: url(../images/bg-border.png) repeat-x;
+}

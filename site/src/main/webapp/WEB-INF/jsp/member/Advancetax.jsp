@@ -5,15 +5,19 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mootly.wcm.beans.*"%>
 
+<c:set var="advancetaxtitle">
+	<fmt:message key="adv.tax.title" />
+</c:set>
+<hippo-gogreen:title title="${advancetaxtitle}" />
 <w4india:itrmenu></w4india:itrmenu>
 <div class="row show-grid">
 		<w4india:itrsidebar></w4india:itrsidebar>
-		<div class="col-md-10">
-			<div id="questionandanswerformdiv" style="display:none"></div>
-			<c:set var="advancetaxtitle">
-				<fmt:message key="adv.tax.title" />
-			</c:set>
-			<hippo-gogreen:title title="${advancetaxtitle}" />
+		<div class="${sideBarMainClass}">
+			<hst:link var="mainSiteMapRefId" />
+			<w4india:titleandnav title="Advance Tax" subTitle="Schedule IT&nbsp;- &nbsp;Advance tax is payment of tax
+						liability by a person before the end of financial year and it is
+						payable only when an assessee’s total tax liability is exceeding
+						&#8377;10,000."></w4india:titleandnav>
 			<c:if test="${not empty formMap}">
 				<c:forEach items="${formMap.message}" var="item">
 					<div class="alert alert-danger">
@@ -22,11 +26,6 @@
 				</c:forEach>
 			</c:if>
 			<hst:actionURL var="actionUrl" />
-			<hst:link var="mainSiteMapRefId" />
-				 <w4india:titleandnav title="Advance Tax" subTitle="Schedule IT&nbsp;- &nbsp;Advance tax is payment of tax
-						liability by a person before the end of financial year and it is
-						payable only when an assessee’s total tax liability is exceeding
-						&#8377;10,000."></w4india:titleandnav>
 			<div>
 				<c:if test="${not empty errors}">
 					<c:forEach items="${errors}" var="error">

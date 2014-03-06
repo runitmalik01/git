@@ -5516,12 +5516,12 @@
               <sv:value>members</sv:value>
             </sv:property>
           </sv:node>
-		  <sv:node sv:name="questionandanswers.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		<sv:node sv:name="questionandanswers.html">
 			  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 			    <sv:value>hst:sitemapitem</sv:value>
 			  </sv:property>
 			  <sv:property sv:name="jcr:uuid" sv:type="String">
-			    <sv:value>fc4cf9f8-cfec-4a77-b213-5e4a198d09b2</sv:value>
+			    <sv:value>7812d4ed-6a8d-4d70-8a61-d7fab185f594</sv:value>
 			  </sv:property>
 			  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
 			    <sv:value>hst:pages/questionandanswers-detail</sv:value>
@@ -5537,7 +5537,7 @@
 			      <sv:value>hst:sitemapitem</sv:value>
 			    </sv:property>
 			    <sv:property sv:name="jcr:uuid" sv:type="String">
-			      <sv:value>d8d0db0c-6ddb-46e2-8395-aa079c23faa5</sv:value>
+			      <sv:value>45626c7c-9417-45fc-8154-343f7c83c47d</sv:value>
 			    </sv:property>
 			    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
 			      <sv:value>hst:pages/questionandanswers-detail-ajax</sv:value>
@@ -5549,7 +5549,24 @@
 			      <sv:value>NEW_CHILD</sv:value>
 			    </sv:property>
 			  </sv:node>
-		  </sv:node>          
+			  <sv:node sv:name="edit-child">
+			    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+			      <sv:value>hst:sitemapitem</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="jcr:uuid" sv:type="String">
+			      <sv:value>660b5015-e3ba-4ca9-a092-76a570d747f0</sv:value>
+			    </sv:property>
+			    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+			      <sv:value>hst:pages/questionandanswers-detail-ajax</sv:value>
+			    </sv:property>
+			    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+			      <sv:value>action</sv:value>
+			    </sv:property>
+			    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+			      <sv:value>EDIT_CHILD</sv:value>
+			    </sv:property>
+			  </sv:node>
+			</sv:node>          
         </sv:node>
       </sv:node>
     </sv:node>

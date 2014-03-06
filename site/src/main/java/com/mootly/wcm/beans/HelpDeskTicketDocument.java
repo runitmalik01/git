@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.mootly.wcm.annotations.BeanClone;
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.NodeBinder;
+import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.beans.compound.HelpDeskTicketNote;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.services.FormMapHelper;
@@ -185,7 +186,23 @@ public class HelpDeskTicketDocument extends FlexibleDocument implements ContentN
 	@Override
 	public void update(HippoBean child) {
 		// TODO Auto-generated method stub
-		
+		//check for available children
+		if (child.getCanonicalUUID() == null) {
+			HelpDeskTicketNote source =(HelpDeskTicketNote) child;
+			addNote(source);
+		}
+		boolean found = false;
+		List<HelpDeskTicketNote> listOfChildren = getNotes();
+		for (HippoBean o:listOfChildren) {
+			log.info( o.getCanonicalUUID() );
+			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
+				HelpDeskTicketNote destination =(HelpDeskTicketNote) o;
+				HelpDeskTicketNote source  = (HelpDeskTicketNote) child;
+				destination.cloneBean(source);
+				found = true;
+				break;
+			}
+		}		
 	}
 
 	@Override

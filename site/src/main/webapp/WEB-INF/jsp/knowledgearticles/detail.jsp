@@ -30,66 +30,56 @@
 <c:if test="${isVendor == 'true'}">
 	<c:if test="${not empty document}">
 		<hst:link hippobean="${document}" var="link"/>
-		<%--
-		<c:if test="${fn:contains(link,'/documents/')}">
-          	<c:set var="linkURL" value="/${fn:substringAfter(link,'/documents/')}"/>
-          	
-        </c:if>
-         --%>
         <hst:link var="editLink" path="/knowledgearticles/edit/${document.canonicalUUID}"/>
         <hst:link var="deleteLink" path="/knowledgearticles/del/${document.canonicalUUID}"/>
 		<a class="btn btn-default btn-primary" href='${editLink}'><small><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small></a>
 		<a class="btn btn-default btn-danger" href='${deleteLink}'><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a>
-		
 	</c:if>
 </c:if>
-<div class="page">
-	<form name="frmKB" id="frmKB" action="<hst:actionURL/>" method="post">
-	
-		<c:choose>
-			<c:when test="${not empty pageAction && (pageAction == 'EDIT' || pageAction == 'NEW')}">
-				 <h3>Title</h3>
-				 <input type="text" name="title" value="${document.title}"/>
-			</c:when>
-			<c:otherwise>
-				<h1><c:out value="${document.title}"/></h1>	
-			</c:otherwise>
-		</c:choose>
-		
-		<c:choose>
-			<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' )} ">
-				 <h3>Summary</h3>
-				 <input type="text" name="summary" value="${document.summary}"/>
-			</c:when>
-			<c:otherwise>
-				<h4><c:out value="${document.summary}"/></h4>	
-			</c:otherwise>
-		</c:choose>
-		
-		<c:choose>
-			<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' ) }">
-				<h3>Description</h3>
-				<textarea name="description" id="description" rows="20">
-					<c:out value="${document.description.content}" escapeXml="false"/>
-				</textarea>
-				<w4india:ckeditor_inline textAreaId="description"/>
-				<%-- <w4india:richtexteditor/>   --%>
-			</c:when>
-			<c:otherwise>
-				<p>
-					<c:out value="${document.description.content}" escapeXml="false"/>
-				</p>
-			</c:otherwise>
-		</c:choose>	
-		
-		<c:choose>
-			<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' )}">
-				<a href="javascript:$('#frmKB').submit();" id="hrefSave" class="btn btn-default btn-success">Save</a>
-			</c:when>
-		</c:choose>	
-	</form>
-</div>
+<form name="frmKB" id="frmKB" action="<hst:actionURL/>" method="post">
 
+	<c:choose>
+		<c:when test="${not empty pageAction && (pageAction == 'EDIT' || pageAction == 'NEW')}">
+			 <h3>Title</h3>
+			 <input type="text" name="title" value="${document.title}"/>
+		</c:when>
+		<c:otherwise>
+			<h1><c:out value="${document.title}"/></h1>
+		</c:otherwise>
+	</c:choose>
+	
+	<c:choose>
+		<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' )} ">
+			 <h3>Summary</h3>
+			 <input type="text" name="summary" value="${document.summary}"/>
+		</c:when>
+		<c:otherwise>
+			<h4><c:out value="${document.summary}"/></h4>	
+		</c:otherwise>
+	</c:choose>
+	
+	<c:choose>
+		<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' ) }">
+			<h3>Description</h3>
+			<textarea name="description" id="description" rows="20">
+				<c:out value="${document.description.content}" escapeXml="false"/>
+			</textarea>
+			<w4india:ckeditor_inline textAreaId="description"/>
+			<%-- <w4india:richtexteditor/>   --%>
+		</c:when>
+		<c:otherwise>
+			<p>
+				<c:out value="${document.description.content}" escapeXml="false"/>
+			</p>
+		</c:otherwise>
+	</c:choose>	
+	
+	<c:choose>
+		<c:when test="${not empty pageAction && ( pageAction == 'EDIT' || pageAction == 'NEW' )}">
+			<a href="javascript:$('#frmKB').submit();" id="hrefSave" class="btn btn-default btn-success">Save</a>
+		</c:when>
+	</c:choose>	
+</form>
 
 <hst:headContribution keyHint="formCss">
     <link rel="stylesheet" href="<hst:link path="/css/easyforms.css"/>" type="text/css"/>

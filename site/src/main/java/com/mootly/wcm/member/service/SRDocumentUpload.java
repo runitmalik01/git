@@ -90,11 +90,11 @@ public class SRDocumentUpload extends ITReturnComponent {
 				log.info("Have the name of subdrive to be Create::" + subDriveName);
 			}
 			MemberDriveHandler driveHandler = new MemberDriveHandler(request);
-			boolean isFileSave = driveHandler.SaveFileInMemberDrive(null, subDriveName, items, wpm, false);
-			if(isFileSave){
-				boolean isUpdated = requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, srRequestNumber);
-				response.setRenderParameter("srDocumentUpdated", "true");
-			}
+			//boolean isFileSave = driveHandler.SaveFileInMemberDrive(null, subDriveName, items, wpm, false);
+			//if(isFileSave){
+			//	boolean isUpdated = requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, srRequestNumber);
+			//	response.setRenderParameter("srDocumentUpdated", "true");
+			//}
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			log.error("Error while getting Repository session",e);

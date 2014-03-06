@@ -55,6 +55,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		DigitalSignatureWrapper dsAssessee = null;
 		DigitalSignatureWrapper dsERIUser = null;
 		String jcrPathToAssesseDigitalSignature = null;
+		
 		try {
 			jcrPathToAssesseDigitalSignature = findJCRPathToAssesseDigitalSignature(canonicalPathToMemberIncomeTaxFolder);			
 		} catch (LoginException e) {
@@ -122,7 +123,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		String finalXml = xml;
 		if (dsAssessee != null) {
 			try {
-				finalXml = getDigitalSignatureService().signITRByAssesse(xml, dsAssessee);
+				finalXml = getDigitalSignatureService().signITRByAssesse(pan,xml, dsAssessee);
 			} catch (MissingPrivateKeyException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -231,7 +232,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 	
 	@Override
 	public String findJCRPathToAssesseDigitalSignature(
-			String jcrPathToMemberPersonalInformation) throws LoginException, RepositoryException {
+			String canonicalPathToMemberIncomeTaxFolder) throws LoginException, RepositoryException {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -241,16 +242,20 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 				session = getSystemRepository().login();
 			}
 			//get the personalinformation node
-			Node memberPersonalInformationNode = session.getNode(jcrPathToMemberPersonalInformation);
-			if (memberPersonalInformationNode == null) {
+			//remember the digital signature is always stored in the member income tax folder and then named as digitalsignature
+			Node digitalSignatureNode = session.getNode(canonicalPathToMemberIncomeTaxFolder + "/digitalsignature");
+			if (digitalSignatureNode == null) {
 				return null;
 			}
+			/*
 			if (!memberPersonalInformationNode.hasProperty(getCanonicalHandlePathPropertyMemberPersonalInfo())) {
 				return null;
 			}
 			Property propPathToDSHandle = memberPersonalInformationNode.getProperty(getCanonicalHandlePathPropertyMemberPersonalInfo());
 			String retVal =  propPathToDSHandle.getString();
 			return retVal;
+			*/
+			return digitalSignatureNode.getPath();
 		}
 		finally {
 			if (session != null) {

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -55,6 +56,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.ds.DigitalSignatureService;
@@ -74,12 +76,33 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 	String keyStoreType;
 	String keyStoreProvider;
 	
+	boolean savingSignedXML;
+	String locationToSaveSignedXML;
+	
 	@Override
 	public DigitalSignatureWrapper getDigitalSignature(File file, boolean validate)
 			throws MissingPrivateKeyException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public boolean isSavingSignedXML() {
+		return savingSignedXML;
+	}
+
+	public void setSavingSignedXML(boolean savingSignedXML) {
+		this.savingSignedXML = savingSignedXML;
+	}
+
+	public String getLocationToSaveSignedXML() {
+		return locationToSaveSignedXML;
+	}
+
+	public void setLocationToSaveSignedXML(String locationToSaveSignedXML) {
+		this.locationToSaveSignedXML = locationToSaveSignedXML;
+	}
+
+
 
 	@Override
 	public DigitalSignatureWrapper getDigitalSignatureFromRepository(String jcrPathToMemberDriveNode, boolean validate) throws MissingPrivateKeyException,InvalidDigitalSignatureException, MissingDigitalCertificateException,RepositoryException {
@@ -197,37 +220,43 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 					
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new InvalidDigitalSignatureException(e);
 		} catch (CertificateException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new InvalidDigitalSignatureException(e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new InvalidDigitalSignatureException(e);
+			if ( e != null && e.getMessage().contains("javax.crypto.BadPaddingException")) {
+				throw new MissingPrivateKeyException();
+			}
+			else {
+			//e.printStackTrace();
+				throw new InvalidDigitalSignatureException(e);
+			}
 		} catch (KeyStoreException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new InvalidDigitalSignatureException(e);
 		} catch (NoSuchProviderException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new InvalidDigitalSignatureException(e);
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new InvalidDigitalSignatureException(e);
 		}
 	}
 
 	@Override
-	public String signITRByAssesse(String xml,
+	public String signITRByAssesse(String PAN,String xml,
 			DigitalSignatureWrapper digitalSignatureWrapper)
 					throws MissingPrivateKeyException,InvalidDigitalSignatureException,
 					Exception {
+		String PANUpperCase = PAN.toUpperCase();
 		// TODO Auto-generated method stub
 		String providerName = System.getProperty("jsr105Provider",
 				"org.jcp.xml.dsig.internal.dom.XMLDSigRI");
@@ -235,16 +264,7 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 		XMLSignatureFactory fac =
 				XMLSignatureFactory.getInstance("DOM",
 						(Provider) Class.forName(providerName).newInstance());
-		//ExcC14NParameterSpec newTransformSpec = null;
-		/*
-			   Reference ref =
-			       fac.newReference("",
-			           fac.newDigestMethod(DigestMethod.SHA1, null),
-			               Collections.singletonList(
-			                   fac.newTransform(Transform.ENVELOPED,newTransformSpec)), 
-			           null, null);
-		 */
-		Reference ref = fac.newReference("#CDVPS0756D", fac.newDigestMethod(DigestMethod.SHA1, null));
+		Reference ref = fac.newReference("#" + PANUpperCase, fac.newDigestMethod(DigestMethod.SHA1, null));
 		SignedInfo signedInfo = fac.newSignedInfo(
 				fac.newCanonicalizationMethod(
 						CanonicalizationMethod.INCLUSIVE_WITH_COMMENTS, 
@@ -261,7 +281,7 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
         //text2.setNodeValue("PANXXXXXXX");
         XMLStructure content = new DOMStructure(text);
         XMLObject obj = fac.newXMLObject
-            (Collections.singletonList(content), "CDVPS0756D", null, null);
+            (Collections.singletonList(content), PANUpperCase , null, null);
 		
         /*
 		KeyStore store = readPFXFile();
@@ -296,25 +316,36 @@ public class DigitalSignatureServiceForITR extends SystemRepositorySupportProvid
 		//ki = kif.newKeyInfo(content);
 		
 		dbf.setNamespaceAware(true);
-		doc = dbf.newDocumentBuilder().parse(new FileInputStream("C:\\temp\\dsc\\ITR1_ABJPK1442L.xml"));
+		//doc = dbf.newDocumentBuilder().parse(new FileInputStream("C:\\temp\\dsc\\ITR1_ABJPK1442L.xml"));
+		InputSource inputSource = new InputSource( new StringReader( xml ) );
+		doc = dbf.newDocumentBuilder().parse( inputSource );
 
 		DOMSignContext dsc = new DOMSignContext
 				(digitalSignatureWrapper.getPrivateKey(), doc.getDocumentElement());
-		System.out.println( " thePrivateKey.getAlgorithm() :" +  digitalSignatureWrapper.getPrivateKey().getAlgorithm());
-		System.out.println( " thePrivateKey.getFormat() :" +  digitalSignatureWrapper.getPrivateKey().getFormat());
+		//System.out.println( " thePrivateKey.getAlgorithm() :" +  digitalSignatureWrapper.getPrivateKey().getAlgorithm());
+		//System.out.println( " thePrivateKey.getFormat() :" +  digitalSignatureWrapper.getPrivateKey().getFormat());
 		XMLSignature signature = fac.newXMLSignature(signedInfo, ki,Collections.singletonList(obj), null, null);
 		signature.sign(dsc);
 
 		TransformerFactory tf = TransformerFactory.newInstance();
 		Transformer trans = tf.newTransformer();
 		StringWriter writer = new StringWriter();
-		try {
-			trans.transform(
-				new DOMSource(doc),
-				new StreamResult(
-						new FileOutputStream("C:\\temp\\mysigned.xml")));	
-		}catch (Exception e) {
-			log.error("Error",e);
+		
+		if (isSavingSignedXML()) {
+			String finalXML = getLocationToSaveSignedXML() + "/" +  PANUpperCase;
+			File fileFinalXML = new File(finalXML);
+			if (fileFinalXML != null && !fileFinalXML.exists()) {
+				fileFinalXML.mkdirs();
+			}
+			finalXML = finalXML +"/" + PAN + "_" + System.currentTimeMillis() + "xml";
+			try {
+				trans.transform(
+					new DOMSource(doc),
+					new StreamResult(
+							new FileOutputStream(finalXML)));	
+			}catch (Exception e) {
+				log.error("Error",e);
+			}
 		}
 		trans.transform(
 				new DOMSource(doc),

@@ -163,7 +163,6 @@ public class StartApplication extends ITReturnComponent {
 		String assessmentYear = getITRInitData(request).getAssessmentYear() == null ? "2012-2013"  : getITRInitData(request).getAssessmentYear();
 		ResourceBundle rb = ResourceBundle.getBundle("rstatus_"+assessmentYear);
 		ResourceBundle rbNew = ResourceBundle.getBundle("rstatushuf_"+assessmentYear);
-		log.info("object getting"+rbNew);
 
 		List<String> keyList = new ArrayList<String>();
 		for (String aKey: rb.keySet() ) {
@@ -195,9 +194,9 @@ public class StartApplication extends ITReturnComponent {
 		for (String aKey:keyList) {
 			if (memberName != null) {
 				String ke = rb.getString(aKey);
-				if (log.isInfoEnabled()) {
-					log.info("Now attempting to apply format to " + ke);
-				}
+				//if (log.isInfoEnabled()) {
+				//	log.info("Now attempting to apply format to " + ke);
+				//}
 				map.put(aKey, MessageFormat.format(ke,memberName));
 			}
 			/*else {
@@ -215,9 +214,6 @@ public class StartApplication extends ITReturnComponent {
 		for (String bKey:keyListHuf) {
 			if (memberName != null) {
 				String key = rbNew.getString(bKey);
-				if (log.isInfoEnabled()) {
-					log.info("Now attempting to apply format to " + key);
-				}
 				maphuf.put(bKey, MessageFormat.format(key,memberName));
 			}
 			/*else {
@@ -266,6 +262,7 @@ public class StartApplication extends ITReturnComponent {
 		//if(shouldRetrievePANInformation() && publicParameterUUID !=null){
 		//	request.setAttribute("retrievePANResponse", retrievePANResponse);
 		//}
+		/*
 		String checkForDuplicate = request.getRequestContext().getResolvedSiteMapItem().getParameter("checkForDuplicate");
 		if (checkForDuplicate != null && "true".equalsIgnoreCase(checkForDuplicate)) {  //check that Admin enable or disable the functionality
 			if(publicParameterUUID !=null && getITRInitData(request).getPanFolder() !=null){                   //duplicate will applicable for New PAN entry 
@@ -291,6 +288,7 @@ public class StartApplication extends ITReturnComponent {
 				}
 			}
 		}
+		*/
 	}
 
 	@Override
@@ -419,59 +417,51 @@ public class StartApplication extends ITReturnComponent {
 	public boolean validate(HstRequest request, HstResponse response,
 			FormMap formMap) {
 		// TODO Auto-generated method stub
-		if(super.validate(request, response, formMap)){
-			boolean hasAValidSelection = true;
-			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation)getITRInitData(request).getParentBean();
-			if(memberPersonalInformation != null){
-				ITRForm saveditrForm = memberPersonalInformation.getSelectedITRForm();
-				int savedITRPriority = saveditrForm.getPriority();
-				String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
-				ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
-				int selectedITRPriority = selectedITR.getPriority();
-				//String MaxDocAllowedForPackageChange = request.getRequestContext().getResolvedSiteMapItem().getParameter("MaxDocAllowedForPackageChange");
-				if(savedITRPriority > selectedITRPriority){
-					HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
-					HstQuery hstQuery;
-					try {
-						hstQuery = this.getQueryManager(request).createQuery( memberPersonalInformation.getParentBean() );
-						final HstQueryResult result = hstQuery.execute();
-						Iterator<HippoBean> itResults = result.getHippoBeans();
-						for (;itResults.hasNext();) {
-							HippoBean hippoBean = itResults.next();
-							if (hippoBean instanceof HippoDocumentBean) {
-								if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPayment.class.getSimpleName())) {
-									continue;
-								}
-								if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPersonalInformation.class.getSimpleName())) {
-									continue;
-								}			
-								
-								//Calendar lstModDateOfHippoBean = hippoBean.getProperty("hippostdpubwf:lastModificationDate");			
-								//if(lstModDateOfHippoBean.compareTo(memberPersonalInformation.getLastModificationDate()) > 0){
-									formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
-									response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
-									hasAValidSelection = false;
-									return hasAValidSelection;
-								//}
+		boolean superValidation = super.validate(request, response, formMap);
+		if (!superValidation) return superValidation;
+		
+		boolean hasAValidSelection = true;
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation)getITRInitData(request).getParentBean();
+		if(memberPersonalInformation != null){
+			ITRForm saveditrForm = memberPersonalInformation.getSelectedITRForm();
+			if (saveditrForm == null) return true; //this is the first time the form has not been saved yet
+			int savedITRPriority = saveditrForm.getPriority();
+			String selecteditrForm= formMap.getField("flex_string_ITRForm").getValue();
+			ITRForm selectedITR = ITRForm.valueOf(selecteditrForm);
+			int selectedITRPriority = selectedITR.getPriority();
+			//String MaxDocAllowedForPackageChange = request.getRequestContext().getResolvedSiteMapItem().getParameter("MaxDocAllowedForPackageChange");
+			if(savedITRPriority > selectedITRPriority){
+				HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean();
+				HstQuery hstQuery;
+				try {
+					hstQuery = this.getQueryManager(request).createQuery( memberPersonalInformation.getParentBean() );
+					final HstQueryResult result = hstQuery.execute();
+					Iterator<HippoBean> itResults = result.getHippoBeans();
+					for (;itResults.hasNext();) {
+						HippoBean hippoBean = itResults.next();
+						if (hippoBean instanceof HippoDocumentBean) {
+							if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPayment.class.getSimpleName())) {
+								continue;
 							}
+							if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPersonalInformation.class.getSimpleName())) {
+								continue;
+							}			
+							
+							//Calendar lstModDateOfHippoBean = hippoBean.getProperty("hippostdpubwf:lastModificationDate");			
+							//if(lstModDateOfHippoBean.compareTo(memberPersonalInformation.getLastModificationDate()) > 0){
+								formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
+								response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
+								hasAValidSelection = false;
+							//}
 						}
-					} catch (QueryException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}			
-					/*
-					long size = hippoFolder.getDocumentSize();
-					if(size > Integer.parseInt(MaxDocAllowedForPackageChange)){
-						formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
-						response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
-						hasAValidSelection = false;
-						return hasAValidSelection;
 					}
-					 */
-				}
+				} catch (QueryException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			
 			}
 		}
-		return super.validate(request, response, formMap);
+		return hasAValidSelection;
 	}
 
 	public static class FullReviewedWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {

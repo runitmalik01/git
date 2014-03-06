@@ -28,9 +28,12 @@ public interface DigitalSignatureService {
 	 * This will add the Digital Signature of the ASSESSEE 
 	 * The return value is modified XML
 	 */
-	String signITRByAssesse(String xml, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException,InvalidDigitalSignatureException,Exception;
+	String signITRByAssesse(String PAN,String xml, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException,InvalidDigitalSignatureException,Exception;
 	
 	ERISOAPHeaderSignatureResponse signZIPByERISubUser(byte[] byteArray, DigitalSignatureWrapper digitalSignatureWrapper) throws MissingPrivateKeyException, InvalidDigitalSignatureException,Exception;
 	
-	
+	String getLocationToSaveSignedXML();
+	void setLocationToSaveSignedXML(String locationToSaveSignedXML);
+	boolean isSavingSignedXML();
+	void setSavingSignedXML(boolean savingSignedXML);
 }

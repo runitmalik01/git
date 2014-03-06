@@ -62,9 +62,9 @@ public class DeductionListService {
 		String[] listOfActiveSections = strSectionActiveList.split("[,]");
 		Map<String,DeductionSection> mapOfSectionNameToSectionList = new LinkedHashMap<String, DeductionSection>(listOfActiveSections.length);
 		for (String anActiveSection:listOfActiveSections) {
-			if (log.isInfoEnabled()) {
-				log.info("Parsing Section:" + anActiveSection);
-			}
+			//if (log.isInfoEnabled()) {
+			//	log.info("Parsing Section:" + anActiveSection);
+			//}
 			DeductionSection d  = new DeductionSection();
 			d.setName(anActiveSection);
 			mapOfSectionNameToSectionList.put(anActiveSection,d);

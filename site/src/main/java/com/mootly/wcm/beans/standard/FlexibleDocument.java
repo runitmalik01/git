@@ -275,9 +275,9 @@ public class FlexibleDocument extends BaseDocument implements FormMapFiller {
 		}
 		if ( fieldNames != null && fieldNames.length > 0 ) {
 			for (String fieldName:fieldNames){
-				if (log.isInfoEnabled()){
-					log.info("Flex Field check:" + fieldName);
-				}
+				//if (log.isInfoEnabled()){
+				//	log.info("Flex Field check:" + fieldName);
+				//}
 				//the format of the fieldname must be flex_field_string_0 flex_field_string_1 
 				if (!fieldName.startsWith(FLEX_FIELD_PRFIX)) continue;
 				String fieldValue = formMap.getField(fieldName).getValue();
