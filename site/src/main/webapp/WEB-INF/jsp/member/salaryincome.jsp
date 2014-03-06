@@ -14,17 +14,16 @@
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="row show-grid">
 				<w4india:itrsidebar></w4india:itrsidebar>
-	  			<div class="col-md-10">
-	  				<div id="questionandanswerformdiv" style="display:none"></div>
-						<c:choose>
-							<c:when
-								test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
-								<c:out value="${screenConfigDocument.screenHeading}" />
-							</c:when>
-							<c:otherwise>
-								<w4india:titleandnav title="Pension Income" subTitle="Enter details of your Pension Income"/>
-							</c:otherwise>
-						</c:choose>
+	  			<div class="${sideBarMainClass}">
+					<c:choose>
+						<c:when
+							test="${not empty screenConfigDocument && not empty screenConfigDocument.screenHeading}">
+							<c:out value="${screenConfigDocument.screenHeading}" />
+						</c:when>
+						<c:otherwise>
+							<w4india:titleandnav title="Pension Income" subTitle="Enter details of your Pension Income"/>
+						</c:otherwise>
+					</c:choose>
 					<c:if test="${not empty formMap}">
 						<c:forEach items="${formMap.message}" var="item">
 							<div class="alert alert-danger">

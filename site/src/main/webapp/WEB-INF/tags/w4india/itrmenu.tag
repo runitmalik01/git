@@ -54,6 +54,7 @@ String theResolvedPathInfoFileName = theFileNameParts[theFileNameParts.length - 
 //theResolvedPathInfo must be a member of the itr menu otherwise it means some one is trying to mess
 //for now lets kick the user out
 boolean didWeFindTheResolvedMapItemInMenu = false;
+request.setAttribute("sideBarMainClass","col-md-10");
 if ( resolvedMapItem.getHstComponentConfiguration().getId().equals("hst:pages/member-start-application")) {
 	request.setAttribute("nomenu", "true");
 	request.setAttribute("sideBarMainClass","col-md-12");
@@ -294,7 +295,7 @@ request.setAttribute("nextPrevLinks",nextPrevLinks);
               							String[] partsOfURL = theURL.split("[//]");
               							String key = partsOfURL[partsOfURL.length-1];
               							nextPrevLinks.put(key,anItem.getName());
-              							System.out.println(anItem.getName() + ":" +  key);
+              							//System.out.println(anItem.getName() + ":" +  key);
               							//System.out.println(key);
               						}
               					}
@@ -330,7 +331,7 @@ request.setAttribute("nextPrevLinks",nextPrevLinks);
 			              							String[] partsOfURL = theURL.split("[//]");
 			              							String key = partsOfURL[partsOfURL.length-1];
 			              							nextPrevLinks.put(key,anItem2.getName());
-			              							System.out.println(anItem2.getName() + ":" +  key);
+			              							//System.out.println(anItem2.getName() + ":" +  key);
 			              						}
 			              					 }
               					             request.setAttribute("listOfSubChildMenuItems", evaluateMenusList.getListOfSortedMenutItems(childMenuItem));	                					
@@ -360,31 +361,31 @@ request.setAttribute("nextPrevLinks",nextPrevLinks);
 							<c:otherwise>
 								<c:set var="parentMenuItemReq" scope="request"
 									value="${itrSiteMenuItem}" />
-								<%
-    				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
-    				if (parentItem != null) {
-    					String theURL =  parentItem.getParameter("theURL");
-    					String currentScriptHTMLName = null;
-    					//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
-    	 				if (theURL != null) {
-							request.setAttribute("theURLParent",theURL);
-							if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
-							String[] parts = theURL.split("[/]");
-							if (parts != null && parts.length > 0) currentScriptHTMLName = parts[parts.length-1];
-						}
-						else {
-							request.setAttribute("theURLParent", "#");
-						}
-    	 				String theScript = (String) request.getAttribute("scriptName");
-	    				if (theScript != null && currentScriptHTMLName != null && theScript.contains(currentScriptHTMLName) ) {
-	    					request.setAttribute("isActive", "true");
-	    				}
-	    				else {
-	    					request.removeAttribute("isActive");
-	    				}
-    				}
+									<%
+					    				HstSiteMenuItem parentItem = ( HstSiteMenuItem ) request.getAttribute("parentMenuItemReq");
+					    				if (parentItem != null) {
+					    					String theURL =  parentItem.getParameter("theURL");
+					    					String currentScriptHTMLName = null;
+					    					//String theURL = anItem.getHstLink().toUrlForm(hstRequest.getRequestContext(), true);
+					    	 				if (theURL != null) {
+												request.setAttribute("theURLParent",theURL);
+												if (theURL.contains(theResolvedPathInfoFileName)) didWeFindTheResolvedMapItemInMenu= true;
+												String[] parts = theURL.split("[/]");
+												if (parts != null && parts.length > 0) currentScriptHTMLName = parts[parts.length-1];
+											}
+											else {
+												request.setAttribute("theURLParent", "#");
+											}
+					    	 				String theScript = (String) request.getAttribute("scriptName");
+						    				if (theScript != null && currentScriptHTMLName != null && theScript.contains(currentScriptHTMLName) ) {
+						    					request.setAttribute("isActive", "true");
+						    				}
+						    				else {
+						    					request.removeAttribute("isActive");
+						    				}
+					    				}
 
-        		%>
+        						%>
 								<c:if test="${itrSiteMenuItem.name != 'PAN'}">
 									<li
 										<c:if test='${not empty isActive && isActive == "true"}'>class="active"</c:if>><a

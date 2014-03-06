@@ -126,32 +126,10 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
                         </div>
                  </fieldset> -->
 	</form>
-	<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			  <div class="modal-header">
-			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			    <h3 id="myModalLabel">Choose a package which suits your need</h3>
-			  </div>
-			  <div class="modal-body">
-					<div class="row show-grid">
-						<div class="col-md-4"><label for="basicPackage"></label><input id="basicPackage" type="radio" name="packagename" value="basic">Basic</div>
-						<div class="col-md-4"><label for="premiumPackage"></label><input id="premiumPackage" type="radio" name="packagename" value="premium">Premium</div>
-						<div class="col-md-4"><label for="helpmeChoose"></label><input id="helpmeChoose" type="radio" name="packagename" value="">Help me Choose</div>
-					</div>
-			  </div>
-			  <div class="modal-footer">
-			    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-			    <%--<button class="btn btn-default disabled button olive">I choose Premium Package</button> --%>
-			    <button id="packageSelector" class="btn btn-default btn-primary disabled">Choose a Package</button>
-			  </div>
-			</div>
-		</div>
-	</div>
 	<c:set var="basePath" scope="request" value="member"/>
 	<jsp:include page="../itreturns/itreturnshome-common-results.jsp"/>
 </div>
-<res:client-validation formSubmitButtonId="myModalHref" screenConfigurationDocumentName="itreturnhomepage" formId="frmdata" fieldOneID="pan" fieldTwoID="pi_last_name" validationType="pan"></res:client-validation>
+<res:client-validation formSubmitButtonId="myModalHref" screenConfigurationDocumentName="itreturnhomepage" formId="frmdata"></res:client-validation>
 <hst:element var="uiCustom" name="script">
     <hst:attribute name="type">text/javascript</hst:attribute>
 	$(document).ready(function() {

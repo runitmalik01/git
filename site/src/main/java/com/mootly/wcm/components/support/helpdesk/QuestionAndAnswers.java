@@ -16,6 +16,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.component.HstURL;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +37,7 @@ import com.mootly.wcm.utils.PageableCollection;
 
 @PrimaryBean (primaryBeanClass=HelpDeskTicketDocument.class)
 @ChildBean (childBeanClass=HelpDeskTicketNote.class)
-@FormFields(fieldNames={"scriptName","fileName","question","answer"})
+@FormFields(fieldNames={"scriptName","fileName","question"},fieldNamesVendorOnly={"answer","answered"})
 
 public class QuestionAndAnswers extends ITReturnComponent {
 	final Logger log = LoggerFactory.getLogger(QuestionAndAnswers.class);
@@ -132,6 +133,10 @@ public class QuestionAndAnswers extends ITReturnComponent {
 	            }
 	        }
 		}
+		else if (pageAction != null && pageAction == PAGE_ACTION.EDIT_CHILD) {
+			HstURL hstURL = response.createActionURL();
+			request.setAttribute("hstURL", hstURL.toString());
+		}
         
 		/*
 		DigitalSignatureWrapper digitalSignatureWrapper;
@@ -174,6 +179,19 @@ public class QuestionAndAnswers extends ITReturnComponent {
 	protected BeanLifecycle<HippoBean> getParentBeanLifeCycleHandler(HstRequest request) {
 		return new ParentBeanLifeCycleHandler(request,getSequenceGenerator());
 
+	}
+	
+	@Override
+	protected String[] modifiedFieldsArray(HstRequest request,
+			String[] fieldsArray) {
+		// TODO Auto-generated method stub
+		//if a vendor is replying we just wnt answer and answered to be passed
+		if ( getITRInitData(request).getPageAction() != null && getITRInitData(request).getPageAction() == PAGE_ACTION.EDIT_CHILD && getITRInitData(request).isOnVendorPortal()) {
+			return new String[] {"answer","uuid"};
+		}
+		else {
+			return super.modifiedFieldsArray(request,fieldsArray);
+		}
 	}
 }
 /**
@@ -238,6 +256,10 @@ class ChildBeanLifeCycleHandler implements BeanLifecycle<HippoBean> {
 		helpDeskTicketNote.setStrUpdaterType(updaterType);
 		
 		helpDeskTicketNote.setIsqa(Boolean.TRUE);
+		
+		if (itReturnInitData.isVendor(request) && itReturnInitData.isOnVendorPortal()) {
+			helpDeskTicketNote.setAnswered(Boolean.TRUE);
+		}
 		
 		
 	}

@@ -8,15 +8,29 @@
  */
 package com.mootly.wcm.member;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.ServletContext;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
+import org.hippoecm.hst.component.support.forms.FormUtils;
+import org.hippoecm.hst.component.support.forms.StoreFormResult;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.ObjectBeanPersistenceException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
@@ -28,12 +42,16 @@ import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.FormFields;
+import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -41,16 +59,30 @@ import com.mootly.wcm.beans.Service;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.member.service.ServiceRequestManager;
-
+import com.mootly.wcm.services.ds.DigitalSignatureService;
+import com.mootly.wcm.services.ds.exception.InvalidDigitalSignatureException;
+import com.mootly.wcm.services.ds.exception.MissingPrivateKeyException;
+import com.mootly.wcm.services.ds.model.DigitalSignatureWrapper;
 
 @RequiredBeans(requiredBeans=MemberPersonalInformation.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class})
-@FormFields(fieldNames={"member_file","description","protected","additionalnotes"})
+@FormFields(fieldNames={"member_file","description","protected","additionalnotes","certificateType","certificateIssuerDN","certificateSubjectDN","certificateGetNotBefore","certificateGetNotAfter"})
 public class MemberDrive extends ITReturnComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDrive.class);
 	private static final String MEMBER_DRIVE_FOLDER_NAME="members";
-
+	DigitalSignatureService digitalSignatureService = null;
+	
+	@Override
+	public void init(ServletContext servletContext,
+			ComponentConfiguration componentConfig)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.init(servletContext, componentConfig);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		digitalSignatureService =  context.getBean(DigitalSignatureService.class);
+	}
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
@@ -124,26 +156,179 @@ public class MemberDrive extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);//
 		String subDriveName = request.getRequestContext().getResolvedSiteMapItem().getParameter("subDriveName");
+		//lets validate the Digital Signature Right here before we even move on to next step
+		
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		boolean isValid = false;
+		String privateKeyPassword = null;
+		byte[] data = null;
+		String fileName = null;
+		String contentType= null;
+		if (isMultipart) {
+			try {
+				ServletFileUpload fileUpload = new ServletFileUpload(new DiskFileItemFactory());
+				String str_max_size = request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize");
+				if(str_max_size != null){
+					long maxsize = Long.parseLong(request.getRequestContext().getResolvedSiteMapItem().getParameter("maxsize"));
+					fileUpload.setSizeMax(MemberDriveHandler.MEMBER_FILE_SIZE * maxsize);
+				}
+				List<FileItem> items = fileUpload.parseRequest(request);
+				Iterator<FileItem> iter = items.iterator();		
+				while (iter.hasNext()) {
+					FileItem item = iter.next();
+					if (item.isFormField()) {
+						if(item.getFieldName()!=null && item.getFieldName().equals("protected")) {
+							privateKeyPassword = item.getString();
+							FormField frmFieldProtected = new FormField("protected");
+							frmFieldProtected.addValue(item.getString());
+							getITRInitData(request).getFormMap().addFormField(frmFieldProtected);
+						}
+						else if (item.getFieldName()!=null && item.getFieldName().equals("additionalnotes")) {
+							FormField frmFieldAdditionalNotes = new FormField("additionalnotes");
+							frmFieldAdditionalNotes.addValue(item.getString());
+							getITRInitData(request).getFormMap().addFormField(frmFieldAdditionalNotes);
+						}
+						else if (item.getFieldName()!=null && item.getFieldName().equals("description")) {
+							FormField frmFieldDescription = new FormField("description");
+							frmFieldDescription.addValue(item.getString());
+							getITRInitData(request).getFormMap().addFormField(frmFieldDescription);
+						}
+					} else {
+						InputStream inputStream = item.getInputStream();							
+						data = IOUtils.toByteArray(inputStream);
+						fileName = item.getName();
+						contentType = item.getContentType();
+						
+						FormField frmFieldFileName = new FormField("fileName");
+						frmFieldFileName.addValue(fileName);
+						getITRInitData(request).getFormMap().addFormField(frmFieldFileName);
+						
+						FormField frmFieldContentType = new FormField("contentType");
+						frmFieldContentType.addValue(contentType);
+						getITRInitData(request).getFormMap().addFormField(frmFieldContentType);
+						
+						FormField frmFieldSize = new FormField("size");
+						frmFieldSize.addValue(String.valueOf( item.getSize() ));
+						getITRInitData(request).getFormMap().addFormField(frmFieldSize);
+					}
+				}
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while get input of File Item",e);
+				getITRInitData(request).getFormMap().addMessage("err.invalid.ds", "err.invalid.ds");
+			}catch (FileUploadException e) {
+				// TODO Auto-generated catch block
+				log.error("Error while get input of File Item",e);
+				getITRInitData(request).getFormMap().addMessage("err.invalid.ds", "err.invalid.ds");
+			}
+		}
+		if (subDriveName != null && subDriveName.equals("digitalsignature")) {
+				if (privateKeyPassword != null && data != null) {
+					DigitalSignatureWrapper digitalSignatureWrapper = new DigitalSignatureWrapper(data, privateKeyPassword);
+					try {
+						X509Certificate certificate = digitalSignatureService.validateAndGetCertificate(digitalSignatureWrapper);
+						if (certificate != null) {
+							
+							FormField frmFieldCertificateType = new FormField("certificateType");
+							frmFieldCertificateType.addValue(certificate.getType());
+							
+							FormField frmFieldCertificateIssuerDN = new FormField("certificateIssuerDN");
+							frmFieldCertificateIssuerDN.addValue(certificate.getIssuerDN().getName());
+							
+							FormField frmFieldCertificateSubjectDN = new FormField("certificateSubjectDN");
+							frmFieldCertificateSubjectDN.addValue(certificate.getSubjectDN().getName());
+							
+							FormField frmFieldCertificateGetNotBefore = new FormField("certificateGetNotBefore");
+							frmFieldCertificateGetNotBefore.addValue(String.valueOf(certificate.getNotBefore().getTime()));
+							
+							FormField frmFieldCertificateGetNotAfter = new FormField("certificateGetNotAfter");
+							frmFieldCertificateGetNotAfter.addValue(String.valueOf(certificate.getNotAfter().getTime()));
+							
+							getITRInitData(request).getFormMap().addFormField(frmFieldCertificateType);
+							getITRInitData(request).getFormMap().addFormField(frmFieldCertificateIssuerDN);
+							getITRInitData(request).getFormMap().addFormField(frmFieldCertificateSubjectDN);
+							getITRInitData(request).getFormMap().addFormField(frmFieldCertificateGetNotBefore);
+							getITRInitData(request).getFormMap().addFormField(frmFieldCertificateGetNotAfter);
+						}
+						String subjectDN = certificate.getSubjectX500Principal().getName();
+						isValid = true;
+					} catch (MissingPrivateKeyException e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+						getITRInitData(request).getFormMap().addMessage("err.invalid.ds", "err.invalid.ds.incorrectPassword");
+					} catch (InvalidDigitalSignatureException e) {
+						// TODO Auto-generated catch block
+						//e.printStackTrace();
+						getITRInitData(request).getFormMap().addMessage("err.invalid.ds", "err.invalid.ds");
+					}
+				}
+				else {
+					if ( getITRInitData(request).getFormMap() != null) {
+						getITRInitData(request).getFormMap().addMessage("err.invalid.ds", "err.invalid.ds");
+					}
+				}
+				if (!isValid) {
+					log.error("Invalid Digital Signature can't proceed");
+					StoreFormResult sfr = new StoreFormResult();
+					FormUtils.persistFormMap(request, response, getITRInitData(request).getFormMap(), sfr);
+					return;
+				}
+		}
+		if (data == null || fileName == null || contentType == null) return;
+		//Will deak with this later
 		String serviceRequestNumber = getPublicRequestParameter(request, "serviceRequest");
-		FormFields formFields = this.getClass().getAnnotation(FormFields.class);		
-		FormMap formMap = new FormMap(request, formFields.fieldNames());
+		//FormFields formFields = this.getClass().getAnnotation(FormFields.class);		
+		//FormMap formMap = new FormMap(request, formFields.fieldNames());
 		WorkflowPersistenceManager wpm = null;
 		Session persistableSession = null; 
 		try {
 			persistableSession = getPersistableSession(request);
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
-			MemberDriveHandler memberDriveHandler = new MemberDriveHandler(request, formMap);
-			Boolean isFileSave = memberDriveHandler.SaveFileInMemberDrive(null, subDriveName, wpm, getITRInitData(request).isLoggedIn());
-			if(isFileSave){				
+			String saveFilePath = null;
+			
+			if (subDriveName != null && subDriveName.equals("digitalsignature")) {
+				saveFilePath = getITRInitData(request).getAbsoluteBasePathToReturnDocuments();//+ "/digitalsignature";
+				MemberDriveDocument existingDriveDocument = (MemberDriveDocument) wpm.getObject(saveFilePath + "/digitalsignature");
+				if (existingDriveDocument != null) {
+					getITRInitData(request).getFormMap().addMessage("err.invalid.ds", "err.invalid.ds.duplicate");
+					StoreFormResult sfr = new StoreFormResult();
+					FormUtils.persistFormMap(request, response, getITRInitData(request).getFormMap(), sfr);
+					return;
+				}
+			}
+			else {
+				saveFilePath = getITRInitData(request).getMemberFolderPath(request) + "/drive";
+			}
+			boolean isFileSave = false;
+			String memberDriveDocPath = wpm.createAndReturn(saveFilePath, MemberDriveDocument.NAMESPACE, "digitalsignature" , true);
+			MemberDriveDocument memberDriveDoc = (MemberDriveDocument) wpm.getObject(memberDriveDocPath);
+			if(memberDriveDoc != null){
+				memberDriveDoc.setMemberFile(new ByteArrayInputStream(data));
+				memberDriveDoc.setContentType(contentType);
+				memberDriveDoc.setMemberFileName(fileName);
+				memberDriveDoc.fill(getITRInitData(request).getFormMap());
+				wpm.update(memberDriveDoc);
+				//memberDriveDoc = (MemberDriveDocument) wpm.getObject(memberDriveDocPath);
+				//MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) wpm.getObject(getITRInitData(request).getAbsoluteBasePathToReturnDocuments() + "/memberpersonalinformation");
+				//memberPersonalInformation.setPathToDigitalSignature(memberDriveDoc.getCanonicalUUID());
+				//wpm.update(memberDriveDoc);
+			}
+			if(isFileSave && serviceRequestNumber != null){				
 				ServiceRequestManager requestManager = new ServiceRequestManager(request, getITRInitData(request).getSiteContentBaseBeanForReseller(request));
 				requestManager.UdateTheServiceRequestWithMemberDrive(wpm, subDriveName, serviceRequestNumber);
-				
 				response.setRenderParameter("FileUpload", "Success");
 			}
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			log.error("Error to get the PersistableSession From JCR Repository!!",e);
+		} catch (ObjectBeanPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -287,6 +472,8 @@ public class MemberDrive extends ITReturnComponent {
 		}
 		return delete;
 	}
+	
+	
 	public static class FullDeleteWorkflowCallbackHandler implements WorkflowCallbackHandler<FullReviewedActionsWorkflow> {
 		public void processWorkflow(FullReviewedActionsWorkflow wf) throws Exception {
 			wf.delete();

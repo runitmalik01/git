@@ -57,7 +57,6 @@ import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
-import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowCallbackHandler;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
@@ -432,9 +431,13 @@ public class ITReturnComponent extends BaseComponent {
 				}
 				request.setAttribute("error","true");
 			}
-
+			
 			if (getITRInitData(request).pageAction.equals(PAGE_ACTION.DELETE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DELETE_CHILD)) {
-				save(request,formMap);
+				try {
+					save(request,formMap);
+				}catch (Exception e) {
+					throw new HstComponentException(e);
+				}
 				//initComponent(request);
 				try {
 					String urlToRedirect = getITRInitData(request).getScriptName(); //getRedirectURL(request,response,FormSaveResult.SUCCESS);
@@ -769,6 +772,9 @@ public class ITReturnComponent extends BaseComponent {
 		if (getITRInitData(request).isVendor(request) && vendorFields != null && vendorFields.length > 0){
 			theFieldsArray = (String[]) ArrayUtils.addAll(theFieldsArray, vendorFields);
 		}
+		//if the child class wish to modify the fieldsArray let it do it 
+		theFieldsArray = modifiedFieldsArray(request,theFieldsArray);
+		
 		getITRInitData(request).formMap = new FormMap(request,theFieldsArray);
 
 		boolean isValid = validate(request,response,getITRInitData(request).formMap);
@@ -780,13 +786,19 @@ public class ITReturnComponent extends BaseComponent {
 		sanitize(request,response,getITRInitData(request).formMap);
 		if (getITRInitData(request).pageAction.equals(PAGE_ACTION.EDIT) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EDIT_CHILD) || getITRInitData(request).pageAction.equals(PAGE_ACTION.NEW_CHILD)) {
 			if (log.isInfoEnabled()) {
-				if (getITRInitData(request).formMap != null) {
-					for (String aFieldName:formFields.fieldNames()) {
-						log.info("Field Name:" + aFieldName + " Value:" +  getITRInitData(request).formMap.getField(aFieldName).getValue());
-					}
-				}
+				//if (getITRInitData(request).formMap != null) {
+				//	for (String aFieldName:formFields.fieldNames()) {
+				//		log.info("Field Name:" + aFieldName + " Value:" +  getITRInitData(request).formMap.getField(aFieldName).getValue());
+				//	}
+				//}
 			}
-			boolean saveResult = save(request,getITRInitData(request).formMap);
+			boolean saveResult = false;
+			try {
+				saveResult = save(request,getITRInitData(request).formMap);
+			}catch (Exception e) {
+				log.error ("Error in save",e);
+				throw new HstComponentException(e);
+			}
 			if (!saveResult) return;
 			afterSave(request,response,getITRInitData(request).formMap,getITRInitData(request).pageAction);
 			try {
@@ -876,6 +888,11 @@ public class ITReturnComponent extends BaseComponent {
 				formFieldLoggedInUser.addValue(request.getUserPrincipal().getName());
 			}
 		}
+	}
+	
+	protected String[] modifiedFieldsArray(HstRequest request,String[] fieldsArray) {
+		//do nothing let the child class do if it wants to otherwise lets return the same array
+		return fieldsArray;
 	}
 	
 	protected boolean validate(HstRequest request,HstResponse response,FormMap formMap) {
@@ -1145,7 +1162,7 @@ public class ITReturnComponent extends BaseComponent {
 	 * The ultimate goal here is to save the parent bean and if it didn't exist then it should have been created in the first place
 	 * a child cannot exist without a parent
 	 */
-	protected boolean save(HstRequest request,FormMap formMap) {
+	protected boolean save(HstRequest request,FormMap formMap) throws Exception {
 		boolean savedSuccessfully = false;
 		PAGE_ACTION pageAction = getITRInitData(request).getPageAction();
 		HippoBean childBean = getITRInitData(request).getChildBean();
@@ -1246,19 +1263,7 @@ public class ITReturnComponent extends BaseComponent {
 					savedSuccessfully = true;
 				}			
 			}
-		} catch (ObjectBeanManagerException e) {
-			// TODO Auto-generated catch block
-			log.error("Error in Save",e);
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			log.error("Error in Save",e);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			log.error("Error in Save",e);
-		} catch (RepositoryException e) {
-			// TODO Auto-generated catch block
-			log.error("Error in Save",e);
-		}
+		} 
 		finally {
 			if (persistableSession != null) {
 				persistableSession.logout();

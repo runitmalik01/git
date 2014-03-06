@@ -18,28 +18,21 @@
 <%--@elvariable id="document" type="com.mootly.wcm.beans.Product"--%>
 <%@page import="com.mootly.wcm.model.FinancialYear"%>
 <%@include file="../../includes/tags.jspf" %>
-
 <c:set var="datePattern" value="dd-MM-yyyy"/>
-<!-- NOTE: Switch on the following variable if you want to eanble Inline Editing feature in this page. -->
-<c:set var="inlineEditingEnabled" value="false" /> 
 <hst:actionURL var="actionUrl"></hst:actionURL>
-
-
-
-<div class="progress progress-striped active" id="qaProgressBar" style="display:none">
- <div class="progress-bar" id="qaProgressBarReal" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 1%">
-    <span class="sr-only" id="qaProgressBarRealSROnly">1% Complete</span>
-  </div>
-</div>
-<c:set var="leftColClass" value="col-md-6"/>
-<c:set var="rightColClass" value="col-md-6"/>
-<c:if test="${empty searchResult || empty searchResult.items || fn:length(searchResult.items) == 0 }">
-	<c:set var="leftColClass" value="col-md-6"/>
-	<c:set var="rightColClass" value="col-md-12"/>
-</c:if>
-
-	<c:choose>
+<c:choose>
 		<c:when test="${not empty pageAction && (pageAction == 'NEW_CHILD') }">	
+			<div class="progress progress-striped active" id="qaProgressBar" style="display:none">
+			 <div class="progress-bar" id="qaProgressBarReal" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 1%">
+			    <span class="sr-only" id="qaProgressBarRealSROnly">1% Complete</span>
+			  </div>
+			</div>
+			<c:set var="leftColClass" value="col-md-6"/>
+			<c:set var="rightColClass" value="col-md-6"/>
+			<c:if test="${empty searchResult || empty searchResult.items || fn:length(searchResult.items) == 0 }">
+				<c:set var="leftColClass" value="col-md-6"/>
+				<c:set var="rightColClass" value="col-md-12"/>
+			</c:if>
 			<div id="containerQA">
 				<div class="row">
 					<c:if test="${not empty searchResult && not empty searchResult.items && fn:length(searchResult.items) > 0 }">
@@ -96,12 +89,15 @@
 				<hr/>
 				</div>
 		</c:when>
+		<c:when test="${not empty pageAction && (pageAction == 'EDIT_CHILD') }">	
+			<%response.setContentType("application/json");%>
+			{"hstActionURL":"<c:out value="${hstURL}"/>"}
+		</c:when>
 		<c:otherwise>
 			<w4india:itrmenu />
 			<div class="row show-grid">
 				<w4india:itrsidebar></w4india:itrsidebar>
-				<div class="col-md-10">
-	  				<div id="questionandanswerformdiv" style="display:none"></div>
+				<div class="${sideBarMainClass}">
 	  				<w4india:titleandnav title="Questions & Answers" subTitle="Connect with our experts to get Answers to your questions."></w4india:titleandnav>
 					<c:if test="${not empty parentBean && not empty parentBean.notes && fn:length(parentBean.notes) > 0 }">
 						<table>
@@ -110,18 +106,68 @@
 								<th>Answer</th>
 								<th>Screen</th>
 							</tr>
-							<c:forEach items="${parentBean.notes}" var="item">
+							<c:forEach items="${parentBean.notes}" var="item" varStatus="varStatus">
 								<tr>
 									<td><c:out value="${item.question}"/></td>
-									<td><small><c:out value="${item.answer}"/></small></td>
+									<td>
+										<small>
+											<c:choose>
+												<c:when test="${isVendor && strIsOnVendorPortal == 'true'}">
+													<textarea readonly="readonly" rows="4" cols="60" name="answer" id="answer_${item.canonicalUUID}"><c:out value="${item.answer}"/></textarea>
+													<input type="hidden" name="frmActionURL" id="frmActionURL_${item.canonicalUUID}" value=""/>
+													<input type="hidden" name="answered" id="answered_${item.canonicalUUID}" value="true"/>
+													<a class="editAnswer" id="href2_${item.canonicalUUID}" href="javascript:void()"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+													<a class="saveAnswer hidden" id="href_${item.canonicalUUID}" href="javascript:void()"><i class="glyphicon glyphicon-save">Save</i></a>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${item.answer}"/>				
+												</c:otherwise>
+											</c:choose>
+										</small>
+									</td>
 									<td><a href="${scriptName}/../${item.fileName}"><c:out value="${item.fileName}"/></a></td>
 								</tr>
 							</c:forEach>
 						</table>
 					</c:if>
 				</div>
+				<hst:element var="jsCustom" name="script">
+					<hst:attribute name="type">text/javascript</hst:attribute>
+					$(".editAnswer").click(function () { 
+				    	uuid = $(this).attr("id").substring(6); //href2_
+				    		$.ajax({
+		        	  		  type:"GET",
+							  url: '${scriptName}/edit-child'
+							}).done(function( html ) {
+								//alert(html.hstActionURL);
+								$("#frmActionURL_"+uuid).val(html.hstActionURL);
+								$("#answer_"+uuid).removeAttr('readonly'); //var ans = $("#answer_"+uuid).attr('readonly','readonly');
+								$("#href_"+uuid).removeClass("hidden");
+								$(this).hide();
+							  	//$("#qaProgressBar").hide();
+							  	//$( "#questionandanswerformdiv" ).html('<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>We have received your question.Our experts will review the question and get back to you soon. You will be notified via an email when an answer is posted.</div>');
+							});
+				    });
+				    $(".saveAnswer").click(function () { 
+				    	$("#answer_"+uuid).attr('readonly','readonly');
+				    	var uuid = $(this).attr("id").substring(5);
+				    	var ans = $("#answer_"+uuid).val();
+				    		$.ajax({
+		        	  		  type:"POST",
+							  url: $("#frmActionURL_"+uuid).val(),
+							  data: {"answer":ans,"uuid":uuid}
+							}).done(function( html ) {
+								$("#href_"+uuid).addClass("hidden");
+								$("#href2_"+uuid).removeClass("hidden");
+							});
+				    });
+					
+				</hst:element>
+				<hst:headContribution element="${jsCustom}" category="jsInternal" />
 			</div>
 		</c:otherwise>
 	</c:choose>
+	
+	
 
 

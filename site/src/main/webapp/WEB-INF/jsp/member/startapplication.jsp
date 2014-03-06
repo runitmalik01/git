@@ -70,8 +70,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	<div class="row show-grid">
 		<w4india:itrsidebar></w4india:itrsidebar>
 	  	<div class="${sideBarMainClass}">
-	  		<div id="questionandanswerformdiv" style="display:none">
-			</div>
 			<w4india:titleandnav title="Personal Information"/>
 			<form id="frmPersonalInfo" action="${actionUrl}" method="post"
 				name="pi">
@@ -1249,15 +1247,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			itrDob="01/04/"+d.getFullYear();
 			$( ".indiandate" ).datepicker( "option", "defaultDate", "01/01/1980" );
 			$( ".indiandate" ).datepicker( "option", "maxDate", itrDob );
-				$('#hrefLogin').click(function() {
-		 			$('#frmPersonalInfo').submit();
-				});
-			    $('#frmPersonalInfoinput').keydown(function(e) {
-				    if (e.keyCode==13) {
-				   		e.preventDefault();
-				        $('#frmPersonalInfo').submit();
-				    }
-				});
 	       var parentbean='<c:out value="${parentBean}" />';
               if(parentbean==''){
               $('#rsstatus_q').val('yes');

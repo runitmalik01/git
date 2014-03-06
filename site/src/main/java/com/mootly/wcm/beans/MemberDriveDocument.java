@@ -33,6 +33,12 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoResource;
 
+import com.mootly.wcm.annotations.BeanClone;
+import com.mootly.wcm.annotations.FormField;
+import com.mootly.wcm.annotations.NodeBinder;
+import com.mootly.wcm.services.FormMapHelper;
+import com.mootly.wcm.utils.NodeBinderHelper;
+
 
 /**
  * [mootlywcm:product] > mootlywcm:document, relateddocs:relatabledocs
@@ -53,11 +59,27 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	private String docPassword;
 	private String docAdditionalNotes;
 	private String memberFileName;
+	
+	private String certificateType;
+	private String certificateIssuerDN;
+	private String certificateSubjectDN;
+	private String certificateGetNotBefore;
+	private String certificateGetNotAfter;
+	
+	
 	private String MEMBER_DOCS ="mootlywcm:memberDocs";
 	private String DESCRIPTION ="mootlywcm:description";
 	private String DOCUMENT_PASSWORD ="mootlywcm:docPassword";
 	private String DOCUMENT_ADDITIONAL_NOTES ="mootlywcm:additionalNotes";
 	private String MEMBER_FILE_NAME ="mootlywcm:memberFileName";
+	
+	private final String PROP_certificateType ="mootlywcm:certificateType";
+	private final String PROP_certificateIssuerDN ="mootlywcm:certificateIssuerDN";
+	private final String PROP_certificateSubjectDN ="mootlywcm:certificateSubjectDN";
+	private final String PROP_certificateGetNotBefore ="mootlywcm:certificateGetNotBefore";
+	private final String PROP_certificateGetNotAfter ="mootlywcm:certificateGetNotAfter";
+	
+	
 	/**
 	 * @return the memberFileResource
 	 */
@@ -82,6 +104,7 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 	 * @return the contentType
 	 */
 	public String getContentType() {
+		//if (contentType == null) contentType = getProperty();
 		return contentType;
 	}
 	/**
@@ -113,6 +136,63 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			docPassword=getProperty(DOCUMENT_PASSWORD);
 		return docPassword;
 	}
+	
+	@FormField(name="certificateType")
+	@NodeBinder(nodePropertyName=PROP_certificateType,propertyName="certificateType")
+	public String getCertificateType() {
+		if (certificateType == null) certificateType = getProperty(PROP_certificateType);
+		return certificateType;
+	}
+
+	@FormField(name="certificateIssuerDN")
+	@NodeBinder(nodePropertyName=PROP_certificateIssuerDN)
+	public String getCertificateIssuerDN() {
+		if (certificateIssuerDN == null) certificateIssuerDN = getProperty(PROP_certificateIssuerDN);
+		return certificateIssuerDN;
+	}
+
+	@FormField(name="certificateSubjectDN")
+	@NodeBinder(nodePropertyName=PROP_certificateSubjectDN)
+	public String getCertificateSubjectDN() {
+		if (certificateSubjectDN == null) certificateSubjectDN = getProperty(PROP_certificateSubjectDN);
+		return certificateSubjectDN;
+	}
+
+	@FormField(name="certificateGetNotBefore")
+	@NodeBinder(nodePropertyName=PROP_certificateGetNotBefore)
+	public String getCertificateGetNotBefore() {
+		if (certificateGetNotBefore == null) certificateGetNotBefore = getProperty(PROP_certificateGetNotBefore);
+		return certificateGetNotBefore;
+	}
+
+	@FormField(name="certificateGetNotAfter")
+	@NodeBinder(nodePropertyName=PROP_certificateGetNotAfter)
+	public String getCertificateGetNotAfter() {
+		if (certificateGetNotAfter == null) certificateGetNotAfter = getProperty(PROP_certificateGetNotAfter);
+		return certificateGetNotAfter;
+	}
+	
+	@BeanClone
+	public void setCertificateType(String certificateType) {
+		this.certificateType = certificateType;
+	}
+	@BeanClone
+	public void setCertificateIssuerDN(String certificateIssuerDN) {
+		this.certificateIssuerDN = certificateIssuerDN;
+	}
+	@BeanClone
+	public void setCertificateSubjectDN(String certificateSubjectDN) {
+		this.certificateSubjectDN = certificateSubjectDN;
+	}
+	@BeanClone
+	public void setCertificateGetNotBefore(String certificateGetNotBefore) {
+		this.certificateGetNotBefore = certificateGetNotBefore;
+	}
+	@BeanClone
+	public void setCertificateGetNotAfter(String certificateGetNotAfter) {
+		this.certificateGetNotAfter = certificateGetNotAfter;
+	}
+
 	/**
 	 * @param docPassword the docPassword to set
 	 */
@@ -173,6 +253,11 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 			node.setProperty(DOCUMENT_PASSWORD, bean.getDocPassword());
 			node.setProperty(DOCUMENT_ADDITIONAL_NOTES, bean.getDocPassword());
 			node.setProperty(MEMBER_FILE_NAME, getMemberFileName());
+			
+			NodeBinderHelper nodeBinderHelper = new NodeBinderHelper();
+			nodeBinderHelper.bindObjectToNode(node, this);
+			
+			
 		} 
 		catch (RepositoryException e) {
 			log.error("Repository Exception",e);
@@ -192,6 +277,8 @@ public class MemberDriveDocument extends BaseDocument implements ContentNodeBind
 		if(formMap.getField("additionalnotes") != null){
 			setDocAdditionalNotes(formMap.getField("additionalnotes").getValue());
 		}
+		FormMapHelper formMapHelper = new FormMapHelper();
+		formMapHelper.fillFromFormMap(this, formMap);
 	}
 	@Override
 	public <T extends HippoBean> void cloneBean(T sourceBean) {

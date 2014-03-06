@@ -12,6 +12,11 @@ Page Title and Navigation Links
 
 <%@ attribute name="title" required="true" type="java.lang.String" %>
 <%@ attribute name="subTitle" required="false" type="java.lang.String" %>
+<%@ attribute name="disableHelp" required="false" type="java.lang.Boolean" %>
+
+<c:if test="${empty disableHelp || not disableHelp}">
+<div id="questionandanswerformdiv" style="display:none"></div>
+</c:if>
 <div class="row show-grid">
 		<div class="col-md-8">
 			<h1><c:out value="${title}"/></h1>
@@ -72,7 +77,7 @@ Page Title and Navigation Links
 			<c:if test="${not empty prevLinkMap_HREF && not empty prevLinkMap_TITLE}">
 				<span class="nav-previous pull-left"><a href="${scriptName}/../${prevLinkMap_HREF}" rel="prev"><span class="meta-nav">&#x2190;</span> ${prevLinkMap_TITLE}</a></span>
 			</c:if>
-			<c:if test="${not empty nxtLinkMap_HREF && not empty nxtLinkMap_TITLE}">
+			<c:if test="${isDITVerified =='true' && not empty nxtLinkMap_HREF && not empty nxtLinkMap_TITLE}">
 				<span class="nav-next pull-right"><a href="${scriptName}/../${nxtLinkMap_HREF}" rel="next">${nxtLinkMap_TITLE}<c:if test="${empty nxtLinkMap_ISLAST}"><span class="meta-nav">&#x2192;</span></c:if></a></span>
 				
 			</c:if>

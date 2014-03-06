@@ -203,9 +203,13 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private DITSubmissionStatus ditSubmissionStatus;
 	private String  ditSubmissionToken;
 	private String digitalSignatureHandleUUID;
+	
+	String pathToDigitalSignature;
 
 
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
+	
+	ITRForm itrForm = null;
 
 	//ITR1.packageName.DIY.cost
 	public String getPrice () {
@@ -215,22 +219,24 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 
 	@XmlElement
 	public ITRForm getSelectedITRForm() {
-		String retValueString = getFlexField("flex_string_ITRForm",null);
-		if (retValueString != null) {
-			try {
-				ITRForm itrForm = ITRForm.valueOf(retValueString);
-				return itrForm;
-			}catch (IllegalArgumentException e) {
-				log.warn("There was an error parsing the value",e);
-				return null;
+		if (itrForm == null) {
+			String retValueString = getFlexField("flex_string_ITRForm",null);
+			if (retValueString != null && !"".equals(retValueString.trim())) {
+				try {
+					itrForm = ITRForm.valueOf(retValueString);
+					return itrForm;
+				}catch (IllegalArgumentException e) {
+					log.warn("There was an error parsing the value",e);
+					return null;
+				}
 			}
 		}
-		return null;
+		return itrForm;
 	}
 
 	public ITRServiceDelivery getSelectedServiceDeliveryOption() {
 		String retValueString = getFlexField("flex_string_ITRServiceDelivery",null);
-		if (retValueString != null) {
+		if (retValueString != null && !"".equals(retValueString.trim())) {
 			try {
 				ITRServiceDelivery itrServiceDelivery = ITRServiceDelivery.valueOf(retValueString);
 				return itrServiceDelivery;
@@ -600,7 +606,12 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if (ditSubmissionToken == null) ditSubmissionToken =  getProperty("mootlywcm:ditSubmissionToken");
 		return ditSubmissionToken;
 	}
-
+	
+	public String getPathToDigitalSignature() {
+		if (pathToDigitalSignature == null) pathToDigitalSignature =  getProperty("mootlywcm:pathToDigitalSignature");
+		return pathToDigitalSignature;
+	}
+	
 	public final void  setReturnSection(String ReturnSection){
 		this.ReturnSection = ReturnSection;
 	}
@@ -942,6 +953,11 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public final void setDitSubmissionToken(String ditSubmissionToken) {
 		this.ditSubmissionToken = ditSubmissionToken;
 	}
+	
+	public final void setPathToDigitalSignature(String pathToDigitalSignature) {
+		this.pathToDigitalSignature = pathToDigitalSignature;
+	}
+	
 
 
 	@Override
@@ -1053,6 +1069,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				node.setProperty("mootlywcm:ditSubmissionToken", mpi.getDitSubmissionToken());
 			}
 			javax.jcr.Node digitalSignatureNode = null;
+			
 			if(node.hasNode("mootlywcm:pathToDigitalSignature")){
 				digitalSignatureNode = node.getNode("mootlywcm:pathToDigitalSignature");
 			}else{
@@ -1060,6 +1077,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 				if (digitalSignatureNode!= null) {
 					digitalSignatureNode.setProperty("hippo:docbase", "cafebabe-cafe-babe-cafe-babecafebabe");
 				}				
+			}
+			
+			if (mpi.getPathToDigitalSignature() != null) {
+				node.setProperty("mootlywcm:pathToDigitalSignature", mpi.getPathToDigitalSignature());
 			}
 			/*if(digitalSignatureNode != null){
 				digitalSignatureNode.setProperty(Constants.PROP_HIPPO_DOCBASE, getDigitalSignatureHandleUUID());
@@ -1076,10 +1097,7 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public void fill(FormMap formMap) {
 		// TODO Auto-generated method stub
 		super.fill(formMap);
-		if (log.isInfoEnabled()) {
-			log.info("Into the fill method");
-		}
-		log.info("here areeeeeee"+getFilingStatus());
+		//log.info("here areeeeeee"+getFilingStatus());
 		if (formMap == null) return;
 		if ( formMap.getField("tax_status") != null) setTaxStatus(formMap.getField("tax_status").getValue());
 		if ( formMap.getField("return_section") != null) setReturnFileSection(Long.parseLong(formMap.getField("return_section").getValue()));
@@ -1306,31 +1324,31 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		//In case of HUF we are not asking question to member so if "rsstatus_q" has a value that have residential status then we will set Residential Status
 		// new case for huf, abhi 14/09/2013
 		if(getFilingStatus().equals("H")){
-			log.info("for huf"+modchoice);
+			//log.info("for huf"+modchoice);
 			ResourceBundle rbNew = ResourceBundle.getBundle(rbfilenameNew);
 			for (String bKey: rbNew.keySet()) {
 
 				if(bKey.matches(modchoice.trim().substring(0,modchoice.length()-1))){
-					if(log.isInfoEnabled()){
-						log.info("this is residential status new for huf"+rbNew.getString(bKey).replaceFirst("ans_","").trim());
-					}
+					//if(log.isDebugEnabled()){
+					//	log.debug("this is residential status new for huf"+rbNew.getString(bKey).replaceFirst("ans_","").trim());
+					//}
 					setResidentCategory(ResidentialFind(rbNew.getString(bKey)));
-					log.info("value of res is another"+ResidentialFind(rbNew.getString(bKey)));
+					//log.info("value of res is another"+ResidentialFind(rbNew.getString(bKey)));
 					break;
 				}
 			}
 		}
 		else{
-			log.info("for huf"+modchoice);
+			//log.info("for huf"+modchoice);
 
 			ResourceBundle rb = ResourceBundle.getBundle(rbfilename);
 			for (String aKey: rb.keySet() ) {
 				if(aKey.matches(modchoice.trim())){
-					if(log.isInfoEnabled()){
-						log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
-					}
+					//if(log.isInfoEnabled()){
+					///	log.info("this is residential status"+rb.getString(aKey).replaceFirst("ans_","").trim());
+					//}
 					setResidentCategory(ResidentialFind(rb.getString(aKey)));
-					log.info("value of res is"+ResidentialFind(rb.getString(aKey)));
+					//log.info("value of res is"+ResidentialFind(rb.getString(aKey)));
 					break;
 				}
 			}

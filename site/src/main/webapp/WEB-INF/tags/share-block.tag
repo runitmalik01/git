@@ -15,26 +15,18 @@
     limitations under the License.
 
 --%>
-
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="hst" uri="http://www.hippoecm.org/jsp/hst/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="hst" uri="http://www.hippoecm.org/jsp/hst/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<ul id="page-actions">
-    <li class="function email"><a href="javascript:sendMail();" title="<fmt:message key="shareblock.email" />"></a></li>
-    <li class="function print"><a href="javascript:window:print();" title="<fmt:message key="shareblock.print" />"></a></li>
-    <li class="function bookmark"><a href="javascript:bookmark();" title="<fmt:message key="shareblock.bookmark" />"></a></li>
-    <li class="function share">
-      <a class="a2a_dd" href="http://www.addtoany.com/share_save"></a>
-       <hst:headContribution keyHint="addtoanyLocale" category="jsExternal">
-         <script type="text/javascript">
-           var a2a_config = a2a_config || {};
-           a2a_config.locale = "${pageContext.request.locale.language}";
-         </script>
-      </hst:headContribution>
-      <hst:headContribution keyHint="addtoany" category="jsExternal">
-        <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
-      </hst:headContribution>
-    </li>
-</ul>
+<%@ taglib prefix="w4india" tagdir="/WEB-INF/tags/w4india"%>
+
+<%@ tag trimDirectiveWhitespaces="true"%>
+
+<!-- AddToAny BEGIN -->
+<div class="addToAny">
+<a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_171_16.png" width="171" height="16" border="0" alt="Share"/></a>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
+</div>

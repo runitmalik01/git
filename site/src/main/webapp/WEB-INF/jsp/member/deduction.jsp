@@ -16,8 +16,7 @@
 	<w4india:itrmenu />
 	<div class="row show-grid">
 		<w4india:itrsidebar></w4india:itrsidebar>
-		<div class="col-md-10">
-			<div id="questionandanswerformdiv" style="display:none"></div>
+		<div class="${sideBarMainClass}">
 			<w4india:titleandnav title="Chapter VI A Deductions"/>
 			<%--
 			<div class="alert alert-info" id="chkentry">As some of the deductions are based on your income. Please ensure to fill all your total income before filling up deductions for an accurate summary of your return.</div>

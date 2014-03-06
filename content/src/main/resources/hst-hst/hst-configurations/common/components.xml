@@ -2344,4 +2344,15 @@
 	    <sv:value>questionandanswers-detail-content</sv:value>
 	  </sv:property>
 	</sv:node>
+	<sv:node sv:name="promotion" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>bce02c74-1809-43e3-91eb-5eab64c320f4</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.promo.Promotion</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>
