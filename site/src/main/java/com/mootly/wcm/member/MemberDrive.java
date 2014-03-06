@@ -28,7 +28,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormField;
-import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
@@ -51,7 +50,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.FormFields;
-import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberDriveDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
@@ -104,6 +102,7 @@ public class MemberDrive extends ITReturnComponent {
 		if(fileuuid != null){
 			if(DeleteMemberDriveFile(request, response, fileuuid)){
 				request.setAttribute("delete", "Success");
+				//return;
 			}	
 		}
 		if(getMemberDriveFileResource(request, response)!=null){
@@ -138,10 +137,12 @@ public class MemberDrive extends ITReturnComponent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/"+ getITRInitData(request).getUserNameNormalized()+"/drive";
-		List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, baseRelPathToMemberFiles, null, null);
+		
+		//String baseRelPathToMemberFiles = MEMBER_DRIVE_FOLDER_NAME+"/"+ getITRInitData(request).getUserNameNormalized()+"/drive";
+		List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, getITRInitData(request).getRelBasePathToMemberDriveDocuments(), null, null);
 		request.setAttribute("listOfAllMemberFiles", listOfAllMemberFiles);
-		HippoBean memberDriveHippoBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(baseRelPathToMemberFiles);
+		request.setAttribute("memberFiles", listOfAllMemberFiles);
+		HippoBean memberDriveHippoBean = getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(getITRInitData(request).getRelBasePathToMemberDriveDocuments());
 
 		if(memberDriveHippoBean instanceof HippoFolderBean){
 			HippoFolderBean memberDriveHippoFolderBean = (HippoFolderBean) memberDriveHippoBean;
@@ -287,8 +288,9 @@ public class MemberDrive extends ITReturnComponent {
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			wpm.setWorkflowCallbackHandler(new FullReviewedWorkflowCallbackHandler());
 			String saveFilePath = null;
-			
+			String documentName = fileName.replace(' ', '-');
 			if (subDriveName != null && subDriveName.equals("digitalsignature")) {
+				documentName = "digitalsignature";
 				saveFilePath = getITRInitData(request).getAbsoluteBasePathToReturnDocuments();//+ "/digitalsignature";
 				MemberDriveDocument existingDriveDocument = (MemberDriveDocument) wpm.getObject(saveFilePath + "/digitalsignature");
 				if (existingDriveDocument != null) {
@@ -299,10 +301,10 @@ public class MemberDrive extends ITReturnComponent {
 				}
 			}
 			else {
-				saveFilePath = getITRInitData(request).getMemberFolderPath(request) + "/drive";
+				saveFilePath = getITRInitData(request).getAbsoluteBasePathToMemberDriveDocuments();
 			}
 			boolean isFileSave = false;
-			String memberDriveDocPath = wpm.createAndReturn(saveFilePath, MemberDriveDocument.NAMESPACE, "digitalsignature" , true);
+			String memberDriveDocPath = wpm.createAndReturn(saveFilePath, MemberDriveDocument.NAMESPACE, documentName , true);
 			MemberDriveDocument memberDriveDoc = (MemberDriveDocument) wpm.getObject(memberDriveDocPath);
 			if(memberDriveDoc != null){
 				memberDriveDoc.setMemberFile(new ByteArrayInputStream(data));
@@ -325,12 +327,13 @@ public class MemberDrive extends ITReturnComponent {
 			log.error("Error to get the PersistableSession From JCR Repository!!",e);
 		} catch (ObjectBeanPersistenceException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			log.error("Error to get the PersistableSession From JCR Repository!!",e);
 		} catch (ObjectBeanManagerException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			log.error("Error to get the PersistableSession From JCR Repository!!",e);
 		}
-
 	}
 	/**
 	 * This Method is used to Create the MemberDrive Document and Return that Document Object
@@ -446,8 +449,14 @@ public class MemberDrive extends ITReturnComponent {
 		List<HippoDocumentBean> listOfAllMemberFiles = getITRInitData(request).loadAllBeansUnderTheFolder(request, baseRelPathToMemberFiles, null, null);
 		try {
 			persistableSession=getPersistableSession(request);
-			persistableSession.save();
+			//persistableSession.save();
 			wpm=getWorkflowPersistenceManager(persistableSession);
+			MemberDriveDocument memberDriveDocument = (MemberDriveDocument) wpm.getObjectByUuid(fileuuid);
+			if (memberDriveDocument != null) {
+				wpm.remove(memberDriveDocument);
+				wpm.save();
+			}
+			/*
 			//wpm.setWorkflowCallbackHandler(new FullDeleteWorkflowCallbackHandler());
 			for(HippoDocumentBean o:listOfAllMemberFiles){
 				if(o.getCanonicalUUID().equals(fileuuid)){
@@ -457,6 +466,7 @@ public class MemberDrive extends ITReturnComponent {
 					break;
 				}
 			}
+			*/
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			log.error("Error to get the PersistableSession From JCR Repository!!"+e);
@@ -465,6 +475,9 @@ public class MemberDrive extends ITReturnComponent {
 			// TODO Auto-generated catch block
 			log.error("Error while to Delete the Object from Repo path"+e);
 			return false;
+		} catch (ObjectBeanManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally{
 			if(persistableSession!=null){
 				persistableSession.logout();

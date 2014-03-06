@@ -160,10 +160,11 @@ pageContext.setAttribute("hostname", builder.toString());
 													<fmt:formatDate value="${certificateGetNotAfter}" />
 												</td>
 												<td>
-													<hst:link var="assetLink" hippobean="${memberdrivedocument}"/>
+													<hst:link var="assetLink" hippobean="${memberdrivedocument.memberFileResourceWithFileName}"/>
 													<c:set value="${hostname}${assetLink}" var="doc_url" scope="page"/>
-				                                      <a href="${scriptName}?delete=${memberdrivedocument.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
-				                                      <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>
+													<a href="${assetLink}" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-download-alt glyphicon glyphicon-white"></i><span>Download</span></a>
+				                                    <a href="${scriptName}?delete=${memberdrivedocument.canonicalUUID}" id="deletefile" class="btn btn-default btn-danger" data-confirm="">
+				                                    <i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i><span>Delete</span></a>
 												</td>
 												<td></td>
 		                           	  		</tr>	

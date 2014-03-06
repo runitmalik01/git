@@ -134,6 +134,11 @@ public final class ITReturnComponentHelper {
 		String retValue = "members/" + memberFolderPath + "/pans/" + PAN + "/" + financialYear + "/" + theFolderContainingITRDocuments;
 		return retValue;
 	}
+	
+	public String getBaseRelPathToCategory(String category,String memberFolderPath,String PAN,FinancialYear financialYear,String theFolderContainingITRDocuments) {
+		String retValue = "members/" + memberFolderPath + "/"+ category + "/" + PAN + "/" + financialYear + "/" + theFolderContainingITRDocuments;
+		return retValue;
+	}
 
 	public boolean isReSeller(HstRequest request) {
 		final Mount mount = request.getRequestContext().getResolvedMount().getMount();
