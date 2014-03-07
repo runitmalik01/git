@@ -243,8 +243,8 @@
 						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="saleconsideration"
-									id="saleconsideration"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.saleConsideration}"/></c:if>"
+									id="saleconsideration" maxlength="14"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.saleConsideration}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 							</div>
 						</div>
@@ -619,14 +619,15 @@
 				<c:if test="${not empty parentBean}">
 					<c:forEach items="${parentBean.capitalAssetDetailList}"
 						var="capitalassetdetail">
-						<tr>
-							<td align="right"><c:out
+						<tr><td align="right"><c:out
 									value="${capitalassetdetail.assetType}" /></td>
 							<td align="right"><c:out
 									value="${capitalassetdetail.nameAsset}" /></td>
-							<td align="right"><c:out
-									value="${capitalassetdetail.costAcquisition}" /></td>
-							<td align="right"><c:out
+							<td align="right"><fmt:formatNumber type="number"
+									maxIntegerDigits="14"
+									value="${capitalassetdetail. costAcquisition}" /></td>
+							<td align="right"><fmt:formatNumber type="number"
+									maxIntegerDigits="14"
 									value="${capitalassetdetail.saleConsideration}" /></td>
 							<td align="right"><fmt:formatNumber type="number"
 									maxIntegerDigits="14"
