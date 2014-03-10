@@ -133,6 +133,7 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 	String cmsApplicationUrl = null;
 	ChannelInfoWrapper channelInfoWrapper = null;
 	WebsiteInfo webSiteInfo = null;
+	boolean is26ASImportEnabled;
 
 	final ITReturnComponentHelper itReturnComponentHelper;
 	final HippoBean siteContentBaseBean;
@@ -245,6 +246,10 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 		this.memberFolderPath = memberFolderPath;
 	}
 
+	protected boolean getIs26ASImportEnabled(){
+		return is26ASImportEnabled;
+	}
+	
 	protected void setRequestAttributes(HstRequest request) {
 		if (getParentBean() != null) {
 			request.setAttribute("parentBean", getParentBean());
@@ -488,7 +493,7 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 		//how to find the scriptName and the depth
 		//one assumption that the scriptName is always .html file and nothing else
 		pageOutputFormat = itReturnComponentHelper.getPageOutputFormat(request);
-
+		is26ASImportEnabled = channelInfoWrapper.getIs26ASImportEnabled();
 
 		String strPageAction = request.getRequestContext().getResolvedSiteMapItem().getParameter("action");
 		//this is tricky lets allow components to override the configuration by passing it themselves

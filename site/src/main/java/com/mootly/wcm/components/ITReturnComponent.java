@@ -727,7 +727,11 @@ public class ITReturnComponent extends BaseComponent {
 				response.setRenderPath("jsp/common/json_output.jsp");
 			}
 		}
+		if (getITRInitData(request).getIs26ASImportEnabled()) {
+			request.setAttribute("is26ASImportEnabled", getITRInitData(request).getIs26ASImportEnabled());
+		}
 		//Check of 26AS security Question
+		/*
 		if (getITRInitData(request).pageAction != null && getITRInitData(request).pageAction == PAGE_ACTION.SYNC_TDS_FROM_DIT){
 			TwentySixASSecQuesDocument twentySixASSecQuesDocument= (TwentySixASSecQuesDocument) request.getAttribute("twentysixassecquesdocument");
 			if(twentySixASSecQuesDocument == null || (twentySixASSecQuesDocument != null && twentySixASSecQuesDocument.getSecurityCheck()==false)){
@@ -740,6 +744,7 @@ public class ITReturnComponent extends BaseComponent {
 				}
 			}
 		}
+		*/
 	}
 
 	@Override

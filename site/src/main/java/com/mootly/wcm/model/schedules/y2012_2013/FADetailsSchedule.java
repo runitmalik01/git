@@ -57,25 +57,20 @@ public class FADetailsSchedule {
 		IndianCurrencyHelper indianCurrencyHelper = new IndianCurrencyHelper();
 		ScheduleFA scheduleFA = new ScheduleFA();
 		boolean hasValidFA = false;
-		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
-		if(memberPersonalInformation != null){
-			if(StringUtils.isNotBlank(memberPersonalInformation.getResidentCategory()) && memberPersonalInformation.getResidentCategory().equals("RES")){
-				if(foreignBankAccountDocument!=null){
-					List<ForeignBankAccountDetail> foreignBankAccountDetails =  foreignBankAccountDocument.getForeignBankAccountDetailList();
-					if ( foreignBankAccountDetails != null && foreignBankAccountDetails.size() > 0 ){
-						for(ForeignBankAccountDetail foreignBankAccountDetail:foreignBankAccountDetails){
-							DetailsForiegnBank detailsForiegnBank = new DetailsForiegnBank();
-							detailsForiegnBank.setCountryCode(foreignBankAccountDetail.getCountry_Code());
-							detailsForiegnBank.setCountryName(foreignBankAccountDetail.getCountry_Name());
-							detailsForiegnBank.setBankname(foreignBankAccountDetail.getName_Bank());
-							detailsForiegnBank.setAddressOfBank(foreignBankAccountDetail.getAddress_Bank());
-							detailsForiegnBank.setNameAsInAccount(foreignBankAccountDetail.getName_Account());
-							detailsForiegnBank.setPeakBalanceDuringYear(indianCurrencyHelper.bigIntegerRound(foreignBankAccountDetail.getPeak_Balance()));
-							detailsForiegnBank.setForeignAccountNumber(foreignBankAccountDetail.getAccount_No());
-							scheduleFA.getDetailsForiegnBank().add(detailsForiegnBank);
-							if(!hasValidFA) hasValidFA = true;
-						}
-					}
+		if(foreignBankAccountDocument!=null){
+			List<ForeignBankAccountDetail> foreignBankAccountDetails =  foreignBankAccountDocument.getForeignBankAccountDetailList();
+			if ( foreignBankAccountDetails != null && foreignBankAccountDetails.size() > 0 ){
+				for(ForeignBankAccountDetail foreignBankAccountDetail:foreignBankAccountDetails){
+					DetailsForiegnBank detailsForiegnBank = new DetailsForiegnBank();
+					detailsForiegnBank.setCountryCode(foreignBankAccountDetail.getCountry_Code());
+					detailsForiegnBank.setCountryName(foreignBankAccountDetail.getCountry_Name());
+					detailsForiegnBank.setBankname(foreignBankAccountDetail.getName_Bank());
+					detailsForiegnBank.setAddressOfBank(foreignBankAccountDetail.getAddress_Bank());
+					detailsForiegnBank.setNameAsInAccount(foreignBankAccountDetail.getName_Account());
+					detailsForiegnBank.setPeakBalanceDuringYear(indianCurrencyHelper.bigIntegerRound(foreignBankAccountDetail.getPeak_Balance()));
+					detailsForiegnBank.setForeignAccountNumber(foreignBankAccountDetail.getAccount_No());
+					scheduleFA.getDetailsForiegnBank().add(detailsForiegnBank);
+					if(!hasValidFA) hasValidFA = true;
 				}
 			}
 		}
@@ -156,6 +151,12 @@ public class FADetailsSchedule {
 					scheduleFA.getDetailsOfTrustOutIndiaTrustee().add(detailsOfTrustOutIndiaTrustee);
 					if(!hasValidFA) hasValidFA = true;
 				}
+			}
+		}
+		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBeans.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());
+		if(memberPersonalInformation != null){
+			if(StringUtils.isNotBlank(memberPersonalInformation.getResidentCategory()) && !memberPersonalInformation.getResidentCategory().equals("RES")){
+				hasValidFA = false;
 			}
 		}
 		if(hasValidFA){

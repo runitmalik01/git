@@ -125,6 +125,11 @@
 			<a href="${redirectURLToSamePage}/tcsnew"
 				class="btn btn-default btn-info"><small><i
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
+					
+			<c:if test = "${not empty is26ASImportEnabled && is26ASImportEnabled == true}">
+					<a href="servicerequest-itr-sync-tds-from-dit.html" class="btn btn-default btn-success"><small><i
+							class="glyphicon glyphicon-import"></i>Import 26AS</small></a>
+					</c:if>			
 		</c:otherwise>
 	</c:choose>
 </div>
