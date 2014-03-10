@@ -1,19 +1,92 @@
 <%@page import="com.mootly.wcm.model.ITRTab"%>
 <%@include file="../includes/tags.jspf"%>
 
-<div class="page">
-			<table class="table table-hover table-bordered table-striped">
-				<tr class="warning">
+<div class="container">
+<br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                     alt="User Pic">
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4><c:out  value="${theForm.verification.declaration.assesseeVerName}"></c:out></h4>
+                        <small><i class="glyphicon glyphicon-map-marker"></i><c:out  value="${theForm.verification.place}"></c:out></small>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope"></i><c:out  value="${theForm.personalInfo.address.emailAddress}"></c:out>
+                            <br />
+                            <i class="glyphicon glyphicon-gift"></i><c:out  value="${theForm.personalInfo.DOB}"></c:out></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="hero-widget well well-sm">
+                <div class="icon">
+                     <small><i class="glyphicon glyphicon-rupee">&#2352;</i></small>
+                </div>
+                <div class="text">
+                    <span class="decimal">
+                       <c:choose>
+                          <c:when test="${theForm.taxPaid.balTaxPayable gt 0}">
+                             <fmt:formatNumber value="${theForm.taxPaid.balTaxPayable}" type="CURRENCY" currencySymbol="${currencySymbol}" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+                          </c:when>
+                          <c:otherwise>
+                             <fmt:formatNumber value="0" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+                          </c:otherwise>
+					  </c:choose>
+				  </span>
+                </div>
+                <div class="options">
+                    <h4><span class="label label-primary">Tax Payable</span></h4>
+                </div>
+            </div>
+		</div>
+       <div class="col-sm-3">
+            <div class="hero-widget well well-sm">
+                <div class="icon">
+                    <small><i class="glyphicon glyphicon-rupee">&#2352;</i></small> 
+                </div>
+                <div class="text">
+                    <span class="decimal">
+                       <c:choose>
+                          <c:when test="${theForm.refund.refundDue gt 0}">
+                             <fmt:formatNumber value="${theForm.refund.refundDue}" type="CURRENCY" currencySymbol="${currencySymbol}" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+                          </c:when>
+                          <c:otherwise>
+                             <fmt:formatNumber value="0" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1"></fmt:formatNumber>
+                          </c:otherwise>
+					  </c:choose>
+				  </span>
+                </div>
+                <div class="options">
+                 <h4><span class="label label-primary">Tax Refundable</span></h4>
+                </div>
+            </div>
+		</div>
+    </div>
+</div>
+
+<div class="container">       
+     <div class="panel panel-primary">
+         <div class="panel-heading">
+              <h3 class="panel-title"><i class="glyphicon glyphicon-tags"></i> Your Income Tax Return Summary</h3>
+         </div>
+			<table class="table table-condensed">
+		     <tr class="success">
 					<td style="font-weight:bold;color: black;"><fmt:message key="income.head"/></td>
 					<td style="font-weight:bold;color: black;"><fmt:message key="total.amount"/></td>
-				</tr>
+			  </tr>
 				<!--  lets create a bookmark for each section -->
 					<tr>
-					<td colspan="1">
-					   <a href="formsixteenschedule.html" style="color: blue; margin-left: 20px;">
+					<td class ="summary-text-color">
+					   <a href="formsixteenschedule.html" class ="summary-href-color">
 					     <fmt:message key="itr2.salary"/>
 					  </a>
-					  <a href="salaryincome.html" style="color: blue">
+					  <a href="salaryincome.html" class ="summary-href-color">
 					    <fmt:message key="itr2.pension"/>
 					  </a>
 				  </td>
@@ -22,7 +95,7 @@
 							<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.ITR4SIncomeDeductions.incomeFromSal eq '0'}">
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:when>
 									<c:otherwise>
 								        	<w4india:inr value="${theForm.ITR4SIncomeDeductions.incomeFromSal}"/>
@@ -56,8 +129,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="singlehouseincome.html"  style="color: blue">
+					<td class ="summary-text-color">
+					<a href="singlehouseincome.html"  class ="summary-href-color">
 						<fmt:message key="income.house.itr1" />
 					</a>
 					</td>
@@ -65,15 +138,13 @@
 						<div class="btn btn-group" class="decimal">
 							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
-
 								<c:choose>
 									<c:when
 										test="${theForm.ITR4SIncomeDeductions.totalIncomeOfHP eq '0'}">
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:when>
 									<c:otherwise>
 									<w4india:inr value="${theForm.ITR4SIncomeDeductions.totalIncomeOfHP}"/>
-
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -87,8 +158,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="othersources.html"  style="color: blue">
+					<td class ="summary-text-color">
+					<a href="othersources.html" class ="summary-href-color">
 					<fmt:message key="income.other.sources" />
 					</a>
 					</td>
@@ -99,7 +170,7 @@
 								<c:choose>
 									<c:when
 										test="${empty theForm.ITR4SIncomeDeductions.incomeOthSrc  || theForm.ITR4SIncomeDeductions.incomeOthSrc eq '0'}">
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:when>
 									<c:otherwise>
 										<w4india:inr value="${theForm.ITR4SIncomeDeductions.incomeOthSrc}"/>
@@ -115,8 +186,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="businessprofess.html"  style="color: blue">
+					<td class ="summary-text-color">
+					<a href="businessprofess.html" class ="summary-href-color">
 						<fmt:message key="itr4s.bussiness.income" />
 					</a>
 					</td>
@@ -124,15 +195,13 @@
 						<div class="btn btn-group" class="decimal">
 							<button class="btn btn-default btn-sm dropdown-toggle"
 								data-toggle="dropdown">
-
 								<c:choose>
 									<c:when
 										test="${theForm.ITR4SIncomeDeductions.incomeFromBusinessProf eq '0'}">
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:when>
 									<c:otherwise>
 									<w4india:inr value="${theForm.ITR4SIncomeDeductions.incomeFromBusinessProf}"/>
-
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -146,18 +215,20 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1" style="font-weight:bold;">
+					<td class ="summary-text-color">
 					<fmt:message key="gross.total.income"/>
 					</td>
-					<td  style="text-align:left; color: black" >
-						<span class="decimal">
-									<w4india:inr value="${theForm.ITR4SIncomeDeductions.grossTotIncome}"/>
-						</span>
+					<td>
+				       <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4SIncomeDeductions.grossTotIncome}"/>
+					      </button>
+					   </div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a href="chapterVIdeductions.html" style="font-weight:bold;color: black">
+					<td class ="summary-text-color">
+					<a href="chapterVIdeductions.html" class ="summary-href-color">
 					<fmt:message key="deduction.under.6a"/></a>
 					</td>
 					<td>
@@ -166,14 +237,14 @@
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.ITR4SIncomeDeductions.deductUndChapVIA.totalChapVIADeductions eq'0'}">
-								<c:out value="Fill Now" />
+								<fmt:message key="summary.button.label" />
 								</c:when>
 									<c:when
 										test="${not empty theForm.ITR4SIncomeDeductions.deductUndChapVIA.totalChapVIADeductions}">
 										<w4india:inr value="${theForm.ITR4SIncomeDeductions.deductUndChapVIA.totalChapVIADeductions}"/>
 									</c:when>
 									<c:otherwise>
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -186,43 +257,53 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1" style="font-weight:bold; color: black"><fmt:message key="taxable.income"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="${theForm.ITR4SIncomeDeductions.totalIncome}"/>
-						</span>
+					<td class ="summary-text-color"><fmt:message key="taxable.income"/></td>
+					<td>
+					  <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4SIncomeDeductions.totalIncome}"/>
+					      </button>
+					   </div>
 					</td>
 				</tr>
-	<tr>
-				<td colspan="1" style="font-weight:bold; color: black";><fmt:message key="income.tax"/></td>
-					<td  style="text-align:left;">
-						<span class="decimal">
-									<w4india:inr value="${theForm.ITR4STaxComputation.totalTaxPayable }"/>
-						</span>
-					</td>
-				</tr>
-				<tr>
-				<td colspan="1" style="font-weight:bold;"><fmt:message key="education.cess"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="${theForm.ITR4STaxComputation.educationCess }"/>
-						</span>
+	            <tr>
+				<td class ="summary-text-color"><fmt:message key="income.tax"/></td>
+					<td>
+					   <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4STaxComputation.totalTaxPayable}"/>
+					      </button>
+					   </div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1" style="font-weight:bold;"><fmt:message key="tax.education.surcharge"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="${theForm.ITR4STaxComputation.grossTaxLiability }"/>
-						</span>
+				<td class ="summary-text-color"><fmt:message key="education.cess"/></td>
+					<td>
+					   <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4STaxComputation.educationCess}"/>
+					      </button>
+					   </div>
+					</td>
+				</tr>
+				<tr>
+					<td class ="summary-text-color"><fmt:message key="tax.education.surcharge"/></td>
+					<td>
+					   <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4STaxComputation.grossTaxLiability}"/>
+					      </button>
+					   </div>
 					</td>
 				</tr>
                 <tr>
-					<td colspan="1" style="font-weight:bold;"><fmt:message key="relief.section.89"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-								<w4india:inr value="${theForm.ITR4STaxComputation.section89}"/>
-						</span>
+					<td class ="summary-text-color"><fmt:message key="relief.section.89"/></td>
+					<td>
+					   <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4STaxComputation.section89}"/>
+					      </button>
+					   </div>
 					</td>
 				</tr>
 				<c:set var="pageToInclude" value="../itreturns/${financialYear.javaPackageName}/itreturnxml-rebates.jsp"/>
@@ -255,16 +336,17 @@
 				</tr>
 				 --%>
 				<tr>
-					<td colspan="1" style="font-weight:bold;">
-
+					<td class ="summary-text-color">
 					<fmt:message key="interest.under.section.234abc"/>
 					</td>
-					<td  style="text-align:left">
+					<td>
 					<c:choose>
 					<c:when test="${theForm.ITR4STaxComputation.totalIntrstPay eq '0'}">
-					<span class="decimal">
-									<w4india:inr value="${theForm.ITR4STaxComputation.totalIntrstPay}"/>
-						</span>
+					   <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4STaxComputation.totalIntrstPay}"/>
+					      </button>
+					   </div>
 					</c:when>
 					<c:otherwise>
 					<div class="btn btn-group" class="decimal">
@@ -284,24 +366,28 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1" style="font-weight:bold;"><fmt:message key="total.tax.interest.payable"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="${theForm.ITR4STaxComputation.totTaxPlusIntrstPay}"/>
-						</span>
+					<td class ="summary-text-color"><fmt:message key="total.tax.interest.payable"/></td>
+					<td>
+					   <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.ITR4STaxComputation.totTaxPlusIntrstPay}"/>
+					      </button>
+					   </div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1" style="font-weight:bold;"><fmt:message key="less.prepaid.tax"/></td>
-					<td  style="text-align:left">
-						<span class="decimal">
-									<w4india:inr value="${theForm.taxPaid.taxesPaid.totalTaxesPaid}"/>
-						</span>
+					<td class ="summary-text-color"><fmt:message key="less.prepaid.tax"/></td>
+					<td>
+					   <div class="btn btn-group decimal">
+					      <button class="btn btn-default btn-sm">
+							  <w4india:inr value="${theForm.taxPaid.taxesPaid.totalTaxesPaid}"/>
+					      </button>
+					   </div>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">
-					<a href="advancetax.html" style="color: blue">&nbsp;&nbsp;&nbsp;&nbsp;
+					<td class ="summary-text-color">
+					<a href="advancetax.html" class ="summary-href-color">
 					<fmt:message key="advance.tax.itr1" />
 					</a>
 					</td>
@@ -311,14 +397,14 @@
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.taxPaid.taxesPaid.advanceTax eq'0'}">
-								<c:out value="Fill Now" />
+								<fmt:message key="summary.button.label" />
 								</c:when>
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.advanceTax}">
 										<w4india:inr value="${ theForm.taxPaid.taxesPaid.advanceTax}"/>
 									</c:when>
 									<c:otherwise>
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -331,8 +417,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="selfassesmenttax.html" style="color: blue">
+					<td class ="summary-text-color">
+					<a href="selfassesmenttax.html" class ="summary-href-color">
 					<fmt:message key="advance.selfassesmenttax.itr1" />
 					</a>
 					</td>
@@ -342,7 +428,7 @@
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.taxPaid.taxesPaid.selfAssessmentTax eq'0'}">
-								<c:out value="Fill Now" />
+								<fmt:message key="summary.button.label" />
 								</c:when>
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.selfAssessmentTax}">
@@ -350,7 +436,7 @@
 
 									</c:when>
 									<c:otherwise>
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -363,17 +449,17 @@
 					</td>
 				</tr>
 			   <tr>
-					<td colspan="1">
-					<a href="formsixteenschedule.html" style="color: blue; margin-left: 20px;"><fmt:message key="itr2.tds.salary"/></a>
-					<a href="salaryincome.html" style="color: blue"><fmt:message key="itr2.tds.pension"/></a>
-					<a href="tdsfromothers.html" style="color: blue"><fmt:message key="itr2.tds.others"/></a>
+					<td class ="summary-text-color">
+					<a href="formsixteenschedule.html" class ="summary-href-color"><fmt:message key="itr2.tds.salary"/></a>
+					<a href="salaryincome.html" class ="summary-href-color"><fmt:message key="itr2.tds.pension"/></a>
+					<a href="tdsfromothers.html" class ="summary-href-color"><fmt:message key="itr2.tds.others"/></a>
 					</td>
-					<td  style="text-align:left">
+					<td>
 					   <div class="btn btn-group" class="decimal">
 							<button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 								<c:choose>
 									<c:when test="${theForm.taxPaid.taxesPaid.TDS eq '0'}">
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:when>
 									<c:otherwise>
 								        	<w4india:inr value="${theForm.taxPaid.taxesPaid.TDS}"/>
@@ -390,8 +476,8 @@
                    </td>
 				</tr>
 				<tr>
-					<td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="tcsdetail.html" style="color: blue">
+					<td class ="summary-text-color">
+					<a href="tcsdetail.html" class ="summary-href-color">
 					<fmt:message key="itr4s.tcs" />
 					</a>
 					</td>
@@ -401,7 +487,7 @@
 								data-toggle="dropdown">
 								<c:choose>
 								<c:when test="${theForm.taxPaid.taxesPaid.TCS eq'0'}">
-								<c:out value="Fill Now" />
+								<fmt:message key="summary.button.label" />
 								</c:when>
 									<c:when
 										test="${not empty theForm.taxPaid.taxesPaid.TCS}">
@@ -409,7 +495,7 @@
 
 									</c:when>
 									<c:otherwise>
-										<c:out value="Fill Now" />
+										<fmt:message key="summary.button.label" />
 									</c:otherwise>
 								</c:choose>
 								<span class="caret"></span>
@@ -424,8 +510,8 @@
 				<c:choose>
 				<c:when test="${theForm.taxPaid.balTaxPayable gt 0}">
 				<tr class="success">
-					<td colspan="1"><b><fmt:message key="itr2.tax.payable"/></b>
-					<td  style="text-align:left">
+					<td><b><fmt:message key="itr2.tax.payable"/></b>
+					<td>
 						<span class="decimal">
 								<w4india:inr value="${theForm.taxPaid.balTaxPayable}"/>
 								<c:if test="${theForm.taxPaid.balTaxPayable > 0}">
@@ -437,8 +523,8 @@
 				</c:when>
 				<c:when test="${theForm.refund.refundDue gt 0}">
 				<tr class="success">
-					<td colspan="1"><b><fmt:message key="itr2.tax.refundable"/></b>
-					<td  style="text-align:left">
+					<td><b><fmt:message key="itr2.tax.refundable"/></b>
+					<td>
 						<span class="decimal">
                               <fmt:formatNumber value="${theForm.refund.refundDue}" type="CURRENCY" currencySymbol="${currencySymbol}" maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="1">
                               </fmt:formatNumber>
@@ -448,8 +534,8 @@
 				</c:when>
 				<c:otherwise>
 				<tr class="success">
-					<td colspan="1"><b><fmt:message key="itr2.tax"/></b>
-					<td  style="text-align:left">
+					<td><b><fmt:message key="itr2.tax"/></b>
+					<td>
 						<span class="decimal">
 							<w4india:inr value="0"/>
 						</span>
@@ -459,3 +545,4 @@
 				</c:choose>
 			</table>
 		</div>
+	</div>
