@@ -381,8 +381,9 @@
 						</div>
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<input type="text" name="dedsec54" id="dedsec54"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.ded_sec54}"/></c:if>"
+								<input type="text" name="dedsec54" id="dedsec54" maxlength="14" 
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.ded_sec54}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 
 							</div>
