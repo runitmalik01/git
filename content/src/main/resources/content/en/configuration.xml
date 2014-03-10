@@ -48016,8 +48016,7 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
 <!--End of Other Information Screen Calculation For ITR4-->
 <!--capital asset calculation-->
 
-
-<sv:node sv:name="capitalasset">
+<sv:node sv:name="capitalasset" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -48047,7 +48046,7 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>3bbd338c-fe7c-4509-96cc-c578cb368485</sv:value>
+      <sv:value>dcd16097-fa92-4594-b76c-767d4bab699a</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -48072,13 +48071,13 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-24T12:20:53.816+05:30</sv:value>
+      <sv:value>2014-03-10T15:31:46.763+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-24T12:20:57.641+05:30</sv:value>
+      <sv:value>2014-03-10T15:31:51.054+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -48203,7 +48202,7 @@ if(asset_type=='SHARES'){
 
 };
 
-out_capitalgain= indianCurrencyHelper.RoundTo2Decimals(cpgain);
+out_capitalgain= indianCurrencyHelper.RoundTo2Decimals(cpgain) &gt; 0 ? indianCurrencyHelper.RoundTo2Decimals(cpgain) :0;
 out_balanc= indianCurrencyHelper.RoundTo2Decimals(bal);
 
 /*
@@ -48296,6 +48295,7 @@ if(asset_type=='SHARES'){
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
     <!-- Added calculation for schedule 5a : by Pankaj Singh  -->
