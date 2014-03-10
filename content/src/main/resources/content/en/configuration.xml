@@ -48016,8 +48016,7 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
 <!--End of Other Information Screen Calculation For ITR4-->
 <!--capital asset calculation-->
 
-
-<sv:node sv:name="capitalasset">
+<sv:node sv:name="capitalasset" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -48047,7 +48046,7 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>3bbd338c-fe7c-4509-96cc-c578cb368485</sv:value>
+      <sv:value>dcd16097-fa92-4594-b76c-767d4bab699a</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -48072,13 +48071,13 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-09-24T12:20:53.816+05:30</sv:value>
+      <sv:value>2014-03-10T15:31:46.763+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-09-24T12:20:57.641+05:30</sv:value>
+      <sv:value>2014-03-10T15:31:51.054+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -48203,7 +48202,7 @@ if(asset_type=='SHARES'){
 
 };
 
-out_capitalgain= indianCurrencyHelper.RoundTo2Decimals(cpgain);
+out_capitalgain= indianCurrencyHelper.RoundTo2Decimals(cpgain) &gt; 0 ? indianCurrencyHelper.RoundTo2Decimals(cpgain) :0;
 out_balanc= indianCurrencyHelper.RoundTo2Decimals(bal);
 
 /*
@@ -48296,6 +48295,7 @@ if(asset_type=='SHARES'){
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
     <!-- Added calculation for schedule 5a : by Pankaj Singh  -->
@@ -48838,6 +48838,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
 <!-- /schedule BP -->
 <!-- schedule DPM  calculation-->
 
+
 <sv:node sv:name="scheduledpm" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -48868,7 +48869,7 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>b9cfed8a-75c0-4481-9e26-ba02ab2b2b6a</sv:value>
+      <sv:value>b762650a-9c7b-4c0e-96b2-64ae01551bff</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -48893,13 +48894,13 @@ out_incomeChargeable_PL = (out_netPL_otherthanSpeculative_SpecifiedBuss1 -0)+(ou
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2014-02-17T18:12:17.118+05:30</sv:value>
+      <sv:value>2014-03-07T12:18:26.742+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2014-02-17T18:12:20.646+05:30</sv:value>
+      <sv:value>2014-03-07T12:18:29.859+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -48953,13 +48954,18 @@ out_capitalGain_LossSec50 = capitalGain
 out_capitalGain_LossSec50 =0; 
 } 
 } 
-out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;</sv:value>
+out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;
+if(isBlockExhist == 'No'){
+out_valLastDayPrevYr  =0;
+out_totalDepreciation  =0;
+}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value>Calculation of schedule DPM</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 
@@ -49461,9 +49467,6 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
 <!-- end of calculation document for itr-schedule amtc -->
 <!-- calc for schedule DOA -->
 
-
-
-
 <sv:node sv:name="scheduledoa" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -49494,7 +49497,7 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>0c2970ec-5b93-4114-9222-1acf88d440d9</sv:value>
+      <sv:value>ffdf2d02-6dfb-49f0-bbd4-1ddff8968450</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -49519,13 +49522,13 @@ out_liabAvailCredit = out_amtCreditCarriedFwrd;</sv:value>
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2014-02-17T18:47:35.546+05:30</sv:value>
+      <sv:value>2014-03-07T12:19:50.645+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2014-02-17T18:47:38.447+05:30</sv:value>
+      <sv:value>2014-03-07T12:19:55.342+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -49579,13 +49582,18 @@ out_capitalGain_LossSec50 = capitalGain
 out_capitalGain_LossSec50 =0; 
 } 
 } 
-out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;</sv:value>
+out_valLastDayPrevYr = ((A+B)-(out_totalDepreciation )) &gt; 0 ? ((A +B)-(out_totalDepreciation )) : 0;
+if(isBlockExhist == 'No'){
+out_valLastDayPrevYr =0;
+out_totalDepreciation =0;
+}</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
       <sv:value>Calculation of schedule DOA</sv:value>
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 
