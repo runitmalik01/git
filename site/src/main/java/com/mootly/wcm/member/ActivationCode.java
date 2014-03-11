@@ -30,15 +30,20 @@ import com.mootly.wcm.utils.GoGreenUtil;
 public class ActivationCode extends BaseComponent {
 	private static final Logger log = LoggerFactory.getLogger(ActivationCode.class);
 
-	public static final String SUCCESS= "success";
-	public static final String ERRORS="errors";
-	public static final String EMAIL_ERROR="email_error";
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-		request.setAttribute(ERRORS, request.getParameterValues(ERRORS));
-		request.setAttribute(EMAIL_ERROR, request.getParameterValues(EMAIL_ERROR));
+
+		if(request.getParameter("emailRegistered") != null){
+			request.setAttribute("emailRegistered", request.getParameter("emailRegistered"));
+		}
+		if(request.getParameter("emailError") != null){
+			request.setAttribute("emailError", request.getParameter("emailError"));
+		}
+		if(request.getParameter("success") != null){
+			request.setAttribute("success", request.getParameter("success"));	
+		}
 	}
 
 	@Override
@@ -46,44 +51,39 @@ public class ActivationCode extends BaseComponent {
 			throws HstComponentException {
 		// TODO Auto-generated method stub
 		super.doAction(request, response);
-		//Any submission will go here (we are getting email)
 
 		String email = GoGreenUtil.getEscapedParameter(request, "email");
-		List<String> errors=new ArrayList<String>();
-
-		if(StringUtils.isEmpty(email)){
-			errors.add("Enter a valid email");
-		}
-		if(errors.size()!=0)
-		{
-			response.setRenderParameter(ERRORS, errors.toArray(new String[errors.size()]));
-			return;
-		}
-
-		//Get activecode is used to check whether the user is registered or not
 		String pathToMemberSignupDocument = "members/" + email.replaceAll("@", "-at-") + "/membersignupdocument";
+
 		MemberSignupDocument memberSignupDocument =  getITRInitData(request).getSiteContentBaseBeanForReseller(request).getBean(pathToMemberSignupDocument);
-		if(memberSignupDocument!= null)
-		{
-			if((memberSignupDocument.getEmail().toString()).equalsIgnoreCase(email))
-			{
-				Map<String,Object> velocityContext = new HashMap<String, Object>();
-				StringBuffer sbHostName = new StringBuffer();
-				sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
-				velocityContext.put("memberHostName", sbHostName.toString());
-				velocityContext.put("membershipSignupDocument", memberSignupDocument);
-				sendEmail(request, new String[] {email}, null, "", "member_resend_activationcode", velocityContext);
+		if(memberSignupDocument!= null){
+			if(!memberSignupDocument.getIsActive()){
+				if((memberSignupDocument.getEmail().toString()).equalsIgnoreCase(email)){
+					Map<String,Object> velocityContext = new HashMap<String, Object>();
+					StringBuffer sbHostName = new StringBuffer();
+					sbHostName.append(request.getServerName()).append(":").append(request.getServerPort());
+					velocityContext.put("memberHostName", sbHostName.toString());
+					velocityContext.put("membershipSignupDocument", memberSignupDocument);
+					sendEmail(request, new String[] {email}, null, "", "member_resend_activationcode", velocityContext);
+					response.setRenderParameter("success", "success");
+				}
+				else{
+					if(log.isInfoEnabled()){
+						log.info("Email not found");	
+					}
+					response.setRenderParameter("emailError", "email.not.registered");
+				}	
+			}else{
+				if(log.isInfoEnabled()){
+					log.info("Already Activated");	
+				}
+				response.setRenderParameter("emailRegistered", "email.registered");
 			}
-			else{
-				log.warn("Email is not found");
-				response.setRenderParameter(EMAIL_ERROR, "Your Email is not registered.");
+		}else{
+			if(log.isInfoEnabled()){
+				log.info("Node not Found");	
 			}
-		}
-		else
-		{
-			log.warn("Can not able to get the node");
-			response.setRenderParameter(EMAIL_ERROR, "Your Email is not registered.");
+			response.setRenderParameter("emailError", "email.not.registered");
 		}
 	}
-
 }

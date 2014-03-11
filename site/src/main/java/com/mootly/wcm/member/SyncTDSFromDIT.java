@@ -13,6 +13,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
@@ -116,6 +117,9 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		if(StringUtils.isNotBlank(memberPersonalInformation.getFlexField("flex_string_ITRForm", ""))){
+			request.setAttribute("itrSelection", memberPersonalInformation.getFlexField("flex_string_ITRForm", ""));	
 		}
 		try {
 			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getITRInitData(request).getWebSiteInfo().getEriUserId(),getITRInitData(request).getWebSiteInfo().getEriPassword(),getITRInitData(request).getWebSiteInfo().getEriCertChain(),getITRInitData(request).getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(), null ,null);

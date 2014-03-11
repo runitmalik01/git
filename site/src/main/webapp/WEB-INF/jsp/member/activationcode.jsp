@@ -8,46 +8,80 @@
 <c:set var="activecodetitle"><fmt:message key="member.activecode.title"/></c:set>
 <hippo-gogreen:title title="${activecodetitle}"/>
 <hst:actionURL var="activationcode"></hst:actionURL>
+
 <div class="page">
-		<form action="${activationcode}" method="post">
-			<h4><fmt:message key="signup.forgotcode.message" /></h4>
-			<h5><small><fmt:message key="member.forgotcode.message" /></small></h5>
-			<fieldset id="ul_revised" class="revised_v original_h">
-	             <legend>Recover Activation Code</legend>
-	             <div class="row show-grid" id="ul_revised_input">
+		<form action="${activationcode}" method="post" id="formActivation">
+			<fieldset>
+	             <legend>
+	                <h4>Recover your Activation Code here</h4>
+			        <h5><small>Oops! Lost your Activation mail. Enter your registered Email Address for getting your Activation Code.</small></h5>
+			     </legend>
+			     
+			     <c:if test="${not empty success}">
+	                 <div class="alert alert-info">
+			         An email has been sent to your email address. Please check your email to activate your account.
+	                 </div>
+	            </c:if>
+	
+	           <c:if test="${not empty emailError}">
+	               <div class="alert alert-danger">
+			       <fmt:message key="${emailError}" />
+	               </div>
+	          </c:if>
+	
+	          <c:if test="${not empty emailRegistered}">
+	             <div class="alert alert-danger">
+			     <fmt:message key="${emailRegistered}" />
+	             </div>
+	         </c:if>
+	         
+	             <div class="row show-grid">
 				 	  <div class="col-md-2">
-					 	  <label for="username">
-					          <small><fmt:message key="signup.email.required" /></small>
+					 	  <label for="email">
+					         Enter your Email Address
 					       </label>
 				       </div>
-				       <div class="col-md-8">
-				       <input type="text" name="email" value="${fn:escapeXml(email)}" class="input_data" />
-						 <c:if test="${not empty errors}">
-								<c:forEach items="${errors}" var="error">
-									<c:choose>
-										<c:when test="${error eq 'signup.email.error.required'}">
-											<span class="form-error"><fmt:message
-													key="signup.email.error.required" /> </span>
-											<br />
-										</c:when>
-										<c:otherwise>
-											<span class="form-error"><c:out value="${error}"/></span>
-											<br />
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</c:if>
-							<c:if test="${not empty email_error}">
-								<span class="form-error">
-								<c:out value="Your Email is not registered" /> </span>
-							</c:if>
-				   	</div>
-				   	<div class="col-md-2">
-						<input type="submit"
-						value="<fmt:message key="member.start.submit.label"/>"
-						class="yui3-button" />
-					</div>
-			</div>
-		 </fieldset>
-		</form>
+				       <div class="col-md-6">
+				           <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="${fn:escapeXml(email)}"/>
+						   </div>
+				      </div>
+				   	  <div class="col-md-4">
+				     	<a href="javascript:void(0);" id="hrefActivation" class="btn btn-default btn-success">Get Activation Code</a>
+					  </div>
+			    </div>
+		  </fieldset>
+	  </form>
 </div>
+
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+		$(document).ready(function() {
+			$('#hrefActivation').click(function() {
+ 				 $('#formActivation').submit();
+			});
+			$('#formActivation input').keydown(function(e) {
+			    if (e.keyCode == 13) {
+			   		e.preventDefault();
+			        $('#formActivation').submit();
+			    }
+			});
+			$('#formActivation').validate({
+				rules: {
+					email: {
+						required: true,
+						minlength: 2,
+						email:true
+					}
+				},				
+				messages: {
+					email: "Please enter a valid email address."
+				}
+			});
+			
+			
+		});    
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>

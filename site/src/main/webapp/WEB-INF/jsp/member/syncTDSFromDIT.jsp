@@ -213,7 +213,11 @@
       <a href="salaryincome.html"><button type="button" class="btn btn-primary"> Pension</button></a>
        <a href="advancetax.html"> <button type="button" class="btn btn-primary"> Advanced Tax</button></a>
         <a href="selfassesmenttax.html"> <button type="button" class="btn btn-primary"> Self Assessment</button></a>
-        <a href="tdsfromothers.html"> <button type="button" class="btn btn-primary"> TDS Others</button></a><br><br>
+        <a href="tdsfromothers.html"> <button type="button" class="btn btn-primary"> TDS Others</button></a>
+        <c:if test="${not empty itrSelection && (itrSelection == 'ITR4' || itrSelection == 'ITR4S')}">
+        <a href="tcsdetail.html"> <button type="button" class="btn btn-primary"> Tax Collected at Source</button></a>
+        </c:if>
+        <br><br>
        <span style="color:#AC1700;"> If you have questions feel free to contact us <strong><a href="mailto:<w4india:emailcustomerservice/>"><w4india:emailcustomerservice/></a>.
        </strong></span>	
   </div>	
