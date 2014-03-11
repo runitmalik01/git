@@ -9,6 +9,9 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Schedule FA-D"
 		subTitle="Schedule FA-(D)&nbsp;-&nbsp;Investments in the nature
 				of investment and not in the nature of stock-in-trade or assets used
@@ -137,6 +140,8 @@
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$("#country_code")

@@ -10,6 +10,9 @@
 <div class="page type-page">
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
 			<div class="alert alert-danger">
@@ -183,6 +186,8 @@
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 
 

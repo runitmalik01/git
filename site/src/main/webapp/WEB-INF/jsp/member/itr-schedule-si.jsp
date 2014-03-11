@@ -10,6 +10,9 @@ Schedule SI
 <hippo-gogreen:title title="${ScheduleSI}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <w4india:itrmenu />
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <w4india:titleandnav title="Income Tax at Special Rates" subTitle="Schedule SI&nbsp;-&nbsp;Income that is taxable at a
 			flat rate as perscribed by the Income Tax Department and not under
 			slab rate. For Eg. Income from Long and Short Etrm Capital gains,
@@ -41,6 +44,7 @@ Schedule SI
 	</div>
 	&nbsp;<strong>to add new Schedule SI section!!</strong>
 </fieldset>
+&nbsp;
 <table class="table table-hover table-striped">
 	<caption>
 		<strong>Detailed of Schedule SI sections</strong>
@@ -271,6 +275,8 @@ Schedule SI
 	<div class="alert alert-success">Schedule SI section has been
 		saved.Now Add New.</div>
 </c:set>
+</div>
+</div>
 <res:client-validation screenConfigurationDocumentName="itrschedulesi"
 	formId="scheduleSI" formSubmitButtonId="siSave"></res:client-validation>
 <hst:element var="uiCustom" name="script">

@@ -10,6 +10,9 @@
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Schedule DOA"></w4india:titleandnav>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
@@ -375,6 +378,8 @@
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$("#type_Asset").change(function() {

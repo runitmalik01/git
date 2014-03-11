@@ -15,6 +15,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Schedule FA-C" subTitle="Schedule FA-C&nbsp;-&nbsp;The total investment at cost in
 				immovable property held during the year after converting it into
 				Indian currency."/>
@@ -131,6 +134,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$("#country_code")

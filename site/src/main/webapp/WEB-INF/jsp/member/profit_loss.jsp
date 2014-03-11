@@ -9,6 +9,9 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Profit & Loss Account" subTitle="Part PL&nbsp;- &nbsp;You were not required to maintain
 				accounts of the business or profession, please select 'No account
 				case'."/>
@@ -1194,6 +1197,8 @@
 			</div>
 		</div>
 	</form>
+</div>
+</div>
 </div>
 
 <script type="text/javascript">

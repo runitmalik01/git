@@ -16,7 +16,7 @@
 			<hst:link var="mainSiteMapRefId" />
 			<w4india:titleandnav title="Advance Tax" subTitle="Schedule IT&nbsp;- &nbsp;Advance tax is payment of tax
 						liability by a person before the end of financial year and it is
-						payable only when an assesseeâ€™s total tax liability is exceeding
+						payable only when an assessee€s total tax liability is exceeding
 						&#8377;10,000."></w4india:titleandnav>
 			<c:if test="${not empty formMap}">
 				<c:forEach items="${formMap.message}" var="item">

@@ -7,10 +7,13 @@
 </c:set>
 <hippo-gogreen:title title="${nat_bus}" />
 <hst:actionURL var="actionUrl" />
+
 <div class="page type-page">
 	<w4india:itrmenu />
 	<w4india:titleandnav title="Nature Of Business"/>
 	<hst:link var="mainSiteMapRefId" />
+	<w4india:itrsidebar></w4india:itrsidebar>
+<div class="${sideBarMainClass}">
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
@@ -133,6 +136,7 @@
 			</c:if>
 		</c:otherwise>
 	</c:choose>
+	</div>
 </div>
 
 <res:client-validation formId="frmNature_business"

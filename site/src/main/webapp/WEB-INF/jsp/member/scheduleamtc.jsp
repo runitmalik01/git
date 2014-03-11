@@ -3,6 +3,9 @@
 <hst:link var="memberDriveComp" siteMapItemRefId="itr-schedule-amtc"></hst:link>
 <hippo-gogreen:title title="Schedule AMTC" />
 <w4india:itrmenu />
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <w4india:titleandnav title="Schedule AMTC" subTitle="Schedule AMTC(Alternative Minimum Tax Credit)"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
@@ -174,6 +177,8 @@
 		</div>
 	</div>
 </form>
+</div>
+</div>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
         	$(document).ready( function() {

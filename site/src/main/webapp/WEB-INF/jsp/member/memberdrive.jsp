@@ -25,7 +25,9 @@ pageContext.setAttribute("hostname", builder.toString());
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 <w4india:itrmenu/>
-
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<h4 class="page-title">Member Drive</h4>
 	<form id="memberdrive" action="${actionUrl}" method="post" name="memberdrive" enctype="multipart/form-data">
 	<c:if test="${memberpersonalinformation.selectedITRForm=='ITR2'}">
@@ -180,11 +182,10 @@ pageContext.setAttribute("hostname", builder.toString());
 				 </div>
 			  </div>
 			</div>
-		    <div class="row show-grid">
                    <div class="file_name">
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-bordered">
                            <thead>
-                               <tr>
+                              <tr align="center">
                                   <th>#</th>
                                   <th>Document Name</th>
                                   <th>Type</th>
@@ -214,7 +215,6 @@ pageContext.setAttribute("hostname", builder.toString());
                             </tbody>
                            </table>
                       </div>
-		      </div>
 	</fieldset>
 	<%--
 	<c:if test="${fn:length(memberFiles) > 0}">
@@ -226,6 +226,8 @@ pageContext.setAttribute("hostname", builder.toString());
 	</c:if>
 	 --%>
 </form>
+</div>
+</div>
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 		$(document).ready(function(){

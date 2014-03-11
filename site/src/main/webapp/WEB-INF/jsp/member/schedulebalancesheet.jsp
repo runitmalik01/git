@@ -3,6 +3,9 @@
 <hst:link var="memberDriveComp" siteMapItemRefId="balancesheet"></hst:link>
 <hippo-gogreen:title title="Schedule-BL" />
 <w4india:itrmenu />
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <w4india:titleandnav title="${screenConfigDocument.screenHeading}" subTitle="${screenConfigDocument.screenSubHeading}"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
@@ -790,6 +793,8 @@
 		</div>
 	</div>
 </form>
+</div>
+</div>
 
 <res:client-validation screenConfigurationDocumentName="balancesheet"
 	formId="schedBalanceSheet" formSubmitButtonId="myModalScheduleBalSheet"></res:client-validation>
