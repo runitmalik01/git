@@ -65,7 +65,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new EFileException(e);
+			//throw new EFileException(e);
 		} 
 		
 		if (jcrPathToAssesseDigitalSignature != null) {
@@ -100,7 +100,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new EFileException(e);
+			//throw new EFileException(e);
 		} catch (MissingPrivateKeyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
