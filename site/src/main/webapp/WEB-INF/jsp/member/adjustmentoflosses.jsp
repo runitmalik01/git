@@ -28,11 +28,14 @@
 %>
 <fmt:message key="member.adjustment.content.title" var="adjustmentoflossestitle" />
 <w4india:itrmenu></w4india:itrmenu>
-<w4india:titleandnav title="${adjustmentoflossestitle}" />
 <!-- used to set title  -->
 <hippo-gogreen:title title="${adjustmentoflossestitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <hst:link var="mainSiteMapRefId" />
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
+	<w4india:titleandnav title="${adjustmentoflossestitle}" />
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">
@@ -207,10 +210,13 @@
 			</c:if>
 
 		</table>
+		</br>
 		<a href="${scriptName}/new" class="btn btn-default btn-info"><small><i
 				class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 	</c:otherwise>
 </c:choose>
+</div>
+</div>
 <res:client-validation formId="frmdataLosses"
 	screenConfigurationDocumentName="adjustmentoflosses"
 	formSubmitButtonId="myModalHref" />

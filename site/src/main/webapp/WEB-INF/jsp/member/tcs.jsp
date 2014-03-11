@@ -11,6 +11,9 @@
 <hippo-gogreen:title title="${tcstitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <div class="page">
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Tax Collected at Source" subTitle="Schedule TCS&nbsp;-&nbsp;It is income tax collected by
 			seller in India from payer on sale of certain items in section
 			206C.The seller has to collect tax at specified rates from the payer
@@ -132,6 +135,8 @@
 					</c:if>			
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <res:client-validation formId="frmdatatcs"
 	screenConfigurationDocumentName="tcs"

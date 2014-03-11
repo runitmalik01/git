@@ -13,6 +13,9 @@
 <hippo-gogreen:title title="${capitalasset}" />
 <hst:link var="Securities" siteMapItemRefId="Securities"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <%
 	pageContext.setAttribute("inflationindexValues",
 			InflationIndex.values());
@@ -36,8 +39,8 @@
 					<legend class="header-color">
 						<small>Asset Information</small>
 					</legend>
-					<div align="center" style="color: red">Please enter your
-						details</div>
+					<!-- <div align="center" style="color: red">Please enter your
+						details</div> -->
 					<br />
 
 
@@ -653,6 +656,8 @@
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <res:calc screenCalc="capitalasset" formId="capitalassetfrm"></res:calc>
 <res:client-validation formId="capitalassetfrm"

@@ -9,6 +9,9 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<fmt:message key="asset.liability.itr4" var="subTitle" />
 	<w4india:titleandnav title="Schedule AL" subTitle="${subTitle}"/>
 	<hst:link var="mainSiteMapRefId" />
@@ -239,6 +242,8 @@
 			</div>
 		</div>
 	</form>
+</div>
+</div>
 </div>
 
 <res:calc screenCalc="assetandliability" formId="frmAsset_Liability"></res:calc>

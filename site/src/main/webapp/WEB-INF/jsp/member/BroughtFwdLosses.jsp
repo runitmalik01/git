@@ -10,6 +10,9 @@
 <w4india:itrmenu></w4india:itrmenu>
 <hippo-gogreen:title title="${bfla}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <w4india:titleandnav title="Schedule BFLA" subTitle="Schedule BFLA (Brought Forward Losses)&nbsp;-
 				&nbsp;Statement of income after set off of unabsorbed loss brought
 				forward from earlier years."/>
@@ -279,6 +282,8 @@
 			</div>
 		</fieldset>
 	</form>
+</div>
+</div>
 </div>
 <res:calc screenCalc="broughtfwdlosses" formId="scheduleBFLA"></res:calc>
 <res:client-validation formId="scheduleBFLA"

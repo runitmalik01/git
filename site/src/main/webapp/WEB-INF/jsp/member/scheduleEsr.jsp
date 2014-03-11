@@ -9,6 +9,9 @@
 </c:set>
 <hippo-gogreen:title title="${scheduleesr}" />
 <w4india:itrmenu></w4india:itrmenu>
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <w4india:titleandnav title="Schedule ESR" subTitle="Schedule ESR (Expenditure on Scientific
 				Research)&nbsp;-&nbsp; Details of deduction on amounts of expenses
 				of the nature by section 35 which are, if, debited to profit and loss account.
@@ -163,6 +166,8 @@
 			</div>
 		</div>
 	</form>
+</div>
+</div>
 </div>
 <res:calc screenCalc="scheduleesr" formId="scheduleESR"></res:calc>
 <res:client-validation formId="scheduleESR"

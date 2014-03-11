@@ -15,6 +15,9 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Schedule FA-F" subTitle="Schedule FA-(F)&nbsp;-&nbsp;The details of trusts
 				under the laws of a country outside India in which you are a trustee
 				has to be filled up."/>
@@ -204,6 +207,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$("#country_code")

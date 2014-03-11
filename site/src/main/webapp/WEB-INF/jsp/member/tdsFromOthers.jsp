@@ -11,6 +11,9 @@
 	<w4india:itrmenu />
 	<hst:link var="mainSiteMapRefId" />
 	<fmt:message key="member.tds.from.others" var="subTitle"/>
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Tax Deducted at Other Source" subTitle="${subTitle}"/>
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">
@@ -182,6 +185,8 @@
 					</c:if>			
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	function calculate() {

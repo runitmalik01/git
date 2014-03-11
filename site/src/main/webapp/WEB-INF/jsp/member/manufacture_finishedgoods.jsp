@@ -13,6 +13,9 @@ TreeMap<String,String> objHashMapQuantUnitCode = objValueListService.getQuantita
 request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 %>
 <w4india:itrmenu />
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <hst:link var="mainSiteMapRefId" />
 <fmt:message key="quantitative.details.itr4" var="subTitle"/>
 <w4india:titleandnav title="Quantitative Details-Finished Goods" subTitle="${subTitle}"/>
@@ -170,6 +173,8 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					class="glyphicon glyphicon-plus-sign"></i></small>Add New</a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$("#itemUnit_Code")

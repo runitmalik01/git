@@ -5,6 +5,9 @@
 <hippo-gogreen:title title="${Schedule10A}" />
 <hst:actionURL var="actionUrl"></hst:actionURL> 
 <w4india:itrmenu/>
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <w4india:titleandnav title="ITR Schedule 10A/10AA"/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -30,6 +33,7 @@
 	</div>&nbsp;<strong>to add new Schedule 10A/10AA(Undertaking Amount)!!</strong>
 </fieldset>
 <table class="table table-hover table-striped table-bordered">
+</br>
 	<caption>
 		<strong>Detailed of Deductions Schedule 10A/10AA</strong>
 	</caption>
@@ -161,6 +165,8 @@
 		</div>
 	</div>
 </c:if>
+</div>
+</div>
 
 <c:set var="progress"><div class="progress progress-striped active"><div class="bar" style="width: 0%;"></div></div></c:set>
 <c:set var="addNewAlert"><div class="alert alert-success">Schedule SI section has been saved.Now Add New.</div></c:set>

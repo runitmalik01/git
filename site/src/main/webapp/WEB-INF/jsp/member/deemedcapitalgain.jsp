@@ -9,6 +9,9 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<hst:link var="mainSiteMapRefId" />
 	<fmt:message key="deemed.capitalgain.itr4" var="subTitle"/>
 	<w4india:titleandnav title="Schedule DCG" subTitle="${subTitle}"></w4india:titleandnav>
@@ -203,6 +206,8 @@
 			</div>
 		</div>
 	</form>
+</div>
+</div>
 </div>
 
 

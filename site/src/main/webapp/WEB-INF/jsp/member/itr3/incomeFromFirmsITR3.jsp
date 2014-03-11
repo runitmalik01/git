@@ -9,6 +9,9 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Schedule BP" subTitle="The details of the salary,
 				bonus, commission, remuneration or interest received by you from the
 				firms in which you are partner (filled in Schedule-IF are to be
@@ -172,12 +175,13 @@
 			</table>
 			<a href="${scriptName}/incomefromfirmsItr3new"
 				class="btn btn-default btn-info"><small><i
-					class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Add
+					class="glyphicon glyphicon-plus-sign"></i>Add
 					New</small></a>
 		</c:otherwise>
 	</c:choose>
 </div>
-
+</div>
+</div>
 <script>
 	$(document)
 			.ready(

@@ -15,6 +15,9 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<fmt:message key="quantitative.details.itr4" var="subTitle"/>
 	<w4india:titleandnav title="Quantitative Details -Trade" subTitle="${subTitle}"/>
 	<hst:link var="mainSiteMapRefId" />
@@ -158,6 +161,8 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$("#itemUnit_Code")

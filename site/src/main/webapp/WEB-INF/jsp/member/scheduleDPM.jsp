@@ -10,6 +10,9 @@
 
 <div class="page type-page">
 	<w4india:itrmenu />
+	<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 	<w4india:titleandnav title="Schedule DPM"></w4india:titleandnav>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
@@ -350,7 +353,8 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-
+</div>
+</div>
 
 
 <res:calc screenCalc="scheduledpm" formId="frmScheduleDPM"></res:calc>

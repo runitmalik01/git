@@ -13,6 +13,9 @@
 <hst:actionURL var="actionUrl" />
 <hst:link var="mainSiteMapRefId" />
 <fmt:message key="itr4.other.information" var="title" />
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <w4india:titleandnav title="${title}" subTitle="Schedule OI&nbsp;-&nbsp;(optional in a case not liable for audit under section 44AB)"/>
 <div class="page type-page">
 	<form id="frmOtherInformation" action="${actionUrl}" method="post"
@@ -1117,6 +1120,8 @@
 		</div>
 
 	</form>
+</div>
+</div>
 </div>
 <res:calc screenCalc="otherinformation" formId="frmOtherInformation"></res:calc>
 <res:client-validation formId="frmOtherInformation"

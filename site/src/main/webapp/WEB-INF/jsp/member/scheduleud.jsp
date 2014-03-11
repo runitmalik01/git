@@ -12,6 +12,9 @@
 <hst:link var="Securities" siteMapItemRefId="Securities"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 ${aggIncome }
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 
 <div class="page">
 	<w4india:titleandnav title="Schedule UD"></w4india:titleandnav>
@@ -113,6 +116,8 @@ ${aggIncome }
 					New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <res:calc screenCalc="scheduleud" formId="UAdepriciation"></res:calc>
 <res:client-validation formId="UAdepriciation"

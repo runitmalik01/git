@@ -4,6 +4,9 @@
 <hippo-gogreen:title title="Schedule AMT" />
 <w4india:itrmenu />
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">
@@ -109,5 +112,7 @@
 		</div>
 	</fieldset>
 </form>
+</div>
+</div>
 
 
