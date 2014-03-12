@@ -26,7 +26,7 @@
         <div class="col-sm-3">
             <div class="hero-widget well well-sm">
                 <div class="icon">
-                     <small><i class="glyphicon glyphicon-rupee">&#2352;</i></small>
+                     <small><i class="glyphicon glyphicon-rupee">&#8377;</i></small>
                 </div>
                 <div class="text">
                     <span class="decimal">
@@ -48,7 +48,7 @@
        <div class="col-sm-3">
             <div class="hero-widget well well-sm">
                 <div class="icon">
-                    <small><i class="glyphicon glyphicon-rupee">&#2352;</i></small> 
+                    <small><i class="glyphicon glyphicon-rupee">&#8377;</i></small> 
                 </div>
                 <div class="text">
                     <span class="decimal">

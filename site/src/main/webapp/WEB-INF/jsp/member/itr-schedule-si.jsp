@@ -280,8 +280,9 @@ Schedule SI
 <res:client-validation screenConfigurationDocumentName="itrschedulesi"
 	formId="scheduleSI" formSubmitButtonId="siSave"></res:client-validation>
 <hst:element var="uiCustom" name="script">
-	<hst:attribute name="type">text/javascript</hst:attribute>
+    <hst:attribute name="type">text/javascript</hst:attribute>
     $('document').ready(function(){
+   
       if ($("#myModal").length >0) $("#myModal").modal();
       
       $('#siSave').on('click',function(){
@@ -326,11 +327,7 @@ Schedule SI
 						'async':false											
 					  }).done (function () {
 					   
-						window.location.href = <c:choose>
-		<c:when test="${pageAction == 'NEW_CHILD'}"> '<c:out
-				value="${scriptName}" />'</c:when>
-		<c:otherwise>'../../servicerequest-itr-summary.html'</c:otherwise>
-	</c:choose>;
+						window.location.href = <c:choose><c:when test="${pageAction == 'NEW_CHILD'}"> '<c:out value="${scriptName}"/>'</c:when><c:otherwise>'../../servicerequest-itr-summary.html'</c:otherwise></c:choose>;
 					});
 		}
       
@@ -357,8 +354,7 @@ Schedule SI
 						//insertDiv
 						html = eDiv.html();
 						
-						var newdiv1 = $('<form class="scheduleSIForm" name="scheduleSI"
-		id="row_' +  (parseInt(theindx) + 1)  + '" />');
+						var newdiv1 = $('<form class="scheduleSIForm" name="scheduleSI"  id="row_' +  (parseInt(theindx) + 1)  + '"/>');
 						//alert(html);
 						newdiv1.append(html);
 						
@@ -419,32 +415,21 @@ Schedule SI
 			  });
 			  return inValid;
 			}
-    $('a[data-confirm]').click(function(ev) {
+			
+	    $('a[data-confirm]').click(function(ev) {
         var href = $(this).attr('href');
 
         if (!$('#dataConfirmModal').length) {
-            $('body').append('<div id="dataConfirmModal" class="modal"
-		role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="dataConfirmLabel">Please Confirm</h3>
-		</div>
-		<div class="modal-body"></div>
-		<div class="modal-footer">
-			<button class="btn btn-default" data-dismiss="modal"
-				aria-hidden="true">Cancel</button>
-			<a class="btn btn-default btn-primary" id="dataConfirmOK">OK</a>
-		</div>
-	</div>');
+            $('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Please Confirm</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-default btn-primary" id="dataConfirmOK">OK</a></div></div></div></div>');
         }
         $('#dataConfirmModal').find('.modal-body').text("Are you sure you want to delete?");
         $('#dataConfirmOK').attr('href', href);
         $('#dataConfirmModal').modal({show:true});
         return false;
     });
+
   });
 </hst:element>
-<hst:headContribution element="${uiCustom}" category="jsInternal" />
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
 <!-- <fieldset> <legend>test</legend> <div class="row show-grid"> <div class="rowlabel col-md-6"><select name="test-select" class="select-drop" id="test-select"> <option value="">Select</option> <option value="section-89">Section-89</option> </select> </div> <div class="rowlabel col-md-4"> <input id="amount" name="amount" class="hide" placeholder="Gross Amount" type="text"> </div> </div> </fieldset> 
 -->
