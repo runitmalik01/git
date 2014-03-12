@@ -210,6 +210,7 @@ public class HippoBeanValidationResponse {
 		HippoBeanValidationGeneric newAction = new HippoBeanValidationGeneric(TYPE.ACTION,"");
 		newAction.setAction(action);
 		newAction.setType(TYPE.ACTION);
+		newAction.setActionReason(actionReason);
 		boolean ret = messages.add(newAction);
 		return ret;
 	}

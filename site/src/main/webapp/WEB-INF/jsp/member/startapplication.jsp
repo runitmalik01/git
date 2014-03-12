@@ -133,8 +133,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						 --%>
 						<div class="col-md-4">
 							<div class="rowlabel">
-								<label><small><fmt:message
-											key="member.employe.category" /><span style="color: red">*</span>
+								<label for="Employe_category"><small><fmt:message
+											key="member.employe.category" />
 								</small>
 								</label>
 							</div>
@@ -148,8 +148,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</div>
 						<div class="col-md-5">
 							<div class="rowlabel">
-								<label><small><fmt:message
-											key="member.portugese.civil" /><span style="color: red">*</span>
+								<label for="portugesecivil"><small><fmt:message
+											key="member.portugese.civil" />
 								</small> </label>
 							</div>
 							<div>

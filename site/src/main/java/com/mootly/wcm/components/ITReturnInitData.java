@@ -578,8 +578,18 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 			childBeanClass = childBean.childBeanClass();
 		}
 		screenMode = GoGreenUtil.getEscapedParameter(request, "screenMode");
-
-		mapOfAllBeans = loadBeansAndSetRequestAttributes(request);		
+		
+		if (request.getRequestContext().getAttribute("mapOfAllBeans") != null) {
+			mapOfAllBeans = (Map<String, HippoBean>) request.getRequestContext().getAttribute("mapOfAllBeans"); 
+		}
+		else {
+			List<HippoDocumentBean> listOfBeans = loadAllBeansUnderTheFolder(request,getRelBasePathToReturnDocuments(),null,null);
+			mapOfAllBeans =  createMapFromListOfBeans(listOfBeans) ;//loadBeansAndSetRequestAttributes(request);		
+			request.getRequestContext().setAttribute("mapOfAllBeans",mapOfAllBeans);
+			//loadBeansAndSetRequestAttributes(request);
+		}
+		setRequestAttributes(request,mapOfAllBeans);
+		
 		//time has come to reset the ITReturnType and other variables
 		String keyToMemberPersonalInformation = MemberPersonalInformation.class.getSimpleName().toLowerCase();
 		//if (mapOfAllBeans != null && mapOfAllBeans.containsKey(keyToMemberPersonalInformation)) {
@@ -833,6 +843,28 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 			}			
 		}		
 		return localMapOfAllBeans;
+	}
+	
+	
+	public Map<String,HippoBean> createMapFromListOfBeans(final List<HippoDocumentBean> listOfBeans) {
+		//loading Additional Beans
+		Map<String,HippoBean> localMapOfAllBeans = new HashMap<String, HippoBean>();
+		if (listOfBeans != null) {
+			localMapOfAllBeans = new HashMap<String, HippoBean>();
+			for (HippoBean theBean:listOfBeans) {
+				localMapOfAllBeans.put(theBean.getClass().getSimpleName().toLowerCase(), theBean);
+			}
+		}
+		return localMapOfAllBeans;
+	}
+	
+	
+	public void setRequestAttributes(HstRequest request,final Map<String,HippoBean> localMapOfAllBeans) {
+		if (localMapOfAllBeans != null) {
+			for (String theKey:localMapOfAllBeans.keySet()) {
+				request.setAttribute(theKey, localMapOfAllBeans.get(theKey));		
+			}			
+		}	
 	}
 
 	/**

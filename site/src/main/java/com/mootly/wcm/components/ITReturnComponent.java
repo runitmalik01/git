@@ -238,35 +238,41 @@ public class ITReturnComponent extends BaseComponent {
 		super.doBeforeRender(request, response);
 		//Map<String, String> mapOfComponents  = HstServices.getComponentManager().getComponentsOfType(String.class);
 		boolean isFrozen = false;
-		//if (!hasInitComplete) {
-		try {
-			fillDueDate(request,response); //this will fill the due date
-			HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
-			if (hippoBeanValidationResponse != null) {
-				HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
-				if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
-					isFrozen = true;
-					request.setAttribute("freezeIncomeTaxAction", freezeIncomeTaxAction);
-					request.setAttribute("isFrozen", isFrozen);
-					request.setAttribute("ackResponse", hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION) );
-					request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
-					request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
+		
+		String isCalc = getPublicRequestParameter (request,"command");
+		//String screen=getPublicRequestParameter(request, "screen");
+		if (isCalc == null) {
+			//if (!hasInitComplete) {
+			try {
+				fillDueDate(request,response); //this will fill the due date
+				HippoBeanValidationResponse hippoBeanValidationResponse = executeValidationChain(request,response);
+				if (hippoBeanValidationResponse != null) {
+					HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
+					if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
+						isFrozen = true;
+						request.setAttribute("freezeIncomeTaxAction", freezeIncomeTaxAction);
+						request.setAttribute("freezeIncomeTaxActionReason", freezeIncomeTaxAction.getActionReason().name());
+						request.setAttribute("isFrozen", isFrozen);
+						request.setAttribute("ackResponse", hippoBeanValidationResponse.getMessageByKey("ackResponse", TYPE.INFORMATION) );
+						request.setAttribute("tokenNumber", hippoBeanValidationResponse.getMessageByKey("tokenNumber", TYPE.INFORMATION) );
+						request.setAttribute("eFileDateTime", hippoBeanValidationResponse.getMessageByKey("eFileDateTime", TYPE.INFORMATION) );
+					}
+					//check if this action is not restricted
+					if (hippoBeanValidationResponse.getRestrictedActions() != null && getITRInitData(request).getPageAction() != null &&  hippoBeanValidationResponse.getRestrictedActions().contains(getITRInitData(request).getPageAction()) ) {
+						response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
+						return;
+					}
+					if (hippoBeanValidationResponse.getRestrictedComponents() != null &&  hippoBeanValidationResponse.getRestrictedComponents().contains(getClass()) ) {
+						response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
+						return;
+					}
 				}
-				//check if this action is not restricted
-				if (hippoBeanValidationResponse.getRestrictedActions() != null && getITRInitData(request).getPageAction() != null &&  hippoBeanValidationResponse.getRestrictedActions().contains(getITRInitData(request).getPageAction()) ) {
-					response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
-					return;
-				}
-				if (hippoBeanValidationResponse.getRestrictedComponents() != null &&  hippoBeanValidationResponse.getRestrictedComponents().contains(getClass()) ) {
-					response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
-					return;
-				}
+			}			
+			catch (Exception ex) {
+				log.error("Error in initializing component. FATAL",ex);
+				redirectToNotFoundPage(response);
+				return;
 			}
-		}			
-		catch (Exception ex) {
-			log.error("Error in initializing component. FATAL",ex);
-			redirectToNotFoundPage(response);
-			return;
 		}
 		
 		//what if memberpersonal information is not saved and user is trying to use any other URL, we should not allow except QA
@@ -333,7 +339,7 @@ public class ITReturnComponent extends BaseComponent {
 			}
 		}
 		//Screen Calculation Configuration
-		String isCalc = getPublicRequestParameter (request,"command");
+		//String isCalc = getPublicRequestParameter (request,"command");
 		String screen=getPublicRequestParameter(request, "screen");
 		if (isCalc != null && isCalc.equals("calc") && screen!=null) {
 			log.info("We are Requesting fot this "+screen+" Screen");
