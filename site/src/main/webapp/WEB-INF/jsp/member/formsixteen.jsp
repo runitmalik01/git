@@ -945,7 +945,7 @@
 							<div class="row show-grid">
 								<div class="col-md-8">
 									<div class="rowlabel">
-										<label><strong>7.</strong> </label> <label>Relief under
+										<label for="relief_2"><strong>7.</strong>Relief under
 											section 89 </label>
 									</div>
 								</div>

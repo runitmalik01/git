@@ -154,7 +154,7 @@
 								validationRules.rules[fieldConfig[fn].fieldId].required=true;
 								//set the label with *
 								if ( $("label[for='" + fieldConfig[fn].fieldId + "']").length > 0 ){
-									$("label[for='" + fieldConfig[fn].fieldId + "']").append("<span class='required'>*</span>");
+									$("label[for='" + fieldConfig[fn].fieldId + "']").append("<span class='required' style='color:red'>*</span>");
 								}
 							}
 						);
@@ -163,7 +163,27 @@
 						fObj.watermark(fieldConfig[fn].fieldTitle);
 					}
         			if (fieldConfig[fn].fieldPopoverText != '') {
-						fObj.popover({"html":true,"trigger":"focus",content:fieldConfig[fn].fieldPopoverText});
+        				placement= 'bottom';
+        				if ( fObj.get(0).tagName == 'SELECT') {
+        					placement= 'top';
+        				}
+        				else if (fieldConfig[fn].fieldFormat == 'indiandate' || fieldConfig[fn].fieldFormat == 'indiandateAdvance') {
+        					placement= 'right';
+        				}
+						//fObj.popover({'placement':placement,'container': 'body' , "html":true,"trigger":"focus",content:fieldConfig[fn].fieldPopoverText});
+						fObj.each( function(indx) {
+								//alert(validationRules.rules);
+								validationRules.rules[fieldConfig[fn].fieldId].required=true;
+								//set the label with *
+								if ( $("label[for='" + fieldConfig[fn].fieldId + "']").length > 0 ){
+									$("label[for='" + fieldConfig[fn].fieldId + "']").append("&nbsp;&nbsp;<span id='qmark_" + fieldConfig[fn].fieldId  + "' class=\"glyphicon glyphicon-question-sign pull-right\"></span>");
+									$("#qmark_" + fieldConfig[fn].fieldId).popover({'placement':placement,'container': 'body' , "html":true,"trigger":"hover",content:fieldConfig[fn].fieldPopoverText});
+								}
+								else {
+									fObj.popover({'placement':placement,'container': 'body' , "html":true,"trigger":"focus",content:fieldConfig[fn].fieldPopoverText});
+								}
+							}
+						);
 					}
 			 }
 				<c:if test="${not empty validationType}">

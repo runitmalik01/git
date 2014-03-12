@@ -1,3 +1,4 @@
+<%@tag import="com.mootly.wcm.beans.compound.DITResponseDocumentDetail"%>
 <%@tag import="com.mootly.wcm.beans.DITResponseDocument"%>
 <%@tag import="com.mootly.wcm.model.VerificationStatus"%>
 <%@tag import="com.mootly.wcm.channels.ChannelInfoWrapper"%>
@@ -135,9 +136,9 @@ if (itrSiteMenu != null && itrSiteMenu.getSiteMenuItems() != null && propertyToC
 		request.setAttribute("listOfSiteItems", onlyEnabledForThisITRForm);
 	}
 }
-for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
-
-}
+//for (HstSiteMenuItem siteMenuItem : itrSiteMenu.getSiteMenuItems() ){
+//
+//}
 
 request.setAttribute("invoicePresent", "false");
 if (request.getAttribute(InvoiceDocument.class.getSimpleName().toLowerCase()) != null) {
@@ -179,6 +180,20 @@ if (memberPersonalInformation != null && memberPersonalInformation.getDitVerific
 }
 request.setAttribute("isDITVerified",isDITVerified);
 
+//did EFILE FAILED??
+boolean eFiledFailed = false;
+String eFiledFailedDateTime = null;
+List<DITResponseDocumentDetail> eFileFailureList = null;
+DITResponseDocument ditResponseDocument =  (DITResponseDocument) request.getAttribute(DITResponseDocument.class.getSimpleName().toLowerCase());
+if (ditResponseDocument != null) {
+	eFileFailureList = ditResponseDocument.getGetEFileFailureHistory();
+	if (eFileFailureList != null && eFileFailureList.size() > 0 ) {
+		eFiledFailed = true;
+		eFiledFailedDateTime = eFileFailureList.get(eFileFailureList.size() - 1).geteFileDateTime();
+		request.setAttribute("eFiledFailed",eFiledFailed);
+		request.setAttribute("eFiledFailedDateTime",eFiledFailedDateTime);
+	}
+}
 //How is the page designed, lets define a structure for this page using simple linkedhashmap and arraylist
 %>
 <% final class EvaluateMenusList{
@@ -511,8 +526,15 @@ request.setAttribute("nextPrevLinks",nextPrevLinks);
 	</c:otherwise>
 	</c:choose>
 </c:if>
-<c:if
-	test="${showImportTDSAlert == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
+<%--
+<c:if test="${eFiledFailed == 'true' }">
+	<div class="alert alert-danger">
+		<button type="button" class="close" id='dismissEFileFailure' data-dismiss="alert">&times;</button>
+		Your last eFile attempt was not successful. You can retry it.
+	</div>
+</c:if>
+ --%>
+<c:if test="${showImportTDSAlert == 'true' && isDITVerified == 'true' && not fn:endsWith(scriptName,'servicerequest-itr-sync-tds-from-dit.html') }">
 	<div class="alert alert-success">
 		<button type="button" class="close" id='dismissImport'
 			data-dismiss="alert">&times;</button>
@@ -607,6 +629,11 @@ request.setAttribute("nextPrevLinks",nextPrevLinks);
 					</c:when>
 				</c:choose> </b>
 		</span>
+		<c:if test="${eFiledFailed == 'true'}">
+			<span class="pull-right" style="font-size: 13px; font-family: arial;">
+					<font color="red">Last attempt to eFile Failed </font><a href="javascript:alert('Your attempt to eFile your Income Tax at ${eFiledFailedDateTime} failed. You can eFile your Income Tax again.')"><span class="glyphicon glyphicon-question-sign"></span></a>
+			</span>
+		</c:if>
 	</div>
 </c:if>
 <%-- you kidding me?? can't escape  --%>

@@ -12,6 +12,7 @@
 	        	<div class="rowlabel selectdropdown">
 	        		<c:choose>
 						<c:when test="${not empty deductionSection.listOfDeductionHead}">
+							NCE
 							<select name="head" width="100%" class="head">
 								<c:if test="${pageAction == 'NEW_CHILD'}">
 									<option value="">Select category/Click on Save when done</option>
@@ -22,7 +23,16 @@
 							</select>
 						</c:when>
 						<c:otherwise>
-							<span>Enter investment under <c:out value="${deductionSection.label}"/></span>
+							<span>Enter investment under 
+								<c:choose>
+									<c:when test="${pageAction == 'EDIT_CHILD'}">
+										aaa <c:out value="${deductionSection.listOfDeductionHead[childBean.section].name}"/>
+									</c:when>
+									<c:otherwise>
+										<c:out value="${deductionSection.label}"/>
+									</c:otherwise>
+								</c:choose>	
+							</span>
 							<c:choose>
 								<c:when test="${pageAction == 'EDIT_CHILD'}">
 									<input type="hidden" name="head" value="<c:out value="${childBean.section}"/>"/>

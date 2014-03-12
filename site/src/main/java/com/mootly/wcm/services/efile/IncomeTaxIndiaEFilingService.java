@@ -100,7 +100,7 @@ public class IncomeTaxIndiaEFilingService extends SystemRepositorySupportProvide
 		} catch (RepositoryException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//throw new EFileException(e);
+			throw new EFileException(e); //NOTE ERUSUBUSER SIGNATURE IS MANDATORY, this is WHY WE THROW EXCPETION RIGHT AWAY, WE DID NOT DO IT FOR ASSESSE as THE SIGNATURE IS NOT MANDATORY
 		} catch (MissingPrivateKeyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

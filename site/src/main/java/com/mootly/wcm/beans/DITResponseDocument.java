@@ -22,6 +22,7 @@ import java.util.List;
 import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 
+import org.hippoecm.hst.component.support.forms.FormField;
 import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
@@ -29,6 +30,8 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.model.DITSubmissionStatus;
+import com.mootly.wcm.model.VerificationStatus;
 
 /**
  * User: vivek
@@ -42,12 +45,67 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 	
 	private List<DITResponseDocumentDetail> ditResponseDocumentDetailList;
 	final String PROP_DETAIL_BEAN="mootlywcm:ditResponseDocumentDetail";
+	
+	int totalCountLastOperation;
 
 	public final List<DITResponseDocumentDetail> getDitResponseDocumentDetails() {
 		if (ditResponseDocumentDetailList == null) ditResponseDocumentDetailList = getChildBeans(PROP_DETAIL_BEAN);
 		return ditResponseDocumentDetailList;
 	}
-
+	
+	//how 
+	public final List<DITResponseDocumentDetail> getDitResponseDocumentDetailsBySOAPOperation(String soapOperation) {
+		getDitResponseDocumentDetails();
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocal = null;
+		if ( ditResponseDocumentDetailList != null || ditResponseDocumentDetailList.size() > 0 ) {
+			ditResponseDocumentDetailListLocal = new ArrayList<DITResponseDocumentDetail>();
+			for (DITResponseDocumentDetail ditResponseDocumentDetail:ditResponseDocumentDetailList) {
+				if (ditResponseDocumentDetail.getSoapOperation() != null && soapOperation.equals(ditResponseDocumentDetail.getSoapOperation())) {
+					ditResponseDocumentDetailListLocal.add(ditResponseDocumentDetail);
+				}
+			}
+		}
+		return ditResponseDocumentDetailListLocal;
+	}
+	
+	//how 
+	/*
+	 * FormField frmField2 = new FormField("verificationStatus");
+											frmField2.addValue(VerificationStatus.VERIFIED.name());
+											childFormMap.addFormField(frmField2);
+											
+											FormField frmField3 = new FormField("ditSubmissionStatus");
+											frmField3.addValue(DITSubmissionStatus.SUCCESS.name());
+											childFormMap.addFormField(frmField3);
+	 */
+	public final List<DITResponseDocumentDetail> getGetEFileFailureHistory() {
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocalReturn = null;
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocal = getDitResponseDocumentDetailsBySOAPOperation("submitITR");
+		if (ditResponseDocumentDetailListLocal != null && ditResponseDocumentDetailListLocal.size() > 0) {
+			ditResponseDocumentDetailListLocalReturn = new ArrayList<DITResponseDocumentDetail>();
+			for (DITResponseDocumentDetail ditResponseDocumentDetail:ditResponseDocumentDetailListLocal) {
+				if (ditResponseDocumentDetail.getDitSubmissionStatus() != null && DITSubmissionStatus.FAILED.name().equals(ditResponseDocumentDetail.getDitSubmissionStatus()) ) {
+					ditResponseDocumentDetailListLocalReturn.add(ditResponseDocumentDetail);
+				}
+			}
+		}
+		return ditResponseDocumentDetailListLocalReturn;
+	}
+	
+	public final List<DITResponseDocumentDetail> getGetEFileSuccessHistory() {
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocalReturn = null;
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocal = getDitResponseDocumentDetailsBySOAPOperation("submitITR");
+		if (ditResponseDocumentDetailListLocal != null && ditResponseDocumentDetailListLocal.size() > 0) {
+			ditResponseDocumentDetailListLocalReturn = new ArrayList<DITResponseDocumentDetail>();
+			for (DITResponseDocumentDetail ditResponseDocumentDetail:ditResponseDocumentDetailListLocal) {
+				if (ditResponseDocumentDetail.getDitSubmissionStatus() != null && DITSubmissionStatus.SUCCESS.name().equals(ditResponseDocumentDetail.getDitSubmissionStatus()) ) {
+					ditResponseDocumentDetailListLocalReturn.add(ditResponseDocumentDetail);
+				}
+			}
+		}
+		return ditResponseDocumentDetailListLocalReturn;
+	}
+	
 	public void setDitResponseDocumentDetails(
 			List<DITResponseDocumentDetail> ditResponseDocumentDetailList) {
 		this.ditResponseDocumentDetailList = ditResponseDocumentDetailList;

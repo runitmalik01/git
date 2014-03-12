@@ -204,6 +204,11 @@
 					    </form>
 					  </div>
 					  <div class="modal-footer">
+					  	<div class="progress progress-striped active" id="chapterProgressBar" style="display:none">
+							<div class="progress-bar" id="chapterProgressBarReal" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+						    	<span class="sr-only" id="chapterProgressBarSROnly">30% Complete</span>
+						 	</div>
+						</div>
 					    <a href="#" class="btn btn-default btn-inverse" id="addNewBtn" style="display:none">Add New</a>
 		
 					    <a href="<c:choose><c:when test="${not empty modUrlToredirect}"><c:out value="${modUrlToredirect}"/></c:when><c:otherwise><c:out value="${scriptName}?selectedItrTab="/><%=ITRTab.DEDUCTIONS%></c:otherwise></c:choose>" class="btn btn-default" data-dismiss="">Close</a>
@@ -271,6 +276,9 @@
 				}
 			);
 			changeD($(".head"));
+			
+			$("#deductionSaveAJAX").click (ajaxSubmit);
+			
 		});
 
 		function changeD(o) {
@@ -282,40 +290,45 @@
 			}
 		}
 		
-		$("#deductionSaveAJAX").click (ajaxSubmit);
-		
 		function ajaxSubmit() {
-			allForms = $(".frmDeduction");
-			//allForms.validate();
-			allForms.each ( function(index,value) {
-				$(value).validate();
-				if (!$(value).valid()) {
-					return false;
-				}
-				// disable button bcs it has already clicked once
-				if($(value).valid()){
-				$("#deductionSaveAJAX").attr("disabled",true);
-				} 
-				
-	//	}); instead of ending this method here end it later
-			$(".progress").show();
-			$(".progress").addClass('active');
-			$("#theProgressBar").css('width:0%');
-			var stepsIncrement = 100/allForms.length;
-			for (var i=0;i< allForms.length; i++ ) {
-				theData = $(allForms[i]).serialize();
-				$.ajax('<hst:actionURL></hst:actionURL>',
+				allForms = $(".frmDeduction");
+				//allForms.validate();
+				allForms.each ( function(index,value) {
+					$(value).validate();
+						if (!$(value).valid()) {
+							return false;
+						}
+					}
+			    );
+				$("#chapterProgressBar").show();
+				progress=45;
+	       	    var myVar= setInterval(function(){    
+	       	    	progress+=10;
+	       	    	if (progress > 95) {
+	       	    		progress = 95;
+	       	    		clearInterval(myVar);
+	       	    	}
+	       	    	$("#chapterProgressBarReal").attr("aria-valuenow",progress);
+	       	    	//style="width: 45%"
+	       	    	$("#chapterProgressBarReal").attr("style","width: "+ progress + "%");
+	       	    	$("#chapterProgressBarSROnly").html( progress + "% Complete");
+	       	    },500);
+	        	 
+				 //$("#deductionSaveAJAX").attr("disabled",true);
+	        	 allForms.each ( function(index,value) {
+					theData = $(value).serialize();
+					$.ajax('<hst:actionURL></hst:actionURL>',
 						{
-						'data': theData,
-						'method':'POST',
-						'async':false											
-					}).done (function () {
-						$(".bar").css('width' , (stepsIncrement * (i +1)) + '%');
-					}) ;					
-			}
-			$(".progress").removeClass('active');
-			
-			window.location.href = '../../chapterVIdeductions.html';
+							'data': theData,
+							'method':'POST',
+							'async':false											
+						}).done (function () {
+							//$("#chapterProgressBarSROnly").html((100)+ "% Complete");
+							//$("#chapterProgressBar").hide();
+							//$(".bar").css('width' , (stepsIncrement * (i +1)) + '%');
+						}) ;					
+					//$(".progress").removeClass('active');
+					window.location.href = '../../chapterVIdeductions.html';
 				});// it is right place to end method
 		}
 		

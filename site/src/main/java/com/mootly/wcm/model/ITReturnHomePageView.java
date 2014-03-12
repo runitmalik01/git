@@ -258,7 +258,15 @@ public class ITReturnHomePageView {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	
 
+	public boolean iseFiledFailed() {
+		return eFiledFailed;
+	}
+
+	public void seteFiledFailed(boolean eFiledFailed) {
+		this.eFiledFailed = eFiledFailed;
+	}
 
 
 
@@ -301,6 +309,8 @@ public class ITReturnHomePageView {
 	String ackResponse;
 	String tokenNumber;
 	String eFileDateTime;
+	
+	boolean eFiledFailed;
 	
 	
 	

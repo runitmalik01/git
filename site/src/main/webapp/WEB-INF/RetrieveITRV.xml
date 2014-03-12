@@ -68,7 +68,7 @@
     	<property name="soapConnectionFactory" ref="soapConnectionFactory"/>
     	<property name="soapFactory" ref="soapFactory"/>
     	<property name="messageFactory" ref="messageFactory"/>
-    	<property name="endPointURL" ref="endPointURL_RetrieveITRVStatus"/>
+    	<property name="endPointURL" ref="endPointURL_RetrieveITRVByTokenNo"/>
     	<property name="soapConnection" ref="soapConnection"/>
     	<property name="detachHeader"><value>false</value></property>
     	<property name="inputElementMap">

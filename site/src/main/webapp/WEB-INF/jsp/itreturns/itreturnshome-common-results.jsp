@@ -67,6 +67,10 @@ HstRequest hstRequest = (HstRequest) request;
 						<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/>/<c:out value="${anEntry.filingSection.desc}"/></td>
 						<td class="filingStatus">
 							<c:choose>
+								<c:when test="${anEntry.eFiledFailed}">
+									<a href="${baseFolderLink}/servicerequest-itr.html"><i class="glyphicon glyphicon-pencil"></i> Prepare</a><br/>
+									<i class="glyphicon glyphicon-ban-circle"></i>eFiled failed <c:out value="${anEntry.eFileDateTime}"/>
+								</c:when>
 								<c:when test="${anEntry.frozen}">
 									<i class="glyphicon glyphicon-ok"></i>eFiled on <c:out value="${anEntry.eFileDateTime}"/>
 								</c:when>

@@ -159,22 +159,52 @@ public class ValidateEfileStatus implements HippoBeanValidator {
 											FormField frmField2 = new FormField("verificationStatus");
 											frmField2.addValue(VerificationStatus.VERIFIED.name());
 											childFormMap.addFormField(frmField2);
+											
+											FormField frmField3 = new FormField("ditSubmissionStatus");
+											frmField3.addValue(DITSubmissionStatus.FAILED.name());
+											childFormMap.addFormField(frmField3);
 										}
 									}
 								}catch (SOAPFaultException e) {
+									if ( e.getFault() != null && e.getFault().getFaultCode() != null) {
+										String faultCode = e.getFault().getFaultCode();
+										if (logger.isInfoEnabled()) {
+											logger.info("The Fault Code for this is " + faultCode);
+										}
+										
+									}
 									logger.error("Error",e);
 									 //we still want to save and set VERIFIED
 									//FormField frmField2 = new FormField("verificationStatus");
 									//frmField2.addValue(VerificationStatus.VERIFIED.name());
 									//childFormMap.addFormField(frmField2);
-									response.addAction(ACTION.FREEZE_INCOMETAX_RETURN,ACTION_REASON.VERIFICATION_PENDING);
+									//
+									
+									FormField frmField2 = new FormField("verificationStatus");
+									frmField2.addValue(VerificationStatus.VERIFIED.name());
+									childFormMap.addFormField(frmField2);
+									
+									FormField frmField3 = new FormField("ditSubmissionStatus");
+									frmField3.addValue(DITSubmissionStatus.FAILED.name());
+									childFormMap.addFormField(frmField3);
+									
+									//response.addAction(ACTION.FREEZE_INCOMETAX_RETURN,ACTION_REASON.VERIFICATION_PENDING);
 								}catch (Exception e) {
 									logger.error("Error",e);
 									 //we still want to save and set VERIFIED
 									//FormField frmField2 = new FormField("verificationStatus");
 									//frmField2.addValue(VerificationStatus.VERIFIED.name());
 									//childFormMap.addFormField(frmField2);
-									response.addAction(ACTION.FREEZE_INCOMETAX_RETURN,ACTION_REASON.VERIFICATION_PENDING);
+									
+									FormField frmField2 = new FormField("verificationStatus");
+									frmField2.addValue(VerificationStatus.VERIFIED.name());
+									childFormMap.addFormField(frmField2);
+									
+									FormField frmField3 = new FormField("ditSubmissionStatus");
+									frmField3.addValue(DITSubmissionStatus.FAILED.name());
+									childFormMap.addFormField(frmField3);
+									
+									//response.addAction(ACTION.FREEZE_INCOMETAX_RETURN,ACTION_REASON.VERIFICATION_PENDING);
 								}
 								//we will save this info 
 								//,final String parentBeanAbsolutePath,final String parentBeanNameSpace,final String parentBeanNodeName

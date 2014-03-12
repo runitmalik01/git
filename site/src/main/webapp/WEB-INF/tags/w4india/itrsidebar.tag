@@ -1,6 +1,8 @@
   <%--
 Page Title and Navigation Links
  --%>
+<%@tag import="com.mootly.wcm.beans.DITResponseDocument"%>
+<%@tag import="com.mootly.wcm.beans.compound.DITResponseDocumentDetail"%>
 <%@tag import="com.mootly.wcm.beans.HelpDeskTicketDocument"%>
 <%@tag import="java.util.LinkedList"%>
 <%@tag import="java.util.List"%>
@@ -17,6 +19,7 @@ HelpDeskTicketDocument helpDeskTicketDocument = (HelpDeskTicketDocument) request
 if ( helpDeskTicketDocument != null ) {
 	totalUnReadAnswers = helpDeskTicketDocument.getTotalUnReadAnswers();
 }
+
 %>
 
  <c:if test="${nomenu != 'true'}">

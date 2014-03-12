@@ -57,10 +57,12 @@ import com.mootly.wcm.annotations.DataTypeValidationHelper;
 import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.DITResponseDocument;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Product;
 import com.mootly.wcm.beans.ValueListDocument;
+import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.ITReturnComponent;
@@ -512,8 +514,26 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			Map<String,Object> additionalData = new HashMap<String,Object>();
 			additionalData.put("webSiteInfo", getITRInitData(request).getWebSiteInfo());
 			HippoBeanValidationResponse hippoBeanValidationResponse = getItrValidationChain().execute(getITRInitData(request).getFinancialYear(), getITRInitData(request).getPageAction(),  mapOfBeans, additionalData , getClass().getAnnotations());
-			boolean isFrozen = false;
+			boolean eFiledFailed = false;
+			String eFiledFailedDateTime = null;
+			List<DITResponseDocumentDetail> eFileFailureList = null;
+			if (mapOfBeans != null && mapOfBeans.containsKey(DITResponseDocument.class.getSimpleName().toLowerCase())) {
+				DITResponseDocument ditResponseDocument =  (DITResponseDocument) mapOfBeans.get(DITResponseDocument.class.getSimpleName().toLowerCase());
+				if (ditResponseDocument != null) {
+					eFileFailureList = ditResponseDocument.getGetEFileFailureHistory();
+					if (eFileFailureList != null && eFileFailureList.size() > 0 ) {
+						eFiledFailed = true;
+						eFiledFailedDateTime = eFileFailureList.get(eFileFailureList.size() - 1).geteFileDateTime();
+						request.setAttribute("eFiledFailed",eFiledFailed);
+						request.setAttribute("eFiledFailedDateTime",eFiledFailedDateTime);
+						
+						itReturnHomePageView.seteFiledFailed(eFiledFailed);
+						itReturnHomePageView.seteFileDateTime(eFiledFailedDateTime);
+					}
+				}
+			}
 			if (hippoBeanValidationResponse != null) {
+				boolean isFrozen = false;
 				HippoBeanValidationGeneric freezeIncomeTaxAction = hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) ;
 				if (hippoBeanValidationResponse != null && hippoBeanValidationResponse.getAction(ACTION.FREEZE_INCOMETAX_RETURN) != null) {
 					isFrozen = true;
