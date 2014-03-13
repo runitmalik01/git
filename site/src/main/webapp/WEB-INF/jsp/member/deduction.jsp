@@ -197,14 +197,16 @@
 						</c:if>
 						<hst:actionURL var="submitDeduction"></hst:actionURL>
 					    <form id="<c:choose><c:when test="${pageAction == 'EDIT_CHILD'}">frmDeduction</c:when><c:otherwise>row_0</c:otherwise></c:choose>" method="post" name="frmDeduction" action="${submitDeduction}" class="frmDeduction">
-						<c:out value="${formHTML}" escapeXml="false"/>
-						<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
-						<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${childBean.form16Uuid}"/></c:if>
-						<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
+							<c:out value="${formHTML}" escapeXml="false"/>
+							<c:if test="${not empty successURL && not empty uuidform_16}"><input type="hidden" name="successURL" value="${scriptName}/${uuidform_16}/formsixteenedit"/></c:if>
+							<c:if test="${(pageAction == 'EDIT_CHILD' && not empty editingSection)}"><input type="hidden" name="decuuidform16" value="${childBean.form16Uuid}"/></c:if>
+							<c:if test="${not empty additionalScreenHTML}"><c:out value="${additionalScreenHTML}" escapeXml="false"/></c:if>
 					    </form>
 					  </div>
+					  
 					  <div class="modal-footer">
-					  	<div class="progress progress-striped active" id="chapterProgressBar" style="display:none">
+					  					    
+					    <div class="progress progress-striped active" id="chapterProgressBar" style="display:none">
 							<div class="progress-bar" id="chapterProgressBarReal" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
 						    	<span class="sr-only" id="chapterProgressBarSROnly">30% Complete</span>
 						 	</div>
@@ -301,21 +303,21 @@
 					}
 			    );
 				$("#chapterProgressBar").show();
-				progress=45;
-	       	    var myVar= setInterval(function(){    
-	       	    	progress+=10;
-	       	    	if (progress > 95) {
-	       	    		progress = 95;
-	       	    		clearInterval(myVar);
-	       	    	}
-	       	    	$("#chapterProgressBarReal").attr("aria-valuenow",progress);
-	       	    	//style="width: 45%"
-	       	    	$("#chapterProgressBarReal").attr("style","width: "+ progress + "%");
-	       	    	$("#chapterProgressBarSROnly").html( progress + "% Complete");
-	       	    },500);
-	        	 
+				
+				progress=30;
+				increment = parseInt (70 / allForms.length);
+				//alert(allForms.length + ":" + increment);
+	       	    $("#chapterProgressBarReal").attr("aria-valuenow",progress);
+	       	    $("#chapterProgressBarReal").attr("style","width: "+ progress + "%");
+	       	    $("#chapterProgressBarReal").html( progress + "% Complete");
+	       	    //$("#chapterProgressBarSROnly").html( progress + "% Complete");
 				 //$("#deductionSaveAJAX").attr("disabled",true);
 	        	 allForms.each ( function(index,value) {
+	        	 	progress+=increment;
+	        	 	$("#chapterProgressBarReal").attr("aria-valuenow",progress);
+	       	    	$("#chapterProgressBarReal").attr("style","width: "+ progress + "%");
+	       	    	$("#chapterProgressBarReal").html( progress + "% Complete");
+	       	    	//$("#chapterProgressBarSROnly").html( progress + "% Complete");
 					theData = $(value).serialize();
 					$.ajax('<hst:actionURL></hst:actionURL>',
 						{
