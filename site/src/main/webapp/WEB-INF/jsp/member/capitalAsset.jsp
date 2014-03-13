@@ -13,9 +13,6 @@
 <hippo-gogreen:title title="${capitalasset}" />
 <hst:link var="Securities" siteMapItemRefId="Securities"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
-<div class="row show-grid">
-	<w4india:itrsidebar></w4india:itrsidebar>
-	<div class="${sideBarMainClass}">
 <%
 	pageContext.setAttribute("inflationindexValues",
 			InflationIndex.values());
@@ -39,8 +36,8 @@
 					<legend class="header-color">
 						<small>Asset Information</small>
 					</legend>
-					<!-- <div align="center" style="color: red">Please enter your
-						details</div> -->
+					<div align="center" style="color: red">Please enter your
+						details</div>
 					<br />
 
 
@@ -156,11 +153,11 @@
 										<label for="asset111"><small><fmt:message
 													key="capital.gain.nri.infoa" /> </small> </label>
 									</div>
-								</div>
+								</div> 
 								<div class="col-md-3">
 									<div class="rowlabel">
-										<input id="asset111" name="asset111" class="decimal"
-											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.asset_111}"/></c:if>"
+										<input id="asset111" name="asset111" class="decimal" maxlength="14"
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.asset_111}"/></c:if>"
 											type="text">
 									</div>
 								</div>
@@ -173,9 +170,9 @@
 									</div>
 								</div>
 								<div class="col-md-3">
-									<div class="rowlabel">
-										<input id="assetnt111" name="assetnt111" class="decimal"
-											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.assetnt111}"/></c:if>"
+									<div class="rowlabel"> 
+										<input id="assetnt111" name="assetnt111" class="decimal" maxlength="14"
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.assetnt111}"/></c:if>"
 											type="text">
 									</div>
 								</div>
@@ -192,9 +189,9 @@
 									</div>
 								</div>
 								<div class="col-md-3">
-									<div class="rowlabel">
-										<input id="section48" name="section48" class="decimal"
-											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.section48}"/></c:if>"
+									<div class="rowlabel"> 
+										<input id="section48" name="section48" class="decimal" maxlength="14" 
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.section48}"/></c:if>"
 											type="text">
 									</div>
 								</div>
@@ -207,10 +204,10 @@
 									</div>
 								</div>
 								<div class="col-md-3">
-									<div class="rowlabel">
-										<input id="unlstdsecurity" name="unlstdsecurity"
+									<div class="rowlabel"> 
+										<input id="unlstdsecurity" name="unlstdsecurity" maxlength="14"
 											class="decimal"
-											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.unlstdSecurity}"/></c:if>"
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.unlstdSecurity}"/></c:if>"
 											type="text">
 									</div>
 								</div>
@@ -281,7 +278,7 @@
 						<div class="col-md-3 ">
 							<div class="rowlabel">
 								<input id="costacquisition" name="costacquisition" type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costAcquisition}"/></c:if>"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.costAcquisition}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value" />
 							</div>
@@ -319,7 +316,7 @@
 						<div class="col-md-3">
 							<div class="rowlabel">
 								<input id="costimprovement" name="costimprovement" type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costImprovement}"/></c:if>"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.costImprovement}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value" />
 							</div>
@@ -332,11 +329,11 @@
 								<label for="costtrnsfr"><small><fmt:message
 											key="capital.gain.cost.trnsfr" /> </small> </label>
 							</div>
-						</div>
+						</div> 
 						<div class="col-md-3">
 							<div class="rowlabel">
 								<input id="costtrnsfr" name="costtrnsfr" type="text"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.costTransfer}"/></c:if>"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.costTransfer}"/></c:if>"
 									maxlength="14" class="decimal"
 									title="Please fill only Numeric value" />
 							</div>
@@ -351,7 +348,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<input type="text" name="balanc" id="balanc"
+								<input type="text" name="balanc" id="balanc" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.balance}"/></c:if>"
 									class="decimal" readonly="readonly" />
@@ -367,9 +364,10 @@
 							</div>
 						</div>
 						<div class="col-md-3">
-							<div class="rowlabel">
+							<div class="rowlabel"> 
 								<input type="text" name="losssec94" id="losssec94"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.loss_sec94}"/></c:if>"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.loss_sec94}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 
 							</div>
@@ -399,12 +397,13 @@
 										key="capital.gain.slump.net" />
 								</label>
 							</div>
-						</div>
+						</div> 
 						<div class="col-md-3">
 							<div class="rowlabel">
 								<input type="text" name="netCGSlump" id="netCGSlump"
-									readonly="readonly"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.netCGSlump}"/></c:if>"
+									readonly="readonly" maxlength="14"
+									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.netCGSlump}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 							</div>
 						</div>
@@ -419,9 +418,10 @@
 								</div>
 							</div>
 							<div class="col-md-3">
-								<div class="rowlabel">
-									<input id="amtdeemedsc" name="amtdeemedsc" readonly="readonly"
-										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtdeemedsc}"/></c:if>"
+								<div class="rowlabel"> 
+									<input id="amtdeemedsc" name="amtdeemedsc" readonly="readonly" maxlength="14"
+										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.amtdeemedsc}"/></c:if>"
 										type="text" class="decimal" />
 								</div>
 							</div>
@@ -436,8 +436,9 @@
 						</div>
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<input id="amtdeemed" name="amtdeemed"
-									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.amtdeemed}"/></c:if>"
+								<input id="amtdeemed" name="amtdeemed" maxlength="14"
+										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
+									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.amtdeemed}"/></c:if>"
 									type="text" class="decimal" />
 							</div>
 						</div>
@@ -466,7 +467,7 @@
 						</div>
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<input type="text" name="capitalgain" id="capitalgain"
+								<input type="text" name="capitalgain" id="capitalgain" maxlength="14" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
 									class="decimal" readonly="readonly" />
@@ -656,8 +657,6 @@
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
-</div>
-</div>
 </div>
 <res:calc screenCalc="capitalasset" formId="capitalassetfrm"></res:calc>
 <res:client-validation formId="capitalassetfrm"
