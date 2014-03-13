@@ -1370,4 +1370,55 @@
 	  </sv:node>
 	</sv:node>
 	<!-- end News -->
+		<!-- admin node for administrative operations like send reminder if user has not activated account -->
+	
+<sv:node sv:name="admin" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>hst:sitemapitem</sv:value>
+  </sv:property>
+  <sv:property sv:name="jcr:uuid" sv:type="String">
+    <sv:value>c68d8822-7021-40be-a661-84df1f0371a3</sv:value>
+  </sv:property>
+  <sv:node sv:name="maintenance">
+    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+      <sv:value>hst:sitemapitem</sv:value>
+    </sv:property>
+    <sv:property sv:name="jcr:uuid" sv:type="String">
+      <sv:value>5ee9ac31-2932-4697-bad1-b0c7dbf8fac4</sv:value>
+    </sv:property>
+    <sv:node sv:name="jobs">
+      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+        <sv:value>hst:sitemapitem</sv:value>
+      </sv:property>
+      <sv:property sv:name="jcr:uuid" sv:type="String">
+        <sv:value>50fdad2d-0dc7-4ccd-82d8-5c73ab854abf</sv:value>
+      </sv:property>
+      <sv:node sv:name="sendemailtoinactiveuser.admin">
+        <sv:property sv:name="jcr:primaryType" sv:type="Name">
+          <sv:value>hst:sitemapitem</sv:value>
+        </sv:property>
+        <sv:property sv:name="jcr:uuid" sv:type="String">
+          <sv:value>e353f7d6-6649-443a-879e-6b76333f5355</sv:value>
+        </sv:property>
+        <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+          <sv:value>hst:pages/sendemailtoinactiveuser</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+          <sv:value>maxDaysReminder</sv:value>
+          <sv:value>minDaysReminder</sv:value>
+        </sv:property>
+        <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+          <sv:value>10</sv:value>
+          <sv:value>1</sv:value>
+        </sv:property>
+      </sv:node>
+    </sv:node>
+  </sv:node>
+</sv:node>
+	
+
+
+	
+	
+	<!-- /admin node -->
 </sv:node>
