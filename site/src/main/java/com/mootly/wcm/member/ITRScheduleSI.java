@@ -3,8 +3,6 @@
  */
 package com.mootly.wcm.member;
 
-import in.gov.incometaxindiaefiling.y2012_2013.ITR;
-import in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -48,10 +46,8 @@ import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.model.ITRScheduleSISections;
 import com.mootly.wcm.model.ResidentStatus;
-import com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules;
 import com.mootly.wcm.services.IndianCurrencyHelper;
 import com.mootly.wcm.services.ScreenCalculatorService;
-import com.mootly.wcm.utils.XmlCalculation;
 
 /**
  * @author BEN-10
@@ -85,6 +81,7 @@ public class ITRScheduleSI extends ITReturnComponent {
 				}
 			}
 		}
+		log.info("scheduleSIList::"+scheduleSIList);
 		request.setAttribute("scheduleSIList", scheduleSIList);
 	}
 
@@ -219,18 +216,49 @@ public class ITRScheduleSI extends ITReturnComponent {
 				totalMapForJS.put("CapDoc", "CapDoc");
 			}
 			totalMapForJS.put("userAmount", null);
-			XmlCalculation xmlCal = new XmlCalculation();
-			long grossTotal = xmlCal.getGrossTotalOfIncomeWTFlateRate(fy, inputBean);
+			
 			MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation) inputBean.get(MemberPersonalInformation.class.getSimpleName().toLowerCase());		
 			DeductionDocument deductionDocument = (DeductionDocument) inputBean.get(DeductionDocument.class.getSimpleName().toLowerCase());
-
-			DeductionVIASchedules deductionVIASchedules = new DeductionVIASchedules(deductionDocument, memberPersonalInformation, Osd);
-			ITR itr = new ITR();
-			ScheduleVIA  scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, fy, inputBean);
+	
+			//Changes made to make it run for fy : 2013-2014
 			IndianCurrencyHelper currencyHelper = new IndianCurrencyHelper();
-			BigInteger deductionChapSix = scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions();
-			BigInteger exemptFreeGrossTotal = currencyHelper.longToBigInteger(grossTotal).subtract(deductionChapSix); 
-			Double slabValue = findSlabOfGrossIncome(fy, inputBean, exemptFreeGrossTotal);
+			BigInteger deductionChapSix = new BigInteger("0");
+			BigInteger exemptFreeGrossTotal = new BigInteger("0");
+			Double slabValue = 0d;
+			long grossTotal = 0;
+			
+			if(fy.getDisplayName().equals("2011-2012")){
+				com.mootly.wcm.model.schedules.y2011_2012.DeductionVIASchedules deductionVIASchedules = new com.mootly.wcm.model.schedules.y2011_2012.DeductionVIASchedules(deductionDocument, memberPersonalInformation, Osd);
+				in.gov.incometaxindiaefiling.y2011_2012.ITR itr = new in.gov.incometaxindiaefiling.y2011_2012.ITR();
+				in.gov.incometaxindiaefiling.y2011_2012.ScheduleVIA  scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, fy, inputBean);
+				com.mootly.wcm.utils.XmlCalculation xmlCal = new com.mootly.wcm.utils.XmlCalculation();
+				
+				grossTotal = xmlCal.getGrossTotalOfIncomeWTFlateRate(fy, inputBean);
+				deductionChapSix = scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions();
+				exemptFreeGrossTotal = currencyHelper.longToBigInteger(grossTotal).subtract(deductionChapSix); 
+				slabValue = findSlabOfGrossIncome(fy, inputBean, exemptFreeGrossTotal);
+			}else if(fy.getDisplayName().equals("2012-2013")){
+				com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules deductionVIASchedules = new com.mootly.wcm.model.schedules.y2012_2013.DeductionVIASchedules(deductionDocument, memberPersonalInformation, Osd);
+				in.gov.incometaxindiaefiling.y2012_2013.ITR itr = new in.gov.incometaxindiaefiling.y2012_2013.ITR();
+				in.gov.incometaxindiaefiling.y2012_2013.ScheduleVIA  scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, fy, inputBean);
+				com.mootly.wcm.utils.XmlCalculation xmlCal = new com.mootly.wcm.utils.XmlCalculation();
+				
+				grossTotal = xmlCal.getGrossTotalOfIncomeWTFlateRate(fy, inputBean);
+				deductionChapSix = scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions();
+				exemptFreeGrossTotal = currencyHelper.longToBigInteger(grossTotal).subtract(deductionChapSix); 
+				slabValue = findSlabOfGrossIncome(fy, inputBean, exemptFreeGrossTotal);
+			}else if(fy.getDisplayName().equals("2013-2014")){
+				com.mootly.wcm.model.schedules.y2013_2014.DeductionVIASchedules deductionVIASchedules = new com.mootly.wcm.model.schedules.y2013_2014.DeductionVIASchedules(deductionDocument, memberPersonalInformation, Osd);
+				in.gov.incometaxindiaefiling.y2013_2014.ITR itr = new in.gov.incometaxindiaefiling.y2013_2014.ITR();
+				in.gov.incometaxindiaefiling.y2013_2014.ScheduleVIA  scheduleVIA = deductionVIASchedules.getScheduleVIA(itr, fy, inputBean);		
+				com.mootly.wcm.services.y2013_2014.XmlCalculation xmlCal = new com.mootly.wcm.services.y2013_2014.XmlCalculation();
+				
+				grossTotal = xmlCal.getGrossTotalOfIncomeWTFlateRate(fy, inputBean);
+				deductionChapSix = scheduleVIA.getDeductUndChapVIA().getTotalChapVIADeductions();
+				exemptFreeGrossTotal = currencyHelper.longToBigInteger(grossTotal).subtract(deductionChapSix); 
+				slabValue = findSlabOfGrossIncome(fy, inputBean, exemptFreeGrossTotal);
+			}
+			
 			totalMapForJS.put("grossTotal", exemptFreeGrossTotal);
 			totalMapForJS.put("slabValue", slabValue);
 			totalMapForJS.put("xmlCode", siSection.getXmlCode());

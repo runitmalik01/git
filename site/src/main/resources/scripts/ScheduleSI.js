@@ -37,21 +37,30 @@ if(CapDoc!="CapDoc"){
 	//if you have capital gain document 
 	if(CapDoc.getCapitalAssetDetailList() != null &&  CapDoc.getCapitalAssetDetailList().size() > 0 ){ 
 		for(var i=0;i< CapDoc.getCapitalAssetDetailList().size();i++) {
-			if(java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getSstCharge()) == 'Y'){
-				stBalnc = stBalnc + (CapDoc.getCapitalAssetDetailList().get(i).getBalance()-0);
-				stLoss = stLoss + (CapDoc.getCapitalAssetDetailList().get(i).getLoss_sec94()-0);
-				stSecA = stSecA + (CapDoc.getCapitalAssetDetailList().get(i).getAsset_111()-0);
+			//Check for Exempt Capital Gain
+			var checkForExemptIncome = false;
+			if(java.lang.Double.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getCapitalGainTaxLT()) != null &&
+					java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getSstCharge()) == 'Y' &&
+					java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getAssetType()) == 'SHARES'){       	 
+				checkForExemptIncome = true;
 			}
-			if(java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getIndex()) == 'N'){ //need to save value of indexation in capitalAssest doc
-				ltBalnc = ltBalnc + (CapDoc.getCapitalAssetDetailList().get(i).getBalance()-0);
-				ltded = ltded + (CapDoc.getCapitalAssetDetailList().get(i).getDed_sec54()-0);
-			}
+			if(!checkForExemptIncome){
+				if(java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getSstCharge()) == 'Y'){
+					stBalnc = stBalnc + (CapDoc.getCapitalAssetDetailList().get(i).getBalance()-0);
+					stLoss = stLoss + (CapDoc.getCapitalAssetDetailList().get(i).getLoss_sec94()-0);
+					stSecA = stSecA + (CapDoc.getCapitalAssetDetailList().get(i).getAsset_111()-0);
+				}
+				if(java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getIndex()) == 'N'){ //need to save value of indexation in capitalAssest doc
+					ltBalnc = ltBalnc + (CapDoc.getCapitalAssetDetailList().get(i).getBalance()-0);
+					ltded = ltded + (CapDoc.getCapitalAssetDetailList().get(i).getDed_sec54()-0);
+				}
 
-			ltUnlisSec = ltUnlisSec + (CapDoc.getCapitalAssetDetailList().get(i).getUnlstdSecurity()-0);
+				ltUnlisSec = ltUnlisSec + (CapDoc.getCapitalAssetDetailList().get(i).getUnlstdSecurity()-0);
 
-			if(java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getIndex()) == 'Y'){ //need to save value of indexation in capitalAssest doc
-				ltCapGainWIndex = ltCapGainWIndex + (CapDoc.getCapitalAssetDetailList().get(i).getCapitalGain()-0);
-				ltUnlisSecWIndex = ltUnlisSecWIndex + (CapDoc.getCapitalAssetDetailList().get(i).getUnlstdSecurity()-0);
+				if(java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getIndex()) == 'Y'){ //need to save value of indexation in capitalAssest doc
+					ltCapGainWIndex = ltCapGainWIndex + (CapDoc.getCapitalAssetDetailList().get(i).getCapitalGain()-0);
+					ltUnlisSecWIndex = ltUnlisSecWIndex + (CapDoc.getCapitalAssetDetailList().get(i).getUnlstdSecurity()-0);
+				}
 			}
 		}
 	}
@@ -59,10 +68,10 @@ if(CapDoc!="CapDoc"){
 	stGainSTTpaid = stBalnc + stSecA + stLoss; 
 	ltCapGainWtIndex = (ltBalnc > ltded) ? (ltBalnc - ltded) : 0;	
 	ltGain = (ltCapGainWIndex > ltUnlisSecWIndex) ? (ltCapGainWIndex - ltUnlisSecWIndex) : 0;
-	
-    //adjustment of capital gain if user don't have any tax at source of income.
+
+	//adjustment of capital gain if user don't have any tax at source of income.
 	remainSlab = (grossTotal < slabValue) ? (slabValue - grossTotal) : 0; //find remaining amount that can be adjust to capital gain
-	
+
 	condition_1 = (remainSlab > stGainSTTpaid) ? (remainSlab - stGainSTTpaid) :0; 
 	condition_2 = (condition_1 > ltCapGainWtIndex) ? (condition_1 - ltCapGainWtIndex) :0; 
 
