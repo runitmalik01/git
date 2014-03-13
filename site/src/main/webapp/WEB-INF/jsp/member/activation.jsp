@@ -5,8 +5,8 @@
 
 <c:choose>
 	<c:when test="${not empty isError}">
-		<div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
         <div class="col-md-12">
             <div class="error-template">
                 <h1>
@@ -26,8 +26,8 @@
 </div>
 	</c:when>
 	<c:when test="${not empty isEmpty}">
-			<div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
         <div class="col-md-12">
             <div class="error-template">
                 <h1>
@@ -47,9 +47,13 @@
 </div>
 	</c:when>
 	<c:otherwise>
-		<legend style="color: blue"><fmt:message key="member.message.active"/></legend>
-		<h3><fmt:message key="member.message.info1"/></h3><br/>
-		<h4 style="color:green"><fmt:message key="member.message.info2"/>(${userName}) </h4>
+		  <div class="alert alert-success">
+               <span class="glyphicon glyphicon-ok"></span> <strong><fmt:message key="member.message.active"/></strong>
+                <hr class="message-inner-separator">
+               <p>
+                  Thank you for expressing interest in <w4india:resellername/>. Please login with your username (${userName}).
+		       </p>
+            </div>
 	</c:otherwise>
 </c:choose>
 
