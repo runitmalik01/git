@@ -173,6 +173,11 @@ public class Deduction extends ITReturnComponent {
 					deductionDocumentDetailList.addAll (listOfDerivedDeductionDocuments);
 				}
 			}
+			
+			if (getITRInitData(request).getPageAction() == PAGE_ACTION.EDIT_CHILD && getITRInitData(request).getChildBean() != null && getITRInitData(request).getChildBean().getCanonicalUUID() != null) {
+				log.debug(getITRInitData(request).getChildBean().getCanonicalUUID());
+				request.setAttribute("editingSection", getITRInitData(request).getChildBean());
+			}
 
 			Double grandTotal = 0D;
 			if (deductionDocumentDetailList != null && deductionDocumentDetailList.size() > 0){
@@ -188,9 +193,10 @@ public class Deduction extends ITReturnComponent {
 						savedData.put(deductionDocumentDetail.getSection(), new ArrayList<DeductionDocumentDetail>());
 					}
 					savedData.get(deductionDocumentDetail.getSection()).add(deductionDocumentDetail);
-					if (getITRInitData(request).getPageAction() == PAGE_ACTION.EDIT_CHILD && getITRInitData(request).getUuid() != null && getITRInitData(request).getUuid().equals(deductionDocumentDetail.getCanonicalUUID())) {
-						request.setAttribute("editingSection", deductionDocumentDetail);
-					}
+					
+					//if (getITRInitData(request).getPageAction() == PAGE_ACTION.EDIT_CHILD && getITRInitData(request).getUuid() != null && getITRInitData(request).getUuid().equals(deductionDocumentDetail.getCanonicalUUID())) {
+					//	request.setAttribute("editingSection", deductionDocumentDetail);
+					//}
 					if (!totalOfSavedData.containsKey(deductionDocumentDetail.getSection())){
 						totalOfSavedData.put(deductionDocumentDetail.getSection(), 0D);
 					}
