@@ -350,7 +350,7 @@
 							<div class="rowlabel">
 								<input type="text" name="balanc" id="balanc" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.balance}"/></c:if>"
+									<fmt:formatNumber type="number" groupingUsed="false" maxIntegerDigits="14" value="${childBean.balance}"/></c:if>"
 									class="decimal" readonly="readonly" />
 
 							</div>
@@ -367,7 +367,7 @@
 							<div class="rowlabel"> 
 								<input type="text" name="losssec94" id="losssec94"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.loss_sec94}"/></c:if>"
+									<fmt:formatNumber type="number" groupingUsed="false"  maxIntegerDigits="14" value="${childBean.loss_sec94}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 
 							</div>
@@ -384,7 +384,7 @@
 							<div class="rowlabel">
 								<input type="text" name="dedsec54" id="dedsec54" maxlength="14" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.ded_sec54}"/></c:if>"
+									<fmt:formatNumber type="number" groupingUsed="false"  maxIntegerDigits="14" value="${childBean.ded_sec54}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 
 							</div>
@@ -403,7 +403,7 @@
 								<input type="text" name="netCGSlump" id="netCGSlump"
 									readonly="readonly" maxlength="14"
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.netCGSlump}"/></c:if>"
+									<fmt:formatNumber type="number" groupingUsed="false"  maxIntegerDigits="14" value="${childBean.netCGSlump}"/></c:if>"
 									class="decimal" title="Please fill only Numeric value" />
 							</div>
 						</div>
@@ -421,7 +421,7 @@
 								<div class="rowlabel"> 
 									<input id="amtdeemedsc" name="amtdeemedsc" readonly="readonly" maxlength="14"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.amtdeemedsc}"/></c:if>"
+									<fmt:formatNumber type="number" groupingUsed="false"  maxIntegerDigits="14" value="${childBean.amtdeemedsc}"/></c:if>"
 										type="text" class="decimal" />
 								</div>
 							</div>
@@ -438,7 +438,7 @@
 							<div class="rowlabel">
 								<input id="amtdeemed" name="amtdeemed" maxlength="14"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.amtdeemed}"/></c:if>"
+									<fmt:formatNumber type="number"  groupingUsed="false" maxIntegerDigits="14" value="${childBean.amtdeemed}"/></c:if>"
 									type="text" class="decimal" />
 							</div>
 						</div>
@@ -469,7 +469,7 @@
 							<div class="rowlabel">
 								<input type="text" name="capitalgain" id="capitalgain" maxlength="14" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
-									<fmt:formatNumber type="number"  maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
+									<fmt:formatNumber type="number" groupingUsed="false" maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
 									class="decimal" readonly="readonly" />
 							</div>
 						</div>
