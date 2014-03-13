@@ -476,11 +476,11 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="row show-grid">
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<label for="ward_circle"><small>IncomeTax
+								<label for="new_ward_circle"><small>IncomeTax
 										Ward/Circle</small> </label>
 							</div>
 							<div class="rowlabel">
-								<input id="ward_circle" value="${parentBean.ward_circle}" class="uprcase"
+								<input id="new_ward_circle" value="${parentBean.ward_circle}" class="uprcase"
 									name="ward_circle" placeholder=" Ward/Circle" type="text" maxlength="50"/>
 							</div>
 						</div>
@@ -790,13 +790,13 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					<div class="row show-grid">
 						<div class="col-md-6">
 							<div class="rowlabel">
-								<small><label for="bd_bank_name"> <fmt:message
+								<small><label for="new_bd_bank_name"> <fmt:message
 											key="member.bank.detail.bank.name" />
 								</label>
 								</small>
 							</div>
 							<div class="rowlabel">
-								<input type="text" id="bd_bank_name" name="bd_bank_name" class="uprcase"
+								<input type="text" id="new_bd_bank_name" name="bd_bank_name" class="uprcase"
 									value="${parentBean.BD_BANK_NAME}" maxlength="25" />
 							</div>
 						</div>
@@ -1116,7 +1116,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		var solrField = 'text';
 		var solrExtra = '';
 		ifsc = {};
-		function callSolr_bd_bank_name(q,process) {
+		function callSolr_new_bd_bank_name(q,process) {
 			solrField = 'BANK';
 			solrFieldFacet = solrField + '_s';
 			solrExtra = '';
@@ -1226,9 +1226,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			$("#whoCannot").html(mapOfItrFormWhoCanAndWhoCannot[$("#flex_string_ITRForm").val()]);
 
 
-			var options={source:callSolr_bd_bank_name,updater:bankSelected}
-			//$("#bd_bank_name").attr('autocomplete','off');  //07/20 Amit
-			//$("#bd_bank_name").typeahead(options); //07/20 Amit
+			var options={source:callSolr_new_bd_bank_name,updater:bankSelected}
+			//$("#new_bd_bank_name").attr('autocomplete','off');  //07/20 Amit
+			//$("#new_bd_bank_name").typeahead(options); //07/20 Amit
 
 			options={source:callSolr_bd_Branch_name,updater:branchSelected}
 			//$("#bd_Branch_name").attr('autocomplete','off');  //07/20 Amit
@@ -1294,7 +1294,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					$("#pi_country option[value=" + 91 + "]").show();
                     }
 			});
-			$('#bd_bank_name').tooltip('data-toggle');
+			$('#new_bd_bank_name').tooltip('data-toggle');
 			$("#pi_first_name").popover({'trigger':'focus'});
 
 		});
