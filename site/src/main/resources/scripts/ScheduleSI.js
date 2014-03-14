@@ -39,7 +39,7 @@ if(CapDoc!="CapDoc"){
 		for(var i=0;i< CapDoc.getCapitalAssetDetailList().size();i++) {
 			//Check for Exempt Capital Gain
 			var checkForExemptIncome = false;
-			if(java.lang.Double.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getCapitalGainTaxLT()) != null &&
+			if(CapDoc.getCapitalAssetDetailList().get(i).getCapitalGainTaxLT() != null &&
 					java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getSstCharge()) == 'Y' &&
 					java.lang.String.valueOf(CapDoc.getCapitalAssetDetailList().get(i).getAssetType()) == 'SHARES'){       	 
 				checkForExemptIncome = true;
