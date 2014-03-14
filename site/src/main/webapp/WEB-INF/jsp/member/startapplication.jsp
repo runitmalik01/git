@@ -1118,7 +1118,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		ifsc = {};
 		function callSolr_bd_bank_name(q,process) {
 			solrField = 'BANK';
-			solrFieldFacet = solrField + '_sbd_bank_name';
+			solrFieldFacet = solrField + '_s';
 			solrExtra = '';
 			doneFunc = function(data)  {
 				var aLength = data.facet_counts.facet_fields[solrFieldFacet].length;
