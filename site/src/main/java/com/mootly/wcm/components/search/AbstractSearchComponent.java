@@ -170,9 +170,9 @@ public class AbstractSearchComponent extends TagComponent {
                 hstQuery.setFilter(filter);
                 
                 
-                Filter excludeFolders = hstQuery.createFilter();
-            	excludeFolders.addNotEqualTo("jcr:primaryType", "hippostd:folder");
-            	filter.addAndFilter(excludeFolders);
+                //Filter excludeFolders = hstQuery.createFilter();
+            	//excludeFolders.addNotEqualTo("jcr:primaryType", "hippostd:folder");
+            	//filter.addAndFilter(excludeFolders);
             	
               
                 

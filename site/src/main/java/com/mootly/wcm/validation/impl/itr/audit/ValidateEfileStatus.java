@@ -124,7 +124,17 @@ public class ValidateEfileStatus implements HippoBeanValidator {
 							if (additionalData != null && additionalData.containsKey("webSiteInfo")) {
 								websiteInfo = (WebsiteInfo) additionalData.get("webSiteInfo");
 							}
-							if (getRetrieveITRVStatusByTokenAndPAN()!= null && websiteInfo != null) {
+							
+							//check for SOAP RESPONSE if it has a <ns2:result>111169747</ns2:result> extract the tokenID
+							if (tokenID == null) {
+								String soapResponse= ditResponseDocumentDetail.getSoapResponse();
+								if (soapResponse != null && soapResponse.indexOf("<ns2:result>") != -1 && soapResponse.indexOf("</ns2:result>") != -1 ) {
+									int indx1 = soapResponse.indexOf("<ns2:result>");
+									int indx2 = soapResponse.indexOf("</ns2:result>");
+									tokenID = soapResponse.substring(indx1+13,indx2).trim();
+								}
+							}
+							if (tokenID != null && getRetrieveITRVStatusByTokenAndPAN() != null && websiteInfo != null) {
 								FormMap childFormMap = new FormMap();
 								try {
 									RetrieveITRVStatusResponse retrieveITRVStatusResponse = getRetrieveITRVStatusByTokenAndPAN().retrieveITRVByTokenAndPAN(websiteInfo.getEriUserId(), websiteInfo.getEriPassword(), certChain, signature, tokenID, PAN, null, null);

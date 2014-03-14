@@ -68,6 +68,36 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 		return ditResponseDocumentDetailListLocal;
 	}
 	
+	public final DITResponseDocumentDetail getLastDitResponseDocumentDetailsBySOAPOperation(String soapOperation) {
+		getDitResponseDocumentDetails();
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocal = null;
+		if ( ditResponseDocumentDetailList != null || ditResponseDocumentDetailList.size() > 0 ) {
+			ditResponseDocumentDetailListLocal = new ArrayList<DITResponseDocumentDetail>();
+			for (DITResponseDocumentDetail ditResponseDocumentDetail:ditResponseDocumentDetailList) {
+				if (ditResponseDocumentDetail.getSoapOperation() != null && soapOperation.equals(ditResponseDocumentDetail.getSoapOperation())) {
+					ditResponseDocumentDetailListLocal.add(ditResponseDocumentDetail);
+				}
+			}
+		}
+		if (ditResponseDocumentDetailListLocal != null && ditResponseDocumentDetailListLocal.size() > 0) {
+			return ditResponseDocumentDetailListLocal.get(ditResponseDocumentDetailListLocal.size() - 1);
+		}
+		else {
+			return null;
+		}
+	}
+	
+	
+	public final String lastDITSubmissionStatus() {
+		DITResponseDocumentDetail ditResponseDocumentDetail = getLastDitResponseDocumentDetailsBySOAPOperation("submitITR");
+		if (ditResponseDocumentDetail == null) {
+			return null;
+		}
+		else {
+			return ditResponseDocumentDetail.getDitSubmissionStatus();
+		}
+	}
+	
 	//how 
 	/*
 	 * FormField frmField2 = new FormField("verificationStatus");

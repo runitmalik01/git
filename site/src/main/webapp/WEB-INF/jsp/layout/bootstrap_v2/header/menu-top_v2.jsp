@@ -27,30 +27,19 @@
 <hst:link var="signup" path="/signup"/>
 <hst:link var="myaccount" path="/member"/>
 <hst:link var="resellersignup" path="/resellersignup"/>
-<%--
-<span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
-<a href="javascript:;" class="simpleCart_checkout">Checkout</a>
- --%>
- 
+
 <hst:link var="securelink" siteMapItemRefId="secure-connection"></hst:link>
-<c:choose>
-	<c:when test="${loggedin}">			
-		<%--<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-724" style="color: brown"><small><strong></strong></small></li> --%>
-               <a class="dropdown-toggle btn btn-primary" data-toggle="dropdown" href="#" style="color: white"><i class="glyphicon glyphicon-user glyphicon glyphicon-white"></i><%=request.getUserPrincipal().getName()%><b></b></a>
-               <ul class="dropdown-menu">
-               	<hst:link var="changepass" siteMapItemRefId="memberchangepass"></hst:link>
-                   <li><a href="${changepass}"><i class="glyphicon glyphicon-edit"></i>ChangePassword</a></li>
-                   <li><a href="${securelink}?security=true"><i class="glyphicon glyphicon-wrench"></i>Security Setting</a></li>
-                   <%
-                   	if (request.isUserInRole("ROLE_vendor")) {	                    		
-                   %>
-                   	<li><a href="<hst:link path="/vendor/itreturn"/>"><i class="glyphicon glyphicon-home"></i>Vendor Home</a></li>
-                   <% } %>
-               </ul>
-			   <a href="<hst:link path="/j_spring_security_logout"/>" class="btn btn-lg btn-info btn-block" style="display:inline" tabindex="4">Logout</a>
-	</c:when>
-	<c:otherwise>	<!-- Login/Signup (when user is logging first time)-->
-		<a href="<hst:link path="/memberLogin"/>" class="btn btn-lg btn-info btn-block" style="display:inline" tabindex="4">Log In</a>
-		<a href="<hst:link path="/signup"/>" class="btn btn-lg btn-warning btn-block" tabindex="4" style="display:inline">Signup</a>
-	</c:otherwise>
-</c:choose>		
+<div class="pull-right">
+	<c:choose>
+		<c:when test="${loggedin}">			
+			<a class="btn btn-orange pull-left btn-signin btn-beacon" href="<hst:link path="/member/itreturn"/>">Sign In</a>
+		</c:when>
+		<c:otherwise>
+			<%--
+			<a href="<hst:link path="/memberLogin"/>" class="btn btn-lg btn-info btn-block" style="display:inline" tabindex="4">Log In</a>
+			<a href="<hst:link path="/signup"/>" class="btn btn-lg btn-warning btn-block" tabindex="4" style="display:inline">Signup</a>
+			 --%>
+			<a class="btn btn-orange pull-left btn-signin btn-beacon" href="<hst:link path="/memberLogin"/>">Sign In</a>
+		</c:otherwise>
+	</c:choose>		
+</div>

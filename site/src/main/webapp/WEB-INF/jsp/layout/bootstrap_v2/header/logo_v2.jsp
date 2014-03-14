@@ -25,5 +25,5 @@
 <hst:link var="logopathtext" path="/images/w4indiatxt.png"/>
 <hst:link var="home" path="/"/>
 <hst:link var="imgLogo" hippobean="${logo.original}"/>
-<a class="w4i-logo" href="${home}"><img  src="${imgLogo}?123"></a>
+<a href="${home}"><img  class="logo"  src="${imgLogo}?123"></a>
 
