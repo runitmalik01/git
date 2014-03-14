@@ -7,6 +7,9 @@
 <w4india:itrmenu />
 <hippo-gogreen:title title="${ditsynctitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
+<div class="row show-grid">
+	<w4india:itrsidebar></w4india:itrsidebar>
+	<div class="${sideBarMainClass}">
 <h3 id="respond1">
 	<c:choose>
 		<c:when
@@ -224,6 +227,8 @@
   </c:otherwise>
 </c:choose>		
 </c:if>
+</div>
+</div>
 <res:client-validation formId="tdsfromdit"
 	screenConfigurationDocumentName="syncTDSFromDIT"
 	formSubmitButtonId="myModalHreftdsfromdit" />

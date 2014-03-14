@@ -4065,6 +4065,7 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
+    <!-- Changed 'id' to make diff between required validation and tut-->
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
@@ -4079,7 +4080,7 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>bd_bank_name</sv:value>
+        <sv:value>new_bd_bank_name</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
         <sv:value/>
@@ -4133,6 +4134,7 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
+    <!-- Changed 'id' - kusum -->
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
@@ -5366,7 +5368,7 @@ or by both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>ward_circle</sv:value>
+        <sv:value>new_ward_circle</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
         <sv:value/>
@@ -46596,6 +46598,7 @@ Payment or lump sum).&lt;/p&gt;
 </sv:node>
     <!-- end of events -->
   </sv:node>
+  
   
   
   
