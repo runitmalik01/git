@@ -12,12 +12,10 @@ package com.mootly.wcm.components.itreturns;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.jcr.Session;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,13 +25,11 @@ import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.component.support.forms.FormUtils;
 import org.hippoecm.hst.component.support.forms.StoreFormResult;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
-import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManager;
 import org.hippoecm.hst.content.beans.query.HstQuery;
 import org.hippoecm.hst.content.beans.query.HstQueryResult;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoDocument;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentIterator;
 import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
@@ -63,10 +59,8 @@ import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Product;
 import com.mootly.wcm.beans.ValueListDocument;
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
-import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.ITReturnComponent;
-import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.FinancialYear;
@@ -74,23 +68,16 @@ import com.mootly.wcm.model.ITReturnHomePageView;
 import com.mootly.wcm.model.ITReturnType;
 import com.mootly.wcm.model.PaymentVerificationStatus;
 import com.mootly.wcm.services.FreeTextSearchSreviceImpl;
-import com.mootly.wcm.services.MasterConfigService;
 import com.mootly.wcm.services.SequenceGenerator;
 import com.mootly.wcm.services.StartApplicationValidationService;
-import com.mootly.wcm.services.ditws.RetrievePANInformation;
-import com.mootly.wcm.services.ditws.exception.DataMismatchException;
-import com.mootly.wcm.services.ditws.exception.InvalidFormatException;
-import com.mootly.wcm.services.ditws.exception.MissingInformationException;
-import com.mootly.wcm.services.ditws.model.RetrievePANResponse;
 import com.mootly.wcm.utils.Constants;
 import com.mootly.wcm.utils.GoGreenUtil;
 import com.mootly.wcm.utils.PageableCollection;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric;
-import com.mootly.wcm.validation.HippoBeanValidationResponse;
-import com.mootly.wcm.validation.HippoBeanValidator;
-import com.mootly.wcm.validation.RepositoryUpdateRequest;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric.ACTION;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric.TYPE;
+import com.mootly.wcm.validation.HippoBeanValidationResponse;
+import com.mootly.wcm.validation.HippoBeanValidator;
 //@PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 @FormFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"})
 @RequiredFields(fieldNames={"pan","pi_last_name","pi_dob","pi_return_type","fy","ReturnSection","pi_mobile"})
@@ -516,19 +503,15 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 			HippoBeanValidationResponse hippoBeanValidationResponse = getItrValidationChain().execute(getITRInitData(request).getFinancialYear(), getITRInitData(request).getPageAction(),  mapOfBeans, additionalData , getClass().getAnnotations());
 			boolean eFiledFailed = false;
 			String eFiledFailedDateTime = null;
-			List<DITResponseDocumentDetail> eFileFailureList = null;
 			if (mapOfBeans != null && mapOfBeans.containsKey(DITResponseDocument.class.getSimpleName().toLowerCase())) {
 				DITResponseDocument ditResponseDocument =  (DITResponseDocument) mapOfBeans.get(DITResponseDocument.class.getSimpleName().toLowerCase());
 				if (ditResponseDocument != null) {
-					eFileFailureList = ditResponseDocument.getGetEFileFailureHistory();
-					if (eFileFailureList != null && eFileFailureList.size() > 0 ) {
+					DITResponseDocumentDetail ditResponseDocumentDetail = ditResponseDocument.getLastDitResponseDocumentDetailsBySOAPOperation("submitITR");
+					if (ditResponseDocumentDetail != null && ditResponseDocumentDetail.getVerificationStatus() != null && "VERIFIED".equals(ditResponseDocumentDetail.getVerificationStatus()) && "FAILED".equals(ditResponseDocumentDetail.getDitSubmissionStatus()) ) {
 						eFiledFailed = true;
-						eFiledFailedDateTime = eFileFailureList.get(eFileFailureList.size() - 1).geteFileDateTime();
+						eFiledFailedDateTime = ditResponseDocumentDetail.geteFileDateTime();
 						request.setAttribute("eFiledFailed",eFiledFailed);
 						request.setAttribute("eFiledFailedDateTime",eFiledFailedDateTime);
-						
-						itReturnHomePageView.seteFiledFailed(eFiledFailed);
-						itReturnHomePageView.seteFileDateTime(eFiledFailedDateTime);
 					}
 				}
 			}

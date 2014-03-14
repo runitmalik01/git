@@ -55,6 +55,7 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	String soapOperation;
 	String soapRequest;
 	String soapResponse;
+	String verificationStatus;
 	String ditSubmissionStatus;
 	String eFileDateTime;
 	Boolean isFault;
@@ -77,6 +78,11 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	public final String getSoapOperation() {
 		if (soapOperation == null) soapOperation = getProperty(SOAP_OPERATION);
 		return soapOperation;
+	}
+	
+	public String getVerificationStatus() {
+		if (verificationStatus == null) verificationStatus = getProperty("mootlywcm:verificationStatus");
+		return verificationStatus;
 	}
 	
 	@FormField(name="soapRequest")
@@ -169,14 +175,18 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 			if (getIsFault() != null) node.setProperty(SOAP_IS_FAULT,getIsFault().toString());
 			if (soapOutputMap != null && soapOutputMap.getFormMap() != null && soapOutputMap.getFormMap().size() > 0 ){
 				for (String fieldName:soapOutputMap.getFormMap().keySet()) {
-					String theFieldName = fieldName;
-					if (!fieldName.startsWith("mootlywcm:")) {
-						theFieldName = "mootlywcm:" + theFieldName;
+					try {
+						String theFieldName = fieldName;
+						if (!fieldName.startsWith("mootlywcm:")) {
+							theFieldName = "mootlywcm:" + theFieldName;
+						}
+						if (theFieldName.equals("mootlywcm:soapOperation") || theFieldName.equals("mootlywcm:soapRequest") || theFieldName.equals("mootlywcm:soapResponse") ||  theFieldName.equals("mootlywcm:isFault")  ) {
+							continue;
+						}
+						node.setProperty(theFieldName, soapOutputMap.getField(fieldName).getValue());
+					}catch (Exception e) {
+						log.error("There was an error",e);
 					}
-					if (theFieldName.equals("mootlywcm:soapOperation") || theFieldName.equals("mootlywcm:soapRequest") || theFieldName.equals("mootlywcm:soapResponse") ||  theFieldName.equals("mootlywcm:isFault")  ) {
-						continue;
-					}
-					node.setProperty(theFieldName, soapOutputMap.getField(fieldName).getValue());
 				}
 			}
 		} catch (ValueFormatException e) {

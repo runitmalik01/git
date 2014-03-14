@@ -183,13 +183,12 @@ request.setAttribute("isDITVerified",isDITVerified);
 //did EFILE FAILED??
 boolean eFiledFailed = false;
 String eFiledFailedDateTime = null;
-List<DITResponseDocumentDetail> eFileFailureList = null;
 DITResponseDocument ditResponseDocument =  (DITResponseDocument) request.getAttribute(DITResponseDocument.class.getSimpleName().toLowerCase());
 if (ditResponseDocument != null) {
-	eFileFailureList = ditResponseDocument.getGetEFileFailureHistory();
-	if (eFileFailureList != null && eFileFailureList.size() > 0 ) {
+	DITResponseDocumentDetail ditResponseDocumentDetail = ditResponseDocument.getLastDitResponseDocumentDetailsBySOAPOperation("submitITR");
+	if (ditResponseDocumentDetail != null && ditResponseDocumentDetail.getVerificationStatus() != null && "VERIFIED".equals(ditResponseDocumentDetail.getVerificationStatus()) && "FAILED".equals(ditResponseDocumentDetail.getDitSubmissionStatus()) ) {
 		eFiledFailed = true;
-		eFiledFailedDateTime = eFileFailureList.get(eFileFailureList.size() - 1).geteFileDateTime();
+		eFiledFailedDateTime = ditResponseDocumentDetail.geteFileDateTime();
 		request.setAttribute("eFiledFailed",eFiledFailed);
 		request.setAttribute("eFiledFailedDateTime",eFiledFailedDateTime);
 	}

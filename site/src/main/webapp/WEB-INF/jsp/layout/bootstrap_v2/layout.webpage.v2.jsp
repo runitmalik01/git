@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.onehippo.org/jsp/google-analytics" prefix="ga" %>
+<%@include file="../../includes/tags.jspf" %>
+<!doctype html>
 <!--[if !IE]>      <html class="no-js non-ie" lang="en-US"> <![endif]-->
 <!--[if IE 7 ]>    <html class="no-js ie7" lang="en-US"> <![endif]-->
 <!--[if IE 8 ]>    <html class="no-js ie8" lang="en-US"> <![endif]-->
@@ -48,28 +54,42 @@
     <hst:headContributions categoryIncludes="css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/dropdown-submenu.css"></hst:link>"/>
     <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/boostrap_login-signup.css"></hst:link>"/>
+    
+    <link rel="stylesheet" media="screen" type="text/css" href="<hst:link path="/css/newtestdesign.css"></hst:link>"/>
     <hst:headContributions categoryIncludes="jsHead"/>    
 </head>
-<body class="<c:choose><c:when test="${not empty strIsOnVendorPortal}">page-vendor</c:when><c:when test="${not empty bodyCssClass}"><c:out value="${bodyCssClass}"/></c:when><c:otherwise>page</c:otherwise></c:choose>">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+<body>
+    <hst:link var="modernizr" path="/js/modernizr.custom.39581.js"/>
+	<script type='text/javascript' src='${modernizr}'></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>
-	<div id="wrap"> 
+
+    <hst:link var="jqueryWaterMark" path="/js/jquery.watermark.min.js"/>
+    <script src="${jqueryWaterMark}"></script>
+    
+    <hst:link var="boostcheckboxjs" path="/js/boostrap_checkbox.js"/>
+    <script src="${boostcheckboxjs}"></script>
+
+	<hst:link var="responsive_modernizr" path="/js/responsive-modernizr.js"/>
+	<script type='text/javascript' src='${responsive_modernizr}'></script>
+
+	<script type='text/javascript' src='<hst:link path="/js/bootstrap.min.js"></hst:link>'></script>
+	<script src="<hst:link path="/js/bootstrap-typeahead.js"></hst:link>"></script>
 	<hst:include ref="header"/>
-	<c:if test="${not empty isError && error.key == 'true' && loggedin == 'true'}">
-		<c:choose>
-			<c:when test="${not empty error.key}">
-				<span class="label label-default label-warning"><c:out value="${error.key}" escapeXml="false"/></span>
-			</c:when>
-			<c:otherwise>
-				<span class="label label-default label-warning">There was an error processing your request</span>
-			</c:otherwise>
-		</c:choose>				
-	</c:if>
 	<hst:include ref="main"/>
-	<hst:headContributions categoryIncludes="customHTML" xhtml="false"/>
-	</div>
 	<hst:include ref="footer"/>
-	<script type="text/javascript"  src='<hst:link path="/js/w4india-validations.js"/>'></script>
+	<hst:headContributions categoryIncludes="jsInternal"/>
+	<hst:link var="responsive_scripts" path="/js/responsive-scripts.js"/>
+	<script type='text/javascript' src='${responsive_scripts}'></script>
+	<hst:link var="responsive_plugin" path="/js/responsive-plugins.js"/>
+	<script type='text/javascript' src='${responsive_plugin}'></script>
+
+	<hst:link var="jquery_validate_min" path="/js/jquery.validate.min.js"/>
+	<script type='text/javascript' src='${jquery_validate_min}'></script>
+	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
+	<hst:headContributions categoryIncludes="jsExternal"/>
+	<script type="text/javascript"  src='<hst:link path="/js/w4india-validations.js"/>'></script>	
 	<script type="text/javascript">
 	 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
