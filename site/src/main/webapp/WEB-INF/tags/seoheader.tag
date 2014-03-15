@@ -36,7 +36,7 @@
   <c:if test="${not empty title}"><c:out value="${title}"/></c:if>
   <c:if test="${not empty channelInfo and not empty channelInfo.resellerName}">
      <c:set var="separator" value=" - "/>
-     <c:out value="${channelInfo.resellerName}"/>
+     <c:out value="${separator}${channelInfo.resellerName}"/>
   </c:if>
  </c:set>
 <hst:element var="head" name="title">

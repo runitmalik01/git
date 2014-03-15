@@ -36,6 +36,7 @@
 		<a class="btn btn-default btn-danger" href='${deleteLink}'><i class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a>
 	</c:if>
 </c:if>
+<hippo-gogreen:seoheader title="${document.title}"></hippo-gogreen:seoheader>
 <form name="frmKB" id="frmKB" action="<hst:actionURL/>" method="post">
 
 	<c:choose>
