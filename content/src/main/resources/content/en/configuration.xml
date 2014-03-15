@@ -4080,7 +4080,7 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>new_bd_bank_name</sv:value>
+        <sv:value>bd_bank_name</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
         <sv:value/>
@@ -5368,7 +5368,7 @@ or by both. Eg. Bharat Petroleum, Air India&lt;/p&gt;
         <sv:value/>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
-        <sv:value>new_ward_circle</sv:value>
+        <sv:value>ward_circle</sv:value>
       </sv:property>
       <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
         <sv:value/>

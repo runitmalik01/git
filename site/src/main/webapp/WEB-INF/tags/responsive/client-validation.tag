@@ -173,7 +173,7 @@
 						//fObj.popover({'placement':placement,'container': 'body' , "html":true,"trigger":"focus",content:fieldConfig[fn].fieldPopoverText});
 						fObj.each( function(indx) {
 								//alert(validationRules.rules);
-								validationRules.rules[fieldConfig[fn].fieldId].required=true;
+								//validationRules.rules[fieldConfig[fn].fieldId].required=true;
 								//set the label with *
 								if ( $("label[for='" + fieldConfig[fn].fieldId + "']").length > 0 ){
 									$("label[for='" + fieldConfig[fn].fieldId + "']").append("&nbsp;&nbsp;<span id='qmark_" + fieldConfig[fn].fieldId  + "' class=\"glyphicon glyphicon-question-sign pull-right\"></span>");
