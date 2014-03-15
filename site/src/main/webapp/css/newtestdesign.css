@@ -30,7 +30,7 @@
 	
 	#fud-hero .fud-bg {
 		position: relative;
-		background: url('http://download2.dreamstime.com/dreamstimezoom_31915059.jpg?imageid=31915059&forcepass=527cd6bdd14ef736b11ec862b8c3d464') no-repeat 75% 39%;
+		background: url('../images/fudhero_1.jpg') no-repeat 75% 39%;
 		background-size: cover;
 		display: block;
 		max-width: 1800px;

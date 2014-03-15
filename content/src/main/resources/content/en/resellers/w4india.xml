@@ -37,7 +37,7 @@
     </sv:property>
   </sv:node>
   <!-- cms -->
-  <sv:node sv:name="cms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+  <sv:node sv:name="cms">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
 	    <sv:value>hippostd:folder</sv:value>
 	  </sv:property>
@@ -501,7 +501,7 @@
 	          <sv:value>hippotranslation:translated</sv:value>
 	        </sv:property>
 	        <sv:property sv:name="jcr:uuid" sv:type="String">
-	          <sv:value>f6a8d460-7812-49d8-aa2e-a225d5500026</sv:value>
+	          <sv:value>dd8d42e4-1c8a-4aad-b9bc-df33c1c17dab</sv:value>
 	        </sv:property>
 	        <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
 	          <sv:value>live</sv:value>
@@ -526,13 +526,13 @@
 	          <sv:value>2013-11-28T10:42:15.580-08:00</sv:value>
 	        </sv:property>
 	        <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-	          <sv:value>2014-02-19T12:20:06.093-08:00</sv:value>
+	          <sv:value>2014-03-13T21:47:13.211-07:00</sv:value>
 	        </sv:property>
 	        <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
 	          <sv:value>admin</sv:value>
 	        </sv:property>
 	        <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-	          <sv:value>2014-02-19T12:20:12.781-08:00</sv:value>
+	          <sv:value>2014-03-13T21:47:28.840-07:00</sv:value>
 	        </sv:property>
 	        <sv:property sv:name="hippotranslation:id" sv:type="String">
 	          <sv:value>496dcaef-7f9b-4b73-8e57-1fc533f9bd18</sv:value>
@@ -596,13 +596,13 @@
 	            <sv:value/>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:notColumn" sv:type="Boolean">
-	            <sv:value>false</sv:value>
+	            <sv:value>true</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:notContainer" sv:type="Boolean">
-	            <sv:value>false</sv:value>
+	            <sv:value>true</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:notRow" sv:type="Boolean">
-	            <sv:value>false</sv:value>
+	            <sv:value>true</sv:value>
 	          </sv:property>
 	          <sv:node sv:name="mootlywcm:columns">
 	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
@@ -626,122 +626,6 @@
 	            </sv:property>
 	            <sv:property sv:name="hippo:docbase" sv:type="String">
 	              <sv:value>40568026-8693-4629-a9ee-96cc8adffd4f</sv:value>
-	            </sv:property>
-	          </sv:node>
-	        </sv:node>
-	        <sv:node sv:name="mootlywcm:pbpagerowdetail">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:columnSplitRatio" sv:type="String">
-	            <sv:value/>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notColumn" sv:type="Boolean">
-	            <sv:value>false</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notContainer" sv:type="Boolean">
-	            <sv:value>false</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notRow" sv:type="Boolean">
-	            <sv:value>false</sv:value>
-	          </sv:property>
-	          <sv:node sv:name="mootlywcm:columns">
-	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	              <sv:value>hippo:mirror</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hippo:docbase" sv:type="String">
-	              <sv:value>c086ff88-bab9-4549-a35a-82f7f22395ce</sv:value>
-	            </sv:property>
-	          </sv:node>
-	          <sv:node sv:name="mootlywcm:columns">
-	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	              <sv:value>hippo:mirror</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hippo:docbase" sv:type="String">
-	              <sv:value>75e94dd0-be31-463b-8c18-35a29f7522f1</sv:value>
-	            </sv:property>
-	          </sv:node>
-	          <sv:node sv:name="mootlywcm:columns">
-	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	              <sv:value>hippo:mirror</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hippo:docbase" sv:type="String">
-	              <sv:value>2db1c00b-ead7-4c09-9e51-7b4fca68f8f9</sv:value>
-	            </sv:property>
-	          </sv:node>
-	        </sv:node>
-	        <sv:node sv:name="mootlywcm:pbpagerowdetail">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:columnSplitRatio" sv:type="String">
-	            <sv:value/>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notColumn" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notContainer" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notRow" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:node sv:name="mootlywcm:columns">
-	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	              <sv:value>hippo:mirror</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hippo:docbase" sv:type="String">
-	              <sv:value>c86b1a4b-f794-43b0-8bda-6c5b9587d019</sv:value>
-	            </sv:property>
-	          </sv:node>
-	        </sv:node>
-	        <sv:node sv:name="mootlywcm:pbpagerowdetail">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:columnSplitRatio" sv:type="String">
-	            <sv:value/>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notColumn" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notContainer" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notRow" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:node sv:name="mootlywcm:columns">
-	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	              <sv:value>hippo:mirror</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hippo:docbase" sv:type="String">
-	              <sv:value>d627e8d2-154f-42a3-858e-d483472fe963</sv:value>
-	            </sv:property>
-	          </sv:node>
-	        </sv:node>
-	        <sv:node sv:name="mootlywcm:pbpagerowdetail">
-	          <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	            <sv:value>mootlywcm:pbpagerowdetail</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:columnSplitRatio" sv:type="String">
-	            <sv:value/>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notColumn" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notContainer" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:property sv:name="mootlywcm:notRow" sv:type="Boolean">
-	            <sv:value>true</sv:value>
-	          </sv:property>
-	          <sv:node sv:name="mootlywcm:columns">
-	            <sv:property sv:name="jcr:primaryType" sv:type="Name">
-	              <sv:value>hippo:mirror</sv:value>
-	            </sv:property>
-	            <sv:property sv:name="hippo:docbase" sv:type="String">
-	              <sv:value>f53f5c68-d9e9-46df-b8b4-d6f048168ee1</sv:value>
 	            </sv:property>
 	          </sv:node>
 	        </sv:node>
@@ -838,22 +722,22 @@
 	        </sv:property>
 	        <sv:property sv:name="mootlywcm:html" sv:type="String">
 	          <sv:value>&lt;html&gt;
-												&lt;body&gt;
-				
-												&lt;p&gt;THIS IS
-												CRAZY&lt;/p&gt;
-				
-												&lt;p&gt; &lt;/p&gt;
-				
-												&lt;p&gt;We will put some
-												Free Marker Template here soon !!&lt;/p&gt;
-				
-												&lt;p&gt; &lt;/p&gt;
-				
-												&lt;p&gt; &lt;/p&gt;
-				
-												&lt;/body&gt;
-												&lt;/html&gt;</sv:value>
+													&lt;body&gt;
+					
+													&lt;p&gt;THIS IS
+													CRAZY&lt;/p&gt;
+					
+													&lt;p&gt; &lt;/p&gt;
+					
+													&lt;p&gt;We will put some
+													Free Marker Template here soon !!&lt;/p&gt;
+					
+													&lt;p&gt; &lt;/p&gt;
+					
+													&lt;p&gt; &lt;/p&gt;
+					
+													&lt;/body&gt;
+													&lt;/html&gt;</sv:value>
 	        </sv:property>
 	        <sv:property sv:name="mootlywcm:id" sv:type="String">
 	          <sv:value>block-contactus</sv:value>
@@ -952,268 +836,268 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;div id="article" class="privacypolicy "&gt;
-		&lt;!-- &lt;h2 class="title"&gt;Privacy Policy of Wealth4India&lt;/h2&gt; --&gt;
-		&lt;div class="yui-cssbase	body"&gt;
-			&lt;p&gt;
-				This policy tells you about how we use and protect your personal
-				information. To see a summary of this policy, and for more
-				information to answer your privacy concerns, please go to our Privacy
-				Central page. Contents &lt;/br&gt;* Scope &lt;/br&gt;* Collection &lt;/br&gt;* Marketing &lt;/br&gt;* Use &lt;/br&gt;* Our
-				Disclosure of Your Information &lt;/br&gt;* Activity Associated with User IDs *
-				Using Information from CreditSafeIndia * Cookies &lt;/br&gt;* No Spam, Spyware
-				or Spoofing &lt;/br&gt;* Account Protection &lt;/br&gt;* Accessing, Reviewing and Changing
-				Your Personal Information &lt;/br&gt;* Security &lt;/br&gt;* Third Parties &lt;/br&gt;* General Scope&lt;/br&gt;
-				This Privacy Policy describes how we handle your personal information
-				for our services on the CreditSafeIndia websites. It applies
-				generally to the CreditSafeIndia.com website and other related
-				websites where this policy appears in the footer of the page.&lt;/br&gt; Some
-				CreditSafeIndia-branded websites or websites we operate may be
-				governed by separate privacy policies. The policy that applies on any
-				of our domains or subdomains is always the policy that appears in the
-				footer of each website. Our subsidiariesâ and joint venturesâ
-				privacy practices are similar to those described in this Privacy
-				Policy. Subject to the requirements of applicable law, we strive to
-				provide a consistent set of privacy practices throughout the global
-				CreditSafeIndia community.&lt;/br&gt; By accepting the Privacy Policy and the
-				User Agreement in registration, you expressly consent to our
-				collection, storage, use and disclosure of your personal information
-				as described in this Privacy Policy. This Privacy Policy is effective
-				upon acceptance for new users and is otherwise effective on April 1,
-				2008. Collection You can browse our sites without telling us who you
-				are or revealing any personal information about yourself. Once you
-				give us your personal information, you are not anonymous to us. If
-				you choose to provide us with personal information, you consent to
-				the transfer and storage of that information on our servers located
-				in the United States.&lt;/br&gt; We may collect and store the following personal
-				information: &lt;/br&gt;* email address, physical contact information, and
-				(depending on the service used) sometimes financial information, such
-				as credit card or bank account numbers; &lt;/br&gt;* transactional information
-				based on your activities on the sites (such as buying, selling, item
-				and content you generate or that relates to your account); &lt;/br&gt;*
-				community discussions, chats, dispute resolution, correspondence
-				through our sites, and correspondence sent to us; &lt;/br&gt;* other information
-				from your interaction with our sites, services, content and
-				advertising, including computer and connection information,
-				statistics on page views, traffic to and from the sites, ad data, IP
-				address and standard web log information; &lt;/br&gt;* information from other
-				companies, such as demographic and traffic data; and Marketing We
-				don't sell or rent your personal information to third parties for
-				their marketing purposes without your explicit consent. &lt;/br&gt;We may
-				combine your information with information we collect from other
-				companies and use it to improve and personalize our services, content
-				and advertising. If you don't wish to receive marketing
-				communications from us or participate in our ad-customization
-				programs, simply indicate your preference once you sign-on in My
-				Account (or similar account status page) or by following the
-				directions provided in an email or from a link on the advertisement.
-				&lt;/br&gt; Use Our primary purpose in collecting personal information is to
-				provide you with a safe, smooth, efficient, and customized
-				experience. You agree that we may use your personal information to:&lt;/br&gt; *
-				provide the services and customer support you request; &lt;/br&gt;* resolve
-				disputes, collect fees, and troubleshoot problems; &lt;/br&gt;* prevent
-				potentially prohibited or illegal activities, and enforce our User
-				Agreement;&lt;/br&gt;* customize, measure and improve our services, content and
-				advertising;&lt;/br&gt; * tell you about targeted marketing, service updates,
-				and promotional offers based on your communication preferences; and &lt;/br&gt;*
-				compare information for accuracy, and verify it with third parties. &lt;/br&gt;
-				Our Disclosure of Your Information We may disclose personal
-				information to respond to legal requirements, enforce our policies,
-				respond to claims that a listing or other content violates the rights
-				of others, or protect anyone's rights, property, or safety.&lt;/br&gt; We may
-				also share your personal information with: * Members of our corporate
-				family to help detect and prevent potentially illegal acts and
-				provide joint content and services (for example, registration,
-				transactions and customer support). &lt;/br&gt;Our corporate affiliates will
-				send marketing communications only to users who request these
-				services. &lt;/br&gt;* Service providers under contract who help with our
-				business operations (such as fraud investigations, bill collection,
-				affiliate and rewards programs and co-branded credit cards). &lt;/br&gt;* Other
-				third parties to whom you explicitly ask us to send your information
-				(or about whom you are otherwise explicitly notified and consent to
-				when using a specific service). &lt;/br&gt;* Law enforcement or other
-				governmental officials, in response to a verified request relating to
-				a criminal investigation or alleged illegal activity. In such events,
-				we will disclose information relevant to the investigation, such as
-				name, city, state, zip code, telephone number, email address, User ID
-				history, IP address, fraud complaints, and listing history. &lt;/br&gt;* Other
-				business entities, should we plan to merge with or be acquired by
-				that business entity. (Should such a combination occur, we will
-				require that the new combined entity follow this privacy policy with
-				respect to your personal information. If your personal information
-				will be used contrary to this policy, you will receive prior notice.)
-				&lt;/br&gt; Without limiting the above, in an effort to respect your privacy and
-				our ability to keep the community free from bad actors, we will not
-				otherwise disclose your personal information to law enforcement,
-				other government officials, or other third parties without a
-				subpoena, court order or substantially similar legal procedure,
-				except when we believe in good faith that the disclosure of
-				information is necessary to prevent imminent physical harm or
-				financial loss or to report suspected illegal activity. &lt;/br&gt;Activity
-				Associated with User IDs Your User ID is displayed throughout
-				CreditSafeIndia and is therefore available to the public. All of your
-				activity on our sites is traceable to your User ID. Other people can
-				see your items that you have purchased in the past, items for sale,
-				feedback, ratings and associated comments, and so on. Using
-				Information from CreditSafeIndiaCreditSafeIndia enables you to share
-				personal and financial information to complete transactions. &lt;/br&gt;We
-				encourage you to disclose your privacy practices and respect the
-				privacy of other users. We cannot guarantee the privacy or security
-				of your information and therefore we encourage you to evaluate the
-				privacy and security policies of your trading partner before entering
-				into a transaction and choosing to share your information. &lt;/br&gt;To help
-				protect your privacy, we allow only limited access to other users'
-				contact, shipping and financial information to facilitate your
-				transactions. When users are involved in a transaction, they may have
-				access to each other's name, User ID, email address and other contact
-				and shipping information. In all cases, you must give other users a
-				chance to remove themselves from your database and a chance to review
-				what information you have collected about them. You agree to use user
-				information only for: &lt;/br&gt;* CreditSafeIndia transaction-related purposes
-				that are not unsolicited commercial messages;&lt;/br&gt; * using services
-				offered through CreditSafeIndia (e.g. shipping and fraud complaints),
-				or &lt;/br&gt;* other purposes that a user expressly chooses. Cookies "Cookies"
-				are small files placed on the hard drive of your computer. We use
-				"cookies" (small files placed on your hard drive) on certain of our
-				pages to help analyze our web page flow; customize our services,
-				content and advertising; measure promotional effectiveness, and
-				promote trust and safety. CreditSafeIndia uses cookies, web beacons,
-				and related tools provided by third parties to provide you with
-				services that make the CreditSafeIndia site more efficient for your
-				buying and selling activities. &lt;/br&gt;CreditSafeIndia limits the use of
-				these tools to protect your privacy. Most cookies are "session
-				cookies," meaning that they are automatically deleted from your hard
-				drive once you end your session (log out or close your browser). A
-				few important things you should know about cookies are that: &lt;/br&gt;* We
-				offer certain features that are available only through the use of
-				cookies.&lt;/br&gt; * We use cookies to help identify you and maintain your
-				signed-in status. &lt;/br&gt;* Most cookies are "session cookies," meaning that
-				they are automatically deleted from your hard drive at the end of a
-				session.&lt;/br&gt;* You are always free to decline our cookies if your browser
-				permits, although doing so may interfere with your use of some of our
-				sites or services.&lt;/br&gt; * You may encounter cookies from third parties on
-				certain pages of the sites that we do not control. (For example, if
-				you view a web page created by another user, there may be a cookie
-				placed by that web page.) CreditSafeIndia uses cookies on certain
-				pages of the website to: &lt;/br&gt;* Allow you to enter your password less
-				frequently during a session. &lt;/br&gt;* Provide information that is targeted
-				to your interests. &lt;/br&gt;* Promote and enforce trust and safety. * Offer
-				certain features that are only available through the use of cookies.
-				* Measure promotional effectiveness.&lt;/br&gt; * Analyze our web page flow. &lt;/br&gt;
-				Cookies on CreditSafeIndia's discussion boards use session cookies to
-				facilitate conversation threads and overall service functions. Your
-				choices about cookies â We offer certain features that are only
-				available through the use of a cookie. You are always free to decline
-				cookies if your browser permits. However, if you decline cookies, you
-				may not be able to use certain features on the website, and you may
-				be required to reenter your password more frequently during a
-				session. Learn how to set your browser to accept cookies. &lt;/br&gt;Web beacons
-	
-				A web beacon is an electronic image placed in the web page code that
-				can serve many of the same purposes as cookies. Web beacons are used
-				to track the traffic patterns of users from one page to another in
-				order to maximize web traffic flow. How CreditSafeIndia protects your
-				privacy with third parties &lt;/br&gt;* CreditSafeIndia may work with other
-				companies who place cookies or web beacons on our websites. These
-				companies help operate our websites and provide you with additional
-				products and services. They are subject to confidentiality agreements
-				with CreditSafeIndia and other legal restrictions. CreditSafeIndia
-				does not permit any of these companies to collect personal
-				information using cookies or web beacons on our websites.&lt;/br&gt; * Some of
-				these companies like DoubleClick and MediaPlex â maybe our service
-				providers who place cookies that help us serve our own content and
-				compile anonymous site metrics and analytics. We require these
-				companies to use the information they collect only to provide us with
-				these services under contract. &lt;/br&gt;* CreditSafeIndia may participate in
-				cookie-based ad networks operated by Yahoo and Tacoda. This means
-				that these companies may use some anonymous information about you
-				(based on a cookie on your computer) to display ads.&lt;/br&gt; We do not permit
-				these companies to collect any personal information about you. Tacoda
-				collects anonymous information using cookies to tailor the
-				advertising you see on the CreditSafeIndia sites or elsewhere on the
-				web. Yahoo uses some anonymous information we send them (like age
-				range and gender) to display ads on the CreditSafeIndia sites. Yahoo
-				may also use anonymous information about its own users to select ads
-				to serve on our pages. Click these links to learn more about
-				Yahooâs{ &lt;a
-					href="http://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html"&gt;
-					http://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html&lt;/a&gt;
-				} and Tacodaâs{&lt;a
-					href="http://www.tacoda.com/notice/privacy_policy.html"&gt;http://www.tacoda.com/notice/privacy_policy.html&lt;/a&gt;}
-				ad-serving business practices and privacy policies, including how to
-				decline participation in these programs. * CreditSafeIndia does not
-				permit third-party content on CreditSafeIndia (such as an item
-				listing) to include cookies or web beacons, although this may still
-				happen from time to time. &lt;/br&gt;If you believe a listing may be collecting
-				personal information or using cookies, please report it to &lt;a
-					href="mailto:spam@CreditSafeIndia.com"&gt;spam@CreditSafeIndia.com&lt;/a&gt;
-				. No Spam, Spyware or Spoofing We and our users do not tolerate spam.
-				Make sure to set your CreditSafeIndia notification preferences so we
-				communicate to you as you prefer. You are not licensed to add other
-				CreditSafeIndia users, even a user who has purchased an item from
-				you, to your mailing list (email or physical mail) without their
-				express consent. To report CreditSafeIndia-related spam or spoof
-				emails to CreditSafeIndia, please forward the email to &lt;a
-					href="mailto:spam@CreditSafeIndia.com"&gt;spam@CreditSafeIndia.com&lt;/a&gt;
-				or spoof@CreditSafeIndia.com. You may not use our communication tools
-				to send spam or otherwise send content that would violate our User
-				Agreement. We occasionally scan and may manually filter messages to
-				check for spam, viruses, phishing attacks and other malicious
-				activity or illegal or prohibited content, but we do not permanently
-				store messages sent through these tools. If you send an email to an
-				email address that is not registered in our community (via
-				Refer-a-Friend or other tools), we do not permanently store that
-				email or use that email address for any marketing purpose. We do not
-				rent or sell these email addresses. &lt;/br&gt;Account Protection Your password
-				is the key to your account. Use unique numbers, letters and special
-				characters, and do not disclose your CreditSafeIndia password to
-				anyone. If you do share your password or your personal information
-				with others, remember that you are responsible for all actions taken
-				in the name of your account. If you lose control of your password,
-				you may lose substantial control over your personal information and
-				may be subject to legally binding actions taken on your behalf.
-				Therefore, if your password has been compromised for any reason, you
-				should immediately notify CreditSafeIndia and change your password. &lt;/br&gt;
-				Accessing, Reviewing and Changing Your Personal Information You can
-				see, review and change most of your personal information by signing
-				on to CreditSafeIndia. Generally, we will not manually modify your
-				personal information because it is very difficult to verify your
-				identity remotely. You must promptly update your personal information
-				if it changes or is inaccurate. Once you make a public posting, you
-				may not be able to change or remove it. Upon your request, we will
-				close your account and remove your personal information from view as
-				soon as reasonably possible, based on your account activity and in
-				accordance with applicable law.&lt;/br&gt; We do retain personal information
-				from closed accounts to comply with law, prevent fraud, collect any
-				fees owed, resolve disputes, troubleshoot problems, assist with any
-				investigations, enforce our CreditSafeIndia User Agreement, and take
-				other actions otherwise permitted by law. Security Your information
-				is stored on our servers located in the United States. We treat data
-				as an asset that must be protected and use lots of tools (encryption,
-				passwords, physical security, etc.) to protect your personal
-				information against unauthorized access and disclosure. However, as
-				you probably know, third parties may unlawfully intercept or access
-				transmissions or private communications, and other users may abuse or
-				misuse your personal information that they collect from the site.
-				Therefore, although we work very hard to protect your privacy, we do
-				not promise, and you should not expect, that your personal
-				information or private communications will always remain private. &lt;/br&gt;
-	
-				Third Parties Except as otherwise expressly included in this Privacy
-				Policy, this document addresses only the use and disclosure of
-				information we collect from you. If you disclose your information to
-				others, whether they are buyers or sellers on our sites or other
-				sites throughout the internet, different rules may apply to their use
-				or disclosure of the information you disclose to them. &lt;/br&gt;
-				CreditSafeIndia does not control the privacy policies of third
-				parties, and you are subject to the privacy policies of those third
-				parties where applicable. We encourage you to ask questions before
-				you disclose your personal information to others. General We may
-				amend this Privacy Policy at any time by posting the amended terms on
-				this site. All amended terms automatically take effect 30 days after
-				they are initially posted on the Site.
-			&lt;/p&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;</sv:value>
+			&lt;!-- &lt;h2 class="title"&gt;Privacy Policy of Wealth4India&lt;/h2&gt; --&gt;
+			&lt;div class="yui-cssbase	body"&gt;
+				&lt;p&gt;
+					This policy tells you about how we use and protect your personal
+					information. To see a summary of this policy, and for more
+					information to answer your privacy concerns, please go to our Privacy
+					Central page. Contents &lt;/br&gt;* Scope &lt;/br&gt;* Collection &lt;/br&gt;* Marketing &lt;/br&gt;* Use &lt;/br&gt;* Our
+					Disclosure of Your Information &lt;/br&gt;* Activity Associated with User IDs *
+					Using Information from CreditSafeIndia * Cookies &lt;/br&gt;* No Spam, Spyware
+					or Spoofing &lt;/br&gt;* Account Protection &lt;/br&gt;* Accessing, Reviewing and Changing
+					Your Personal Information &lt;/br&gt;* Security &lt;/br&gt;* Third Parties &lt;/br&gt;* General Scope&lt;/br&gt;
+					This Privacy Policy describes how we handle your personal information
+					for our services on the CreditSafeIndia websites. It applies
+					generally to the CreditSafeIndia.com website and other related
+					websites where this policy appears in the footer of the page.&lt;/br&gt; Some
+					CreditSafeIndia-branded websites or websites we operate may be
+					governed by separate privacy policies. The policy that applies on any
+					of our domains or subdomains is always the policy that appears in the
+					footer of each website. Our subsidiariesâ and joint venturesâ
+					privacy practices are similar to those described in this Privacy
+					Policy. Subject to the requirements of applicable law, we strive to
+					provide a consistent set of privacy practices throughout the global
+					CreditSafeIndia community.&lt;/br&gt; By accepting the Privacy Policy and the
+					User Agreement in registration, you expressly consent to our
+					collection, storage, use and disclosure of your personal information
+					as described in this Privacy Policy. This Privacy Policy is effective
+					upon acceptance for new users and is otherwise effective on April 1,
+					2008. Collection You can browse our sites without telling us who you
+					are or revealing any personal information about yourself. Once you
+					give us your personal information, you are not anonymous to us. If
+					you choose to provide us with personal information, you consent to
+					the transfer and storage of that information on our servers located
+					in the United States.&lt;/br&gt; We may collect and store the following personal
+					information: &lt;/br&gt;* email address, physical contact information, and
+					(depending on the service used) sometimes financial information, such
+					as credit card or bank account numbers; &lt;/br&gt;* transactional information
+					based on your activities on the sites (such as buying, selling, item
+					and content you generate or that relates to your account); &lt;/br&gt;*
+					community discussions, chats, dispute resolution, correspondence
+					through our sites, and correspondence sent to us; &lt;/br&gt;* other information
+					from your interaction with our sites, services, content and
+					advertising, including computer and connection information,
+					statistics on page views, traffic to and from the sites, ad data, IP
+					address and standard web log information; &lt;/br&gt;* information from other
+					companies, such as demographic and traffic data; and Marketing We
+					don't sell or rent your personal information to third parties for
+					their marketing purposes without your explicit consent. &lt;/br&gt;We may
+					combine your information with information we collect from other
+					companies and use it to improve and personalize our services, content
+					and advertising. If you don't wish to receive marketing
+					communications from us or participate in our ad-customization
+					programs, simply indicate your preference once you sign-on in My
+					Account (or similar account status page) or by following the
+					directions provided in an email or from a link on the advertisement.
+					&lt;/br&gt; Use Our primary purpose in collecting personal information is to
+					provide you with a safe, smooth, efficient, and customized
+					experience. You agree that we may use your personal information to:&lt;/br&gt; *
+					provide the services and customer support you request; &lt;/br&gt;* resolve
+					disputes, collect fees, and troubleshoot problems; &lt;/br&gt;* prevent
+					potentially prohibited or illegal activities, and enforce our User
+					Agreement;&lt;/br&gt;* customize, measure and improve our services, content and
+					advertising;&lt;/br&gt; * tell you about targeted marketing, service updates,
+					and promotional offers based on your communication preferences; and &lt;/br&gt;*
+					compare information for accuracy, and verify it with third parties. &lt;/br&gt;
+					Our Disclosure of Your Information We may disclose personal
+					information to respond to legal requirements, enforce our policies,
+					respond to claims that a listing or other content violates the rights
+					of others, or protect anyone's rights, property, or safety.&lt;/br&gt; We may
+					also share your personal information with: * Members of our corporate
+					family to help detect and prevent potentially illegal acts and
+					provide joint content and services (for example, registration,
+					transactions and customer support). &lt;/br&gt;Our corporate affiliates will
+					send marketing communications only to users who request these
+					services. &lt;/br&gt;* Service providers under contract who help with our
+					business operations (such as fraud investigations, bill collection,
+					affiliate and rewards programs and co-branded credit cards). &lt;/br&gt;* Other
+					third parties to whom you explicitly ask us to send your information
+					(or about whom you are otherwise explicitly notified and consent to
+					when using a specific service). &lt;/br&gt;* Law enforcement or other
+					governmental officials, in response to a verified request relating to
+					a criminal investigation or alleged illegal activity. In such events,
+					we will disclose information relevant to the investigation, such as
+					name, city, state, zip code, telephone number, email address, User ID
+					history, IP address, fraud complaints, and listing history. &lt;/br&gt;* Other
+					business entities, should we plan to merge with or be acquired by
+					that business entity. (Should such a combination occur, we will
+					require that the new combined entity follow this privacy policy with
+					respect to your personal information. If your personal information
+					will be used contrary to this policy, you will receive prior notice.)
+					&lt;/br&gt; Without limiting the above, in an effort to respect your privacy and
+					our ability to keep the community free from bad actors, we will not
+					otherwise disclose your personal information to law enforcement,
+					other government officials, or other third parties without a
+					subpoena, court order or substantially similar legal procedure,
+					except when we believe in good faith that the disclosure of
+					information is necessary to prevent imminent physical harm or
+					financial loss or to report suspected illegal activity. &lt;/br&gt;Activity
+					Associated with User IDs Your User ID is displayed throughout
+					CreditSafeIndia and is therefore available to the public. All of your
+					activity on our sites is traceable to your User ID. Other people can
+					see your items that you have purchased in the past, items for sale,
+					feedback, ratings and associated comments, and so on. Using
+					Information from CreditSafeIndiaCreditSafeIndia enables you to share
+					personal and financial information to complete transactions. &lt;/br&gt;We
+					encourage you to disclose your privacy practices and respect the
+					privacy of other users. We cannot guarantee the privacy or security
+					of your information and therefore we encourage you to evaluate the
+					privacy and security policies of your trading partner before entering
+					into a transaction and choosing to share your information. &lt;/br&gt;To help
+					protect your privacy, we allow only limited access to other users'
+					contact, shipping and financial information to facilitate your
+					transactions. When users are involved in a transaction, they may have
+					access to each other's name, User ID, email address and other contact
+					and shipping information. In all cases, you must give other users a
+					chance to remove themselves from your database and a chance to review
+					what information you have collected about them. You agree to use user
+					information only for: &lt;/br&gt;* CreditSafeIndia transaction-related purposes
+					that are not unsolicited commercial messages;&lt;/br&gt; * using services
+					offered through CreditSafeIndia (e.g. shipping and fraud complaints),
+					or &lt;/br&gt;* other purposes that a user expressly chooses. Cookies "Cookies"
+					are small files placed on the hard drive of your computer. We use
+					"cookies" (small files placed on your hard drive) on certain of our
+					pages to help analyze our web page flow; customize our services,
+					content and advertising; measure promotional effectiveness, and
+					promote trust and safety. CreditSafeIndia uses cookies, web beacons,
+					and related tools provided by third parties to provide you with
+					services that make the CreditSafeIndia site more efficient for your
+					buying and selling activities. &lt;/br&gt;CreditSafeIndia limits the use of
+					these tools to protect your privacy. Most cookies are "session
+					cookies," meaning that they are automatically deleted from your hard
+					drive once you end your session (log out or close your browser). A
+					few important things you should know about cookies are that: &lt;/br&gt;* We
+					offer certain features that are available only through the use of
+					cookies.&lt;/br&gt; * We use cookies to help identify you and maintain your
+					signed-in status. &lt;/br&gt;* Most cookies are "session cookies," meaning that
+					they are automatically deleted from your hard drive at the end of a
+					session.&lt;/br&gt;* You are always free to decline our cookies if your browser
+					permits, although doing so may interfere with your use of some of our
+					sites or services.&lt;/br&gt; * You may encounter cookies from third parties on
+					certain pages of the sites that we do not control. (For example, if
+					you view a web page created by another user, there may be a cookie
+					placed by that web page.) CreditSafeIndia uses cookies on certain
+					pages of the website to: &lt;/br&gt;* Allow you to enter your password less
+					frequently during a session. &lt;/br&gt;* Provide information that is targeted
+					to your interests. &lt;/br&gt;* Promote and enforce trust and safety. * Offer
+					certain features that are only available through the use of cookies.
+					* Measure promotional effectiveness.&lt;/br&gt; * Analyze our web page flow. &lt;/br&gt;
+					Cookies on CreditSafeIndia's discussion boards use session cookies to
+					facilitate conversation threads and overall service functions. Your
+					choices about cookies â We offer certain features that are only
+					available through the use of a cookie. You are always free to decline
+					cookies if your browser permits. However, if you decline cookies, you
+					may not be able to use certain features on the website, and you may
+					be required to reenter your password more frequently during a
+					session. Learn how to set your browser to accept cookies. &lt;/br&gt;Web beacons
+		
+					A web beacon is an electronic image placed in the web page code that
+					can serve many of the same purposes as cookies. Web beacons are used
+					to track the traffic patterns of users from one page to another in
+					order to maximize web traffic flow. How CreditSafeIndia protects your
+					privacy with third parties &lt;/br&gt;* CreditSafeIndia may work with other
+					companies who place cookies or web beacons on our websites. These
+					companies help operate our websites and provide you with additional
+					products and services. They are subject to confidentiality agreements
+					with CreditSafeIndia and other legal restrictions. CreditSafeIndia
+					does not permit any of these companies to collect personal
+					information using cookies or web beacons on our websites.&lt;/br&gt; * Some of
+					these companies like DoubleClick and MediaPlex â maybe our service
+					providers who place cookies that help us serve our own content and
+					compile anonymous site metrics and analytics. We require these
+					companies to use the information they collect only to provide us with
+					these services under contract. &lt;/br&gt;* CreditSafeIndia may participate in
+					cookie-based ad networks operated by Yahoo and Tacoda. This means
+					that these companies may use some anonymous information about you
+					(based on a cookie on your computer) to display ads.&lt;/br&gt; We do not permit
+					these companies to collect any personal information about you. Tacoda
+					collects anonymous information using cookies to tailor the
+					advertising you see on the CreditSafeIndia sites or elsewhere on the
+					web. Yahoo uses some anonymous information we send them (like age
+					range and gender) to display ads on the CreditSafeIndia sites. Yahoo
+					may also use anonymous information about its own users to select ads
+					to serve on our pages. Click these links to learn more about
+					Yahooâs{ &lt;a
+						href="http://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html"&gt;
+						http://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html&lt;/a&gt;
+					} and Tacodaâs{&lt;a
+						href="http://www.tacoda.com/notice/privacy_policy.html"&gt;http://www.tacoda.com/notice/privacy_policy.html&lt;/a&gt;}
+					ad-serving business practices and privacy policies, including how to
+					decline participation in these programs. * CreditSafeIndia does not
+					permit third-party content on CreditSafeIndia (such as an item
+					listing) to include cookies or web beacons, although this may still
+					happen from time to time. &lt;/br&gt;If you believe a listing may be collecting
+					personal information or using cookies, please report it to &lt;a
+						href="mailto:spam@CreditSafeIndia.com"&gt;spam@CreditSafeIndia.com&lt;/a&gt;
+					. No Spam, Spyware or Spoofing We and our users do not tolerate spam.
+					Make sure to set your CreditSafeIndia notification preferences so we
+					communicate to you as you prefer. You are not licensed to add other
+					CreditSafeIndia users, even a user who has purchased an item from
+					you, to your mailing list (email or physical mail) without their
+					express consent. To report CreditSafeIndia-related spam or spoof
+					emails to CreditSafeIndia, please forward the email to &lt;a
+						href="mailto:spam@CreditSafeIndia.com"&gt;spam@CreditSafeIndia.com&lt;/a&gt;
+					or spoof@CreditSafeIndia.com. You may not use our communication tools
+					to send spam or otherwise send content that would violate our User
+					Agreement. We occasionally scan and may manually filter messages to
+					check for spam, viruses, phishing attacks and other malicious
+					activity or illegal or prohibited content, but we do not permanently
+					store messages sent through these tools. If you send an email to an
+					email address that is not registered in our community (via
+					Refer-a-Friend or other tools), we do not permanently store that
+					email or use that email address for any marketing purpose. We do not
+					rent or sell these email addresses. &lt;/br&gt;Account Protection Your password
+					is the key to your account. Use unique numbers, letters and special
+					characters, and do not disclose your CreditSafeIndia password to
+					anyone. If you do share your password or your personal information
+					with others, remember that you are responsible for all actions taken
+					in the name of your account. If you lose control of your password,
+					you may lose substantial control over your personal information and
+					may be subject to legally binding actions taken on your behalf.
+					Therefore, if your password has been compromised for any reason, you
+					should immediately notify CreditSafeIndia and change your password. &lt;/br&gt;
+					Accessing, Reviewing and Changing Your Personal Information You can
+					see, review and change most of your personal information by signing
+					on to CreditSafeIndia. Generally, we will not manually modify your
+					personal information because it is very difficult to verify your
+					identity remotely. You must promptly update your personal information
+					if it changes or is inaccurate. Once you make a public posting, you
+					may not be able to change or remove it. Upon your request, we will
+					close your account and remove your personal information from view as
+					soon as reasonably possible, based on your account activity and in
+					accordance with applicable law.&lt;/br&gt; We do retain personal information
+					from closed accounts to comply with law, prevent fraud, collect any
+					fees owed, resolve disputes, troubleshoot problems, assist with any
+					investigations, enforce our CreditSafeIndia User Agreement, and take
+					other actions otherwise permitted by law. Security Your information
+					is stored on our servers located in the United States. We treat data
+					as an asset that must be protected and use lots of tools (encryption,
+					passwords, physical security, etc.) to protect your personal
+					information against unauthorized access and disclosure. However, as
+					you probably know, third parties may unlawfully intercept or access
+					transmissions or private communications, and other users may abuse or
+					misuse your personal information that they collect from the site.
+					Therefore, although we work very hard to protect your privacy, we do
+					not promise, and you should not expect, that your personal
+					information or private communications will always remain private. &lt;/br&gt;
+		
+					Third Parties Except as otherwise expressly included in this Privacy
+					Policy, this document addresses only the use and disclosure of
+					information we collect from you. If you disclose your information to
+					others, whether they are buyers or sellers on our sites or other
+					sites throughout the internet, different rules may apply to their use
+					or disclosure of the information you disclose to them. &lt;/br&gt;
+					CreditSafeIndia does not control the privacy policies of third
+					parties, and you are subject to the privacy policies of those third
+					parties where applicable. We encourage you to ask questions before
+					you disclose your personal information to others. General We may
+					amend this Privacy Policy at any time by posting the amended terms on
+					this site. All amended terms automatically take effect 30 days after
+					they are initially posted on the Site.
+				&lt;/p&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -1288,528 +1172,528 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;div id="article" class="terms "&gt;
-		&lt;h2 class="title"&gt;Terms of Wealth4India&lt;/h2&gt;
-		&lt;div class="yui-cssbase	body"&gt;
-			&lt;p&gt;
-				&lt;b&gt;1.&lt;/b&gt; &lt;strong&gt;ACCEPTANCE OF TERMS &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;
-				CreditSafeIndia provides a collection of online resources, including
-				classified ads, forums, and various email services, (referred to
-				hereafter as "the Service") subject to the following Terms of Use. By
-				using the Service in any way, you are agreeing to comply with the
-				Terms of Use. In addition, when using particular CreditSafeIndia
-				services, you agree to abide by any applicable posted guidelines for
-				all CreditSafeIndia services, which may change from time to time.
-				Should you object to any term or condition of the Terms of Use, any
-				guidelines, or any subsequent modifications thereto or become
-				dissatisfied with CreditSafeIndia in any way, your only recourse is
-				to immediately discontinue use of CreditSafeIndia.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;2.&lt;/b&gt; &lt;strong&gt;MODIFICATIONS TO THIS AGREEMENT &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;We
-				reserve the right, at our sole discretion, to change, modify or
-				otherwise alter these terms and conditions at any time. Such
-				modifications shall become effective immediately upon the posting
-				thereof. You must review this agreement on a regular basis to keep
-				yourself apprised of any changes. You can find the most recent
-				version of the Terms of Use at:
-					http://www.CreditSafeIndia.com/termsofuse
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;3.&lt;/b&gt;&lt;strong&gt; CONTENT&lt;/strong&gt; &amp;nbsp;-&amp;nbsp;WeYou understand that
-				all postings, messages, text, files, images, photos, video, sounds,
-				or other materials ("
-					Content") posted on, transmitted through, or linked from the
-					Service, are the sole responsibility of the person from whom such
-					Content originated. More specifically, you are entirely responsible
-					for each individual item ("Item") of Content that you post, email or
-					otherwise make available via the Service. You understand that
-					CreditSafeIndia does not control, and is not responsible for Content
-					made available through the Service, and that by using the
-					Service, you may be exposed to Content that is
-					offensive, indecent, inaccurate, misleading, or otherwise
-					objectionable. Furthermore, the CreditSafeIndia site and Content
-					available through the Service may contain links to other
-					websites,
-				which are completely independent of CreditSafeIndia.
-					CreditSafeIndia makes no representation or warranty as to the
-					accuracy, completeness or authenticity of the information contained
-					in any such site. Your linking to any other webites is at your own
-					risk. You agree that you must evaluate, and bear all risks
-					associated with, the use of any Content, that you may not rely on
-					said Content, and that under no circumstances will CreditSafeIndia
-					be liable in any way for any Content or for any loss or damage of
-					any kind incurred as a result of the use of any Content
-					posted, emailed or otherwise made available via the Service. You
-					acknowledge that CreditSafeIndia does not pre-screen or approve
-					Content, but that CreditSafeIndia shall have the right (but not the
-					obligation) in its sole discretion to refuse,
-				delete or move any
-					Content that is available via the Service, for violating the letter
-					or spirit of the Terms of Use or for any other reason.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt; 4.&lt;/b&gt;&lt;strong&gt; THIRD PARTY CONTENT, SITES, AND SERVICES
-				&lt;/strong&gt; &amp;nbsp;-&amp;nbsp;The CreditSafeIndia site and Content available through
-				the Service may contain features and functionalities that may link
-				you or provide you with access to third party content which is
-				completely independent of CreditSafeIndia, including web sites,
-				directories, servers, networks, systems, information and databases,
-				applications, software, programs, products or services, and the
-				Internet as a whole. Your interactions with organizations and/or
-				individuals found on or through the Service, including payment and
-				delivery of goods or services, and any other terms, conditions,
-				warranties or representations associated with such dealings, are
-				solely between you and such organizations and/or individuals. You
-				should make whatever investigation you feel necessary or appropriate
-				before proceeding with any online or offline transaction with any of
-				these third parties. You agree that CreditSafeIndia shall not be
-				responsible or liable for any loss or damage of any sort incurred as
-				the result of any such dealings. If there is a dispute between
-				participants on this site, or between users and any third party, you
-				understand and agree that CreditSafeIndia is under no obligation to
-				become involved. In the event that you have a dispute with one or
-				more other users, you hereby release CreditSafeIndia, its officers,
-				employees, agents and successors in rights from claims, demands and
-				damages (actual and consequential) of every kind or nature, known or
-				unknown, suspected and unsuspected, disclosed and undisclosed,
-				arising out of or in any way related to such disputes and / or our
-				service. If you are a California resident, you waive California Civil
-				Code Section 1542, which says: "A general release does not extend to
-				claims which the creditor does not know or suspect to exist in his
-				favor at the time of executing the release, which, if known by him
-				must have materially affected his settlement with the debtor."
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;5. &lt;/b&gt;&lt;strong&gt;NOTIFICATION OF CLAIMS OF INFRINGEMENT &lt;/strong&gt;
-				&amp;nbsp;-&amp;nbsp;If you believe that your work has been copied in a way
-				that constitutes copyright infringement, or your intellectual
-				property rights have been otherwise violated, please notify
-				CreditSafeIndia's agent for notice of claims of copyright or other
-				intellectual property infringement ("Agent"), at
-				&lt;a href="mailto:abuse@CreditSafeIndia.com"&gt;abuse@CreditSafeIndia.com&lt;/a&gt;
-				 or: Copyright Agent CreditSafeIndia 4800
-				Great America Pkwy, Suite 310 Santa Clara, CA 95054 Please provide
-				our Agent with the following Notice: &lt;b&gt;a)&lt;/b&gt; Identify the material
-				on the CreditSafeIndia site that you claim is infringing, with enough
-				detail so that we may locate it on the website; &lt;b&gt;b)&lt;/b&gt; A statement
-				by you that you have a good faith belief that the disputed use is not
-				authorized by the copyright owner, its agent, or the law; &lt;b&gt;c) &lt;/b&gt;A
-				statement by you declaring under penalty of perjury that (1) the
-				above information in your Notice is accurate, and (2) that you are
-				the owner of the copyright interest involved or that you are
-				authorized to act on behalf of that owner; &lt;b&gt;d)&lt;/b&gt; Your address,
-				telephone number, and email address; and &lt;b&gt;e)&lt;/b&gt; Your physical or
-				electronic signature. CreditSafeIndia will remove the infringing
-				posting(s), subject to the the procedures outlined in the Digital
-				Millenium Copyright Act (DMCA).
-			&lt;/p&gt;
-	
-			&lt;p&gt;
-				&lt;b&gt;6.&lt;/b&gt;&lt;strong&gt; PRIVACY AND INFORMATION DISCLOSURE &lt;/strong&gt;
-				&amp;nbps;-&amp;nbsp;CreditSafeIndia has established a Privacy Policy to
-				explain to users how their information is collected and used, which
-				is located at the following web address:
-				http://www.CreditSafeIndia.com/privacypolicy Your use of the
-				CreditSafeIndia website or the Service signifies acknowledgement of
-				and agreement to our Privacy Policy. You further acknowledge and
-				agree that CreditSafeIndia may, in its sole discretion, preserve or
-				disclose your Content, as well as your information, such as email
-				addresses, IP addresses, timestamps, and other user information, if
-				required to do so by law or in the good faith belief that such
-				preservation or disclosure is reasonably necessary to: comply with
-				legal process; enforce the Terms of Use; respond to claims that any
-				Content violates the rights of third-parties; respond to claims that
-				contact information (e.g. phone number, street address) of a
-				third-party has been posted or transmitted without their consent or
-				as a form of harassment; protect the rights, property, or personal
-				safety of CreditSafeIndia, its users or the general public.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;7.&lt;/b&gt;&lt;strong&gt; CONDUCT &lt;/strong&gt; &amp;nbsp;-&amp;nbsp;You agree not to
-				post, email, or otherwise make available Content: &lt;b&gt;a)&lt;/b&gt; that is
-				unlawful, harmful, threatening, abusive, harassing, defamatory,
-				libelous, invasive of another's privacy, or is harmful to minors in
-				any way; &lt;b&gt;b) &lt;/b&gt;that is pornographic or depicts a human being
-				engaged in actual sexual conduct including but not limited to (i)
-				sexual intercourse, including genital-genital, oral-genital,
-				anal-genital, or oral-anal, whether between persons of the same or
-				opposite sex, or (ii) bestiality, or (iii) masturbation, or (iv)
-				sadistic or masochistic abuse, or (v) lascivious exhibition of the
-				genitals or pubic area of any person; &lt;b&gt;c) &lt;/b&gt;that harasses,
-				degrades, intimidates or is hateful toward an individual or group of
-				individuals on the basis of religion, gender, sexual orientation,
-				race, ethnicity, age, or disability; &lt;b&gt;d)&lt;/b&gt; that violates the Fair
-				Housing Act by stating, in any notice or ad for the sale or rental of
-				any dwelling, a discriminatory preference based on race, color,
-				national origin, religion, sex, familial status or handicap (or
-				violates any state or local law prohibiting discrimination on the
-				basis of these or other characteristics); &lt;b&gt;e)&lt;/b&gt; that violates
-				federal, state, or local equal employment opportunity laws, including
-				but not limited to, stating in any advertisement for employment a
-				preference or requirement based on race, color, religion, sex,
-				national origin, age, or disability. &lt;b&gt;f)&lt;/b&gt; with respect to
-				employers that employ four or more employees, that violates the
-				anti-discrimination provision of the Immigration and Nationality Act,
-				including requiring U.S. citizenship or lawful permanent residency
-				(green card status) as a condition for employment, unless otherwise
-				required in order to comply with law, regulation, executive order, or
-				federal, state, or local government contract. &lt;b&gt;g)&lt;/b&gt; that
-				impersonates any person or entity, including, but not limited to, a
-				CreditSafeIndia employee, or falsely states or otherwise
-				misrepresents your affiliation with a person or entity (this
-				provision does not apply to Content that constitutes lawful
-				non-deceptive parody of public figures.); &lt;b&gt;h)&lt;/b&gt; that includes
-				personal or identifying information about another person without that
-				person's explicit consent; &lt;b&gt;i)&lt;/b&gt; that is false, deceptive,
-				misleading, deceitful, misinformative, or constitutes "bait and
-				switch"; &lt;b&gt;j) &lt;/b&gt;that infringes any patent, trademark, trade
-				secret, copyright or other proprietary rights of any party, or
-				Content that you do not have a right to make available under any law
-				or under contractual or fiduciary relationships; &lt;b&gt;k)&lt;/b&gt; that
-				constitutes or contains "affiliate marketing," "link referral code,"
-				"junk mail," "spam," "chain letters," "pyramid schemes," or
-				unsolicited commercial advertisement; &lt;b&gt;l)&lt;/b&gt; that constitutes or
-				contains any form of advertising or solicitation if: posted in areas
-				of the CreditSafeIndia sites which are not designated for such
-				purposes; or emailed to CreditSafeIndia users who have not indicated
-				in writing that it is ok to contact them about other services,
-				products or commercial interests.&lt;b&gt;m)&lt;/b&gt; that includes links to
-				commercial services or web sites, except as allowed in "services"; &lt;b&gt;n)&lt;/b&gt;
-				that advertises any illegal service or the sale of any items the sale
-				of which is prohibited or restricted by any applicable law, including
-				without limitation items the sale of which is prohibited or regulated
-				by California law. A partial list of prohibited items for sale and
-				prohibited services offered is provided at the following web address
-				for your convenience: http://www.CreditSafeIndia.com/prohibiteditems
-	
-				&lt;b&gt; o) &lt;/b&gt;that contains software viruses or any other computer code,
-				files or programs designed to interrupt, destroy or limit the
-				functionality of any computer software or hardware or
-				telecommunications equipment; &lt;b&gt;p)&lt;/b&gt; that disrupts the normal flow
-				of dialogue with an excessive amount of Content (flooding attack) to
-				the Service, or that otherwise negatively affects other users'
-				ability to use the Service; or &lt;b&gt;q)&lt;/b&gt; that employs misleading
-				email addresses, or forged headers or otherwise manipulated
-				identifiers in order to disguise the origin of Content transmitted
-				through the Service. Additionally, you agree not to:&lt;b&gt; r) &lt;/b&gt;contact
-				anyone who has asked not to be contacted; &lt;b&gt;s)&lt;/b&gt; "stalk" or
-				otherwise harass anyone;&lt;b&gt; t)&lt;/b&gt; collect personal data about other
-				users for commercial or unlawful purposes;&lt;b&gt; u)&lt;/b&gt; use automated
-				means, including spiders, robots, crawlers, data mining tools, or the
-				like to download data from the Service - unless expressly permitted
-				by CreditSafeIndia; &lt;b&gt;v)&lt;/b&gt; post irrelevant Content, repeatedly
-				post the same or similar Content or otherwise impose an unreasonable
-				or disproportionately large load on our infrastructure; &lt;b&gt;w)&lt;/b&gt;
-				post the same item or service in more than one classified category or
-				forum, or in more than one area; &lt;b&gt;x)&lt;/b&gt; attempt to gain
-				unauthorized access to CreditSafeIndia's computer systems or engage
-				in any activity that disrupts, diminishes the quality of, interferes
-				with the performance of, or impairs the functionality of, the Service
-				or the CreditSafeIndia website; or&lt;b&gt; y)&lt;/b&gt; use any form of
-				automated device or computer program that enables the submission of
-				postings on CreditSafeIndia without each posting being manually
-				entered by the author thereof (an "automated posting device"),
-				including without limitation, the use of any such automated posting
-				device to submit postings in bulk, or for automatic submission of
-				postings at regular intervals.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;8.&lt;/b&gt;&lt;strong&gt; POSTING AGENTS&lt;/strong&gt; &amp;nbsp;-&amp;nbsp; A "Posting
-				Agent" is a third-party agent, service, or intermediary that offers
-				to post Content to the Service on behalf of others. To moderate
-				demands on CreditSafeIndia's resources, you may not use a Posting
-				Agent to post Content to the Service without express permission or
-				license from CreditSafeIndia. Correspondingly, Posting Agents are not
-				permitted to post Content on behalf of others, to cause Content to be
-				so posted, or otherwise access the Service to facilitate posting
-				Content on behalf of others, except with express permission or
-				license from CreditSafeIndia.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;9.&lt;/b&gt;&lt;strong&gt; NO SPAM POLICY&lt;/strong&gt;&amp;nbsp;-&amp;nbsp; You understand
-				and agree that sending unsolicited email advertisements to
-				CreditSafeIndia email addresses or through CreditSafeIndia computer
-				systems, which is expressly prohibited by these Terms of Use, will
-				use or cause to be used servers located in California. Any
-				unauthorized use of CreditSafeIndia computer systems is a violation
-				of the Terms of Use and certain federal and state laws, including
-				without limitation the Computer Fraud and Abuse Act (18 U.S.C. § 1030
-				et seq.), Section 502 of the California Penal Code and Section
-				17538.45 of the California Business and Professions Code. Such
-				violations may subject the sender and his or her agents to civil and
-				criminal penalties.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;10.&lt;/b&gt; &lt;strong&gt; PAID POSTINGS&lt;/strong&gt; &amp;nbsp;-&amp;nbsp; We may
-				charge a fee to post Content in some areas of the Service. The fee is
-				an access fee permitting Content to be posted in a designated area.
-				Each party posting Content to the Service is responsible for said
-				Content and compliance with the Terms of Use. All fees paid will be
-				non-refundable in the event that Content is removed from the Service
-				for violating the Terms of Use.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;11.&lt;/b&gt;&lt;strong&gt; LIMITATIONS ON SERVICE &lt;/strong&gt; &amp;nbsp;-&amp;nbsp;You
-				acknowledge that CreditSafeIndia may establish limits concerning use
-				of the Service, including the maximum number of days that Content
-				will be retained by the Service, the maximum number and size of
-				postings, email messages, or other Content that may be transmitted or
-				stored by the Service, and the frequency with which you may access
-				the Service. You agree that CreditSafeIndia has no responsibility or
-				liability for the deletion or failure to store any Content maintained
-				or transmitted by the Service. You acknowledge that CreditSafeIndia
-				reserves the right at any time to modify or discontinue the Service
-				(or any part thereof) with or without notice, and that
-				CreditSafeIndia shall not be liable to you or to any third party for
-				any modification, suspension or discontinuance of the Service.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt; 12.&lt;/b&gt;&lt;strong&gt; ACCESS TO THE SERVICE&lt;/strong&gt;&amp;nbsp;-&amp;nbsp;
-				CreditSafeIndia grants you a limited, revocable, nonexclusive license
-				to access the Service for your own personal use. This license does
-				not include: &lt;b&gt;(a)&lt;/b&gt; access to the Service by Posting Agents; or &lt;b&gt;(b)
-				&lt;/b&gt;any collection, aggregation, copying, duplication, display or
-				derivative use of the Service nor any use of data mining, robots,
-				spiders, or similar data gathering and extraction tools for any
-				purpose unless expressly permitted by CreditSafeIndia. A limited
-				exception to &lt;b&gt;(b)&lt;/b&gt; is provided to general purpose internet
-				search engines and non-commercial public archives that use such tools
-				to gather information for the sole purpose of displaying hyperlinks
-				to the Service, provided they each do so from a stable IP address or
-				range of IP addresses using an easily identifiable agent and comply
-				with our robots.txt file. "General purpose internet search engine"
-				does not include a website or search engine or other service that
-				specializes in classified listings or in any subset of classifieds
-				listings such as jobs, housing, for sale, services, or personals, or
-				which is in the business of providing classified ad listing services.
-				CreditSafeIndia permits you to display on your website, or create a
-				hyperlink on your website to, individual postings on the Service so
-				long as such use is for noncommercial and/or news reporting purposes
-				only (e.g., for use in personal web blogs or personal online media).
-				If the total number of such postings displayed or linked to on your
-				website exceeds one hundred (100) postings, your use will be presumed
-				to be in violation of the Terms of Use, absent express permission
-				granted by CreditSafeIndia to do so. You may also create a hyperlink
-				to the home page of CreditSafeIndia sites so long as the link does
-				not portray CreditSafeIndia, its employees, or its affiliates in a
-				false, misleading, derogatory, or otherwise offensive manner.
-				CreditSafeIndia offers various parts of the Service in RSS format so
-				that users can embed individual feeds into a personal website or
-				blog, or view postings through third party software news aggregators.
-				CreditSafeIndia permits you to display, excerpt from, and link to the
-				RSS feeds on your personal website or personal web blog, provided
-				that &lt;b&gt;(a)&lt;/b&gt; your use of the RSS feed is for personal,
-				non-commercial purposes only, &lt;b&gt;(b)&lt;/b&gt; each title is correctly
-				linked back to the original post on the Service and redirects the
-				user to the post when the user clicks on it, &lt;b&gt;(c) &lt;/b&gt;you provide,
-				adjacent to the RSS feed, proper attribution to 'CreditSafeIndia' as
-				the source, &lt;b&gt;(d)&lt;/b&gt; your use or display does not suggest that
-				CreditSafeIndia promotes or endorses any third party causes, ideas,
-				web sites, products or services, &lt;b&gt;(e) &lt;/b&gt;you do not redistribute
-				the RSS feed, and &lt;b&gt;(f)&lt;/b&gt; your use does not overburden
-				CreditSafeIndia's systems. CreditSafeIndia reserves all rights in the
-				content of the RSS feeds and may terminate any RSS feed at any time.
-				Use of the Service beyond the scope of authorized access granted to
-				you by CreditSafeIndia immediately terminates said permission or
-				license. In order to collect, aggregate, copy, duplicate, display or
-				make derivative use of the the Service or any Content made available
-				via the Service for other purposes (including commercial purposes)
-				not stated herein, you must first obtain a license from
-				CreditSafeIndia.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt; 13.&lt;/b&gt;&lt;strong&gt; TERMINATION OF SERVICE&lt;/strong&gt; &amp;nbsp;-&amp;nbsp; You
-				agree that CreditSafeIndia, in its sole discretion, has the right
-				(but not the obligation) to delete or deactivate your account, block
-				your email or IP address, or otherwise terminate your access to or
-				use of the Service (or any part thereof), immediately and without
-				notice, and remove and discard any Content within the Service, for
-				any reason, including, without limitation, if CreditSafeIndia
-				believes that you have acted inconsistently with the letter or spirit
-				of the Terms of Use. Further, you agree that CreditSafeIndia shall
-				not be liable to you or any third-party for any termination of your
-				access to the Service. Further, you agree not to attempt to use the
-				Service after said termination. Sections 2, 4, 6 and 12-18 shall
-				survive termination of the Terms of Use.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;14. &lt;/b&gt;&lt;strong&gt;PROPRIETARY RIGHTS &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;The
-				Service is protected to the maximum extent permitted by copyright
-				laws and international treaties. Content displayed on or through the
-				Service is protected by copyright as a collective work and/or
-				compilation, pursuant to copyrights laws, and international
-				conventions. Any reproduction, modification, creation of derivative
-				works from or redistribution of the site or the collective work,
-				and/or copying or reproducing the sites or any portion thereof to any
-				other server or location for further reproduction or redistribution
-				is prohibited without the express written consent of CreditSafeIndia.
-				You further agree not to reproduce, duplicate or copy Content from
-				the Service without the express written consent of CreditSafeIndia,
-				and agree to abide by any and all copyright notices displayed on the
-				Service. You may not decompile or disassemble, reverse engineer or
-				otherwise attempt to discover any source code contained in the
-				Service. Without limiting the foregoing, you agree not to reproduce,
-				duplicate, copy, sell, resell or exploit for any commercial purposes,
-				any aspect of the Service. CreditSafeIndia is a registered mark in
-				the U.S. Patent and Trademark Office. Although CreditSafeIndia does
-				not claim ownership of content that its users post, by posting
-				Content to any public area of the Service, you automatically grant,
-				and you represent and warrant that you have the right to grant, to
-				CreditSafeIndia an irrevocable, perpetual, non-exclusive, fully paid,
-				worldwide license to use, copy, perform, display, and distribute said
-				Content and to prepare derivative works of, or incorporate into other
-				works, said Content, and to grant and authorize sublicenses (through
-				multiple tiers) of the foregoing. Furthermore, by posting Content to
-				any public area of the Service, you automatically grant
-				CreditSafeIndia all rights necessary to prohibit any subsequent
-				aggregation, display, copying, duplication, reproduction, or
-				exploitation of the Content on the Service by any party for any
-				purpose.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt; 15.&lt;/b&gt; DISCLAIMER OF WARRANTIES YOU AGREE THAT USE OF THE
-				CreditSafeIndia SITE AND THE SERVICE IS ENTIRELY AT YOUR OWN RISK.
-				THE CreditSafeIndia SITE AND THE SERVICE ARE PROVIDED ON AN "AS IS"
-				OR "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND. ALL
-				EXPRESS AND IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE
-				WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-				NON-INFRINGEMENT OF PROPRIETARY RIGHTS ARE EXPRESSLY DISCLAIMED TO
-				THE FULLEST EXTENT PERMITTED BY LAW. TO THE FULLEST EXTENT PERMITTED
-				BY LAW, CreditSafeIndia DISCLAIMS ANY WARRANTIES FOR THE SECURITY,
-				RELIABILITY, TIMELINESS, ACCURACY, AND PERFORMANCE OF THE
-				CreditSafeIndia SITE AND THE SERVICE. TO THE FULLEST EXTENT PERMITTED
-				BY LAW, CreditSafeIndia DISCLAIMS ANY WARRANTIES FOR OTHER SERVICES
-				OR GOODS RECEIVED THROUGH OR ADVERTISED ON THE CreditSafeIndia SITE
-				OR THE SITES OR SERVICE, OR ACCESSED THROUGH ANY LINKS ON THE
-				CreditSafeIndia SITE. TO THE FULLEST EXTENT PERMITTED BY LAW,
-				CreditSafeIndia DISCLAIMS ANY WARRANTIES FOR VIRUSES OR OTHER HARMFUL
-				COMPONENTS IN CONNECTION WITH THE CreditSafeIndia SITE OR THE
-				SERVICE. Some jurisdictions do not allow the disclaimer of implied
-				warranties. In such jurisdictions, some of the foregoing disclaimers
-				may not apply to you insofar as they relate to implied warranties.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;16.&lt;/b&gt; LIMITATIONS OF LIABILITY UNDER NO CIRCUMSTANCES SHALL
-				CreditSafeIndia BE LIABLE FOR DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-				CONSEQUENTIAL OR EXEMPLARY DAMAGES (EVEN IF CreditSafeIndia HAS BEEN
-				ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), RESULTING FROM ANY
-				ASPECT OF YOUR USE OF THE CreditSafeIndia SITE OR THE SERVICE,
-				WHETHER THE DAMAGES ARISE FROM USE OR MISUSE OF THE CreditSafeIndia
-				SITE OR THE SERVICE, FROM INABILITY TO USE THE CreditSafeIndia SITE
-				OR THE SERVICE, OR THE INTERRUPTION, SUSPENSION, MODIFICATION,
-				ALTERATION, OR TERMINATION OF THE CreditSafeIndia SITE OR THE
-				SERVICE. SUCH LIMITATION SHALL ALSO APPLY WITH RESPECT TO DAMAGES
-				INCURRED BY REASON OF OTHER SERVICES OR PRODUCTS RECEIVED THROUGH OR
-				ADVERTISED IN CONNECTION WITH THE CreditSafeIndia SITE OR THE SERVICE
-				OR ANY LINKS ON THE CreditSafeIndia SITE, AS WELL AS BY REASON OF ANY
-				INFORMATION OR ADVICE RECEIVED THROUGH OR ADVERTISED IN CONNECTION
-				WITH THE CreditSafeIndia SITE OR THE SERVICE OR ANY LINKS ON THE
-				CreditSafeIndia SITE. THESE LIMITATIONS SHALL APPLY TO THE FULLEST
-				EXTENT PERMITTED BY LAW. In some jurisdictions, limitations of
-				liability are not permitted. In such jurisdictions, some of the
-				foregoing limitation may not apply to you.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;17.&lt;/b&gt; &lt;strong&gt;INDEMNITY&lt;/strong&gt;&amp;nbsp;-&amp;nbsp; You agree to
-				indemnify and hold CreditSafeIndia, its officers, subsidiaries,
-				affiliates, successors, assigns, directors, officers, agents, service
-				providers, suppliers and employees, harmless from any claim or
-				demand, including reasonable attorney fees and court costs, made by
-				any third party due to or arising out of Content you submit, post or
-				make available through the Service, your use of the Service, your
-				violation of the Terms of Use, your breach of any of the
-				representations and warranties herein, or your violation of any
-				rights of another.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;18.&lt;/b&gt;&lt;strong&gt; GENERAL INFORMATION &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;The
-				Terms of Use constitute the entire agreement between you and
-				CreditSafeIndia and govern your use of the Service, superseding any
-				prior agreements between you and CreditSafeIndia. The Terms of Use
-				and the relationship between you and CreditSafeIndia shall be
-				governed by the laws of the State of California without regard to its
-				conflict of law provisions. You and CreditSafeIndia agree to submit
-				to the personal and exclusive jurisdiction of the courts located
-				within the county of San Francisco, California. The failure of
-				CreditSafeIndia to exercise or enforce any right or provision of the
-				Terms of Use shall not constitute a waiver of such right or
-				provision. If any provision of the Terms of Use is found by a court
-				of competent jurisdiction to be invalid, the parties nevertheless
-				agree that the court should endeavor to give effect to the parties'
-				intentions as reflected in the provision, and the other provisions of
-				the Terms of Use remain in full force and effect. You agree that
-				regardless of any statute or law to the contrary, any claim or cause
-				of action arising out of or related to use of the Service or the
-				Terms of Use must be filed within one (1) year after such claim or
-				cause of action arose or be forever barred.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;19.&lt;/b&gt;&lt;strong&gt; VIOLATION OF TERMS AND LIQUIDATED DAMAGES&lt;/strong&gt;&amp;nbsp;-&amp;nbsp;
-				Please report any violations of the Terms of Use, by flagging the
-				posting(s) for review, or by emailing to: &lt;a href="mailto:abuse@CreditSafeIndia.com"&gt;abuse@CreditSafeIndia.com&lt;/a&gt;
-				Our failure to act with respect to a breach by you or others does not
-				waive our right to act with respect to subsequent or similar
-				breaches. You understand and agree that, because damages are often
-				difficult to quantify, if it becomes necessary for CreditSafeIndia to
-				pursue legal action to enforce the Terms of Use, you will be liable
-				to pay CreditSafeIndia the following amounts as liquidated damages,
-				which you accept as reasonable estimates of CreditSafeIndias' damages
-				for the specified breaches of the Terms of Use: a. If you post a
-				message that &lt;b&gt;(1) &lt;/b&gt;impersonates any person or entity; &lt;b&gt;(2)&lt;/b&gt;
-				falsely states or otherwise misrepresents your affiliation with a
-				person or entity; or &lt;b&gt;(3) &lt;/b&gt;that includes personal or identifying
-				information about another person without that person's explicit
-				consent, you agree to pay CreditSafeIndia one thousand dollars
-				($1,000) for each such message. This provision does not apply to
-				messages that are lawful non-deceptive parodies of public figures. b.
-				If CreditSafeIndia establishes limits on the frequency with which you
-				may access the Service, or terminates your access to or use of the
-				Service, you agree to pay CreditSafeIndia one hundred dollars ($100)
-				for each message posted in excess of such limits or for each day on
-				which you access CreditSafeIndia in excess of such limits, whichever
-				is higher. c. If you send unsolicited email advertisements to
-				CreditSafeIndia email addresses or through CreditSafeIndia computer
-				systems, you agree to pay CreditSafeIndia twenty five dollars ($25)
-				for each such email. d. If you post Content in violation of the Terms
-				of Use, other than as described above, you agree to pay
-				CreditSafeIndia one hundred dollars ($100) for each Item of Content
-				posted. In its sole discretion, CreditSafeIndia may elect to issue a
-				warning before assessing damages. e. If you are a Posting Agent that
-				uses the Service in violation of the Terms of Use, in addition to any
-				liquidated damages under clause (d), you agree to pay CreditSafeIndia
-				one hundred dollars ($100) for each and every Item of Conent posted
-				in violation of the Terms of Use. A Posting Agent will also be deemed
-				an agent of the party engaging the Posting Agent to access the
-				Service (the "Principal"), and the Principal (by engaging the Posting
-				Agent in violation of the Terms of Use) agrees to pay CreditSafeIndia
-				an additional one hundred dollars ($100) for each Item of Conent
-				posted by the Posting Agent on behalf of the principal in violation
-				of the Terms of Use. f. If you aggregate, display, copy, duplicate,
-				reproduce, or otherwise exploit for any purpose any Content (except
-				for your own Content) in violation of the Terms of Use without
-				CreditSafeIndia's express written permission, you agree to pay
-				CreditSafeIndia three thousand dollars ($3,000) for each day on which
-				you engage in such conduct. Otherwise, you agree to pay
-				CreditSafeIndia's actual damages, to the extent such actual damages
-				can be reasonably calculated. Notwithstanding any other provision of
-				the Terms of Use, CreditSafeIndia retains the right to seek the
-				remedy of specific performance of any term contained in the Terms of
-				Use, or a preliminary or permanent injunction against the breach of
-				any such term or in aid of the exercise of any power granted in the
-				Terms of Use, or any combination thereof.
-			&lt;/p&gt;
-			&lt;p&gt;
-				&lt;b&gt;20.&lt;/b&gt;&lt;strong&gt; SUBMISSIONS&lt;/strong&gt;&amp;nbsp;-&amp;nbsp; You acknowledge
-				and agree that any questions, comments, suggestions, ideas, feedback
-				or other information about the Site or the Service ("Submissions"),
-				provided by you to Company are non-confidential and shall become the
-				sole property of Company. Company shall own exclusive rights,
-				including all intellectual property rights, and shall be entitled to
-				the unrestricted use and dissemination of these Submissions for any
-				purpose, commercial or otherwise, without acknowledgment or
-				compensation to you.
-		&lt;/div&gt;
-	&lt;/div&gt;</sv:value>
+			&lt;h2 class="title"&gt;Terms of Wealth4India&lt;/h2&gt;
+			&lt;div class="yui-cssbase	body"&gt;
+				&lt;p&gt;
+					&lt;b&gt;1.&lt;/b&gt; &lt;strong&gt;ACCEPTANCE OF TERMS &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;
+					CreditSafeIndia provides a collection of online resources, including
+					classified ads, forums, and various email services, (referred to
+					hereafter as "the Service") subject to the following Terms of Use. By
+					using the Service in any way, you are agreeing to comply with the
+					Terms of Use. In addition, when using particular CreditSafeIndia
+					services, you agree to abide by any applicable posted guidelines for
+					all CreditSafeIndia services, which may change from time to time.
+					Should you object to any term or condition of the Terms of Use, any
+					guidelines, or any subsequent modifications thereto or become
+					dissatisfied with CreditSafeIndia in any way, your only recourse is
+					to immediately discontinue use of CreditSafeIndia.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;2.&lt;/b&gt; &lt;strong&gt;MODIFICATIONS TO THIS AGREEMENT &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;We
+					reserve the right, at our sole discretion, to change, modify or
+					otherwise alter these terms and conditions at any time. Such
+					modifications shall become effective immediately upon the posting
+					thereof. You must review this agreement on a regular basis to keep
+					yourself apprised of any changes. You can find the most recent
+					version of the Terms of Use at:
+						http://www.CreditSafeIndia.com/termsofuse
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;3.&lt;/b&gt;&lt;strong&gt; CONTENT&lt;/strong&gt; &amp;nbsp;-&amp;nbsp;WeYou understand that
+					all postings, messages, text, files, images, photos, video, sounds,
+					or other materials ("
+						Content") posted on, transmitted through, or linked from the
+						Service, are the sole responsibility of the person from whom such
+						Content originated. More specifically, you are entirely responsible
+						for each individual item ("Item") of Content that you post, email or
+						otherwise make available via the Service. You understand that
+						CreditSafeIndia does not control, and is not responsible for Content
+						made available through the Service, and that by using the
+						Service, you may be exposed to Content that is
+						offensive, indecent, inaccurate, misleading, or otherwise
+						objectionable. Furthermore, the CreditSafeIndia site and Content
+						available through the Service may contain links to other
+						websites,
+					which are completely independent of CreditSafeIndia.
+						CreditSafeIndia makes no representation or warranty as to the
+						accuracy, completeness or authenticity of the information contained
+						in any such site. Your linking to any other webites is at your own
+						risk. You agree that you must evaluate, and bear all risks
+						associated with, the use of any Content, that you may not rely on
+						said Content, and that under no circumstances will CreditSafeIndia
+						be liable in any way for any Content or for any loss or damage of
+						any kind incurred as a result of the use of any Content
+						posted, emailed or otherwise made available via the Service. You
+						acknowledge that CreditSafeIndia does not pre-screen or approve
+						Content, but that CreditSafeIndia shall have the right (but not the
+						obligation) in its sole discretion to refuse,
+					delete or move any
+						Content that is available via the Service, for violating the letter
+						or spirit of the Terms of Use or for any other reason.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt; 4.&lt;/b&gt;&lt;strong&gt; THIRD PARTY CONTENT, SITES, AND SERVICES
+					&lt;/strong&gt; &amp;nbsp;-&amp;nbsp;The CreditSafeIndia site and Content available through
+					the Service may contain features and functionalities that may link
+					you or provide you with access to third party content which is
+					completely independent of CreditSafeIndia, including web sites,
+					directories, servers, networks, systems, information and databases,
+					applications, software, programs, products or services, and the
+					Internet as a whole. Your interactions with organizations and/or
+					individuals found on or through the Service, including payment and
+					delivery of goods or services, and any other terms, conditions,
+					warranties or representations associated with such dealings, are
+					solely between you and such organizations and/or individuals. You
+					should make whatever investigation you feel necessary or appropriate
+					before proceeding with any online or offline transaction with any of
+					these third parties. You agree that CreditSafeIndia shall not be
+					responsible or liable for any loss or damage of any sort incurred as
+					the result of any such dealings. If there is a dispute between
+					participants on this site, or between users and any third party, you
+					understand and agree that CreditSafeIndia is under no obligation to
+					become involved. In the event that you have a dispute with one or
+					more other users, you hereby release CreditSafeIndia, its officers,
+					employees, agents and successors in rights from claims, demands and
+					damages (actual and consequential) of every kind or nature, known or
+					unknown, suspected and unsuspected, disclosed and undisclosed,
+					arising out of or in any way related to such disputes and / or our
+					service. If you are a California resident, you waive California Civil
+					Code Section 1542, which says: "A general release does not extend to
+					claims which the creditor does not know or suspect to exist in his
+					favor at the time of executing the release, which, if known by him
+					must have materially affected his settlement with the debtor."
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;5. &lt;/b&gt;&lt;strong&gt;NOTIFICATION OF CLAIMS OF INFRINGEMENT &lt;/strong&gt;
+					&amp;nbsp;-&amp;nbsp;If you believe that your work has been copied in a way
+					that constitutes copyright infringement, or your intellectual
+					property rights have been otherwise violated, please notify
+					CreditSafeIndia's agent for notice of claims of copyright or other
+					intellectual property infringement ("Agent"), at
+					&lt;a href="mailto:abuse@CreditSafeIndia.com"&gt;abuse@CreditSafeIndia.com&lt;/a&gt;
+					 or: Copyright Agent CreditSafeIndia 4800
+					Great America Pkwy, Suite 310 Santa Clara, CA 95054 Please provide
+					our Agent with the following Notice: &lt;b&gt;a)&lt;/b&gt; Identify the material
+					on the CreditSafeIndia site that you claim is infringing, with enough
+					detail so that we may locate it on the website; &lt;b&gt;b)&lt;/b&gt; A statement
+					by you that you have a good faith belief that the disputed use is not
+					authorized by the copyright owner, its agent, or the law; &lt;b&gt;c) &lt;/b&gt;A
+					statement by you declaring under penalty of perjury that (1) the
+					above information in your Notice is accurate, and (2) that you are
+					the owner of the copyright interest involved or that you are
+					authorized to act on behalf of that owner; &lt;b&gt;d)&lt;/b&gt; Your address,
+					telephone number, and email address; and &lt;b&gt;e)&lt;/b&gt; Your physical or
+					electronic signature. CreditSafeIndia will remove the infringing
+					posting(s), subject to the the procedures outlined in the Digital
+					Millenium Copyright Act (DMCA).
+				&lt;/p&gt;
+		
+				&lt;p&gt;
+					&lt;b&gt;6.&lt;/b&gt;&lt;strong&gt; PRIVACY AND INFORMATION DISCLOSURE &lt;/strong&gt;
+					&amp;nbps;-&amp;nbsp;CreditSafeIndia has established a Privacy Policy to
+					explain to users how their information is collected and used, which
+					is located at the following web address:
+					http://www.CreditSafeIndia.com/privacypolicy Your use of the
+					CreditSafeIndia website or the Service signifies acknowledgement of
+					and agreement to our Privacy Policy. You further acknowledge and
+					agree that CreditSafeIndia may, in its sole discretion, preserve or
+					disclose your Content, as well as your information, such as email
+					addresses, IP addresses, timestamps, and other user information, if
+					required to do so by law or in the good faith belief that such
+					preservation or disclosure is reasonably necessary to: comply with
+					legal process; enforce the Terms of Use; respond to claims that any
+					Content violates the rights of third-parties; respond to claims that
+					contact information (e.g. phone number, street address) of a
+					third-party has been posted or transmitted without their consent or
+					as a form of harassment; protect the rights, property, or personal
+					safety of CreditSafeIndia, its users or the general public.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;7.&lt;/b&gt;&lt;strong&gt; CONDUCT &lt;/strong&gt; &amp;nbsp;-&amp;nbsp;You agree not to
+					post, email, or otherwise make available Content: &lt;b&gt;a)&lt;/b&gt; that is
+					unlawful, harmful, threatening, abusive, harassing, defamatory,
+					libelous, invasive of another's privacy, or is harmful to minors in
+					any way; &lt;b&gt;b) &lt;/b&gt;that is pornographic or depicts a human being
+					engaged in actual sexual conduct including but not limited to (i)
+					sexual intercourse, including genital-genital, oral-genital,
+					anal-genital, or oral-anal, whether between persons of the same or
+					opposite sex, or (ii) bestiality, or (iii) masturbation, or (iv)
+					sadistic or masochistic abuse, or (v) lascivious exhibition of the
+					genitals or pubic area of any person; &lt;b&gt;c) &lt;/b&gt;that harasses,
+					degrades, intimidates or is hateful toward an individual or group of
+					individuals on the basis of religion, gender, sexual orientation,
+					race, ethnicity, age, or disability; &lt;b&gt;d)&lt;/b&gt; that violates the Fair
+					Housing Act by stating, in any notice or ad for the sale or rental of
+					any dwelling, a discriminatory preference based on race, color,
+					national origin, religion, sex, familial status or handicap (or
+					violates any state or local law prohibiting discrimination on the
+					basis of these or other characteristics); &lt;b&gt;e)&lt;/b&gt; that violates
+					federal, state, or local equal employment opportunity laws, including
+					but not limited to, stating in any advertisement for employment a
+					preference or requirement based on race, color, religion, sex,
+					national origin, age, or disability. &lt;b&gt;f)&lt;/b&gt; with respect to
+					employers that employ four or more employees, that violates the
+					anti-discrimination provision of the Immigration and Nationality Act,
+					including requiring U.S. citizenship or lawful permanent residency
+					(green card status) as a condition for employment, unless otherwise
+					required in order to comply with law, regulation, executive order, or
+					federal, state, or local government contract. &lt;b&gt;g)&lt;/b&gt; that
+					impersonates any person or entity, including, but not limited to, a
+					CreditSafeIndia employee, or falsely states or otherwise
+					misrepresents your affiliation with a person or entity (this
+					provision does not apply to Content that constitutes lawful
+					non-deceptive parody of public figures.); &lt;b&gt;h)&lt;/b&gt; that includes
+					personal or identifying information about another person without that
+					person's explicit consent; &lt;b&gt;i)&lt;/b&gt; that is false, deceptive,
+					misleading, deceitful, misinformative, or constitutes "bait and
+					switch"; &lt;b&gt;j) &lt;/b&gt;that infringes any patent, trademark, trade
+					secret, copyright or other proprietary rights of any party, or
+					Content that you do not have a right to make available under any law
+					or under contractual or fiduciary relationships; &lt;b&gt;k)&lt;/b&gt; that
+					constitutes or contains "affiliate marketing," "link referral code,"
+					"junk mail," "spam," "chain letters," "pyramid schemes," or
+					unsolicited commercial advertisement; &lt;b&gt;l)&lt;/b&gt; that constitutes or
+					contains any form of advertising or solicitation if: posted in areas
+					of the CreditSafeIndia sites which are not designated for such
+					purposes; or emailed to CreditSafeIndia users who have not indicated
+					in writing that it is ok to contact them about other services,
+					products or commercial interests.&lt;b&gt;m)&lt;/b&gt; that includes links to
+					commercial services or web sites, except as allowed in "services"; &lt;b&gt;n)&lt;/b&gt;
+					that advertises any illegal service or the sale of any items the sale
+					of which is prohibited or restricted by any applicable law, including
+					without limitation items the sale of which is prohibited or regulated
+					by California law. A partial list of prohibited items for sale and
+					prohibited services offered is provided at the following web address
+					for your convenience: http://www.CreditSafeIndia.com/prohibiteditems
+		
+					&lt;b&gt; o) &lt;/b&gt;that contains software viruses or any other computer code,
+					files or programs designed to interrupt, destroy or limit the
+					functionality of any computer software or hardware or
+					telecommunications equipment; &lt;b&gt;p)&lt;/b&gt; that disrupts the normal flow
+					of dialogue with an excessive amount of Content (flooding attack) to
+					the Service, or that otherwise negatively affects other users'
+					ability to use the Service; or &lt;b&gt;q)&lt;/b&gt; that employs misleading
+					email addresses, or forged headers or otherwise manipulated
+					identifiers in order to disguise the origin of Content transmitted
+					through the Service. Additionally, you agree not to:&lt;b&gt; r) &lt;/b&gt;contact
+					anyone who has asked not to be contacted; &lt;b&gt;s)&lt;/b&gt; "stalk" or
+					otherwise harass anyone;&lt;b&gt; t)&lt;/b&gt; collect personal data about other
+					users for commercial or unlawful purposes;&lt;b&gt; u)&lt;/b&gt; use automated
+					means, including spiders, robots, crawlers, data mining tools, or the
+					like to download data from the Service - unless expressly permitted
+					by CreditSafeIndia; &lt;b&gt;v)&lt;/b&gt; post irrelevant Content, repeatedly
+					post the same or similar Content or otherwise impose an unreasonable
+					or disproportionately large load on our infrastructure; &lt;b&gt;w)&lt;/b&gt;
+					post the same item or service in more than one classified category or
+					forum, or in more than one area; &lt;b&gt;x)&lt;/b&gt; attempt to gain
+					unauthorized access to CreditSafeIndia's computer systems or engage
+					in any activity that disrupts, diminishes the quality of, interferes
+					with the performance of, or impairs the functionality of, the Service
+					or the CreditSafeIndia website; or&lt;b&gt; y)&lt;/b&gt; use any form of
+					automated device or computer program that enables the submission of
+					postings on CreditSafeIndia without each posting being manually
+					entered by the author thereof (an "automated posting device"),
+					including without limitation, the use of any such automated posting
+					device to submit postings in bulk, or for automatic submission of
+					postings at regular intervals.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;8.&lt;/b&gt;&lt;strong&gt; POSTING AGENTS&lt;/strong&gt; &amp;nbsp;-&amp;nbsp; A "Posting
+					Agent" is a third-party agent, service, or intermediary that offers
+					to post Content to the Service on behalf of others. To moderate
+					demands on CreditSafeIndia's resources, you may not use a Posting
+					Agent to post Content to the Service without express permission or
+					license from CreditSafeIndia. Correspondingly, Posting Agents are not
+					permitted to post Content on behalf of others, to cause Content to be
+					so posted, or otherwise access the Service to facilitate posting
+					Content on behalf of others, except with express permission or
+					license from CreditSafeIndia.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;9.&lt;/b&gt;&lt;strong&gt; NO SPAM POLICY&lt;/strong&gt;&amp;nbsp;-&amp;nbsp; You understand
+					and agree that sending unsolicited email advertisements to
+					CreditSafeIndia email addresses or through CreditSafeIndia computer
+					systems, which is expressly prohibited by these Terms of Use, will
+					use or cause to be used servers located in California. Any
+					unauthorized use of CreditSafeIndia computer systems is a violation
+					of the Terms of Use and certain federal and state laws, including
+					without limitation the Computer Fraud and Abuse Act (18 U.S.C. § 1030
+					et seq.), Section 502 of the California Penal Code and Section
+					17538.45 of the California Business and Professions Code. Such
+					violations may subject the sender and his or her agents to civil and
+					criminal penalties.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;10.&lt;/b&gt; &lt;strong&gt; PAID POSTINGS&lt;/strong&gt; &amp;nbsp;-&amp;nbsp; We may
+					charge a fee to post Content in some areas of the Service. The fee is
+					an access fee permitting Content to be posted in a designated area.
+					Each party posting Content to the Service is responsible for said
+					Content and compliance with the Terms of Use. All fees paid will be
+					non-refundable in the event that Content is removed from the Service
+					for violating the Terms of Use.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;11.&lt;/b&gt;&lt;strong&gt; LIMITATIONS ON SERVICE &lt;/strong&gt; &amp;nbsp;-&amp;nbsp;You
+					acknowledge that CreditSafeIndia may establish limits concerning use
+					of the Service, including the maximum number of days that Content
+					will be retained by the Service, the maximum number and size of
+					postings, email messages, or other Content that may be transmitted or
+					stored by the Service, and the frequency with which you may access
+					the Service. You agree that CreditSafeIndia has no responsibility or
+					liability for the deletion or failure to store any Content maintained
+					or transmitted by the Service. You acknowledge that CreditSafeIndia
+					reserves the right at any time to modify or discontinue the Service
+					(or any part thereof) with or without notice, and that
+					CreditSafeIndia shall not be liable to you or to any third party for
+					any modification, suspension or discontinuance of the Service.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt; 12.&lt;/b&gt;&lt;strong&gt; ACCESS TO THE SERVICE&lt;/strong&gt;&amp;nbsp;-&amp;nbsp;
+					CreditSafeIndia grants you a limited, revocable, nonexclusive license
+					to access the Service for your own personal use. This license does
+					not include: &lt;b&gt;(a)&lt;/b&gt; access to the Service by Posting Agents; or &lt;b&gt;(b)
+					&lt;/b&gt;any collection, aggregation, copying, duplication, display or
+					derivative use of the Service nor any use of data mining, robots,
+					spiders, or similar data gathering and extraction tools for any
+					purpose unless expressly permitted by CreditSafeIndia. A limited
+					exception to &lt;b&gt;(b)&lt;/b&gt; is provided to general purpose internet
+					search engines and non-commercial public archives that use such tools
+					to gather information for the sole purpose of displaying hyperlinks
+					to the Service, provided they each do so from a stable IP address or
+					range of IP addresses using an easily identifiable agent and comply
+					with our robots.txt file. "General purpose internet search engine"
+					does not include a website or search engine or other service that
+					specializes in classified listings or in any subset of classifieds
+					listings such as jobs, housing, for sale, services, or personals, or
+					which is in the business of providing classified ad listing services.
+					CreditSafeIndia permits you to display on your website, or create a
+					hyperlink on your website to, individual postings on the Service so
+					long as such use is for noncommercial and/or news reporting purposes
+					only (e.g., for use in personal web blogs or personal online media).
+					If the total number of such postings displayed or linked to on your
+					website exceeds one hundred (100) postings, your use will be presumed
+					to be in violation of the Terms of Use, absent express permission
+					granted by CreditSafeIndia to do so. You may also create a hyperlink
+					to the home page of CreditSafeIndia sites so long as the link does
+					not portray CreditSafeIndia, its employees, or its affiliates in a
+					false, misleading, derogatory, or otherwise offensive manner.
+					CreditSafeIndia offers various parts of the Service in RSS format so
+					that users can embed individual feeds into a personal website or
+					blog, or view postings through third party software news aggregators.
+					CreditSafeIndia permits you to display, excerpt from, and link to the
+					RSS feeds on your personal website or personal web blog, provided
+					that &lt;b&gt;(a)&lt;/b&gt; your use of the RSS feed is for personal,
+					non-commercial purposes only, &lt;b&gt;(b)&lt;/b&gt; each title is correctly
+					linked back to the original post on the Service and redirects the
+					user to the post when the user clicks on it, &lt;b&gt;(c) &lt;/b&gt;you provide,
+					adjacent to the RSS feed, proper attribution to 'CreditSafeIndia' as
+					the source, &lt;b&gt;(d)&lt;/b&gt; your use or display does not suggest that
+					CreditSafeIndia promotes or endorses any third party causes, ideas,
+					web sites, products or services, &lt;b&gt;(e) &lt;/b&gt;you do not redistribute
+					the RSS feed, and &lt;b&gt;(f)&lt;/b&gt; your use does not overburden
+					CreditSafeIndia's systems. CreditSafeIndia reserves all rights in the
+					content of the RSS feeds and may terminate any RSS feed at any time.
+					Use of the Service beyond the scope of authorized access granted to
+					you by CreditSafeIndia immediately terminates said permission or
+					license. In order to collect, aggregate, copy, duplicate, display or
+					make derivative use of the the Service or any Content made available
+					via the Service for other purposes (including commercial purposes)
+					not stated herein, you must first obtain a license from
+					CreditSafeIndia.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt; 13.&lt;/b&gt;&lt;strong&gt; TERMINATION OF SERVICE&lt;/strong&gt; &amp;nbsp;-&amp;nbsp; You
+					agree that CreditSafeIndia, in its sole discretion, has the right
+					(but not the obligation) to delete or deactivate your account, block
+					your email or IP address, or otherwise terminate your access to or
+					use of the Service (or any part thereof), immediately and without
+					notice, and remove and discard any Content within the Service, for
+					any reason, including, without limitation, if CreditSafeIndia
+					believes that you have acted inconsistently with the letter or spirit
+					of the Terms of Use. Further, you agree that CreditSafeIndia shall
+					not be liable to you or any third-party for any termination of your
+					access to the Service. Further, you agree not to attempt to use the
+					Service after said termination. Sections 2, 4, 6 and 12-18 shall
+					survive termination of the Terms of Use.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;14. &lt;/b&gt;&lt;strong&gt;PROPRIETARY RIGHTS &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;The
+					Service is protected to the maximum extent permitted by copyright
+					laws and international treaties. Content displayed on or through the
+					Service is protected by copyright as a collective work and/or
+					compilation, pursuant to copyrights laws, and international
+					conventions. Any reproduction, modification, creation of derivative
+					works from or redistribution of the site or the collective work,
+					and/or copying or reproducing the sites or any portion thereof to any
+					other server or location for further reproduction or redistribution
+					is prohibited without the express written consent of CreditSafeIndia.
+					You further agree not to reproduce, duplicate or copy Content from
+					the Service without the express written consent of CreditSafeIndia,
+					and agree to abide by any and all copyright notices displayed on the
+					Service. You may not decompile or disassemble, reverse engineer or
+					otherwise attempt to discover any source code contained in the
+					Service. Without limiting the foregoing, you agree not to reproduce,
+					duplicate, copy, sell, resell or exploit for any commercial purposes,
+					any aspect of the Service. CreditSafeIndia is a registered mark in
+					the U.S. Patent and Trademark Office. Although CreditSafeIndia does
+					not claim ownership of content that its users post, by posting
+					Content to any public area of the Service, you automatically grant,
+					and you represent and warrant that you have the right to grant, to
+					CreditSafeIndia an irrevocable, perpetual, non-exclusive, fully paid,
+					worldwide license to use, copy, perform, display, and distribute said
+					Content and to prepare derivative works of, or incorporate into other
+					works, said Content, and to grant and authorize sublicenses (through
+					multiple tiers) of the foregoing. Furthermore, by posting Content to
+					any public area of the Service, you automatically grant
+					CreditSafeIndia all rights necessary to prohibit any subsequent
+					aggregation, display, copying, duplication, reproduction, or
+					exploitation of the Content on the Service by any party for any
+					purpose.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt; 15.&lt;/b&gt; DISCLAIMER OF WARRANTIES YOU AGREE THAT USE OF THE
+					CreditSafeIndia SITE AND THE SERVICE IS ENTIRELY AT YOUR OWN RISK.
+					THE CreditSafeIndia SITE AND THE SERVICE ARE PROVIDED ON AN "AS IS"
+					OR "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND. ALL
+					EXPRESS AND IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE
+					WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+					NON-INFRINGEMENT OF PROPRIETARY RIGHTS ARE EXPRESSLY DISCLAIMED TO
+					THE FULLEST EXTENT PERMITTED BY LAW. TO THE FULLEST EXTENT PERMITTED
+					BY LAW, CreditSafeIndia DISCLAIMS ANY WARRANTIES FOR THE SECURITY,
+					RELIABILITY, TIMELINESS, ACCURACY, AND PERFORMANCE OF THE
+					CreditSafeIndia SITE AND THE SERVICE. TO THE FULLEST EXTENT PERMITTED
+					BY LAW, CreditSafeIndia DISCLAIMS ANY WARRANTIES FOR OTHER SERVICES
+					OR GOODS RECEIVED THROUGH OR ADVERTISED ON THE CreditSafeIndia SITE
+					OR THE SITES OR SERVICE, OR ACCESSED THROUGH ANY LINKS ON THE
+					CreditSafeIndia SITE. TO THE FULLEST EXTENT PERMITTED BY LAW,
+					CreditSafeIndia DISCLAIMS ANY WARRANTIES FOR VIRUSES OR OTHER HARMFUL
+					COMPONENTS IN CONNECTION WITH THE CreditSafeIndia SITE OR THE
+					SERVICE. Some jurisdictions do not allow the disclaimer of implied
+					warranties. In such jurisdictions, some of the foregoing disclaimers
+					may not apply to you insofar as they relate to implied warranties.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;16.&lt;/b&gt; LIMITATIONS OF LIABILITY UNDER NO CIRCUMSTANCES SHALL
+					CreditSafeIndia BE LIABLE FOR DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+					CONSEQUENTIAL OR EXEMPLARY DAMAGES (EVEN IF CreditSafeIndia HAS BEEN
+					ADVISED OF THE POSSIBILITY OF SUCH DAMAGES), RESULTING FROM ANY
+					ASPECT OF YOUR USE OF THE CreditSafeIndia SITE OR THE SERVICE,
+					WHETHER THE DAMAGES ARISE FROM USE OR MISUSE OF THE CreditSafeIndia
+					SITE OR THE SERVICE, FROM INABILITY TO USE THE CreditSafeIndia SITE
+					OR THE SERVICE, OR THE INTERRUPTION, SUSPENSION, MODIFICATION,
+					ALTERATION, OR TERMINATION OF THE CreditSafeIndia SITE OR THE
+					SERVICE. SUCH LIMITATION SHALL ALSO APPLY WITH RESPECT TO DAMAGES
+					INCURRED BY REASON OF OTHER SERVICES OR PRODUCTS RECEIVED THROUGH OR
+					ADVERTISED IN CONNECTION WITH THE CreditSafeIndia SITE OR THE SERVICE
+					OR ANY LINKS ON THE CreditSafeIndia SITE, AS WELL AS BY REASON OF ANY
+					INFORMATION OR ADVICE RECEIVED THROUGH OR ADVERTISED IN CONNECTION
+					WITH THE CreditSafeIndia SITE OR THE SERVICE OR ANY LINKS ON THE
+					CreditSafeIndia SITE. THESE LIMITATIONS SHALL APPLY TO THE FULLEST
+					EXTENT PERMITTED BY LAW. In some jurisdictions, limitations of
+					liability are not permitted. In such jurisdictions, some of the
+					foregoing limitation may not apply to you.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;17.&lt;/b&gt; &lt;strong&gt;INDEMNITY&lt;/strong&gt;&amp;nbsp;-&amp;nbsp; You agree to
+					indemnify and hold CreditSafeIndia, its officers, subsidiaries,
+					affiliates, successors, assigns, directors, officers, agents, service
+					providers, suppliers and employees, harmless from any claim or
+					demand, including reasonable attorney fees and court costs, made by
+					any third party due to or arising out of Content you submit, post or
+					make available through the Service, your use of the Service, your
+					violation of the Terms of Use, your breach of any of the
+					representations and warranties herein, or your violation of any
+					rights of another.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;18.&lt;/b&gt;&lt;strong&gt; GENERAL INFORMATION &lt;/strong&gt;&amp;nbsp;-&amp;nbsp;The
+					Terms of Use constitute the entire agreement between you and
+					CreditSafeIndia and govern your use of the Service, superseding any
+					prior agreements between you and CreditSafeIndia. The Terms of Use
+					and the relationship between you and CreditSafeIndia shall be
+					governed by the laws of the State of California without regard to its
+					conflict of law provisions. You and CreditSafeIndia agree to submit
+					to the personal and exclusive jurisdiction of the courts located
+					within the county of San Francisco, California. The failure of
+					CreditSafeIndia to exercise or enforce any right or provision of the
+					Terms of Use shall not constitute a waiver of such right or
+					provision. If any provision of the Terms of Use is found by a court
+					of competent jurisdiction to be invalid, the parties nevertheless
+					agree that the court should endeavor to give effect to the parties'
+					intentions as reflected in the provision, and the other provisions of
+					the Terms of Use remain in full force and effect. You agree that
+					regardless of any statute or law to the contrary, any claim or cause
+					of action arising out of or related to use of the Service or the
+					Terms of Use must be filed within one (1) year after such claim or
+					cause of action arose or be forever barred.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;19.&lt;/b&gt;&lt;strong&gt; VIOLATION OF TERMS AND LIQUIDATED DAMAGES&lt;/strong&gt;&amp;nbsp;-&amp;nbsp;
+					Please report any violations of the Terms of Use, by flagging the
+					posting(s) for review, or by emailing to: &lt;a href="mailto:abuse@CreditSafeIndia.com"&gt;abuse@CreditSafeIndia.com&lt;/a&gt;
+					Our failure to act with respect to a breach by you or others does not
+					waive our right to act with respect to subsequent or similar
+					breaches. You understand and agree that, because damages are often
+					difficult to quantify, if it becomes necessary for CreditSafeIndia to
+					pursue legal action to enforce the Terms of Use, you will be liable
+					to pay CreditSafeIndia the following amounts as liquidated damages,
+					which you accept as reasonable estimates of CreditSafeIndias' damages
+					for the specified breaches of the Terms of Use: a. If you post a
+					message that &lt;b&gt;(1) &lt;/b&gt;impersonates any person or entity; &lt;b&gt;(2)&lt;/b&gt;
+					falsely states or otherwise misrepresents your affiliation with a
+					person or entity; or &lt;b&gt;(3) &lt;/b&gt;that includes personal or identifying
+					information about another person without that person's explicit
+					consent, you agree to pay CreditSafeIndia one thousand dollars
+					($1,000) for each such message. This provision does not apply to
+					messages that are lawful non-deceptive parodies of public figures. b.
+					If CreditSafeIndia establishes limits on the frequency with which you
+					may access the Service, or terminates your access to or use of the
+					Service, you agree to pay CreditSafeIndia one hundred dollars ($100)
+					for each message posted in excess of such limits or for each day on
+					which you access CreditSafeIndia in excess of such limits, whichever
+					is higher. c. If you send unsolicited email advertisements to
+					CreditSafeIndia email addresses or through CreditSafeIndia computer
+					systems, you agree to pay CreditSafeIndia twenty five dollars ($25)
+					for each such email. d. If you post Content in violation of the Terms
+					of Use, other than as described above, you agree to pay
+					CreditSafeIndia one hundred dollars ($100) for each Item of Content
+					posted. In its sole discretion, CreditSafeIndia may elect to issue a
+					warning before assessing damages. e. If you are a Posting Agent that
+					uses the Service in violation of the Terms of Use, in addition to any
+					liquidated damages under clause (d), you agree to pay CreditSafeIndia
+					one hundred dollars ($100) for each and every Item of Conent posted
+					in violation of the Terms of Use. A Posting Agent will also be deemed
+					an agent of the party engaging the Posting Agent to access the
+					Service (the "Principal"), and the Principal (by engaging the Posting
+					Agent in violation of the Terms of Use) agrees to pay CreditSafeIndia
+					an additional one hundred dollars ($100) for each Item of Conent
+					posted by the Posting Agent on behalf of the principal in violation
+					of the Terms of Use. f. If you aggregate, display, copy, duplicate,
+					reproduce, or otherwise exploit for any purpose any Content (except
+					for your own Content) in violation of the Terms of Use without
+					CreditSafeIndia's express written permission, you agree to pay
+					CreditSafeIndia three thousand dollars ($3,000) for each day on which
+					you engage in such conduct. Otherwise, you agree to pay
+					CreditSafeIndia's actual damages, to the extent such actual damages
+					can be reasonably calculated. Notwithstanding any other provision of
+					the Terms of Use, CreditSafeIndia retains the right to seek the
+					remedy of specific performance of any term contained in the Terms of
+					Use, or a preliminary or permanent injunction against the breach of
+					any such term or in aid of the exercise of any power granted in the
+					Terms of Use, or any combination thereof.
+				&lt;/p&gt;
+				&lt;p&gt;
+					&lt;b&gt;20.&lt;/b&gt;&lt;strong&gt; SUBMISSIONS&lt;/strong&gt;&amp;nbsp;-&amp;nbsp; You acknowledge
+					and agree that any questions, comments, suggestions, ideas, feedback
+					or other information about the Site or the Service ("Submissions"),
+					provided by you to Company are non-confidential and shall become the
+					sole property of Company. Company shall own exclusive rights,
+					including all intellectual property rights, and shall be entitled to
+					the unrestricted use and dissemination of these Submissions for any
+					purpose, commercial or otherwise, without acknowledgment or
+					compensation to you.
+			&lt;/div&gt;
+		&lt;/div&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -1884,114 +1768,114 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;div id="article" class="about "&gt;
-													&lt;h2
-													class="title"&gt;About Wealth4India&lt;/h2&gt;
-				
-													&lt;p
-													class="intro"&gt;About Us&lt;/p&gt;
-				
-													&lt;div class="yui-cssbase
-													body"&gt;
-				
-				
-													&lt;p&gt;&amp;nbsp;&lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt;
-													Group with
-													its talent advantage is making its clients
-													comfortably feel that
-													W4I Group is
-													obviously different from
-													others indeed.&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt;
-													is committed
-													to advancing accountability, integrity and
-													transparency. In our
-													own operations
-													too we aim to be an example
-													of good governance, ethical practice
-													and openness to
-													greater
-													transparency. Accountability is both an integral part of our
-													work and
-													one of our client’s wider objectives.&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;strong&gt;Responsiveness:
-													-&lt;/strong&gt; We are sensitive, prompt, fair and
-													objective in
-													our dealings with our clients, fostering mutual trust. We
-													are
-													keen
-													to learn from others and acknowledge mistakes.&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;strong&gt;Professionalism:
-													-&lt;/strong&gt; We strive for improving performance and
-													competence with a focus on achieving
-													excellence.&amp;nbsp;&lt;/p&gt;
-				
-													&lt;p&gt;&lt;strong&gt;&lt;u&gt;Vision&lt;/u&gt; &amp;nbsp;:
-													-&lt;/strong&gt; To help customers achieve lifetime
-													financial
-													solutions.&lt;/p&gt;
-				
-													&lt;p&gt;&lt;strong&gt;&lt;u&gt;Mission&lt;/u&gt;: -
-													&lt;/strong&gt;To be a leading company in wealth
-													planning.&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;strong&gt;&lt;u&gt;Company Core
-													Values&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
-				
-													&lt;p&gt;&lt;strong&gt;Integrity&lt;/strong&gt;&lt;strong&gt;
-													:- W4I Committed for highest standard of
-													business ethics and
-													greater transparency.&lt;/strong&gt;&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-				
-													&lt;p&gt;&lt;strong&gt;Engagement&lt;/strong&gt;&lt;strong&gt;
-													: - W4I value our Employees, talented
-													workforce and motivate,
-													Encourage and reward them in contributing to the
-													full
-													extent for
-													their potential. &lt;/strong&gt;&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-				
-													&lt;p&gt;&lt;strong&gt;Customer
-													Focus&lt;/strong&gt;&lt;strong&gt; :- We provide sound
-													financial
-													solutions for our customers. We are sensitive, prompt,
-													fair and
-													objective in our
-													dealings with our
-													customers.&lt;/strong&gt;&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-				
-													&lt;p&gt;&lt;strong&gt;Excellence&lt;/strong&gt;&lt;strong&gt;
-													: - W4I Provide operational excellence
-													through our expert and
-													dedicated panel, our quality products and
-													services.&lt;/strong&gt;&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-				
-													&lt;p&gt;&lt;strong&gt;Value
-													&lt;/strong&gt;&lt;strong&gt;: - W4I Deliver value to the
-													clients and
-													communities which we
-													operate.&lt;/strong&gt;&lt;/p&gt;
-				
-													&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-													&lt;u&gt; &lt;/u&gt;
-													&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-													&lt;u&gt;
-													&lt;/u&gt;
-				
-													&lt;/div&gt;
-													&lt;/div&gt;</sv:value>
+														&lt;h2
+														class="title"&gt;About Wealth4India&lt;/h2&gt;
+					
+														&lt;p
+														class="intro"&gt;About Us&lt;/p&gt;
+					
+														&lt;div class="yui-cssbase
+														body"&gt;
+					
+					
+														&lt;p&gt;&amp;nbsp;&lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt;
+														Group with
+														its talent advantage is making its clients
+														comfortably feel that
+														W4I Group is
+														obviously different from
+														others indeed.&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;strong&gt;Wealth&lt;/strong&gt;&lt;strong&gt;4&lt;/strong&gt;&lt;strong&gt;India&lt;/strong&gt;
+														is committed
+														to advancing accountability, integrity and
+														transparency. In our
+														own operations
+														too we aim to be an example
+														of good governance, ethical practice
+														and openness to
+														greater
+														transparency. Accountability is both an integral part of our
+														work and
+														one of our client’s wider objectives.&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;strong&gt;Responsiveness:
+														-&lt;/strong&gt; We are sensitive, prompt, fair and
+														objective in
+														our dealings with our clients, fostering mutual trust. We
+														are
+														keen
+														to learn from others and acknowledge mistakes.&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;strong&gt;Professionalism:
+														-&lt;/strong&gt; We strive for improving performance and
+														competence with a focus on achieving
+														excellence.&amp;nbsp;&lt;/p&gt;
+					
+														&lt;p&gt;&lt;strong&gt;&lt;u&gt;Vision&lt;/u&gt; &amp;nbsp;:
+														-&lt;/strong&gt; To help customers achieve lifetime
+														financial
+														solutions.&lt;/p&gt;
+					
+														&lt;p&gt;&lt;strong&gt;&lt;u&gt;Mission&lt;/u&gt;: -
+														&lt;/strong&gt;To be a leading company in wealth
+														planning.&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;strong&gt;&lt;u&gt;Company Core
+														Values&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;
+					
+														&lt;p&gt;&lt;strong&gt;Integrity&lt;/strong&gt;&lt;strong&gt;
+														:- W4I Committed for highest standard of
+														business ethics and
+														greater transparency.&lt;/strong&gt;&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+					
+														&lt;p&gt;&lt;strong&gt;Engagement&lt;/strong&gt;&lt;strong&gt;
+														: - W4I value our Employees, talented
+														workforce and motivate,
+														Encourage and reward them in contributing to the
+														full
+														extent for
+														their potential. &lt;/strong&gt;&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+					
+														&lt;p&gt;&lt;strong&gt;Customer
+														Focus&lt;/strong&gt;&lt;strong&gt; :- We provide sound
+														financial
+														solutions for our customers. We are sensitive, prompt,
+														fair and
+														objective in our
+														dealings with our
+														customers.&lt;/strong&gt;&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+					
+														&lt;p&gt;&lt;strong&gt;Excellence&lt;/strong&gt;&lt;strong&gt;
+														: - W4I Provide operational excellence
+														through our expert and
+														dedicated panel, our quality products and
+														services.&lt;/strong&gt;&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+					
+														&lt;p&gt;&lt;strong&gt;Value
+														&lt;/strong&gt;&lt;strong&gt;: - W4I Deliver value to the
+														clients and
+														communities which we
+														operate.&lt;/strong&gt;&lt;/p&gt;
+					
+														&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+														&lt;u&gt; &lt;/u&gt;
+														&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+														&lt;u&gt;
+														&lt;/u&gt;
+					
+														&lt;/div&gt;
+														&lt;/div&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -2066,123 +1950,123 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;table class="table table-bordered table-hover
-													table-
-				
-													striped"&gt;
-													&lt;thead&gt;
-													&lt;tr&gt;
-													&lt;th class="success"
-													itemscope=""
-													itemtype="http://schema.org/AccountingService"
-													itemprop="name"&gt;
-													New Delhi Office
-													&lt;/th&gt;
-													&lt;th
-													class="success" itemscope=""
-													itemtype="http://schema.org/AccountingService"
-													itemprop="name"&gt;Gurgaon Office&lt;/th&gt;
-													&lt;th
-													class="success" itemscope=""
-													itemtype="http://schema.org/AccountingService"
-													itemprop="name"&gt;USA Office&lt;/th&gt;
-													&lt;/tr&gt;
-													&lt;/thead&gt;
-													&lt;tbody&gt;
-													&lt;tr&gt;
-													&lt;td width="35%"&gt;
-													&lt;div itemscope=""
-													itemtype="http://schema.org/AccountingService"&gt;
-													&lt;div
-													itemprop="address" itemscope=""
-													itemtype="http://schema.org/PostalAddress"&gt;
-													&lt;span
-													itemprop="streetAddress" style="font-size:smaller"&gt;T-4, 3rd
-													Floor, Manish Twin Plaza Plot No.3, Sector-4&lt;/span&gt;
-													&lt;span itemprop="addressLocality"
-													style="font-size:smaller"&gt;Dwarka&lt;/span&gt;,
-													&lt;span
-													itemprop="addressRegion" style="font-size:smaller"&gt;New
-													Delhi&lt;/span&gt;
-													&lt;span itemprop="postalCode"
-													style="font-size:smaller"&gt;110075&lt;/span&gt;
-													&lt;/div&gt;
-													&lt;span itemprop="telephone"
-													style="font-size:smaller"&gt;91-11-45067102&lt;/span&gt;
-													&lt;div&gt;&lt;small&gt;&lt;a
-													href="https://www.wealth4india.com"
-													itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
-													&lt;/div&gt;
-													&lt;/td&gt;
-													&lt;td width="35%"&gt;
-													&lt;div
-													itemscope=""
-													itemtype="http://schema.org/AccountingService"&gt;
-													&lt;div itemprop="address" itemscope=""
-													itemtype="http://schema.org/PostalAddress"&gt;
-													&lt;div
-													itemprop="streetAddress" style="font-size:smaller"&gt;338,
-													Vipul Trade Center&lt;/div&gt;
-													&lt;div
-													itemprop="addressLocality" style="font-size:smaller"&gt;Sohna
-													Road&lt;/div&gt;
-													&lt;span itemprop="addressRegion"
-													style="font-size:smaller"&gt;Gurgaon,Haryana&lt;/span&gt;
-													&lt;span itemprop="postalCode"
-													style="font-size:smaller"&gt;122103&lt;/span&gt;
-													&lt;/div&gt;
-													&lt;div&gt;&lt;small&gt;&lt;a
-													href="https://www.wealth4india.com"
-													itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
-													&lt;/div&gt;
-													&lt;/td&gt;
-													&lt;td width="30%"&gt;
-													&lt;div
-													itemscope=""
-													itemtype="http://schema.org/AccountingService"&gt;
-													&lt;div itemprop="address" itemscope=""
-													itemtype="http://schema.org/PostalAddress"&gt;
-													&lt;div
-													itemprop="streetAddress" style="font-size:smaller"&gt;830,
-													Stewart Drive Suite 109&lt;/div&gt;
-													&lt;span
-													itemprop="addressLocality"
-													style="font-size:smaller"&gt;Sunnyvale&lt;/span&gt;,
-													&lt;span
-													itemprop="addressRegion"
-													style="font-size:smaller"&gt;CA&lt;/span&gt;
-													&lt;span
-													itemprop="postalCode"
-													style="font-size:smaller"&gt;94085&lt;/span&gt;
-													&lt;/div&gt;
-													&lt;span itemprop="telephone"
-													style="font-size:smaller"&gt;+1-408-475-2035&lt;/span&gt;
-													&lt;div&gt;&lt;small&gt;&lt;a
-													href="https://www.wealth4india.com"
-													itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
-													&lt;/div&gt;
-													&lt;/td&gt;
-													&lt;/tr&gt;
-													&lt;/tbody&gt;
-													&lt;/table&gt;
-				
-													&lt;div&gt;
-													&lt;strong&gt;E-mail:&lt;/strong&gt;&amp;nbsp;&lt;span
-													itemprop="email"&gt;&lt;a
-													href="mailto:info@wealth4india.com"&gt;info@wealth4india.com&lt;/a&gt;
-													&lt;/span&gt;
-													&lt;/div&gt;
-													&lt;div&gt;
-													&lt;strong&gt;Website:&lt;/strong&gt;&amp;nbsp;&lt;span&gt;&lt;a
-													href="http://www.wealth4india.com"&gt;www.wealth4india.com&lt;/a&gt;
-													&lt;/span&gt;
-													&lt;/div&gt;
-													&lt;div&gt;
-													&lt;strong&gt;Telephone
-													No:&lt;/strong&gt;&lt;span
-													itemprop="telephone"&gt;+91-(11)-45067102, +91-(11)-25074341,
-													+91-9136265229, +1-408-475-2035&lt;/span&gt;
-													&lt;/div&gt;
-												</sv:value>
+														table-
+					
+														striped"&gt;
+														&lt;thead&gt;
+														&lt;tr&gt;
+														&lt;th class="success"
+														itemscope=""
+														itemtype="http://schema.org/AccountingService"
+														itemprop="name"&gt;
+														New Delhi Office
+														&lt;/th&gt;
+														&lt;th
+														class="success" itemscope=""
+														itemtype="http://schema.org/AccountingService"
+														itemprop="name"&gt;Gurgaon Office&lt;/th&gt;
+														&lt;th
+														class="success" itemscope=""
+														itemtype="http://schema.org/AccountingService"
+														itemprop="name"&gt;USA Office&lt;/th&gt;
+														&lt;/tr&gt;
+														&lt;/thead&gt;
+														&lt;tbody&gt;
+														&lt;tr&gt;
+														&lt;td width="35%"&gt;
+														&lt;div itemscope=""
+														itemtype="http://schema.org/AccountingService"&gt;
+														&lt;div
+														itemprop="address" itemscope=""
+														itemtype="http://schema.org/PostalAddress"&gt;
+														&lt;span
+														itemprop="streetAddress" style="font-size:smaller"&gt;T-4, 3rd
+														Floor, Manish Twin Plaza Plot No.3, Sector-4&lt;/span&gt;
+														&lt;span itemprop="addressLocality"
+														style="font-size:smaller"&gt;Dwarka&lt;/span&gt;,
+														&lt;span
+														itemprop="addressRegion" style="font-size:smaller"&gt;New
+														Delhi&lt;/span&gt;
+														&lt;span itemprop="postalCode"
+														style="font-size:smaller"&gt;110075&lt;/span&gt;
+														&lt;/div&gt;
+														&lt;span itemprop="telephone"
+														style="font-size:smaller"&gt;91-11-45067102&lt;/span&gt;
+														&lt;div&gt;&lt;small&gt;&lt;a
+														href="https://www.wealth4india.com"
+														itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
+														&lt;/div&gt;
+														&lt;/td&gt;
+														&lt;td width="35%"&gt;
+														&lt;div
+														itemscope=""
+														itemtype="http://schema.org/AccountingService"&gt;
+														&lt;div itemprop="address" itemscope=""
+														itemtype="http://schema.org/PostalAddress"&gt;
+														&lt;div
+														itemprop="streetAddress" style="font-size:smaller"&gt;338,
+														Vipul Trade Center&lt;/div&gt;
+														&lt;div
+														itemprop="addressLocality" style="font-size:smaller"&gt;Sohna
+														Road&lt;/div&gt;
+														&lt;span itemprop="addressRegion"
+														style="font-size:smaller"&gt;Gurgaon,Haryana&lt;/span&gt;
+														&lt;span itemprop="postalCode"
+														style="font-size:smaller"&gt;122103&lt;/span&gt;
+														&lt;/div&gt;
+														&lt;div&gt;&lt;small&gt;&lt;a
+														href="https://www.wealth4india.com"
+														itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
+														&lt;/div&gt;
+														&lt;/td&gt;
+														&lt;td width="30%"&gt;
+														&lt;div
+														itemscope=""
+														itemtype="http://schema.org/AccountingService"&gt;
+														&lt;div itemprop="address" itemscope=""
+														itemtype="http://schema.org/PostalAddress"&gt;
+														&lt;div
+														itemprop="streetAddress" style="font-size:smaller"&gt;830,
+														Stewart Drive Suite 109&lt;/div&gt;
+														&lt;span
+														itemprop="addressLocality"
+														style="font-size:smaller"&gt;Sunnyvale&lt;/span&gt;,
+														&lt;span
+														itemprop="addressRegion"
+														style="font-size:smaller"&gt;CA&lt;/span&gt;
+														&lt;span
+														itemprop="postalCode"
+														style="font-size:smaller"&gt;94085&lt;/span&gt;
+														&lt;/div&gt;
+														&lt;span itemprop="telephone"
+														style="font-size:smaller"&gt;+1-408-475-2035&lt;/span&gt;
+														&lt;div&gt;&lt;small&gt;&lt;a
+														href="https://www.wealth4india.com"
+														itemprop="url"&gt;https://www.wealth4india.com&lt;/a&gt;&lt;/small&gt;&lt;/div&gt;
+														&lt;/div&gt;
+														&lt;/td&gt;
+														&lt;/tr&gt;
+														&lt;/tbody&gt;
+														&lt;/table&gt;
+					
+														&lt;div&gt;
+														&lt;strong&gt;E-mail:&lt;/strong&gt;&amp;nbsp;&lt;span
+														itemprop="email"&gt;&lt;a
+														href="mailto:info@wealth4india.com"&gt;info@wealth4india.com&lt;/a&gt;
+														&lt;/span&gt;
+														&lt;/div&gt;
+														&lt;div&gt;
+														&lt;strong&gt;Website:&lt;/strong&gt;&amp;nbsp;&lt;span&gt;&lt;a
+														href="http://www.wealth4india.com"&gt;www.wealth4india.com&lt;/a&gt;
+														&lt;/span&gt;
+														&lt;/div&gt;
+														&lt;div&gt;
+														&lt;strong&gt;Telephone
+														No:&lt;/strong&gt;&lt;span
+														itemprop="telephone"&gt;+91-(11)-45067102, +91-(11)-25074341,
+														+91-9136265229, +1-408-475-2035&lt;/span&gt;
+														&lt;/div&gt;
+													</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -2244,7 +2128,7 @@
 	            <sv:value>hippotranslation:translated</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>76ffa769-0a25-4245-940b-294c89c94bf0</sv:value>
+	            <sv:value>905cc8b8-ccde-40ad-87ff-888866b32b8d</sv:value>
 	          </sv:property>
 	          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
 	            <sv:value>live</sv:value>
@@ -2269,13 +2153,13 @@
 	            <sv:value>2013-11-28T15:41:40.858-08:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-	            <sv:value>2014-01-16T23:20:25.181-08:00</sv:value>
+	            <sv:value>2014-03-13T21:43:42.803-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
 	            <sv:value>admin</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-	            <sv:value>2014-01-16T23:20:32.097-08:00</sv:value>
+	            <sv:value>2014-03-13T21:43:52.264-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippotranslation:id" sv:type="String">
 	            <sv:value>a1dd9694-aac8-4f96-95a3-47feeca2a4c5</sv:value>
@@ -2284,22 +2168,51 @@
 	            <sv:value>en</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
-	            <sv:value>&lt;div class="jumbotron" style="background-color:#4B6377;"&gt;
-												&lt;div
-												class="container"&gt;
-												&lt;h1&gt;One Price &amp;#8377;
-												299!&lt;/h1&gt;&lt;p class="text-info"&gt;&lt;small&gt;includes all taxes and COOL features&lt;/small&gt;&lt;/p&gt;
-												&lt;h2&gt;Easy, Safe, Secure, Hassle Free way to e-File your Income Tax Return!&lt;/h2&gt;							
-												Straight-forward pricing with no hidden fees. Securely file in
-												as little as 15
-												minutes! &lt;br /&gt;
-												Simple. Fast. Safe.
-												&lt;/p&gt;
-												&lt;p&gt;&lt;a href="signup" class="btn btn-warning btn-lg"&gt;Sign
-												Up Now!
-												&amp;raquo;&lt;/a&gt;&lt;/p&gt;
-												&lt;/div&gt;
-												&lt;/div&gt;</sv:value>
+	            <sv:value>&lt;section id="fud-hero"&gt;
+	  &lt;div class="fud-bg" data-stretch=""&gt;
+	    &lt;h1 class="headline headline-sm"&gt;Your taxes &lt;span class="break"&gt;&lt;/span&gt;&lt;span class="strong"&gt;done right&lt;/span&gt;&lt;/h1&gt;
+	    &lt;div class="container fud-hero-content"&gt;
+	      &lt;div class="row"&gt;
+	        &lt;div class="content-box"&gt;           
+	          &lt;div class="side-content"&gt;
+	            &lt;div class="text-center"&gt;
+	              &lt;h1 class="headline"&gt;Your taxes &lt;span class="strong"&gt;done right&lt;/span&gt;&lt;/h1&gt;
+	              &lt;p class="subhead"&gt;100% accurate calculations and your&lt;span class="break"&gt;&lt;/span&gt;&lt;span class="strong"&gt;maximum refund&lt;/span&gt;, guaranteed.
+	              &lt;/p&gt;              
+	              &lt;div class="button-wrap-sm clearfix"&gt;
+	                &lt;div class="col-sm-5 text-center left-button"&gt;                  
+	                  &lt;div class="row"&gt;
+	                    &lt;h4 class="button-head"&gt;New to Wealth4India?&lt;/h4&gt;
+	                    &lt;a class="btn btn-blue btn-responsive start-sm btn-beacon" data-link-id="554" href="w4india/signup"&gt;Start for Free&lt;/a&gt;
+	                  &lt;/div&gt;
+	                &lt;/div&gt;
+	                &lt;div class="or-block clearfix"&gt;
+	                  &lt;div class="clearfix top-row"&gt;
+	                    &lt;div class="top-left or-border width-50"&gt;&lt;/div&gt;
+	                    &lt;div class="top-right width-50"&gt;&lt;/div&gt;
+	                  &lt;/div&gt;
+	                  &lt;div&gt;
+	                    &lt;div class="or-content text-center"&gt;or&lt;/div&gt;
+	                  &lt;/div&gt;
+	                  &lt;div class="clearfix bot-row"&gt;
+	                    &lt;div class="bot-left or-border width-50"&gt;&lt;/div&gt;
+	                    &lt;div class="bot-right width-50"&gt;&lt;/div&gt;
+	                  &lt;/div&gt;                 
+	                &lt;/div&gt;
+	                &lt;div class="col-sm-5 text-center right-button"&gt;                  
+	                  &lt;div class="row"&gt;
+	                    &lt;h4 class="button-head"&gt;Existing Customer?&lt;/h4&gt;
+	                    &lt;a class=" btn btn-orange btn-responsive returning-sm" data-link-id="559" href="w4india/member/memberLogin"&gt;Sign In&lt;/a&gt;
+	                  &lt;/div&gt;
+	                &lt;/div&gt;                
+	              &lt;/div&gt;
+	            &lt;/div&gt;
+	          &lt;/div&gt;              
+	        &lt;/div&gt;   
+	      &lt;/div&gt;
+	    &lt;/div&gt;  
+	  &lt;/div&gt;
+	&lt;/section&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -2333,7 +2246,7 @@
 	            <sv:value>hippotranslation:translated</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>9fa12caa-9a50-4612-9572-f9edfcd88b76</sv:value>
+	            <sv:value>421e4e72-8723-45f0-83d4-79ae44cf8d53</sv:value>
 	          </sv:property>
 	          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
 	            <sv:value>live</sv:value>
@@ -2358,13 +2271,13 @@
 	            <sv:value>2013-11-28T15:42:26.687-08:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-	            <sv:value>2014-01-16T19:27:09.832-08:00</sv:value>
+	            <sv:value>2014-03-13T21:59:56.039-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
 	            <sv:value>admin</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-	            <sv:value>2014-01-16T19:27:16.445-08:00</sv:value>
+	            <sv:value>2014-03-13T22:00:07.463-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippotranslation:id" sv:type="String">
 	            <sv:value>1c4cbabc-888b-4c3c-936a-9867b93199ec</sv:value>
@@ -2373,13 +2286,46 @@
 	            <sv:value>en</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
-	            <sv:value>&lt;h1 style="text-align: center; font-size:
-												4em"&gt;&lt;span class="glyphicon
-												glyphicon-check"&gt;Simple&lt;/span&gt;&lt;/h1&gt;
-												&lt;h1&gt;One Pricing&lt;/h1&gt;
-												&lt;p class="lead"&gt;Simple, straight-forward pricing with no hidden
-												fees. Easy-to-use tools to help you complete your tax return.
-												&lt;/p&gt;</sv:value>
+	            <sv:value>&lt;section id="value-tier-v2" class="vtv2 text-center"&gt;
+		&lt;div class="container"&gt;
+			&lt;div class="row"&gt;
+				&lt;h2 class="headline"&gt;Our BEST Edition ever!&lt;/h2&gt;
+			&lt;/div&gt;
+	
+			&lt;div class="row"&gt;
+				&lt;div class="col-sm-3 col-lg-3 one"&gt;
+					&lt;p class="subhead"&gt;Free&lt;/p&gt;
+					&lt;p class="subcopy"&gt;Pay when you file&lt;/p&gt;
+				&lt;/div&gt;
+	
+				&lt;div class="col-sm-1 plus"&gt;+&lt;/div&gt;
+	
+				&lt;div class="col-sm-4 col-lg-4 two"&gt;
+					&lt;p class="subhead"&gt;Reliable&lt;/p&gt;
+					&lt;p class="subcopy"&gt;ERI Authorized&lt;/p&gt;
+					&lt;p class="subcopy"&gt;Secure SSL&lt;/p&gt;
+					&lt;!-- &lt;p class="subcopy"&gt;Import 26 AS&lt;/p&gt; --&gt;
+				&lt;/div&gt;
+	
+				&lt;div class="col-sm-1 plus"&gt;+&lt;/div&gt;
+	
+				&lt;div class="col-sm-3 col-lg-3 three"&gt;
+					&lt;p class="subhead"&gt;One Pricing&lt;/p&gt;
+					&lt;p class="subcopy"&gt;Rs. 299/&lt;/p&gt;
+					&lt;p class="details"&gt;Limited Time Offer for AY 2013-2014&lt;/p&gt;
+				&lt;/div&gt;
+	
+			&lt;/div&gt;
+	
+			&lt;div class="row cta"&gt;
+				&lt;div class="col-xs-12 text-center"&gt;
+					&lt;a data-link-id="" id="freeOnline" class="btn btn-orange btn-responsive btn-default" href="w4india/memberLogin"&gt;Get Started&lt;/a&gt;
+					
+				&lt;/div&gt;
+			&lt;/div&gt;
+	
+		&lt;/div&gt;
+	&lt;/section&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -2413,7 +2359,7 @@
 	            <sv:value>hippotranslation:translated</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>226af0f0-ef1b-4020-a071-ae5ec0441c56</sv:value>
+	            <sv:value>abdb222c-1a0e-4ee6-a2fb-6c92f86ee3b2</sv:value>
 	          </sv:property>
 	          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
 	            <sv:value>live</sv:value>
@@ -2438,13 +2384,13 @@
 	            <sv:value>2013-11-28T15:43:07.743-08:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-	            <sv:value>2014-01-16T19:27:50.462-08:00</sv:value>
+	            <sv:value>2014-03-13T21:44:41.010-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
 	            <sv:value>admin</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-	            <sv:value>2014-01-16T19:27:56.158-08:00</sv:value>
+	            <sv:value>2014-03-13T21:44:49.129-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippotranslation:id" sv:type="String">
 	            <sv:value>6bef86b9-9146-4484-8d2c-44bf6968879f</sv:value>
@@ -2453,10 +2399,24 @@
 	            <sv:value>en</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
-	            <sv:value>&lt;h1 style="text-align: center; font-size:4em"&gt;&lt;span class="glyphicon
-												glyphicon-certificate"&gt;Reliable&lt;/span&gt;&lt;/h1&gt;
-				&lt;h1&gt;ERI Authorised&lt;/h1&gt;
-												&lt;p class="lead"&gt;We are a registered e-Return Intermediary.File your tax return with confidence. &lt;/p&gt;</sv:value>
+	            <sv:value>&lt;section id="support-pod-cake" class="scrollsections"&gt;
+		&lt;div class="container"&gt;
+			&lt;div class="row"&gt;
+				&lt;div class="col-xs-12"&gt;
+					&lt;h2 class="headline"&gt;We're standing by 24/7&lt;/h2&gt;
+					&lt;h3 class="subhead"&gt;
+						&lt;a href="javascript:void()" data-modal-title="Wealth4India experts help you get your taxes done right" data-toggle="modal"&gt;Get answers&lt;/a&gt;
+						 when you search our Knowledge Portal
+					&lt;/h3&gt;
+					
+					&lt;form class="ask-bar" action="w4india/knowledgearticles" method="get"&gt;
+						&lt;input type="text" name="query" placeholder="How may we help you?"&gt;
+						&lt;button type="submit" class="btn btn-link pull-right" &gt;&lt;i class="glyphicon glyphicon-search glyphicon-white"&gt;&lt;/i&gt;&lt;/button&gt;
+					&lt;/form&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/section&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -2490,7 +2450,7 @@
 	            <sv:value>hippotranslation:translated</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="jcr:uuid" sv:type="String">
-	            <sv:value>73b3f884-cc33-4950-a912-2206a8f707c1</sv:value>
+	            <sv:value>ff51e986-18ad-4231-8676-c9d345ee0bac</sv:value>
 	          </sv:property>
 	          <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
 	            <sv:value>live</sv:value>
@@ -2515,13 +2475,13 @@
 	            <sv:value>2013-11-28T15:43:47.553-08:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-	            <sv:value>2014-01-16T19:28:36.350-08:00</sv:value>
+	            <sv:value>2014-03-13T21:45:20.035-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
 	            <sv:value>admin</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-	            <sv:value>2014-01-16T19:28:42.694-08:00</sv:value>
+	            <sv:value>2014-03-13T21:45:27.805-07:00</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hippotranslation:id" sv:type="String">
 	            <sv:value>756dd139-c61d-4f0b-baea-8d14a583a9d8</sv:value>
@@ -2530,12 +2490,23 @@
 	            <sv:value>en</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
-	            <sv:value>&lt;h1 style="text-align: center; font-size:
-												4em"&gt;&lt;span class="glyphicon
-												glyphicon-lock"&gt;Safe&lt;/span&gt;&lt;/h1&gt;
-												&lt;h1&gt;SSL &amp;amp; Encryption.&lt;/h1&gt;
-												&lt;p class="lead"&gt;Our secure servers and SSL encryption will keep
-												your personal information safe.&lt;/p&gt;</sv:value>
+	            <sv:value>&lt;div class="block2" style="margin-bottom: 50px; height: 1px;"&gt;&lt;/div&gt;
+	
+	&lt;section id="product-tour-cake" class="scrollsections"&gt;
+		&lt;div class="container"&gt;
+			&lt;div class="row"&gt;
+				&lt;div class="col-xs-12"&gt;
+					&lt;h2 class="headline"&gt;See how easy Wealth4India really is&lt;/h2&gt;
+					&lt;h3 class="subhead"&gt;
+						 Watch the Video
+					&lt;/h3&gt;
+					&lt;div class="youtube-wrap show-video"&gt;
+						&lt;iframe width="600" height="315" src="//www.youtube.com/embed/N8uSYsth98I" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;)
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/section&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -2880,11 +2851,11 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;h1 style="text-align: center; font-size:
-												4em"&gt;&lt;span class="glyphicon
-												glyphicon-leaf"&gt;Green&lt;/span&gt;&lt;/h1&gt;
-												&lt;h1&gt;eFile.&lt;/h1&gt;
-												&lt;p class="lead"&gt;Save paper, Save Time, Save the Earth.
-												&lt;/p&gt;</sv:value>
+													4em"&gt;&lt;span class="glyphicon
+													glyphicon-leaf"&gt;Green&lt;/span&gt;&lt;/h1&gt;
+													&lt;h1&gt;eFile.&lt;/h1&gt;
+													&lt;p class="lead"&gt;Save paper, Save Time, Save the Earth.
+													&lt;/p&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -2971,10 +2942,10 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;h1 style="text-align: center; font-size:
-				4em"&gt;&lt;span class="glyphicon
-				glyphicon-inbox"&gt;Advanced&lt;/span&gt;&lt;/h1&gt;
-				&lt;h1&gt;Assisted Filing&lt;/h1&gt;
-				&lt;p class="lead"&gt;Use Document Manager to upload your documents and let us do the work.&lt;/p&gt;</sv:value>
+					4em"&gt;&lt;span class="glyphicon
+					glyphicon-inbox"&gt;Advanced&lt;/span&gt;&lt;/h1&gt;
+					&lt;h1&gt;Assisted Filing&lt;/h1&gt;
+					&lt;p class="lead"&gt;Use Document Manager to upload your documents and let us do the work.&lt;/p&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -3061,10 +3032,10 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;h1 style="text-align: center; font-size:
-				4em"&gt;&lt;span class="glyphicon
-				glyphicon glyphicon-info-sign"&gt;&lt;/span&gt;&lt;/h1&gt;
-				&lt;h1&gt;More..&lt;/h1&gt;
-				&lt;p class="lead"&gt;Track Refund, Track Rectification, Peace of Mind&lt;/p&gt;</sv:value>
+					4em"&gt;&lt;span class="glyphicon
+					glyphicon glyphicon-info-sign"&gt;&lt;/span&gt;&lt;/h1&gt;
+					&lt;h1&gt;More..&lt;/h1&gt;
+					&lt;p class="lead"&gt;Track Refund, Track Rectification, Peace of Mind&lt;/p&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -3151,13 +3122,13 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;div class="jumbotron" style="background-color:#E4F2FD"&gt;
-												&lt;div
-												class="container"&gt;
-												&lt;h1&gt;Who we are?&lt;/h1&gt;
-												&lt;h2&gt;We are not a new KID on the block.&lt;/h2&gt;							
-												&lt;p&gt;Our team is composed of  qualified, knowledgeable and experienced Income Tax Experts, who know what they are doing&lt;/p&gt;&lt;p&gt;Their goal is to provide a great customer service and they thrive for a 200% customer satisfaction.&lt;/p&gt;
-												&lt;/div&gt;
-				&lt;/div&gt;</sv:value>
+													&lt;div
+													class="container"&gt;
+													&lt;h1&gt;Who we are?&lt;/h1&gt;
+													&lt;h2&gt;We are not a new KID on the block.&lt;/h2&gt;							
+													&lt;p&gt;Our team is composed of  qualified, knowledgeable and experienced Income Tax Experts, who know what they are doing&lt;/p&gt;&lt;p&gt;Their goal is to provide a great customer service and they thrive for a 200% customer satisfaction.&lt;/p&gt;
+													&lt;/div&gt;
+					&lt;/div&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -3244,11 +3215,11 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;div class="jumbotron"&gt;
-												&lt;div
-												class="container"&gt;&lt;h1&gt; Testimonials &lt;/h1&gt;
-												              &lt;div class="row"&gt; &lt;div class="col-md-6"&gt;&lt;blockquote&gt;&lt;p&gt;" It was a wonderful experience. Wealth4India's knowledgeable staff help me file and save on my Income Tax Return "&lt;/p&gt;&lt;p&gt;&lt;small&gt;Anita&lt;/small&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt; &lt;div class="col-md-6"&gt;&lt;blockquote&gt;&lt;p&gt;" I live in Mumbai, but the Document Manager in Assisted File saved me. Thanks Wealth4 India "&lt;/p&gt;&lt;p&gt;&lt;small&gt;Tina&lt;/small&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt; &lt;/div&gt;
-												&lt;/div&gt;
-				&lt;/div&gt;</sv:value>
+													&lt;div
+													class="container"&gt;&lt;h1&gt; Testimonials &lt;/h1&gt;
+													              &lt;div class="row"&gt; &lt;div class="col-md-6"&gt;&lt;blockquote&gt;&lt;p&gt;" It was a wonderful experience. Wealth4India's knowledgeable staff help me file and save on my Income Tax Return "&lt;/p&gt;&lt;p&gt;&lt;small&gt;Anita&lt;/small&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt; &lt;div class="col-md-6"&gt;&lt;blockquote&gt;&lt;p&gt;" I live in Mumbai, but the Document Manager in Assisted File saved me. Thanks Wealth4 India "&lt;/p&gt;&lt;p&gt;&lt;small&gt;Tina&lt;/small&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt; &lt;/div&gt;
+													&lt;/div&gt;
+					&lt;/div&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -3335,69 +3306,69 @@
 	          </sv:property>
 	          <sv:property sv:name="hst:script" sv:type="String">
 	            <sv:value>&lt;div class="jumbotron" style="background-color:#E4F2FD"&gt;
-				   &lt;div class="container"&gt;
-				      &lt;h1&gt;Our Services&lt;/h1&gt;
-				      &lt;h2&gt;Income Tax Return&lt;/h2&gt;
-				      &lt;div class="row"&gt;
-				         &lt;div class="col-md-6"&gt;
-				            &lt;h3&gt;Personal&lt;/h3&gt;
-				            &lt;ul&gt;
-				               &lt;li&gt;ITR1&lt;/li&gt;
-				               &lt;li&gt;ITR2&lt;/li&gt;
-				               &lt;li&gt;ITR3&lt;/li&gt;
-				               &lt;li&gt;ITR4&lt;/li&gt;
-				               &lt;li&gt;ITR4S&lt;/li&gt;
-						       &lt;li&gt;Revise your return&lt;/li&gt;
-							   &lt;li&gt;Rectification of Return&lt;/li&gt;
-						       &lt;li&gt;Reply to notice under section 143&lt;/li&gt;
-						       &lt;li&gt;Refund Status&lt;/li&gt;
-						       &lt;li&gt;Demand notice reply&lt;/li&gt;				   
-				            &lt;/ul&gt;
-				         &lt;/div&gt;
-				         &lt;div class="col-md-6"&gt;
-				            &lt;h3&gt;Business&lt;/h3&gt;
-				            &lt;ul&gt;
-				               &lt;li&gt;ITR5&lt;/li&gt;
-				               &lt;li&gt;ITR6&lt;/li&gt;
-				               &lt;li&gt;ITR7&lt;/li&gt;
-				               &lt;li&gt;ITR8&lt;/li&gt;			   
-				            &lt;/ul&gt;
-				         &lt;/div&gt;
-				      &lt;/div&gt;
-				&lt;!-- Other Services --&gt;
-				      &lt;h2&gt;Corporation and Planning&lt;/h2&gt;
-				      &lt;div class="row"&gt;
-				         &lt;div class="col-md-6"&gt;
-				            &lt;h3&gt;Corporation&lt;/h3&gt;
-				            &lt;ul&gt;
-				               &lt;li&gt;Incorporate a new company&lt;/li&gt;
-				               &lt;li&gt;Formation of LLP&lt;/li&gt;
-				               &lt;li&gt;Sale/Purchase of existing Company&lt;/li&gt;
-				               &lt;li&gt;360 degree wealth checkup&lt;/li&gt;
-				               &lt;li&gt;Investment Planning&lt;/li&gt;
-				            &lt;/ul&gt;
-				         &lt;/div&gt;
-				         &lt;div class="col-md-6"&gt;
-				            &lt;h3&gt;Planning&lt;/h3&gt;
-				            &lt;ul&gt;
-				               &lt;li&gt;Individual Tax Planning&lt;/li&gt;	
-				               &lt;li&gt;Investment Planning&lt;/li&gt;	
-				               &lt;li&gt;Insurance Planning&lt;/li&gt;	
-				               &lt;li&gt;Individual credit report with CIBIL score&lt;/li&gt;				   
-				            &lt;/ul&gt;
-				         &lt;/div&gt;
-				      &lt;/div&gt;
-				      &lt;div class="row"&gt;
-				         &lt;div class="col-md-12"&gt;
-				            &lt;h3&gt;Other Services&lt;/h3&gt;
-				            &lt;ul&gt;
-				               &lt;li&gt;Digital Signature&lt;/li&gt;
-				               &lt;li&gt;Apply for PAN&lt;/li&gt;
-				            &lt;/ul&gt;
-				         &lt;/div&gt;
-				      &lt;/div&gt;
-				   &lt;/div&gt;
-				&lt;/div&gt;</sv:value>
+					   &lt;div class="container"&gt;
+					      &lt;h1&gt;Our Services&lt;/h1&gt;
+					      &lt;h2&gt;Income Tax Return&lt;/h2&gt;
+					      &lt;div class="row"&gt;
+					         &lt;div class="col-md-6"&gt;
+					            &lt;h3&gt;Personal&lt;/h3&gt;
+					            &lt;ul&gt;
+					               &lt;li&gt;ITR1&lt;/li&gt;
+					               &lt;li&gt;ITR2&lt;/li&gt;
+					               &lt;li&gt;ITR3&lt;/li&gt;
+					               &lt;li&gt;ITR4&lt;/li&gt;
+					               &lt;li&gt;ITR4S&lt;/li&gt;
+							       &lt;li&gt;Revise your return&lt;/li&gt;
+								   &lt;li&gt;Rectification of Return&lt;/li&gt;
+							       &lt;li&gt;Reply to notice under section 143&lt;/li&gt;
+							       &lt;li&gt;Refund Status&lt;/li&gt;
+							       &lt;li&gt;Demand notice reply&lt;/li&gt;				   
+					            &lt;/ul&gt;
+					         &lt;/div&gt;
+					         &lt;div class="col-md-6"&gt;
+					            &lt;h3&gt;Business&lt;/h3&gt;
+					            &lt;ul&gt;
+					               &lt;li&gt;ITR5&lt;/li&gt;
+					               &lt;li&gt;ITR6&lt;/li&gt;
+					               &lt;li&gt;ITR7&lt;/li&gt;
+					               &lt;li&gt;ITR8&lt;/li&gt;			   
+					            &lt;/ul&gt;
+					         &lt;/div&gt;
+					      &lt;/div&gt;
+					&lt;!-- Other Services --&gt;
+					      &lt;h2&gt;Corporation and Planning&lt;/h2&gt;
+					      &lt;div class="row"&gt;
+					         &lt;div class="col-md-6"&gt;
+					            &lt;h3&gt;Corporation&lt;/h3&gt;
+					            &lt;ul&gt;
+					               &lt;li&gt;Incorporate a new company&lt;/li&gt;
+					               &lt;li&gt;Formation of LLP&lt;/li&gt;
+					               &lt;li&gt;Sale/Purchase of existing Company&lt;/li&gt;
+					               &lt;li&gt;360 degree wealth checkup&lt;/li&gt;
+					               &lt;li&gt;Investment Planning&lt;/li&gt;
+					            &lt;/ul&gt;
+					         &lt;/div&gt;
+					         &lt;div class="col-md-6"&gt;
+					            &lt;h3&gt;Planning&lt;/h3&gt;
+					            &lt;ul&gt;
+					               &lt;li&gt;Individual Tax Planning&lt;/li&gt;	
+					               &lt;li&gt;Investment Planning&lt;/li&gt;	
+					               &lt;li&gt;Insurance Planning&lt;/li&gt;	
+					               &lt;li&gt;Individual credit report with CIBIL score&lt;/li&gt;				   
+					            &lt;/ul&gt;
+					         &lt;/div&gt;
+					      &lt;/div&gt;
+					      &lt;div class="row"&gt;
+					         &lt;div class="col-md-12"&gt;
+					            &lt;h3&gt;Other Services&lt;/h3&gt;
+					            &lt;ul&gt;
+					               &lt;li&gt;Digital Signature&lt;/li&gt;
+					               &lt;li&gt;Apply for PAN&lt;/li&gt;
+					            &lt;/ul&gt;
+					         &lt;/div&gt;
+					      &lt;/div&gt;
+					   &lt;/div&gt;
+					&lt;/div&gt;</sv:value>
 	          </sv:property>
 	          <sv:property sv:name="mootlywcm:html" sv:type="String">
 	            <sv:value/>
@@ -3534,7 +3505,7 @@
 	          </sv:property>
 	          <sv:property sv:name="hippostd:content" sv:type="String">
 	            <sv:value>&lt;p&gt;This is COOL&lt;/p&gt;&#xd;
-				</sv:value>
+					</sv:value>
 	          </sv:property>
 	        </sv:node>
 	      </sv:node>

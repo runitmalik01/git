@@ -23,14 +23,15 @@
 <%@ attribute name="title" type="java.lang.String" required="true" rtexprvalue="true" %>
 
 <hst:defineObjects/>
+
 <c:set var="theTitle">
  <c:set var="channelInfo" value="${hstRequest.requestContext.resolvedMount.mount.channelInfo}"/>
   <c:set var="separator" value=""/>
-  <c:if test="${not empty channelInfo and not empty channelInfo.pageTitlePrefix}">
-    <c:out value="${channelInfo.pageTitlePrefix}"/>
-    <c:set var="separator" value=" - "/>
+  <c:if test="${not empty title}"><c:out value="${title}"/></c:if>
+  <c:if test="${not empty channelInfo and not empty channelInfo.resellerName}">
+     <c:set var="separator" value=" - "/>
+     <c:out value="${separator}${channelInfo.resellerName}"/>
   </c:if>
-  <c:if test="${not empty title}"><c:out value="${separator}${title}"/></c:if>
  </c:set>
 <hst:element var="head" name="title">
   <c:out value="${theTitle}"/>

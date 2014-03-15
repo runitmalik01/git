@@ -87,8 +87,11 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 		}
 	}
 	
+	public final DITResponseDocumentDetail getLastDITSubmissionDocument() {
+		return getLastDitResponseDocumentDetailsBySOAPOperation("submitITR");
+	}
 	
-	public final String lastDITSubmissionStatus() {
+	public final String getLastDITSubmissionStatus() {
 		DITResponseDocumentDetail ditResponseDocumentDetail = getLastDitResponseDocumentDetailsBySOAPOperation("submitITR");
 		if (ditResponseDocumentDetail == null) {
 			return null;

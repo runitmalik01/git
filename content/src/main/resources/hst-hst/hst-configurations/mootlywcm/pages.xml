@@ -9628,9 +9628,11 @@
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
           <sv:value>siteMenu</sv:value>
+          <sv:value>restrictOnRole</sv:value>
         </sv:property>
         <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
           <sv:value>mainnavigation</sv:value>
+          <sv:value>false</sv:value>
         </sv:property>
         <sv:property sv:name="hst:template" sv:type="String">
           <sv:value>standard.header.re.menu-main.v2</sv:value>
