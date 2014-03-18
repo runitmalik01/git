@@ -1364,4 +1364,38 @@
 	  </sv:node>
 	</sv:node>
 	<!-- end News -->
+	<sv:node sv:name="contentdelivery" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>e1278bc0-fdc2-441b-b22f-fe4312806f4a</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/contentdelivery</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>scopeRelativePath</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>documents</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>contentdelivery</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="_any_.json">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemapitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>b610161c-bd8d-483d-859b-68b86c8888c9</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	      <sv:value>hst:pages/contentdelivery</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	      <sv:value>resellers/w4india/documents/searchfacets/${1}</sv:value>
+	    </sv:property>
+	  </sv:node>
+	</sv:node>
 </sv:node>

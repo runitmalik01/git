@@ -11233,7 +11233,7 @@
 	    <sv:value>12f9d7b0-4db6-40c9-a328-5c23d5b4577d</sv:value>
 	  </sv:property>
 	  <sv:property sv:name="hst:componentclassname" sv:type="String">
-	    <sv:value>com.mootly.wcm.components.search.SearchComponent</sv:value>
+	    <sv:value>com.mootly.wcm.components.search.ContentDelivery</sv:value>
 	  </sv:property>
 	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
 	    <sv:value>fields</sv:value>
