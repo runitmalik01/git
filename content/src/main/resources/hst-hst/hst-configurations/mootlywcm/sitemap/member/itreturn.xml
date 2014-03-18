@@ -5769,6 +5769,54 @@
 		    </sv:property>
 		  </sv:node>
 		</sv:node>
+		<!--  new site maps -->
+		<sv:node sv:name="errors-warnings.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemapitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>e57b3f89-4959-4e58-811b-8bccff03bc32</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		    <sv:value>hst:pages/itreturn-errors-warnings</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+		    <sv:value>action</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+		    <sv:value>SHOW_ITR_ERRORS_WARNINGS</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:refId" sv:type="String">
+		    <sv:value>itreturn-errors-warnings</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+		    <sv:value>members</sv:value>
+		  </sv:property>
+		</sv:node>		
+		<sv:node sv:name="efile-history.html" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemapitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>e4322502-e5fa-4588-93a5-b0b1742e46fc</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		    <sv:value>hst:pages/itreturn-efile-history</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+		    <sv:value>action</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+		    <sv:value>SHOW_ITR_EFILE_HISTORY</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:refId" sv:type="String">
+		    <sv:value>itreturn-efile-history</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+		    <sv:value>members</sv:value>
+		  </sv:property>
+		</sv:node>		
+		<!-- /new site maps -->
       </sv:node>
     </sv:node>
   </sv:node>

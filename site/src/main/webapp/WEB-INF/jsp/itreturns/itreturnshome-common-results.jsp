@@ -21,17 +21,22 @@ HstRequest hstRequest = (HstRequest) request;
     <c:choose>
 		<c:when test="${not empty listOfITReturnHomePageView}">
 			<%-- <div class="alert alert-info">Click on Actions->Duplicate if you want to Revise an existing return or make a copy of it</div> --%>
-			<table class="table table-striped table-hover table-bordered">
+			<table class="table">
+				<thead>
 				<tr>
 					<th>PAN</th>
 					<th>Name</th>
 					<th>FY</th>
 					<th>Return Type</th>
+					<th>Form</th>
+					<th>Amount Due</th>
 					<th>Return Status</th>
 					<th>ITR V</th>
 					<th>Acknowledgment Number</th>
 					<th>Actions</th>
 				</tr>
+				</thead>
+				<tbody>
 				<c:forEach items="${listOfITReturnHomePageView}" var="anEntry">
 	                <c:if test="${not empty anEntry.lastOrOrgName}">
 						<c:choose>
@@ -60,11 +65,24 @@ HstRequest hstRequest = (HstRequest) request;
 								</c:otherwise>
 							</c:choose>
 							</span>
+							<c:choose>
+								<c:when test="${anEntry.verificationStatus == 'FAILED'}">
+									<c:set var="cssClass" value="glyphicon-ban-circle"/>
+									<c:set var="msg" value="NOT VERIFIED"/>
+								</c:when>
+								<c:otherwise>
+									<c:set var="cssClass" value="glyphicon-ok-circle"/>
+									<c:set var="msg" value="VERIFIED"/>
+								</c:otherwise>
+							</c:choose>
+							<i class="glyphicon ${cssClass}" data-toggle="tooltip" data-placement="bottom" title="${msg}"></i>
 						</td>
 						<td><c:out value="${anEntry.fullName}"/></td>
 						<%--<td><c:out value="${anEntry.DOB}"/></td> --%>
 						<td class="filingStatus"><span><c:out value="${anEntry.financialYear}"/></span></td>
 						<td class="filingStatus"  style="text-transform:capitalize;"><c:out value="${anEntry.itReturnType}"/>/<c:out value="${anEntry.filingSection.desc}"/></td>
+						<td class="filingStatus"><c:out value="${anEntry.itrForm}"/></td>
+						<td class="decimal"><c:out value="${anEntry.amountDue}"/></td>
 						<td class="filingStatus">
 							<c:choose>
 								<c:when test="${anEntry.eFiledFailed}">
@@ -117,6 +135,7 @@ HstRequest hstRequest = (HstRequest) request;
 						</td>
 					</tr></c:if>
 				</c:forEach>
+				</tbody>
 			</table>
 			<c:choose>
 			  <c:when test="${docs.total eq 0}">

@@ -330,7 +330,7 @@
 							//$(".bar").css('width' , (stepsIncrement * (i +1)) + '%');
 						}) ;					
 					//$(".progress").removeClass('active');
-					window.location.href = '../../chapterVIdeductions.html';
+					window.location.href = '${scriptName}/../chapterVIdeductions.html';
 				});// it is right place to end method
 		}
 		
@@ -363,7 +363,7 @@
 						var newdiv1 = $('<form class="frmDeduction" name="frmDeduction"  id="row_' +  (parseInt(theindx) + 1)  + '"/>');
 						//alert(html);
 						newdiv1.append(html);
-						
+						newdiv1.find(".showFirstRowOnly").hide();
 						$(".modal-body").append(newdiv1);
 						
 						newdiv1.find(".col-md-4").hide();

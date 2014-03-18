@@ -9,6 +9,7 @@
 <c:set var="closeDiv">
 	</div>
 </c:set>
+<%--
 <c:if test="${not empty isVendor && isVendor eq 'true'}">
 	<c:choose>
 		<c:when test="${not empty isCommonPage && isCommonPage eq 'false'}">
@@ -23,6 +24,7 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
+ --%>
 <c:if test="${not empty pageDisplayView}">
 	<hippo-gogreen:seoheader title="${pageDisplayView.title}" keywords="${pageDisplayView.keywords}" description="${pageDisplayView.description}" />
 	<c:if test="${not empty pageDisplayView.title && pageDisplayView.title != '' && not pageDisplayView.hideTitle}">
@@ -48,3 +50,15 @@
 		<c:if test="${empty row.notContainer || row.notContainer == 'false' }"><c:out value="${closeDiv}"  escapeXml="false"/></c:if>			
 	</c:forEach>
 </c:if>
+
+		
+<hst:element var="uiCustom" name="script">
+    <hst:attribute name="type">text/javascript</hst:attribute>
+	$( document ).ready(function() {
+		// <c:out value="${pageDocument}"/> <c:out value="${isCommonPage}"/>
+		<c:if  test="${not empty pageDocument && (empty isCommonPage || isCommonPage == 'false') }">
+				$('<li><a href="<hst:link path="/vendor/websitebuilder/pages.html"/>/${pageDocument.canonicalUUID}/editpage">Edit Page</a> </li>').appendTo( "#submenucms" );
+		</c:if>
+	});
+</hst:element>
+<hst:headContribution element="${uiCustom}" category="jsInternal"/>
