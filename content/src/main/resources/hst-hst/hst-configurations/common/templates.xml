@@ -4134,4 +4134,26 @@
 	    <sv:value>jsp/search/sitemap.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<sv:node sv:name="sendemailtoinactiveuser" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>9db27386-c165-4d59-9870-0d8a7de144ba</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/admin/jobs/maintenance/sendemailtoinactiveuser.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="sendemailtoinactiveuser" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>9db27386-c165-4d59-9870-0d8a7de144ba</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/admin/jobs/maintenance/sendemailtoinactiveuser.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>
