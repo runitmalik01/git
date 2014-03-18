@@ -2381,4 +2381,18 @@
 	    <sv:value>sitemap</sv:value>
 	  </sv:property>
 	</sv:node>	
+	<sv:node sv:name="sendemailtoinactiveuser" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>d5cd33f1-19ed-49f5-aab7-21313b50d611</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.admin.maintenance.jobs.SendEmailToInactiveUsers</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>sendemailtoinactiveuser</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>
