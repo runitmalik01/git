@@ -1,18 +1,14 @@
 package com.mootly.wcm.validation.impl.itr;
 
 import java.lang.annotation.Annotation;
-import java.util.List;
 import java.util.Map;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mootly.wcm.beans.BalanceSheetDocument;
-import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ProfitAndLossDocument;
-import com.mootly.wcm.beans.compound.FormSixteenDetail;
 import com.mootly.wcm.components.ITReturnScreen;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.validation.HippoBeanValidationError;
@@ -52,12 +48,8 @@ public class ValidateProfitLossDocument implements HippoBeanValidator{
 							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.balanceSheetDoc.empty.net_Profit");
 							response.addError(hippoBeanValidationError);
 						}
-						
-						
 					}
 				}
-				
-			
 			}
 		}
 		catch (Exception ex) {

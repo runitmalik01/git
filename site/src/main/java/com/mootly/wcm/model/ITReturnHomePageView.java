@@ -267,7 +267,23 @@ public class ITReturnHomePageView {
 	public void seteFiledFailed(boolean eFiledFailed) {
 		this.eFiledFailed = eFiledFailed;
 	}
+	
+	public Double getAmountDue() {
+		return amountDue;
+	}
 
+	public void setAmountDue(Double amountDue) {
+		this.amountDue = amountDue;
+	}
+
+
+	public VerificationStatus getVerificationStatus() {
+		return verificationStatus;
+	}
+
+	public void setVerificationStatus(VerificationStatus verificationStatus) {
+		this.verificationStatus = verificationStatus;
+	}
 
 
 
@@ -311,6 +327,10 @@ public class ITReturnHomePageView {
 	String eFileDateTime;
 	
 	boolean eFiledFailed;
+	
+	Double amountDue;
+	
+	VerificationStatus verificationStatus;
 	
 	
 	

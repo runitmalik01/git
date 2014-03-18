@@ -265,6 +265,9 @@ public class ITReturnComponent extends BaseComponent {
 						response.setRenderPath("jsp/errorpages/restrictedaction.jsp");
 						return;
 					}
+					if (getITRInitData(request).getPageAction() != null && getITRInitData(request).getPageAction() == PAGE_ACTION.SHOW_ITR_ERRORS_WARNINGS) {
+						return; //nothing to be done here
+					}
 				}
 			}			
 			catch (Exception ex) {

@@ -2355,4 +2355,30 @@
 	    <sv:value>com.mootly.wcm.components.promo.Promotion</sv:value>
 	  </sv:property>
 	</sv:node>
+	<!--  -->
+	<sv:node sv:name="itreturn-component-generic" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>812ecc92-fc59-4ca7-8d02-35bf7ef97123</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.ITReturnComponent</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="sitemap" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:component</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>d572b4e1-26c9-4294-bceb-965b006b1799</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentclassname" sv:type="String">
+	    <sv:value>com.mootly.wcm.components.search.SearchComponent</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:template" sv:type="String">
+	    <sv:value>sitemap</sv:value>
+	  </sv:property>
+	</sv:node>	
 </sv:node>

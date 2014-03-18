@@ -78,80 +78,74 @@
 	</sv:node>
 	<!-- Comment Out -->
 	<sv:node sv:name="search" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-		<sv:property sv:name="jcr:primaryType" sv:type="Name">
-			<sv:value>hst:sitemapitem</sv:value>
-		</sv:property>
-		<sv:property sv:name="jcr:uuid" sv:type="String">
-			<sv:value>8950df76-a2a8-4d2a-beb1-193c94923528</sv:value>
-		</sv:property>
-		<sv:property sv:name="hst:componentconfigurationid"
-			sv:type="String">
-			<sv:value>hst:pages/search</sv:value>
-		</sv:property>
-		<sv:property sv:multiple="true" sv:name="hst:parameternames"
-			sv:type="String">
-			<sv:value>scopeRelativePath</sv:value>
-		</sv:property>
-		<sv:property sv:multiple="true" sv:name="hst:parametervalues"
-			sv:type="String">
-			<sv:value>documents</sv:value>
-		</sv:property>
-		<sv:property sv:name="hst:refId" sv:type="String">
-			<sv:value>search</sv:value>
-		</sv:property>
-		<sv:node sv:name="tags">
-			<sv:property sv:name="jcr:primaryType" sv:type="Name">
-				<sv:value>hst:sitemapitem</sv:value>
-			</sv:property>
-			<sv:property sv:name="jcr:uuid" sv:type="String">
-				<sv:value>21d5761a-90b3-4abb-b214-e3570a0350ec</sv:value>
-			</sv:property>
-			<sv:property sv:name="hst:relativecontentpath" sv:type="String">
-				<sv:value>tagclouds/searchtags</sv:value>
-			</sv:property>
-			<sv:node sv:name="_any_">
-				<sv:property sv:name="jcr:primaryType" sv:type="Name">
-					<sv:value>hst:sitemapitem</sv:value>
-				</sv:property>
-				<sv:property sv:name="jcr:uuid" sv:type="String">
-					<sv:value>36e78113-992e-4d03-83a9-3ae070e1b2b7</sv:value>
-				</sv:property>
-				<sv:property sv:name="hst:componentconfigurationid"
-					sv:type="String">
-					<sv:value>hst:pages/search</sv:value>
-				</sv:property>
-				<sv:property sv:name="hst:relativecontentpath" sv:type="String">
-					<sv:value>${parent}/searchtags/${1}</sv:value>
-				</sv:property>
-			</sv:node>
-		</sv:node>
-		<sv:node sv:name="faceted">
-			<sv:property sv:name="jcr:primaryType" sv:type="Name">
-				<sv:value>hst:sitemapitem</sv:value>
-			</sv:property>
-			<sv:property sv:name="jcr:uuid" sv:type="String">
-				<sv:value>94acc667-5849-46d9-8c65-71982ca68c08</sv:value>
-			</sv:property>
-			<sv:property sv:name="hst:componentconfigurationid"
-				sv:type="String">
-				<sv:value>hst:pages/search</sv:value>
-			</sv:property>
-			<sv:node sv:name="_any_">
-				<sv:property sv:name="jcr:primaryType" sv:type="Name">
-					<sv:value>hst:sitemapitem</sv:value>
-				</sv:property>
-				<sv:property sv:name="jcr:uuid" sv:type="String">
-					<sv:value>1d9d9c26-43e4-4c49-9a8f-ba34e44733d4</sv:value>
-				</sv:property>
-				<sv:property sv:name="hst:componentconfigurationid"
-					sv:type="String">
-					<sv:value>hst:pages/search</sv:value>
-				</sv:property>
-				<sv:property sv:name="hst:relativecontentpath" sv:type="String">
-					<sv:value>searchfacets/${1}</sv:value>
-				</sv:property>
-			</sv:node>
-		</sv:node>
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:sitemapitem</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>8950df76-a2a8-4d2a-beb1-193c94923528</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	    <sv:value>hst:pages/search</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	    <sv:value>scopeRelativePath</sv:value>
+	  </sv:property>
+	  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	    <sv:value>documents</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:refId" sv:type="String">
+	    <sv:value>search</sv:value>
+	  </sv:property>
+	  <sv:node sv:name="tags">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemapitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>21d5761a-90b3-4abb-b214-e3570a0350ec</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	      <sv:value>tagclouds/searchtags</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="_any_">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:sitemapitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>36e78113-992e-4d03-83a9-3ae070e1b2b7</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	        <sv:value>hst:pages/search</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	        <sv:value>${parent}/searchtags/${1}</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
+	  <sv:node sv:name="faceted">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemapitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>94acc667-5849-46d9-8c65-71982ca68c08</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	      <sv:value>hst:pages/search</sv:value>
+	    </sv:property>
+	    <sv:node sv:name="_any_">
+	      <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	        <sv:value>hst:sitemapitem</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="jcr:uuid" sv:type="String">
+	        <sv:value>1d9d9c26-43e4-4c49-9a8f-ba34e44733d4</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	        <sv:value>hst:pages/search</sv:value>
+	      </sv:property>
+	      <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+	        <sv:value>resellers/w4india/documents/searchfacets/${1}</sv:value>
+	      </sv:property>
+	    </sv:node>
+	  </sv:node>
 	</sv:node>
 	<sv:node sv:name="faqs" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">

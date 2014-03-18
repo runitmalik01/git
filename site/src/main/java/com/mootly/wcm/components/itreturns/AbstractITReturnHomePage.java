@@ -54,6 +54,7 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.RequiredFields;
 import com.mootly.wcm.beans.DITResponseDocument;
+import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.Product;
@@ -361,28 +362,18 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		itReturnHomePageView.setCanonicalUUID(stringUUID);
 		itReturnHomePageView.setPathToItr(theMemberFolderBean.getPath()); //the Path can we find the member name who filed it?
 		itReturnHomePageView.setTheParentFolder(theParentFolder);//itReturnHomePageView.getPan().toLowerCase()+itReturnHomePageView.getItrFolderSuffix());
+		itReturnHomePageView.setVerificationStatus( m.getDitVerificationStatus() );
 		//logic for Payment Status
-		List<MemberPayment> listOfMemberPaymentDocs = new ArrayList<MemberPayment>();
+		List<InvoiceDocument> listOfInvoiceDocs = new ArrayList<InvoiceDocument>();
 		HippoFolder theParentofPersonalInfo=(HippoFolder) m.getParentBean();
-		listOfMemberPaymentDocs=theParentofPersonalInfo.getChildBeans(MemberPayment.class);
-		if(listOfMemberPaymentDocs.size()>0){
-			for(MemberPayment py:listOfMemberPaymentDocs){
-				if(py.getPaymentVerificationStatus()!=null){
-					if(py.getPaymentVerificationStatus().equals(PaymentVerificationStatus.VERIFIED)){
-						paymentStatus ="VERIFIED";
-						paymentType = py.getPaymentType().name();
-					}
-					if(py.getPaymentVerificationStatus().equals(PaymentVerificationStatus.UNVERIFIED)){
-						paymentStatus="UNVERIFIED";
-						paymentType = py.getPaymentType().name();
-					}
-				}
+		listOfInvoiceDocs=theParentofPersonalInfo.getChildBeans(InvoiceDocument.class);
+		if ( listOfInvoiceDocs.size() > 0 ){
+			for(InvoiceDocument invoice:listOfInvoiceDocs){
+				itReturnHomePageView.setAmountDue(invoice.getAmountDue());
 			}
-		}else{
-			paymentStatus="DUE";
 		}
-		itReturnHomePageView.setPaymentStatus(paymentStatus);
-		itReturnHomePageView.setPaymentType(paymentType);
+		//itReturnHomePageView.setPaymentStatus(paymentStatus);
+		//itReturnHomePageView.setPaymentType(paymentType);
 		return itReturnHomePageView;
 	}
 	/**

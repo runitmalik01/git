@@ -4090,4 +4090,48 @@
 	    <sv:value>jsp/promo/fileincometax.jsp</sv:value>
 	  </sv:property>
 	</sv:node>
+	<sv:node sv:name="itreturn-efile-history" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>0d817a20-13cf-44cd-bf64-893d77689570</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/itreturn-efile-history.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="itreturn-errors-warnings" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>3ae0508b-113b-4df0-bbe9-cbd98e0bc772</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/member/itreturn-errors-warnings.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
+	<sv:node sv:name="contentdelivery" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>688a3a8a-c2d2-4ec9-950e-d6db2a5f04ec</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/search/contentdelivery.jsp</sv:value>
+	  </sv:property>
+	</sv:node>	
+	<sv:node sv:name="sitemap" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	    <sv:value>hst:template</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="jcr:uuid" sv:type="String">
+	    <sv:value>17c1499c-d272-462d-a4d1-b7a42a9606cc</sv:value>
+	  </sv:property>
+	  <sv:property sv:name="hst:renderpath" sv:type="String">
+	    <sv:value>jsp/search/sitemap.jsp</sv:value>
+	  </sv:property>
+	</sv:node>
 </sv:node>
