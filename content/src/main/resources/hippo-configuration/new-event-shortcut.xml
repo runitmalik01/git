@@ -18,7 +18,7 @@
     <sv:value>frontend:plugin</sv:value>
   </sv:property>
   <sv:property sv:name="baseFolder" sv:type="String">
-    <sv:value>/content/documents/mootlywcm/events</sv:value>
+    <sv:value>/content/documents/mootlywcm/resellers/w4india/documents/events</sv:value>
   </sv:property>
   <sv:property sv:name="browser.id" sv:type="String">
     <sv:value>service.browse</sv:value>

@@ -82,3 +82,33 @@
 				</c:choose>
 			</c:if>
 		</c:forEach>
+<%--
+ http://localhost:8080/site/r/w4india/vendor/websitebuilder/pages.html/bcdf2b5f-3c08-4a0f-a80e-d44f00518bc6/editpage
+ --%>
+<c:if test="${not empty isVendor && isVendor eq 'true'}">
+	<li class="dropdown">
+		 <a href="#" data-toggle="dropdown" data-target="#" class="dropdown-toggle">CMS<b class="caret"></b></a>
+		 <ul class="dropdown-menu" id="submenucms">
+		 	<c:if  test="${not empty pageDocument && (empty isCommonPage || isCommonPage eq 'false') }">
+				<li><a href="<hst:link path="/vendor/websitebuilder/pages.html"/>/${pageDocument.canonicalUUID}/editpage">Edit Page</a> </li>
+			</c:if>
+			<li><c:out value="${pageDocument}"/><a href="<hst:link path="/vendor/websitebuilder/pages.html"/>">Create Own Page</a></li>
+		</ul>
+	</li>
+</c:if>
+<%-- 
+<c:if test="${not empty isVendor && isVendor eq 'true'}">
+	<c:choose>
+		<c:when test="${not empty isCommonPage && isCommonPage eq 'false'}">
+			<a class="btn btn-default btn-info" href="${websitebuilderlink}/pages.html/${pageDocument.canonicalUUID}/editpage"
+				style="position: absolute; top: 10em; left: 70em;"><i
+				class="glyphicon glyphicon-edit"></i>&nbsp;Edit Page</a>
+		</c:when>
+		<c:otherwise>
+			<a class="btn btn-default btn-warning" href="${websitebuilderlink}/pages.html"
+				style="position: absolute; top: 10em; left: 70em;"><i
+				class="glyphicon glyphicon-plus"></i>&nbsp;Create Own Page</a>
+		</c:otherwise>
+	</c:choose>
+</c:if>
+--%>

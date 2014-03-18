@@ -143,7 +143,6 @@ public class FormSixteenDocument extends BaseDocument implements ContentNodeBind
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				FormSixteenDetail destination =(FormSixteenDetail) o;
 				FormSixteenDetail source  = (FormSixteenDetail) child;
 				destination.cloneBean(source);
@@ -171,7 +170,6 @@ public class FormSixteenDocument extends BaseDocument implements ContentNodeBind
 		for (HippoBean o:listOfChildren) {
 			log.info( o.getCanonicalUUID() );
 			if (child.getCanonicalUUID() != null && child.getCanonicalUUID().equals(o.getCanonicalUUID())) {
-				log.info("GOT A MATCH");
 				FormSixteenDetail destination =(FormSixteenDetail) o;
 				FormSixteenDetail source  = (FormSixteenDetail) child;
 				destination.setMarkedForDeletion(true);

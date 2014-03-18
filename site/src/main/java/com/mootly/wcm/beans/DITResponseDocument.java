@@ -111,7 +111,20 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 											frmField3.addValue(DITSubmissionStatus.SUCCESS.name());
 											childFormMap.addFormField(frmField3);
 	 */
-	public final List<DITResponseDocumentDetail> getGetEFileFailureHistory() {
+	/**
+	 * 
+	 * @return
+	 */
+	public final List<DITResponseDocumentDetail> getEfileHistory() {
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocalReturn = null;
+		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocal = getDitResponseDocumentDetailsBySOAPOperation("submitITR");
+		return ditResponseDocumentDetailListLocal;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public final List<DITResponseDocumentDetail> getEFileFailureHistory() {
 		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocalReturn = null;
 		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocal = getDitResponseDocumentDetailsBySOAPOperation("submitITR");
 		if (ditResponseDocumentDetailListLocal != null && ditResponseDocumentDetailListLocal.size() > 0) {
@@ -124,8 +137,11 @@ public class DITResponseDocument extends FlexibleDocument implements ContentNode
 		}
 		return ditResponseDocumentDetailListLocalReturn;
 	}
-	
-	public final List<DITResponseDocumentDetail> getGetEFileSuccessHistory() {
+	/**
+	 * 
+	 * @return
+	 */
+	public final List<DITResponseDocumentDetail> getEFileSuccessHistory() {
 		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocalReturn = null;
 		List<DITResponseDocumentDetail> ditResponseDocumentDetailListLocal = getDitResponseDocumentDetailsBySOAPOperation("submitITR");
 		if (ditResponseDocumentDetailListLocal != null && ditResponseDocumentDetailListLocal.size() > 0) {

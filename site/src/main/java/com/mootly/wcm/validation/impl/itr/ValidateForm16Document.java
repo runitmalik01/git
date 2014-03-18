@@ -34,24 +34,40 @@ public class ValidateForm16Document implements HippoBeanValidator{
 				if ( formSixteenDetails != null && formSixteenDetails.size() > 0) {
 					for (FormSixteenDetail formSixteenDetail:formSixteenDetails) {
 						if ( formSixteenDetail.getEmploye_category() ==  null || "".equals(formSixteenDetail.getEmploye_category()) ) {
-							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.employeeCategory");
+							HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.required.Employe_category");
+							hippoBeanValidationError.setHippoDocumentClass(formSixteenDetail.getClass());
+							hippoBeanValidationError.setUuid(formSixteenDetail.getCanonicalUUID());
+							hippoBeanValidationError.setScreenHead("member.form16.title");
+							
 							response.addError(hippoBeanValidationError);
 						}
 						if(!itrSelection.equals("ITR1")){
 							if ( formSixteenDetail.getAddressdetail() ==  null || "".equals(formSixteenDetail.getAddressdetail()) ) {
 								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.addressdetail");
+								hippoBeanValidationError.setHippoDocumentClass(formSixteenDetail.getClass());
+								hippoBeanValidationError.setUuid(formSixteenDetail.getCanonicalUUID());
+								hippoBeanValidationError.setScreenHead("member.form16.title");
 								response.addError(hippoBeanValidationError);
 							}
 							if ( formSixteenDetail.getCity() ==  null || "".equals(formSixteenDetail.getCity()) ) {
 								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.city");
+								hippoBeanValidationError.setHippoDocumentClass(formSixteenDetail.getClass());
+								hippoBeanValidationError.setUuid(formSixteenDetail.getCanonicalUUID());
+								hippoBeanValidationError.setScreenHead("member.form16.title");
 								response.addError(hippoBeanValidationError);
 							}
 							if ( formSixteenDetail.getState() ==  null || "".equals(formSixteenDetail.getState()) ) {
 								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.state");
+								hippoBeanValidationError.setHippoDocumentClass(formSixteenDetail.getClass());
+								hippoBeanValidationError.setUuid(formSixteenDetail.getCanonicalUUID());
+								hippoBeanValidationError.setScreenHead("member.form16.title");
 								response.addError(hippoBeanValidationError);
 							}
 							if ( formSixteenDetail.getPin() ==  null || "".equals(formSixteenDetail.getPin()) ) {
 								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.pin");
+								hippoBeanValidationError.setHippoDocumentClass(formSixteenDetail.getClass());
+								hippoBeanValidationError.setUuid(formSixteenDetail.getCanonicalUUID());
+								hippoBeanValidationError.setScreenHead("member.form16.title");
 								response.addError(hippoBeanValidationError);
 							}
 						}

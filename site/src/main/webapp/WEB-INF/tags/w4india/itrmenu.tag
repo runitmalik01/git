@@ -428,17 +428,6 @@ request.setAttribute("nextPrevLinks",nextPrevLinks);
            --%>
 				<c:if test="${hasDIY =='true'}">
 					<ul class="nav navbar-nav pull-right">
-						<li><c:if
-								test="${not empty hippoBeanValidationResponse_totalErrors}">
-								<span title="Errors" class="badge badge-important"><c:out
-										value="${hippoBeanValidationResponse_totalErrors}" />
-								</span>
-							</c:if> <c:if
-								test="${not empty hippoBeanValidationResponse_totalWarnings}">
-								<span title="Errors" class="badge badge-warning"><c:out
-										value="${hippoBeanValidationResponse_totalWarnings}" />
-								</span>
-							</c:if></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">Actions<b class="caret"></b>
 						</a>

@@ -58,6 +58,8 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	String verificationStatus;
 	String ditSubmissionStatus;
 	String eFileDateTime;
+	String ackResponse;
+	String result;
 	Boolean isFault;
 	
 	FormMap soapOutputMap = null;
@@ -72,6 +74,9 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 	static final String SOAP_IS_FAULT = "mootlywcm:isFault";
 	static final String SOAP_DIT_SUBMISSION_STATUS = "mootlywcm:ditSubmissionStatus";
 	static final String SOAP_EFILE_DATETIME= "mootlywcm:eFileDateTime";
+	
+	static final String SOAP_ACK_RESPONSE = "mootlywcm:ackResponse";
+	static final String SOAP_RESULT = "mootlywcm:result";
 	
 	
 	@FormField(name="soapOperation")
@@ -121,7 +126,16 @@ public class DITResponseDocumentDetail extends FlexibleDocument implements FormM
 		return eFileDateTime;
 	}
 	
-	
+	public String getAckResponse() {
+		if (ackResponse == null) ackResponse = getProperty(SOAP_ACK_RESPONSE);
+		return ackResponse;
+	}
+
+	public String getResult() {
+		if (result == null) result = getProperty(SOAP_RESULT);
+		return result;
+	}
+
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
 	}

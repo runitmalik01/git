@@ -17,7 +17,7 @@
 package com.mootly.wcm.components.search;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -29,24 +29,22 @@ import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.query.filter.Filter;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
-import org.hippoecm.hst.content.beans.standard.HippoDocument;
-import org.hippoecm.hst.content.beans.standard.HippoDocumentBean;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentIterator;
 import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
 import org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean;
-import org.hippoecm.hst.content.beans.standard.HippoFolder;
-import org.hippoecm.hst.content.beans.standard.HippoFolderBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.util.SearchInputParsingUtils;
 import org.hippoecm.hst.utils.BeanUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mootly.wcm.beans.Document;
 import com.mootly.wcm.beans.Faq;
-import com.mootly.wcm.beans.HelpDeskTicketDocument;
 import com.mootly.wcm.beans.KnowledgeArticle;
-import com.mootly.wcm.beans.Service;
+import com.mootly.wcm.beans.NewsItem;
 import com.mootly.wcm.beans.SimpleDocument;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.TagComponent;
@@ -209,6 +207,43 @@ public class AbstractSearchComponent extends TagComponent {
             	request.setAttribute("firstBean", firstBean);
             }
             request.setAttribute("searchResult", results);
+            
+            String format = getPublicRequestParameter(request, "format");
+            if (format != null && format.equals("json") && results != null && results.getItems() != null) {
+            	JSONArray jsonArray = new JSONArray();
+            	try {
+            		int indx = 0;
+	            	for (Iterator<? extends HippoBean>itResult = results.getItems().iterator();itResult.hasNext();){
+	            		HippoBean hippoBean = itResult.next();
+	            		if (hippoBean instanceof Faq) {
+	            			Faq baseDocument = (Faq) hippoBean;
+	            			JSONObject jsonObject = new JSONObject();
+	            			jsonObject.put("title", baseDocument.getQuestion());
+	            		}
+	            		else if (hippoBean instanceof Document) {
+	            			Document baseDocument = (Document) hippoBean;
+	            			JSONObject jsonObject = new JSONObject();
+	            			jsonObject.put("title", baseDocument.getTitle());
+	            			jsonArray.put(indx++,jsonObject);
+	            		}
+	            		else if (hippoBean instanceof NewsItem) {
+	            			NewsItem baseDocument = (NewsItem) hippoBean;
+	            			JSONObject jsonObject = new JSONObject();
+	            			jsonObject.put("title", baseDocument.getTitle());
+	            			jsonArray.put(indx++,jsonObject);
+	            		}
+	            		else if (hippoBean instanceof KnowledgeArticle) {
+	            			NewsItem baseDocument = (NewsItem) hippoBean;
+	            			JSONObject jsonObject = new JSONObject();
+	            			jsonObject.put("title", baseDocument.getTitle());
+	            			jsonArray.put(indx++,jsonObject);
+	            		}
+	            	}
+            	}catch (JSONException e) {
+            		log.error("JSON Exception",e);
+            	}
+            	request.setAttribute("jsonResult",jsonArray.toString());
+            }
         } catch (QueryException e) {
             if(log.isDebugEnabled()) {
                 log.warn("Error during search: ", e);
@@ -238,14 +273,17 @@ public class AbstractSearchComponent extends TagComponent {
         if (pathToContentBean != null) {
         	bean = scope.getBean(pathToContentBean);
         }
+        if (bean == null) {
+        	bean =  getContentBean(request);
+        }
         if (bean instanceof HippoFacetChildNavigationBean) {
             String query = SearchInputParsingUtils.parse(getQuery(request), false);
-            HippoFacetNavigationBean facetBean = null;//BeanUtils.getFacetNavigationBean(request, query, objectConverter);
+            HippoFacetNavigationBean facetBean = BeanUtils.getFacetNavigationBean(request, query, objectConverter);
             if (scopeRelativePath != null) {
-            	String theRelativePath =  (scope.getCanonicalPath() + "/" + scopeRelativePath).substring(getSiteContentBaseBean(request).getCanonicalPath().length()-1);
-            	String resolvedContentPath = scopeRelativePath + "/searchfacets";
+            	//String theRelativePath =  (scope.getCanonicalPath() + "/" + scopeRelativePath).substring(getSiteContentBaseBean(request).getCanonicalPath().length()-1);
+            	//String resolvedContentPath = scopeRelativePath + "/searchfacets";
             	
-            	facetBean = BeanUtils.getFacetNavigationBean(request, "resellers/" + getITRInitData(request).getResellerId() + "/" + scopeRelativePath  + "/" + pathToContentBean, query, objectConverter);
+            	//facetBean = BeanUtils.getFacetNavigationBean(request, "resellers/" + getITRInitData(request).getResellerId() + "/" + scopeRelativePath  + "/" + pathToContentBean, query, objectConverter);
             }
             
             HippoDocumentIterator<HippoBean> facetIt = facetBean.getResultSet().getDocumentIterator(HippoBean.class);

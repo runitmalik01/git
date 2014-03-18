@@ -5,7 +5,7 @@
 <%@include file="../includes/tags.jspf" %>
 <hst:actionURL var="actionUrl"></hst:actionURL>
   <fieldset>
-  	  <legend>Deduction Detail</legend>
+  	  <legend class="showFirstRowOnly">Deduction Detail</legend>
 	  <div class="row show-grid">
 	       <div class="col-md-8">
 	        	<div class="rowlabel"><label for="ack_no"><small>Deduction Head</small></label></div>

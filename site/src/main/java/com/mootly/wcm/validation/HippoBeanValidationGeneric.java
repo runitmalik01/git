@@ -1,5 +1,7 @@
 package com.mootly.wcm.validation;
 
+import org.hippoecm.hst.content.beans.standard.HippoDocument;
+
 public class HippoBeanValidationGeneric  {
 	
 	public enum ACTION {DISPLAY_NOTICE,REDIRECT,DISPLAY_DIALOG,FREEZE_INCOMETAX_RETURN}
@@ -13,6 +15,9 @@ public class HippoBeanValidationGeneric  {
 	TYPE type;
 	ACTION action;
 	ACTION_REASON actionReason;
+	String uuid;
+	String screenHead;
+	Class<? extends HippoDocument> hippoDocumentClass;
 	
 	public HippoBeanValidationGeneric() {
 		// TODO Auto-generated constructor stub
@@ -84,6 +89,31 @@ public class HippoBeanValidationGeneric  {
 
 	public void setMessageArgs(String[] messageArgs) {
 		this.messageArgs = messageArgs;
+	}
+
+	public Class<? extends HippoDocument> getHippoDocumentClass() {
+		return hippoDocumentClass;
+	}
+
+	public void setHippoDocumentClass(
+			Class<? extends HippoDocument> hippoDocumentClass) {
+		this.hippoDocumentClass = hippoDocumentClass;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	public String getScreenHead() {
+		return screenHead;
+	}
+
+	public void setScreenHead(String screenHead) {
+		this.screenHead = screenHead;
 	}
 	
 }
