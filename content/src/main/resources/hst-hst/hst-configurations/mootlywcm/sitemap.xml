@@ -99,6 +99,9 @@
 		<sv:property sv:name="hst:refId" sv:type="String">
 			<sv:value>search</sv:value>
 		</sv:property>
+		<sv:property sv:name="hst:relativecontentpath" sv:type="String">
+		    <sv:value>resellers/w4india/documents</sv:value>
+		</sv:property>		
 		<sv:node sv:name="tags">
 			<sv:property sv:name="jcr:primaryType" sv:type="Name">
 				<sv:value>hst:sitemapitem</sv:value>
@@ -136,6 +139,9 @@
 				sv:type="String">
 				<sv:value>hst:pages/search</sv:value>
 			</sv:property>
+		    <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+		      <sv:value>${parent}</sv:value>
+		    </sv:property>			
 			<sv:node sv:name="_any_">
 				<sv:property sv:name="jcr:primaryType" sv:type="Name">
 					<sv:value>hst:sitemapitem</sv:value>
@@ -148,7 +154,7 @@
 					<sv:value>hst:pages/search</sv:value>
 				</sv:property>
 				<sv:property sv:name="hst:relativecontentpath" sv:type="String">
-					<sv:value>searchfacets/${1}</sv:value>
+					<sv:value>${parent}/searchfacets/${1}</sv:value>
 				</sv:property>
 			</sv:node>
 		</sv:node>
