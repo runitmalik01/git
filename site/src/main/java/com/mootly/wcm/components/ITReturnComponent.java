@@ -29,8 +29,11 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.SortedSet;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -139,6 +142,8 @@ import com.mootly.wcm.services.efile.exception.DigtalSignatureAssesseeFailure;
 import com.mootly.wcm.services.efile.exception.DigtalSignatureERIUserFailure;
 import com.mootly.wcm.services.efile.exception.EFileException;
 import com.mootly.wcm.utils.MootlyFormUtils;
+import com.mootly.wcm.utils.ValueListService;
+import com.mootly.wcm.utils.ValueListServiceImpl;
 import com.mootly.wcm.utils.XmlCalculation;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric;
 import com.mootly.wcm.validation.HippoBeanValidationGeneric.ACTION;
@@ -1422,7 +1427,7 @@ public class ITReturnComponent extends BaseComponent {
 		}
 
 		//we can generate the HTML Summary here
-		generatedHtmlSummary = getReturnSummary(request,response,generatedXml);
+		generatedHtmlSummary = getReturnSummary(memberPersonalInformation, request,response,generatedXml);
 
 		//Now the check if user accepted terms and conditions
 		boolean doesASavedFormExists = false;
@@ -1652,7 +1657,7 @@ public class ITReturnComponent extends BaseComponent {
 	 * @throws SAXException
 	 * @throws IOException
 	 */
-	protected String getReturnSummary(HstRequest request,HstResponse response, String xml) {
+	protected String getReturnSummary(MemberPersonalInformation memberPersonalInformation, HstRequest request,HstResponse response, String xml) {
 		try {
 			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			InputSource is = new InputSource(new StringReader(xml));
@@ -1660,6 +1665,28 @@ public class ITReturnComponent extends BaseComponent {
 			FileInputStream fi = new FileInputStream(xsltPath);
 			StreamSource stylesource = new StreamSource(fi);
 			Transformer transformer = TransformerFactory.newInstance().newTransformer(stylesource);
+			if (memberPersonalInformation != null) {
+				try {
+					ValueListService objValueListService = ValueListServiceImpl.getInstance();
+					SortedSet<Map.Entry<String,String>> objHashMapcountry = objValueListService.getCountry();
+					SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
+					String countryCode = memberPersonalInformation.getCountry();
+					if (countryCode != null && "91".equals(countryCode)) {
+						transformer.setParameter("country", "INDIA");
+					}
+					else if (countryCode != null && objHashMapcountry != null) {
+						for (Iterator<Entry<String, String>> it = objHashMapcountry.iterator();it.hasNext();) {
+							Entry<String,String> anEntry =	it.next();
+							if (anEntry.getKey() != null && countryCode.equalsIgnoreCase(anEntry.getKey())) {
+								transformer.setParameter("country", anEntry.getValue());
+							}
+						}
+					}
+					transformer.setParameter("displayAssessmentYear",getITRInitData(request).getFinancialYear().getDisplayAssessmentYear());
+				}catch (Exception e){
+					log.warn("Error passing argument to XSLT",e);
+				}
+			}
 			StringWriter sw = new StringWriter();
 			StreamSource sSource = new StreamSource(new StringReader(xml));
 			StreamResult sResult = new StreamResult(sw);
