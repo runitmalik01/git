@@ -66,7 +66,7 @@ HstRequest hstRequest = (HstRequest) request;
 							</c:choose>
 							</span>
 							<c:choose>
-								<c:when test="${anEntry.verificationStatus == 'FAILED'}">
+								<c:when test="${empty anEntry || empty anEntry.verificationStatus || anEntry.verificationStatus == 'FAILED'}">
 									<c:set var="cssClass" value="glyphicon-ban-circle"/>
 									<c:set var="msg" value="NOT VERIFIED"/>
 								</c:when>
