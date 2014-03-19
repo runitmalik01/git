@@ -14,6 +14,8 @@
 
 	<xsl:output method="xml"></xsl:output>
 	<xsl:param name="showLogo"></xsl:param>
+	<xsl:param name="country"></xsl:param>
+	<xsl:param name="displayAssessmentYear"></xsl:param>
 	<xsl:template match="/ITRETURN:ITR">
 		<html>
 			<head>			
@@ -133,12 +135,11 @@
 	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
 	               normal;mso-yfti-cnfc:64"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
 	               color:black;mso-themecolor:text1;mso-themeshade:191">
-	               <xsl:value-of select="//ITRForm:Address/ITRForm:ResidenceNo" /> 
-	               <xsl:value-of select="//ITRForm:Address/ITRForm:ResidenceName" /> 
-	               <xsl:value-of select="//ITRForm:Address/ITRForm:LocalityOrArea" /> 
-	               <xsl:value-of select="//ITRForm:Address/ITRForm:CityOrTownOrDistrict" />
-	               <xsl:value-of select="//ITRForm:Address/ITRForm:CountryCode" /> 
-	               <xsl:value-of select="//ITRForm:Address/ITRForm:PinCode" /> 
+	               <xsl:if test="//ITRForm:Address/ITRForm:ResidenceNo and normalize-space(//ITRForm:Address/ITRForm:ResidenceNo) != ''"><xsl:value-of select="//ITRForm:Address/ITRForm:ResidenceNo" /><br/></xsl:if>
+	               <xsl:if test="//ITRForm:Address/ITRForm:ResidenceName and normalize-space(//ITRForm:Address/ITRForm:ResidenceName) != ''"><xsl:value-of select="//ITRForm:Address/ITRForm:ResidenceName" /><br/></xsl:if> 
+	               <xsl:if test="//ITRForm:Address/ITRForm:LocalityOrArea and normalize-space(//ITRForm:Address/ITRForm:LocalityOrArea) != ''"><xsl:value-of select="//ITRForm:Address/ITRForm:LocalityOrArea" /> <br/></xsl:if>
+	               <xsl:if test="//ITRForm:Address/ITRForm:CityOrTownOrDistrict and normalize-space(//ITRForm:Address/ITRForm:CityOrTownOrDistrict) != ''"><xsl:value-of select="//ITRForm:Address/ITRForm:CityOrTownOrDistrict" /> - <xsl:value-of select="//ITRForm:Address/ITRForm:PinCode" /> <br/></xsl:if>
+	               <xsl:value-of select="$country" /> <!-- this is passed from the code --><br/>
 	               </span></p>
 	         </td>
 	      </tr>
@@ -215,7 +216,7 @@
 	            height:13.25pt">
 	            <p class="MsoNormal" style="margin-bottom:0in;margin-bottom:.0001pt;line-height:
 	               normal"><span style="font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
-	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="//ITRForm:AssessmentYear" /></span></p>
+	               color:black;mso-themecolor:text1;mso-themeshade:191"><xsl:value-of select="$displayAssessmentYear" /></span></p>
 	         </td>
 	      </tr>
 	      <!-- 
