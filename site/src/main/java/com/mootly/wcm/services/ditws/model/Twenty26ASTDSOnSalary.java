@@ -76,11 +76,12 @@ public class Twenty26ASTDSOnSalary extends Twenty26ASGenericRecord{
 		return IncChrgSal;
 	}
 	public final void setIncChrgSal(String incChrgSal) {
-		IncChrgSal = incChrgSal;
+		//we are now going to set 0 as we are skipping it it confuses the users'
+		IncChrgSal = "0";//incChrgSal;
 		//this is where we set all other variables
-		balance = incChrgSal;
-		income_chargable_total = incChrgSal;
-		gross_total = incChrgSal;
+		balance = "0";//incChrgSal;
+		income_chargable_total = "0";//incChrgSal;
+		gross_total = "0";//incChrgSal;
 	}
 	
 	@FormField(name="tan_deductor",propertyName="TAN",dataTypeValidationTypes={})

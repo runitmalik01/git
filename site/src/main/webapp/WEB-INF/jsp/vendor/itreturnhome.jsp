@@ -58,6 +58,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
                    </div>
                </div>
 		    </div>
+		    <%--
 		   <c:if test="${not empty valueListDocument}">
 		    <div class="row show-grid">
 		      <div class="rowlabel">
@@ -69,6 +70,7 @@ TreeMap objTreeMapSection = (TreeMap) objValueListService.getReturnFile();
 		         </div>
 		      </div>
 		    </div></c:if>
+		     --%>
 		 </fieldset>
 		<c:choose>
 			<c:when test="${not empty docs && not empty listOfITReturnHomePageView}">
