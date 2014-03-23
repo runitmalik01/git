@@ -184,3 +184,9 @@ h3{font-size:12px;}
 	border-top: 1px solid #cccccc;
 	background: url(../images/bg-border.png) repeat-x;
 }
+
+input[readonly], input[readonly="readonly"] 
+{
+   background-color: #eee;
+   opacity: 1;
+}

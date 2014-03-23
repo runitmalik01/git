@@ -171,14 +171,13 @@ public final class IndianCurrencyHelper {
 	}
 
 	public double getYearIndexValue(String Calldate) throws ParseException{
-		ResourceBundle rb = ResourceBundle.getBundle("valueList_Infla" +
-				"tionIndex");
+		ResourceBundle rb = ResourceBundle.getBundle("valueList_InflationIndex");
 		String expDate= Calldate;
 		Date dNew= parsedate(Calldate);
 		String[] getDate= expDate.split("/");
 		String  year= getDate[2];
 		if(rb.containsKey("valueList."+year)){
-			log.info("it contains");
+			//log.info("it contains");
 			String[] newString=rb.getString("valueList."+year+"").split("-");
 			String fromDate=newString[0];
 			Date frm= parsedate(fromDate);
@@ -186,7 +185,7 @@ public final class IndianCurrencyHelper {
 			Date to= parsedate(toDate);
 			boolean comapreResult= between(dNew, frm, to);
 			if(comapreResult){
-				log.info("success");
+				//log.info("success");
 				return Double.parseDouble(rb.getString("valueList."+year+".cii"));
 			}if(!comapreResult) {
 				double year1= Double.parseDouble(year);
@@ -195,7 +194,8 @@ public final class IndianCurrencyHelper {
 				return Double.parseDouble(rb.getString("valueList."+ss+".cii"));
 			}
 		}
-		log.info("here is the value in outer loopsss"+Double.parseDouble(rb.getString("valueList.2012.cii")));
+		//if (log.isin)
+		//log.info("here is the value in outer loopsss"+Double.parseDouble(rb.getString("valueList.2012.cii")));
 		return Double.parseDouble(rb.getString("valueList.2012.cii"));
 	}
 

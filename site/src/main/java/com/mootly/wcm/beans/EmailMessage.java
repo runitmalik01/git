@@ -33,6 +33,7 @@ import org.hippoecm.hst.content.beans.ContentNodeBinder;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 
+import com.mootly.wcm.annotations.DoNotDuplicate;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 
 /**
@@ -42,6 +43,7 @@ import com.mootly.wcm.beans.standard.FlexibleDocument;
  */
 
 @Node(jcrType = "mootlywcm:emailmessage")
+@DoNotDuplicate
 public class EmailMessage extends FlexibleDocument implements ContentNodeBinder {
 	static final public String NAMESPACE = "mootlywcm:emailmessage";
 	static final public String NODE_NAME="emailmessage";

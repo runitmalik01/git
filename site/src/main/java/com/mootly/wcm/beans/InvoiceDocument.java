@@ -41,6 +41,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
+import com.mootly.wcm.annotations.DoNotDuplicate;
 import com.mootly.wcm.annotations.FormField;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider;
 import com.mootly.wcm.annotations.TagAsTaxDataProvider.TaxDataProviderType;
@@ -53,6 +54,7 @@ import com.mootly.wcm.model.InvoicePaymentStatus;
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:invoicedocument")
 @TagAsTaxDataProvider(type=TaxDataProviderType.INCOME)
+@DoNotDuplicate
 public class InvoiceDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate {
 	final String PROP_DETAIL_BEAN="mootlywcm:invoicedocumentdetail";
 	final String PROP_DETAIL_PAYMENT_BEAN="mootlywcm:invoicepaymentdetail";

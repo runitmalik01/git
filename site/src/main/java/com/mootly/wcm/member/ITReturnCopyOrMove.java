@@ -36,9 +36,11 @@ import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mootly.wcm.annotations.DoNotDuplicate;
 import com.mootly.wcm.annotations.RequiredBeans;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.components.AfterDuplicateHandler;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
 import com.mootly.wcm.services.SequenceGenerator;
@@ -62,7 +64,7 @@ public class ITReturnCopyOrMove extends ITReturnComponent {
 			if (memberPersonalInformation == null) return;
 			HippoFolder hippoFolder = (HippoFolder) memberPersonalInformation.getParentBean().getParentBean();
 			long nextId = getSequenceGenerator().getNextId(SequenceGenerator.SEQUENCE_FOLDER_NAME);
-			String newFolderName = "revised_f_" + nextId;
+			String newFolderName = getITRInitData(request).getPAN() + "_f_" + nextId;
 			request.setAttribute("newFolderName", newFolderName);
 			String newFolderBasePath =  hippoFolder.getPath();
 			String newFolderPath = hippoFolder.getPath() + "/" + newFolderName; 
@@ -88,11 +90,19 @@ public class ITReturnCopyOrMove extends ITReturnComponent {
 					HippoBean hippoBean = itResults.next();
 					if (hippoBean instanceof HippoDocumentBean) {
 						//we cannot copy payment document
-						if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPayment.class.getSimpleName())) {
+						if (hippoBean.getClass().isAnnotationPresent(DoNotDuplicate.class)) { // .getSimpleName().toLowerCase().equalsIgnoreCase(MemberPayment.class.getSimpleName())) {
 							if (log.isInfoEnabled()) {
-								log.info("Found payment document. Skipping..");
+								log.info(hippoBean.getClass().getName() + " tagged with DoNotDuplicate Skipping..");
 							}
 							continue;
+						}
+						if (hippoBean instanceof AfterDuplicateHandler) {
+							AfterDuplicateHandler afterDuplicateHandler = (AfterDuplicateHandler) hippoBean;
+							try {
+								afterDuplicateHandler.afterDuplicate();
+							}catch (Exception e) {
+								log.error("After Duplicate Handler Failed Some Serious Issue",e);
+							}
 						}
 						String pathToNode = NodeUtils.getCanonicalNode(hippoBean.getNode()).getPath();
 						Node theNodeW = persistableSession.getNode(pathToNode);

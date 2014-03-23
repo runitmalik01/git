@@ -36,9 +36,7 @@
 					<legend class="header-color">
 						<small>Asset Information</small>
 					</legend>
-					<div align="center" style="color: red">Please enter your
-						details</div>
-					<br />
+					
 
 
 					<div class="row show-grid">
@@ -50,8 +48,8 @@
 							</div>
 
 							<div class="rowlabel">
-								<select id="asset_type" name="asset_type" onChange="hidesst()"
-									class="uprcase">
+								<select id="asset_type" name="asset_type"
+									class="uprcase trecalc treShow">
 									<option value="">-Select-</option>
 									<option value="SHARES"
 										<c:if test="${not empty childBean.assetType && childBean.assetType =='SHARES'}">selected</c:if>>Listed
@@ -110,7 +108,7 @@
 											key="capital.gain.days" /> </small> </label>
 							</div>
 							<div class="rowlabel">
-								<input type="text" name="months" id="months" class="decimal"
+								<input type="text" name="months" id="months" class="decimal trecalc "
 									readonly="readonly" onblur="daycalculate()"
 									value="<c:if test="${not empty childBean.months}">
 								<c:out value="${childBean.months}"/></c:if>">
@@ -122,10 +120,9 @@
 											key="capital.gain.sst.charge" /> </small> </label>
 							</div>
 							<div class="rowlabel">
-								<select id="sst_charge" name="sst_charge"
-									onchange="hidesstoptions()">
+								<select id="sst_charge" name="sst_charge" class="trecalc reShow">
 									<option value="">-Select-</option>
-									<option value="Y" style="border-right: olive;"
+									<option value="Y"
 										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='Y'}">selected</c:if>>YES</option>
 									<option value="N"
 										<c:if test="${not empty childBean.sstCharge && childBean.sstCharge =='N'}">selected</c:if>>NO</option>
@@ -136,10 +133,10 @@
 				</fieldset>
 				<fieldset id="fd_set_gain"
 					class="<c:if test="${pageAction == 'NEW_CHILD' }">hide</c:if>">
-					<legend class="hide st" id="sg" style="color: maroon">
+					<legend class="hide st withOtherAsset_off_Long" id="sg">
 						<small>Computation (Short Term Gain)</small>
 					</legend>
-					<legend class="hide lt" style="color: maroon;" id="lg">
+					<legend class="hide lt withOtherAsset_on" id="lg">
 						<small>Computation (Long Term Gain)</small>
 					</legend>
 					<c:if test="${status != 'RES'}">
@@ -223,9 +220,9 @@
 						</div>
 						<div class="col-md-3">
 							<div class="rowlabel">
-								<select id="index" name="index">
+								<select id="index" name="index" class="trecalc reShow">
 									<option value="">-Select-</option>
-									<option value="Y" style="border-right: olive;"
+									<option value="Y"
 										<c:if test="${not empty childBean.index && childBean.index =='Y'}">selected</c:if>>YES</option>
 									<option value="N"
 										<c:if test="${not empty childBean.index && childBean.index =='N'}">selected</c:if>>NO</option>
@@ -233,7 +230,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid">
+					<div class="row show-grid otherLong_On">
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="saleconsideration"><fmt:message
@@ -249,7 +246,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid dateimp" id="imp">
+					<div class="row show-grid dateimp withOtherAsset_on_Long otherLong_On" id="imp">
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="date_improve"><small><fmt:message
@@ -264,7 +261,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid">
+					<div class="row show-grid otherLong_On" >
 						<div class="col-md-9">
 							<div class="rowlabel acq">
 								<label for="costacquisition"><fmt:message
@@ -301,13 +298,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid cstimp">
+					<div class="row show-grid cstimp otherLong_On">
 						<div class="col-md-9">
 							<div class="rowlabel without_Y_index without_N_index">
 								<label for="costimprovement"><small><fmt:message
 											key="capital.gain.cost.improvement" /> </small> </label>
 							</div>
-							<div class="rowlabel hide with_Y_index with_N_index ">
+							<div class="rowlabel hide with_Y_index with_N_index withOtherAsset_off_Long  ">
 								<label for="costimprovement"><small><fmt:message
 											key="capital.gain.imprv.index" /> </small> </label>
 
@@ -323,7 +320,7 @@
 						</div>
 					</div>
 
-					<div class="row show-grid csttrsfr">
+					<div class="row show-grid csttrsfr otherLong_On">
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="costtrnsfr"><small><fmt:message
@@ -339,7 +336,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid bal">
+					<div class="row show-grid bal balance_Other">
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="balanc"><fmt:message
@@ -356,7 +353,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid st" id="loss">
+					<div class="row show-grid st withOtherAsset_off_Long" id="loss">
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="losssec94"><small><fmt:message
@@ -373,7 +370,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid" id="ded">
+					<div class="row show-grid otherLong_On" id="ded" >
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="dedsec54"><fmt:message
@@ -385,7 +382,7 @@
 								<input type="text" name="dedsec54" id="dedsec54" maxlength="14" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number" groupingUsed="false"  maxIntegerDigits="14" value="${childBean.ded_sec54}"/></c:if>"
-									class="decimal" title="Please fill only Numeric value" />
+									class="decimal rrecalcAmt" title="Please fill only Numeric value" />
 
 							</div>
 						</div>
@@ -409,7 +406,7 @@
 						</div>
 					</div>
 					<c:if test="${itrform=='ITR4' }">
-						<div class="row show-grid amtdmdsc">
+						<div class="row show-grid amtdmdsc otherLong_On">
 							<div class="col-md-9">
 								<div class="rowlabel">
 									<label for="amtdeemedsc"><small> <fmt:message
@@ -443,7 +440,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid" id="pan">
+					<div class="row show-grid otherLong_On" id="pan" >
 						<div class="col-md-9 lt">
 							<div class="rowlabel">
 								<label for="panifded"><small><fmt:message
@@ -458,7 +455,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row show-grid cpgain">
+					<div class="row show-grid cpgain otherLong_On">
 						<div class="col-md-9">
 							<div class="rowlabel">
 								<label for="capitalgain"><fmt:message
@@ -470,7 +467,7 @@
 								<input type="text" name="capitalgain" id="capitalgain" maxlength="14" 
 									value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number" groupingUsed="false" maxIntegerDigits="14" value="${childBean.capitalGain}"/></c:if>"
-									class="decimal" readonly="readonly" />
+									class="decimal rrecalcAmt" readonly="readonly" />
 							</div>
 						</div>
 					</div>
@@ -490,7 +487,7 @@
 							<div class="rowlabel">
 								<select name="accural_info" id="accural_info">
 									<option value="">-Select-</option>
-									<option value="Y" style="border-right: olive;"
+									<option value="Y"
 										<c:if test="${not empty childBean.accural && childBean.accural =='Y'}">selected</c:if>>YES</option>
 									<option value="N"
 										<c:if test="${not empty childBean.accural && childBean.accural =='N'}">selected</c:if>>NO</option>
@@ -762,6 +759,7 @@
 			$("#sst_charge").show();
 		}
 		if (type == 'OTH') {
+			
 			if (day <= 1096) {
 
 				$(".st").show();
@@ -775,6 +773,7 @@
 				$(".amtdmdsc").show();
 
 			} else {
+				
 				$("#loss").hide();
 				$("#lg").show();
 				$("#sg").hide();
@@ -784,7 +783,7 @@
 				$("#sst").hide();
 				$(".amtdmdsc").hide();
 			}
-
+			
 			$("#lindex").hide();
 			$("#sst_charge").hide();
 		}
@@ -809,7 +808,7 @@
 	});
 
 	$('#sst_charge').change(function() {
-		var d = document.getElementById("sst_charge");
+		var d = $("#sst_charge").val();
 		var valuePropCoOwned = d.options[d.selectedIndex].value;
 		if (valuePropCoOwned == "N") {
 			$("#dedsec54").show();
@@ -820,9 +819,10 @@
 			$("#ded").hide();
 		}
 	});
-	$('#date_improve')
-			.change(
+	/* $('#date_improve')
+			.blur(
 					function() {
+						alert("a");
 						var imp = $('#date_improve').val();
 						var acq = $('#date_acquisition').val();
 						if (new Date(imp).getTime() > new Date(acq).getTime()) {
@@ -833,143 +833,212 @@
 							;
 						}
 
-					});
-	$('#date_sale,#date_acquisition,#sst_charge').change(function() {
-		var a;
-		var b;
-		a = document.getElementById("date_acquisition").value;
-		b = document.getElementById("date_sale").value;
-		document.getElementById("months").value = datediff(a, b);
-		document.getElementById("shortterms").value = decidegaintype();
-		function decidegaintype() {
-			var c = document.getElementById("months").value;
-			var m = document.getElementById("asset_type").value;
-			if (m == 'SLUMP') {
-				if (c <= 1096) {
-					$('#fd_set_gain').show();
-					$("#lindex").hide();
-					$(".slump").show();
-					$(".acq").hide();
-					$(".slmacq").show();
-					$("#imp").hide();
-					$(".amtdmd").hide();
-					$(".csttrsfr").hide();
-					$(".bal").hide();
-					$(".cpgain").hide();
-					$("#pan").hide();
-					$(".cstimp").hide();
-					$("#sg").show();
-					$("#lg").hide();
-					$("#loss").hide();
-					$(".amtdmdsc").hide();
-				} else {
-					$('#fd_set_gain').show();
-					$(".slump").show();
-					$("#lindex").hide();
-					$(".acq").hide();
-					$(".slmacq").show();
-					$("#imp").hide();
-					$(".amtdmd").hide();
-					$(".csttrsfr").hide();
-					$(".bal").hide();
-					$(".cpgain").hide();
-					$("#pan").hide();
-					$(".cstimp").hide();
-					$("#sg").hide();
-					$("#lg").show();
-					$("#loss").hide();
-					$(".amtdmdsc").hide();
-				}
-			}
+					}); */
+	
+	 $('#date_improve')
+			.change(
+					function() {
+						var dImp = $('#date_improve').val();
+						if (dImp != null && dImp != '') {
+							var dAcq = $('#date_acquisition').val();
+							var dSale = $('#date_sale').val();
+							if (new Date(dAcq).getTime() > new Date(dImp)
+									.getTime()
+									|| new Date(dImp).getTime() > new Date(
+											dSale).getTime()) {
+								alert("Date of improvement can be between date of acquisition and date of sale, Please choose right date of improvement");
+								$('#date_improve').val("");
+							}
 
-			if (m == "SHARES") {
-				if (c <= 365) {
-					$('#fd_set_gain').show();
-					$(".st").show();
-					$("#lg").hide();
-					$("#sg").show();
-					$(".with_Y_index").hide();
-					$(".without_N_index").show();
-					$(".lt").hide();
-					$("#imp").hide();
-					$(".amtdmdsc").hide();
-				} else {
-					var sst = $("#sst_charge").val();
-					if (sst == 'N') {
-						$("#lindex").show();
-						$("#imp").show();
-						$("#pan").show();
-					} else {
-						$("#pan").hide();
-						$("#imp").show();
-						$("#ded").hide();
-						$("#lindex").hide();
+						}
+					}); 
+
+	$('#date_sale,#date_acquisition,#sst_charge,#asset_type').change(
+			function() {
+				var a;
+				var b;
+				a = $("#date_acquisition").val();
+				b = $("#date_sale").val();
+				$("#months").val( datediff(a, b) );
+				//document.getElementById("shortterms").value = decidegaintype();
+				decidegaintype();
+				function decidegaintype() {
+					var c = $("#months").val();
+					var m = $("#asset_type").val();
+
+					if (m == 'SLUMP') {
+
+						if (c <= 1096) {
+
+							$('#fd_set_gain').show();
+							$("#lindex").hide();
+							$(".slump").show();
+							$(".acq").hide();
+							$(".slmacq").show();
+							$("#imp").hide();
+							$(".amtdmd").hide();
+							$(".csttrsfr").hide();
+							$(".bal").hide();
+							$(".cpgain").hide();
+							$("#pan").hide();
+							$(".cstimp").hide();
+							$("#sg").show();
+							$("#lg").hide();
+							$("#loss").hide();
+							$(".amtdmdsc").hide();
+
+						} else {
+
+							$('#fd_set_gain').show();
+							$(".slump").show();
+							$("#lindex").hide();
+							$(".acq").hide();
+							$(".slmacq").show();
+							$("#imp").hide();
+							$(".amtdmd").hide();
+							$(".csttrsfr").hide();
+							$(".bal").hide();
+							$(".cpgain").hide();
+							$("#pan").hide();
+							$(".cstimp").hide();
+							$("#sg").hide();
+							$("#lg").show();
+							$("#loss").hide();
+							$(".amtdmdsc").hide();
+
+						}
 					}
-					$("#lg").show();
-					$("#sg").hide();
-					$("#loss").hide();
-					$(".with_Y_index").hide();
-					$('#fd_set_gain').show();
-					$(".lt").show();
-					$("#sst").show();
-					$(".amtdmdsc").hide();
+
+					if (m == "SHARES") {
+						if (c <= 365) {
+							$('#fd_set_gain').show();
+							$("#lindex").hide();
+							$(".st").show();
+							$("#lg").hide();
+							$("#sg").show();
+							$(".with_Y_index").hide();
+							$(".without_N_index").show();
+							$(".lt").hide();
+							$("#imp").hide();
+							$(".amtdmdsc").hide();
+							// adjustment of fields when changing from slump to this category
+							$(".slmacq").hide();
+							$(".acq").show();
+							$(".cstimp").show();
+							$(".slump").hide();
+							$(".csttrsfr").show();
+							$(".balance_Other").show();
+							$(".amtdmd").show();
+							$(".cpgain").show();
+
+						} else {
+
+							var sst = $("#sst_charge").val();
+							if (sst == 'N') {
+								$("#lindex").show();
+								$("#imp").show();
+								$("#pan").show();
+							} else {
+								$("#pan").hide();
+								$("#imp").show();
+								$("#ded").hide();
+								$("#lindex").hide();
+								// adjustment of fields when changing from slump to this category
+								$(".slmacq").hide();
+								$(".acq").show();
+								$(".cstimp").show();
+								$(".slump").hide();
+								$(".csttrsfr").show();
+								$(".balance_Other").show();
+								$(".amtdmd").show();
+								$(".cpgain").show();
+							}
+							$("#lg").show();
+							$("#sg").hide();
+							$("#loss").hide();
+							$(".with_Y_index").hide();
+							$('#fd_set_gain').show();
+							$(".lt").show();
+							$("#sst").show();
+							$(".amtdmdsc").hide();
+						}
+					}
+					if (m == 'OTH') {
+						if (c <= 1096) {
+							$('#fd_set_gain').show();
+							$(".st").show();
+							$("#imp").hide();
+							$("#lg").hide();
+							$("#sg").show();
+							$(".with_Y_index").hide();
+							$(".without_N_index").show();
+							$(".lt").hide();
+							$("#sst").hide();
+							$(".amtdmdsc").show();
+							// adjustment of fields when changing from slump to this category
+							$(".slmacq").hide();
+							$(".acq").show();
+							$(".cstimp").show();
+							$(".slump").hide();
+							$(".csttrsfr").show();
+							$(".balance_Other").show();
+							$(".amtdmd").show();
+							$(".cpgain").show();
+						} else {
+
+							$("#loss").hide();
+							$("#lg").show();
+							$("#sg").hide();
+							$('#fd_set_gain').show();
+							$("#imp").show();
+							$(".with_Y_index").hide();
+							$(".lt").show();
+							$("#sst").hide();
+							$("#lindex").hide();
+							$(".amtdmdsc").hide();
+							// adjustment of fields when changing from slump to this category
+							$(".slmacq").hide();
+							$(".acq").show();
+							$(".cstimp").show();
+							$(".slump").hide();
+							$(".csttrsfr").show();
+							$(".balance_Other").show();
+							$(".amtdmd").show();
+							$("#pan").show();
+							$(".cpgain").show();
+
+						}
+					}
 				}
-			}
-			if (m == 'OTH') {
-				if (c <= 1096) {
-					$('#fd_set_gain').show();
-					$(".st").show();
-					$("#imp").hide();
-					$("#lg").hide();
-					$("#sg").show();
-					$(".with_Y_index").hide();
-					$(".without_N_index").show();
-					$(".lt").hide();
-					$("#sst").hide();
-					$(".amtdmdsc").show();
-				} else {
+				function dstrToUTC(ds) {
+					var dsarr = ds.split("/");
+					var dd = parseInt(dsarr[0], 10);
+					var mm = parseInt(dsarr[1], 10);
+					var yy = parseInt(dsarr[2], 10);
+					return Date.UTC(yy, mm - 1, dd, 0, 0, 0);
+				}
 
-					$("#loss").hide();
-					$("#lg").show();
-					$("#sg").hide();
+				$(document).ready(function() {
+					<c:if test="${pageAction == 'EDIT_CHILD'}">
 					$('#fd_set_gain').show();
-					$("#imp").show();
-					$(".with_Y_index").hide();
-					$(".lt").show();
-					$("#sst").hide();
-					$("#lindex").hide();
-					$(".amtdmdsc").hide();
+					</c:if>
+				});
+				function datediff(ds1, ds2) {
+					var d1 = dstrToUTC(ds1);
+					var d2 = dstrToUTC(ds2);
+					var oneday = 86400000;
+					var e = (d2 - d1) / oneday;
+					
+					if (e < 0) {
+						alert("Date of acquisition must be before than Date of sale");
+						$('#date_acquisition').val("");
+						return null;
+					}
+					return e;
 
 				}
-			}
-		}
-		function dstrToUTC(ds) {
-			var dsarr = ds.split("/");
-			var dd = parseInt(dsarr[0], 10);
-			var mm = parseInt(dsarr[1], 10);
-			var yy = parseInt(dsarr[2], 10);
-			return Date.UTC(yy, mm - 1, dd, 0, 0, 0);
-		}
 
-		$(document).ready(function() {
-			<c:if test="${pageAction == 'EDIT_CHILD'}">
-			$('#fd_set_gain').show();
-			</c:if>
-		});
-		function datediff(ds1, ds2) {
-			var d1 = dstrToUTC(ds1);
-			var d2 = dstrToUTC(ds2);
-			var oneday = 86400000;
-			var e = (d2 - d1) / oneday;
-			if (e < 0) {
-				alert("days can't be negative change your date");
-				return 0;
-			}
-			return e;
-
-		}
-
-	});
+			});
 	$("#accural_info").on('change', function() {
 		if ($(this).val() == 'Y') {
 			$('#accural_gain').show();
@@ -977,8 +1046,13 @@
 			$('#accural_gain').hide();
 		}
 	});
-	/*
-	$("#costacquisition").on(
+	/* $('#date_sale,#date_acquisition').change(function(){
+		var dateSale = $('#date_sale').val();
+		var dateAcq = $('#date_acquisition').val();
+		if()
+	}); */
+
+	/* $("#costacquisition").on(
 			'change',
 			function() {
 				var imp = $('#date_improve').val();
@@ -986,6 +1060,18 @@
 					document.getElementById("date_improve").value = $(
 							'#date_sale').val();
 				}
-			});
-	*/
+			}); */
+
+	/* $('.treShow').change(function(){
+	alert("a");
+	/* $('.withOtherAsset_on').each( function(indx) {
+		  $(this).show();
+	 	alert("b");
+	    });
+	$('.withOtherAsset_off_Long').each( function(indx) {
+		  $(this).hide();
+	 	alert("c");
+	    }); 
+	decidegaintype();
+	});  */
 </script>

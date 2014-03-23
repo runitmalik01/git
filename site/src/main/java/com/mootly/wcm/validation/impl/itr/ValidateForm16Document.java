@@ -41,7 +41,7 @@ public class ValidateForm16Document implements HippoBeanValidator{
 							
 							response.addError(hippoBeanValidationError);
 						}
-						if(!itrSelection.equals("ITR1")){
+						if(itrSelection != null && !itrSelection.equals("ITR1") && !itrSelection.equalsIgnoreCase("ITR4S")){ //ignore validation for ITR1 and ITR4S as they don't need ADDRESS for FORM 16 to be mandatory
 							if ( formSixteenDetail.getAddressdetail() ==  null || "".equals(formSixteenDetail.getAddressdetail()) ) {
 								HippoBeanValidationError hippoBeanValidationError = new HippoBeanValidationError("err.form16.empty.addressdetail");
 								hippoBeanValidationError.setHippoDocumentClass(formSixteenDetail.getClass());
