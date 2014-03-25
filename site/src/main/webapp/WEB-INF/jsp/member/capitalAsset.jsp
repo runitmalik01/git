@@ -808,8 +808,8 @@
 	});
 
 	$('#sst_charge').change(function() {
-		var d = $("#sst_charge").val();
-		var valuePropCoOwned = d.options[d.selectedIndex].value;
+		//var d = $("#sst_charge").val();
+		var valuePropCoOwned =  $("#sst_charge").val(); //d.options[d.selectedIndex].value;
 		if (valuePropCoOwned == "N") {
 			$("#dedsec54").show();
 			$("#ded").show();
