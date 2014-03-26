@@ -71,6 +71,8 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	private Double Tds_Pension;
 
 	private boolean markedForDeletion;
+	
+	private Boolean isImportedFromDIT;
 
 	public final boolean isMarkedForDeletion() {
 		return markedForDeletion;
@@ -156,8 +158,14 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Tds_Pension== null) Tds_Pension = getProperty("mootlywcm:tdspension");
 		return Tds_Pension;
 	}
-
-
+	
+	public Double getTds_Pension() {
+		return Tds_Pension;
+	}
+	public final Boolean isImportedFromDIT() {
+		if ( isImportedFromDIT == null) isImportedFromDIT = getProperty("mootlywcm:isImportedFromDIT");
+		return isImportedFromDIT;
+	}
 	public final void setName_employer(String Name_employer) {
 		this.Name_employer = Name_employer;
 	}
@@ -224,7 +232,13 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 	public final void setPersonalInfoUuid(String personalInfoUuid) {
 		this.personalInfoUuid = personalInfoUuid;
 	}
-
+	
+	public void setTds_Pension(Double tds_Pension) {
+		Tds_Pension = tds_Pension;
+	}
+	public final void setImportedFromDIT(boolean isImportedFromDIT) {
+		this.isImportedFromDIT = isImportedFromDIT;
+	}
 	public PersonalInformation getPersonalInformation() {
 		HippoBean bean = getBean(NT_PERSONAL_INFO_LINK);
 		if (!(bean instanceof HippoMirror)) {
@@ -282,6 +296,9 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
             if(getTdsPension()!=null){
             	node.setProperty("mootlywcm:tdspension", getTdsPension());
             }
+            if (isImportedFromDIT() != null) {
+				node.setProperty("mootlywcm:isImportedFromDIT", isImportedFromDIT());
+			}
 		} catch (RepositoryException rex) {
 			log.error("Repository Exception while binding",rex);
 		}
@@ -322,12 +339,10 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("Stateslry") != null) {
 			setState(formMap.getField("Stateslry").getValue());
 		}
-		if ( formMap.getField("Taxable_earning").getValue().isEmpty()) {}
-		else{
+		if ( formMap.getField("Taxable_earning") != null ) { // .getValue().isEmpty()) {}
 			String strEarning=formMap.getField("Taxable_earning").getValue();
 			double taxableEarning = Double.parseDouble(strEarning);
 			setTaxable_earning(taxableEarning);
-
 		}
 		if ( formMap.getField("Pinslry") != null) {
 			setPin(formMap.getField("Pinslry").getValue());
@@ -339,16 +354,15 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			setTo(formMap.getField("To").getValue());
 		}
 		double amtGS=0.0d;
-		if ( formMap.getField("Gross_salary").getValue().isEmpty()) {
-			setGross_salary(amtGS);
-		}
-		else{
+		setGross_salary(amtGS);
+		if ( formMap.getField("Gross_salary") != null && formMap.getField("Gross_salary").getValue() != null && formMap.getField("Gross_salary").getValue().isEmpty()) {
 			String strGross_salary = formMap.getField("Gross_salary").getValue();
 			amtGS = Double.parseDouble(strGross_salary);
 			setGross_salary(amtGS);
 		}
+		
 		double amtAll=0.0d;
-		if ( formMap.getField("Allowance").getValue().isEmpty()) {
+		if ( formMap.getField("Allowance") == null ||  formMap.getField("Allowance").getValue().isEmpty()) {
 			setAllowance(amtAll);
 		}
 		else{
@@ -357,7 +371,8 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			setAllowance(amtAll);
 		}
 		double amtAll1=0.0d;
-		if ( formMap.getField("Allowance1").getValue().isEmpty()) {
+		
+		if ( formMap.getField("Allowance1") == null || formMap.getField("Allowance1").getValue().isEmpty()) {
 			setAllowance1(amtAll1);
 		}
 		else{
@@ -366,7 +381,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			setAllowance1(amtAll1);
 		}
 		double amtPer=0.0d;
-		if ( formMap.getField("Perquisite").getValue().isEmpty()) {
+		if ( formMap.getField("Perquisite") == null || formMap.getField("Perquisite").getValue().isEmpty()) {
 			setPerquisite(amtPer);
 		}
 		else{
@@ -375,7 +390,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			setPerquisite(amtPer);
 		}
 		double amtProfit=0.0d;
-		if ( formMap.getField("profit").getValue().isEmpty()) {
+		if ( formMap.getField("profit") == null || formMap.getField("profit").getValue().isEmpty()) {
 			setProfit(amtProfit);
 		}
 		else{
@@ -384,11 +399,16 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 			setProfit(amtProfit);
 		}
 		double tds = 0.0d;
-		if ( formMap.getField("tdspension").getValue().isEmpty()) {
+		if ( formMap.getField("tdspension") == null || formMap.getField("tdspension").getValue().isEmpty()) {
 			setProfit(tds);
 		}else{
 			double tdspen = Double.parseDouble(formMap.getField("tdspension").getValue());
 			setTdsPension(tdspen);
+		}
+		
+		if ( formMap.getField("isImportedFromDIT") != null) {
+			String isImportedFromDIT=formMap.getField("isImportedFromDIT").getValue();			
+			setImportedFromDIT(Boolean.valueOf(isImportedFromDIT));
 		}
 	}
 
@@ -413,5 +433,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		setProfit(salaryIncomeDetail.getProfit());
 		setTaxable_earning(salaryIncomeDetail.getTaxable_earning());
 		setTdsPension(salaryIncomeDetail.getTdsPension());
+		
+		setImportedFromDIT(salaryIncomeDetail.isImportedFromDIT());
 	};
 }

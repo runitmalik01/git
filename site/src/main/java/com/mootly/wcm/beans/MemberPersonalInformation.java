@@ -88,6 +88,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoMirror;
 
 import com.mootly.wcm.beans.standard.FlexibleDocument;
+import com.mootly.wcm.components.AfterDuplicateHandler;
 import com.mootly.wcm.model.DITSubmissionStatus;
 import com.mootly.wcm.model.FilingSection;
 import com.mootly.wcm.model.FinancialYear;
@@ -103,7 +104,7 @@ import com.mootly.wcm.utils.Constants;
  */
 @XmlAccessorType(XmlAccessType.NONE)
 @Node(jcrType = "mootlywcm:MemberPersonalInformation")
-public class MemberPersonalInformation extends FlexibleDocument implements ContentNodeBinder,FormMapFiller {
+public class MemberPersonalInformation extends FlexibleDocument implements ContentNodeBinder,FormMapFiller, AfterDuplicateHandler {
 	static final public String NAMESPACE = "mootlywcm:MemberPersonalInformation";
 	static final public String NODE_NAME = "PersonalInformation";
 
@@ -1494,5 +1495,14 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			return outputStr;
 		}
 		return null;
+	}
+	
+	@Override
+	public void afterDuplicate() {
+		// TODO Auto-generated method stub
+		//setDitVerificationMessage("");
+		//setDitVerificationStatus(VerificationStatus.UNVERIFIED);
+		setDitSubmissionStatus(DITSubmissionStatus.NOT_ATTEMPTED_YET);
+		setDitSubmissionToken("");
 	}
 }

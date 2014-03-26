@@ -1,5 +1,12 @@
 package com.mootly.wcm.services.ditws.model;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mootly.wcm.annotations.FormField;
 
 
@@ -13,7 +20,8 @@ public class Twenty26ASTDSOnSalary extends Twenty26ASGenericRecord{
 	String empCategory;
 	String EmployerOrDeductorOrCollecterName;
 	String TotalTDSSal;
-	String IncChrgSal;
+	String IncChrgSal; //THIS is what we GET from DIT
+	String IncChrgSalToBeCopied = "0"; //THIS is what WE COPY to FORM 16 and it will be ALWAYS 0 as there is a confusion between number we get from DIT versus the original 
 	String TAN;
 	
 	String pan_employee;
@@ -32,8 +40,20 @@ public class Twenty26ASTDSOnSalary extends Twenty26ASGenericRecord{
 	String relief_2 = "0";
 	String ded_ent3 = "0";
 	
+	String addressdetail;
+	String city;
+	String state;
+	String pin;
+	
+	String hashOfUniqueKeys;
+	
+	boolean isPension = false;
+	
+	
 	
 	Boolean isImportedFromDIT = true;
+	
+	static final Logger logger = LoggerFactory.getLogger(Twenty26ASTDSOnSalary.class);
 
 	@FormField(name="Employe_category",propertyName="empCategory",dataTypeValidationTypes={})
 	public final String getEmpCategory() {
@@ -71,16 +91,18 @@ public class Twenty26ASTDSOnSalary extends Twenty26ASGenericRecord{
 		TotalTDSSal = totalTDSSal;
 	}
 	
-	@FormField(name="gross_a",propertyName="IncChrgSal",dataTypeValidationTypes={})
+	
 	public final String getIncChrgSal() {
 		return IncChrgSal;
 	}
+	
+	@FormField(name="gross_a",propertyName="IncChrgSalToBeCopied",dataTypeValidationTypes={})
+	public String getIncChrgSalToBeCopied() {
+		return IncChrgSalToBeCopied;
+	}
+	
 	public final void setIncChrgSal(String incChrgSal) {
 		IncChrgSal = incChrgSal;
-		//this is where we set all other variables
-		balance = incChrgSal;
-		income_chargable_total = incChrgSal;
-		gross_total = incChrgSal;
 	}
 	
 	@FormField(name="tan_deductor",propertyName="TAN",dataTypeValidationTypes={})
@@ -160,6 +182,30 @@ public class Twenty26ASTDSOnSalary extends Twenty26ASGenericRecord{
 		return ded_ent3;
 	}
 
+	@FormField(name="addressdetail",propertyName="addressdetail",dataTypeValidationTypes={})
+	public  String getAddressdetail() {
+		return addressdetail;
+	}
+	
+	@FormField(name="city",propertyName="city",dataTypeValidationTypes={})
+	public  String getCity() {
+		return city;
+	}
+	
+	@FormField(name="state",propertyName="state",dataTypeValidationTypes={})
+	public  String getState() {
+		return state;
+	}
+	
+	@FormField(name="pin",propertyName="pin",dataTypeValidationTypes={})
+	public  String getPin() {
+		return pin;
+	}
+	
+	public boolean isPension() {
+		return isPension;
+	}
+
 	public final void setPan_employee(String pan_employee) {
 		this.pan_employee = pan_employee;
 	}
@@ -206,6 +252,54 @@ public class Twenty26ASTDSOnSalary extends Twenty26ASGenericRecord{
 
 	public final void setDed_ent3(String ded_ent3) {
 		this.ded_ent3 = ded_ent3;
+	}
+
+	public void setIncChrgSalToBeCopied(String incChrgSalToBeCopied) {
+		IncChrgSalToBeCopied = incChrgSalToBeCopied;
+		//this is where we set all other variables
+		balance = incChrgSalToBeCopied;
+		income_chargable_total = incChrgSalToBeCopied;
+		gross_total = incChrgSalToBeCopied;
+	}
+
+	public void setAddressdetail(String addressdetail) {
+		this.addressdetail = addressdetail;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public void setPin(String pin) {
+		this.pin = pin;
+	}
+
+	public String getHashOfUniqueKeys() {
+		String input = getTAN() + getEmployerOrDeductorOrCollecterName() + getIncChrgSal() + getTotalTDSSal();
+		try {
+	        //Create MessageDigest object for MD5
+	        MessageDigest digest = MessageDigest.getInstance("MD5");
+	        //Update input string in message digest
+	        digest.update(input.getBytes(), 0, input.length());
+	        //Converts message digest value in base 16 (hex) 
+	        hashOfUniqueKeys = new BigInteger(1, digest.digest()).toString(16);
+	    } 
+		catch (NoSuchAlgorithmException e) {
+	        e.printStackTrace();
+	     }
+		return hashOfUniqueKeys;
+	}
+
+	public void setHashOfUniqueKeys(String hashOfUniqueKeys) {
+		this.hashOfUniqueKeys = hashOfUniqueKeys;
+	}
+	
+	public void setPension(boolean isPension) {
+		this.isPension = isPension;
 	}
 	
 }

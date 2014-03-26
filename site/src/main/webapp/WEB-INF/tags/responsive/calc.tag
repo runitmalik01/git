@@ -31,12 +31,23 @@
 <hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 		<hst:element var="uiCustom" name="script">
 			<hst:attribute name="type">text/javascript</hst:attribute>
+			recalc_Counter = 0;
 				//$(document).ready(function() {
 					$("<c:out value="${jqinput}"/>").blur(
 						recalc
+						// recalc_Counter++;
 					);
-					$("<c:if test="${not empty jqdrop}"><c:out value="${jqdrop}"/></c:if>").change(
-						recalc
+					$("<c:if test="${not empty jqdrop}"><c:out value="${jqdrop}"/></c:if>").change(function(){
+						if ($(this).hasClass('trecalc') && recalc_Counter >0){
+						alert("Please note all calculation will reset");
+						$('.rrecalcAmt').each( function(indx) {
+		       				  $(this).val('0');
+		      				 
+	  						    });
+	  				}
+						recalc(false)
+						
+						}
 					);							
 				//});    
 				$(document).ready(function() {
@@ -48,6 +59,7 @@
 					);
 				});
 				function recalc(isAsync) {
+				recalc_Counter++;
 					if (typeof(isAsync) == 'undefined') isAsync = true;
 					$.ajax({
 						url:'<c:out value="${ajaxLinkToComponent}"/>?command=calc&screen=<c:out value="${screenCalc}"/>',

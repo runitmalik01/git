@@ -4065,7 +4065,6 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
-    <!-- Changed 'id' to make diff between required validation and tut-->
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
@@ -4134,7 +4133,6 @@ case of search; &lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
-    <!-- Changed 'id' - kusum -->
     <sv:node sv:name="mootlywcm:screenfieldconfig">
       <sv:property sv:name="jcr:primaryType" sv:type="Name">
         <sv:value>mootlywcm:screenfieldconfig</sv:value>
@@ -46601,7 +46599,6 @@ Payment or lump sum).&lt;/p&gt;
   
   
   
-  
   <sv:node sv:name="screencalculation">
     <sv:property sv:name="jcr:primaryType" sv:type="Name">
       <sv:value>hippostd:folder</sv:value>
@@ -48070,6 +48067,7 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
 <!--End of Other Information Screen Calculation For ITR4-->
 <!--capital asset calculation-->
 
+
 <sv:node sv:name="capitalasset" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -48100,7 +48098,7 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>dcd16097-fa92-4594-b76c-767d4bab699a</sv:value>
+      <sv:value>25798a18-1c5a-4e91-936f-0f7147ac72de</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -48125,13 +48123,13 @@ out_totalamount_outstanding = (union_excise-0)+(service_tax-0)+(vat_tax-0)+(othe
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2014-03-10T15:31:46.763+05:30</sv:value>
+      <sv:value>2014-03-21T15:06:56.427+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2014-03-10T15:31:51.054+05:30</sv:value>
+      <sv:value>2014-03-21T15:07:13.902+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -48185,8 +48183,8 @@ if(asset_type=='SLUMP'){
 		netslumpgain=(slumpgain)-(dedsec54-0);
 	
 }
-out_cgSlump=slumpgain;
-out_netCGSlump=netslumpgain;
+out_cgSlump=slumpgain;   
+out_netCGSlump=indianCurrencyHelper.RoundTo2Decimals(netslumpgain) &gt;0 ? indianCurrencyHelper.RoundTo2Decimals(netslumpgain):0 ;
 
 
 if(month &lt; period){
@@ -48225,7 +48223,10 @@ if(asset_type=='SHARES'){
 			var imp_index=0;
 			pur_index = indianCurrencyHelper.getYearIndexValue(pur_data);
 			sal_index = indianCurrencyHelper.getYearIndexValue(sal_data);
-			imp_index = indianCurrencyHelper.getYearIndexValue(impdate);
+if(impdate != ''){
+imp_index = indianCurrencyHelper.getYearIndexValue(impdate);
+}
+			
 			var cost_acq= indianCurrencyHelper.RoundTo2Decimals((costacquisition-0)*((sal_index-0)/(pur_index-0)));
 			var cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*((imp_index-0)/(pur_index-0)));
 			total= (cost_acq-0)+ (cost_imp-0)+ (costtrnsfr-0);
@@ -48245,7 +48246,10 @@ if(asset_type=='SHARES'){
 	var imp_index =0;
 	pur_index = indianCurrencyHelper.getYearIndexValue(pur_data);
 	sal_index = indianCurrencyHelper.getYearIndexValue(sal_data);
-	imp_index = indianCurrencyHelper.getYearIndexValue(imp_date);
+if(imp_date != ''){
+imp_index = indianCurrencyHelper.getYearIndexValue(imp_date);
+}
+	
 	var cost_acq= indianCurrencyHelper.RoundTo2Decimals((costacquisition-0)*((sal_index-0)/(pur_index-0)));
 	var cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*((imp_index-0)/(pur_index-0)));
 	total= (cost_acq-0)+ (cost_imp-0)+ (costtrnsfr-0);
@@ -48329,11 +48333,16 @@ if(asset_type=='SHARES'){
 	var sal_index =0;
 	var imp_date = date_improve;
 	var imp_index =0;
+        var cost_imp = 0;
+          var  imp_index =0;
 	pur_index = indianCurrencyHelper.getYearIndexValue(pur_data);
 	sal_index = indianCurrencyHelper.getYearIndexValue(sal_data);
-	imp_index = indianCurrencyHelper.getYearIndexValue(imp_date);
+if(imp_date != ''){
+imp_index = indianCurrencyHelper.getYearIndexValue(imp_date);
+}
+	
 	var cost_acq= indianCurrencyHelper.RoundTo2Decimals((costacquisition-0)*((sal_index-0)/(pur_index-0)));
-	var cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*((imp_index-0)/(pur_index-0)));
+	cost_imp= indianCurrencyHelper.RoundTo2Decimals((costimprovement-0)*((imp_index-0)/(pur_index-0)));
 	total= (cost_acq-0)+ (cost_imp-0)+ (costtrnsfr-0);
 	bal= (saleconsideration-0)-total;
 	cpgain = bal - (dedsec54-0)+(section48-0)+(unlstdsecurity-0)+(amtdeemed-0);
@@ -48349,6 +48358,7 @@ if(asset_type=='SHARES'){
     </sv:property>
   </sv:node>
 </sv:node>
+
 
 
 

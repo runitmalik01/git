@@ -28,6 +28,7 @@ import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
+import com.mootly.wcm.annotations.DoNotDuplicate;
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
 import com.mootly.wcm.beans.standard.FlexibleDocument;
 import com.mootly.wcm.model.DITSubmissionStatus;
@@ -41,6 +42,7 @@ import com.mootly.wcm.model.VerificationStatus;
 
 @SuppressWarnings("unused")
 @Node(jcrType = "mootlywcm:ditResponseDocument")
+@DoNotDuplicate
 public class DITResponseDocument extends FlexibleDocument implements ContentNodeBinder,FormMapFiller,CompoundChildUpdate { 
 	
 	private List<DITResponseDocumentDetail> ditResponseDocumentDetailList;

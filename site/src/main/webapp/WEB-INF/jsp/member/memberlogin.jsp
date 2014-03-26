@@ -132,17 +132,17 @@
 <hst:element var="uiCustom" name="script">
 	<hst:attribute name="type">text/javascript</hst:attribute>
 	$(document).ready(function() {
-		$("#loginForm").submit (function() {
+		$("#frmLogin").submit (function() {
 			$("#username").val($("#username").val().toLowerCase());
 			return true;
 		});
-		$('#loginForm').validate({
+		$('#frmLogin').validate({
 				rules: {
 					username: {
 						required: true,
 						minlength: 2,
 						email:true
-					}
+					},
 					password: {
 						required: true,
 						minlength: 2

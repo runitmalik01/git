@@ -18,10 +18,10 @@ Page Title and Navigation Links
 <div id="questionandanswerformdiv" style="display:none"></div>
 </c:if>
 <div class="row show-grid">
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<h1><c:out value="${title}"/></h1>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<!-- &#x2190; -->
 			<%
 				String scriptURL = (String) request.getAttribute("scriptName");
@@ -75,12 +75,26 @@ Page Title and Navigation Links
 				}
 			%>
 			<c:if test="${not empty prevLinkMap_HREF && not empty prevLinkMap_TITLE}">
-				<span class="nav-previous pull-left"><a href="${scriptName}/../${prevLinkMap_HREF}" rel="prev"><span class="meta-nav">&#x2190;</span> ${prevLinkMap_TITLE}</a></span>
+				<c:set var="valToDisplayPrev" value="${prevLinkMap_TITLE}"/>
+				<c:if test="${not empty valToDisplayPrev && fn:length(valToDisplayPrev) > 50}">
+					<c:set var="valToDisplayPrev"><abbr  class="initialism" title="${prevLinkMap_TITLE}"><c:out value="${fn:substring(valToDisplayPrev,0,12)}"/>..</abbr></c:set>
+				</c:if>
+				<span class="nav-previous pull-left"><a title="${prevLinkMap_TITLE}"  href="${scriptName}/../${prevLinkMap_HREF}" rel="prev"><span class="meta-nav">&#x2190;</span> <strong>${valToDisplayPrev}</strong></a></span>
 			</c:if>
-			<c:if test="${isDITVerified =='true' && not empty nxtLinkMap_HREF && not empty nxtLinkMap_TITLE}">
-				<span class="nav-next pull-right"><a href="${scriptName}/../${nxtLinkMap_HREF}" rel="next">${nxtLinkMap_TITLE}<c:if test="${empty nxtLinkMap_ISLAST}"><span class="meta-nav">&#x2192;</span></c:if></a></span>
-				
-			</c:if>
+			<c:choose>
+				<c:when test="${fn:endsWith(nxtLinkMap_HREF,'efile-incometax.html')}">
+					<span class="nav-next pull-right"><a href="${scriptName}/../efile-incometax.html" class="btn btn-warning btn-block"><i class="glyphicon glyphicon-paperclip"></i>eFile</a></span>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${isDITVerified =='true' && not empty nxtLinkMap_HREF && not empty nxtLinkMap_TITLE}">
+						<c:set var="valToDisplayNext" value="${nxtLinkMap_TITLE}"/>
+						<c:if test="${not empty valToDisplayNext && fn:length(valToDisplayNext) > 50}">
+							<c:set var="valToDisplayNext"><abbr title="${nxtLinkMap_TITLE}"><c:out value="${fn:substring(valToDisplayNext,0,12)}"/>..</abbr></c:set>
+						</c:if>
+						<span class="nav-next pull-right"><a title="${nxtLinkMap_TITLE}" href="${scriptName}/../${nxtLinkMap_HREF}" rel="next"><strong><c:out value="${valToDisplayNext}" escapeXml="false"/></strong><c:if test="${empty nxtLinkMap_ISLAST}"><span class="meta-nav">&#x2192;</span></c:if></a></span>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 		</div>
 </div>
 <c:if test="${not empty subTitle}">
