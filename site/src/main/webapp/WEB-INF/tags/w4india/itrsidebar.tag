@@ -54,7 +54,7 @@ if ( helpDeskTicketDocument != null ) {
 			     </li>		
 			     --%>		     		
 			     <li>
-					<a href="#"><i class="glyphicon glyphicon-ban-circle"></i><small> <span color="red">Errors</span></small>
+					<a href="${scriptName}/../errors-warnings.html"><i class="glyphicon glyphicon-ban-circle"></i><small> <span color="red">Errors</span></small>
 						<span class="badge pull-right">
 							<small>
 								<c:choose>

@@ -28,27 +28,27 @@ import com.mootly.wcm.services.citruspay.model.XMLObject;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "enquiryResponse"
+    "enquiryResponses"
 })
 @XmlRootElement( name = "txnEnquiryResponse" )
 public class TxnEnquiryResponse extends XMLObject {
-	  @XmlElement(name = "enquiryResponse")
-	  protected List<EnquiryResponse> enquiryResponses;
+	@XmlElement(name = "enquiryResponse")
+	protected List<EnquiryResponse> enquiryResponses;
 	  
-	  public List<EnquiryResponse> getEnquiryResponse() {
-	        if (enquiryResponses == null) {
-	        	enquiryResponses = new ArrayList<EnquiryResponse>();
-	        }
-	        return this.enquiryResponses;
-	    }
-	
-	  public void addEnquiryResponse(EnquiryResponse enquiryResponse) {
+	public List<EnquiryResponse> getEnquiryResponse() {
         if (enquiryResponses == null) {
         	enquiryResponses = new ArrayList<EnquiryResponse>();
         }
-        enquiryResponses.add(enquiryResponse);
-	  }
-	  @Override
+        return this.enquiryResponses;
+	}
+	
+	public void addEnquiryResponse(EnquiryResponse enquiryResponse) {
+	    if (enquiryResponses == null) {
+	    	enquiryResponses = new ArrayList<EnquiryResponse>();
+	    }
+	    enquiryResponses.add(enquiryResponse);
+	}
+	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
