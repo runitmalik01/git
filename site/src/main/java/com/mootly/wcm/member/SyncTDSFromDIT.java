@@ -31,12 +31,14 @@ import com.mootly.wcm.beans.AdvanceTaxDocument;
 import com.mootly.wcm.beans.DITResponseDocument;
 import com.mootly.wcm.beans.FormSixteenDocument;
 import com.mootly.wcm.beans.MemberPersonalInformation;
+import com.mootly.wcm.beans.SalaryIncomeDocument;
 import com.mootly.wcm.beans.SelfAssesmetTaxDocument;
 import com.mootly.wcm.beans.TcsDocument;
 import com.mootly.wcm.beans.TdsFromothersDocument;
 import com.mootly.wcm.beans.compound.AdvanceTaxDetail;
 import com.mootly.wcm.beans.compound.DITResponseDocumentDetail;
 import com.mootly.wcm.beans.compound.FormSixteenDetail;
+import com.mootly.wcm.beans.compound.SalaryIncomeDetail;
 import com.mootly.wcm.beans.compound.SelfAssesmentTaxDetail;
 import com.mootly.wcm.beans.compound.TcsDetail;
 import com.mootly.wcm.beans.compound.TdsOthersDetail;
@@ -46,6 +48,7 @@ import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnComponentHelper;
 import com.mootly.wcm.components.InvalidNavigationException;
 import com.mootly.wcm.model.DITSOAPOperation;
+import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.IndianGregorianCalendar;
 import com.mootly.wcm.services.FormMapHelper;
 import com.mootly.wcm.services.ditws.Retrieve26ASInformation;
@@ -55,6 +58,7 @@ import com.mootly.wcm.services.ditws.exception.MissingInformationException;
 import com.mootly.wcm.services.ditws.model.Twenty26ASAdvanceTaxPayment;
 import com.mootly.wcm.services.ditws.model.Twenty26ASGenericRecord;
 import com.mootly.wcm.services.ditws.model.Twenty26ASResponse;
+import com.mootly.wcm.services.ditws.model.Twenty26ASTDSOnPension;
 import com.mootly.wcm.services.ditws.model.Twenty26ASTDSOnSalary;
 import com.mootly.wcm.services.ditws.model.Twenty26ASTDSOtherThanSalary;
 import com.mootly.wcm.services.ditws.model.Twenty26ASTaxPayment;
@@ -125,8 +129,10 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			Twenty26ASResponse twenty26asResponse = retrieve26asInformation.retrieve26ASInformation(getITRInitData(request).getWebSiteInfo().getEriUserId(),getITRInitData(request).getWebSiteInfo().getEriPassword(),getITRInitData(request).getWebSiteInfo().getEriCertChain(),getITRInitData(request).getWebSiteInfo().getEriSignature(), memberPersonalInformation.getPAN(), memberPersonalInformation.getDOB() , getITRInitData(request).getFinancialYear().getAssessmentYearForDITSOAPCall(), null ,null);
 			List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
 			List<Twenty26ASAdvanceTaxPayment> advTaxList = new ArrayList<Twenty26ASAdvanceTaxPayment>();
-			splitTaxPayment(request,twenty26asResponse, selfAssessmentList, advTaxList);
-			setIfIsAlreadyImported(request,twenty26asResponse,selfAssessmentList,advTaxList);
+			List<Twenty26ASTDSOnSalary> form16Entries = new ArrayList<Twenty26ASTDSOnSalary>();
+			List<Twenty26ASTDSOnPension> pensionEntries = new ArrayList<Twenty26ASTDSOnPension>();
+			splitTaxPayment(request,twenty26asResponse,selfAssessmentList, advTaxList);
+			setIfIsAlreadyImported(request,twenty26asResponse, form16Entries, pensionEntries,  selfAssessmentList,advTaxList);
 			int totalToBeImported = totalToBeImported(twenty26asResponse,selfAssessmentList,advTaxList);
 			boolean isInfoAvail = isInfoAvailable(twenty26asResponse,selfAssessmentList,advTaxList);
 			request.setAttribute("twenty26asResponse", twenty26asResponse);
@@ -181,8 +187,12 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			wpm = getWorkflowPersistenceManager(persistableSession);
 			List<Twenty26ASTaxPayment> selfAssessmentList = new ArrayList<Twenty26ASTaxPayment>();
 			List<Twenty26ASAdvanceTaxPayment> advTaxList = new ArrayList<Twenty26ASAdvanceTaxPayment>();
+			
+			List<Twenty26ASTDSOnSalary> form16Entries = new ArrayList<Twenty26ASTDSOnSalary>();
+			List<Twenty26ASTDSOnPension> pensionEntries = new ArrayList<Twenty26ASTDSOnPension>();
+			
 			splitTaxPayment(request,twenty26asResponse, selfAssessmentList, advTaxList);
-			setIfIsAlreadyImported(request,twenty26asResponse,selfAssessmentList, advTaxList);
+			setIfIsAlreadyImported(request,twenty26asResponse,form16Entries, pensionEntries, selfAssessmentList, advTaxList);
 			int totalToBeImported = totalToBeImported(twenty26asResponse, selfAssessmentList, advTaxList);
 			if (totalToBeImported > 0 ) {				
 				//List list = Collections.synchronizedList(new ArrayList());
@@ -198,18 +208,55 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 				//lets set the category of form 16
 				if (twenty26asResponse != null && twenty26asResponse.getTwenty26astdsOnSalaries() != null && twenty26asResponse.getTwenty26astdsOnSalaries().size() > 0 ) {
 					for (Twenty26ASTDSOnSalary twenty26ASTDSOnSalary : twenty26asResponse.getTwenty26astdsOnSalaries()) {
+						
+						//we need to determine if it goes into Pension or Salary
+						//we need to get the Deductor Address
+						// We need to get the getIncChrgSal
+						String hashOfUniqueKeys = twenty26ASTDSOnSalary.getHashOfUniqueKeys();
+						String whereToSave = getPublicRequestParameter(request, "category_" + hashOfUniqueKeys);
+						String incCrgSal = getPublicRequestParameter(request, "incCrgSal_" + hashOfUniqueKeys);
+						
 						twenty26ASTDSOnSalary.setEmpCategory(mpi.getEmploye_category());
 						twenty26ASTDSOnSalary.setPan_employee(mpi.getPAN());
 						twenty26ASTDSOnSalary.setEmployee(mpi.getName());
 						
-						twenty26ASTDSOnSalary.setBalance(twenty26ASTDSOnSalary.getIncChrgSal());
-						twenty26ASTDSOnSalary.setIncome_chargable_total(twenty26ASTDSOnSalary.getIncChrgSal());
-						twenty26ASTDSOnSalary.setGross_total(twenty26ASTDSOnSalary.getIncChrgSal());
+						twenty26ASTDSOnSalary.setIncChrgSalToBeCopied(incCrgSal);
+						twenty26ASTDSOnSalary.setBalance(incCrgSal);
+						twenty26ASTDSOnSalary.setIncome_chargable_total(incCrgSal);
+						twenty26ASTDSOnSalary.setGross_total(incCrgSal);
+						
+						if (mpi.getSelectedITRForm() != null && mpi.getSelectedITRForm() != ITRForm.ITR1  && mpi.getSelectedITRForm() != ITRForm.ITR4S) {
+							String addressdetail = getPublicRequestParameter(request, "addressdetail_" + hashOfUniqueKeys);
+							String city = getPublicRequestParameter(request, "city_" + hashOfUniqueKeys);
+							String state = getPublicRequestParameter(request, "state_" + hashOfUniqueKeys);
+							String pin = getPublicRequestParameter(request, "pin_" + hashOfUniqueKeys);
+							twenty26ASTDSOnSalary.setAddressdetail(addressdetail);
+							twenty26ASTDSOnSalary.setCity(city);
+							twenty26ASTDSOnSalary.setState(state);
+							twenty26ASTDSOnSalary.setPin(pin);
+						}
+						
+						if (whereToSave == null || "salary".equals(whereToSave)) {
+							form16Entries.add(twenty26ASTDSOnSalary);
+						}
+						else if (whereToSave != null && "pension".equals(whereToSave)) {
+							Twenty26ASTDSOnPension twenty26astdsOnPension = new Twenty26ASTDSOnPension();
+							twenty26astdsOnPension.copyFromSalary(twenty26ASTDSOnSalary);
+							pensionEntries.add(twenty26astdsOnPension);
+						}
 					}
 				}
 				
 				saveElementsToRepository(request,twenty26asResponse.getTwenty26astdsOtherThanSalaries(),TdsFromothersDocument.class,TdsOthersDetail.class,persistableSession,wpm);
-				saveElementsToRepository(request,twenty26asResponse.getTwenty26astdsOnSalaries(),FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
+				
+				if (form16Entries != null && form16Entries.size() > 0 ) {
+					saveElementsToRepository(request,form16Entries,FormSixteenDocument.class,FormSixteenDetail.class,persistableSession,wpm);
+				}
+				
+				if (pensionEntries != null && pensionEntries.size() > 0 ) {
+					saveElementsToRepository(request,pensionEntries,SalaryIncomeDocument.class,SalaryIncomeDetail.class,persistableSession,wpm);
+				}
+				
 				saveElementsToRepository(request,twenty26asResponse.getTwenty26astcs(),TcsDocument.class,TcsDetail.class,persistableSession,wpm);
 	
 				//now save an import document
@@ -333,7 +380,7 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 		}
 	}
 	
-	protected void setIfIsAlreadyImported(HstRequest request,Twenty26ASResponse twenty26asResponse,List<Twenty26ASTaxPayment> selfAssessmentList,List<Twenty26ASAdvanceTaxPayment> advTaxList) {
+	protected void setIfIsAlreadyImported(HstRequest request,Twenty26ASResponse twenty26asResponse,List<Twenty26ASTDSOnSalary> form16Entries,List<Twenty26ASTDSOnPension> pensionEntries, List<Twenty26ASTaxPayment> selfAssessmentList,List<Twenty26ASAdvanceTaxPayment> advTaxList) {
 		int totalForImport = 0;
 		//FORM 16
 		FormSixteenDocument formSixteenDocument = (FormSixteenDocument) request.getAttribute(FormSixteenDocument.class.getSimpleName().toLowerCase());		
@@ -341,13 +388,28 @@ public class SyncTDSFromDIT extends ITReturnComponent {
 			for (FormSixteenDetail formSixteenDetail:formSixteenDocument.getFormSixteenDetailList()) {
 				if (!formSixteenDetail.isImportedFromDIT() || formSixteenDetail.getEmploye_category() == null || formSixteenDetail.getGross_a() == null || formSixteenDetail.getDed_ent_1() == null) continue;
 				for (Twenty26ASTDSOnSalary twenty26astdsOnSalary:twenty26asResponse.getTwenty26astdsOnSalaries()) {
-					if (Double.valueOf(twenty26astdsOnSalary.getIncChrgSal()).equals(formSixteenDetail.getGross_a()) && Double.valueOf(twenty26astdsOnSalary.getTotalTDSSal()).equals(formSixteenDetail.getDed_ent_1()) ) {
+					if ( Double.valueOf(twenty26astdsOnSalary.getTotalTDSSal()).equals(formSixteenDetail.getDed_ent_1()) ) {
 						twenty26astdsOnSalary.setHasAlreadyBeenImported(true);
 						break;
 					}
 				}
 			}
 		}		
+		
+		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) request.getAttribute(SalaryIncomeDocument.class.getSimpleName().toLowerCase());		
+		if (salaryIncomeDocument != null && salaryIncomeDocument.getSalaryIncomeDetailList() != null) {
+			for (SalaryIncomeDetail salaryIncomeDetail:salaryIncomeDocument.getSalaryIncomeDetailList()) {
+				if ( salaryIncomeDetail.isImportedFromDIT() == null || !salaryIncomeDetail.isImportedFromDIT() || salaryIncomeDetail.getEmploye_category() == null || salaryIncomeDetail.getTdsPension() == null) continue;
+				for (Twenty26ASTDSOnSalary twenty26astdsOnSalary:twenty26asResponse.getTwenty26astdsOnSalaries()) {
+					if (Double.valueOf(twenty26astdsOnSalary.getTotalTDSSal()).equals(salaryIncomeDetail.getTdsPension()) ) {
+						twenty26astdsOnSalary.setHasAlreadyBeenImported(true);
+						twenty26astdsOnSalary.setPension(true);
+						break;
+					}
+				}
+			}
+		}		
+		
 		
 		//TDS from Others
 		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) request.getAttribute(TdsFromothersDocument.class.getSimpleName().toLowerCase());

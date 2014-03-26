@@ -62,11 +62,21 @@ public class EnquiryImpl extends PaymentServiceXML implements Enquiry, Applicati
 		HttpURLConnection theURLConnection = getHttpUrlConnection(transactionId);
 		try {
 			String returnXml = httpConnectionService.doGet(getHeaders(), transactionId, theURLConnection);
-			if (returnXml != null && !returnXml.trim().equals("")) {
-				TxnEnquiryResponse enquiryOutput = TxnEnquiryResponse.loadFromXml(returnXml,new TxnEnquiryResponse());			
-				if (logger.isInfoEnabled()) {
+			if (logger.isInfoEnabled()) {
+				try {
 					logger.info("returnXml :" + returnXml);
-					logger.info("returnXml :" + enquiryOutput.toString());
+				}catch (Exception e) {
+					
+				}
+			}
+			if (returnXml != null && !returnXml.trim().equals("")) {
+				TxnEnquiryResponse enquiryOutput = TxnEnquiryResponse.loadFromXml(returnXml,new TxnEnquiryResponse());	
+				if (logger.isInfoEnabled()) {
+					try {
+						logger.info("returnXml :" + enquiryOutput.toString());
+					}catch (Exception e) {
+						
+					}
 				}
 				return enquiryOutput;
 			}
