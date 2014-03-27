@@ -30,6 +30,7 @@ public class Activation extends BaseComponent {
 	public static final String SUCCESS= "success";
 
 	private String Isactive;
+	// i AM TESTING THE NEW BRANCH 1.0.7 BY MAKING THESE CHANGES
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
