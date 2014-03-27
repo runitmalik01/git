@@ -53,6 +53,7 @@ import com.mootly.wcm.annotations.DataTypeValidationType;
 import com.mootly.wcm.annotations.FormFields;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.annotations.RequiredFields;
+import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
@@ -106,7 +107,7 @@ public class StartApplication extends ITReturnComponent {
 
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
-		
+
 		FormMap savedValuesFormMap=null;
 		String memberName = null;
 		MemberPersonalInformation parentBean=null;
@@ -146,7 +147,7 @@ public class StartApplication extends ITReturnComponent {
 				response.setHeader(respKey, resultResponseMap.get(respKey));
 			}
 		}
-		*/
+		 */
 		String publicParameterUUID = getPublicRequestParameter(request, "uuid");
 		if (publicParameterUUID != null) {
 			try {
@@ -288,7 +289,7 @@ public class StartApplication extends ITReturnComponent {
 				}
 			}
 		}
-		*/
+		 */
 	}
 
 	@Override
@@ -361,7 +362,7 @@ public class StartApplication extends ITReturnComponent {
 		String memberName = null;
 		MemberPersonalInformation parentBean=null;
 		MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = null;
-		
+
 		List<HippoDocumentBean> listOfITRServices = getITRInitData(request).loadAllBeansUnderTheFolder(request,  "documents/services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
 		memberPersonalInfoUpdateHandler = new MemberPersonalInfoUpdateHandler(getSequenceGenerator(), listOfITRServices ,getITRInitData(request).getChannelInfoWrapper(),getAddClientDetailsService(),getRetrieve26ASService(),getITRInitData(request).getFinancialYear());
 		request.setAttribute("memberPersonalInfoUpdateHandler", memberPersonalInfoUpdateHandler);
@@ -419,7 +420,7 @@ public class StartApplication extends ITReturnComponent {
 		// TODO Auto-generated method stub
 		boolean superValidation = super.validate(request, response, formMap);
 		if (!superValidation) return superValidation;
-		
+
 		boolean hasAValidSelection = true;
 		MemberPersonalInformation memberPersonalInformation = (MemberPersonalInformation)getITRInitData(request).getParentBean();
 		if(memberPersonalInformation != null){
@@ -445,13 +446,16 @@ public class StartApplication extends ITReturnComponent {
 							}
 							if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(MemberPersonalInformation.class.getSimpleName())) {
 								continue;
-							}			
-							
+							}	
+							if (hippoBean.getClass().getSimpleName().toLowerCase().equalsIgnoreCase(InvoiceDocument.class.getSimpleName())) {
+								continue;
+							}
+
 							//Calendar lstModDateOfHippoBean = hippoBean.getProperty("hippostdpubwf:lastModificationDate");			
 							//if(lstModDateOfHippoBean.compareTo(memberPersonalInformation.getLastModificationDate()) > 0){
-								formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
-								response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
-								hasAValidSelection = false;
+							formMap.addMessage("flex_string_ITRForm", "error.itr.selection");
+							response.setRenderParameter("ITR1_FORM_SELECTION", "error.itr.selection");
+							hasAValidSelection = false;
 							//}
 						}
 					}
