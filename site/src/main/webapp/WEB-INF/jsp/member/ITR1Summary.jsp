@@ -73,7 +73,7 @@
 <div class="container">       
      <div class="panel panel-primary">
          <div class="panel-heading">
-              <h3 class="panel-title">Tax Summary</h3>
+              <h3 class="panel-title"><i class="glyphicon glyphicon-tags"></i> Your Income Tax Return Summary</h3>
          </div>
          <table class="table table-condensed">
 		     <tr class="success">

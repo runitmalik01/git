@@ -13,8 +13,8 @@
 		<form action="${activationcode}" method="post" id="formActivation">
 			<fieldset>
 	             <legend>
-	                <h4>Recover your Activation Code here</h4>
-			        <h5><small>Oops! Lost your Activation mail. Enter your registered Email Address for getting your Activation Code.</small></h5>
+	                <h4>Recover your activation code here</h4>
+			        <h5><small>Oops! Lost your activation mail. Enter your registered email address for getting your activation code.</small></h5>
 			     </legend>
 			     
 			     <c:if test="${not empty success}">
