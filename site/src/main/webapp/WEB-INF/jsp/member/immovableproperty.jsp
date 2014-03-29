@@ -3,7 +3,7 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="immProp">
-	<fmt:message key="immProp" />
+	Immovable Property Details
 </c:set>
 <hippo-gogreen:title title="${immProp}" />
 <hst:actionURL var="actionUrl" />
@@ -18,9 +18,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	<div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="Schedule FA-C" subTitle="Schedule FA-C&nbsp;-&nbsp;The total investment at cost in
-				immovable property held during the year after converting it into
-				Indian currency."/>
+	<w4india:titleandnav title="Immovable Property Details" subTitle="Immovable Property Details aka Schedule FA-C&nbsp;-&nbsp;It includes assets such as a house, commercial property and land purchased for commercial or residential purposes. </br>A recent amendment relating to tax deduction at source (TDS) on transfer of immovable property has become effective from 1 June, 2013."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">

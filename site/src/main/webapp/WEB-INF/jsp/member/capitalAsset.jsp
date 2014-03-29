@@ -17,9 +17,11 @@
 	pageContext.setAttribute("inflationindexValues",
 			InflationIndex.values());
 %>
-<div class="page">
+<div class="row show-grid">
+	<w4india:itrsidebar />
+	<div class="${sideBarMainClass}">
 	<fmt:message key="Capital.gain.Income.Screen" var="title"/>
-	<w4india:titleandnav title="${title}" subTitle="Schedule CG&nbsp;-&nbsp;A capital gain is a profit that results from a
+	<w4india:titleandnav title="Capital Gain" subTitle="Schedule CG&nbsp;-&nbsp;A capital gain is a profit that results from a
 				disposition of a capital asset, such as stock, bond or real estate,
 				where the amount realized on the disposition exceeds the purchase
 				price. The gain is the difference between a higher selling price and
@@ -654,6 +656,7 @@
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
 </div>
 <res:calc screenCalc="capitalasset" formId="capitalassetfrm"></res:calc>
 <res:client-validation formId="capitalassetfrm"

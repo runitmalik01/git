@@ -26,7 +26,8 @@
 			.getBoolean();
 	request.setAttribute("objHashMapBoolean", objHashMapBoolean);
 %>
-<fmt:message key="member.adjustment.content.title" var="adjustmentoflossestitle" />
+<fmt:message key="member.adjustment.content.title"
+	var="adjustmentoflossestitle" />
 <w4india:itrmenu></w4india:itrmenu>
 <!-- used to set title  -->
 <hippo-gogreen:title title="${adjustmentoflossestitle}" />
@@ -35,39 +36,42 @@
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="${adjustmentoflossestitle}" />
-<c:if test="${not empty formMap}">
-	<c:forEach items="${formMap.message}" var="item">
-		<div class="alert alert-danger">
-			<c:choose>
-				<c:when test="${item.key == 'checkentry'}">
-					<c:out value="${item.value}" />
-				</c:when>
-				<c:otherwise>
-					<c:out value="${item.key}" /> - <c:out value="${item.value}" />
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</c:forEach>
-</c:if>
+		<w4india:titleandnav title="${adjustmentoflossestitle}"
+			subTitle="When assessee has different sources of income under the same head of income or may have income under different heads of income then it might happen that the net result from a particular source/head may be a loss. This loss can be set off against other sources/head in a particular manner." />
+		<c:if test="${not empty formMap}">
+			<c:forEach items="${formMap.message}" var="item">
+				<div class="alert alert-danger">
+					<c:choose>
+						<c:when test="${item.key == 'checkentry'}">
+							<c:out value="${item.value}" />
+						</c:when>
+						<c:otherwise>
+							<c:out value="${item.key}" /> - <c:out value="${item.value}" />
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</c:forEach>
+		</c:if>
 
-<div class="alert alert-danger hide" id="chkentry"></div>
+		<div class="alert alert-danger hide" id="chkentry"></div>
 
-<c:choose>
-	<c:when
-		test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
-		<form id="frmdataLosses" action="${actionUrl}"
-			name="adjustmentoflosses" method="post" class="frmlosses">
-			<fieldset>
-				<legend class="header-color"><small>Detail Of Losses</small></legend>
-				<div class="row show-grid">
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="NameOfHead"><small><fmt:message
-										key="member.adjustment.losses.name"></fmt:message></small></label>
-						</div>
-						<div class="rowlabel">
-							<!--
+		<c:choose>
+			<c:when
+				test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
+				<form id="frmdataLosses" action="${actionUrl}"
+					name="adjustmentoflosses" method="post" class="frmlosses">
+					<fieldset>
+						<legend class="header-color">
+							<small>Detail Of Losses</small>
+						</legend>
+						<div class="row show-grid">
+							<div class="col-md-4">
+								<div class="rowlabel">
+									<label for="NameOfHead"><small><fmt:message
+												key="member.adjustment.losses.name"></fmt:message></small></label>
+								</div>
+								<div class="rowlabel">
+									<!--
 					   <select name="NameOfHead" id="NameOfHead" onchange="checkentry()">
 					             <option value="">-Select Head-</option>
 					             <c:forEach var="booleanCombo" items="${objHashMapNameOfHead}">
@@ -78,24 +82,25 @@
 						         </c:forEach>
 					      </select>
 					      -->
-							<select name="NameOfHead" onchange="checkentry()" id="NameOfHead">
-								<option value="">-Select Head-</option>
-								<c:forEach var="map" items="${resultMapOfCFL}">
-									<option value="${map.key}"
-										<c:if test="${pageAction == 'EDIT_CHILD' && map.key == childBean.nameOfHead}">selected</c:if>>
-										<c:out value="${map.key}" />
-									</option>
-								</c:forEach>
-							</select>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="AssessmentYear"><small><fmt:message
-										key="member.adjustment.losses.year"></fmt:message></small></label>
-						</div>
-						<div class="rowlabel">
-							<!--
+									<select name="NameOfHead" onchange="checkentry()"
+										id="NameOfHead">
+										<option value="">-Select Head-</option>
+										<c:forEach var="map" items="${resultMapOfCFL}">
+											<option value="${map.key}"
+												<c:if test="${pageAction == 'EDIT_CHILD' && map.key == childBean.nameOfHead}">selected</c:if>>
+												<c:out value="${map.key}" />
+											</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="rowlabel">
+									<label for="AssessmentYear"><small><fmt:message
+												key="member.adjustment.losses.year"></fmt:message></small></label>
+								</div>
+								<div class="rowlabel">
+									<!--
 					 <select name="AssessmentYear" id="AssessmentYear" onblur="setYear()" onchange="checkentry()">
 						  <option value="">-Select Year-</option>
 						  <c:forEach var="booleanCombo" items="${objHashMapAssessmentYear}">
@@ -104,23 +109,23 @@
 					</select>
 					 -->
 
-							<select name="AssessmentYear" id="AssessmentYear"
-								onblur="setYear()" onchange="checkentry()">
-								<option value="">-Select Year-</option>
-								<c:forEach var="resultMap" items="${resultMapOfCFL}">
-									<c:forEach items="${resultMap.value}" var="cflYear">
-										<option class="${fn:replace(resultMap.key,' ','')} hide"
-											<c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == cflYear}">selected</c:if>
-											value="${cflYear}">${cflYear}</option>
-									</c:forEach>
-								</c:forEach>
-							</select>
+									<select name="AssessmentYear" id="AssessmentYear"
+										onblur="setYear()" onchange="checkentry()">
+										<option value="">-Select Year-</option>
+										<c:forEach var="resultMap" items="${resultMapOfCFL}">
+											<c:forEach items="${resultMap.value}" var="cflYear">
+												<option class="${fn:replace(resultMap.key,' ','')} hide"
+													<c:if test="${pageAction == 'EDIT_CHILD' && childBean.assessmentYear == cflYear}">selected</c:if>
+													value="${cflYear}">${cflYear}</option>
+											</c:forEach>
+										</c:forEach>
+									</select>
 
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row show-grid">
-					<!--
+						<div class="row show-grid">
+							<!--
 				 <div class="col-md-6">
 					<div class="rowlabel"><label for="DueDate"><small><fmt:message key="member.adjustment.losses.duedate"></fmt:message></small></label></div>
 					<div class="rowlabel"><select name="DueDate" id="DueDate">
@@ -139,83 +144,83 @@
 					</div>
 				</div>
 				 -->
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="DateOfFilingYear"><small><fmt:message
-										key="member.adjustment.losses.date"></fmt:message></small></label>
+							<div class="col-md-4">
+								<div class="rowlabel">
+									<label for="DateOfFilingYear"><small><fmt:message
+												key="member.adjustment.losses.date"></fmt:message></small></label>
+								</div>
+								<div class="rowlabel">
+									<input type="text" id="DateOfFilingYear"
+										name="DateOfFilingYear" value="${childBean.dateStr}"
+										class="filingdate" onchange="checkdate()" />
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="rowlabel">
+									<label for="Amount"><small><fmt:message
+												key="member.adjustment.losses.amount" /></small></label>
+								</div>
+								<div class="rowlabel">
+									<input type="text" name="Amount" id="Amount" class="decimal"
+										value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>" />
+								</div>
+							</div>
 						</div>
-						<div class="rowlabel">
-							<input type="text" id="DateOfFilingYear" name="DateOfFilingYear"
-								value="${childBean.dateStr}" class="filingdate"
-								onchange="checkdate()" />
+					</fieldset>
+					<div class="row show-grid">
+						<div class="col-md-4 col-md-offset-8 decimal">
+							<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
+							<a id="myModalHref" role="button"
+								class="btn btn-default btn-success">Save</a>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="rowlabel">
-							<label for="Amount"><small><fmt:message
-										key="member.adjustment.losses.amount" /></small></label>
-						</div>
-						<div class="rowlabel">
-							<input type="text" name="Amount" id="Amount" class="decimal"
-								value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>" />
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<div class="row show-grid">
-				<div class="col-md-4 col-md-offset-8 decimal">
-					<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
-					<a id="myModalHref" role="button"
-						class="btn btn-default btn-success">Save</a>
-				</div>
-			</div>
-			<input type="hidden" value="${uuid}" id="uuid" />
-		</form>
+					<input type="hidden" value="${uuid}" id="uuid" />
+				</form>
 
-	</c:when>
-	<c:otherwise>
-		<table>
-			<tr align="center">
-				<th width="180px"><b>Name Of Head</b></th>
-				<th><b>Assessment Year</b></th>
-				<th><b>Date Of Filing year</b></th>
-				<th><b>Amount</b></th>
-				<th><b>Actions</b></th>
-			</tr>
-			<c:if test="${not empty parentBean}">
-
-				<c:forEach items="${parentBean.adjustmentOfLossesList}"
-					var="adjustmentOfLosses">
-					<tr>
-						<td><c:out value="${adjustmentOfLosses.nameOfHead}" /></td>
-						<td><c:out value="${adjustmentOfLosses.assessmentYear}" /></td>
-						<td><c:out value="${adjustmentOfLosses.dateStr}" /></td>
-						<td><w4india:inr value="${adjustmentOfLosses.amount}" /></td>
-						<td><a class="btn btn-default btn-primary"
-							href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small><i
-									class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
-						</a>&nbsp;&nbsp; <a class="btn btn-default btn-danger"
-							href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"
-							data-confirm=""> <small><i
-									class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a></td>
+			</c:when>
+			<c:otherwise>
+				<table>
+					<tr align="center">
+						<th width="180px"><b>Name Of Head</b></th>
+						<th><b>Assessment Year</b></th>
+						<th><b>Date Of Filing year</b></th>
+						<th><b>Amount</b></th>
+						<th><b>Actions</b></th>
 					</tr>
+					<c:if test="${not empty parentBean}">
 
-				</c:forEach>
-				<!--
+						<c:forEach items="${parentBean.adjustmentOfLossesList}"
+							var="adjustmentOfLosses">
+							<tr>
+								<td><c:out value="${adjustmentOfLosses.nameOfHead}" /></td>
+								<td><c:out value="${adjustmentOfLosses.assessmentYear}" /></td>
+								<td><c:out value="${adjustmentOfLosses.dateStr}" /></td>
+								<td><w4india:inr value="${adjustmentOfLosses.amount}" /></td>
+								<td><a class="btn btn-default btn-primary"
+									href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/edit"><small><i
+											class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</small>
+								</a>&nbsp;&nbsp; <a class="btn btn-default btn-danger"
+									href="${scriptName}/<c:out value="${adjustmentOfLosses.canonicalUUID}"/>/delete"
+									data-confirm=""> <small><i
+											class="glyphicon glyphicon-trash glyphicon glyphicon-white"></i>Delete</small></a></td>
+							</tr>
+
+						</c:forEach>
+						<!--
 						<tr>
 					       <td colspan="3"><fmt:message key="tds.amount.total" /></td>
 					       <td><w4india:inr value="${parentBean.totalAmount}" /></td>
 					    </tr>
 					     -->
-			</c:if>
+					</c:if>
 
-		</table>
-		</br>
-		<a href="${scriptName}/new" class="btn btn-default btn-info"><small><i
-				class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
-	</c:otherwise>
-</c:choose>
-</div>
+				</table>
+				</br>
+				<a href="${scriptName}/new" class="btn btn-default btn-info"><small><i
+						class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </div>
 <res:client-validation formId="frmdataLosses"
 	screenConfigurationDocumentName="adjustmentoflosses"

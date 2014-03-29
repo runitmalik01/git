@@ -13,8 +13,8 @@
 		<w4india:itrsidebar></w4india:itrsidebar>
 		<div class="${sideBarMainClass}">
 			<fmt:message key="tr.details.itr2" var="subTitle" />
-			<w4india:titleandnav title="Relief under Section 90/90A/91"
-				subTitle="Schedule TR&nbsp;-&nbsp;${subTitle}&nbsp;i.e details of tax paid outside
+			<w4india:titleandnav title="Tax Relief"
+				subTitle="Schedule TR aka Relief under Section 90/90A/91&nbsp;-&nbsp;${subTitle}&nbsp;i.e details of tax paid outside
 				India on the income declared in Schedule FSI, Tax Payer
 				Identification Number (TIN) of the assessee in the country where tax
 				has been paid is to be filled up." />

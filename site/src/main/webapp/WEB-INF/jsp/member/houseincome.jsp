@@ -34,7 +34,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 				<c:out value="${screenConfigDocument.screenHeading}" />
 			</c:when>
 			<c:otherwise>
-				<w4india:titleandnav title="House Income"/>
+				<w4india:titleandnav title="House Income"
+					subTitle="A person earning income from his/her house property whether it is letout or self-occupied and maximum limit of interest is Rs. 1,50,000 in case of self-occupied."/>
 			</c:otherwise>
 		</c:choose>
 		<c:if test="${not empty formMap}">
@@ -47,7 +48,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		<c:choose>
 			<c:when
 				test="${pageAction == 'NEW_CHILD' || pageAction == 'EDIT_CHILD'}">
-	
+
 				<form id="frmdataHouseIncome" action="${actionUrl}" method="post"
 					name="housefrm">
 					<fieldset>
@@ -63,7 +64,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<input id="Address" name="Address" placeholder="Address"
 										class="uprcase" type="text" maxLength="200"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.address}"/></c:if>" />
-	
+
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -103,7 +104,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 									<input id="Pin" type="text" name="Pin" maxlength="6"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 							<c:out value="${childBean.pin}"/></c:if>" />
-	
+
 								</div>
 							</div>
 						</div>
@@ -168,12 +169,12 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 											<option
 												<c:if test="${pageAction == 'EDIT_CHILD' && childBean.coowned == booleanCombo.value}">selected</c:if>
 												value="${booleanCombo.value}">${booleanCombo.value}</option>
-	
+
 										</c:forEach>
 									</select>
 								</div>
 							</div>
-	
+
 							<div class="col-md-6">
 								<div class="rowlabel" id="percentageshare_label">
 									<label for=""><small>Your percentage share in
@@ -193,7 +194,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								title="Is this property being owned by someone else">Ownership
 									Details</abbr></small>
 						</legend>
-	
+
 						<div class="row show-grid">
 							<div class="col-md-1">
 								<div class="rowlabel decimal">
@@ -211,7 +212,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.coownername1}"/></c:if>" />
 								</div>
 							</div>
-	
+
 							<div class="col-md-4">
 								<div class="rowlabel">
 									<label for=""><small>PAN of the Co-owner</small> </label>
@@ -232,7 +233,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.share1}"/></c:if>" />
 								</div>
 							</div>
-	
+
 							<div class="row show-grid">
 								<div class="col-md-1">
 									<div class="decimal">2.</div>
@@ -353,8 +354,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div class="col-md-2 col-md-offset-1">
 								<div>
-									<input id="Letable_value" name="Letable_value" placeholder="Rs."
-										class="letout_L_inv letout_S_inh" type="text" maxlength="14"
+									<input id="Letable_value" name="Letable_value"
+										placeholder="Rs." class="letout_L_inv letout_S_inh"
+										type="text" maxlength="14"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.letable_value}"/></c:if>">
 								</div>
 							</div>
@@ -374,8 +376,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="col-md-2 col-md-offset-1">
 								<div>
 									<input id="Unrealised_rent" name="Unrealised_rent"
-										class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
-										maxlength="14"
+										class="letout_L_inv letout_S_inh" placeholder="Rs."
+										type="text" maxlength="14"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.unrealised_rent}"/></c:if>">
 								</div>
 							</div>
@@ -435,8 +437,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div class="col-md-2 col-md-offset-1">
 								<div>
-									<input id="Balance" name="Balance" placeholder="Rs." type="text"
-										class="letout_L_inv letout_S_inh"
+									<input id="Balance" name="Balance" placeholder="Rs."
+										type="text" class="letout_L_inv letout_S_inh"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.balance}"/></c:if>"
 										readonly="readonly" />
 								</div>
@@ -456,7 +458,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="col-md-2 col-md-offset-1">
 								<div>
 									<input id="Interest_borrowed" name="Interest_borrowed"
-										class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
+										class="letout_L_inv letout_S_inh" placeholder="Rs."
+										type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.interest_borrowed}"/></c:if>">
 								</div>
 							</div>
@@ -476,7 +479,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							<div class="col-md-2 col-md-offset-1">
 								<div>
 									<input id="Income_hproperty" name="Income_hproperty"
-										class="letout_L_inv letout_S_inh" placeholder="Rs." type="text"
+										class="letout_L_inv letout_S_inh" placeholder="Rs."
+										type="text"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_hproperty}"/></c:if>"
 										readonly="readonly" />
 								</div>
@@ -551,9 +555,9 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						class="btn btn-default btn-info"><small><i
 							class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 				</c:if>
-	
-	
-	
+
+
+
 			</c:otherwise>
 		</c:choose>
 	</div>

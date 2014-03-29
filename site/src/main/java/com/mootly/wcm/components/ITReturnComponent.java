@@ -1015,8 +1015,10 @@ public class ITReturnComponent extends BaseComponent {
 		if(getITRInitData(request).filingStatus.getXmlCode()=="I"){
 			startappvalidserv.validResidential(formMap, getITRInitData(request).assessmentYear);
 		}
+		
+		/*No Validation - Marriage/Pan Changed  */
 		//validate last name of Member with PAN 
-		startappvalidserv.validLastName(formMap);
+		/*startappvalidserv.validLastName(formMap);*/
 		
 		//additionalv validation
 		additionalValidation(request, response, formMap);
