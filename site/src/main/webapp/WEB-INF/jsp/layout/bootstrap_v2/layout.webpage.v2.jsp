@@ -90,15 +90,6 @@
 	<hst:componentRenderingURL var="ajaxLinkToComponent"></hst:componentRenderingURL>
 	<hst:headContributions categoryIncludes="jsExternal"/>
 	<script type="text/javascript"  src='<hst:link path="/js/w4india-validations.js"/>'></script>	
-	<script type="text/javascript">
-	 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		
-		  ga('create', 'UA-41164129-1', '<w4india:resellername/>.com');
-		  ga('send', 'pageview');
-	</script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
