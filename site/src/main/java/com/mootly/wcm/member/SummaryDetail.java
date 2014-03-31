@@ -6,22 +6,50 @@
  */
 package com.mootly.wcm.member;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.SortedSet;
+import java.util.UUID;
+
+import javax.jcr.LoginException;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.ServletContext;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.itextpdf.text.DocumentException;
 import com.mootly.wcm.annotations.AdditionalBeans;
 import com.mootly.wcm.annotations.PrimaryBean;
 import com.mootly.wcm.beans.AdjustmentOfLossesDoc;
@@ -54,6 +82,8 @@ import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.model.FinancialYear;
 import com.mootly.wcm.services.ITRXmlGeneratorServiceCommon;
 import com.mootly.wcm.services.IndianCurrencyHelper;
+import com.mootly.wcm.utils.ValueListService;
+import com.mootly.wcm.utils.ValueListServiceImpl;
 
 @PrimaryBean(primaryBeanClass=MemberPersonalInformation.class)
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
@@ -68,11 +98,21 @@ public class SummaryDetail extends ITReturnComponent {
 	MemberPersonalInformation parentBean=null;
 	HouseProperty hpBean=null;
 	MemberPersonalInfoUpdateHandler memberPersonalInfoUpdateHandler = null;
+	String xsltPath = null;
+	
+	@Override
+	public void init(ServletContext servletContext,
+			ComponentConfiguration componentConfig)
+			throws HstComponentException {
+		// TODO Auto-generated method stub
+		super.init(servletContext, componentConfig);
+		xsltPath = servletContext.getRealPath("/WEB-INF/xslt/ITR1.xslt");
+	}
+	
 	@Override
 	public void doBeforeRender(HstRequest request, HstResponse response) {
 		// TODO Auto-generated method stub
 		super.doBeforeRender(request, response);
-
 		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
 		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
 		String assYear= getITRInitData(request).getAssessmentYear();
@@ -100,13 +140,13 @@ public class SummaryDetail extends ITReturnComponent {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		log.info("inside map");
 		if (outputMap != null) {
 			for (String aKey:outputMap.keySet()) {
 				Object anObj = outputMap.get(aKey);
 				request.setAttribute(aKey, anObj);
 			}
 		}
+
 	}
 
 	/*
@@ -291,8 +331,6 @@ public class SummaryDetail extends ITReturnComponent {
 						diffInMonths = indianCurrencyHelper.getDiffInMonths(fixedDueDate, selfDate);
 					}
 					outputMap.put("selfassDiff", diffInMonths);
-
-
 				}
 			}
 		}

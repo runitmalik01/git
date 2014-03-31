@@ -139,7 +139,7 @@ public class ITRScheduleSI {
 				}
 			}
 		}
-		System.out.println("finalSplCodeRateTax"+finalSplCodeRateTax.size());
+		//System.out.println("finalSplCodeRateTax"+finalSplCodeRateTax.size());
 		if(finalSplCodeRateTax !=null){
 			for(SplCodeRateTax splCodeRateTax:finalSplCodeRateTax){
 				scheduleSI.getSplCodeRateTax().add(splCodeRateTax);
@@ -148,7 +148,10 @@ public class ITRScheduleSI {
 		for(SplCodeRateTax splCodeRateTax:scheduleSI.getSplCodeRateTax()){
 			totalCalTaxOnInc = totalCalTaxOnInc + splCodeRateTax.getSplRateIncTax().doubleValue();
 		}
-		System.out.println("value ::"+totalCalTaxOnInc);
+		if (log.isInfoEnabled()) {
+			log.info("TOTAL TAX CALC ON INCOME:" + totalCalTaxOnInc);
+		}
+		//System.out.println("value ::"+totalCalTaxOnInc);
 		scheduleSI.setTotSplRateIncTax(indianCurrencyHelper.bigIntegerRound(totalCalTaxOnInc));
 		return scheduleSI;
 	}

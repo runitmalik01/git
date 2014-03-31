@@ -359,6 +359,7 @@ public class ITR4XmlGeneratorService  {
 
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
+			log.error("Error transforming to XML",e);
 			e.printStackTrace();
 		}
 
