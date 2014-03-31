@@ -22,6 +22,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import javax.jcr.LoginException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletContext;
@@ -46,11 +49,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -77,6 +83,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -165,12 +172,13 @@ public class ITReturnComponent extends BaseComponent {
 	RetrieveRefundStatus retrieveRefundStatus = null;
 	String servletPath = null;
 	String xsltPath = null;
+	String xsltITRPath = null;
 	SequenceGenerator sequenceGenerator = null;
 	RetrievePANResponse retrievePANResponse = null;
 	Transaction transaction = null;
 	Enquiry enquiry =	null;
 	
-	
+	XsltURIResolver webInfXsltURIResolver = null;
 	
 
 	@Override
@@ -183,6 +191,10 @@ public class ITReturnComponent extends BaseComponent {
 		itrXmlGeneratorServiceFactory = context.getBean(com.mootly.wcm.services.ITRXmlGeneratorServiceFactory.class);
 		
 		xsltPath = servletContext.getRealPath("/xslt/ITRSummary.xsl");
+		xsltITRPath = servletContext.getRealPath("/WEB-INF/xslt/itrPaperFormFormat.xslt");
+		
+		webInfXsltURIResolver = new XsltURIResolver(servletContext.getRealPath("/WEB-INF/xslt"));
+		
 		itrValidationChain =  context.getBean(ITRValidatorChain.class);
 		retrievePANInformation = context.getBean(RetrievePANInformation.class);
 		retrieveITRVService = context.getBean(RetrieveITRV.class);
@@ -484,14 +496,14 @@ public class ITReturnComponent extends BaseComponent {
 			}
 		}
 		/** Validate XML According to Compulsory Screen that need to be Filled Before download **/
-		if (getITRInitData(request).pageAction != null && (getITRInitData(request).pageAction.equals(PAGE_ACTION.EFILE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
+		if (getITRInitData(request).pageAction != null && (getITRInitData(request).pageAction.equals(PAGE_ACTION.EFILE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) ||getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_PDF) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			ITRScreenXmlValidateServiceImpl iTRScreenXmlValidateServiceImpl = new ITRScreenXmlValidateServiceImpl();
 			iTRScreenXmlValidateServiceImpl.getValidateXmlBasedOnReqScreen(request, response);
 		}
 		String redirectToIfPaymentNotFound = getRedirectURLForSiteMapItem(request, response, null,(  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-memberinvoice" : "memberinvoice"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 		String redirectToIfConfirmationNotFound = getRedirectURLForSiteMapItem(request, response, null, (  (getITRInitData(request).isVendor(request) && getITRInitData(request).isOnVendorPortal()) ? "vendor-servicerequest-itr-tos-confirmation" : "servicerequest-itr-tos-confirmation"), getITRInitData(request).getFinancialYear(), getITRInitData(request).getTheFolderContainingITRDocuments(), getITRInitData(request).getPAN());
 		//String redirectToAfterEFile = getRedirectURLForSiteMapItem(request, response, null, (  (isVendor(request) && isOnVendorPortal()) ? "vendor-efile-confirmation" : "efile-confirmation"), getFinancialYear(), getTheFolderContainingITRDocuments(), getPAN());
-		if (getITRInitData(request).pageAction != null && (getITRInitData(request).pageAction.equals(PAGE_ACTION.EFILE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
+		if (getITRInitData(request).pageAction != null && (getITRInitData(request).pageAction.equals(PAGE_ACTION.EFILE) || getITRInitData(request).pageAction.equals(PAGE_ACTION.SHOW_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_PDF) ||getITRInitData(request).pageAction.equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).pageAction.equals(PAGE_ACTION.EMAIL_ITR_XML_AND_SUMMARY)) ) {
 			try {
 				handleITRSummary(request,response);
 			}catch (InvalidXMLException invalidXml) {
@@ -527,11 +539,19 @@ public class ITReturnComponent extends BaseComponent {
 				formMap.addFormField(formFieldIsValid);
 				formMap.addFormField(formFieldErrors);
 				//end changes
+				if (validationResponse != null) {
+					log.error("Errors in XML:" + validationResponse.getErrors());
+				}
 
 				StoreFormResult sfr = new StoreFormResult();
 				FormUtils.persistFormMap(request, response, formMap, sfr);
 				try {
-					response.sendRedirect(request.getContextPath() + "/services/itr-validate-xml.html?uuid=" + sfr.getUuid());
+					String redirecURLToSend = getRedirectURLForSiteMapItem(request,response,null,"itr-validate-xml",getITRInitData(request).getFinancialYear(),getITRInitData(request).getAbsoluteBasePathToReturnDocuments(),getITRInitData(request).getPAN()) ;
+					if (log.isInfoEnabled()) {
+						log.info("URL before then UUID:" + redirecURLToSend);
+					}
+					redirecURLToSend += "?uuid=" + sfr.getUuid();
+					response.sendRedirect(redirecURLToSend);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					log.error("Error in validating XML",e);
@@ -1500,9 +1520,11 @@ public class ITReturnComponent extends BaseComponent {
 
 		boolean isPaymentRequired = false;
 		isPaid = false;
-		if (! getITRInitData(request).getPageAction().equals(PAGE_ACTION.SHOW_ITR_SUMMARY)) isPaymentRequired = true;
+		if (! getITRInitData(request).getPageAction().equals(PAGE_ACTION.SHOW_ITR_SUMMARY) && ! getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_PDF)) {
+			isPaymentRequired = true;
+		}
 		
-		if (getITRInitData(request).isVendor(request) && (getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY)) ) {
+		if (getITRInitData(request).isVendor(request) && (getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_XML) || getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_SUMMARY) || getITRInitData(request).getPageAction().equals(PAGE_ACTION.DOWNLOAD_ITR_PDF)) ) {
 			isPaymentRequired = false; //TO-DO 
 		}
 		if (isPaymentRequired) {
@@ -1569,6 +1591,147 @@ public class ITReturnComponent extends BaseComponent {
 			response.setRenderPath("jsp/member/downloadfile.jsp");
 			break;
 		case DOWNLOAD_ITR_SUMMARY:
+			request.setAttribute("fileName", downloadPDFFileName);
+			request.setAttribute("filePath", generatedPathToPDF);
+			response.setRenderPath("jsp/member/downloadfile.jsp");
+			break;
+		case DOWNLOAD_ITR_PDF:
+			try {
+				String tmpDir = System.getProperty("java.io.tmpdir");
+				String uuid = UUID.randomUUID().toString();
+				new File(tmpDir + "/" + uuid).mkdir();
+				String xmlFile  = "documentView.xml";
+				String xmlFileMerged  = "documentView.merged.xml";
+				String pdfFileName = "ITR-" + getITRInitData(request).getPAN() +"-AY-" + getITRInitData(request).getFinancialYear().getDisplayAssessmentYear() + ".pdf";
+				String temporaryPathToXML = tmpDir + "/" + uuid + "/" + xmlFile;
+				String temporaryPathToMergedXML = tmpDir + "/" + uuid + "/" + xmlFileMerged;
+				String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
+				Session session = request.getRequestContext().getSession();
+				String thePathToExport = getITRInitData(request).getMemberPersonalInformation().getParentBean().getCanonicalPath();
+				//ByteArrayOutputStream theStream = new ByteArrayOutputStream();
+				final OutputStream os = new FileOutputStream(temporaryPathToXML);
+				session.exportDocumentView(thePathToExport, os, true, false);
+				//String theXML = new String(theStream.toByteArray());
+				//log.info(theXML);
+				
+				//DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+				//InputSource is = new InputSource(new StringReader(theXML));
+				//org.w3c.dom.Document aDom = db.parse(is);
+				
+				//we need to merge the GENERATED XML WITH the EXISTING XML for a COMPLETE PICTURE
+				DOMSource theFinalDomSource = null;
+				if (generatedXml != null) {
+					DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+					InputSource is = new InputSource(new FileInputStream(temporaryPathToXML));
+					org.w3c.dom.Document aDom = db.parse(is);
+					
+					//SECOND DOM for other XML
+					
+					DocumentBuilder db2 = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+					InputSource is2 = new InputSource(new StringReader(generatedXml));
+					org.w3c.dom.Document aDom2 = db.parse(is2);
+					
+					Node theNewNode = aDom.importNode( aDom2.getDocumentElement(),true) ;
+					aDom.getDocumentElement().appendChild(theNewNode);
+					
+					theFinalDomSource = new DOMSource(aDom.getDocumentElement());
+					
+					
+					// write the content into xml file
+					TransformerFactory transformerFactory = TransformerFactory.newInstance();
+					Transformer transformer = transformerFactory.newTransformer();
+					StreamResult result = new StreamResult(new File(temporaryPathToMergedXML));
+					// Output to console for testing
+					// StreamResult result = new StreamResult(System.out);
+					transformer.transform(theFinalDomSource, result);
+				}
+				
+				Source xmlSource = new StreamSource(new InputStreamReader(new FileInputStream(temporaryPathToMergedXML), "UTF8"));
+				//Source xmlSource = new StreamSource(theFinalDomSource);
+				Source xsltSource = new StreamSource(new InputStreamReader(new FileInputStream(xsltITRPath), "UTF8"));
+				//FileInputStream fi = new FileInputStream(xsltPath);
+				//StreamSource stylesource = new StreamSource(fi);
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				if ( webInfXsltURIResolver != null) transformerFactory.setURIResolver(webInfXsltURIResolver);
+				Transformer transformer  = transformerFactory.newTransformer(xsltSource);
+				//if ( webInfXsltURIResolver != null) transformer.setURIResolver(webInfXsltURIResolver); //we want to do xsl include to make code more modular
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+				if (getITRInitData(request).getMemberPersonalInformation() != null) {
+						ValueListService objValueListService = ValueListServiceImpl.getInstance();
+						SortedSet<Map.Entry<String,String>> objHashMapcountry = objValueListService.getCountry();
+						SortedSet<Map.Entry<String,String>> objHashMapstates = objValueListService.getStates();
+						String countryCode = getITRInitData(request).getMemberPersonalInformation().getCountry();
+						String stateCode = getITRInitData(request).getMemberPersonalInformation().getState();
+						if (countryCode != null && "91".equals(countryCode)) {
+							transformer.setParameter("COUNTRY", "INDIA");
+						}
+						else if (countryCode != null && objHashMapcountry != null) {
+							for (Iterator<Entry<String, String>> it = objHashMapcountry.iterator();it.hasNext();) {
+								Entry<String,String> anEntry =	it.next();
+								if (anEntry.getKey() != null && countryCode.equalsIgnoreCase(anEntry.getKey())) {
+									transformer.setParameter("COUNTRY", anEntry.getValue().toUpperCase());
+									break;
+								}
+							}
+						}
+						if (stateCode != null) {
+							for (Iterator<Entry<String, String>> it = objHashMapstates.iterator();it.hasNext();) {
+								Entry<String,String> anEntry =	it.next();
+								if (anEntry.getKey() != null && stateCode.equalsIgnoreCase(anEntry.getKey())) {
+									transformer.setParameter("STATE", anEntry.getValue().toUpperCase());
+									break;
+								}
+							}
+						}
+						transformer.setParameter("displayAssessmentYear",getITRInitData(request).getFinancialYear().getDisplayAssessmentYear());
+				}
+				StringWriter sw = new StringWriter();
+				//StreamSource sSource = new StreamSource(new StringReader(theXML));
+				StreamResult sResult = new StreamResult(sw);
+				transformer.transform(xmlSource,sResult);
+				//fi.close();
+				String theHTML = sw.toString();
+				if (log.isInfoEnabled()) {
+					log.info(theHTML);
+				}
+				String pathToPDF = generatePDF(theHTML,temporaryPathToPDF);
+				if (log.isInfoEnabled()) {
+					log.info(pathToPDF);
+				}
+				request.setAttribute("fileName", pdfFileName);
+				request.setAttribute("filePath", pathToPDF);
+				response.setRenderPath("jsp/member/downloadfile.jsp");
+				return;
+			}
+			catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TransformerConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TransformerFactoryConfigurationError e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TransformerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch (LoginException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (RepositoryException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			request.setAttribute("fileName", downloadPDFFileName);
 			request.setAttribute("filePath", generatedPathToPDF);
 			response.setRenderPath("jsp/member/downloadfile.jsp");
@@ -1747,6 +1910,32 @@ public class ITReturnComponent extends BaseComponent {
 		writer.close();
 
 		return temporaryPathToPDF;
+	}
+	
+	
+	/**
+	 * Return path to PDF file
+	 * @param theHTML
+	 * @return
+	 * @throws DocumentException
+	 * @throws IOException
+	 */
+	protected String generatePDF(String theHTML,String pathToPDF) throws DocumentException, IOException {
+		Document document = new Document();
+		//create the dir
+		PdfWriter writer = null;
+		try {
+			writer = PdfWriter.getInstance(document, new FileOutputStream(pathToPDF));
+			writer.setInitialLeading(12.5f);
+			document.open();
+			XMLWorkerHelper.getInstance().parseXHtml(writer, document,new StringReader(theHTML));
+			document.close();
+			writer.close();
+		}finally {
+			try{writer.close();}catch (Exception e){} finally{}
+			try{document.close();}catch (Exception e){} finally{}
+		}
+		return pathToPDF;
 	}
 
 	/**
