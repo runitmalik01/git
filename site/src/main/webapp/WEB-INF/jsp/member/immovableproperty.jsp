@@ -18,7 +18,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	<div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="Immovable Property Details" subTitle="Immovable Property Details aka Schedule FA-C&nbsp;-&nbsp;It includes assets such as a house, commercial property and land purchased for commercial or residential purposes. </br>A recent amendment relating to tax deduction at source (TDS) on transfer of immovable property has become effective from 1 June, 2013."/>
+	<w4india:titleandnav title="Immovable Property Details" subTitle="Immovable Property Details aka Schedule FA-(C)&nbsp;-&nbsp;It includes assets such as a house, commercial property and land purchased for commercial or residential purposes. </br>A recent amendment relating to tax deduction at source (TDS) on transfer of immovable property has become effective from 1 June, 2013."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">

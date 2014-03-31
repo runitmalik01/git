@@ -13,7 +13,7 @@
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
 	<fmt:message key="asset.liability.itr4" var="subTitle" />
-	<w4india:titleandnav title="Schedule AL" subTitle="${subTitle}"/>
+	<w4india:titleandnav title="Schedule AL" subTitle="Schedule AL aka ${subTitle}."/>
 	<hst:link var="mainSiteMapRefId" />
 	<form id="frmAsset_Liability" action="${actionUrl}" method="post"
 		name="frmAsset_Liability">

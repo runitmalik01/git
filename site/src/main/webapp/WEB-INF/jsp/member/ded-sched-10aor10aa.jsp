@@ -8,7 +8,7 @@
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-<w4india:titleandnav title="ITR Schedule 10A/10AA"/>
+<w4india:titleandnav title="Schedule 10A/10AA"/>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
 		<div class="alert alert-danger">
@@ -17,9 +17,7 @@
 	</c:forEach>
 </c:if>
 <hst:link var="siLink" siteMapItemRefId="itr-ded-schedule-10a"></hst:link>
-<h4>ITR-Schedule 10A/10AA</h4>
 <fieldset>
-	<legend>Schedule 10A/10AA</legend>
 	<strong>Click on</strong>
 	<div class="btn-group">
 		<button type="button" class="btn btn-default btn-warning dropdown-toggle" data-toggle="dropdown">
@@ -34,9 +32,9 @@
 </fieldset>
 <table class="table table-hover table-striped table-bordered">
 </br>
-	<caption>
+	<!-- <caption>
 		<strong>Detailed of Deductions Schedule 10A/10AA</strong>
-	</caption>
+	</caption> -->
 	<thead>
 		<tr>
 			<th>#</th>

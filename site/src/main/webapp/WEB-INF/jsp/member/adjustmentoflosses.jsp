@@ -36,8 +36,11 @@
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
+	
 		<w4india:titleandnav title="${adjustmentoflossestitle}"
 			subTitle="When assessee has different sources of income under the same head of income or may have income under different heads of income then it might happen that the net result from a particular source/head may be a loss. This loss can be set off against other sources/head in a particular manner." />
+			
+			
 		<c:if test="${not empty formMap}">
 			<c:forEach items="${formMap.message}" var="item">
 				<div class="alert alert-danger">
@@ -165,7 +168,7 @@
 										value="<c:if test="${pageAction == 'EDIT_CHILD'}"><c:out value="${childBean.amount}"/></c:if>" />
 								</div>
 							</div>
-						</div>
+						</div>					
 					</fieldset>
 					<div class="row show-grid">
 						<div class="col-md-4 col-md-offset-8 decimal">

@@ -14,7 +14,7 @@
 	<div class="${sideBarMainClass}">
 	<hst:link var="mainSiteMapRefId" />
 	<fmt:message key="deemed.capitalgain.itr4" var="subTitle"/>
-	<w4india:titleandnav title="Schedule DCG" subTitle="${subTitle}"></w4india:titleandnav>
+	<w4india:titleandnav title="Schedule DCG" subTitle="${title} aka ${subTitle} as according to section 50 of Income tax act if an assessee has sold a capital asset forming part of block of assets (building, machinery etc) on which the depreciation has been allowed under Income Tax Act, the income arising from such capital asset is treated as short term capital gain."></w4india:titleandnav>
 
 	<form id="frmDeemed_Capital" action="${actionUrl}" method="post"
 		name="frmDeemed_Capital">

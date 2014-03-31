@@ -3,7 +3,7 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="SignAuth">
-	<fmt:message key="SignAuth" />
+	Signing Authority Accounts
 </c:set>
 <hippo-gogreen:title title="${SignAuth}" />
 <hst:actionURL var="actionUrl" />
@@ -12,8 +12,8 @@
 	<div class="row show-grid">
 		<w4india:itrsidebar></w4india:itrsidebar>
 		<div class="${sideBarMainClass}">
-			<w4india:titleandnav title="Schedule FA-E"
-				subTitle="Schedule FA-(E)&nbsp;-&nbsp;The details of investment
+			<w4india:titleandnav title="Signing Authority Accounts"
+				subTitle="Signing Authority Accounts aka Schedule FA-(E)&nbsp;-&nbsp;The details of investment
 				in the accounts in which you have signing authority and which has
 				not been included in any other part of Schedule FA & filled up
 				investment held during the year after converting it into Indian

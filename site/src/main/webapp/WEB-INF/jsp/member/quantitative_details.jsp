@@ -19,7 +19,7 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
 	<fmt:message key="quantitative.details.itr4" var="subTitle"/>
-	<w4india:titleandnav title="Quantitative Details -Trade" subTitle="${subTitle}"/>
+	<w4india:titleandnav title="Trade" subTitle="Schedule QD-(A) aka Quantitative Details of Trade - An assessee must to give information regarding quantitative details of the principal item of goods traded if he is liable for audit under section 44AB and ${subTitle}."/>
 	<hst:link var="mainSiteMapRefId" />
 	<c:choose>
 		<c:when

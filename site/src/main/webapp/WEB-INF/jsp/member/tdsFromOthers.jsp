@@ -3,7 +3,7 @@
 <%@ page import="com.mootly.wcm.utils.*"%>
 <%@ page import="java.util.*"%>
 <c:set var="tds2">
-	<fmt:message key="tds2" />
+	Tax Deducted at Other Sources
 </c:set>
 <hippo-gogreen:title title="${tds2}" />
 <hst:actionURL var="actionUrl" />
