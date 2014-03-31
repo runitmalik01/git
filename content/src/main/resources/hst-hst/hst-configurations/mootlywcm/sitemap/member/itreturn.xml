@@ -5816,6 +5816,33 @@
 		    <sv:value>members</sv:value>
 		  </sv:property>
 		</sv:node>		
+		<sv:node sv:name="servicerequest-itr-download-pdf.html">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemapitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>4e708309-e0b0-4602-ac5f-1ac4555efe57</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		    <sv:value>hst:components/servicerequest-itr-download-xml</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+		    <sv:value>mainSiteMapItemRefId</sv:value>
+		    <sv:value>action</sv:value>
+		    <sv:value>nextScreen</sv:value>
+		  </sv:property>
+		  <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+		    <sv:value>servicerequest-itr-summary</sv:value>
+		    <sv:value>DOWNLOAD_ITR_PDF</sv:value>
+		    <sv:value>servicerequest-itr-summary</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:refId" sv:type="String">
+		    <sv:value>servicerequest-itr-download-pdf</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
+		    <sv:value>members</sv:value>
+		  </sv:property>
+		</sv:node>		
 		<!-- /new site maps -->
       </sv:node>
     </sv:node>
