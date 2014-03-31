@@ -404,7 +404,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 										<c:if test="${pageAction == 'EDIT_CHILD' || parentBean.state == booleanCombo.key}">selected</c:if>
 										value="${booleanCombo.key}">${booleanCombo.value}</option>
 								</c:forEach>
-								<option <c:if test="${pageAction == 'EDIT_CHILD' || parentBean.state == '99'}">selected</c:if> value="99">FOREIGN</option>
 							</select>
 						</div>
 		

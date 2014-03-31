@@ -26,6 +26,7 @@ import static com.mootly.wcm.utils.Constants.NT_PERSONAL_INFO_LINK;
 
 import javax.jcr.RepositoryException;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormMap;
 import org.hippoecm.hst.content.beans.ContentNodeBindingException;
 import org.hippoecm.hst.content.beans.Node;
@@ -339,7 +340,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		if ( formMap.getField("Stateslry") != null) {
 			setState(formMap.getField("Stateslry").getValue());
 		}
-		if ( formMap.getField("Taxable_earning") != null ) { // .getValue().isEmpty()) {}
+		if ( formMap.getField("Taxable_earning") != null && StringUtils.isNotBlank(formMap.getField("Taxable_earning").getValue())) { // .getValue().isEmpty()) {}
 			String strEarning=formMap.getField("Taxable_earning").getValue();
 			double taxableEarning = Double.parseDouble(strEarning);
 			setTaxable_earning(taxableEarning);
@@ -355,7 +356,7 @@ public class SalaryIncomeDetail extends HippoItem implements FormMapFiller {
 		}
 		double amtGS=0.0d;
 		setGross_salary(amtGS);
-		if ( formMap.getField("Gross_salary") != null && formMap.getField("Gross_salary").getValue() != null && formMap.getField("Gross_salary").getValue().isEmpty()) {
+		if ( formMap.getField("Gross_salary") != null && StringUtils.isNotBlank(formMap.getField("Gross_salary").getValue())) {
 			String strGross_salary = formMap.getField("Gross_salary").getValue();
 			amtGS = Double.parseDouble(strGross_salary);
 			setGross_salary(amtGS);

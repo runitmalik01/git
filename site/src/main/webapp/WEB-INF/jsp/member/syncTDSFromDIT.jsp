@@ -37,7 +37,13 @@
 <c:if test="${pageAction == 'SYNC_TDS_FROM_DIT'}">					
 	<h4>26AS Information from Department of Income Tax</h4>
 	    <c:set var="totalTDS" value="0"/>
-		    <c:choose>
+	       <c:if test="${not empty itrSelection && itrSelection != 'ITR1' && itrSelection != 'ITR4S'}">
+			  <c:set var="fromSixteenURL" value="formsixteenschedule.html"/>
+		   </c:if>
+		   <c:if test="${not empty itrSelection && (itrSelection == 'ITR1' || itrSelection == 'ITR4S')}">
+			  <c:set var="fromSixteenURL" value="formsixteen.html"/>
+	       </c:if>
+		   <c:choose>
 			  <c:when test="${not empty isInfoAvail && isInfoAvail == true}">
 			  	<form id="tdsfromdit" action="${actionUrl}" method="post" name="tdsfromdit">
 				    <table class="table table-striped">
@@ -57,6 +63,9 @@
 									<td>
 										<c:choose>
 											<c:when test="${empty anItem.hasAlreadyBeenImported || anItem.hasAlreadyBeenImported != 'true'}">
+											<div class="rowlabel">
+												<label for="category_${anItem.hashOfUniqueKeys}">Income From<span class="required" style="color:red">*</span></label>
+											</div>
 												<select class="required" name="category_${anItem.hashOfUniqueKeys}">
 													<option value="">Select</option>
 													<option value="salary">Salary</option>
@@ -103,7 +112,7 @@
 														<div class="rowlabel">
 															<label for="state_${anItem.hashOfUniqueKeys}">State<span class="required" style="color:red">*</span></label>
 														</div>
-														<select id="state_${anItem.hashOfUniqueKeys}" name="state_${anItem.hashOfUniqueKeys}" onchange="getautoState()" class="uprcase required" style="text-transform: uppercase;">
+														<select id="state_${anItem.hashOfUniqueKeys}" name="state_${anItem.hashOfUniqueKeys}" onchange="getautoState()" class="uprcase required states" style="text-transform: uppercase;">
 																	<option value="">-Select-</option>
 																	<option value="01">Andaman And Nicobar Islands</option>
 																	<option value="02">Andhra Pradesh</option>
@@ -141,7 +150,6 @@
 																	<option value="31">Uttar Pradesh</option>
 																	<option value="34">Uttaranchal</option>
 																	<option value="32">West Bengal</option>
-																	<option value="99">FOREIGN</option>
 																</select>
 													</div>
 													<div class="col-md-6">
@@ -157,7 +165,7 @@
 											</fieldset>
 										</c:if>
 									</td>
-									<td></td>
+									<td align="right">N/A</td>
 									<td align="right">
 										<c:if test="${empty anItem.hasAlreadyBeenImported || anItem.hasAlreadyBeenImported != 'true'}">
 											<input class="decimal amount requiresPositiveAmount" type="text" name="incCrgSal_<c:out value="${anItem.hashOfUniqueKeys}" />" value=""/>
@@ -166,8 +174,15 @@
 									<td align="right"><c:out value="${anItem.totalTDSSal}" /></td>
 									<td>
 										<c:if test="${anItem.hasAlreadyBeenImported == 'true'}">
-											<span class="glyphicon glyphicon-ok"></span>
-											<a href="${scriptName}../../formsixteen.html" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+										<span class="glyphicon glyphicon-ok"></span>
+										  <c:choose>
+										    <c:when test="${anItem.pension}">
+										      <a href="${scriptName}../../salaryincome.html" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+										    </c:when>
+										    <c:otherwise>
+										      <a href="${scriptName}../../${fromSixteenURL}" class="btn btn-default btn-primary"><i class="glyphicon glyphicon-pencil glyphicon glyphicon-white"></i>Edit</a>
+										    </c:otherwise>
+										  </c:choose>
 										</c:if>
 									
 									</td>
@@ -191,7 +206,7 @@
 								<td>Other than Salaries</td>
 								<td><c:out value="${anItem.TAN}" /></td>
 								<td><c:out value="${anItem.employerOrDeductorOrCollecterName}" /></td>		
-								<td></td>
+								<td align="right">N/A</td>
 								<td align="right">N/A</td>			
 								<%-- 
 								<td><c:out value="${anItem.deductedYr}" /></td>
@@ -248,7 +263,7 @@
 								<td><c:out value="${anItem.BSRCode}" /></td>
 								<td><c:out value="${anItem.srlNoOfChaln}" /></td>
 								<td><c:out value="${anItem.dateDep}" /></td>
-								<td>N/A</td>
+								<td align="right">N/A</td>
 								<td align="right"><c:out value="${anItem.amt}" /></td>
 								<%--<td align="right">N/A</td> --%>
 								<td>
@@ -270,7 +285,7 @@
 								<td><c:out value="${anItem.BSRCode}" /></td>
 								<td><c:out value="${anItem.srlNoOfChaln}" /></td>
 								<td><c:out value="${anItem.dateDep}" /></td>
-								<td>N/A</td>
+								<td align="right">N/A</td>
 								<td align="right"><c:out value="${anItem.amt}" /></td>
 								<%--<td align="right">N/A</td>--%>
 								<td>
@@ -295,9 +310,9 @@
 			</table>
 			<c:if test="${totalToBeImported > 0}">
 				<div class="row show-grid">
-					<div class="col-md-3 col-md-offset-10">
-						<a href="${redirectURLToSamePage}" class="btn btn-info">Cancel</a>
-						<button type="submit" class="btn btn-primary">Import</button>
+					<div class="col-md-4 col-md-offset-8 decimal">
+						<a href="${redirectURLToSamePage}" class="btn btn-danger">Cancel</a>
+						<button type="submit" class="btn btn-success">Import</button>
 						<%--<input type="submit" value="Import" class="button default"> --%>
 					</div>
 				</div>
@@ -315,7 +330,7 @@
   <div class="alert alert-info">
   <span style="color:#AC1700;">We are unable to find any information related to your 26AS from the Department of Income Tax.
     You can always update your Tax Deduction information using one of the following</span><br><br>
-     <a href="formsixteen.html"><button type="button" class="btn btn-primary"> Form 16 (Salaried)</button></a>
+     <a href="${fromSixteenURL}"><button type="button" class="btn btn-primary"> Form 16 (Salaried)</button></a>
       <a href="salaryincome.html"><button type="button" class="btn btn-primary"> Pension</button></a>
        <a href="advancetax.html"> <button type="button" class="btn btn-primary"> Advanced Tax</button></a>
         <a href="selfassesmenttax.html"> <button type="button" class="btn btn-primary"> Self Assessment</button></a>
@@ -354,5 +369,20 @@
 			
 			$("#tdsfromdit").validate();
 		});
+		
+	<c:if test="${not empty  twenty26asResponse.twenty26astdsOnSalaries && fn:length(twenty26asResponse.twenty26astdsOnSalaries) > 0}">
+	   <c:forEach var="anItem" items="${twenty26asResponse.twenty26astdsOnSalaries}">
+	   		$('#state_${anItem.hashOfUniqueKeys}').change(function(){
+			   if($('#state_${anItem.hashOfUniqueKeys}').val()=='99'){
+			      $('#pin_${anItem.hashOfUniqueKeys}').val('999999');
+			      $('#pin_${anItem.hashOfUniqueKeys}').attr('readonly','readonly');
+			   }else{
+                     $('#pin_${anItem.hashOfUniqueKeys}').val('');
+                     $('#pin_${anItem.hashOfUniqueKeys}').removeAttr('readonly');
+                    }
+			});
+	   </c:forEach>
+	</c:if>
+		
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal"/>
