@@ -65,9 +65,21 @@ if(CapDoc!="CapDoc"){
 		}
 	}
 	//calculate the values on capital gain according to Schedule SI Sections.
-	stGainSTTpaid = stBalnc + stSecA + stLoss; 
+	stGainSTTpaid = stBalnc + stSecA + stLoss;
+	if(stGainSTTpaid < 0){
+		stGainSTTpaid = 0;
+	}
 	ltCapGainWtIndex = (ltBalnc > ltded) ? (ltBalnc - ltded) : 0;	
+	if(ltCapGainWtIndex < 0){
+		ltCapGainWtIndex = 0;
+	}
 	ltGain = (ltCapGainWIndex > ltUnlisSecWIndex) ? (ltCapGainWIndex - ltUnlisSecWIndex) : 0;
+	if(ltGain < 0){
+		ltGain = 0;
+	}
+	if(ltUnlisSec < 0){
+		ltUnlisSec = 0;
+	}
 
 	//adjustment of capital gain if user don't have any tax at source of income.
 	remainSlab = (grossTotal < slabValue) ? (slabValue - grossTotal) : 0; //find remaining amount that can be adjust to capital gain
