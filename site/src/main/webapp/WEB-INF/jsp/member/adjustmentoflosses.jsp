@@ -38,7 +38,7 @@
 	<div class="${sideBarMainClass}">
 	
 		<w4india:titleandnav title="${adjustmentoflossestitle}"
-			subTitle="When assessee has different sources of income under the same head of income or may have income under different heads of income then it might happen that the net result from a particular source/head may be a loss. This loss can be set off against other sources/head in a particular manner." />
+			subTitle="Schedule CFL- When assessee has different sources of income under the same head of income or may have income under different heads of income then it might happen that the net result from a particular source/head may be a loss. This loss can be set off against other sources/head in a particular manner." />
 			
 			
 		<c:if test="${not empty formMap}">
