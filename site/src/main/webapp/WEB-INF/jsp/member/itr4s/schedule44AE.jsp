@@ -10,25 +10,14 @@
 <hst:actionURL var="actionUrl" />
 <div class="page type-page">
 	<w4india:itrmenu />
-	<div class="row show-grid">
+	<div class="row show-grid"> 
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<hst:link var="mainSiteMapRefId" />
-		<div class="page-header">
-		<w4india:titleandnav title="Business Income" subTitle="Business Income sources includes any trade, commerce,
+	<hst:link var="mainSiteMapRefId" />		
+		<w4india:titleandnav title="Presumptive Income" subTitle="Business Income sources includes any trade, commerce,
 				manufacture or any adventure or concern in the nature of trade,
 				commerce or manufacture.It includes any activity carried out by
-				person with a motive to earn profit out of it."/>
-		<!-- <h2 class="text-center">
-			<strong> Business Income </strong>
-		</h2>
-		<h4>
-			<small>Business Income sources includes any trade, commerce,
-				manufacture or any adventure or concern in the nature of trade,
-				commerce or manufacture.It includes any activity carried out by
-				person with a motive to earn profit out of it. </small>
-		</h4> -->
-	</div>
+				person with a motive to earn profit out of it."/>	
 	<c:choose>
 		<c:when
 			test="${pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD'}">
@@ -161,6 +150,8 @@
 					class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 </div>
 <script type="text/javascript">
 	$('#hold_Period').change(function() {

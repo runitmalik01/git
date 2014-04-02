@@ -21,7 +21,9 @@
 							<c:out value="${screenConfigDocument.screenHeading}" />
 						</c:when>
 						<c:otherwise>
-							<w4india:titleandnav title="Pension Income" subTitle="Enter details of your Pension Income"/>
+							<w4india:titleandnav title="Pension Income" subTitle="Enter details of your employer from Form 16 e.g. PAN,
+					TAN, Address, etc. These details can be found in your Form-16 issued
+					to you by your employer."/>
 						</c:otherwise>
 					</c:choose>
 					<c:if test="${not empty formMap}">

@@ -13,9 +13,8 @@
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-<w4india:titleandnav title="Schedule BFLA" subTitle="Schedule BFLA (Brought Forward Losses)&nbsp;-
-				&nbsp;Statement of income after set off of unabsorbed loss brought
-				forward from earlier years."/>
+<w4india:titleandnav title="Schedule BFLA" subTitle="Schedule BFLA aka Brought Forward Losses &nbsp;-
+				&nbsp;Assessee should mention the loss which is brought forward from the previous years to adjust against profits in the current year from house property, business or profession and other sources (other than losses from race horses)."/>
 <div class="page">
 	<form id="scheduleBFLA" action="${actionUrl}" method="post" name="scheduleBFLA">
 		<fieldset>

@@ -12,7 +12,7 @@
 	<div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="Schedule FA-B" subTitle="Schedule FA-(B)&nbsp;-&nbsp;The resident assessee is
+	<w4india:titleandnav title="Financial Interest Details" subTitle="Schedule FA-(B)&nbsp;-&nbsp;The resident assessee is
 				the owner of record or holder of legal title of any financial
 				account,irrespective of whether he is the beneficiary or not or if
 				the owner of record or holder of title as an agent, nominee,

@@ -13,7 +13,7 @@
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
 	<fmt:message key="income.bp.itr4" var="subTitle"/>
-	<w4india:titleandnav title="Schedule BP" subTitle="Schedule BP&nbsp;-&nbsp;${subTitle}"/>
+	<w4india:titleandnav title="Profession Income" subTitle="Profession Income aka Schedule BP - ${subTitle}"/>
 	
 	<hst:link var="mainSiteMapRefId" />
 	<form id="frmIncomeBP" action="${actionUrl}" method="post"

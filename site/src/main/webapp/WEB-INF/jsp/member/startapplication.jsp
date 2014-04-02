@@ -60,8 +60,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</div>
 	</c:if>
 	<div id="ditPanInvalid" class="alert alert-danger <c:if test="${empty noPanMatchFound}">hide</c:if>"><strong><fmt:message key="err.match.pan.dit"/></strong></div>
-	<div id="lastNameInvalid" class="alert alert-danger hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
-	<div id="error" class="alert alert-danger" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
+
+<!-- 	No Validation - Marriage/Pan Changed  -->
+	<%-- <div id="lastNameInvalid" class="alert alert-danger hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div> --%>
+	<%-- <div id="error" class="alert alert-danger" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div> --%>
 	<%--
 	<h4>
 		<c:out value="${filingStatus}" /> Information
