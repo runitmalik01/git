@@ -3,7 +3,6 @@
 <c:set var="feedbacktitle">
 	Feedback
 </c:set>
-<hippo-gogreen:title title="${feedbacktitle}" />
 
 <%--@elvariable id="form" type="org.onehippo.forge.easyforms.model.Form"--%>
 <%--@elvariable id="likert" type="org.onehippo.forge.easyforms.model.Likert"--%>
@@ -17,10 +16,10 @@
 				.getName());
 	}
 %>
-
+<hippo-gogreen:seoheader title="Problem with eFiling? - Provide your Feedback" robots="NOINDEX, FOLLOW"/>
 <!-- <div class="page type-page"> -->
 <div class="page">
-	<w4india:titleandnav title="Feedback"
+	<w4india:titleandnav title="Problem with eFiling? - Provide your Feedback"
 		subTitle="We welcome problem reports, feature ideas and
 						general comments." />
 	<!-- <h2 class="page-title">Feedback</h2> -->

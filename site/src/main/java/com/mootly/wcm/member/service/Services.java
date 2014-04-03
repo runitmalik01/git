@@ -97,7 +97,8 @@ public class Services extends BaseComponent {
 			f.addOrFilter(f2);
 			hstQuery.setFilter(f);
 		}
-		if (scope instanceof HippoFacetChildNavigationBean || scope instanceof HippoFacetNavigation) {
+		HippoBean contentBean =  getContentBean(request);
+		if (contentBean != null && ( contentBean instanceof HippoFacetChildNavigationBean || contentBean instanceof HippoFacetNavigation) ) {
 			// only show faceted services items
 			final HippoFacetNavigationBean facetBean = BeanUtils.getFacetNavigationBean(request, hstQuery, objectConverter);
 

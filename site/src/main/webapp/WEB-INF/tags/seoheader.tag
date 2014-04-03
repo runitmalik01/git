@@ -71,9 +71,9 @@
 </c:choose>
 
 <c:choose>
-	<c:when test="${empty keywords || fn:trim(keywords) == '' }">
+	<c:when test="${not empty keywords || fn:trim(keywords) != '' }">
 		<hst:element var="metaKeywords" name="meta">
-	  		<hst:attribute name="name">robots</hst:attribute>
+	  		<hst:attribute name="name">keywords</hst:attribute>
 	  		<hst:attribute name="content" value="${keywords}"/>
 		</hst:element>
 		<hst:headContribution element="${metaKeywords}" category="seoheader" />	

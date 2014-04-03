@@ -9,6 +9,18 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
+   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	    	<list>
+	    		<value>classpath:DITConnectorContext.properties</value>
+	    		<value>classpath:CitrusIntegrationContext.properties</value>
+	    		<value>classpath:sfa.properties</value>
+	    		<value>classpath:NetCoreConnectorContext.properties</value>
+	    	</list>	        	        
+	    </property>
+  </bean>
+ <!--  ITReturn Component Helper -->
+  <bean id="itReturnComponentHelper" class="com.mootly.wcm.components.ITReturnComponentHelper"/>
   <!-- You may add any beans here. -->  
   <bean class="com.mootly.wcm.services.SequenceGeneratorImpl" id="sequenceGenerator"></bean>
   <bean class="com.mootly.wcm.services.DeductionListService" id="deductionListService"></bean>
@@ -35,15 +47,33 @@
       	</constructor-arg>
   </bean>
   
+  
   <!-- DIT SOAP Integration define the services -->  
-  <import resource="DITConnectorContext.xml"/>
+ <!-- <import resource="DITConnectorContext.xml"/>  --> 
   
   <import resource="CitrusIntegrationContext.xml"/>
-      
   
-  <!--  ITReturn Component Helper -->
-  <bean id="itReturnComponentHelper" class="com.mootly.wcm.components.ITReturnComponentHelper"/>
+  <import resource="NetCoreIntegrationContext.xml"/>
+  
+  <!-- 
+  <bean id="digitalSignatureService" class="com.mootly.wcm.services.ds.impl.DigitalSignatureServiceForITR">
+      <property name="propertyNameForPassword" value="mootlywcm:docPassword"/>
+      <property name="relPathChildNodeWithKey" value="mootlywcm:memberDocs"/>
+      <property name="propertyNameDigitalCertificate" value="jcr:data"/>    
+      <property name="keyStoreType" value="pkcs12"/>
+      <property name="keyStoreProvider" value="SunJSSE"/>
+  </bean>
+  
+  <bean id="eFileService" class="com.mootly.wcm.services.efile.IncomeTaxIndiaEFilingService">
+      <property name="digitalSignatureService" ref="digitalSignatureService"/>
+      <property name="submitBulkITRService" ref="submitBulkITR"/>
+      <property name="canonicalHandlePathPropertyMemberPersonalInfo" value="mootlywcm:pathToDigitalSignature"/>
+      <property name="canonicalHandlePathPropertyResellerSignupDocument" value="mootlywcm:pathToDigitalSignature"/>
+  </bean>
+  
+  
+ 
   
   <import resource="ITRValidatorChainContext.xml"/>
-  
+   -->
 </beans>

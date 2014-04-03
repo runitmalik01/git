@@ -17,17 +17,16 @@
 --%>
 <%@include file="../includes/tags.jspf"%>
 <c:set var="signuptitle"><fmt:message key="member.signup.title"/></c:set>
-<hippo-gogreen:title title="${signuptitle}"/>
+<hippo-gogreen:seoheader title="${signuptitle}" robots="INDEX, FOLLOW" description="Signup to India's #1 eFile provider for your Income Tax. 100% accurate calculations and backed by India's top CA firm."/>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
 <div class="row">
 <div class="memberlogin page type-page">
-		<h3 id="respond1">Signup to <w4india:resellername/></h3>
+		<h1 id="respond1">Signup to <w4india:resellername/></h1>
 		<h4><small>
-It takes just a minute to join.
+Signup and get eFiling. <w4india:resellername/> is India's is easy to use and #1 portal for eFiling your Income Tax Return in minutes.
 Please enter the following information to create your account.</small></h4>
-		
 		<form action="${actionUrl}" method="post" id="signupForm" role="form">
 		   <%-- <p>
 		 	  <label for="email">
@@ -67,7 +66,6 @@ Please enter the following information to create your account.</small></h4>
 		   </p>
 		   <hst:link var="memberhome" path="/member"/>--%>
 		   <%--<input type="hidden" name="destination" value="${memberhome}"/>  --%>
-		   <h2>Please Sign Up</h2>
 			<hr class="colorgraph">
 			<div>
 			  <label for="email">
