@@ -40,6 +40,10 @@
         <property name="secretKey"><value>${secretKey}</value></property>
         <property name="currency"><value>INR</value></property>
         <property name="merchantId"><value>${merchantId}</value></property>
+        <property name="checkoutURL"><value>${checkout_URL}</value></property>
+        <property name="paysealMerchantId" value="${paysealMerchantId}"/>  
+        <property name="paysealNoResultMessage" value="${paysealNoResultMessage}"/>  
+        <property name="paysealNoResultCode" value="${paysealNoResultCode}"/>  
     </bean>
     <bean id="paymentServiceXML" parent="paymentServiceGeneric" class="com.mootly.wcm.services.citruspay.impl.PaymentServiceXML" abstract="true"/>
     
@@ -47,19 +51,8 @@
     <bean id="endPointURL_Transaction" class="java.net.URL">
     	<constructor-arg value="${endPointURL_Transaction}"/>
     </bean>	
-    <bean id="endPointURL_Checkout" class="java.net.URL">
-    	<constructor-arg value="${checkout_URL}"/>
-    </bean>	
     <!--  we need an instance of this bean every time so we are making it prototype scope -->
     <bean scope="prototype" id="transactionServiceHTTPConnection" class="java.net.HttpURLConnection"  factory-bean="endPointURL_Transaction" factory-method="openConnection">
-        <property name="requestMethod"><value>POST</value></property>
-        <property name="doInput"><value>true</value></property>
-        <property name="doOutput"><value>true</value></property>
-        <property name="useCaches"><value>false</value></property>
-        <property name="allowUserInteraction"><value>false</value></property>
-	</bean>
-	
-    <bean scope="prototype" id="transactionServiceHTTPConnectionForCheckout" class="java.net.HttpURLConnection"  factory-bean="endPointURL_Checkout" factory-method="openConnection">
         <property name="requestMethod"><value>POST</value></property>
         <property name="doInput"><value>true</value></property>
         <property name="doOutput"><value>true</value></property>
@@ -81,6 +74,6 @@
 	</bean>
     <bean id="enquiryService" class="com.mootly.wcm.services.citruspay.impl.EnquiryImpl" parent="paymentServiceXML">
         <property name="httpConnectionService" ref="httpConnectionService"/>
-        <property name="endPointURL_Enquiry"><value>${endPointURL_Enquiry}</value></property>     
+        <property name="endPointURL_Enquiry"><value>${endPointURL_Enquiry}</value></property>   
     </bean>
 </beans>

@@ -1627,7 +1627,7 @@ public class ITReturnComponent extends BaseComponent {
 					
 					DocumentBuilder db2 = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 					InputSource is2 = new InputSource(new StringReader(generatedXml));
-					org.w3c.dom.Document aDom2 = db.parse(is2);
+					org.w3c.dom.Document aDom2 = db2.parse(is2);
 					
 					Node theNewNode = aDom.importNode( aDom2.getDocumentElement(),true) ;
 					aDom.getDocumentElement().appendChild(theNewNode);
@@ -1642,6 +1642,7 @@ public class ITReturnComponent extends BaseComponent {
 					// Output to console for testing
 					// StreamResult result = new StreamResult(System.out);
 					transformer.transform(theFinalDomSource, result);
+					try { result.getWriter().close(); } catch (Exception e) {}
 				}
 				
 				Source xmlSource = new StreamSource(new InputStreamReader(new FileInputStream(temporaryPathToMergedXML), "UTF8"));

@@ -3,11 +3,11 @@
 <div class="row show-grid">
 	<div class="col-md-9">
 	  <div class="rowlabel">
-		<h2 align="center">Weath4India Services</h2>
+		<h1><w4india:resellername/> Services</h1>
 		<h5><small>We are constantly working towards our goal of bridging the possible gap between income earning population of 
 		India with the Government of India, by providing dedicated, fast and cost effective services and creating value for our customers and partners.</small></h5>
 		<div id="services">
-			<c:forEach items="${services.items}" var="serviceitem" varStatus="status">
+			<c:forEach items="${searchResult.items}" var="serviceitem" varStatus="status">
 				<c:if test="${serviceitem.enable eq 'true'}">
 					<hst:cmseditlink var="test" hippobean="${serviceitem}" />
 					<hst:link var="link" hippobean="${serviceitem}" />
@@ -21,14 +21,14 @@
 			</c:forEach>
 		</div>
 		<c:choose>
-			<c:when test="${services.total eq 0}">
+			<c:when test="${searchResult.total eq 0}">
 				<p id="results">
 					<fmt:message key="search.results.noresults" />
 					'${query}'
 				</p>
 			</c:when>
 			<c:otherwise>
-				<hippo-gogreen:pagination pageableResult="${services}" queryName="query" queryValue="${query}" />
+				<hippo-gogreen:pagination pageableResult="${searchResult}" queryName="query" queryValue="${query}" />
 			</c:otherwise>
 		</c:choose>
 		</div>

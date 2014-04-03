@@ -6,7 +6,8 @@
 	<fmt:message key="news.overview.content.title" />
 </c:set>
 <hst:link var="newslink" siteMapItemRefId="news" />
-<hippo-gogreen:title title="${newsoverviewtitle}" />
+<hippo-gogreen:seoheader title="${newsoverviewtitle}" robots="NOINDEX, FOLLOW"></hippo-gogreen:seoheader>
+
 <hst:actionURL var="actionUrl"></hst:actionURL>
 
 <div class="page" id="news">
