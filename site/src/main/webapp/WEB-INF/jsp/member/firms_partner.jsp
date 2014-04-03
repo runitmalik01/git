@@ -13,7 +13,7 @@ Partnership In Firms
 	<div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="Schedule IF" subTitle="This Schedule has to be filled
+	<w4india:titleandnav title="Schedule IF" subTitle="It has to be filled
 				for each firm in which you are partner,amount of share in the profit
 				of the firm and amount of capital balance (including the capital on
 				which you are entitled for an interest) in the firm in which you are

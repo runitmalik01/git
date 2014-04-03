@@ -12,7 +12,7 @@
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
 		<w4india:titleandnav title="Schedule DEP"
-			subTitle="Schedule Depreciation"></w4india:titleandnav>
+			subTitle="Schedule Depreciation is summary of depreciation includes Deemed short term capital gain, if any as computed in schedule DPM and DOA has to be entered."></w4india:titleandnav>
 		<hippo-gogreen:title title="${scheduledep}" />
 
 		<hst:actionURL var="actionUrl"></hst:actionURL>

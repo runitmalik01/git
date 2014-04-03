@@ -27,7 +27,7 @@
 		request.setAttribute("objTreeMapRelation", objTreeMapRelation);
 	%>
 	<fmt:message key="member.clubincome.itr2" var="title" />
-	<w4india:titleandnav title="${title}" subTitle="Schedule SPI&nbsp;-&nbsp;All income which arises to
+	<w4india:titleandnav title="Schedule SPI" subTitle="Schedule SPI aka Clubbing of Income&nbsp;-&nbsp;All income which arises to
 				spouse,minor child directly or indirectly by way of salary,
 				commission etc. by virtue of any employment or otherwise from a
 				concern in which assessee has substantial interest shall be included

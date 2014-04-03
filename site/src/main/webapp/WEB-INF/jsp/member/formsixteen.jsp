@@ -22,9 +22,8 @@
 				<c:out value="${screenConfigDocument.screenHeading}" />
 			</c:when>
 			<c:otherwise>
-				<w4india:titleandnav title="Salary Income" subTitle="Enter details of your employer from Form 16 e.g. PAN,
-					TAN, Address, etc. These details can be found in your Form-16 issued
-					to you by your employer."/>
+				<w4india:titleandnav title="Form 16"
+					subTitle="Form 16 represents Salary Income with TDS details  issued by an employer deducting the TDS while making payments to an employee." />
 				<!-- <h2 style="color: black;">Salary Income: Employer Details</h2> -->
 			</c:otherwise>
 		</c:choose>
@@ -64,7 +63,7 @@
 											<c:if test="${not empty childBean.employe_category && childBean.employe_category =='OTH'}">selected</c:if>>OTHERS.</option>
 										<option value="NA"
 											<c:if test="${not empty childBean.employe_category && childBean.employe_category =='NA'}">selected</c:if>>NA</option>
-		
+
 									</select>
 								</div>
 							</div>
@@ -78,7 +77,8 @@
 										<label for="employer">Name of Employer</label>
 									</div>
 									<div class="rowlabel">
-										<input type="text" name="employer" id="employer" class="uprcase"
+										<input type="text" name="employer" id="employer"
+											class="uprcase"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.employer}"/></c:if>"
 											maxlength="60">
 									</div>
@@ -87,7 +87,7 @@
 									<div class="rowlabel">
 										<label for="pan_deductor">PAN of Employer</label>
 									</div>
-		
+
 									<div class="rowlabel">
 										<input type="text" name="pan_deductor" class="uprcase"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
@@ -125,7 +125,7 @@
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><c:out value="${childBean.pan_deductor}"/></c:if>">
 									</div>
 								</div> --%>
-		
+
 							</div>
 							<div class="row show-grid">
 								<%-- <div class="col-md-4">
@@ -159,7 +159,7 @@
 											readonly="readonly" />
 									</div>
 								</div>
-		
+
 								<div class="col-md-4 <c:if test="${not empty itr2}">hide</c:if>">
 									<div class="rowlabel">
 										<label class="">Address of Employer</label>
@@ -174,13 +174,13 @@
 						<c:if test="${not empty itr2}">
 							<!-- 	<%@include file="../member/formsixteen_adv1.jsp" %> -->
 							<jsp:include page="formsixteen_adv1.jsp" />
-		
+
 						</c:if>
-		
-		
-		
-		
-		
+
+
+
+
+
 						<!--
 						<legend style="color: black">
 							Acknowledgement Nos. of all quarterly statements of TDS under
@@ -322,13 +322,14 @@
 		  -->
 						<fieldset>
 							<legend class="header-color">
-								<small>Details of salary paid and any other income and tax
-									deducted</small>
+								<small>Details of salary paid and any other income and
+									tax deducted</small>
 							</legend>
 							<label><strong>1.</strong> </label> <label> Gross salary</label>
 							<table>
 								<tr>
-									<td>(a) Salary as per provisions contained in section 17(1)</td>
+									<td>(a) Salary as per provisions contained in section
+										17(1)</td>
 									<td><input id="gross_a" name="gross_a" class=" decimal"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.gross_a}"/></c:if>"
 										placeholder="Rs." type="text" maxlength="14" /></td>
@@ -361,14 +362,14 @@
 								</tr>
 							</table>
 						</fieldset>
-		
+
 						<fieldset>
 							<legend class="header-color">
 								<small> <em>Less:</em> Allowance to the exempt under
 									section 10
 								</small>
 							</legend>
-		
+
 							<div class="row show-grid">
 								<div class="col-md-8">
 									<div class="rowlabel">
@@ -425,11 +426,12 @@
 								</div>
 							</div>
 							<br />
-		
+
 							<div class="row show-grid">
 								<div class="col-md-8">
 									<div class="rowlabel">
-										<label><strong>3.</strong> </label> <label> Balance(1-2)</label>
+										<label><strong>3.</strong> </label> <label>
+											Balance(1-2)</label>
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -497,14 +499,15 @@
 							</div>
 							<div class="col-md-4">
 								<div class="rowlabel">
-									<input id="income_chargable_total" name="income_chargable_total"
-										class=" decimal" readonly="readonly"
+									<input id="income_chargable_total"
+										name="income_chargable_total" class=" decimal"
+										readonly="readonly"
 										value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.income_chargable_tax}"/></c:if>"
 										placeholder="Rs." type="text" maxlength="14" />
 								</div>
 							</div>
 						</div>
-		
+
 						<%-- 	<tr>
 									<td><label><strong>7.</strong> </label> <label><em>Add</em>:
 											Any other income reported by the employee </label></td>
@@ -951,14 +954,15 @@
 								</div>
 								<div class="col-md-4">
 									<div class="rowlabel">
-										<input id="relief_2" name="relief_2" class="decimal" type="text"
+										<input id="relief_2" name="relief_2" class="decimal"
+											type="text"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 									<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.relief_2}"/></c:if>"
 											placeholder="Rs.">
 									</div>
 								</div>
 							</div>
-		
+
 							<%-- <tr>
 									<td><label><strong>16.</strong> </label> <label>Tax
 											payable (14-15)</label></td>
@@ -981,7 +985,7 @@
 		            maxIntegerDigits="14" value="${childBean.tax_payable_2}"/></c:if>"
 										placeholder="Rs."></td>
 								</tr>--%>
-		
+
 							<div class="row show-grid">
 								<div class="col-md-8">
 									<div class="rowlabel">
@@ -989,7 +993,7 @@
 									</div>
 								</div>
 							</div>
-		
+
 							<div class="row show-grid">
 								<div class="col-md-8">
 									<div class="rowlabel">&nbsp;&nbsp;&nbsp;&nbsp;(a) Tax
@@ -1009,18 +1013,19 @@
 									</td>--%>
 							<div class="row show-grid">
 								<div class="col-md-8">
-									<div class="rowlabel">&nbsp;&nbsp;&nbsp;&nbsp;(b) Tax paid
-										by the employer on behalf of the employee u/s 192(1A) on
+									<div class="rowlabel">&nbsp;&nbsp;&nbsp;&nbsp;(b) Tax
+										paid by the employer on behalf of the employee u/s 192(1A) on
 										perquisites u/s 8(2)</div>
 								</div>
-		
+
 								<div class="col-md-4">
 									<div class="rowlabel">
-										<input id="ded_ent3" name="ded_ent3" class="numberinput decimal"
-											placeholder="Rs." maxlength="14" type="text"
+										<input id="ded_ent3" name="ded_ent3"
+											class="numberinput decimal" placeholder="Rs." maxlength="14"
+											type="text"
 											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}">
 							<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.ded_ent_3}"/></c:if>">
-		
+
 									</div>
 								</div>
 							</div>
@@ -1057,11 +1062,12 @@
 								</tr>--%>
 							<div class="row show-grid">
 								<div class="col-md-4 col-md-offset-8 decimal">
-									<a href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
+									<a
+										href="${scriptName}?selectedItrTab=<%=ITRTab.FORM16_SINGLE%>"
 										class="btn btn-default btn-danger">Cancel</a>&nbsp; <a
 										id="myModalHrefFormSixteen" role="button"
 										class="btn btn-default btn-success">Save</a>
-		
+
 								</div>
 							</div>
 					</form>
@@ -1095,24 +1101,24 @@
 					<a href="${scriptName}/formsixteennew"
 						class="btn btn-default btn-info"><small><i
 							class="glyphicon glyphicon-plus-sign"></i>Add New</small></a>
-							
-					<c:if test = "${not empty is26ASImportEnabled && is26ASImportEnabled == true}">
-					<a href="servicerequest-itr-sync-tds-from-dit.html" class="btn btn-default btn-success"><small><i
-							class="glyphicon glyphicon-import"></i>Import 26AS</small></a>
-					</c:if>			
+
+					<c:if
+						test="${not empty is26ASImportEnabled && is26ASImportEnabled == true}">
+						<a href="servicerequest-itr-sync-tds-from-dit.html"
+							class="btn btn-default btn-success"><small><i
+								class="glyphicon glyphicon-import"></i>Import 26AS</small></a>
+					</c:if>
 				</c:otherwise>
 			</c:choose>
 		</c:if>
-		<br />
-		<br />
-		<br />
+		<br /> <br /> <br />
 		<c:if test="${finStatus eq 'H' }">
 			<h4 class="alert alert-danger">
 				<b>Sorry!!!</b> This service is not applicable for tax payee having
 				filing status as 'HUF'.
 			</h4>
 		</c:if>
-		
+
 		<%
 			HstRequest hstRequest = (HstRequest) request;
 			String formHTMLComplete = (String) hstRequest.getRequestContext()

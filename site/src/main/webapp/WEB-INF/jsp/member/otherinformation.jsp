@@ -16,7 +16,7 @@
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-<w4india:titleandnav title="${title}" subTitle="Schedule OI&nbsp;-&nbsp;(optional in a case not liable for audit under section 44AB)"/>
+<w4india:titleandnav title="${title}" subTitle="Other Information aka Schedule OI&nbsp;-&nbsp;This Schedule is optional in a case not liable for audit under section 44AB."/>
 <div class="page type-page">
 	<form id="frmOtherInformation" action="${actionUrl}" method="post"
 		name="frmOtherInformation">

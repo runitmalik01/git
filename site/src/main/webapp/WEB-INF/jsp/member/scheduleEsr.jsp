@@ -12,9 +12,9 @@
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-<w4india:titleandnav title="Schedule ESR" subTitle="Schedule ESR (Expenditure on Scientific
-				Research)&nbsp;-&nbsp; Details of deduction on amounts of expenses
-				of the nature by section 35 which are, if, debited to profit and loss account.
+<w4india:titleandnav title="Schedule ESR" subTitle="Schedule ESR aka Expenditure on Scientific
+				Research&nbsp;-&nbsp; Details of deduction on amounts of expenses
+				of the nature by section 35 which are, if debited to profit and loss account.
 				Please note that no deduction for depreciation is available in
 				respect of capital asset for which deduction under section 35(1)(iv)
 				has been claimed."/>

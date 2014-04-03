@@ -6,7 +6,7 @@
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-<w4india:titleandnav title="${screenConfigDocument.screenHeading}" subTitle="${screenConfigDocument.screenSubHeading}"/>
+<w4india:titleandnav title="Balance Sheet" subTitle="${screenConfigDocument.screenSubHeading}"/>
 <hst:actionURL var="actionUrl"></hst:actionURL>
 <c:if test="${not empty formMap}">
 	<c:forEach items="${formMap.message}" var="item">
@@ -26,7 +26,7 @@
 		<div class="alert alert-warning">
 			<strong>CareFull! Change of selection can lost data until
 				you don't click on save button.Click on<a href="${scriptName}"
-				class="btn btn-default btn-inverse">Get Saved Data</a>.If lost.
+				class="btn btn-default btn-inverse">Get Saved Data</a>, if lost.
 			</strong>
 		</div>
 	</c:if>

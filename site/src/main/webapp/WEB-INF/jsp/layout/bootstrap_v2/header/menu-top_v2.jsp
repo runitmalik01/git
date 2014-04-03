@@ -32,14 +32,14 @@
 <div class="pull-right">
 	<c:choose>
 		<c:when test="${loggedin}">			
-			<a class="btn btn-orange pull-left btn-signin btn-beacon" href="<hst:link path="/member/itreturn"/>">Sign In</a>
+			<a class="btn btn-orange pull-left btn-signin btn-beacon" href="<hst:link path="/member/itreturn"/>">Start your Tax Return</a>
 		</c:when>
 		<c:otherwise>
 			<%--
 			<a href="<hst:link path="/memberLogin"/>" class="btn btn-lg btn-info btn-block" style="display:inline" tabindex="4">Log In</a>
 			<a href="<hst:link path="/signup"/>" class="btn btn-lg btn-warning btn-block" tabindex="4" style="display:inline">Signup</a>
 			 --%>
-			<a class="btn btn-orange pull-left btn-signin btn-beacon" href="<hst:link path="/memberLogin"/>">Sign In</a>
+			<a class="btn btn-orange pull-left btn-signin btn-beacon" href="<hst:link path="/memberLogin"/>">Start your Tax Return</a>
 		</c:otherwise>
 	</c:choose>		
 </div>

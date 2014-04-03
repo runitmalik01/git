@@ -5,7 +5,7 @@
 <c:set var="trustdetails">
 	Details Of Trust
 </c:set>
-<hippo-gogreen:title title="${trdetails}" />
+<hippo-gogreen:title title="${trustdetails}" />
 <%
 	ValueListService ObjValueListService = ValueListServiceImpl.getInstance();
 SortedSet<Map.Entry<String,String>> objHashMapcountry = ObjValueListService.getCountry();
@@ -18,7 +18,7 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	<div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="Schedule FA-F" subTitle="Schedule FA-(F)&nbsp;-&nbsp;The details of trusts
+	<w4india:titleandnav title="Detail of Trust" subTitle="Detail of Trust aka Schedule FA-(F)&nbsp;-&nbsp;The details of trusts
 				under the laws of a country outside India in which you are a trustee
 				has to be filled up."/>
 	<hst:link var="mainSiteMapRefId" />
