@@ -96,7 +96,7 @@ public class BaseComponent extends BaseHstComponent {
         super.doBeforeRender(request, response);
         getITRInitData(request);
         boolean shouldProceed = ComponentUtil.doRedirectionOnWrongLandingMount(request, response,getITRInitData(request).getResellerId());
-        if (!shouldProceed) return;
+        //if (!shouldProceed) return;
         
       
    
