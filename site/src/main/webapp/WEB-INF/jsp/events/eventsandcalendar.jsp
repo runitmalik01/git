@@ -9,7 +9,7 @@
 <c:set var="overviewtitle">
 	<fmt:message key="events.overview.title" />
 </c:set>
-<hippo-gogreen:title title="${overviewtitle}" />
+<hippo-gogreen:seoheader title="${overviewtitle}" robots="NOINDEX, FOLLOW"/>
 <hst:link var="events" siteMapItemRefId="events" />
 
 <!-- Events Overview -->

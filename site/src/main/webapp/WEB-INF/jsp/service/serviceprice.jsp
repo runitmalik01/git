@@ -7,12 +7,10 @@ For Mootly ITR Pricing Plans
 <c:set var="servicepricetitle">
 	<fmt:message key="service.price" />
 </c:set>
-<hippo-gogreen:title title="${servicepricetitle}" />
+<hippo-gogreen:seoheader title="${servicepricetitle}" description="Wealth4India offers competitive pricing in eFiling your Income Tax Return anywhere from the world. Calculations are accurate and our experienced staff is always there to help."/>
 <c:set var="flatPrice" value="299"/>
 <div class="page-header">
-	<h1><fmt:message key="service.price.title" /><small class="alert alert-info">
-        <strong>Limited time promotion!</strong>Enjoy one low flat price of <w4india:inr value="${flatPrice}"></w4india:inr>
-</small></h1>
+	<h1><fmt:message key="service.price.title" /></h1>
 </div>
 
 

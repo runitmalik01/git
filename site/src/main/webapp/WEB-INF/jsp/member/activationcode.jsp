@@ -6,7 +6,8 @@
  --%>
 <%@include file="../includes/tags.jspf"%>
 <c:set var="activecodetitle"><fmt:message key="member.activecode.title"/></c:set>
-<hippo-gogreen:title title="${activecodetitle}"/>
+<hippo-gogreen:seoheader title="${activecodetitle}" robots="NOINDEX, FOLLOW" description="Signup to India's #1 eFile provider for your Income Tax. 100% accurate calculations and backed by India's top CA firm."/>
+
 <hst:actionURL var="activationcode"></hst:actionURL>
 
 <div class="page">
