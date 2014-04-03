@@ -18,8 +18,8 @@ request.setAttribute("objHashMapQuantUnitCode", objHashMapQuantUnitCode);
 	<div class="${sideBarMainClass}">
 		<hst:link var="mainSiteMapRefId" />
 		<fmt:message key="quantitative.details.itr4" var="subTitle" />
-		<w4india:titleandnav title="Quantitative Details-Raw Material"
-			subTitle="${subTitle}" />
+		<w4india:titleandnav title="Raw Material"
+			subTitle="Schedule QD-(B) aka Quantitative Details of Raw Materials- An assessee must to give information regarding quantitative details of the principal item of goods traded if he is liable for audit under section 44AB and ${subTitle}." />
 		<div class="page type-page">
 
 			<c:choose>

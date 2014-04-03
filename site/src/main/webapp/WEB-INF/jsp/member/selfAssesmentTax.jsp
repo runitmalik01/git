@@ -6,7 +6,7 @@
 <%@ page import="com.mootly.wcm.beans.*"%>
 
 <c:set var="tds2">
-	<fmt:message key="slefassess.title" />
+	Self Assessment Tax
 </c:set>
 <hippo-gogreen:title title="${tds2}" />
 <hst:actionURL var="actionUrl" />

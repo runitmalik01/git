@@ -17,8 +17,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	<div class="row show-grid">
 		<w4india:itrsidebar></w4india:itrsidebar>
 		<div class="${sideBarMainClass}">
-			<w4india:titleandnav title="Schedule FA-A"
-				subTitle="This schedule is to be filled up by assessee who is <strong>resident</strong>
+			<w4india:titleandnav title="Foreign Bank Detail"
+				subTitle="Schedule FA-(A) is to be filled up by assessee who is <strong>resident</strong>
 				not be filled up by <strong>'not ordinarily resident'</strong>
 				or <strong>'non-resident'</strong>. Mention the details of foreign
 				bank accounts, financial interest in any entityin Indian currency

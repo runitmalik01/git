@@ -12,8 +12,8 @@
 	<div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="Schedule FA-D"
-		subTitle="Schedule FA-(D)&nbsp;-&nbsp;Investments in the nature
+	<w4india:titleandnav title="Nature Of Investment"
+		subTitle="Nature Of Investment aka Schedule FA-(D) &nbsp;-&nbsp;Investments in the nature
 				of investment and not in the nature of stock-in-trade or assets used
 				for the purpose of business are required to be reported and filled
 				up investment after converting it into Indian currency." />

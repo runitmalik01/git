@@ -112,7 +112,7 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 		//set Parameter if on call of DIT service PAN Match Not Found
 		request.setAttribute("noPanMatchFound", request.getParameter("noPanMatchFound"));
 		//set parameter if Last name does not Match with PAN
-		request.setAttribute("valiPanWithLastNameError", request.getParameter("valiPanWithLastNameError"));
+	//	request.setAttribute("valiPanWithLastNameError", request.getParameter("valiPanWithLastNameError"));
 		HippoFolder hippoFolder = getITRInitData(request).getPanFolder();
 		List<HippoFolderBean> pansForMember = null;
 		HippoBean currentBean = null;
@@ -257,14 +257,18 @@ abstract public class AbstractITReturnHomePage extends ITReturnComponent {
 
 		if (!DataTypeValidationHelper.isOfType(pan, DataTypeValidationType.PAN)) {
 			return;
-		} 
+		}
+		
+		/*No Validation - Marriage/Pan Changed*/
 		//validate pan's 5thCahr with LastName's 1stChar
-		StartApplicationValidationService applicationValidationService = new StartApplicationValidationService();
+		/*StartApplicationValidationService applicationValidationService = new StartApplicationValidationService();
 		applicationValidationService.validLastName(map);
 		if (map.getMessage() != null && map.getMessage().size() > 0) {
 			response.setRenderParameter("valiPanWithLastNameError", "true");
 			return;
-		}
+		}*/
+		
+		
 		/*
 		if(shouldValidatePANWithDIT()){
 			RetrievePANInformation retrievePANInformation =  getRetrievePANInformationService();
