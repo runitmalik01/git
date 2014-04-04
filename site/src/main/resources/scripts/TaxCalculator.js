@@ -10,7 +10,6 @@ var allowAmount = 0;
 var minAmount= 0;
 var eligAmount= 0;
 
-//Old conditions for AY 2013-14
 /*var condition_1=(cbasscategory == "Male" && cbasstype == "p" && ((cbresistatus == "Resident") || (cbresistatus == "Non-Resident")|| (cbresistatus == "Not Ordinary Resident"))) ? true : false;
 var condition_2=(cbasscategory == "Female" && cbasstype == "p" && ((cbresistatus == "Resident")|| (cbresistatus == "Non-Resident") || (cbresistatus == "Not Ordinary Resident"))) ? true :false;*/
 var condition_1=(cbasscategory == "Male" && cbasstype == "p" && ((cbresistatus == "Resident")|| (cbresistatus == "Not Ordinary Resident"))) ? true : false;
@@ -50,7 +49,7 @@ if (cbassyear == "2013-2014") {
 				eligAmount = (S_2 - allowAmount);//  31,46,000 - 29,30,000 = 2,16,000
 				E = (S_1 - eligAmount); // 2,86,000 - 2,16,000 = 70,000
 			}
-			else if (E = (S_1)); // 31,46,000
+			else if (E = (S_1)); // 2,86,000
 		}
 	}// FY 2013-2014-- Male & Female as Resident, Non-Ordinary Resident
 	else if(condition_11 || condition_12){
@@ -546,18 +545,4 @@ out_txtHEduCess = Math.round (C) ;
 out_txttotaltax = Math.round (D) ;
 out_txtsurcharge = Math.round (E); 
 
-
-/*A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
-S_1 = A * 0.1;
-S_2 = A + S_1;
-if (txtNetIncome < 10000000){
-	minAmount = txtNetIncome - 1000000;
-	allowAmount = minAmount + 28,30,000;
-	if (allowAmount > S_2){
-		eligAmount = allowAmount - S_2	;	 
-
-	}
-	else eligAmount = S_2- allowAmount;
-
-	}*/
 
