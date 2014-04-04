@@ -99,8 +99,12 @@ public final class ComponentUtil {
         else if (resellerId != null && !resolvedMount.getMount().getAlias().equals(resellerId)) {
         	String shouldNotRedirectToProperMount = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldNotRedirectToProperMount");
         	if (shouldNotRedirectToProperMount != null && "true".equals(shouldNotRedirectToProperMount)) {
-        		response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            	response.setHeader( "Connection", "close" );
+        		try {
+					response.forward("/404");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	return false;
         	}
         	else {
