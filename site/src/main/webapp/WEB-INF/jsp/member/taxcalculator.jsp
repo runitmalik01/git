@@ -94,6 +94,7 @@
 		<label for="txtEduCess"><fmt:message key="tax_education" />(&#8377;)
 		</label> <input name="txtEduCess" type="text" id="txtEduCess" readonly />
 	</p>
+	
 	<p>
 		<label for="txtHEduCess"><fmt:message
 				key="tax_sec_high_education" /> (&#8377;)</label><input name="txtHEduCess"

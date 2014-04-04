@@ -10,7 +10,7 @@ var allowAmount = 0;
 var minAmount= 0;
 var eligAmount= 0;
 
-
+//Old conditions for AY 2013-14
 /*var condition_1=(cbasscategory == "Male" && cbasstype == "p" && ((cbresistatus == "Resident") || (cbresistatus == "Non-Resident")|| (cbresistatus == "Not Ordinary Resident"))) ? true : false;
 var condition_2=(cbasscategory == "Female" && cbasstype == "p" && ((cbresistatus == "Resident")|| (cbresistatus == "Non-Resident") || (cbresistatus == "Not Ordinary Resident"))) ? true :false;*/
 var condition_1=(cbasscategory == "Male" && cbasstype == "p" && ((cbresistatus == "Resident")|| (cbresistatus == "Not Ordinary Resident"))) ? true : false;
