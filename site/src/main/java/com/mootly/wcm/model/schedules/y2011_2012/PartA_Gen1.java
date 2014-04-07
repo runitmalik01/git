@@ -1,5 +1,7 @@
 package com.mootly.wcm.model.schedules.y2011_2012;
 
+import org.apache.commons.lang.StringUtils;
+
 import in.gov.incometaxindiaefiling.y2011_2012.Address;
 import in.gov.incometaxindiaefiling.y2011_2012.Address.Phone;
 import in.gov.incometaxindiaefiling.y2011_2012.AssesseeName;
@@ -91,6 +93,18 @@ public class PartA_Gen1 {
 				filingstatus.setNoticeNo(document.getNoticeNo());
 				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(document.getNoticeDate()));
 				filingstatus.setReceiptNo(document.getReceiptNo());
+			}
+		}
+		
+		if (document.getReturnType().equals("R")) {
+			filingstatus.setReceiptNo(document.getOriginalAckNo());
+			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(document.getOriginalAckDate()));
+		}
+		if(document.getReturnType().equals("O")){
+			if(StringUtils.isNotBlank(document.getDefective()) && document.getDefective().equals("Y")){
+				filingstatus.setNoticeNo(document.getNoticeNo());
+				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(document.getNoticeDate()));
+				filingstatus.setAckNoOriginalReturn(document.getOriginalAckNo());
 			}
 		}
 
