@@ -55,6 +55,7 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -656,10 +657,12 @@ public class ITR1XmlGeneratorService {
 			filingstatus.setReceiptNo(memberPersonalInformation.getOriginalAckNo());
 			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
 		}
-		if(memberPersonalInformation.getDefective().equals("Y")){
-			filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
-			filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
-			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+		if(memberPersonalInformation.getReturnType().equals("O")){
+			if(StringUtils.isNotBlank(memberPersonalInformation.getDefective()) && memberPersonalInformation.getDefective().equals("Y")){
+				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
+				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
+				filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+			}
 		}
 		// end fixing
 		itr1.setFilingStatus(filingstatus);

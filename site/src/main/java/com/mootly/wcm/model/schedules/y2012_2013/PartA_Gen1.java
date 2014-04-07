@@ -13,6 +13,7 @@ import in.gov.incometaxindiaefiling.y2012_2013.PersonalInfo;
 import java.math.BigInteger;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 import com.mootly.wcm.beans.AdvanceTaxDocument;
@@ -212,15 +213,17 @@ public class PartA_Gen1 {
 				filingstatus.setTaxStatus("NT");
 
 		if (memberPersonalInformation.getReturnType().equals("R")) {
-			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+			filingstatus.setReceiptNo(memberPersonalInformation.getOriginalAckNo());
 			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
-
-			if(memberPersonalInformation.getDefective().equals("Y")){
+		}
+		if(memberPersonalInformation.getReturnType().equals("O")){
+			if(StringUtils.isNotBlank(memberPersonalInformation.getDefective()) && memberPersonalInformation.getDefective().equals("Y")){
 				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
 				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
-				filingstatus.setReceiptNo(memberPersonalInformation.getReceiptNo());
+				filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
 			}
 		}
+		
 		String itrSelection =  memberPersonalInformation.getFlexField("flex_string_ITRForm", "");
 		if(itrSelection.equals("ITR2") || itrSelection.equals("ITR4") || itrSelection.equals("ITR3")){
 			filingstatus.setAsseseeRepFlg(memberPersonalInformation.getIsRepresentative());
