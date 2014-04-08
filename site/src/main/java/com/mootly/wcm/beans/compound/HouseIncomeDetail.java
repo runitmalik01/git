@@ -82,7 +82,9 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	private Double rentSec25A;
 	private Double arrearRentSec25B;
 	private Double total_houseIncome;
-
+	private String homeLoan;
+	private Double loanAmount;
+	
 	private boolean markedForDeletion;
 
 	public final boolean isMarkedForDeletion() {
@@ -184,6 +186,12 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		if (Letable_value == null) Letable_value = getProperty("mootlywcm:Letable_value");
 		return Letable_value;
 	}
+	//Loan  Amount
+	public final Double getLoanAmount() {
+		if (loanAmount == null) loanAmount = getProperty("mootlywcm:loanAmount");
+		return loanAmount;
+	}
+	
 	public final Double getUnrealised_rent() {
 		if (Unrealised_rent == null) Unrealised_rent = getProperty("mootlywcm:Unrealised_rent");
 		return Unrealised_rent;
@@ -298,6 +306,10 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 	public final void setLetable_value(Double Letable_value) {
 		this.Letable_value = Letable_value;
 	}
+	//Loan Amount
+	public final void setLoanAmount(Double loanAmount) {
+		this.loanAmount = loanAmount;
+	}
 	public final void setUnrealised_rent(Double Unrealised_rent) {
 		this.Unrealised_rent = Unrealised_rent;
 	}
@@ -335,6 +347,16 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 
 	public final void setLetOut(String letout) {
 		this.letout = letout;
+	}
+	
+	// HomeLoan
+	public final String getHomeLoan() {
+		if (homeLoan == null) homeLoan = getProperty("mootlywcm:homeloan");
+		return homeLoan;
+	}
+
+	public final void setHomeLoan(String homeLoan) {
+		this.homeLoan = homeLoan;
 	}
 
 
@@ -402,7 +424,9 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			node.setProperty("mootlywcm:rentSec25A", getRentSec25A());
 			node.setProperty("mootlywcm:arrearRentSec25B", getArrearRentSec25B());
 			node.setProperty("mootlywcm:total_houseIncome", getTotal_houseIncome());
-
+			node.setProperty("mootlywcm:homeloan", getHomeLoan());
+			node.setProperty("mootlywcm:loanAmount", getLoanAmount());
+			
 		}catch (RepositoryException re) {
 			log.error("Binding Node Error",re);
 
@@ -423,6 +447,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		Double RentSec25A=0.0;
 		Double ArrearRentSec25B = 0.0;
 		Double total_houseIncome=0.0;
+		Double allowLoan = 0.0;
 		if (formMap.getField("Address") != null){
 			setAddress(formMap.getField("Address").getValue());
 			log.info("valuye of add"+formMap.getField("Address").getValue());
@@ -513,6 +538,21 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			log.info("value after all is"+amt);
 			setLetable_value(amt);
 		}
+		
+		//Loan Amount
+		if (formMap.getField("loanAmount") != null) {
+			String strloan= formMap.getField("loanAmount").getValue();
+			if(!(strloan.isEmpty())){
+				allowLoan=Double.parseDouble(strloan);
+				log.info("allowLoan inside if loop 111::: "+allowLoan);
+			}else {
+				allowLoan=0.0;
+				log.info("amt inside else loop 2222:::"+allowLoan);
+			}
+			log.info("value after all is"+allowLoan);
+			setLoanAmount(allowLoan);
+		}
+		
 		if (formMap.getField("Unrealised_rent") != null) {
 			String strunreal_rent=(formMap.getField("Unrealised_rent").getValue());
 			if(!(strunreal_rent.isEmpty())){                                               
@@ -593,6 +633,11 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 			log.info("value"+formMap.getField("letout").getValue());
 			setLetOut(formMap.getField("letout").getValue());
 		}
+		//HomeLoan
+		if (formMap.getField("homeLoan") != null){
+			log.info("value"+formMap.getField("homeLoan").getValue());
+			setHomeLoan(formMap.getField("homeLoan").getValue());
+		}
 		if (formMap.getField("rentSec25A")!= null) {
 			String strRentSec25A=(formMap.getField("rentSec25A").getValue());
 			if(!(strRentSec25A.isEmpty())){
@@ -663,6 +708,7 @@ public class HouseIncomeDetail extends HippoItem implements FormMapFiller {
 		setRentSec25A(objhouseIncomeDetail.getRentSec25A());
 		setArrearRentSec25B(objhouseIncomeDetail.getArrearRentSec25B());
 		setTotal_houseIncome(objhouseIncomeDetail.getTotal_houseIncome());
-		
+		setHomeLoan(objhouseIncomeDetail.getHomeLoan());
+		setLoanAmount(objhouseIncomeDetail.getLoanAmount());
 	};
 }
