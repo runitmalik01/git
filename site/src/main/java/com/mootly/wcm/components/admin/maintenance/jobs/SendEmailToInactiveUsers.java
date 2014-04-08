@@ -1,4 +1,4 @@
-package com.mootly.wcm.admin.maintenance.jobs;
+package com.mootly.wcm.components.admin.maintenance.jobs;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
