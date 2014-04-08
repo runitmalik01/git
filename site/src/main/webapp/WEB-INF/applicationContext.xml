@@ -15,6 +15,7 @@
     		<value>classpath:DITConnectorContext.properties</value>
     		<value>classpath:CitrusIntegrationContext.properties</value>
     		<value>classpath:sfa.properties</value>
+    		<value>classpath:syncToMongoDB.properties</value>
     	</list>	        	        
     </property>
 </bean>
@@ -67,6 +68,21 @@
       <property name="submitBulkITRService" ref="submitBulkITR"/>
       <property name="canonicalHandlePathPropertyMemberPersonalInfo" value="mootlywcm:pathToDigitalSignature"/>
       <property name="canonicalHandlePathPropertyResellerSignupDocument" value="mootlywcm:pathToDigitalSignature"/>
+  </bean>
+  
+  <!-- public SyncToMongoDb(List<ServerAddress> addresses,String dbName,String collectionName,String userName,String password) {  -->
+ <bean id="syncToMongoDb" class="com.mootly.wcm.services.sync.mongodb.SyncToMongoDb">
+    <constructor-arg index="0"> 
+     	<list>
+     		<bean class="com.mongodb.ServerAddress">
+     			<constructor-arg index="0" value="${mongoDBHost}"/>
+     			<constructor-arg index="1" value="${mongoDBPort}"/>
+     		</bean>
+     	</list>
+     </constructor-arg>
+     <constructor-arg index="1" value="${mongoDBName}"></constructor-arg>
+     <constructor-arg index="2" value="${mongoDBUserName}"></constructor-arg>
+     <constructor-arg index="3" value="${mongoDBPassword}"></constructor-arg>
   </bean>
   
   

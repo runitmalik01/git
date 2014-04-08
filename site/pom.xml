@@ -364,6 +364,14 @@
 		<systemPath>${basedir}/../sfalib/sfa-1.1.0.jar</systemPath>
 	</dependency>
 	
+	<dependency>
+		<groupId>org.mongodb</groupId>
+		<artifactId>mongo-java-driver</artifactId>
+		<scope>system</scope>
+		<version>2.11.4</version>
+		<systemPath>${basedir}/../mongodblib/mongo-java-driver-2.11.4.jar</systemPath>
+	</dependency>
+	
 	<!--  OTP for Secured Passwords -->
 	<dependency>
 	  <groupId>org.jboss.aerogear</groupId>
