@@ -186,6 +186,10 @@ public class SyncDataToExternalDB extends AbstractITReturnHomePage{
 							DBObject dbObject = (DBObject) JSON.parse(generatedJSON);
 							dbObject.put("invoiceAmountDue", itReturnHomePageView.getAmountDue());
 							dbObject.put("totalInvoiceAmount", itReturnHomePageView.getTotalInvoiceAmount());
+							if (pathITRToExport != null) {
+								 dbObject.put("pathITRToExport",pathITRToExport); 
+								 dbObject.put("nameOfFolderToExport",nameOfFolderToExport); 
+							}
 							if ( itReturnHomePageView.getFinancialYear() != null) {
 								dbObject.put("financialYear",itReturnHomePageView.getFinancialYear().name());
 							}
