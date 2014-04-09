@@ -3309,6 +3309,134 @@ share in property.&lt;/p&gt;
         <sv:value/>
       </sv:property>
     </sv:node>
+    
+<sv:node sv:name="mootlywcm:screenfieldconfig">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mootlywcm:screenfieldconfig</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+    <sv:value>homeLoan</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+    <sv:value>homeLoan</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:href" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+    <sv:value>true</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+    <sv:value/>
+  </sv:property>
+</sv:node>
+
+<sv:node sv:name="mootlywcm:screenfieldconfig">
+  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+    <sv:value>mootlywcm:screenfieldconfig</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:dropDownListName" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldClass" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldFormat" sv:type="String">
+    <sv:value>amount</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldId" sv:type="String">
+    <sv:value>loanAmount</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldMaxLength" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldName" sv:type="String">
+    <sv:value>loanAmount</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldPopoverText" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldSpan" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldTitle" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:fieldValue" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:formFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:href" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:inputFormFieldType" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:isRequired" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:readOnly" sv:type="Boolean">
+    <sv:value>false</sv:value>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:rowLabel" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:name="mootlywcm:validatorArguments" sv:type="String">
+    <sv:value/>
+  </sv:property>
+  <sv:property sv:multiple="true" sv:name="mootlywcm:validators" sv:type="String">
+    <sv:value/>
+  </sv:property>
+</sv:node>
+
+    
   </sv:node>
 </sv:node>
 
@@ -47438,7 +47566,9 @@ out_Nodtaa_CountryIncome=(income_total-0);
 </sv:node>
 
 
-<sv:node sv:name="houseincome" >
+
+<!-- HouseIncome -->
+<sv:node sv:name="houseincome" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
   </sv:property>
@@ -47456,7 +47586,7 @@ out_Nodtaa_CountryIncome=(income_total-0);
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>6e965d39-0cf4-4dda-b670-47443603c572</sv:value>
+      <sv:value>79513d3c-ac6e-4110-88cd-4761370e6016</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -47481,19 +47611,20 @@ out_Nodtaa_CountryIncome=(income_total-0);
       <sv:value>2013-05-24T01:58:54.710+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-11T00:22:14.000+05:30</sv:value>
+      <sv:value>2014-04-07T16:42:50.882+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-11T00:22:17.231+05:30</sv:value>
+      <sv:value>2014-04-07T16:42:56.383+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="mootlywcm:dropRadio" sv:type="String">
       <sv:value>letout</sv:value>
+      <sv:value>homeLoan</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="mootlywcm:input" sv:type="String">
       <sv:value>Unrealised_rent</sv:value>
@@ -47502,6 +47633,7 @@ out_Nodtaa_CountryIncome=(income_total-0);
       <sv:value>Interest_borrowed</sv:value>
       <sv:value>rentSec25A</sv:value>
       <sv:value>arrearRentSec25B</sv:value>
+      <sv:value>loanAmount</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:script" sv:type="String">
       <sv:value>/**
@@ -47512,24 +47644,32 @@ out_Nodtaa_CountryIncome=(income_total-0);
 var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 
 if(letout=='L'){
-//if(Unrealised_rent!=0 &amp;&amp; Local_tax!=0 &amp;&amp; Letable_value!=0 &amp;&amp; Interest_borrowed!=0){
-var total = parseInt(Letable_value-0) -( parseInt(Unrealised_rent-0) + parseInt(Local_tax-0));
+	//if(Unrealised_rent!=0 &amp;&amp; Local_tax!=0 &amp;&amp; Letable_value!=0 &amp;&amp; Interest_borrowed!=0){
+	var total = parseInt(Letable_value-0) -( parseInt(Unrealised_rent-0) + parseInt(Local_tax-0));
 
-out_Total=total;
-var balance=(0.3 * parseInt(total));
-if(balance &lt;0)
-balance=0;
+	out_Total=total;
+	var balance=(0.3 * parseInt(total));
+	if(balance &lt;0)
+		balance=0;
 
-var hous_income = parseInt(total - balance) -parseInt( Interest_borrowed-0);
+	var hous_income = parseInt(total - balance) -parseInt( Interest_borrowed-0);
 
-out_Balance=indianCurrencyHelper.RoundTo2Decimals(balance*100)/100;
-out_Income_hproperty=indianCurrencyHelper.RoundTo2Decimals(hous_income*100)/100;
-//}
+	out_Balance=indianCurrencyHelper.RoundTo2Decimals(balance*100)/100;
+	out_Income_hproperty=indianCurrencyHelper.RoundTo2Decimals(hous_income*100)/100;
+	//}
 }else if(letout=='S'){
 //if(Interest_borrowed&lt;=150000 || Interest_borrowed!=0){
 out_Income_hproperty=(Interest_borrowed-0 &gt;= 150000) ? (-150000) : (-Interest_borrowed -0);
 
 }
+//AY 2014-2015, FirstlyHomeBuyer, MinLoanAmount= 25,00,000
+if (finanYear=='2013-2014'){
+	if ((letout=='S') &amp;&amp; (homeLoan=='Y') &amp;&amp; (loanAmount &lt;=2500000)){
+		out_Income_hproperty=(Interest_borrowed-0 &gt;= 250000) ? (-250000) : (-Interest_borrowed -0);
+	}
+}
+else out_Income_hproperty=(Interest_borrowed-0 &gt;= 150000) ? (-150000) : (-Interest_borrowed -0);
+
 out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-0);</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:title" sv:type="String">
@@ -47537,7 +47677,6 @@ out_total_houseIncome=(out_Income_hproperty-0)+(rentSec25A-0)+(arrearRentSec25B-
     </sv:property>
   </sv:node>
 </sv:node>
-
 
 
 <sv:node sv:name="otherincome" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">

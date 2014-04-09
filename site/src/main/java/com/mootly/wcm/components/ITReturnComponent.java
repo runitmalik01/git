@@ -60,6 +60,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.component.support.forms.FormField;
@@ -78,7 +80,9 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.repository.reviewedactions.FullReviewedActionsWorkflow;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -207,8 +211,19 @@ public class ITReturnComponent extends BaseComponent {
 		
 		addClientDetailsService = context.getBean(AddClientDetails.class);
 	}
+	
+	public String getXsltITRPath() {
+		return xsltITRPath;
+	}
+	
+	public XsltURIResolver getWebInfXsltURIResolver() {
+		return webInfXsltURIResolver;
+	}
 
-
+	public ITRXmlGeneratorServiceFactory getItrXmlGeneratorServiceFactory() {
+		return itrXmlGeneratorServiceFactory;
+	}
+	
 	public final Retrieve26ASInformation getRetrieve26ASService() {
 		return retrieve26ASService;
 	}
@@ -1600,14 +1615,18 @@ public class ITReturnComponent extends BaseComponent {
 				String tmpDir = System.getProperty("java.io.tmpdir");
 				String uuid = UUID.randomUUID().toString();
 				new File(tmpDir + "/" + uuid).mkdir();
+				String finalMergedXMLAsString = null;
 				String xmlFile  = "documentView.xml";
 				String xmlFileMerged  = "documentView.merged.xml";
+				String jsonMergedData = "documentView.merged.json";
 				String pdfFileName = "ITR-" + getITRInitData(request).getPAN() +"-AY-" + getITRInitData(request).getFinancialYear().getDisplayAssessmentYear() + ".pdf";
 				String temporaryPathToXML = tmpDir + "/" + uuid + "/" + xmlFile;
 				String temporaryPathToMergedXML = tmpDir + "/" + uuid + "/" + xmlFileMerged;
 				String temporaryPathToPDF = tmpDir + "/" + uuid + "/" + pdfFileName;
+				String temporaryPathToJSON = tmpDir + "/" + uuid + "/" + jsonMergedData;
 				Session session = request.getRequestContext().getSession();
 				String thePathToExport = getITRInitData(request).getMemberPersonalInformation().getParentBean().getCanonicalPath();
+				String jsonRootElement = getITRInitData(request).getMemberPersonalInformation().getParentBean().getName().toLowerCase();
 				//ByteArrayOutputStream theStream = new ByteArrayOutputStream();
 				final OutputStream os = new FileOutputStream(temporaryPathToXML);
 				session.exportDocumentView(thePathToExport, os, true, false);
@@ -1700,6 +1719,24 @@ public class ITReturnComponent extends BaseComponent {
 				if (log.isInfoEnabled()) {
 					log.info(pathToPDF);
 				}
+				FileInputStream fi = null;
+				fi = new FileInputStream(temporaryPathToMergedXML);
+				String finalMergedXML = IOUtils.toString(fi, "UTF-8");
+				try {
+					JSONObject jsonObject = XML.toJSONObject(finalMergedXML);
+					JSONObject jsonObject2 = jsonObject.getJSONObject(jsonRootElement);
+					String jSONString = jsonObject2.toString();
+					if (log.isInfoEnabled()) {
+						log.info("JSONFinalString:" + jSONString);
+					}
+					FileWriterWithEncoding fwriter = new FileWriterWithEncoding(temporaryPathToJSON, "UTF-8");
+					IOUtils.write(jSONString, fwriter);
+					fwriter.close();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				request.setAttribute("fileName", pdfFileName);
 				request.setAttribute("filePath", pathToPDF);
 				response.setRenderPath("jsp/member/downloadfile.jsp");
