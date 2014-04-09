@@ -874,17 +874,26 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 	 * @param pathToTheItReturn
 	 */
 	public List<HippoDocumentBean> loadAllBeansUnderTheFolder(HstRequest request,String baseRelPathToReturnDocuments,String sortByAttribute,SORT_DIRECTION sortDirection) {
+		return loadAllBeansUnderTheFolder(request,baseRelPathToReturnDocuments,sortByAttribute,sortDirection,HippoDocumentBean.class);
+	}
+	/**
+	 *
+	 * @param request
+	 * @param response
+	 * @param pathToTheItReturn
+	 */
+	public <T extends HippoBean> List<T> loadAllBeansUnderTheFolder(HstRequest request,String baseRelPathToReturnDocuments,String sortByAttribute,SORT_DIRECTION sortDirection,Class<T> beanMappingClass) {
 		HippoBean theBean = getSiteContentBaseBeanForReseller(request);
 		if (theBean == null) {
 			return null;
 		}
 		HippoBean scopeForAllBeans =  theBean.getBean(baseRelPathToReturnDocuments);
 		HstQuery hstQuery;
-		List<HippoDocumentBean> theLocalBeansUnderMemberFolder = null;
+		List<T> theLocalBeansUnderMemberFolder = null;
 		if (scopeForAllBeans == null)  return null;
-		theLocalBeansUnderMemberFolder =  scopeForAllBeans.getChildBeans(HippoDocumentBean.class);
+		theLocalBeansUnderMemberFolder =  scopeForAllBeans.getChildBeans(beanMappingClass);
 		try {
-			theLocalBeansUnderMemberFolder = new ArrayList<HippoDocumentBean>();
+			theLocalBeansUnderMemberFolder = new ArrayList<T>();
 			hstQuery = queryManager.createQuery( scopeForAllBeans );
 			if (sortDirection == null) sortDirection = SORT_DIRECTION.ASC;
 			if (sortByAttribute != null) {
@@ -899,22 +908,22 @@ public class ITReturnInitData implements Serializable, ITReturnScreen {
 			}
 			final HstQueryResult result = hstQuery.execute();
 			Iterator<HippoBean> itResults = result.getHippoBeans();
-			if (log.isInfoEnabled()) {
-				log.info("Now will look into all HippoDocuments under the same folder and make a copy of each " + theBean.getPath());
-			}
+			//if (log.isInfoEnabled()) {
+				//log.info("Now will look into all HippoDocuments under the same folder and make a copy of each " + theBean.getPath());
+			//}
 			for (;itResults.hasNext();) {
 				HippoBean hippoBean = itResults.next();
 				if (hippoBean instanceof HippoDocumentBean) {
-					theLocalBeansUnderMemberFolder.add( (HippoDocumentBean) hippoBean);
-					//request.setAttribute(hippoBean.getClass().getSimpleName().toLowerCase(), hippoBean);
-					//if (hippoBean instanceof MemberPersonalInformation) {
-					//memberPersonalInformation = (MemberPersonalInformation) hippoBean;
-					//}
+					theLocalBeansUnderMemberFolder.add((T)hippoBean);
+					if (log.isInfoEnabled()) {
+						log.info("Adding the bean with name:" + hippoBean.getName() + ":Class:" + hippoBean.getClass().getSimpleName() + " get PATH:"  + theBean.getPath());
+					}
 				}
 			}
+			
 		} catch (QueryException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("Error executing query",e);
 		}
 		return theLocalBeansUnderMemberFolder;
 	}

@@ -188,7 +188,7 @@ public class ITR1XmlGeneratorService {
 		if(!(memberPersonalInformation.getStdCode().isEmpty()) && !(memberPersonalInformation.getPhone().isEmpty())){
 			Phone phone = new Phone();
 			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
-			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
+			phone.setPhoneNo(memberPersonalInformation.getPhone()); //now a String Amit Patkar 
 			address.setPhone(phone);
 		}
 
@@ -374,7 +374,8 @@ public class ITR1XmlGeneratorService {
 		Map<String,Object> resultMap = ScreenCalculatorService.getScreenCalculations("xmlCalculation.js", requestParameterMap, totalMapForJS);
 		//ITR1 Tax Computation (without calculation) with null values
 		itr1TaxComputation.setTotalTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtTax").toString())));
-		itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
+		//itr1TaxComputation.setSurchargeOnTaxPayable(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
+		itr1TaxComputation.setSurchargeOnAboveCrore(indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtsurcharge").toString())));
 		BigInteger EduCess = indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtEduCess").toString()));
 		BigInteger HigherEduCess =indianCurrencyHelper.bigIntegerRound(Double.parseDouble(resultMap.get("txtHEduCess").toString()));
 		BigInteger TotalEduCess = EduCess.add(HigherEduCess);
@@ -628,7 +629,7 @@ public class ITR1XmlGeneratorService {
 			refund.setRefundDue(new BigInteger("0"));
 		}
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER().toUpperCase());
-		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
+		//refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
 		DepositToBankAccount depositToBankAccount = new DepositToBankAccount();
 		depositToBankAccount.setIFSCCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC().toUpperCase());

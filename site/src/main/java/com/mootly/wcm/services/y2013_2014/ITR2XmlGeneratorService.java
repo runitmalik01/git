@@ -140,7 +140,7 @@ public class ITR2XmlGeneratorService  {
 		FirmsPartnerDocument firmsPartnerDocument = (FirmsPartnerDocument) inputBeans.get(FirmsPartnerDocument.class.getSimpleName().toLowerCase());
 		IncomeFromFirmsDocument incomeFromFirmsDocument = (IncomeFromFirmsDocument) inputBeans.get(IncomeFromFirmsDocument.class.getSimpleName().toLowerCase());
 
-		ITR2 itr2 = new ObjectFactory().createITR2();
+		ITR2 itr2 = null; //new ObjectFactory().
 		ITR itr = new ITR();
 
 		CreationInformation creationInformation = new CreationInformation();

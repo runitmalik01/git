@@ -173,7 +173,7 @@ public class PartA_Gen1 {
 		if(!(memberPersonalInformation.getStdCode().isEmpty()) && !(memberPersonalInformation.getPhone().isEmpty())){
 			Phone phone = new Phone();
 			phone.setSTDcode(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getStdCode()));
-			phone.setPhoneNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getPhone()));
+			phone.setPhoneNo(memberPersonalInformation.getPhone());//its a String now
 			address.setPhone(phone);
 		}
 		address.setMobileNo(indianCurrencyHelper.bigIntegerRoundStr(memberPersonalInformation.getMobile()));

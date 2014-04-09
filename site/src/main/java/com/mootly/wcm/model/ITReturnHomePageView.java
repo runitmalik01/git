@@ -284,6 +284,16 @@ public class ITReturnHomePageView {
 	public void setVerificationStatus(VerificationStatus verificationStatus) {
 		this.verificationStatus = verificationStatus;
 	}
+	
+	public Double getTotalInvoiceAmount() {
+		return totalInvoiceAmount;
+	}
+
+	public void setTotalInvoiceAmount(Double totalInvoiceAmount) {
+		this.totalInvoiceAmount = totalInvoiceAmount;
+	}
+
+
 
 
 
@@ -328,6 +338,7 @@ public class ITReturnHomePageView {
 	
 	boolean eFiledFailed;
 	
+	Double totalInvoiceAmount;
 	Double amountDue;
 	
 	VerificationStatus verificationStatus;

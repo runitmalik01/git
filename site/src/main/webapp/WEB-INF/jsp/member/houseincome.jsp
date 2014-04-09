@@ -25,6 +25,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 <w4india:itrmenu></w4india:itrmenu>
 <hippo-gogreen:title title="${parentBeantitle}" />
 <hst:actionURL var="actionUrl"></hst:actionURL>
+
+
 <div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
@@ -35,7 +37,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			</c:when>
 			<c:otherwise>
 				<w4india:titleandnav title="House Income"
-					subTitle="A person earning income from his/her house property whether it is letout or self-occupied and maximum limit of interest is Rs. 1,50,000 in case of self-occupied."/>
+					subTitle="A person earning income from his/her house property whether it is letout or self-occupied and he can share his house property with one or more than one person as partner and partnership may be 50% or less or more than it.
+					" />
 			</c:otherwise>
 		</c:choose>
 		<c:if test="${not empty formMap}">
@@ -155,6 +158,45 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 								</div>
 							</div>
 						</div>
+						<!-- AY 2014-2015 -HomeLoan/LoanAmount -->
+						<c:if test="${financialYear.displayName == '2013-2014'}">
+							<div class="row show-grid">
+									<div>
+										<input id="finanYear" name="finanYear" type="hidden"
+											value="${financialYear.displayName}">
+									</div>
+								<div class="col-md-6 hide houseBuying">
+									<div class="rowlabel" id="idLoan">
+										<label for="homeLoan"><small>Are you buying
+												house first time ?</small> </label>
+									</div>
+									<div>
+										<select name="homeLoan" id="homeLoan"
+											onChange="hideHomeLoan()" class="uprcase">
+											<option value="">-Select-</option>
+											<option value="Y"
+												<c:if test="${not empty childBean.homeLoan && childBean.homeLoan =='Y'}">selected</c:if>>Yes</option>
+											<option value="N"
+												<c:if test="${not empty childBean.homeLoan && childBean.homeLoan =='N'}">selected</c:if>>No</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6 hide loanAmt">
+									<div class="rowlabel" id="idLoanAmount">
+										<label for="idLoanAmount"><small>Loan Amount</small> </label>
+									</div>
+
+									<div>
+										<input id="loanAmount" name="loanAmount" class="decimal"
+											placeholder="Rs." type="text"
+											value="<c:if test="${(pageAction == 'EDIT_CHILD' || pageAction == 'NEW_CHILD')}"><fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${childBean.loanAmount}"/></c:if>">
+									</div>
+								</div>
+							</div>
+						</c:if>
+
+
+						<!-- End HomeLoan -->
 						<div class="row show-grid">
 							<div class="col-md-6">
 								<div class="rowlabel">
@@ -432,7 +474,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 							</div>
 							<div class="col-md-7 decimal">
 								<div class="rowlabel">
-									<label for=""><small>30% of d</small> </label>
+									<label for=""><small>30% of Balance</small> </label>
 								</div>
 							</div>
 							<div class="col-md-2 col-md-offset-1">
@@ -589,6 +631,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		$('.letout_' + letout + '_h').hide();
 	}</c:if>
 
+
 </hst:element>
 <hst:headContribution element="${uiCustom}" category="jsInternal" />
 <res:calc screenCalc="houseincome" formId="frmdataHouseIncome"></res:calc>
@@ -605,18 +648,34 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			$("#percentageshare_label").hide();
 
 		}
-
 		var OnLoadLetOut = $("#letout").val();
 		if (OnLoadLetOut == "S") {
 			$("#Tenant_pan").hide();
 			$("#Tenant_name").hide();
 			$("#idtenantname").hide();
 			$("#idtenantpan").hide();
+
 		} else {
 			$("#Tenant_pan").show();
 			$("#Tenant_name").show();
 			$("#idtenantname").show();
 			$("#idtenantpan").show();
+		}
+		//HomeLoan / LoanAmount - AY 2014-15
+		var e_1 = document.getElementById("letout");
+		var loan = document.getElementById("homeLoan");
+		var valueLetout1415 = e_1.options[e_1.selectedIndex].value;
+		var valueHomeLoan = loan.options[loan.selectedIndex].value;
+		if(valueLetout1415 == "S"){
+			$(".houseBuying").show();
+			if(valueHomeLoan == "Y"){
+				$(".loanAmt").show();
+			}else{
+				$(".loanAmt").hide();
+			}
+		}else{
+			$(".loanAmt").hide();
+			$(".houseBuying").hide();
 		}
 	});
 	function hideTanPan() {
@@ -647,4 +706,25 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			$("#percentageshare_label").hide();
 		}
 	}
+	//HomeLoan / LoanAmount - AY 2014-15
+	$("#letout , #homeLoan").change(function (){
+		var e_1 = document.getElementById("letout");
+		var loan = document.getElementById("homeLoan");
+		var valueLetout1415 = e_1.options[e_1.selectedIndex].value;
+		var valueHomeLoan = loan.options[loan.selectedIndex].value;
+		if(valueLetout1415 == "S"){
+			$(".houseBuying").show();
+			if(valueHomeLoan == "Y"){
+				$(".loanAmt").show();
+			}else{
+				$(".loanAmt").hide();
+			}
+		}else{
+			$(".loanAmt").hide();
+			$(".houseBuying").hide();
+		}
+
+	});
+
+
 </script>
