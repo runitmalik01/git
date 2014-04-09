@@ -11261,4 +11261,56 @@
 	    <sv:value>contentdelivery</sv:value>
 	  </sv:property>
 	</sv:node>	
+	<!-- Start of ITR Review -->
+<sv:node sv:name="servicerequest-itr-review">
+	<sv:property sv:name="jcr:primaryType" sv:type="Name">
+		<sv:value>hst:component</sv:value>
+	</sv:property>
+	<sv:property sv:name="jcr:uuid" sv:type="String">
+		<sv:value>eb00a609-7518-4faf-8f50-b0b691e75a31</sv:value>
+	</sv:property>
+	<sv:property sv:multiple="true" sv:name="hst:parameternames"
+		sv:type="String">
+		<sv:value>bodyCss</sv:value>
+	</sv:property>
+	<sv:property sv:multiple="true" sv:name="hst:parametervalues"
+		sv:type="String">
+		<sv:value>bodyCssClass</sv:value>
+	</sv:property>
+	<sv:property sv:name="hst:referencecomponent" sv:type="String">
+		<sv:value>hst:pages/simplepage.re</sv:value>
+	</sv:property>
+	<sv:node sv:name="main">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hst:component</sv:value>
+		</sv:property>
+		<sv:property sv:name="jcr:uuid" sv:type="String">
+			<sv:value>2a5998fd-4b72-47af-a2db-30982265902d</sv:value>
+		</sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parameternames"
+			sv:type="String">
+			<sv:value>contentCssClass</sv:value>
+		</sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parametervalues"
+			sv:type="String">
+			<sv:value>grid-right col-940</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:template" sv:type="String">
+			<sv:value>standard.main.re</sv:value>
+		</sv:property>
+		<sv:node sv:name="content">
+			<sv:property sv:name="jcr:primaryType" sv:type="Name">
+				<sv:value>hst:component</sv:value>
+			</sv:property>
+			<sv:property sv:name="jcr:uuid" sv:type="String">
+				<sv:value>cbc07ad3-e5ac-43c5-899a-c2e9c16df79c</sv:value>
+			</sv:property>
+			<sv:property sv:name="hst:referencecomponent" sv:type="String">
+				<sv:value>hst:components/servicerequest-itr-review</sv:value>
+			</sv:property>
+		</sv:node>
+	</sv:node>
+</sv:node>
+	
+	<!-- End of ITR Review -->
 </sv:node>

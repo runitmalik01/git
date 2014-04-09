@@ -10,5 +10,7 @@ public enum ITRServiceDelivery {
 	@XmlEnumValue(value = "DIY") 
 	DIY,
 	@XmlEnumValue(value = "Assisted")
-	Assisted;	
+	Assisted,
+	@XmlEnumValue(value = "SemiAssisted")
+	SemiAssisted;
 }

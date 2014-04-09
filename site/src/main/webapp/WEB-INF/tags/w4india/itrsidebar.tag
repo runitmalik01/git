@@ -25,6 +25,7 @@ if ( helpDeskTicketDocument != null ) {
  <c:if test="${nomenu != 'true'}">
 	 <div class="col-md-2" style="border-right:1px solid black;"> 
 	 		<a id="lnkAskQuestion" href="javascript:void();" class="btn btn-success btn-block"><i class="glyphicon glyphicon-question-sign"></i>Help</a>
+	 		<%-- <a href="${scriptName}/../servicerequest-itr-review.html" class="btn btn-info btn-block"><i class="glyphicon glyphicon-retweet"></i>&nbsp;Get Reviewed</a> --%>
 			<a href="${scriptName}/../efile-incometax.html" class="btn btn-warning btn-block"><i class="glyphicon glyphicon-paperclip"></i>eFile</a>
 			<a href="${scriptName}/../servicerequest-itr-summary.html" class="btn btn-default btn-block"><small>View Tax Summary</small></a>
 			<h5><b>Your Tax Return</b></h5>
