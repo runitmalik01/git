@@ -98,18 +98,29 @@ if (!noMenu) {
 }
 boolean hasDIY = false;
 boolean isDIY = false;
+boolean isSemiAssisted = false;
+boolean isEFile = false;
+boolean isAssisted = false;
 if (itrForm != null) {
 	hasDIY = itrForm.getHasDIY();
 }
-
 if (itrServiceDelivery != null && itrServiceDelivery == ITRServiceDelivery.DIY) {
 	isDIY = true;
 }
-else {
-	isDIY = false;
+if(itrServiceDelivery != null && itrServiceDelivery == ITRServiceDelivery.SemiAssisted){
+	isSemiAssisted = true;
 }
+if(itrServiceDelivery != null && itrServiceDelivery == ITRServiceDelivery.Assisted){
+	isAssisted = true;
+}
+if(itrServiceDelivery != null && (itrServiceDelivery == ITRServiceDelivery.DIY || itrServiceDelivery == ITRServiceDelivery.SemiAssisted)){
+	isEFile = true;
+}
+
 request.setAttribute("hasDIY", hasDIY);
 request.setAttribute("isDIY", isDIY);
+request.setAttribute("isSemiAssisted", isSemiAssisted);
+request.setAttribute("isEFile", isEFile);
 //HARD CODING 
 hasDIY = true;
 if (itrForm != null) {
@@ -595,11 +606,18 @@ request.setAttribute("nextPrevLinks",nextPrevLinks);
 						value="${thePastDueDateStr}" />
 			</u>
 		</b>
-		</span> | <span>Package : <b><u><fmt:message
+		</span> | <%-- <span>Package : <b><u><fmt:message
 						key="${itrForm}.packageName.${memberpersonalinformation.selectedServiceDeliveryOption}.package" />
 			</u>
 		</b>
-		</span> | <span>Payment : <b> <c:choose>
+		</span> --%>
+		<span>
+		Package : <b><u><fmt:message
+						key="${itrForm}.${memberpersonalinformation.selectedServiceDeliveryOption}.package" />
+			</u>
+		</b>
+		</span>
+		 | <span>Payment : <b> <c:choose>
 					<c:when test="${invoicePresent == 'false'}">
 						<a href="${scriptName}/../memberinvoice.html">Create
 							Invoice</a>

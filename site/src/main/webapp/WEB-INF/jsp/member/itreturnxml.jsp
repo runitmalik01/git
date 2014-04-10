@@ -18,9 +18,10 @@
 	</c:choose>
 </c:if>
 <c:choose>
-	<c:when test="${not empty isDIY && isDIY == 'true'}">
+	<c:when test="${not empty isEFile && isEFile == 'true'}">
 		<%-- hide the radio buttons but the feature is still available --%>
-		<%--
+
+      <%--
 		<label class="radio inline"> <input type="radio"
 			name="optionsRadios" id="showSummary" value="summary"
 			<c:if test="${empty show || show == 'summary'}">checked</c:if>>
@@ -28,7 +29,8 @@
 		<label class="radio inline"> <input type="radio"
 			name="optionsRadios" id="showXml" value="xml"
 			<c:if test="${show == 'xml'}">checked</c:if>> Show XML </label>
-		 --%>
+       --%>
+      
 		<c:choose>
 			<c:when test="${empty show || show == 'summary'}">
 				<c:if test="${ITR eq 'ITR1'}">
@@ -49,9 +51,9 @@
 			</c:when>
 			<c:when test="${not empty show || show == 'xml'}">
 				<script type="syntaxhighlighter" class="brush: xml">
-<![CDATA[
-  <c:out value="${xml}" escapeXml="false"/>
-]]></script>
+                  <![CDATA[
+                     <c:out value="${xml}" escapeXml="false"/>
+                   ]]></script>
 				<!-- <a role="button" class="btn btn-default orange">Download XML</a> -->
 			</c:when>
 			<c:otherwise>
@@ -64,33 +66,7 @@
 		 	<c:out value="${xml}" escapeXml="true"/>
 		</pre>
 		--%>
-
-		<hst:headContribution category="jsExternal">
-			<script type="text/javascript" src="<hst:link path="/js/syntaxhighlighter_3.0.83/scripts/shCore.js"/>"></script>
-		</hst:headContribution>
-
-		<hst:headContribution category="jsExternal">
-			<script type="text/javascript" src="<hst:link path="/js/syntaxhighlighter_3.0.83/scripts/shBrushXml.js"/>"></script>
-		</hst:headContribution>
-
-		<hst:headContribution category="css">
-			<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shCore.css"/>' type="text/css" />
-		</hst:headContribution>
-
-		<hst:headContribution category="css">
-			<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>' type="text/css" />
-		</hst:headContribution>
-
-		<hst:element var="uiCustom" name="script">
-			<hst:attribute name="type">text/javascript</hst:attribute>
-				$(document).ready(function() {
-					SyntaxHighlighter.all();
-					$("#showSummary,#showXml").click(function(){
-						window.location.href="${scriptName}?show=" + $(this).val() ;
-					});
-				});
-		</hst:element>
-		<hst:headContribution element="${uiCustom}" category="jsInternal" />
+		
 	</c:when>
 	<c:otherwise>
 		<h4>eZ-Filing your Tax Return</h4>
@@ -121,3 +97,30 @@
 		</form>
 	</c:otherwise>
 </c:choose>
+
+	<hst:headContribution category="jsExternal">
+			<script type="text/javascript" src="<hst:link path="/js/syntaxhighlighter_3.0.83/scripts/shCore.js"/>"></script>
+		</hst:headContribution>
+
+		<hst:headContribution category="jsExternal">
+			<script type="text/javascript" src="<hst:link path="/js/syntaxhighlighter_3.0.83/scripts/shBrushXml.js"/>"></script>
+		</hst:headContribution>
+
+		<hst:headContribution category="css">
+			<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shCore.css"/>' type="text/css" />
+		</hst:headContribution>
+
+		<hst:headContribution category="css">
+			<link rel="stylesheet" href='<hst:link path="/js/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"/>' type="text/css" />
+		</hst:headContribution>
+
+		<hst:element var="uiCustom" name="script">
+			<hst:attribute name="type">text/javascript</hst:attribute>
+				$(document).ready(function() {
+					SyntaxHighlighter.all();
+					$("#showSummary,#showXml").click(function(){
+						window.location.href="${scriptName}?show=" + $(this).val() ;
+					});
+				});
+		</hst:element>
+		<hst:headContribution element="${uiCustom}" category="jsInternal" />

@@ -206,6 +206,10 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	private String digitalSignatureHandleUUID;
 	
 	String pathToDigitalSignature;
+	
+	// new changes for new package selection on 31/03/2014
+	private String sourceIncPackSelectKey;
+	private Boolean sourceIncPackSelect;
 
 
 	ResourceBundle messagesResourceBundle = ResourceBundle.getBundle("messages");
@@ -611,6 +615,25 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 	public String getPathToDigitalSignature() {
 		if (pathToDigitalSignature == null) pathToDigitalSignature =  getProperty("mootlywcm:pathToDigitalSignature");
 		return pathToDigitalSignature;
+	}
+	
+	// new changes for new package selection on 31/03/2014
+	public String getSourceIncPackSelectKey() {
+		if (sourceIncPackSelectKey == null) sourceIncPackSelectKey =  getProperty("mootlywcm:sourceIncPackSelectKey");
+		return sourceIncPackSelectKey;
+	}
+	
+	public Boolean getSourceIncPackSelect() {
+		if ( sourceIncPackSelect == null ) sourceIncPackSelect = getProperty("mootlywcm:sourceIncPackSelect");
+		return sourceIncPackSelect;
+	}
+	
+	public final void  setSourceIncPackSelect(Boolean sourceIncPackSelect){
+		this.sourceIncPackSelect = sourceIncPackSelect;
+	}
+	
+	public final void  setSourceIncPackSelectKey(String sourceIncPackSelectKey){
+		this.sourceIncPackSelectKey = sourceIncPackSelectKey;
 	}
 	
 	public final void  setReturnSection(String ReturnSection){
@@ -1083,6 +1106,13 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 			if (mpi.getPathToDigitalSignature() != null) {
 				node.setProperty("mootlywcm:pathToDigitalSignature", mpi.getPathToDigitalSignature());
 			}
+			// new changes for new package selection on 31/03/2014
+			if (mpi.getSourceIncPackSelectKey() != null) {
+				node.setProperty("mootlywcm:sourceIncPackSelectKey", mpi.getSourceIncPackSelectKey());
+			}
+			if (mpi.getSourceIncPackSelect() != null) {
+				node.setProperty("mootlywcm:sourceIncPackSelect", mpi.getSourceIncPackSelect());
+			}
 			/*if(digitalSignatureNode != null){
 				digitalSignatureNode.setProperty(Constants.PROP_HIPPO_DOCBASE, getDigitalSignatureHandleUUID());
 			}*/
@@ -1106,6 +1136,9 @@ public class MemberPersonalInformation extends FlexibleDocument implements Conte
 		if ( formMap.getField("receipt_no") != null) setReceiptNo(formMap.getField("receipt_no").getValue());
 		if ( formMap.getField("tax_ward") != null) setIncomeTaxWard(formMap.getField("tax_ward").getValue());
 		if ( formMap.getField("portugesecivil") != null) setPortugesecivil(formMap.getField("portugesecivil").getValue());
+		// new changes for new package selection on 31/03/2014
+		if ( formMap.getField("sourceIncPackSelectKey") != null) setSourceIncPackSelectKey(formMap.getField("sourceIncPackSelectKey").getValue());
+		if ( formMap.getField("sourceIncPackSelect") != null) setSourceIncPackSelect(Boolean.valueOf(formMap.getField("sourceIncPackSelect").getValue()));
 		//new changes for Return Filed under section on 06/08/2013
 		String returnTypeChoice = formMap.getField("returnTypeChoice").getValue();
 		String revisingWithNoticeSection = formMap.getField("revisingWithNoticeSection").getValue();

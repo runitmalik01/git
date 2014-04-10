@@ -2405,4 +2405,20 @@
 	    <sv:value>com.mootly.wcm.components.admin.maintenance.jobs.SyncDataToExternalDB</sv:value>
 	  </sv:property>
 	</sv:node>
+	<!-- Start of ITR Review -->
+	<sv:node sv:name="servicerequest-itr-review">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hst:component</sv:value>
+		</sv:property>
+		<sv:property sv:name="jcr:uuid" sv:type="String">
+			<sv:value>83d3efbc-7fc8-417f-99f1-f4b1132b0218</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:componentclassname" sv:type="String">
+			<sv:value>com.mootly.wcm.member.ServiceRequestITRReview</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:template" sv:type="String">
+			<sv:value>servicerequest.itr.review</sv:value>
+		</sv:property>
+	</sv:node>
+	<!-- End of ITR Review -->
 </sv:node>
