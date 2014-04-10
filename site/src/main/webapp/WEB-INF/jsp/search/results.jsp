@@ -153,13 +153,15 @@
 		                <c:when test="${hitClassName eq 'KnowledgeArticle'}">		                  
 		                  <li>
 		                  	<c:choose>
-		                  	<c:when test="${not empty showContent && showContent =='true' }">
-		                  		<h2><a href="${link}"><c:out value="${hit.title}"/></a></h2>
-		                  		<c:out value="${hit.description.content}" escapeXml="false"/>
-		                  	</c:when>
-		                  	<c:otherwise>
-		                  		<a href="${link}"><c:out value="${hit.title}"/></a>
-		                  	</c:otherwise>
+			                  	<c:when test="${not empty showContent && showContent =='true' }">
+			                  		<h2><a href="${link}"><c:out value="${hit.title}"/></a></h2>
+			                  		<c:if test="${not empty hit.summary}">
+			                  			<c:out value="${hit.summary}" escapeXml="false"/>
+			                  		</c:if>
+			                  	</c:when>
+			                  	<c:otherwise>
+			                  		<a href="${link}"><c:out value="${hit.title}"/></a>
+			                  	</c:otherwise>
 		                  	</c:choose>
 		                  </li>
 		                </c:when>	
