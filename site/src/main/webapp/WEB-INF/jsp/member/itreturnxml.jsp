@@ -20,7 +20,6 @@
 <c:choose>
 	<c:when test="${not empty isEFile && isEFile == 'true'}">
 		<%-- hide the radio buttons but the feature is still available --%>
-
       <%--
 		<label class="radio inline"> <input type="radio"
 			name="optionsRadios" id="showSummary" value="summary"
@@ -29,24 +28,23 @@
 		<label class="radio inline"> <input type="radio"
 			name="optionsRadios" id="showXml" value="xml"
 			<c:if test="${show == 'xml'}">checked</c:if>> Show XML </label>
-       --%>
-      
+       --%>   
 		<c:choose>
 			<c:when test="${empty show || show == 'summary'}">
 				<c:if test="${ITR eq 'ITR1'}">
-			         <jsp:include page="ITR1Summary.jsp"/>
+			         <jsp:include page="itr-summary/${financialYear.javaPackageName}/ITR1Summary.jsp"/>
                 </c:if>
                 <c:if test="${ITR eq 'ITR2'}">
-			         <jsp:include page="ITR2Summary.jsp"/>
+			         <jsp:include page="itr-summary/${financialYear.javaPackageName}/ITR2Summary.jsp"/>
                 </c:if>
                  <c:if test="${ITR eq 'ITR4S'}">
-			         <jsp:include page="ITR4SSummary.jsp"/>
+			         <jsp:include page="itr-summary/${financialYear.javaPackageName}/ITR4SSummary.jsp"/>
                 </c:if>
                  <c:if test="${ITR eq 'ITR4'}">
-			         <jsp:include page="ITR4Summary.jsp"/>
+			         <jsp:include page="itr-summary/${financialYear.javaPackageName}/ITR4Summary.jsp"/>
                 </c:if>
                 <c:if test="${ITR eq 'ITR3'}">
-			         <jsp:include page="ITR3Summary.jsp"/>
+			         <jsp:include page="itr-summary/${financialYear.javaPackageName}/ITR3Summary.jsp"/>
                 </c:if>
 			</c:when>
 			<c:when test="${not empty show || show == 'xml'}">
