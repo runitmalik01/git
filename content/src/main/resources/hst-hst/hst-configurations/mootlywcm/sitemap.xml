@@ -472,26 +472,6 @@
 			<sv:value>notification</sv:value>
 		</sv:property>
 	</sv:node>
-	<!-- Amit Patkar 07/16/2013 -->
-	<sv:node sv:name="terms" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
-		<sv:property sv:name="jcr:primaryType" sv:type="Name">
-			<sv:value>hst:sitemapitem</sv:value>
-		</sv:property>
-		<sv:property sv:name="jcr:uuid" sv:type="String">
-			<sv:value>ff48940d-d0d4-496a-a75f-4c780c1fdaa6</sv:value>
-		</sv:property>
-		<sv:property sv:name="hst:componentconfigurationid"
-			sv:type="String">
-			<sv:value>hst:pages/terms</sv:value>
-		</sv:property>
-		<sv:property sv:name="hst:refId" sv:type="String">
-			<sv:value>terms</sv:value>
-		</sv:property>
-		<sv:property sv:name="hst:relativecontentpath" sv:type="String">
-			<sv:value>about/terms--conditions/terms--conditions</sv:value>
-		</sv:property>
-	</sv:node>
-	<!-- /Amit Patkar 07/16/2013 -->
 	<sv:node sv:name="emicalculator">
 		<sv:property sv:name="jcr:primaryType" sv:type="Name">
 			<sv:value>hst:sitemapitem</sv:value>
@@ -1378,6 +1358,27 @@
 	      <sv:value>resellers/w4india/documents/searchfacets/${1}</sv:value>
 	    </sv:property>
 	  </sv:node>
-	</sv:node>	
+	  <sv:node sv:name="all.rss">
+	    <sv:property sv:name="jcr:primaryType" sv:type="Name">
+	      <sv:value>hst:sitemapitem</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="jcr:uuid" sv:type="String">
+	      <sv:value>0bc021cc-6448-4207-96f4-05180361494b</sv:value>
+	    </sv:property>
+	    <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+	      <sv:value>hst:pages/contentdelivery</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parameternames" sv:type="String">
+	      <sv:value>scopeRelativePath</sv:value>
+	      <sv:value>showContent</sv:value>
+	      <sv:value>format</sv:value>
+	    </sv:property>
+	    <sv:property sv:multiple="true" sv:name="hst:parametervalues" sv:type="String">
+	      <sv:value>documents</sv:value>
+	      <sv:value>true</sv:value>
+	      <sv:value>rss</sv:value>
+	    </sv:property>
+	  </sv:node>
+	</sv:node>
 	<!-- /admin node -->
 </sv:node>
