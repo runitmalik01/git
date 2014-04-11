@@ -36,10 +36,10 @@ if (cbassyear == "2013-2014") {
 		else if (txtNetIncome >= 500001 && txtNetIncome <= 1000000) {
 			A = ((txtNetIncome - 500000) * 0.2) + 30000;
 		}
-		else if (txtNetIncome > 1000001 && txtNetIncome <=1000000) {
+		else if (txtNetIncome > 1000001 && txtNetIncome <=10000000) {
 			A = ((txtNetIncome - 1000000) * 0.3) + 130000;		
 		} 
-		else if (txtNetIncome > 1000000) { 
+		else if (txtNetIncome > 10000000) { 
 			A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
 			S_1 = (A * 0.1); // 28,60,000 * 0.1 = 2,86,000
 			S_2 = (S_1 + A); // 2,86,000 + 1,01,00,000 = 31,46,000
@@ -544,5 +544,4 @@ out_txtEduCess = Math.round (B) ;
 out_txtHEduCess = Math.round (C) ;
 out_txttotaltax = Math.round (D) ;
 out_txtsurcharge = Math.round (E); 
-
 
