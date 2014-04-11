@@ -9,6 +9,8 @@
 <%@ taglib prefix="w4india" tagdir="/WEB-INF/tags/w4india" %>
 <%@ taglib prefix="res" tagdir="/WEB-INF/tags/responsive" %>
 <c:set var="now" value="<%=new java.util.Date()%>" />
+<hst:defineObjects/>
+<fmt:setBundle basename="typenames" var="types"/>
 <c:choose>
 	<c:when test="${not empty format && format == 'rss'}">
 		<%response.setContentType("text/xml; charset=UTF-8"); %>
@@ -17,7 +19,7 @@
 				<title/>
 				<atom:link href="https://www.wealth4india.com/site/r/w4india/contentdelivery/all.rss" rel="self" type="application/rss+xml"/>
 				<link>https://www.wealth4india.com/site/r/w4india/contentdelivery/all.rss</link>
-				<description>Wealth4India - Content RSS Feed</description>
+				<description>Wealth4India - Knowledge Articles, News &amp; Events</description>
 				<lastBuildDate><fmt:formatDate value="${now}" pattern="EEE, dd MMM yyyy HH:mm:ss zzz" /></lastBuildDate>
 				<language>en-US</language>
 				<sy:updatePeriod>hourly</sy:updatePeriod>
@@ -44,14 +46,27 @@
 		                <c:when test="${hitClassName eq 'Faq'}">
 		                	<title><c:out value="${hit.question}"/></title>
 		                  	<link>${fn:escapeXml(link)}</link>
+		                  	<category>FAQ</category>
 		                </c:when>
 						<c:when test="${hitClassName eq 'Service'}">
 							<title><c:out value="${hit.name}"/></title>
 		                 	<link>${fn:escapeXml(link)}</link>
+		                 	<category>Products &amp; Services</category>
 		                </c:when>	
 		                <c:when test="${hitClassName eq 'KnowledgeArticle'}">		                  
 			            	<title><c:out value="${hit.title}"/></title>
 		                  	<link>${fn:escapeXml(link)}</link>
+		                  	<category>Knowledge Article</category>
+		                </c:when>	
+		                <c:when test="${hitClassName eq 'NewsItem'}">		                  
+			            	<title><c:out value="${hit.title}"/></title>
+		                  	<link>${fn:escapeXml(link)}</link>
+		                  	<category>News</category>
+		                </c:when>	
+		                <c:when test="${hitClassName eq 'EventDocument'}">		                  
+			            	<title><c:out value="${hit.title}"/></title>
+		                  	<link>${fn:escapeXml(link)}</link>
+		                  	<category>Event</category>
 		                </c:when>	
 		              </c:choose>
 		              <%--getPublicationDate --%>
@@ -64,6 +79,7 @@
 						<content:encoded><![CDATA[
 							<c:out value="${hit.description.content}" escapeXml="false"/>
 						]]></content:encoded>
+						
 		        	</item>
 				</c:forEach>
 			</channel>
