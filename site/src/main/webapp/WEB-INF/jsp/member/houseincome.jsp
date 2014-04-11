@@ -161,10 +161,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<!-- AY 2014-2015 -HomeLoan/LoanAmount -->
 						<c:if test="${financialYear.displayName == '2013-2014'}">
 							<div class="row show-grid">
-									<div>
-										<input id="finanYear" name="finanYear" type="hidden"
-											value="${financialYear.displayName}">
-									</div>
+								<div>
+									<input id="finanYear" name="finanYear" type="hidden"
+										value="${financialYear.displayName}">
+								</div>
 								<div class="col-md-6 hide houseBuying">
 									<div class="rowlabel" id="idLoan">
 										<label for="homeLoan"><small>Are you buying
@@ -621,6 +621,40 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 	$('#letout').change(function(){
 	$('.letout_' + $(this).val() + '_v').show();
 		$('.letout_' + $(this).val() + '_h').hide();
+		
+		var e_1 = document.getElementById("letout");
+		var loan = document.getElementById("homeLoan");
+		var valueLetout1415 = e_1.options[e_1.selectedIndex].value;
+		var valueHomeLoan = loan.options[loan.selectedIndex].value;
+		if(valueLetout1415 == "S"){
+			$(".houseBuying").show();
+			if(valueHomeLoan == "Y"){
+				$(".loanAmt").show();
+			}else{
+				$(".loanAmt").hide();
+			}
+		}else{
+			$(".loanAmt").hide();
+			$(".houseBuying").hide();
+		}
+	});
+	$("#homeLoan").change(function (){
+		var e_1 = document.getElementById("letout");
+		var loan = document.getElementById("homeLoan");
+		var valueLetout1415 = e_1.options[e_1.selectedIndex].value;
+		var valueHomeLoan = loan.options[loan.selectedIndex].value;
+		if(valueLetout1415 == "S"){
+			$(".houseBuying").show();
+			if(valueHomeLoan == "Y"){
+				$(".loanAmt").show();
+			}else{
+				$(".loanAmt").hide();
+			}
+		}else{
+			$(".loanAmt").hide();
+			$(".houseBuying").hide();
+		}
+
 	});
 
 <c:if test="${not empty childBean.letOut}">
@@ -665,7 +699,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		var e_1 = document.getElementById("letout");
 		var loan = document.getElementById("homeLoan");
 		var valueLetout1415 = e_1.options[e_1.selectedIndex].value;
-		var valueHomeLoan = loan.options[loan.selectedIndex].value;
+		var valueHomeLoan = $("#homeLoan").val();
 		if(valueLetout1415 == "S"){
 			$(".houseBuying").show();
 			if(valueHomeLoan == "Y"){
@@ -706,25 +740,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 			$("#percentageshare_label").hide();
 		}
 	}
-	//HomeLoan / LoanAmount - AY 2014-15
-	$("#letout , #homeLoan").change(function (){
-		var e_1 = document.getElementById("letout");
-		var loan = document.getElementById("homeLoan");
-		var valueLetout1415 = e_1.options[e_1.selectedIndex].value;
-		var valueHomeLoan = loan.options[loan.selectedIndex].value;
-		if(valueLetout1415 == "S"){
-			$(".houseBuying").show();
-			if(valueHomeLoan == "Y"){
-				$(".loanAmt").show();
-			}else{
-				$(".loanAmt").hide();
-			}
-		}else{
-			$(".loanAmt").hide();
-			$(".houseBuying").hide();
-		}
-
-	});
+	
+	
 
 
 </script>
