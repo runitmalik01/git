@@ -49,7 +49,7 @@ if (cbassyear == "2013-2014") {
 				eligAmount = (S_2 - allowAmount);//  31,46,000 - 29,30,000 = 2,16,000
 				E = (S_1 - eligAmount); // 2,86,000 - 2,16,000 = 70,000
 			}
-			else if (E = (S_1)); // 2,86,000
+			else (E = (S_1)); // 2,86,000
 		}
 	}// FY 2013-2014-- Male & Female as Resident, Non-Ordinary Resident
 	else if(condition_11 || condition_12){
@@ -74,7 +74,7 @@ if (cbassyear == "2013-2014") {
 				eligAmount = (S_2 - allowAmount);
 				E = (S_1 - eligAmount);
 			}
-			else if (E = (S_1));
+			else (E = (S_1));
 		}
 	}//FY 2013-2014-- Male & Female as Non-Resident
 	else if(condition_3){
@@ -99,7 +99,7 @@ if (cbassyear == "2013-2014") {
 				eligAmount = (S_2 - allowAmount);
 				E = (S_1 - eligAmount); 
 			}
-			else if (E = (S_1));
+			else (E = (S_1));
 		}
 	}//FY 2013-2014-- Senior Citizen as Resident and Non-Ordinary Resident
 	else if(condition_9){
@@ -124,7 +124,7 @@ if (cbassyear == "2013-2014") {
 				eligAmount = (S_2 - allowAmount);
 				E = (S_1 - eligAmount);
 			}
-			else if (E = (S_1));
+			else (E = (S_1));
 		}
 	}//FY 2013-2014 -- Senior Citizen as Non-Resident
 	else if(condition_4){
@@ -146,7 +146,7 @@ if (cbassyear == "2013-2014") {
 				eligAmount = (S_2 - allowAmount);
 				E = (S_1 - eligAmount);
 			}
-			else if (E = (S_1));
+			else (E = (S_1));
 		}
 	}//FY 2013-2014 --  Super Senior Citizen as Resident and Non-Ordinary Resident
 	else if(condition_10){
@@ -163,7 +163,7 @@ if (cbassyear == "2013-2014") {
 		}
 		else if (txtNetIncome > 10000000) { 
 			A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
-			S_1 = (A * 0.1);
+			S_1 = (A * 0.1); 
 			S_2 = (S_1 + A); 
 			minAmount = (txtNetIncome - 10000000); 
 			allowAmount = (minAmount + 2830000); 
@@ -171,7 +171,7 @@ if (cbassyear == "2013-2014") {
 				eligAmount = (S_2 - allowAmount);
 				E = (S_1 - eligAmount);
 			}
-			else if (E = (allowAmount)); 
+			else (E = (S_1)); 
 		}
 	} // FY 2013-2014 -- Super Senior Citizen as Non-Resident
 	else if (condition_5) {
@@ -189,14 +189,14 @@ if (cbassyear == "2013-2014") {
 		else if (txtNetIncome > 10000000) { 
 			A = ((txtNetIncome - 1000000) * 0.3) + 130000;	
 			S_1 = (A * 0.1);
-			S_2 = (S_1 + A); 
-			minAmount = (txtNetIncome - 10000000); 
+			S_2 = (S_1 + A);
+			minAmount = (txtNetIncome - 10000000);
 			allowAmount = (minAmount + 2830000); 
 			if (S_2 > allowAmount){ 
 				eligAmount = (S_2 - allowAmount);
 				E = (S_1 - eligAmount);
 			}
-			else if (E = (allowAmount)); 
+			else (E = (S_1));
 		}
 	}// FY 2013-2014 -- HUF 
 	else if (condition_6) {
