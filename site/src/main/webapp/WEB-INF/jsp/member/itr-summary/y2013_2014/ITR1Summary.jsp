@@ -274,6 +274,26 @@
 					  </div>
 					</td>
 				</tr>
+			    <tr>
+				  <td class ="summary-text-color">Less: Rebate U/S 87A</td>
+					<td>
+					<div class="btn btn-group decimal">
+					     <button class="btn btn-default btn-sm">
+							<w4india:inr value="${theForm.ITR1TaxComputation.rebate87A}"/>
+					     </button>
+					  </div>
+					</td>
+				</tr>
+				<tr>
+				  <td class ="summary-text-color">Tax After Rebate U/S 87A</td>
+					<td>
+					<div class="btn btn-group decimal">
+					     <button class="btn btn-default btn-sm">
+							<w4india:inr value="${theForm.ITR1TaxComputation.taxPayableOnRebate}"/>
+					     </button>
+					  </div>
+					</td>
+				</tr>
 				<tr>
 					<td class ="summary-text-color"><fmt:message key="surcharge.tax"/></td>
 					<td>

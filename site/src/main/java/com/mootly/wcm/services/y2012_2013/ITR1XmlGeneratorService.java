@@ -999,9 +999,27 @@ public class ITR1XmlGeneratorService {
 			itr1.setTaxExmpIntInc(0);
 
 		//Verification
+		String AssessName = "";
+		if(StringUtils.isNotBlank(memberPersonalInformation.getFirstName())){
+			AssessName = memberPersonalInformation.getFirstName().toUpperCase();
+		}
+		if(StringUtils.isNotBlank(memberPersonalInformation.getMiddleName())){
+			if(AssessName.equals("")){
+				AssessName = memberPersonalInformation.getMiddleName().toUpperCase();
+			}else{
+				AssessName = AssessName+" "+memberPersonalInformation.getMiddleName().toUpperCase();
+			}			
+		}
+		if(StringUtils.isNotBlank(memberPersonalInformation.getLastName())){
+			if(AssessName.equals("")){
+				AssessName = memberPersonalInformation.getLastName().toUpperCase();
+			}else{
+				AssessName = AssessName+" "+memberPersonalInformation.getLastName().toUpperCase();
+			}	
+		}
+		
 		Declaration declaration = new Declaration();
-		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName().toUpperCase()+" "+
-				memberPersonalInformation.getMiddleName().toUpperCase()+" "+memberPersonalInformation.getLastName().toUpperCase());
+		declaration.setAssesseeVerName(AssessName);
 		declaration.setFatherName(memberPersonalInformation.getFatherName().toUpperCase());
 		declaration.setAssesseeVerPAN(memberPersonalInformation.getPAN().toUpperCase());
 		verification.setDeclaration(declaration);
