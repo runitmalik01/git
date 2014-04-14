@@ -865,6 +865,7 @@ public class ITR1XmlGeneratorService {
 
 		Declaration declaration = new Declaration();
 		declaration.setAssesseeVerName(AssessName);
+		declaration.setFatherName(memberPersonalInformation.getFatherName().toUpperCase());
 		declaration.setAssesseeVerPAN(memberPersonalInformation.getPAN().toUpperCase());
 		verification.setDeclaration(declaration);
 		verification.setPlace(memberPersonalInformation.getTownCityDistrict().toUpperCase());
