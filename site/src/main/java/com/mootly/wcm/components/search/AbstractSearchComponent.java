@@ -183,9 +183,9 @@ public class AbstractSearchComponent extends TagComponent {
                 filter.addOrFilter(summaryFilter);
                 filter.addOrFilter(fullTextFilter);
                 //https://issues.onehippo.com/browse/mootlywcm-254
-                hstQuery.addOrderByDescending("mootlywcm:rating");
+                //hstQuery.addOrderByDescending("mootlywcm:rating");
             }else{
-                hstQuery.addOrderByDescending("mootlywcm:title");
+                hstQuery.addOrderByDescending("hippostdpubwf:creationDate");
             }
             
             HstQueryResult result = hstQuery.execute();

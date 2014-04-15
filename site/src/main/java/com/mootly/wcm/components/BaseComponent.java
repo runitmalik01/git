@@ -177,7 +177,7 @@ public class BaseComponent extends BaseHstComponent {
     		
     		WebsiteInfo websiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
     		if (websiteInfo.getEmailFrom() != null) {
-    			finalVelocityContext.put("resellerName", websiteInfo.getPageTitlePrefix() );
+    			finalVelocityContext.put("resellerName", websiteInfo.getResellerName() );
     		}
     		if (websiteInfo.getEmailFrom() != null) {
     			finalVelocityContext.put("emailFrom", websiteInfo.getEmailFrom() );

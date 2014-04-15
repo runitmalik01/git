@@ -36,7 +36,15 @@ public class ContentDelivery extends AbstractSearchComponent {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-        showFacetedDocuments(request);
+        HippoBean theBean = getContentBean(request);
+        if (theBean != null) {
+        	showFacetedDocuments(request);
+        }
+        else {
+        	searchDocuments(request, null);
+        }
+        String format = request.getRequestContext().getResolvedSiteMapItem().getLocalParameter("format");
+        if (format != null) request.setAttribute("format",format);
         PageableCollection<HippoBean> results = null;
         results = (PageableCollection<HippoBean>) request.getAttribute("searchResult");
         if (results != null && results.getItems() != null) {
