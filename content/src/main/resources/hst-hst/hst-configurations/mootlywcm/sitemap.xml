@@ -1344,6 +1344,17 @@
 		    <sv:value>hst:components/syncDataToExternalDB</sv:value>
 		  </sv:property>
 	  </sv:node>
+	  <sv:node sv:name="loadTestData.admin" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
+		  <sv:property sv:name="jcr:primaryType" sv:type="Name">
+		    <sv:value>hst:sitemapitem</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="jcr:uuid" sv:type="String">
+		    <sv:value>c7ff9cc3-3d2c-48a7-9482-3910bcee45b5</sv:value>
+		  </sv:property>
+		  <sv:property sv:name="hst:componentconfigurationid" sv:type="String">
+		    <sv:value>hst:components/loadTestData</sv:value>
+		  </sv:property>
+	  </sv:node>
 	</sv:node>
 	<sv:node sv:name="contentdelivery" xmlns:sv="http://www.jcp.org/jcr/sv/1.0">
 	  <sv:property sv:name="jcr:primaryType" sv:type="Name">
