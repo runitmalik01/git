@@ -161,10 +161,6 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						<!-- AY 2014-2015 -HomeLoan/LoanAmount -->
 						<c:if test="${financialYear.displayName == '2013-2014'}">
 							<div class="row show-grid">
-								<div>
-									<input id="finanYear" name="finanYear" type="hidden"
-										value="${financialYear.displayName}">
-								</div>
 								<div class="col-md-6 hide houseBuying">
 									<div class="rowlabel" id="idLoan">
 										<label for="homeLoan"><small>Are you buying
