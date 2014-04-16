@@ -58,6 +58,7 @@ import com.mootly.wcm.utils.Interest234BCalc;
 import com.mootly.wcm.utils.XmlCalculationImplement;
 
 
+
 @AdditionalBeans(additionalBeansToLoad={MemberPersonalInformation.class,MemberContactInformation.class,SalaryIncomeDocument.class,
 		HouseIncomeDetail.class,HouseProperty.class,OtherSourcesDocument.class,AdvanceTaxDocument.class,AdvanceTaxDetail.class,TdsFromSalaryDocument.class,
 		TdsFromSalaryDetail.class,TdsFromothersDocument.class,SelfAssesmetTaxDocument.class,FormSixteenDocument.class,FormSixteenDetail.class,
@@ -423,6 +424,7 @@ public class XmlCalculation implements XmlCalculationImplement {
 		SalaryIncomeDocument salaryIncomeDocument = (SalaryIncomeDocument) inputBeans.get(SalaryIncomeDocument.class.getSimpleName().toLowerCase());
 		TdsFromothersDocument tdsFromothersDocument = (TdsFromothersDocument) inputBeans.get(TdsFromothersDocument.class.getSimpleName().toLowerCase());
 		SelfAssesmetTaxDocument selfAssesmetTaxDocument = (SelfAssesmetTaxDocument) inputBeans.get(SelfAssesmetTaxDocument.class.getSimpleName().toLowerCase());
+		AdvanceTaxDetail advanceTaxDetail = (AdvanceTaxDetail) inputBeans.get(AdvanceTaxDetail.class.getSimpleName().toLowerCase());
 
 		IndianCurrencyHelper indianCurrencyHelper =  new IndianCurrencyHelper();
 		Map<String,Object> totalMapForJS = new HashMap<String, Object>();

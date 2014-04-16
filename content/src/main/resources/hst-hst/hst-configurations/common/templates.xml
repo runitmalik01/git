@@ -4133,5 +4133,18 @@
 	  <sv:property sv:name="hst:renderpath" sv:type="String">
 	    <sv:value>jsp/search/sitemap.jsp</sv:value>
 	  </sv:property>
-	</sv:node>	
+	</sv:node>
+	<!-- Start of ITR Review -->
+	<sv:node sv:name="servicerequest.itr.review">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hst:template</sv:value>
+		</sv:property>
+		<sv:property sv:name="jcr:uuid" sv:type="String">
+			<sv:value>77bf3122-8c95-4970-9c4e-ed3cddc7ed4d</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:renderpath" sv:type="String">
+			<sv:value>jsp/member/servicerequest-itr-review.jsp</sv:value>
+		</sv:property>
+	</sv:node>
+	<!-- End of ITR Review -->	
 </sv:node>

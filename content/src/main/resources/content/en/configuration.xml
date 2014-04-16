@@ -48044,6 +48044,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
       </sv:node>
     </sv:node>
 
+<!-- FormSixteen -->
 <sv:node sv:name="formsixteen">
   <sv:property sv:name="jcr:primaryType" sv:type="Name">
     <sv:value>hippo:handle</sv:value>
@@ -48074,7 +48075,7 @@ out_txttotaltax = (taxPaidForeignCountry -0);
       <sv:value>hippo:harddocument</sv:value>
     </sv:property>
     <sv:property sv:name="jcr:uuid" sv:type="String">
-      <sv:value>434b411f-6908-48be-a62e-90ffc1c2c79d</sv:value>
+      <sv:value>349aae2a-792a-4428-bd2f-e81433d4159d</sv:value>
     </sv:property>
     <sv:property sv:multiple="true" sv:name="hippo:availability" sv:type="String">
       <sv:value>live</sv:value>
@@ -48099,13 +48100,13 @@ out_txttotaltax = (taxPaidForeignCountry -0);
       <sv:value>2013-05-24T01:55:56.242+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModificationDate" sv:type="Date">
-      <sv:value>2013-08-12T23:20:33.099+05:30</sv:value>
+      <sv:value>2014-04-08T17:32:21.585+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:lastModifiedBy" sv:type="String">
       <sv:value>admin</sv:value>
     </sv:property>
     <sv:property sv:name="hippostdpubwf:publicationDate" sv:type="Date">
-      <sv:value>2013-08-12T23:20:38.158+05:30</sv:value>
+      <sv:value>2014-04-08T17:32:37.044+05:30</sv:value>
     </sv:property>
     <sv:property sv:name="mootlywcm:additionalScript" sv:type="String">
       <sv:value/>
@@ -48142,10 +48143,12 @@ var indianCurrencyHelper = new com.mootly.wcm.services.IndianCurrencyHelper();
 var e=0;
 var f=0;
 var ded=0;
-out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0)+(allowNotExempt-0);
+//out_gross_total=(gross_a -0)+(gross_b -0)+(gross_c -0)+(allowNotExempt-0);
+out_gross_total=indianCurrencyHelper.RoundTo2Decimals(((gross_a -0)+(gross_b -0)+(gross_c -0)+(allowNotExempt-0))*100)/100;
 var balanc=(out_gross_total )-(less_total_2 - 0);
 if(balanc &lt;=0) balanc=0;
-out_balance=balanc;
+//out_balance=balanc;
+out_balance=indianCurrencyHelper.RoundTo2Decimals(balanc*100)/100;
 if(Employe_category !="GOV")
 {
 var e= 2500;
@@ -48157,8 +48160,9 @@ else{
 ded=f;
 }
 
-out_deductions_total=(deductions_entertainment -0)+(ded -0);
-out_income_chargable_total=((out_balance-out_deductions_total)&gt;0) ? (out_balance-out_deductions_total) : 0;
+out_deductions_total=indianCurrencyHelper.RoundTo2Decimals((deductions_entertainment -0)+(ded -0)*100)/100;
+//out_income_chargable_total=((out_balance-out_deductions_total)&gt;0) ? (out_balance-out_deductions_total) : 0;
+out_income_chargable_total=indianCurrencyHelper.RoundTo2Decimals((((out_balance-out_deductions_total)&gt;0) ? (out_balance-out_deductions_total) : 0)*100)/100;
 out_ded_ent4= (out_income_chargable_total) - ((relief_2 -0)+(ded_ent1 -0)+(ded_ent3 -0));
 var add=(additional_1 -0)+(additional_2 -0);
 out_gross_income_total=(out_income_chargable_total)+(add);
@@ -48359,9 +48363,6 @@ var avgRateTax=(D*100)/txtNetIncome ;
     </sv:property>
   </sv:node>
 </sv:node>
-
-
-
 
 
 <!--scheduleud calculations-->
