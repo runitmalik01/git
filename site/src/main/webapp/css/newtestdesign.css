@@ -35,6 +35,14 @@
 		display: block;
 		max-width: 1800px;
 	}
+	
+	#fud-hero .fud-bg2 {
+		position: relative;
+		background: url('../img/canstockphoto18567319.jpg') no-repeat 75% 27%;
+		background-size: cover;
+		display: block;
+		max-width: 1800px;
+	}
 	.btn-blue {
 		text-shadow: none;
 		color: #fff;

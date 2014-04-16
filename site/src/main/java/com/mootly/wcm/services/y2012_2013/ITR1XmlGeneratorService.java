@@ -55,6 +55,7 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.apache.commons.lang.StringUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -658,11 +659,14 @@ public class ITR1XmlGeneratorService {
 			filingstatus.setReceiptNo(memberPersonalInformation.getOriginalAckNo());
 			filingstatus.setOrigRetFiledDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getOriginalAckDate()));
 		}
-		if(memberPersonalInformation.getDefective().equals("Y")){
-			filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
-			filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
-			filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+		if(memberPersonalInformation.getReturnType().equals("O")){
+			if(StringUtils.isNotBlank(memberPersonalInformation.getDefective()) && memberPersonalInformation.getDefective().equals("Y")){
+				filingstatus.setNoticeNo(memberPersonalInformation.getNoticeNo());
+				filingstatus.setNoticeDate(indianCurrencyHelper.gregorianCalendar(memberPersonalInformation.getNoticeDate()));
+				filingstatus.setAckNoOriginalReturn(memberPersonalInformation.getOriginalAckNo());
+			}
 		}
+		
 		// end fixing
 		itr1.setFilingStatus(filingstatus);
 		//Schedule80G
@@ -995,9 +999,27 @@ public class ITR1XmlGeneratorService {
 			itr1.setTaxExmpIntInc(0);
 
 		//Verification
+		String AssessName = "";
+		if(StringUtils.isNotBlank(memberPersonalInformation.getFirstName())){
+			AssessName = memberPersonalInformation.getFirstName().toUpperCase();
+		}
+		if(StringUtils.isNotBlank(memberPersonalInformation.getMiddleName())){
+			if(AssessName.equals("")){
+				AssessName = memberPersonalInformation.getMiddleName().toUpperCase();
+			}else{
+				AssessName = AssessName+" "+memberPersonalInformation.getMiddleName().toUpperCase();
+			}			
+		}
+		if(StringUtils.isNotBlank(memberPersonalInformation.getLastName())){
+			if(AssessName.equals("")){
+				AssessName = memberPersonalInformation.getLastName().toUpperCase();
+			}else{
+				AssessName = AssessName+" "+memberPersonalInformation.getLastName().toUpperCase();
+			}	
+		}
+		
 		Declaration declaration = new Declaration();
-		declaration.setAssesseeVerName(memberPersonalInformation.getFirstName().toUpperCase()+" "+
-				memberPersonalInformation.getMiddleName().toUpperCase()+" "+memberPersonalInformation.getLastName().toUpperCase());
+		declaration.setAssesseeVerName(AssessName);
 		declaration.setFatherName(memberPersonalInformation.getFatherName().toUpperCase());
 		declaration.setAssesseeVerPAN(memberPersonalInformation.getPAN().toUpperCase());
 		verification.setDeclaration(declaration);

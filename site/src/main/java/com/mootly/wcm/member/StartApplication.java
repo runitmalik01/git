@@ -57,10 +57,13 @@ import com.mootly.wcm.beans.InvoiceDocument;
 import com.mootly.wcm.beans.MemberPayment;
 import com.mootly.wcm.beans.MemberPersonalInformation;
 import com.mootly.wcm.beans.ScheduleFiveADocument;
+import com.mootly.wcm.beans.Service;
+import com.mootly.wcm.beans.compound.CostModel;
 import com.mootly.wcm.beans.events.BeanLifecycle;
 import com.mootly.wcm.beans.events.MemberPersonalInfoUpdateHandler;
 import com.mootly.wcm.components.ITReturnComponent;
 import com.mootly.wcm.components.ITReturnScreen.PAGE_ACTION;
+import com.mootly.wcm.model.CostModelName;
 import com.mootly.wcm.model.FilingStatus;
 import com.mootly.wcm.model.ITRForm;
 import com.mootly.wcm.model.IndianGregorianCalendar;
@@ -85,7 +88,7 @@ import com.mootly.wcm.utils.MootlyFormUtils;
 		"rsstatus_q_no_no","rsstatus_q_no_no_yes","rsstatus_q_no_no_yes_yes","rsstatus_q_no_yes_yes_yes",
 		"bd_bank_name","bd_micr_code","bd_Branch_name","bd_account_type","bd_account_no","bd_ecs","flex_string_IFSCCode","flex_string_ITRForm","flex_string_ITRServiceDelivery","pi_return_type","fy","ack_no","ack_date","defective","notice_no","notice_date","ward_circle","Employe_category","returnTypeChoice","revisingWithNoticeSection","isRepresentative","name_Representative","pan_Representative",
 		"address_Representative","isLiable_ManageAcc","isLiable_ForAudit","date_FurnishAuditReport","name_AuditorSign_Report","membershipNo_auditor","name_auditorFirm",
-		"pan_Firm","date_AuditReport","isLiable_FurnishSec92E","trpname","trpnumber","trpreimbursement","isTaxPreparebyTRP"})
+		"pan_Firm","date_AuditReport","isLiable_FurnishSec92E","trpname","trpnumber","trpreimbursement","isTaxPreparebyTRP","sourceIncPackSelectKey","sourceIncPackSelect"})
 @RequiredFields(fieldNames={
 		"pi_last_name","pi_dob","gender",
 		"pi_flat_door_building","pi_email","pi_pin_code","pi_town_city_district","pi_state","pi_area_locality","pi_mobile",
@@ -116,8 +119,27 @@ public class StartApplication extends ITReturnComponent {
 		//being member return of getMemberPersonalInformation() of ITReturnComponent it return previous entered and viewed value.
 		parentBean =  (MemberPersonalInformation)request.getAttribute("parentBean"); //getMemberPersonalInformation();
 
-		List<HippoDocumentBean> listOfITRServices = getITRInitData(request).loadAllBeansUnderTheFolder(request, "services/documents/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
+		List<HippoDocumentBean> listOfITRServices = getITRInitData(request).loadAllBeansUnderTheFolder(request,  "documents/services/incometaxreturn", "mootlywcm:Name",SORT_DIRECTION.ASC);
 		request.setAttribute("listOfITRServices", listOfITRServices);
+
+		Map<String,List<CostModel>> servicesMap = new LinkedHashMap<String,List<CostModel>>();
+
+		if(listOfITRServices!=null){
+			for (HippoBean aBean:listOfITRServices) {
+				List<CostModel> costModList = new ArrayList<CostModel>();
+				Service theService = (Service) aBean;
+				for (CostModel theCostModel:theService.getCostModel()) {
+					if(theCostModel.getIsAvailableForUser()){
+						costModList.add(theCostModel);	
+					}
+				}
+				servicesMap.put(theService.getName(), costModList);
+			}
+			request.setAttribute("servicesMap", servicesMap);
+		}
+		
+		Map<String, String> mapForCostModelName = CostModelName.getDisplayNameWithKey();
+		request.setAttribute("mapForCostModelName", mapForCostModelName);
 
 		RetrievePANResponse retrievePANResponse = null;
 		//Call to DIT Service then get the Response

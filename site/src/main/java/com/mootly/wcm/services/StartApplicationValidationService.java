@@ -76,7 +76,7 @@ public class StartApplicationValidationService {
 					for(String aValidField:formMap.getFieldNames()){
 						if(!objJson.isNull(aValidField)){
 							validResidential(formMap,assessmentYear);
-							validLastName(formMap);
+						//	validLastName(formMap);
 							validDateofBirth(formMap);
 							JSONObject validRul=objJson.getJSONObject(aValidField);
 							//Field value for isRequired
@@ -186,7 +186,8 @@ public class StartApplicationValidationService {
 			}
 		}
 	}
-
+	
+	/*No Validation - Marriage/Pan Changed*/	
 	/**
 	 * This Method is Used to Test last name of Member 
 	 * 
@@ -196,7 +197,7 @@ public class StartApplicationValidationService {
 	 * 
 	 * @return null
 	 * */
-	public void validLastName(FormMap formMap){
+	/*public void validLastName(FormMap formMap){
 		Boolean check=masterConfigService.shouldValidate5thChar();
 		if(check != null && check){
 			if(formMap.getField("pi_last_name")!=null && formMap.getField("pan")!=null){
@@ -208,7 +209,7 @@ public class StartApplicationValidationService {
 				}
 			}
 		}
-	}
+	}*/
 	/**
 	 * This Method is Used to Test Date of Birth of Member 
 	 * 

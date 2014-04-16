@@ -14,7 +14,7 @@ label {
 </style>
 <w4india:itrmenu />
 <div class="row show-grid">
-	<w4india:itrsidebar/>
+	<w4india:itrsidebar />
 	<div class="${sideBarMainClass}">
 		<c:choose>
 			<c:when
@@ -22,7 +22,8 @@ label {
 				<c:out value="${screenConfigDocument.screenHeading}" />
 			</c:when>
 			<c:otherwise>
-				<w4india:titleandnav title="Other Sources Income"/>
+				<w4india:titleandnav title="Other Sources Income"
+					subTitle="This is a residuary head covering all incomes which do not specifically fall under any of the heads mentioned earlier as Dividends or income from units of mutual fund, Winning from lotteries, cross-word puzzles, races including horse races, card games or from gambling or betting etc." />
 			</c:otherwise>
 		</c:choose>
 		<c:if test="${not empty formMap}">
@@ -42,7 +43,7 @@ label {
 				<legend class="header-color">
 					<small> <fmt:message key="member.interest.tax" /></small>
 				</legend>
-	
+
 				<div class="row show-grid">
 					<div class="col-md-3">
 						<div class="rowlabel">
@@ -54,7 +55,7 @@ label {
 								title="Enter income from Govt." class="decimal" maxlength="14"
 								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.gov_income}"/>"
 								id="Gov_income" onchange="cal1()" />
-	
+
 						</div>
 					</div>
 					<div class="col-md-3">
@@ -92,7 +93,7 @@ label {
 					</div>
 				</div>
 				<div class="row show-grid">
-	
+
 					<div class="col-md-3">
 						<div class="rowlabel">
 							<label for="Indira"><fmt:message
@@ -106,8 +107,8 @@ label {
 					</div>
 					<div class="col-md-3">
 						<div class="rowlabel">
-							<label for="intnsc"><fmt:message key="member.interest.nsc" />
-							</label>
+							<label for="intnsc"><fmt:message
+									key="member.interest.nsc" /> </label>
 						</div>
 						<div class="rowlabel">
 							<input type="text" name="intnsc" maxlength="14"
@@ -115,7 +116,7 @@ label {
 								class=" decimal" id="intnsc" onchange="cal1()" />
 						</div>
 					</div>
-	
+
 					<div class="col-md-3">
 						<div class="rowlabel">
 							<label for="Otherint "><fmt:message
@@ -141,7 +142,7 @@ label {
 					</div>
 				</div>
 			</fieldset>
-	
+
 			<fieldset>
 				<legend class="header-color">
 					<small> <fmt:message key="member.otherincome.message1" /></small>
@@ -161,8 +162,8 @@ label {
 					</div>
 					<div class="col-md-4">
 						<div class="rowlabel">
-							<label for="Dividends"><fmt:message key="member.dividends" />
-							</label>
+							<label for="Dividends"><fmt:message
+									key="member.dividends" /> </label>
 						</div>
 						<div class="rowlabel">
 							<input type="text" name="Dividends"
@@ -170,7 +171,7 @@ label {
 								maxlength="14" class=" decimal" id="Dividends" onchange="cal2()" />
 						</div>
 					</div>
-	
+
 					<!--
 	
 				<c:if test="${not empty  ITR2}">
@@ -183,7 +184,7 @@ label {
 						</td>
 					</c:if>
 					 -->
-	
+
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="Income_rent_machine"><fmt:message
@@ -197,9 +198,9 @@ label {
 						</div>
 					</div>
 				</div>
-	
+
 				<div class="row show-grid">
-	
+
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="Income_other "><fmt:message
@@ -211,7 +212,7 @@ label {
 								class=" decimal" id="Income_other" onchange="cal2()" />
 						</div>
 					</div>
-	
+
 					<div class="col-md-4">
 						<div class="rowlabel">
 							<label for="Deduction_57 "><fmt:message
@@ -237,7 +238,7 @@ label {
 						</div>
 					</div>
 				</div>
-	
+
 			</fieldset>
 			<fieldset>
 				<legend class="header-color">
@@ -262,7 +263,7 @@ label {
 							<label for="Otherdeduction "><fmt:message
 									key="member.income.others" /> </label>
 						</div>
-	
+
 						<div class="rowlabel">
 							<input type="text" name="Otherdeduction" maxlength="14"
 								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherdeduction}" />"
@@ -347,7 +348,7 @@ label {
 						</div>
 					</div>
 				</div>
-	
+
 				<div class="row show-grid">
 					<div class="col-md-4">
 						<div class="rowlabel">
@@ -369,7 +370,8 @@ label {
 						<div class="rowlabel">
 							<input type="text" name="Otherincome"
 								value="<fmt:formatNumber type="number"  maxIntegerDigits="14" groupingUsed="false" value="${parentBean.otherincome}"/>"
-								maxlength="14" class="decimal" id="Otherincome" onchange="cal4()" />
+								maxlength="14" class="decimal" id="Otherincome"
+								onchange="cal4()" />
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -404,7 +406,7 @@ label {
 						</div>
 					</div>
 				</c:if>
-	
+
 				<div class="col-md-4">
 					<div class="rowlabel">
 						<label for="Taxable_income "><fmt:message
@@ -417,13 +419,13 @@ label {
 					</div>
 				</div>
 			</div>
-	
+
 			<div class="row show-grid">
 				<div class="col-md-4 col-md-offset-8 decimal">
 					<a href="${scriptName}" class="btn btn-default btn-danger">Cancel</a>&nbsp;
 					<a id="myModalHrefothrInc" role="button"
 						class="btn btn-default btn-success">Save</a>
-	
+
 				</div>
 			</div>
 		</form>

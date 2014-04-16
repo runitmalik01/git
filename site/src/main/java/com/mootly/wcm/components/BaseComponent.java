@@ -95,7 +95,8 @@ public class BaseComponent extends BaseHstComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
         getITRInitData(request);
-        ComponentUtil.doRedirectionOnWrongLandingMount(request, response,getITRInitData(request).getResellerId());
+        boolean shouldProceed = ComponentUtil.doRedirectionOnWrongLandingMount(request, response,getITRInitData(request).getResellerId());
+        //if (!shouldProceed) return;
         
       
    
@@ -176,7 +177,7 @@ public class BaseComponent extends BaseHstComponent {
     		
     		WebsiteInfo websiteInfo = request.getRequestContext().getResolvedMount().getMount().getChannelInfo();
     		if (websiteInfo.getEmailFrom() != null) {
-    			finalVelocityContext.put("resellerName", websiteInfo.getPageTitlePrefix() );
+    			finalVelocityContext.put("resellerName", websiteInfo.getResellerName() );
     		}
     		if (websiteInfo.getEmailFrom() != null) {
     			finalVelocityContext.put("emailFrom", websiteInfo.getEmailFrom() );

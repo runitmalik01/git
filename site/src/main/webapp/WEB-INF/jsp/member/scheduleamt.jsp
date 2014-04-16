@@ -14,7 +14,7 @@
 		</div>
 	</c:forEach>
 </c:if>
-<w4india:titleandnav title="Schedule AMT" subTitle="Schedule AMT(Alternative Minimum Tax)"/>
+<w4india:titleandnav title="Schedule AMT" subTitle="Schedule AMT aka Alternate Minimum Tax on company who discloses profits but after considering incentives and higher rate of depreciation has no or lower taxable income."/>
 <c:if test="${not empty exceedErrorGrossTurnOver}">
 	<div class="alert alert-danger">
 		<strong><fmt:message key="busi.prof.exceed.grosturnover.itr4" /></strong><a

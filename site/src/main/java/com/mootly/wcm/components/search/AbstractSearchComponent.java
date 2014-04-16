@@ -32,6 +32,7 @@ import org.hippoecm.hst.content.beans.standard.HippoBeanIterator;
 import org.hippoecm.hst.content.beans.standard.HippoDocumentIterator;
 import org.hippoecm.hst.content.beans.standard.HippoFacetChildNavigationBean;
 import org.hippoecm.hst.content.beans.standard.HippoFacetNavigationBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.util.SearchInputParsingUtils;
 import org.hippoecm.hst.utils.BeanUtils;
@@ -46,6 +47,7 @@ import com.mootly.wcm.beans.Faq;
 import com.mootly.wcm.beans.KnowledgeArticle;
 import com.mootly.wcm.beans.NewsItem;
 import com.mootly.wcm.beans.SimpleDocument;
+import com.mootly.wcm.beans.cms.PageDocument;
 import com.mootly.wcm.components.ComponentUtil;
 import com.mootly.wcm.components.TagComponent;
 import com.mootly.wcm.utils.Constants;
@@ -167,15 +169,6 @@ public class AbstractSearchComponent extends TagComponent {
                 Filter filter = hstQuery.createFilter();
                 hstQuery.setFilter(filter);
                 
-                
-                //Filter excludeFolders = hstQuery.createFilter();
-            	//excludeFolders.addNotEqualTo("jcr:primaryType", "hippostd:folder");
-            	//filter.addAndFilter(excludeFolders);
-            	
-              
-                
-                
-                                
                 // title field
                 Filter titleFilter = hstQuery.createFilter();
                 titleFilter.addContains("@mootlywcm:title", parsedQuery);
@@ -190,12 +183,13 @@ public class AbstractSearchComponent extends TagComponent {
                 filter.addOrFilter(summaryFilter);
                 filter.addOrFilter(fullTextFilter);
                 //https://issues.onehippo.com/browse/mootlywcm-254
-                hstQuery.addOrderByDescending("mootlywcm:rating");
+                //hstQuery.addOrderByDescending("mootlywcm:rating");
             }else{
-                hstQuery.addOrderByDescending("mootlywcm:title");
+                hstQuery.addOrderByDescending("hippostdpubwf:creationDate");
             }
+            
             HstQueryResult result = hstQuery.execute();
-            int getSize = result.getSize();
+            int totalSize = result.getSize();
             
             HippoBeanIterator beans = result.getHippoBeans();
             int pageSize = getPageSize(request);
@@ -206,7 +200,12 @@ public class AbstractSearchComponent extends TagComponent {
             	HippoBean firstBean = results.getItems().get(0);
             	request.setAttribute("firstBean", firstBean);
             }
+            
+            PageableCollection<HippoBean> resultsTotal = new PageableCollection<HippoBean>(beans, totalSize, 1);
+            request.setAttribute("resultsTotal", resultsTotal);
             request.setAttribute("searchResult", results);
+            request.setAttribute("scope", scope);
+            request.setAttribute("scopeForResellers", getITRInitData(request).getSiteContentBaseBeanForReseller(request));
             
             String format = getPublicRequestParameter(request, "format");
             if (format != null && format.equals("json") && results != null && results.getItems() != null) {

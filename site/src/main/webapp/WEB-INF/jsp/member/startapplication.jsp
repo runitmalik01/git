@@ -60,8 +60,10 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 		</div>
 	</c:if>
 	<div id="ditPanInvalid" class="alert alert-danger <c:if test="${empty noPanMatchFound}">hide</c:if>"><strong><fmt:message key="err.match.pan.dit"/></strong></div>
-	<div id="lastNameInvalid" class="alert alert-danger hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div>
-	<div id="error" class="alert alert-danger" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div>
+
+<!-- 	No Validation - Marriage/Pan Changed  -->
+	<%-- <div id="lastNameInvalid" class="alert alert-danger hide"><strong><fmt:message key="err.match.last.name.dit"/></strong></div> --%>
+	<%-- <div id="error" class="alert alert-danger" style="display:none;"><fmt:message key="err.valid.lastName.with.pan"/></div> --%>
 	<%--
 	<h4>
 		<c:out value="${filingStatus}" /> Information
@@ -173,7 +175,7 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</div>
 				</fieldset>		
 				
-				<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || (memberpersonalinformation.returnType == 'O' && (memberpersonalinformation.filingSection.xmlCode == '12'))}">display: none;</c:if>">
+				<fieldset id="ul_revised" class="revised_v original_h" style="<c:if test="${empty memberpersonalinformation || (memberpersonalinformation.returnType == 'O' && (memberpersonalinformation.filingSection.xmlCode == '12' || memberpersonalinformation.filingSection.xmlCode == '11'))}">display: none;</c:if>">
 					<legend class="header-color"
 					><small>Revised Return Details</small></legend>
 					<div class="row show-grid" id="ul_revised_input">
@@ -709,52 +711,8 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 						</c:otherwise>
 					</c:choose>
 				</fieldset>
-				<fieldset>
-					<legend class="header-color"><small>ITR Package Selection</small></legend>
-					<div class="row show-grid">
-					    <div class="col-md-2">
-					    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
-					    </div>
-						<div class="col-md-5">
-							<div class="rowlabel"><label for="whoCan"><small>Who can select this package</small></label></div>
-						</div>
-						<div class="col-md-5">
-							<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
-						</div>
-						<%--
-						<div class="col-md-2">
-							<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to <w4india:resellername/> and then let <w4india:resellername/> prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
-						</div>
-						 --%>
-					</div>
-					<div class="row show-grid">
-						<div class="col-md-2">
-							<select id="flex_string_ITRForm" name="flex_string_ITRForm">
-								<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
-									<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}"><fmt:message key="${itrForm}.packageName"></fmt:message></option>
-								</c:forEach>
-							</select>
-							<input type="hidden" name="flex_string_ITRServiceDelivery" value="DIY"/>					
-						</div>
-						<div class="col-md-5">
-							<div style="font-size:small" id="whoCan"></div>
-						</div>
-						<div class="col-md-5">
-							<div style="font-size:small" id="whoCannot"></div>
-						</div>
-						<%--
-						<div class="col-md-2">
-							<div style="font-size:small" id="filingMode">
-								<input type="hidden" id="hidden_flex_string_ITRServiceDelivery" name="hidden_flex_string_ITRServiceDelivery" value="${parentBean.selectedServiceDeliveryOption}">
-								<select name="flex_string_ITRServiceDelivery" id="flex_string_ITRServiceDelivery">
-		
-								</select>
-							</div>
-						</div>
-						 --%>
-					</div>
-				</fieldset>
-				<c:choose>
+				
+			   <c:choose>
 					<c:when
 						test="${not empty parentBean && not empty parentBean.financialYear}">
 						<c:set value="${fn:substringBefore(parentBean.financialYear,'-')}"
@@ -770,6 +728,69 @@ request.setAttribute("objHashMapstates", objHashMapstates);
 					</c:otherwise>
 				</c:choose>
 				<fmt:parseNumber var="fyInt" type="number" integerOnly="true" value="${fy}"></fmt:parseNumber>
+				
+				<c:choose>
+				  <c:when test = "${fyInt == 2013}">
+				    <fieldset class="highLevelDesign">
+                     <legend> ITR Package Selection</legend>
+                     <jsp:include page="../member/startapp/startapp_package_selection_v1.1.jsp">
+                     <jsp:param name="jsonObjectPackage" value="${jsonObjectPackage}"/>
+                     <jsp:param name="mapPackage" value="${mapPackage}"/>
+                     <jsp:param name="filingStatus" value="${filingStatus}"/>
+                     <jsp:param name="servicesMap" value="${servicesMap}"/>
+                     <jsp:param value="${parentBean}" name="parentBean"/>
+                     </jsp:include>
+                    </fieldset>
+				  </c:when>
+				  <c:otherwise>
+				    <fieldset class="lowLevel">
+					<legend class="header-color"><small>ITR Package Selection</small></legend>
+					<div class="row show-grid">
+					    <div class="col-md-2">
+					    	<div class="rowlabel"><label for="flex_string_ITRForm"><small>Select the ITR Package</small></label></div>
+					    </div>
+						<div class="col-md-5">
+							<div class="rowlabel"><label for="whoCan"><small>Who can select this package</small></label></div>
+						</div>
+						<div class="col-md-5">
+							<div class="rowlabel"><label for="whoCannot"><small>Who should not select this package</small></label></div>
+						</div>
+						
+						<%-- <div class="col-md-2">
+							<div class="rowlabel"><label for="filingMode"><small><abbr title="Choose eFile if you want to do it yourself. eZFile lets you upload documents to <w4india:resellername/> and then let <w4india:resellername/> prepare the tax return for you.">Mode</abbr>&nbsp;<a href='<hst:link siteMapItemRefId="serviceprice"/>'>Help</a></small></label></div>
+						</div> --%>
+						
+					</div>
+					<div class="row show-grid">
+						<div class="col-md-2">
+							<select id="flex_string_ITRForm" name="flex_string_ITRForm">
+								<c:forEach items="${filingStatus.possibleITRForms}" var="itrForm">
+									<option <c:if test="${parentBean.selectedITRForm == itrForm}">selected</c:if> value="${itrForm}"><fmt:message key="${itrForm}.packageName"></fmt:message></option>
+								</c:forEach>
+							</select>
+							<input type="hidden" name="flex_string_ITRServiceDelivery" id="flex_string_ITRServiceDelivery" value="DIY"/>					
+						</div>
+						<div class="col-md-5">
+							<div style="font-size:small" id="whoCan"></div>
+						</div>
+						<div class="col-md-5">
+							<div style="font-size:small" id="whoCannot"></div>
+						</div>
+						
+					<%-- 	<div class="col-md-2">
+							<div style="font-size:small" id="filingMode">
+								<input type="hidden" id="hidden_flex_string_ITRServiceDelivery" name="hidden_flex_string_ITRServiceDelivery" value="${parentBean.selectedServiceDeliveryOption}">
+								<select name="flex_string_ITRServiceDelivery" id="flex_string_ITRServiceDelivery">
+		
+								</select>
+							</div>
+						</div> --%>
+						
+					</div>
+				</fieldset>
+				  </c:otherwise>
+				</c:choose>				
+
 				<c:choose>
 					<c:when test="${fyInt >= 2012}">
 						<c:set var="bnkcode" value="flex_string_IFSCCode" />

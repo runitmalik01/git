@@ -36,6 +36,8 @@
 <%@page import="com.mootly.wcm.beans.MemberPersonalInformation"%>
 <c:set var="lang" value="${pageContext.request.locale.language}"/>
 <head>
+    <link rel="shortcut icon" href="/favicon.ico?12345" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico?1234" type="image/x-icon">
 	<hst:headContributions categoryExcludes="css,jsInternal,jsExternal"  />
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 	<%-- <meta name='robots' content='noindex,nofollow' /> --%>		

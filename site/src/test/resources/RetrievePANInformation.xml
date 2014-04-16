@@ -43,7 +43,7 @@
     			<entry key="PAN" value="#PAN.toUpperCase()"></entry>    			
     		</map>
     	</property>
-    	<property name="outputElementMap">
+ 		<property name="outputElementMap">
     		<map>
 				<entry key="PAN" value="//typ:pan"></entry>
 				<entry key="fatherFullName" value="//typ:ffullname"></entry>

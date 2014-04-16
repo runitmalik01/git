@@ -12,7 +12,8 @@
 	<w4india:itrmenu />
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-		<w4india:titleandnav title="Nature Of Business" />
+		<w4india:titleandnav title="Nature Of Business"
+			subTitle="An assessee who is having business income, should give information on nature or type of industry.</br> <strong>Note:</strong> An assessee may have only three type of business under which 03 trades can occur with respect to each nature of business i.e maximum nature of business is three and maximum number of trade name is nine." />
 		<hst:link var="mainSiteMapRefId" />
 
 		<c:choose>
@@ -22,7 +23,7 @@
 					name="frmNature_business">
 					<fieldset>
 						<legend class="header-color">
-							<small><fmt:message key="nature.business.itr4" /></small>
+							<small>Enter the details of Business<%-- <fmt:message key="nature.business.itr4" /> --%></small>
 						</legend>
 						<div class="row show-grid">
 							<div class="col-md-4">

@@ -41,6 +41,8 @@ public class FacetNavigation extends BaseComponent {
         super.doBeforeRender(request, response);
         ITReturnInitData itReturnInitData = getITRInitData(request);
         HippoBean scope = getITRInitData(request).getSiteContentBaseBeanForReseller(request);
+        
+        
         String query = this.getPublicRequestParameter(request, "query");
         if (query != null) {
             query = SearchInputParsingUtils.parse(query, false);
@@ -59,7 +61,8 @@ public class FacetNavigation extends BaseComponent {
         HippoFacetNavigationBean facNavBean = null;
         
         String scopeRelativePath = request.getRequestContext().getResolvedSiteMapItem().getParameter("scopeRelativePath");
-        if (scopeRelativePath != null) {
+        String facetedNavLocation = getParameter("facetnav.location", request);
+        if (scopeRelativePath != null && facetedNavLocation == null) {
         	String theRelativePath =  (scope.getCanonicalPath() + "/" + scopeRelativePath).substring(getSiteContentBaseBean(request).getCanonicalPath().length()-1);
         	resolvedContentPath = scopeRelativePath + "/searchfacets";
         	
@@ -74,7 +77,7 @@ public class FacetNavigation extends BaseComponent {
 
         if (facNavBean == null) {
             // perform a free text search within the facet indicated by the component parameter 'facetnav.location'
-            String facetedNavLocation = getParameter("facetnav.location", request);
+            //String facetedNavLocation = getParameter("facetnav.location", request);
             if (facetedNavLocation == null) {
                 log.warn("Please configure the 'facetnav.location' component parameter.");
                 return;

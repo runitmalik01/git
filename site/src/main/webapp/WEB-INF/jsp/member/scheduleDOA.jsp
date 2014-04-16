@@ -13,7 +13,7 @@
 	<div class="row show-grid">
 	<w4india:itrsidebar></w4india:itrsidebar>
 	<div class="${sideBarMainClass}">
-	<w4india:titleandnav title="Schedule DOA"></w4india:titleandnav>
+	<w4india:titleandnav title="Schedule DOA" subTitle="Schedule Depreciation on Other Assets (DOA) is computation of depreciation on other assets under Income Tax Act."></w4india:titleandnav>
 	<hst:link var="mainSiteMapRefId" />
 	<c:if test="${not empty formMap}">
 		<c:forEach items="${formMap.message}" var="item">

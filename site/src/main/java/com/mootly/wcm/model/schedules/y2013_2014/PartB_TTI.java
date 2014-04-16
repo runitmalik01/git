@@ -407,7 +407,7 @@ public class PartB_TTI {
 		}else
 			refund.setRefundDue(new BigInteger("0"));
 		refund.setBankAccountNumber(memberPersonalInformation.getBD_ACC_NUMBER().toUpperCase());
-		refund.setEcsRequired(memberPersonalInformation.getBD_ECS());
+		//refund.setEcsRequired(memberPersonalInformation.getBD_ECS()); //Amit PAtkar this one is removed not sure what's the change
 		DepositToBankAccount depositToBankAccount = new DepositToBankAccount();
 		depositToBankAccount.setBankAccountType(memberPersonalInformation.getBD_TYPE_ACC().toUpperCase());
 		depositToBankAccount.setIFSCCode(memberPersonalInformation.getFlexField("flex_string_IFSCCode", "").toUpperCase());

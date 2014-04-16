@@ -68,11 +68,11 @@ public final class ComponentUtil {
         return defaultValue;
     }
     
-    public static void doRedirectionOnWrongLandingMount(HstRequest request, HstResponse response,String resellerId) {
+    public static boolean doRedirectionOnWrongLandingMount(HstRequest request, HstResponse response,String resellerId) {
         HstRequestContext requestContext = request.getRequestContext();
         
         if (requestContext.getAttribute(REDIRECTION_ON_WRONG_LANDING_MOUNT_DONE_ATTR) != null) {
-            return;
+            return false;
         }
         
         requestContext.setAttribute(REDIRECTION_ON_WRONG_LANDING_MOUNT_DONE_ATTR, Boolean.TRUE);
@@ -97,8 +97,21 @@ public final class ComponentUtil {
             sendRedirectToMount(request, response, DEFAULT_MOUNT_ALIAS_MOBILE);
         }
         else if (resellerId != null && !resolvedMount.getMount().getAlias().equals(resellerId)) {
-        	sendRedirectToMount(request, response, resellerId);
+        	String shouldNotRedirectToProperMount = request.getRequestContext().getResolvedSiteMapItem().getParameter("shouldNotRedirectToProperMount");
+        	if (shouldNotRedirectToProperMount != null && "true".equals(shouldNotRedirectToProperMount)) {
+        		try {
+					response.forward("/404");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            	return false;
+        	}
+        	else {
+        		sendRedirectToMount(request, response, resellerId);
+        	}
         }
+        return true;
     }
     
     public static void sendRedirectToMount(HstRequest request, HstResponse response, String alias) {

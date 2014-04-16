@@ -19,7 +19,8 @@
 <%@page import="com.mootly.wcm.model.FinancialYear"%>
 <%@include file="../includes/tags.jspf" %>
 <hst:actionURL var="actionURL"></hst:actionURL>
-<hippo-gogreen:title title="Validate your Indian Income Tax Return"/>
+<hippo-gogreen:seoheader title="Validate your Indian Income Tax Return" robots="NOINDEX, FOLLOW"/>
+
 <div class="page">
 	<h4>Validate your Indian Income Tax Return</h4>
 	<h5>

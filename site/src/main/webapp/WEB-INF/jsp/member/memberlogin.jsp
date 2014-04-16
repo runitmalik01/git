@@ -6,7 +6,7 @@
 <c:set var="memberlogintitle">
 	<fmt:message key="member.login.title" />
 </c:set>
-<hippo-gogreen:title title="${memberlogintitle}" />
+<hippo-gogreen:seoheader title="${memberlogintitle}" robots="NOINDEX, FOLLOW"/>
 <hst:link var="forgotpass" siteMapItemRefId="forgotpass"></hst:link>
 <hst:link var="loginProxy" path="/login/proxy"></hst:link>
 <hst:link var="j_spring_security_check" path="/j_spring_security_check"></hst:link>

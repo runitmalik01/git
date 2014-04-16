@@ -35,5 +35,17 @@ public class CostModel extends HippoItem {
     public String getOfferingMode(){
     	return getProperty("mootlywcm:offeringMode");
     }
+    
+    public String getCostHighlight(){
+    	return getProperty("mootlywcm:costHighlight");
+    }
+    
+    public Boolean getExpertReview(){
+    	return getProperty("mootlywcm:expertReview");
+    }
+    
+    public Boolean getIsAvailableForUser(){
+    	return getProperty("mootlywcm:isAvailable");
+    }
 
 }

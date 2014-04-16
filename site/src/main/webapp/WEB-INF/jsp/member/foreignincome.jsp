@@ -18,8 +18,8 @@ request.setAttribute("objHashMapcountry", objHashMapcountry);
 	<div class="row show-grid">
 		<w4india:itrsidebar></w4india:itrsidebar>
 		<div class="${sideBarMainClass}">
-			<w4india:titleandnav title="Schedule FSI"
-				subTitle="Schedule FSI&nbsp;-&nbsp;${scheduleFSI}" />
+			<w4india:titleandnav title="Income From Foreign"
+				subTitle="Income From Foreign aka Schedule FSI&nbsp;-&nbsp;It provides details of income accruing or arising outside India or to disclose the overseas income under the various heads of income e.g salary, house, and capital gain etc ." />
 			<hst:link var="mainSiteMapRefId" />
 			<c:if test="${not empty formMap}">
 				<c:forEach items="${formMap.message}" var="item">

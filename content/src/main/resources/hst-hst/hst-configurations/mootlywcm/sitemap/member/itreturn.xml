@@ -5842,7 +5842,40 @@
 		  <sv:property sv:name="hst:relativecontentpath" sv:type="String">
 		    <sv:value>members</sv:value>
 		  </sv:property>
-		</sv:node>		
+		</sv:node>
+		<!-- Start of servicerequest-itr-review -->
+	<sv:node sv:name="servicerequest-itr-review.html">
+		<sv:property sv:name="jcr:primaryType" sv:type="Name">
+			<sv:value>hst:sitemapitem</sv:value>
+		</sv:property>
+		<sv:property sv:name="jcr:uuid" sv:type="String">
+			<sv:value>777005aa-d1c3-4ddf-b305-0208d5901cb6</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:componentconfigurationid"
+			sv:type="String">
+			<sv:value>hst:pages/servicerequest-itr-review</sv:value>
+		</sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parameternames"
+			sv:type="String">
+			<sv:value>mainSiteMapItemRefId</sv:value>
+			<sv:value>action</sv:value>
+			<sv:value>nextScreen</sv:value>
+		</sv:property>
+		<sv:property sv:multiple="true" sv:name="hst:parametervalues"
+			sv:type="String">
+			<sv:value>servicerequest-itr-review</sv:value>
+			<sv:value>EDIT</sv:value>
+			<sv:value>servicerequest-itr-review</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:refId" sv:type="String">
+			<sv:value>servicerequest-itr-review</sv:value>
+		</sv:property>
+		<sv:property sv:name="hst:relativecontentpath" sv:type="String">
+			<sv:value>members</sv:value>
+		</sv:property>
+	</sv:node>
+		
+		<!-- End of servicerequest-itr-review -->		
 		<!-- /new site maps -->
       </sv:node>
     </sv:node>
