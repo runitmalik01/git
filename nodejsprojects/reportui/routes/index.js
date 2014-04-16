@@ -7,11 +7,17 @@ exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
-exports.memberlist = function(db,isActive) {
+exports.memberlist = function(db,notifications,isActive) {
     return function(req, res) {
     	db.collection('w4india_membersignups').find({'mootlywcm:isActive':isActive}).toArray(function(err, result) {
 		   	if (err) throw err;
-		   	//console.log(result);
+		   	
+		   	//BE CAREFUL and COMMENT OUT THIS AS SOON AS YOU ARE DONE TESTINT
+		   	//notifications.sendInactiveReminder("amit@mootly.com","w4india","SADASDASDSAD"); 
+		   	
+		   	
+		   	//do NOT ENABLE THIS
+		   	/*
 		   	for (i =0;i<result.length;i++) {
 		   		email = result[i]["mootlywcm:email"];
 		   		isActive = result[i]["mootlywcm:isActive"];
@@ -35,10 +41,12 @@ exports.memberlist = function(db,isActive) {
 				      //res.redirect('/lists/'+req.params.id);
 				    });
 		   	}
+		   	*/
 		    res.render('memberlist', {
                 "memberlist" : result
             });
 		});
+		
         //var collection = db.collection('w4india_membersignups');
         //collection.find({'mootlywcm:isActive':isActive},{},function(e,docs){
         //   res.render('memberlist', {
