@@ -8,6 +8,8 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var notifications = require('./notifications')
+
 
 mcapi = require('./node_modules/mailchimp-api/mailchimp')
 
@@ -15,6 +17,9 @@ mcapi = require('./node_modules/mailchimp-api/mailchimp')
 var mongo = require('mongodb');
 var monk = require('monk');
 var mongoskin = require('mongoskin');
+
+var mandrill = require('mandrill-api/mandrill');
+mandrill_client = new mandrill.Mandrill('yYRJJRG8FHmY78Jcyy3qXg');
 
 var app = express();
 
@@ -26,7 +31,7 @@ mc = new mcapi.Mailchimp('7da5576ec81d13572c3008ac81fd50af-us8');
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.favicon());
+//app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -43,9 +48,9 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 //app.get('/users', user.list);
-app.get('/inactivemembers', routes.memberlist(db,false));
+app.get('/inactivemembers', routes.memberlist(db,notifications,false));
 
-
+//notifications.sendInactiveReminder("amit@mootly.com","w4india","SADASDASDSAD"); 
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
