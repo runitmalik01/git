@@ -54,96 +54,145 @@
 	
 	<xsl:template name="partC">
 		<xsl:variable name="theITRForm" select="//memberpersonalinformation/@flex_string_ITRForm"/>
+		<xsl:choose>
+			<xsl:when test="$theITRForm = 'ITR1'">
+			 	<xsl:call-template name="partC-ChapterVI"/>
+			</xsl:when>
+			<xsl:when test="$theITRForm = 'ITR4S'">
+			 	<xsl:call-template name="partC-ChapterVI"/>
+			</xsl:when>
+			<xsl:when test="$theITRForm = 'ITR3'">
+			</xsl:when>
+		<xsl:otherwise>
+			</xsl:otherwise>
+		</xsl:choose>
+		
 		<!-- CHAPTER 6 FIRS -->
-		<div class="sectionhead">PART C - DEDUCTIONS AND TAXABLE TOTAL INCOME</div>
+	<!--  	<div class="sectionhead">PART C - DEDUCTIONS AND TAXABLE TOTAL INCOME</div> -->
 		<!--  PART C -->
-		<div class="container">
-			<xsl:call-template name="partC-ChapterVI"/>														
-		</div>									
+		<!--   <div class="container"> -->
+		<!--  	<xsl:call-template name="partC-ChapterVI"/>	-->													
+		<!--     </div> -->
+								
 	</xsl:template>
 	
 	<xsl:template name="partC-ChapterVI">
+	<div class="sectionhead"><b class="boldsch">PART C -</b> DEDUCTIONS AND TAXABLE TOTAL INCOME</div>
 		<div class="row">
 			<div class="col-xs-4">
-				<span class="normallabel">80C</span>
+			 <span class="normaltext"><strong>(C1). &#160;</strong></span>
+				<span class="normallabel">80C &#160;</span>
 				<span class="normaltext">	
 					<xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80C"/>
 				</span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80CCC</span>
+			<span class="normaltext"><strong>(C2). &#160;</strong></span>
+				<span class="normallabel">80CCC &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80CCC"/></span>
 			</div>
-			<div class="col-xs-4">
-				<span class="normallabel">80CCD(1)</span>
+				
+			<div class="col-xs-5">
+			<span class="normaltext"><strong>(C3). &#160;</strong></span>
+				<span class="normallabel">80CCD(1) &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80CCDEmployeeOrSE"/></span>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-4">
-				<span class="normallabel">80CCD(2)</span>
+			<span class="normaltext"><strong>(C4). &#160;</strong></span>
+				<span class="normallabel">80CCD(2) &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80CCDEmployer"/></span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80CCG</span>
+			<span class="normaltext"><strong>(C5). &#160;</strong></span>
+				<span class="normallabel">80CCG &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80CCG"/></span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80D</span>
+			<span class="normaltext"><strong>(C6) &#160;</strong></span>
+				<span class="normallabel">80D &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80D"/></span>
 			</div>
 		</div>				
 		<div class="row">
 			<div class="col-xs-4">
-				<span class="normallabel">80DD</span>
+			<span class="normaltext"><strong>(C7). &#160;</strong></span>
+				<span class="normallabel">80DD &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80DD"/></span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80DDB</span>
+			<span class="normaltext"><strong>(C8). &#160;</strong></span>
+				<span class="normallabel">80DDB &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80DDB"/></span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80E</span>
+			<span class="normaltext"><strong>(C9). &#160;</strong></span>
+				<span class="normallabel">80E &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80E"/></span>
 			</div>
 		</div>		
 		<div class="row">
 			<div class="col-xs-4">
-				<span class="normallabel">80G</span>
+			<span class="normaltext"><strong>(C10). &#160;</strong></span>
+				<span class="normallabel">80G &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80G"/></span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80GG</span>
+			<span class="normaltext"><strong>(C11). &#160;</strong></span>
+				<span class="normallabel">80GG &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80GG"/></span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80GGA</span>
+			<span class="normaltext"><strong>(C12). &#160;</strong></span>
+				<span class="normallabel">80GGA &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:Section80GGA"/></span>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-4">
-				<span class="normallabel">80GGC</span>
+			<span class="normaltext"><strong>(C13). &#160;</strong></span>
+				<span class="normallabel">80GGC &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="sum(//deductiondocument/mootlywcm:deductiondocumentdetail[@mootlywcm:Section='80ggc']/@mootlywcm:investment)"/></span>
 			</div>
 			<div class="col-xs-4">
-				<span class="normallabel">80RRB</span>
+			<span class="normaltext"><strong>(C14). &#160;</strong></span>
+				<span class="normallabel">80RRB &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="sum(//deductiondocument/mootlywcm:deductiondocumentdetail[@mootlywcm:Section='80rrb']/@mootlywcm:investment)"/></span>
 			</div>
-			<div class="col-xs-4">
-				<span class="normallabel">80QQB</span>
+			<div class="col-xs-5">
+			<span class="normaltext"><strong>(C15). &#160;</strong></span>
+				<span class="normallabel">80QQB &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="sum(//deductiondocument/mootlywcm:deductiondocumentdetail[@mootlywcm:Section='80qqb']/@mootlywcm:investment)"/></span>
 			</div>
 		</div>	
 		<div class="row">
 			<div class="col-xs-4">
-				<span class="normallabel">80TTA</span>
+			<span class="normaltext"><strong>(C16). &#160;</strong></span>
+				<span class="normallabel">80TTA &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="sum(//deductiondocument/mootlywcm:deductiondocumentdetail[@mootlywcm:Section='80dd']/@mootlywcm:investment)"/></span>
 			</div>
 			<div class="col-xs-8 col-offset-4">
-				<span class="normallabel">80U</span>
+			<span class="normaltext"><strong>(C17). &#160;</strong></span>
+				<span class="normallabel">80U &#160;</span>
 				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="sum(//deductiondocument/mootlywcm:deductiondocumentdetail[@mootlywcm:Section='80u']/@mootlywcm:investment)"/></span>
 			</div>
-		</div>		
+		</div>
+		<div class="row">
+			<div class="col-xs-5">
+			<span class="normaltext"><strong>(C18). &#160;&#160;&#160;</strong></span>
+				<span class="normallabel">Total Deductions (Add item C1 to C17) &#160;</span>
+				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:DeductUndChapVIA/ITRForm:TotalChapVIADeductions"/></span>
+			</div>
+			</div>
+		   
+			<div class="row">
+		     <div class="col-xs-4">
+		     <span class="normaltext"><strong>(C19). &#160;&#160;&#160;</strong></span>
+				<span class="normallabel">Taxable Total Income(B4-C18) &#160;</span>
+				<span class="normaltext"><xsl:number grouping-size="3" grouping-separator=","  value="//ITRForm:ITR4S_IncomeDeductions/ITRForm:TotalIncome"/></span>
+			 </div>
+		    </div>
+				
 	</xsl:template>
 </xsl:stylesheet>

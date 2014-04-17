@@ -42,16 +42,67 @@
 	exclude-result-prefixes="hippogallery wfdropbox hst mix tcmp hippohtmlcleaner editor nt relateddocs fn_old mootlywcmgallery hippotaxonomy sv hippofacnav selection poll rep hippostdpubwf hippolog hipposched hippostd hippo hstconfigedit hippogoogleanalytics hippogallerypicker ef fn hipposys frontend xs hippotranslation brokenlinks jcr hipporeport mootlywcm hipposysedit reporting">
 
 	<xsl:output method="xml"></xsl:output>
-	
-	
 	<xsl:template name="header">
+		<xsl:variable name="theITRForm" select="//memberpersonalinformation/@flex_string_ITRForm"/>
+		<xsl:choose>
+			<xsl:when test="$theITRForm = 'ITR1'">
+			 	<xsl:call-template name="header1"/>
+			</xsl:when>
+			<xsl:when test="$theITRForm = 'ITR3'">
+			<xsl:call-template name="header3"/>
+			</xsl:when>
+			<xsl:when test="$theITRForm = 'ITR4S'">
+			<xsl:call-template name="header4S"/>
+			</xsl:when>
+		<xsl:otherwise>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template name="header1">
 		<div class="container" style="background-color:red;width:100%">
 			<div class="row">
-				<div class="col-xs-6">
-					<h4><xsl:value-of select="//memberpersonalinformation/@flex_string_ITRForm"/></h4>
+				<div class="col-xs-2">
+					<h4><b class="boldsch"><xsl:value-of select="//memberpersonalinformation/@flex_string_ITRForm"/></b></h4>
 				</div>
-				<div class="col-xs-6">
-					<h4>AY <xsl:value-of select="$displayAssessmentYear"/></h4>
+				<div class="col-xs-8">
+				<h5>SAHAJ INDIVIDUAL INCOME TAX RETURN</h5>
+				</div>
+				<div class="col-xs-11">
+					<h4> <b class="boldsch">AY <xsl:value-of select="$displayAssessmentYear"/></b></h4>
+				</div>
+			</div>
+		</div>
+	</xsl:template>
+	<xsl:template name="header3">
+		<div class="container" style="background-color:red;width:100%">
+			<div class="row">
+				<div class="col-xs-3">
+					<h4><b class="boldsch"><xsl:value-of select="//memberpersonalinformation/@flex_string_ITRForm"/></b></h4>
+				</div>
+				<div class="col-xs-8">
+				<b class="boldsch">&#160;&#160;&#160;&#160;&#160;&#160;&#160;INDIAN INCOME TAX RETURN</b> 
+			<div class="col-xs-15">	
+			<div class="en">[For Individuals/HUFs being partners in firms and not carrying out business
+               or profession under any proprietorship]</div>
+			</div>
+			</div>
+				<div class="col-xs-12">
+					<h4><b class="boldsch">AY <xsl:value-of select="$displayAssessmentYear"/></b></h4>
+				</div>
+			</div>
+		</div>
+	</xsl:template>
+	<xsl:template name="header4S">
+		<div class="container" style="background-color:red;width:100%">
+			<div class="row">
+				<div class="col-xs-2">
+					<h4><b class="boldsch"><xsl:value-of select="//memberpersonalinformation/@flex_string_ITRForm"/></b></h4>
+				</div>
+				<div class="col-xs-9">
+				<b class="boldsch">SUGAM </b> PRESUMPTIVE BUSINESS INCOME TAX RETURN 
+				</div>
+				<div class="col-xs-12">
+					<h4> <b class="boldsch">AY <xsl:value-of select="$displayAssessmentYear"/> </b></h4>
 				</div>
 			</div>
 		</div>

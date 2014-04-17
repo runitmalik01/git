@@ -52,6 +52,7 @@
 				<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 				<style type="text/css">
 					.normallabel {color:red; font-family:Tahoma; font-size:8px;font-weight:bold;}
+					.smalllabel {color:red; font-family:Tahoma; font-size:6px;font-weight:bold;}
 					.normaltext {font-family:Tahoma; font-size:8px;}
 					.redline {color:red;}
 					.sectionhead {font-family:arial; font-size:14.5px}
@@ -134,7 +135,7 @@
 							<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_pin_code"/></span></div>
 						</div>
 					</div>
-					<div class="sectionhead">PART B - GROSS TOTAL INCOME</div>
+					<div class="sectionhead"><b class="boldsch">PART B - </b> GROSS TOTAL INCOME</div>
 					<div class="row">
 						<div class="col-xs-1">
 							<strong>B1</strong>
@@ -181,7 +182,7 @@
 						</div>						
 					</div>									
 				</div>
-				<div class="sectionhead">PART C - DEDUCTIONS AND TAXABLE TOTAL INCOME</div>
+				<div class="sectionhead"><b class="boldsch">PART C - </b> DEDUCTIONS AND TAXABLE TOTAL INCOME</div>
 				<!--  PART C -->
 				<div class="container">
 					<div class="row">

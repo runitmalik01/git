@@ -76,9 +76,7 @@
 				<xsl:copy-of select="/"/>
 			</root>
 		</html>
-	</xsl:template>
-	
-	
+	</xsl:template>	
 	<xsl:template name="getSectionTotal">
 		<xsl:param name="section"></xsl:param>
 		<xsl:for-each select="//deductiondocument/mootlywcm:deductiondocumentdetail[@mootlywcm:Section='$section']">	

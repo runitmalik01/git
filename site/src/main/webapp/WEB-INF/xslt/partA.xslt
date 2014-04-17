@@ -81,17 +81,29 @@
 		</div>
 		<hr class="redline"/>
 		<div class="row">
-			<div class="col-xs-2">
-				<div><span class="normallabel">SEX</span></div>
-				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_sex"/></span></div>
-			</div>
-			<div class="col-xs-3">
+   <div class="col-xs-3">
+    <div><span class="normallabel">SEX</span></div>
+    <div><span class="normaltext">
+   <xsl:choose>
+    <xsl:when test="//memberpersonalinformation/@mootlywcm:pi_sex = 'M'">
+       <img  width="11px" height="11px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Male 
+       <img  width="11px" height="11px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Female
+    </xsl:when>
+    <xsl:otherwise>
+       <img width="11px" height="11px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Male 
+       <img  width="11px" height="11px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Female
+    </xsl:otherwise>
+    </xsl:choose>
+   </span>
+   </div>
+   </div>
+			<div class="col-xs-4">
 				<div><span class="normallabel">DATE OF BIRTH</span></div>
 				<div><span class="normaltext"><xsl:value-of select="substring-before(//memberpersonalinformation/@mootlywcm:pi_dob,'T')"/></span></div>
 			</div>
-			<div class="col-xs-7">
+			<div class="col-xs-5">
 				<div><span class="normallabel">INCOME TAX WARD/CIRCLE</span></div>
-				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:incomeTaxWard"/></span></div>
+				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:ward"/></span></div>
 			</div>
 		</div>
 		<hr class="redline"/>
@@ -103,6 +115,17 @@
 			<div class="col-xs-6">
 				<div><span class="normallabel">ROAD/STREET</span></div>
 				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_road_street"/></span></div>
+			</div>
+		</div>
+		<hr class="redline"/>
+		<div class="row">
+			<div class="col-xs-6">
+				<div><span class="normallabel">AREA/LOCALITY</span></div>
+				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_area_locality"/></span></div>
+			</div>
+			<div class="col-xs-6">
+				<div><span class="normallabel">TOWN/CITY/DISTRICT</span></div>
+				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_town_city_district"/></span></div>
 			</div>
 		</div>
 		<hr class="redline"/>
@@ -120,5 +143,233 @@
 				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_pin_code"/></span></div>
 			</div>
 		</div>
+		<hr class="redline"/>
+		<div class="row">
+			<div class="col-xs-2">
+				<div><span class="normallabel">EMAIL</span></div>
+				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_email"/></span></div>
+			</div>
+			</div>
+			<hr class="redline"/>
+		<div class="row">
+			<div class="col-xs-6">
+				<div><span class="normallabel">MOBILE NO/RESIDENTIAL/OFFICE PHONE NO WITH STD CODE </span></div>
+				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_mobile"/>/<xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_std_code"/><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_phone"/></span></div>
+			</div>
+			<div class="col-xs-7">
+				<div><span class="normallabel">MOBILE1</span></div>
+				<div><span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:pi_mobile1"/></span></div>
+			</div>
+			</div>
+			<hr class="redline"/>
+			<div class="col-xs-7">
+			    <div><span class="normallabel">Fill only one If you belong to</span></div>
+				<div><span class="normaltext">	
+					<xsl:choose>
+						<xsl:when test="//memberpersonalinformation/@mootlywcm:pi_employer_category = 'OTH'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/> Other
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>PSU
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Government
+						</xsl:when>
+						<xsl:when test="//memberpersonalinformation/@mootlywcm:pi_employer_category = 'PSU'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Other 
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>PSU
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Government
+						</xsl:when>
+						<xsl:otherwise>
+							<img width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/> Other
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>PSU
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Government
+						</xsl:otherwise>
+					</xsl:choose>
+				   </span>
+			     </div> 
+			     </div>
+			 	<div class="row">
+				<div class="col-xs-7">
+				<span class="normallabel">Fill Only One</span>
+				<div><span class="normaltext">
+				<xsl:choose>
+						<xsl:when test="//ITRForm:TaxStatus = 'TR'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/> Tax Refundable
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Tax Payable
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Nill Tax Balance
+						</xsl:when>
+						<xsl:when test="//ITRForm:TaxStatus = 'TP'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Tax Refundable 
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Tax Payable
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Nill Tax Balance
+						</xsl:when>
+						<xsl:otherwise>
+							<img width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Tax Refundable
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Tax Payable
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Nill Tax Balance
+						</xsl:otherwise>
+					</xsl:choose>
+				</span>
+			</div>
+			</div>
+			</div>
+		     <hr class="redline"/>
+		     <div class="row">
+				<div class="col-xs-6">
+				<span class="normallabel">Fill Only One</span>
+				<div><span class="normaltext">
+				<xsl:choose>
+					<xsl:when test="//memberpersonalinformation/@mootlywcm:pi_residential_category = 'RES'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Resident
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Non Resident
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Resident but not ordinarily resident
+						</xsl:when>
+						<xsl:when test="//memberpersonalinformation/@mootlywcm:pi_residential_category = 'NRI'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Resident 
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Non Resident
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Resident but not ordinarily resident
+						</xsl:when>
+						<xsl:otherwise>
+							<img width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Resident
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Non Resident
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Resident but not ordinarily resident
+						</xsl:otherwise>
+					</xsl:choose>
+				</span>
+			</div>
+			</div>
+			</div>
+			<div class="row">
+			<hr class="redline"/>
+				<div class="col-xs-6">
+				<span class="normallabel">Fill Only One:field</span>
+				<div><span class="normaltext">
+				<xsl:choose>
+					<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '17'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Before due date-139(1)
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>After due date-139(4)
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Revised Return-139(5)
+						</xsl:when>
+						<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '13' or //memberpersonalinformation/@mootlywcm:returnFileSection = '14' or //memberpersonalinformation/@mootlywcm:returnFileSection = '18' or //memberpersonalinformation/@mootlywcm:returnFileSection = '15' ">
+							<img width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Before due date-139(1)
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>After due date-139(4)
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Revised Return-139(5)
+						</xsl:when>
+						<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '12'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>Before due date-139(1) 
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>After due date-139(4)
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>Revised Return-139(5)
+						</xsl:when>	
+					</xsl:choose>
+				</span>
+			</div>
+			</div>
+			<div class="col-xs-6">
+				<span class="normallabel">OR&#160;&#160; in Response to notice </span>
+				<div><span class="normaltext">
+				<xsl:choose>
+				<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '13'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>142(1)
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>148 
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>139(9)
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>153A/153C
+						</xsl:when>
+				<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '14'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>142(1)
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>148 
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>139(9)
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>153A/153C
+						</xsl:when>
+		<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '18'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>142(1)
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>148 
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>139(9)
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>153A/153C
+						</xsl:when>
+		<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '15'">
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>142(1)
+							<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>148 
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>139(9)
+						<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>153A/153C
+						</xsl:when>
+				</xsl:choose>
+				</span>
+		   </div>
+			   </div>
+				</div>
+			<div class="row">
+			<hr class="redline"/>
+			<div class="col">
+				<span class="normallabel">Weather Person governed by Portugese Civil Code under section 5A</span>
+				<span class="normaltext">
+				<xsl:choose>
+					<xsl:when test="//memberpersonalinformation/@mootlywcm:portugeseCivil = 'Y'">
+				<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>yes
+				<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>No
+		
+				</xsl:when>
+				<xsl:otherwise>
+				<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-outline-16.gif" class="img-circle"/>yes
+				<img  width="14px" height="14px" src="http://www.iconsdb.com/icons/download/black/circle-16.gif" class="img-circle"/>No
+		
+				</xsl:otherwise>
+				</xsl:choose>
+				   </span>         
+				</div>
+				</div>
+			<div class="row">
+			<xsl:choose>
+			<xsl:when test="//memberpersonalinformation/@mootlywcm:returnFileSection = '17'">
+				<hr class="redline"/>
+		         <div class="col-xs-4">
+				    <span class="normallabel">If revised/Defective </span>
+				   <span class="normaltext"><xsl:value-of select="//memberpersonalinformation/@mootlywcm:originalAckNo"/></span>
+				   <div> <span class="normallabel">&#160;&#160;&#160;Receipt No of Orignal Return </span></div>
+				   </div>
+				<div class="col-xs-5">
+				 <span class="normallabel">And Date of Filling orignal Return</span>
+				<span class="normaltext"><xsl:value-of select="//ITRForm:FilingStatus/ITRForm:OrigRetFiledDate"/></span>
+				
+				</div>
+				</xsl:when>
+				</xsl:choose>    
+			</div>
+			
+			<xsl:variable name="theITRForm" select="//memberpersonalinformation/@flex_string_ITRForm"/>
+		<xsl:choose>
+			<xsl:when test="$theITRForm = 'ITR3'">
+			 	<xsl:call-template name="partAitr3"/>
+			</xsl:when>
+			</xsl:choose>
+			
+			    <div class="col-xs-1">
+                  <strong>&#160;</strong>
+                   </div>
+
 	</xsl:template>
+	<xsl:template name="partAitr3">
+	<hr class="redline"/>
+  <div class="row">
+   <div class="col-xs-12">
+    <div><span class="normallabel">Whether this return is being filed by a representative assessee?
+    If yes, please furnish following information -
+    </span></div>
+     
+    <div><span class="normaltext">
+   <xsl:choose>
+    <xsl:when test="//memberpersonalinformation/@mootlywcm:isRepresentative = 'Y'">
+     <b class="bold">Name of Reprasentative &#160;&#160;</b>
+          <xsl:value-of select="//memberpersonalinformation/@mootlywcm:name_Representative"/><br/> 
+        <b class="bold">Address of Reprasentative &#160;&#160;</b>
+  <xsl:value-of select="//memberpersonalinformation/@mootlywcm:address_Representative"/> <br/>
+  <b class="bold">PAN of Reprasentative &#160;&#160;</b>
+  <xsl:value-of select="//memberpersonalinformation/@mootlywcm:pan_Representative"/> <br/>
+     </xsl:when>
+    <xsl:otherwise>
+      <b class="bold" > No</b>
+   </xsl:otherwise>
+    </xsl:choose>
+   </span>
+   </div>
+   </div> 
+   </div>
+   
+   </xsl:template>
 </xsl:stylesheet>

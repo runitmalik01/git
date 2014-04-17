@@ -48,9 +48,13 @@
 				<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
 				<style type="text/css">
 					.normallabel {color:red; font-family:Tahoma; font-size:8px;font-weight:bold;}
+					.smalllabel {color:red; font-family:Tahoma; font-size:6px;font-weight:bold;}
+					.boldsch{color:darkblack; font-family:Tahoma; font-size:14.5px;font-weight:bold;}
 					.normaltext {font-family:Tahoma; font-size:8px;}
+					.en {font-family:Tahoma; font-size:12px;}
 					.redline {color:red;}
 					.sectionhead {font-family:arial; font-size:14.5px}
+					.normalhead {font-family:arial; font-size:11px}
 					.leftrightborder{border-left:thin solid #ff0000;border-bottom:thin solid #ff0000;border-right:thin solid #ff0000;}
 					.rightborder{border-left:none;border-bottom:thin solid red;border-right:thin solid red;}
 					.decimal {text-align:right}
